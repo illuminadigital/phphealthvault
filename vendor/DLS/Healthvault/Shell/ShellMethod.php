@@ -40,7 +40,7 @@ class ShellMethod
         $returnUrl = $this->configuration->getReturnUrl($this->methodName);
         if ( ! empty($returnUrl) )
         {
-            $this->addParameter('target', $returnUrl);
+            $this->addParameter('redirect', $returnUrl);
         }
         
         return $this->targetqsParameter();
