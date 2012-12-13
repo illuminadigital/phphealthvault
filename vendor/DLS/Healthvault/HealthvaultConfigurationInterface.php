@@ -37,5 +37,10 @@ interface HealthvaultConfigurationInterface {
      */
     public function getPrivateKey();
     
-    
+    /**
+     * Returns the service that marshals and unmarshals the XML
+     * 
+     * @return XMLMarshallingService
+     */
+    public function getMarshallingService();
 }

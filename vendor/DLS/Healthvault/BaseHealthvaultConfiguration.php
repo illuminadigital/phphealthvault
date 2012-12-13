@@ -8,8 +8,9 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     protected $baseUrl;
     protected $applicationId;
     protected $privateKey;
+    protected $marshallingService;
     
-    public function __construct($application, $privateKey = NULL, $baseUrl = NULL)
+    public function __construct($application, $privateKey = NULL, $baseUrl = NULL, $marshallingService = NULL)
     {
         if (is_array($application) || $application instanceof ArrayAccess) 
         {
@@ -31,24 +32,39 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
             $this->baseUrl = $baseUrl;
         }
         
+        if ( ! empty($marshallingService) && $marshallingService instanceof XMLMarshallingService)
+        {
+            $this->marshallingService = $marshallingService;
+        } 
+        else if (empty($this->marshallingService) )
+        {
+            // Set up the default marshalling
+            
+        }
+        
         $this->checkConfiguration();
     }
     
-    protected function setFromArray($array)
+    protected function setFromArray($data)
     {
-        if (isset($array['applicationId']))
+        if (isset($data['applicationId']))
         {
-            $this->applicationId = $array['applicationId'];
+            $this->applicationId = $data['applicationId'];
         }
 
-        if (isset($array['privateKey']))
+        if (isset($data['privateKey']))
         {
-            $this->privateKey = $array['privateKey'];
+            $this->privateKey = $data['privateKey'];
         }
         
-        if (isset($array['baseUrl']))
+        if (isset($data['baseUrl']))
         {
-            $this->baseUrl = $array['baseUrl'];
+            $this->baseUrl = $data['baseUrl'];
+        }
+        
+        if ( ! empty($data['marshallingService']) && $data['marshallingService'] instanceof XMLMarshallingService)
+        {
+            $this->marshallingService = $data['marshallingService'];
         }
     }
     
@@ -68,6 +84,12 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         {
             // Not used yet
             // throw new InvalidConfigurationException('You must specify the private key for the application');
+        }
+        
+        if ( empty ($this->marshallingService) )
+        {
+            // Not available yet
+            //throw new InvalidConfigurationException('You must specify a marshalling service');
         }
         
         return TRUE;
@@ -111,5 +133,10 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     public function getPrivateKey()
     {
         return $this->privateKey;
+    }
+    
+    public function getMarshallingService()
+    {
+        return $this->marshallingService;
     }
 }

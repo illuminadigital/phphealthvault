@@ -2,6 +2,7 @@
 namespace DLS\Healthvault;
 
 use DLS\Healthvault\Shell\ShellMethodFactory;
+use DLS\Healthvault\Platform\PlatformMethodFactory;
 
 class Driver {
     
@@ -13,6 +14,7 @@ class Driver {
     private $configuration;
     
     private $shellMethodFactory;
+    private $platformMethodFactory;
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
@@ -26,7 +28,7 @@ class Driver {
         return $shellMethodFactory->getShellMethod($methodName);
     }
     
-    public function getShellMethodFactory()
+    protected function getShellMethodFactory()
     {
         if ( ! isset($this->shellMethodFactory) )
         {
@@ -34,5 +36,22 @@ class Driver {
         }
         
         return $this->shellMethodFactory;
+    }
+    
+    public function getPlatformMethod($methodName)
+    {
+        $platformMethodFactory = $this->getPlatformMethodFactory();
+        
+        return $platformMethodFactory->getPlatformMethod($methodName);
+    }
+    
+    protected function getPlatformMethodFactory()
+    {
+        if ( ! isset($this->platformMethodFactory) )
+        {
+            $this->platformMethodFactory = new PlatformMethodFactory($configuration);
+        }
+        
+        return $this->platformMethodFactory;
     }
 }
