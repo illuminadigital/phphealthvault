@@ -1,13 +1,15 @@
 <?php
 namespace DLS\Healthvault\Shell;
 
+use DLS\Healthvault\HealthvaultConfigurationInterface;
+
 class ShellMethod
 {
     protected $configuration = NULL;
     protected $targetqsParameter = NULL;
     protected $methodName = NULL;
     
-    public function __construct(HealthvaultConfiguration $configuration)
+    public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
     }
@@ -24,7 +26,7 @@ class ShellMethod
     
     public function getMethodUrl()
     {
-        return sprintf('https://%s/redirect.aspx?target=%s&targetqs=%s', 
+        return sprintf('%s/redirect.aspx?target=%s&targetqs=%s', 
                 $this->configuration->getBaseShellUrl(),
                 $this->getMethodName(),
                 $this->getTargetqsParameter()
@@ -34,6 +36,12 @@ class ShellMethod
     public function getTargetqsParameter()
     {
         $this->targetqsParameter = '';
+        
+        $returnUrl = $this->configuration->getReturnUrl($this->methodName);
+        if ( ! empty($returnUrl) )
+        {
+            $this->addParameter('target', $returnUrl);
+        }
         
         return $this->targetqsParameter();
     }

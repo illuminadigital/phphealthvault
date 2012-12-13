@@ -12,13 +12,27 @@ class Driver {
      */
     private $configuration;
     
-    public function __construct(HealthvaultConfiguration $configuration)
+    private $shellMethodFactory;
+    
+    public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
     }
     
     public function getShellMethod($methodName)
     {
-        return ShellMethodFactory::getShellMethod($methodName);
+        $shellMethodFactory = $this->getShellMethodFactory();
+        
+        return $shellMethodFactory->getShellMethod($methodName);
+    }
+    
+    public function getShellMethodFactory()
+    {
+        if ( ! isset($this->shellMethodFactory) )
+        {
+            $this->shellMethodFactory = new ShellMethodFactory($configuration);
+        }
+        
+        return $this->shellMethodFactory;
     }
 }

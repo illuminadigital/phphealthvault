@@ -1,6 +1,6 @@
 <?php
 namespace DLS\Healthvault\Shell;
-use DLS\Healthvault\HealthvaultConfiguration;
+use DLS\Healthvault\HealthvaultConfigurationInterface;
 
 use DLS\Healthvault\Shell\ShellMethod;
 
@@ -11,7 +11,7 @@ class RecordListMethod extends ShellMethod
     protected $includeApplicationId = TRUE;
     protected $applicationId;
     
-    public function __construct(HealthvaultConfiguration $configuration)
+    public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         parent::__construct($configuration);
         

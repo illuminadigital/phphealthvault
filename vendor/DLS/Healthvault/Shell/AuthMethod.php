@@ -1,6 +1,6 @@
 <?php
 namespace DLS\Healthvault\Shell;
-use DLS\Healthvault\HealthvaultConfiguration;
+use DLS\Healthvault\HealthvaultConfigurationInterface;
 
 class AuthMethod extends ShellMethodWithAppId
 {
@@ -15,7 +15,7 @@ class AuthMethod extends ShellMethodWithAppId
     
     protected $methodName = 'Auth';
     
-    public function __construct(HealthvaultConfiguration $configuration)
+    public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         parent::__construct($configuration);
         

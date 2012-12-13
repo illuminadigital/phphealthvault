@@ -1,28 +1,34 @@
 <?php
 namespace DLS\Healthvault\Shell;
 
-use DLS\Healthvault\Configuration;
+use DLS\Healthvault\HealthvaultConfigurationInterface;
 
 use DLS\Healthvault\Shell\Exceptions\UnsupportedShellMethodException;
+use DLS\Healthvault\Exceptions\InvalidConfigurationException;
 
 class ShellMethodFactory {
     /**
-     * @var HealthvaultConfiguration 
+     * @var HealthvaultConfigurationInterface
      */
     protected $configuration;
 
-    public function construct(HealthvaultConfiguration $configuration)
+    public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
     }
 
-    public static function getShellMethod($name)
+    public function getShellMethod($name)
     {
+        if ( ! isset($this->configuration) )
+        {
+            throw new InvalidConfigurationException();
+        }
+        
         $methodClass = sprintf('%s\\%sMethod', __NAMESPACE__, $name);
         
         if (class_exists($methodClass))
         {
-            return new $methodClass($configuration);
+            return new $methodClass($this->configuration);
         }
         else
         {

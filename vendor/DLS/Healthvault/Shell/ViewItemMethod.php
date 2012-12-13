@@ -9,7 +9,7 @@ class ViewItemMethod extends ShellMethodWithRecordId
     protected $typeIds;
     protected $allowAddItem = FALSE;
     
-    public function __construct(HealthvaultConfiguration $configuration)
+    public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         parent::__construct($configuration);
         

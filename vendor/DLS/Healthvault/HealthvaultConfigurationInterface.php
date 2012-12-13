@@ -1,7 +1,7 @@
 <?php
 namespace DLS\Healthvault;
 
-interface HealthvaultConfiguration {
+interface HealthvaultConfigurationInterface {
     
     /**
      * Returns the base URL for the shell on the healthvault Instance
@@ -9,6 +9,13 @@ interface HealthvaultConfiguration {
      * @return string URL
      */
     public function getBaseShellUrl();
+    
+    /**
+     * Returns the base URL for the platform on the healthvault Instance
+     * 
+     * @return string URL
+     */
+    public function getBasePlatformUrl();
     
     /**
      * Returns the URL that Healthvault should be instructed to return to. This may vary with the target of the request.
