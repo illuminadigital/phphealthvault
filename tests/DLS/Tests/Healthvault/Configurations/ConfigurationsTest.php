@@ -1,10 +1,9 @@
 <?php
 namespace DLS\Tests\Healthvault\Configurations;
 
-class ConfigurationsTest extends \PHPUnit_Framework_TestCase {
+use DLS\Tests\HealthvaultTestCase;
 
-	protected $applicationId = '05a059c9-c309-46af-9b86-b06d42510550'; 
-
+class ConfigurationsTest extends HealthvaultTestCase {
 	/**
 	 * @test
 	 */
