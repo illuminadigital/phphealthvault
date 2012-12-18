@@ -1,0 +1,3 @@
+[submodule "vendor/php-xml-marshalling"]
+	path = vendor/php-xml-marshalling
+	url = git://github.com/illuminadigital/php-xml-marshalling.git
