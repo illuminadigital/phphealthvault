@@ -6,10 +6,13 @@ class PlatformMethod
     protected $configuration = NULL;
     protected $methodName = NULL;
     protected $methodVersion = 1;
+    protected $requestData = NULL;
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
+        
+        $this->requestData = new MethodRequest();
     }
     
     protected function getHeader()
@@ -35,5 +38,10 @@ class PlatformMethod
         $responseObject = $unmarshaller->unmarshal($response);
         
         return $responseObject;
+    }
+    
+    protected function getRequestXML()
+    {
+    	
     }
 }

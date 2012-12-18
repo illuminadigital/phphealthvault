@@ -2,6 +2,7 @@
 namespace DLS\Healthvault\Platform;
 
 use DLS\Healthvault\HealthvaultConfigurationInterface;
+use DLS\Healthvault\Entity\Request\GetPersonInfoRequest;
 
 class GetPersonInfoMethod extends PlatformMethod
 {
@@ -11,11 +12,11 @@ class GetPersonInfoMethod extends PlatformMethod
     {
         parent::__construct($configuration);
         
-        $this->requestData = new GetPersonInfoRequest();
+        $this->requestData->setInfo(new GetPersonInfoRequest());
     }
     
     public function setFetchGroups($state = TRUE)
     {
-        $this->requestData->info->setGroupMembership((bool)$state);
+        $this->requestData->getInfo()->setGroupMembership( (bool)$state );
     }
 }
