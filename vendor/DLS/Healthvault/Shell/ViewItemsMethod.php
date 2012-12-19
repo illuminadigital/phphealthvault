@@ -1,8 +1,12 @@
 <?php
 namespace DLS\Healthvault\Shell;
+use DLS\Healthvault\Shell\Exceptions\MissingParameterException;
+
+use DLS\Healthvault\HealthvaultConfigurationInterface;
+
 use DLS\Healthvault\Shell\ShellMethodWithRecordId;
 
-class ViewItemMethod extends ShellMethodWithRecordId
+class ViewItemsMethod extends ShellMethodWithRecordId
 {
     protected $methodName = 'ViewItems';
     
@@ -24,28 +28,29 @@ class ViewItemMethod extends ShellMethodWithRecordId
         
         $this->addBooleanParameter('additem', $this->allowAddItem);
         
-        $this->addParameter('extrecordid', $this->externalRecordId);
-        
         return $this->targetqsParameter;
     }
    
     public function setTypeIds(array $typeIds)
     {
-        $this->typeIds = $typeIds;
+        $this->typeIds = array_unique($typeIds);
         
         return $this;
     }
     
     public function addTypeId($typeId)
     {
-        $this->typeIds[] = $typeId;
+    	if ( ! is_array($this->typeIds) || ! in_array($typeId, $this->typeIds) )
+    	{
+        	$this->typeIds[] = $typeId;
+    	}
         
         return $this;
     }
     
     public function addTypeIds(array $typeIds)
     {
-        $this->typeIds = array_merge($this->typeIds, $typeIds);
+        $this->typeIds = array_unique(is_array($this->typeIds) ? array_merge($this->typeIds, $typeIds) : $typeIds);
         
         return $this;
     }
@@ -56,4 +61,37 @@ class ViewItemMethod extends ShellMethodWithRecordId
         
         return $this;
     }
+    
+	public function validateParameters($throwException = TRUE) {
+		$missing = array();
+		
+		if (empty($this->typeIds) || ! is_array($this->typeIds))
+		{
+			$missing[] = 'typeIds';
+		}
+		
+		if (empty($this->externalRecordId))
+		{
+			$missing[] = 'externalRecordId';
+		}
+		
+		if ( ! isset($this->allowAddItem) )
+		{
+			$missing[] = 'allowAddItem';
+		}
+		
+		if (empty($missing))
+		{
+			return TRUE;
+		}
+		else if ($throwException)
+		{
+			throw new MissingParameterException('The following parameter(s) are missing: ' . implode(', ', $missing));
+		}
+		else
+		{
+			return $missing;
+		}
+	}
+
 }

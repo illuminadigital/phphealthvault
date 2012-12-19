@@ -1,5 +1,7 @@
 <?php
 namespace DLS\Healthvault\Shell;
+use DLS\Healthvault\Shell\Exceptions\MissingParameterException;
+
 use DLS\Healthvault\HealthvaultConfigurationInterface;
 
 use DLS\Healthvault\Shell\ShellMethod;
@@ -37,5 +39,21 @@ class RecordListMethod extends ShellMethod
     public function setIncludeApplicationId($state)
     {
         $this->includeApplicationId = (bool) $state;
+    }
+    
+    public function validateParameters($throwException = TRUE)
+    {
+    	if ($this->includeApplicationId && empty($this->applicationId))
+    	{
+    		if ($throwException) {
+    			throw new MissingParameterException('The applicationId is required');
+    		}
+    		else
+    		{
+    			return 'applicationId';
+    		}
+    	}
+    	
+    	return TRUE;
     }
 }
