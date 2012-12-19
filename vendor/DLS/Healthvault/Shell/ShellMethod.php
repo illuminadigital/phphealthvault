@@ -37,6 +37,8 @@ class ShellMethod
     {
         $this->targetqsParameter = '';
         
+        $this->validateParameters();
+        
         $returnUrl = $this->configuration->getReturnUrl($this->methodName);
         if ( ! empty($returnUrl) )
         {
@@ -94,5 +96,10 @@ class ShellMethod
     protected function addListParameter($name, $value)
     {
         $this->addParameter($name, is_array($value) ? implode(',', $value) : $value);
+    }
+    
+    public function validateParameters($throwException = TRUE)
+    {
+    	return TRUE;
     }
 }

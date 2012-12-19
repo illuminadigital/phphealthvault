@@ -7,5 +7,7 @@ class ShellMethodWithAppId extends ShellMethod
         parent::getTargetqsParameter();
         
         $this->addParameter('appid', $this->configuration->getApplicationId());
+        
+        return $this->targetqsParameter;
     }
 }

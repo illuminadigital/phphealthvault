@@ -29,7 +29,7 @@ class CreateAccountMethod extends AuthMethod
     
     public function setNewSignIn($state)
     {
-        $this->newSignIn = ($state ? 1 : 0);
+        $this->newSignIn = (! isset($state) ? NULL : ($state ? 1 : 0));
         
         return $this;
     }

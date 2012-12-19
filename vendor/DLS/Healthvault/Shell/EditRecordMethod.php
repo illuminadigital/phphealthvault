@@ -1,6 +1,8 @@
 <?php
 namespace DLS\Healthvault\Shell;
 
+use DLS\Healthvault\Shell\Exceptions\MissingParameterException;
+
 class EditRecordMethod extends ShellMethodWithAppId {
     protected $externalRecordId = NULL;
     
@@ -19,5 +21,21 @@ class EditRecordMethod extends ShellMethodWithAppId {
     {
         $this->externalRecordId = $recordId;
         return $this;
+    }
+    
+    public function validateParameters($throwException = TRUE)
+    {
+    	if (empty($this->externalRecordId))
+    	{
+    		if ($throwException)
+    		{
+    			throw new MissingParameterException('The externalRecordId parameter is missing.');
+    		}
+    		else
+    		{
+    			return array('externalRecordId');
+    		}
+    	}
+    	return TRUE;
     }
 }
