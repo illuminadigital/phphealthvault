@@ -32,7 +32,7 @@ class Driver {
     {
         if ( ! isset($this->shellMethodFactory) )
         {
-            $this->shellMethodFactory = new ShellMethodFactory($configuration);
+            $this->shellMethodFactory = new ShellMethodFactory($this->configuration);
         }
         
         return $this->shellMethodFactory;
@@ -49,7 +49,7 @@ class Driver {
     {
         if ( ! isset($this->platformMethodFactory) )
         {
-            $this->platformMethodFactory = new PlatformMethodFactory($configuration);
+            $this->platformMethodFactory = new PlatformMethodFactory($this->configuration);
         }
         
         return $this->platformMethodFactory;

@@ -29,7 +29,7 @@ class ShellMethod
         return sprintf('%s/redirect.aspx?target=%s&targetqs=%s', 
                 $this->configuration->getBaseShellUrl(),
                 $this->getMethodName(),
-                $this->getTargetqsParameter()
+                urlencode($this->getTargetqsParameter())
         );
     }
     
@@ -43,7 +43,7 @@ class ShellMethod
             $this->addParameter('redirect', $returnUrl);
         }
         
-        return $this->targetqsParameter();
+        return $this->targetqsParameter;
     }
     
     protected function addOptionalBooleanParameters(array $parameterData)
@@ -64,7 +64,7 @@ class ShellMethod
                 $count = 1;
                 foreach ($this->$propertyName as $value)
                 {
-                    $this->addParameter(sprintf($name, $count), (string) $value); 
+                    $this->addParameter(sprintf($name, $count++), (string) $value);
                 }
             }
         }

@@ -77,37 +77,43 @@ class AuthMethod extends ShellMethodWithAppId
     
     public function addOptionalOnlineRule($rule)
     {
-        $this->onlineOptionalRules[] = $rule;
+    	if ( ! is_array($this->onlineOptionalRules) || ! in_array($rule, $this->onlineOptionalRules)) {
+	        $this->onlineOptionalRules[] = $rule;
+    	}
         return $this;
     }
     
     public function addOptionalOnlineRules(array $rules)
     {
-        $this->onlineOptionalRules = $this->array_merge($this->onlineOptionalRules, $rules);
+        $this->onlineOptionalRules = array_unique(is_array($this->onlineOptionalRules) ? array_merge($this->onlineOptionalRules, $rules) : $rules);
         return $this;
     }
     
-    public function setOptionalOnlineRules(array $rules)
+    public function setOptionalOnlineRules($rules)
     {
-        $this->onlineOptionalRules = $rules;
+    	$this->onlineOptionalRules = (is_array($rules) ? array_unique($rules) : NULL);
+        
         return $this;
     }
     
     public function addOptionalOfflineRule($rule)
     {
-        $this->offlineOptionalRules[] = $rule;
+    	if ( ! is_array($this->offlineOptionalRules) || ! in_array($rule, $this->offlineOptionalRules)) {
+    		$this->offlineOptionalRules[] = $rule;
+    	}
         return $this;
     }
     
     public function addOptionalOfflineRules(array $rules)
     {
-        $this->offlineOptionalRules = $this->array_merge($this->offlineOptionalRules, $rules);
+        $this->offlineOptionalRules = array_unique(is_array($this->offlineOptionalRules) ? array_merge($this->offlineOptionalRules, $rules) : $rules);
+        
         return $this;
     }
     
-    public function setOptionalOfflineRules(array $rules)
+    public function setOptionalOfflineRules($rules)
     {
-        $this->offlineOptionalRules = $rules;
+        $this->offlineOptionalRules = (is_array($rules) ? array_unique($rules) : NULL);
         return $this;
     }
 }
