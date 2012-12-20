@@ -12,8 +12,11 @@ class AuthMethod extends ShellMethodWithAppId
     protected $allowMultiRecordApplication = TRUE;
     protected $allowTokenRedirect = TRUE;
     protected $allowOptionalRules = FALSE;
+    protected $allowMultipleApplications = FALSE;
     
     protected $methodName = 'Auth';
+    
+    protected $applicationId;
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
@@ -21,11 +24,22 @@ class AuthMethod extends ShellMethodWithAppId
         
         $this->onlineOptionalRules = array();
         $this->offlineOptionalRules = array();
+        $this->applicationIds = array($this->configuration->getApplicationId());
     }
     
     public function getTargetqsParameter()
     {
-        parent::getTargetqsParameter();
+        $this->targetqsParameter = '';
+        
+        $this->validateParameters();
+        
+        $returnUrl = $this->configuration->getReturnUrl($this->methodName);
+        if ( ! empty($returnUrl) )
+        {
+            $this->addParameter('redirect', $returnUrl);
+        }
+        
+        $this->addListParameter('appid', $this->applicationIds);
         
         if ($this->allowOptionalRules)
         {
@@ -115,5 +129,45 @@ class AuthMethod extends ShellMethodWithAppId
     {
         $this->offlineOptionalRules = (is_array($rules) ? array_unique($rules) : NULL);
         return $this;
+    }
+    
+    public function setApplicationId($applicationId)
+    {
+    	$this->applicationIds = (isset($applicationId) ? array() : array($applicationId) );
+    }
+    
+    public function addApplicationId($applicationId)
+    {
+    	if ($this->allowMultipleApplications || count($this->applicationIds) == 0)
+    	{
+    		if ( ! in_array($applicationId, $this->applicationIds) )
+    		{
+    			$this->applicationIds[] = $applicationId;
+    		}
+    	}
+    }
+    
+    public function setApplicationIds($applicationIds)
+    {
+    	if ($this->allowMultipleApplications || ! is_array($applicationIds) || count($applicationIds) == 1)
+    	{
+    		$this->applicationIds = ( ! is_array($applicationIds) ? array() : $applicationIds);
+    	}
+    	else
+    	{
+    		throw new \BadMethodCallException();
+    	}
+    }
+    
+    public function addApplicationIds($applicationIds)
+    {
+    	if ($this->allowMultipleApplications || ! is_array($applicationIds) || (count($applicationIds) == 1 && empty($this->applicationIds)) )
+    	{
+    		$this->applicationIds = array_unique(array_merge($this->applicationIds, ( ! is_array($applicationIds) ? array() : $applicationIds)));
+    	}
+        else
+    	{
+    		throw new \BadMethodCallException();
+    	}
     }
 }

@@ -2,7 +2,8 @@
 namespace DLS\Tests\Healthvault\Shell;
 
 class AppAuthTest extends AuthTest {
-
+	protected $otherApplicationIds = array('3a93ca55-6a08-46bf-bf76-d0e205823242', 'ea1af0c4-f4a1-4fc0-95a2-50b60a97d92d');
+	
 	/**
 	 * @test
 	 */
@@ -68,5 +69,8 @@ class AppAuthTest extends AuthTest {
 		
 		$method->setMultiRecordApplication(NULL);
 		$this->assertEquals($baseUrl . '%26ismra%3DFalse', $method->getMethodUrl());
+		
+		$method->addApplicationIds($this->otherApplicationIds);
+		$this->assertEquals($baseUrl . '%252C3a93ca55-6a08-46bf-bf76-d0e205823242%252Cea1af0c4-f4a1-4fc0-95a2-50b60a97d92d%26ismra%3DFalse', $method->getMethodUrl());
 	}
 }

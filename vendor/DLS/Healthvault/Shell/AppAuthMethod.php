@@ -7,6 +7,7 @@ class AppAuthMethod extends AuthMethod {
     protected $methodName = 'AppAuth';
     
     protected $allowOptionalRules = TRUE;
+    protected $allowMultipleApplications = TRUE;
     
     public function getTargetqsParameter()
     {
