@@ -9,7 +9,7 @@ $classLoader = new \Doctrine\Common\ClassLoader('Symfony\Component\Console', rea
 $classLoader->register();
 
 // Register Doctrine Common
-$classLoader = new \Doctrine\Common\ClassLoader('Doctrine\Common', realpath(MARSHALLING_LIB . '/vendor/doctrine-common'));
+$classLoader = new \Doctrine\Common\ClassLoader('Doctrine\Common', realpath(MARSHALLING_LIB . '/vendor/doctrine-common/lib'));
 $classLoader->register();
 
 // Register OXM

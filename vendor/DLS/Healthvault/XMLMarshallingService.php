@@ -10,7 +10,7 @@ interface XMLMarshallingService
      * 
      * @return string
      */
-    public function marshal($object);
+    public function marshalToString($object);
     
     /**
      * Converts an XML string into objects
@@ -19,5 +19,5 @@ interface XMLMarshallingService
      * 
      * @return mixed
      */
-    public function unmarshal($xml);
+    public function unmarshalFromString($xml);
 }

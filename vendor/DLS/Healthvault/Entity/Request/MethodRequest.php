@@ -2,26 +2,29 @@
 namespace DLS\Healthvault\Entity\Request;
 
 /**
- * @XmlEntity
+ * @XmlRootEntity(xml="wc-request:request")
+ * @XmlNamespaces({
+ * 	@XmlNamespace(url="urn:com.microsoft.wc.request", prefix="wc-request")
+ * })
  */
 class MethodRequest {
 	/**
-	 * @XmlElement(type="DLS\Healthvault\Entity\Type\HMACFinalized", name="auth")
+	 * @XmlElement(type="\DLS\Healthvault\Entity\Type\HMACFinalized", name="auth")
 	 */
 	protected $auth;
 
 	/**
-	 * @XmlElement(type="DLS\Healthvault\Entity\Type\Header")
+	 * @XmlElement(type="\DLS\Healthvault\Entity\Type\Header", name="header")
 	 */
 	protected $header;
 
 	/**
-	 * @XmlElement(type="DLS\Healthvault\Entity\Request\InfoRequest")
+	 * @XmlElement(type="\DLS\Healthvault\Entity\Request\InfoRequest", name="info")
 	 */
 	protected $info;
 	
 	
-	public function setAuth(DLS\Healthvault\Entity\Type\HMACFinalized $auth)
+	public function setAuth(\DLS\Healthvault\Entity\Type\HMACFinalized $auth)
 	{
 		$this->auth = $auth;
 	}
@@ -31,7 +34,7 @@ class MethodRequest {
 		return $this->auth;
 	}
 	
-	public function setHeader(DLS\Healthvault\Entity\Type\Header $header)
+	public function setHeader(\DLS\Healthvault\Entity\Type\Header $header)
 	{
 		$this->header = $header;
 	}
@@ -41,7 +44,7 @@ class MethodRequest {
 		return $this->header;
 	}
 	
-	public function setInfo(DLS\Healthvault\Entity\Request\InfoRequest $info)
+	public function setInfo(\DLS\Healthvault\Entity\Request\InfoRequest $info)
 	{
 		$this->info = $info;
 	}

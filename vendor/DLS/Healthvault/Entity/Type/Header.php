@@ -1,6 +1,9 @@
 <?php
 namespace DLS\Healthvault\Entity\Type;
 
+/**
+ * @XmlEntity()
+ */
 class Header {
 
 	/**
@@ -14,23 +17,23 @@ class Header {
 	protected $methodVersion;
 	
 	/**
-	 * @XmlElement(type="DLS\Healthvault\Entity\Type\Guid" name="target-person-id") 
+	 * @XmlElement(type="DLS\Healthvault\Entity\Type\Guid", name="target-person-id") 
 	 */
 	protected $targetPerson;
 	
 	/**
-	 * @XmlElement(type="DLS\Healthvault\Entity\Type\Guid" name="record-id")
+	 * @XmlElement(type="DLS\Healthvault\Entity\Type\Guid", name="record-id")
 	 */
 	protected $recordId;
 	
 	/* Choice: 1 off */
 	/**
-	 * @XmlElement(type="DLS\Healthvault\Entity\Type\Guid" name="app-id") 
+	 * @XmlElement(type="DLS\Healthvault\Entity\Type\Guid", name="app-id") 
 	 */
 	protected $applicationId;
 	
 	/**
-	 * @XmlElement(type="DLS\Healthvault\Entity\Type\AuthenticatedSessionInfo" name="auth-session")
+	 * @XmlElement(type="DLS\Healthvault\Entity\Type\AuthenticatedSessionInfo", name="auth-session")
 	 */
 	protected $authSession;
 	/* /Choice */
@@ -53,7 +56,7 @@ class Header {
 	protected $finalXsl;
 	
 	/**
-	 * @XmlText(type="dateTime", name="msg-time")
+	 * @XmlElement(type="DLS\Healthvault\Entity\Type\DateTime", name="msg-time")
 	 */
 	protected $messageTime;
 	
@@ -64,7 +67,7 @@ class Header {
 	
 	/**
 	 * Should be Version
-	 * @XmlText(type="string", required=true)
+	 * @XmlText(type="string")
 	 */
 	protected $version;
 	
@@ -72,4 +75,30 @@ class Header {
 	 * @XmlElement(type="DLS\Healthvault\Entity\Type\HashFinalized", name="info-hash")
 	 */
 	protected $hash;
+	
+	
+	public function setMethod($method)
+	{
+		$this->method = $method;
+	}
+	
+	public function setMethodVersion($version)
+	{
+		$this->methodVersion = $version;
+	}
+	
+	public function setVersion($version)
+	{
+		$this->version = $version;
+	}
+	
+	public function getHash()
+	{
+		if (empty($this->hash))
+		{
+			$this->hash = new HashFinalized();
+		}
+		
+		return $this->hash;
+	}
 }

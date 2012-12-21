@@ -3,12 +3,17 @@ namespace DLS\Healthvault;
 
 use DLS\Healthvault\Exceptions\InvalidConfigurationException;
 
+use Doctrine\OXM\Marshaller\XmlMarshaller;
+use Doctrine\OXM\Marshaller\Marshaller;
+
 class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
 {
     protected $baseUrl;
     protected $applicationId;
     protected $privateKey;
     protected $marshallingService;
+    protected $sharedSecret;
+    protected $secretDigest;
     
     public function __construct($application, $privateKey = NULL, $baseUrl = NULL, $marshallingService = NULL)
     {
@@ -32,15 +37,18 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
             $this->baseUrl = $baseUrl;
         }
         
-        if ( ! empty($marshallingService) && $marshallingService instanceof XMLMarshallingService)
+        if ( ! empty($marshallingService) && ($marshallingService instanceof XMLMarshallingService || $marshallingService instanceof Marshaller))
         {
             $this->marshallingService = $marshallingService;
         } 
         else if (empty($this->marshallingService) )
         {
             // Set up the default marshalling
-            
+            $this->marshallingService = $this->getDefaultMarshallingService();
         }
+
+        $this->sharedSecret = hash('SHA1', uniqid(rand(0,1), TRUE));
+        $this->secretDigest = hash_hmac('SHA1', $this->sharedSecret, $this->sharedSecret);
         
         $this->checkConfiguration();
     }
@@ -62,7 +70,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
             $this->baseUrl = $data['baseUrl'];
         }
         
-        if ( ! empty($data['marshallingService']) && $data['marshallingService'] instanceof XMLMarshallingService)
+        if ( ! empty($data['marshallingService']) && ($data['marshallingService'] instanceof XMLMarshallingService || $data['marshallingService'] instanceof Marshaller))
         {
             $this->marshallingService = $data['marshallingService'];
         }
@@ -88,8 +96,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         
         if ( empty ($this->marshallingService) )
         {
-            // Not available yet
-            //throw new InvalidConfigurationException('You must specify a marshalling service');
+            throw new InvalidConfigurationException('You must specify a marshalling service');
         }
         
         return TRUE;
@@ -137,6 +144,50 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     
     public function getMarshallingService()
     {
-        return $this->marshallingService;
+        //return $this->marshallingService;
+        return $this->getDefaultMarshallingService();
+    }
+    
+    protected function getDefaultMarshallingService()
+    {
+    	$OXMConfiguration = new \Doctrine\OXM\Configuration();
+    	
+    	$paths = array(
+    		__DIR__ . '/Entity',
+    	);
+    	
+    	$annotationDriver = $OXMConfiguration->newDefaultAnnotationDriver($paths);
+    	
+    	// Register the classes
+    	$callable = array(get_class($annotationDriver), 'registerAnnotationClasses');
+    	if (is_callable($callable)) {
+	    	call_user_func($callable);
+    	}
+    	
+    	$OXMConfiguration->setMetadataDriverImpl($annotationDriver);
+
+    	$OXMConfiguration->setMetadataCacheImpl(new \Doctrine\Common\Cache\ArrayCache);
+    	
+    	$metadataFactoryName = $OXMConfiguration->getClassMetadataFactoryName();
+    	$metadataFactory = new $metadataFactoryName($OXMConfiguration);
+    	
+    	$marshaller = new XmlMarshaller($metadataFactory);
+    	
+    	return $marshaller;
+    }
+    
+    public function getSharedSecret()
+    {
+    	return $this->sharedSecret;
+    }
+    
+    public function getSecretDigest()
+    {
+    	return $this->secretDigest;
+    }
+    
+    public function authenticate()
+    {
+    	
     }
 }

@@ -18,5 +18,13 @@ class GetPersonInfoMethod extends PlatformMethod
     public function setFetchGroups($state = TRUE)
     {
         $this->requestData->getInfo()->setGroupMembership( (bool)$state );
+        
+        return $this;
     }
+    
+    public function fetchGroups($state = TRUE)
+    {
+    	return $this->setFetchGroups($state);
+    }
+    
 }

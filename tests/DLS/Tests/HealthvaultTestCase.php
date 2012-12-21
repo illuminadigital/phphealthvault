@@ -5,6 +5,7 @@ use PHPUnit_Framework_TestCase;
 
 use DLS\Healthvault\Driver;
 use DLS\Healthvault\Configurations\HealthvaultROWConfiguration;
+use DLS\Healthvault\Configurations\HealthvaultUSDevelopmentConfiguration;
 use DLS\Tests\Mocks\TargetOverrideConfiguration;
 
 class HealthvaultTestCase extends PHPUnit_Framework_TestCase {
@@ -19,6 +20,12 @@ class HealthvaultTestCase extends PHPUnit_Framework_TestCase {
 	public function getDriverWithRowConfiguration()
 	{
 		$rowConfiguration = new HealthvaultRowConfiguration($this->applicationId);
+		return new Driver($rowConfiguration);
+	}
+
+	public function getDriverWithUSDevelopmentConfiguration()
+	{
+		$rowConfiguration = new HealthvaultUSDevelopmentConfiguration($this->applicationId);
 		return new Driver($rowConfiguration);
 	}
 }

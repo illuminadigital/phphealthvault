@@ -2,7 +2,7 @@
 namespace DLS\Healthvault\Entity\Request;
 
 /**
- * @XmlSuperClass
+ * @XmlMappedSuperclass
  */
 abstract class InfoRequest {
 
