@@ -13,5 +13,45 @@ class CreateAuthenticatedSessionTokenMethod extends PlatformMethod {
 	public function __construct(HealthvaultConfigurationInterface $configuration)
 	{
 		parent::__construct($configuration);
+		
+		$this->mustBeAuthorised = FALSE;
+		
+		$authInfo = $this->requestData->getInfo()->getAuthInfo();
+		
+		$authInfo->getAppId()->setValue($this->configuration->getApplicationId());
+		
+		$appServer = $authInfo->getCredential()->getAppServer();
+		
+		$appServerCredential = $appServer->getContent();
+		$appServerCredential->getAppId()->setValue($this->configuration->getApplicationId());
+		
+		$secretData = $appServerCredential->getSharedSecret()->getHmacAlg();
+		$secretData->setAlgName('HMAC' . $this->configuration->getSecretDigestHash());
+		$secretData->setValue($this->configuration->getSecretDigest());
+		
+		$signature = $appServer->getSig();
+		$signature->setDigestMethod($this->configuration->getSecretDigestHash());
+		
+	}
+	
+	protected function getRequestXML() {
+		$marshaller = $this->configuration->getMarshallingService();
+		
+		$appServer = $this->requestData->getInfo()->getAuthInfo()->getCredential()->getAppServer();
+		
+		$credential = $appServer->getContent();
+		$credentialText = $this->extractPayload($marshaller->marshalToString($credential));
+
+		// Generate the signature
+		$signatureText = ''; // Passed by reference
+		openssl_sign($credentialText, $signature, $this->configuration->getPrivateKey(), OPENSSL_ALGO_SHA1);
+		$signatureText = trim(base64_encode($signature));
+
+		$signature = $appServer->getSig();
+		$signature->setSigMethod('RSA-SHA1'); // This must agree with the openssl_sign call above
+		$signature->setThumbprint($this->configuration->getThumbprint());
+		$signature->setValue($signatureText);
+		
+		return parent::getRequestXML();
 	}
 }

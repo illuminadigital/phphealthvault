@@ -29,7 +29,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         
         if ( ! empty($privateKey) )
         {
-            $this->privateKey = $privateKey;
+            $this->setPrivateKey($privateKey); // Use the functionality this offers
         }
         
         if ( ! empty($baseUrl) )
@@ -47,8 +47,8 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
             $this->marshallingService = $this->getDefaultMarshallingService();
         }
 
-        $this->sharedSecret = hash('SHA1', uniqid(rand(0,1), TRUE));
-        $this->secretDigest = hash_hmac('SHA1', $this->sharedSecret, $this->sharedSecret);
+        $this->sharedSecret = hash($this->getSharedSecretHash(), uniqid(rand(0,1), TRUE));
+        $this->secretDigest = hash_hmac($this->getSecretDigestHash(), $this->sharedSecret, $this->sharedSecret);
         
         $this->checkConfiguration();
     }
@@ -62,7 +62,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
 
         if (isset($data['privateKey']))
         {
-            $this->privateKey = $data['privateKey'];
+            $this->setPrivateKey($data['privateKey']); // Use the functionality
         }
         
         if (isset($data['baseUrl']))
@@ -90,8 +90,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         
         if ( empty ($this->privateKey) )
         {
-            // Not used yet
-            // throw new InvalidConfigurationException('You must specify the private key for the application');
+            throw new InvalidConfigurationException('You must specify the private key for the application');
         }
         
         if ( empty ($this->marshallingService) )
@@ -173,6 +172,8 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	
     	$marshaller = new XmlMarshaller($metadataFactory);
     	
+    	//$marshaller->setIndent(0); // Do not indent
+    	
     	return $marshaller;
     }
     
@@ -181,13 +182,56 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	return $this->sharedSecret;
     }
     
+    public function getSharedSecretHash()
+    {
+    	return 'SHA1';
+    }
+    
     public function getSecretDigest()
     {
     	return $this->secretDigest;
     }
     
+    public function getSecretDigestHash()
+    {
+    	return 'SHA1';
+    }
+    
     public function authenticate()
     {
     	
+    }
+    
+    public function setPrivateKey($key)
+    {
+    	if (is_string($key)) {
+    		// This is the filename, not the resource
+    		
+    		$this->privateKey = NULL;
+    		
+    		$keyData = file_get_contents($key);
+
+    		if ($keyData === FALSE) {
+    			throw new \Exception('Unable to read the private key from the file: ' . $e->getMessage());
+    		}
+    		
+    		$privateKey = openssl_pkey_get_private($keyData);
+    		
+    		if ($privateKey === FALSE) {
+    			throw new \Exception('Unable to generate the private key from the file: ' . $e->getMessage());
+    		}
+    		
+    		$this->privateKey = $privateKey;
+    	} else {
+    		$this->privateKey = $key;
+    	}
+    	
+    	return $this;
+    }
+    
+    public function getThumbprint()
+    {
+    	// FIXME: This is not correct(!)
+    	return '50054D4FAEE16F69AAF66B7596ED30F9922B949E';
     }
 }
