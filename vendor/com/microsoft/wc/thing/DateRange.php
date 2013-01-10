@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="DateRange")
  */
 class DateRange {
@@ -44,7 +41,7 @@ class DateRange {
 	}
 
 	protected function validateDateMin($dateMin) {
-		if (!is_string($dateMin)) {
+		if ( ! is_string($dateMin) && ! is_null($dateMin) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateMin', 'string'));
 		}
 	
@@ -67,7 +64,7 @@ class DateRange {
 	}
 
 	protected function validateDateMax($dateMax) {
-		if (!is_string($dateMax)) {
+		if ( ! is_string($dateMax) && ! is_null($dateMax) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateMax', 'string'));
 		}
 	

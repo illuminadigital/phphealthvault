@@ -6,9 +6,6 @@ use com\microsoft\wc\thing\Month;
 use com\microsoft\wc\thing\Day;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="date")
  */
 class Date {

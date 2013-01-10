@@ -5,9 +5,6 @@ use com\microsoft\wc\application\DateRange;
 use com\microsoft\wc\application\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="Set")
  */
 class Set {
@@ -45,7 +42,7 @@ class Set {
 	}
 
 	protected function validateDateRange($dateRange) {
-		if ( ! $dateRange instanceof DateRange ) {
+		if ( ! $dateRange instanceof DateRange  && ! is_null($dateRange) ) {
 			$dateRange = new DateRange ($dateRange);
 		}
 		$count = count($dateRange);
@@ -81,7 +78,7 @@ class Set {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof Guid ) {
+		if ( ! $typeId instanceof Guid  && ! is_null($typeId) ) {
 			$typeId = new Guid ($typeId);
 		}
 		$count = count($typeId);

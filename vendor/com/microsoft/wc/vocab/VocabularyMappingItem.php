@@ -4,9 +4,6 @@ namespace com\microsoft\wc\vocab;
 use com\microsoft\wc\types\CodedValue;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.vocab", prefix="wc-vocab")
- * })
  * @XmlEntity	(xml="vocabulary-mapping-item")
  */
 class VocabularyMappingItem {

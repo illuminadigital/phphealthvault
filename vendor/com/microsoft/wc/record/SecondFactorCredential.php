@@ -4,9 +4,6 @@ namespace com\microsoft\wc\record;
 use com\microsoft\wc\record\SimplePhoneFactorCredential;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="SecondFactorCredential")
  */
 class SecondFactorCredential {

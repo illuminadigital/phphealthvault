@@ -7,9 +7,6 @@ use com\microsoft\wc\types\RcptAddress;
 use com\microsoft\wc\types\RcptPerson;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SendInsecureMessageFromApplication", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -102,7 +99,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptAddress($rcptAddress) {
-		if ( ! $rcptAddress instanceof RcptAddress ) {
+		if ( ! $rcptAddress instanceof RcptAddress  && ! is_null($rcptAddress) ) {
 			$rcptAddress = new RcptAddress ($rcptAddress);
 		}
 		$count = count($rcptAddress);
@@ -138,7 +135,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptPerson($rcptPerson) {
-		if ( ! $rcptPerson instanceof RcptPerson ) {
+		if ( ! $rcptPerson instanceof RcptPerson  && ! is_null($rcptPerson) ) {
 			$rcptPerson = new RcptPerson ($rcptPerson);
 		}
 		$count = count($rcptPerson);
@@ -174,7 +171,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptRecord($rcptRecord) {
-		if ( ! $rcptRecord instanceof RcptRecord ) {
+		if ( ! $rcptRecord instanceof RcptRecord  && ! is_null($rcptRecord) ) {
 			$rcptRecord = new RcptRecord ($rcptRecord);
 		}
 	
@@ -220,7 +217,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateTextBody($textBody) {
-		if (!is_string($textBody)) {
+		if ( ! is_string($textBody) && ! is_null($textBody) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'textBody', 'string'));
 		}
 	
@@ -243,7 +240,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateHtmlBody($htmlBody) {
-		if (!is_string($htmlBody)) {
+		if ( ! is_string($htmlBody) && ! is_null($htmlBody) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'htmlBody', 'string'));
 		}
 	

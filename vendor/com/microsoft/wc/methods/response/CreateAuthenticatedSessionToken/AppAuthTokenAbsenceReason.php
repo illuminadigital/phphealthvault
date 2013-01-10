@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Guid;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.CreateAuthenticatedSessionToken", prefix="")
- * })
  * @XmlEntity	(xml="AppAuthTokenAbsenceReason")
  */
 class AppAuthTokenAbsenceReason extends AuthTokenAbsenceReason {

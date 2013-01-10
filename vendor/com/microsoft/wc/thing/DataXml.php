@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 use com\microsoft\wc\thing\Common;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="DataXml")
  */
 class DataXml {
@@ -44,7 +41,7 @@ class DataXml {
 	}
 
 	protected function validateCommon($common) {
-		if ( ! $common instanceof Common ) {
+		if ( ! $common instanceof Common  && ! is_null($common) ) {
 			$common = new Common ($common);
 		}
 	
@@ -67,7 +64,7 @@ class DataXml {
 	}
 
 	protected function validateTransform($transform) {
-		if (!is_string($transform)) {
+		if ( ! is_string($transform) && ! is_null($transform) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'transform', 'string'));
 		}
 	

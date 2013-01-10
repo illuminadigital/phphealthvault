@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Stringz255;
 use com\microsoft\wc\types\BlobHashAlgorithmParameters;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.BeginPutBlob", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

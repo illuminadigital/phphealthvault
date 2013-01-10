@@ -10,9 +10,6 @@ use com\microsoft\wc\thing\Location;
 use com\microsoft\wc\thing\Record;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="PersonInfo")
  */
 class PersonInfo {
@@ -146,7 +143,7 @@ class PersonInfo {
 	}
 
 	protected function validateAppSettings($appSettings) {
-		if ( ! $appSettings instanceof AppSettings ) {
+		if ( ! $appSettings instanceof AppSettings  && ! is_null($appSettings) ) {
 			$appSettings = new AppSettings ($appSettings);
 		}
 	
@@ -169,7 +166,7 @@ class PersonInfo {
 	}
 
 	protected function validateSelectedRecordId($selectedRecordId) {
-		if ( ! $selectedRecordId instanceof Guid ) {
+		if ( ! $selectedRecordId instanceof Guid  && ! is_null($selectedRecordId) ) {
 			$selectedRecordId = new Guid ($selectedRecordId);
 		}
 	
@@ -192,7 +189,7 @@ class PersonInfo {
 	}
 
 	protected function validateMoreRecords($moreRecords) {
-		if (!is_bool($moreRecords)) {
+		if ( ! is_bool($moreRecords) && ! is_null($moreRecords) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'moreRecords', 'boolean'));
 		}
 	
@@ -215,7 +212,7 @@ class PersonInfo {
 	}
 
 	protected function validateRecord($record) {
-		if ( ! $record instanceof Record ) {
+		if ( ! $record instanceof Record  && ! is_null($record) ) {
 			$record = new Record ($record);
 		}
 		$count = count($record);
@@ -251,7 +248,7 @@ class PersonInfo {
 	}
 
 	protected function validateGroups($groups) {
-		if ( ! $groups instanceof Groups ) {
+		if ( ! $groups instanceof Groups  && ! is_null($groups) ) {
 			$groups = new Groups ($groups);
 		}
 	
@@ -274,7 +271,7 @@ class PersonInfo {
 	}
 
 	protected function validatePreferredCulture($preferredCulture) {
-		if ( ! $preferredCulture instanceof Culture ) {
+		if ( ! $preferredCulture instanceof Culture  && ! is_null($preferredCulture) ) {
 			$preferredCulture = new Culture ($preferredCulture);
 		}
 	
@@ -297,7 +294,7 @@ class PersonInfo {
 	}
 
 	protected function validatePreferredUiculture($preferredUiculture) {
-		if ( ! $preferredUiculture instanceof Culture ) {
+		if ( ! $preferredUiculture instanceof Culture  && ! is_null($preferredUiculture) ) {
 			$preferredUiculture = new Culture ($preferredUiculture);
 		}
 	
@@ -320,7 +317,7 @@ class PersonInfo {
 	}
 
 	protected function validateLocation($location) {
-		if ( ! $location instanceof Location ) {
+		if ( ! $location instanceof Location  && ! is_null($location) ) {
 			$location = new Location ($location);
 		}
 	

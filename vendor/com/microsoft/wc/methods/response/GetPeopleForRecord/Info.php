@@ -5,9 +5,6 @@ use com\microsoft\wc\record\ActivePersonAuthorizationNoIds;
 use com\microsoft\wc\record\NonActiveAuthorizationNoIds;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetPeopleForRecord", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -83,7 +80,7 @@ class Info {
 	}
 
 	protected function validateNonActiveAuthorization($nonActiveAuthorization) {
-		if ( ! $nonActiveAuthorization instanceof NonActiveAuthorizationNoIds ) {
+		if ( ! $nonActiveAuthorization instanceof NonActiveAuthorizationNoIds  && ! is_null($nonActiveAuthorization) ) {
 			$nonActiveAuthorization = new NonActiveAuthorizationNoIds ($nonActiveAuthorization);
 		}
 		$count = count($nonActiveAuthorization);

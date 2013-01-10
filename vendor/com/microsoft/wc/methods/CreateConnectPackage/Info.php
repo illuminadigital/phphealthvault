@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Stringnz;
 use com\microsoft\wc\thing\Thing;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.CreateConnectPackage", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -65,7 +62,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateIdentityCode($identityCode) {
-		if (!is_string($identityCode)) {
+		if ( ! is_string($identityCode) && ! is_null($identityCode) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'identityCode', 'string'));
 		}
 	

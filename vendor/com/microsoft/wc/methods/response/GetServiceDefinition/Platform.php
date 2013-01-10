@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetServiceDefinition;
 use com\microsoft\wc\methods\response\GetServiceDefinition\ConfigurationEntry;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetServiceDefinition", prefix="")
- * })
  * @XmlEntity	(xml="Platform")
  */
 class Platform {
@@ -97,7 +94,7 @@ class Platform {
 	}
 
 	protected function validateConfiguration($configuration) {
-		if ( ! $configuration instanceof ConfigurationEntry ) {
+		if ( ! $configuration instanceof ConfigurationEntry  && ! is_null($configuration) ) {
 			$configuration = new ConfigurationEntry ($configuration);
 		}
 		$count = count($configuration);

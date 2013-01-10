@@ -5,9 +5,6 @@ namespace com\microsoft\wc\record;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="auth")
  */
 class Auth extends ThisAuth {

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\vocab;
 use com\microsoft\wc\types\CodableValue;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.vocab", prefix="wc-vocab")
- * })
  * @XmlEntity	(xml="medication-routes")
  */
 class MedicationRoutes {

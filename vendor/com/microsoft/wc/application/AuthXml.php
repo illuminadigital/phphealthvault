@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 use com\microsoft\wc\application\Auth;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="AuthXml")
  */
 class AuthXml {
@@ -38,7 +35,7 @@ class AuthXml {
 	}
 
 	protected function validateAuth($auth) {
-		if ( ! $auth instanceof Auth ) {
+		if ( ! $auth instanceof Auth  && ! is_null($auth) ) {
 			$auth = new Auth ($auth);
 		}
 	

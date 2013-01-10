@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 use com\microsoft\wc\application\String3nw;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="Location")
  */
 class Location {
@@ -68,7 +65,7 @@ class Location {
 	}
 
 	protected function validateStateProvince($stateProvince) {
-		if ( ! $stateProvince instanceof String3nw ) {
+		if ( ! $stateProvince instanceof String3nw  && ! is_null($stateProvince) ) {
 			$stateProvince = new String3nw ($stateProvince);
 		}
 	

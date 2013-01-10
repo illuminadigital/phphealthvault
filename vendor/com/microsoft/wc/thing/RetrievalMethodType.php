@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 use com\microsoft\wc\thing\Transforms;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="RetrievalMethodType")
  */
 class RetrievalMethodType {
@@ -50,7 +47,7 @@ class RetrievalMethodType {
 	}
 
 	protected function validateTransforms($transforms) {
-		if ( ! $transforms instanceof Transforms ) {
+		if ( ! $transforms instanceof Transforms  && ! is_null($transforms) ) {
 			$transforms = new Transforms ($transforms);
 		}
 	
@@ -96,7 +93,7 @@ class RetrievalMethodType {
 	}
 
 	protected function validateType($type) {
-		if (!is_string($type)) {
+		if ( ! is_string($type) && ! is_null($type) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'type', 'string'));
 		}
 	

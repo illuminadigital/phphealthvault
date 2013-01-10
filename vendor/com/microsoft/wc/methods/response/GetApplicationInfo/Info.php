@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetApplicationInfo;
 use com\microsoft\wc\application\AppWithLogos;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetApplicationInfo", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

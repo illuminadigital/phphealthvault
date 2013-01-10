@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetUpdatedRecordsForApplication", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -45,7 +42,7 @@ class Info {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'recordId', 0));
 		}
 		foreach ($recordId as $entry) {
-			if (!is_($entry)) {
+			if ( ! is_($entry) && ! is_null($entry) ) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', ''));
 			}
 		}
@@ -58,7 +55,7 @@ class Info {
 	}
 
 	protected function validateRecordIdType($recordId) {
-		if (!is_($recordId)) {
+		if ( ! is_($recordId) && ! is_null($recordId) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', ''));
 		}
 	

@@ -5,9 +5,6 @@ use com\microsoft\wc\thing\Guid;
 use com\microsoft\wc\thing\HMACAlgorithm;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="AppServerCredInfo")
  */
 class AppServerCredInfo {

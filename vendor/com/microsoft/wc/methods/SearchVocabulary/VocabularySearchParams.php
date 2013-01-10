@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\SearchVocabulary;
 use com\microsoft\wc\methods\SearchVocabulary\VocabularySearchString;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SearchVocabulary", prefix="")
- * })
  * @XmlEntity	(xml="VocabularySearchParams")
  */
 class VocabularySearchParams {
@@ -69,7 +66,7 @@ class VocabularySearchParams {
 	}
 
 	protected function validateMaxResults($maxResults) {
-		if (!is_integer($maxResults)) {
+		if ( ! is_integer($maxResults) && ! is_null($maxResults) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maxResults', 'integer'));
 		}
 	

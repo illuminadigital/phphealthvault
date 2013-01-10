@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlRootEntity	(xml="string50nw")
  */
 class String50nw {

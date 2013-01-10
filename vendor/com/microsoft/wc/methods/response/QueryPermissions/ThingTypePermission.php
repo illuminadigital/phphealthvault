@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Guid;
 use com\microsoft\wc\methods\response\QueryPermissions\Permissions;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.QueryPermissions", prefix="")
- * })
  * @XmlEntity	(xml="ThingTypePermission")
  */
 class ThingTypePermission {
@@ -75,7 +72,7 @@ class ThingTypePermission {
 	}
 
 	protected function validateOnlineAccessPermissions($onlineAccessPermissions) {
-		if ( ! $onlineAccessPermissions instanceof Permissions ) {
+		if ( ! $onlineAccessPermissions instanceof Permissions  && ! is_null($onlineAccessPermissions) ) {
 			$onlineAccessPermissions = new Permissions ($onlineAccessPermissions);
 		}
 	
@@ -98,7 +95,7 @@ class ThingTypePermission {
 	}
 
 	protected function validateOfflineAccessPermissions($offlineAccessPermissions) {
-		if ( ! $offlineAccessPermissions instanceof Permissions ) {
+		if ( ! $offlineAccessPermissions instanceof Permissions  && ! is_null($offlineAccessPermissions) ) {
 			$offlineAccessPermissions = new Permissions ($offlineAccessPermissions);
 		}
 	

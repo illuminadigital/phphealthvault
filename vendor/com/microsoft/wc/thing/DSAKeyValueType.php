@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 use com\microsoft\wc\thing\CryptoBinary;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="DSAKeyValueType")
  */
 class DSAKeyValueType {
@@ -120,7 +117,7 @@ class DSAKeyValueType {
 	}
 
 	protected function validateG($g) {
-		if ( ! $g instanceof CryptoBinary ) {
+		if ( ! $g instanceof CryptoBinary  && ! is_null($g) ) {
 			$g = new CryptoBinary ($g);
 		}
 	
@@ -166,7 +163,7 @@ class DSAKeyValueType {
 	}
 
 	protected function validateJ($j) {
-		if ( ! $j instanceof CryptoBinary ) {
+		if ( ! $j instanceof CryptoBinary  && ! is_null($j) ) {
 			$j = new CryptoBinary ($j);
 		}
 	

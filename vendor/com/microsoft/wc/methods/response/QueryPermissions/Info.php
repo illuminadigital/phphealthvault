@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\QueryPermissions;
 use com\microsoft\wc\methods\response\QueryPermissions\ThingTypePermission;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.QueryPermissions", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -40,7 +37,7 @@ class Info {
 	}
 
 	protected function validateThingTypePermission($thingTypePermission) {
-		if ( ! $thingTypePermission instanceof ThingTypePermission ) {
+		if ( ! $thingTypePermission instanceof ThingTypePermission  && ! is_null($thingTypePermission) ) {
 			$thingTypePermission = new ThingTypePermission ($thingTypePermission);
 		}
 		$count = count($thingTypePermission);

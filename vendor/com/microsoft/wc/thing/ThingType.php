@@ -5,9 +5,6 @@ namespace com\microsoft\wc\thing;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="ThingType")
  */
 class ThingType extends Guid {
@@ -39,7 +36,7 @@ class ThingType extends Guid {
 	}
 
 	protected function validateName($name) {
-		if (!is_string($name)) {
+		if ( ! is_string($name) && ! is_null($name) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
 		}
 	

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetAuthorizedConnectRequests;
 use com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\ConnectRequest;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetAuthorizedConnectRequests", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -45,7 +42,7 @@ class Info {
 	}
 
 	protected function validateResumeKey($resumeKey) {
-		if (!is_string($resumeKey)) {
+		if ( ! is_string($resumeKey) && ! is_null($resumeKey) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'resumeKey', 'string'));
 		}
 	
@@ -68,7 +65,7 @@ class Info {
 	}
 
 	protected function validateConnectRequest($connectRequest) {
-		if ( ! $connectRequest instanceof ConnectRequest ) {
+		if ( ! $connectRequest instanceof ConnectRequest  && ! is_null($connectRequest) ) {
 			$connectRequest = new ConnectRequest ($connectRequest);
 		}
 		$count = count($connectRequest);

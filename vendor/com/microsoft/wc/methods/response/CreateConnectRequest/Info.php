@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\CreateConnectRequest;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.CreateConnectRequest", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\UnsubscribeToEvent;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.UnsubscribeToEvent", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

@@ -6,9 +6,6 @@ use com\microsoft\wc\thing\BlobSignatureInfo;
 use com\microsoft\wc\types\Stringnznw;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="SignatureData")
  */
 class SignatureData {
@@ -75,7 +72,7 @@ class SignatureData {
 	}
 
 	protected function validateBlobSignatureInfo($blobSignatureInfo) {
-		if ( ! $blobSignatureInfo instanceof BlobSignatureInfo ) {
+		if ( ! $blobSignatureInfo instanceof BlobSignatureInfo  && ! is_null($blobSignatureInfo) ) {
 			$blobSignatureInfo = new BlobSignatureInfo ($blobSignatureInfo);
 		}
 	

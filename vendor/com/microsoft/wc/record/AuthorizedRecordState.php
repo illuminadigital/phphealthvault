@@ -4,9 +4,6 @@ namespace com\microsoft\wc\record;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlRootEntity	(xml="AuthorizedRecordState")
  */
 class AuthorizedRecordState {

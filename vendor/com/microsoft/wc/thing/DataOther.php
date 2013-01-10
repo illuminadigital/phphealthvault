@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 use com\microsoft\wc\types\Stringz1024;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="DataOther")
  */
 class DataOther {
@@ -44,7 +41,7 @@ class DataOther {
 	}
 
 	protected function validateContentType($contentType) {
-		if ( ! $contentType instanceof Stringz1024 ) {
+		if ( ! $contentType instanceof Stringz1024  && ! is_null($contentType) ) {
 			$contentType = new Stringz1024 ($contentType);
 		}
 	
@@ -67,7 +64,7 @@ class DataOther {
 	}
 
 	protected function validateContentEncoding($contentEncoding) {
-		if ( ! $contentEncoding instanceof Stringz1024 ) {
+		if ( ! $contentEncoding instanceof Stringz1024  && ! is_null($contentEncoding) ) {
 			$contentEncoding = new Stringz1024 ($contentEncoding);
 		}
 	

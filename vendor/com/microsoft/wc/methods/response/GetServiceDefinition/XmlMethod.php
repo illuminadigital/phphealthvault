@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetServiceDefinition;
 use com\microsoft\wc\methods\response\GetServiceDefinition\XmlMethodVersion;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetServiceDefinition", prefix="")
- * })
  * @XmlEntity	(xml="XmlMethod")
  */
 class XmlMethod {
@@ -68,7 +65,7 @@ class XmlMethod {
 	}
 
 	protected function validateVersion($version) {
-		if ( ! $version instanceof XmlMethodVersion ) {
+		if ( ! $version instanceof XmlMethodVersion  && ! is_null($version) ) {
 			$version = new XmlMethodVersion ($version);
 		}
 		$count = count($version);

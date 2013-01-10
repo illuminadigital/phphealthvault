@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetAuthorizedPeople;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetAuthorizedPeople", prefix="")
- * })
  * @XmlEntity	(xml="GetAuthorizedPeopleParameters")
  */
 class GetAuthorizedPeopleParameters {
@@ -51,7 +48,7 @@ class GetAuthorizedPeopleParameters {
 	}
 
 	protected function validatePersonIdCursor($personIdCursor) {
-		if ( ! $personIdCursor instanceof Guid ) {
+		if ( ! $personIdCursor instanceof Guid  && ! is_null($personIdCursor) ) {
 			$personIdCursor = new Guid ($personIdCursor);
 		}
 	
@@ -74,7 +71,7 @@ class GetAuthorizedPeopleParameters {
 	}
 
 	protected function validateAuthorizationsCreatedSince($authorizationsCreatedSince) {
-		if (!is_string($authorizationsCreatedSince)) {
+		if ( ! is_string($authorizationsCreatedSince) && ! is_null($authorizationsCreatedSince) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'authorizationsCreatedSince', 'string'));
 		}
 	
@@ -97,7 +94,7 @@ class GetAuthorizedPeopleParameters {
 	}
 
 	protected function validateNumResults($numResults) {
-		if (!is_integer($numResults)) {
+		if ( ! is_integer($numResults) && ! is_null($numResults) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'numResults', 'integer'));
 		}
 	

@@ -5,9 +5,6 @@ use com\microsoft\wc\types\String64;
 use com\microsoft\wc\types\String32;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="SimplePhoneFactorCredential")
  */
 class SimplePhoneFactorCredential {

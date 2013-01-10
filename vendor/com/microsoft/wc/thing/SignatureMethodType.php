@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 use com\microsoft\wc\thing\HMACOutputLengthType;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="SignatureMethodType")
  */
 class SignatureMethodType {
@@ -44,7 +41,7 @@ class SignatureMethodType {
 	}
 
 	protected function validateHMACOutputLength($hMACOutputLength) {
-		if ( ! $hMACOutputLength instanceof HMACOutputLengthType ) {
+		if ( ! $hMACOutputLength instanceof HMACOutputLengthType  && ! is_null($hMACOutputLength) ) {
 			$hMACOutputLength = new HMACOutputLengthType ($hMACOutputLength);
 		}
 	

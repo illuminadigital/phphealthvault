@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 use com\microsoft\wc\application\Group;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="Groups")
  */
 class Groups {

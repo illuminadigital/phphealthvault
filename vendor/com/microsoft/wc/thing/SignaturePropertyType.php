@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="SignaturePropertyType")
  */
 class SignaturePropertyType {
@@ -67,7 +64,7 @@ class SignaturePropertyType {
 	}
 
 	protected function validateId($id) {
-		if (!is_string($id)) {
+		if ( ! is_string($id) && ! is_null($id) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'string'));
 		}
 	

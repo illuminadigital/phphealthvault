@@ -6,9 +6,6 @@ use com\microsoft\wc\types\String1024;
 use com\microsoft\wc\types\HMACAlgorithm;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="UserPassAuthSessionCred")
  */
 class UserPassAuthSessionCred {

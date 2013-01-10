@@ -4,9 +4,6 @@ namespace com\microsoft\wc\vocab;
 use com\microsoft\wc\vocab\VocabularyAuthorization;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.vocab", prefix="wc-vocab")
- * })
  * @XmlEntity	(xml="VocabularyAuthorizations")
  */
 class VocabularyAuthorizations {

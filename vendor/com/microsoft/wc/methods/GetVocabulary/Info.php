@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetVocabulary;
 use com\microsoft\wc\methods\GetVocabulary\VocabularyParameters;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetVocabulary", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -40,7 +37,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateVocabularyParameters($vocabularyParameters) {
-		if ( ! $vocabularyParameters instanceof VocabularyParameters ) {
+		if ( ! $vocabularyParameters instanceof VocabularyParameters  && ! is_null($vocabularyParameters) ) {
 			$vocabularyParameters = new VocabularyParameters ($vocabularyParameters);
 		}
 	

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetThings3;
 use com\microsoft\wc\methods\GetThings3\BlobFilterSpec;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings3", prefix="")
- * })
  * @XmlEntity	(xml="BlobFilters")
  */
 class BlobFilters {

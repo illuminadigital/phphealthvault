@@ -5,9 +5,6 @@ namespace com\microsoft\wc\subscription;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="AppInfo")
  */
 class AppInfo extends Guid {
@@ -41,7 +38,7 @@ class AppInfo extends Guid {
 	}
 
 	protected function validateIsMultiRecordApp($isMultiRecordApp) {
-		if (!is_bool($isMultiRecordApp)) {
+		if ( ! is_bool($isMultiRecordApp) && ! is_null($isMultiRecordApp) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'isMultiRecordApp', 'boolean'));
 		}
 	

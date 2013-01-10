@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Guid;
 use com\microsoft\wc\types\String255;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="RelatedThing")
  */
 class RelatedThing {
@@ -82,7 +79,7 @@ class RelatedThing {
 	}
 
 	protected function validateVersionStamp($versionStamp) {
-		if ( ! $versionStamp instanceof Guid ) {
+		if ( ! $versionStamp instanceof Guid  && ! is_null($versionStamp) ) {
 			$versionStamp = new Guid ($versionStamp);
 		}
 	
@@ -105,7 +102,7 @@ class RelatedThing {
 	}
 
 	protected function validateClientThingId($clientThingId) {
-		if ( ! $clientThingId instanceof String255 ) {
+		if ( ! $clientThingId instanceof String255  && ! is_null($clientThingId) ) {
 			$clientThingId = new String255 ($clientThingId);
 		}
 	
@@ -128,7 +125,7 @@ class RelatedThing {
 	}
 
 	protected function validateRelationshipType($relationshipType) {
-		if (!is_string($relationshipType)) {
+		if ( ! is_string($relationshipType) && ! is_null($relationshipType) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'relationshipType', 'string'));
 		}
 	

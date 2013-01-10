@@ -5,9 +5,6 @@ use com\microsoft\wc\application\LoginName;
 use com\microsoft\wc\application\String1024;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="UserPassCred")
  */
 class UserPassCred {

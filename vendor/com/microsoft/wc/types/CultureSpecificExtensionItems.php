@@ -4,9 +4,6 @@ namespace com\microsoft\wc\types;
 use com\microsoft\wc\types\CultureSpecificExtensionItem;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
- * })
  * @XmlEntity	(xml="CultureSpecificExtensionItems")
  */
 class CultureSpecificExtensionItems {

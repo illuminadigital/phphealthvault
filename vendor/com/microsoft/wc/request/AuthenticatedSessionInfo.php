@@ -4,9 +4,6 @@ namespace com\microsoft\wc\request;
 use com\microsoft\wc\request\OfflinePersonInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.request", prefix="")
- * })
  * @XmlEntity	(xml="AuthenticatedSessionInfo")
  */
 class AuthenticatedSessionInfo {

@@ -5,9 +5,6 @@ namespace com\microsoft\wc\thing;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="CultureSpecificString1024nw")
  */
 class CultureSpecificString1024nw extends String1024nw {
@@ -41,7 +38,7 @@ class CultureSpecificString1024nw extends String1024nw {
 	}
 
 	protected function validateXmlLang($xmlLang) {
-		if (!is_string($xmlLang)) {
+		if ( ! is_string($xmlLang) && ! is_null($xmlLang) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'xmlLang', 'string'));
 		}
 	

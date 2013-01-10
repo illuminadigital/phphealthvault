@@ -6,9 +6,6 @@ use com\microsoft\wc\types\String64;
 use com\microsoft\wc\types\String512;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.NewApplicationCreationInfo", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

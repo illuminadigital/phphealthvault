@@ -5,9 +5,6 @@ namespace com\microsoft\wc\auth;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.auth", prefix="wc-auth")
- * })
  * @XmlEntity	(xml="auth")
  */
 class Auth extends ThisAuth {

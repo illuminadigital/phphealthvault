@@ -4,9 +4,6 @@ namespace com\microsoft\wc\request;
 use com\microsoft\wc\types\String128;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.request", prefix="")
- * })
  * @XmlEntity	(xml="Xsl")
  */
 class Xsl {
@@ -38,7 +35,7 @@ class Xsl {
 	}
 
 	protected function validateContentType($contentType) {
-		if ( ! $contentType instanceof String128 ) {
+		if ( ! $contentType instanceof String128  && ! is_null($contentType) ) {
 			$contentType = new String128 ($contentType);
 		}
 	

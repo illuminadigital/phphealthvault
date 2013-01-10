@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 use com\microsoft\wc\application\VocabularySynonym;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="vocabulary-synonyms")
  */
 class VocabularySynonyms {
@@ -39,7 +36,7 @@ class VocabularySynonyms {
 	}
 
 	protected function validateVocabularySynonym($vocabularySynonym) {
-		if ( ! $vocabularySynonym instanceof VocabularySynonym ) {
+		if ( ! $vocabularySynonym instanceof VocabularySynonym  && ! is_null($vocabularySynonym) ) {
 			$vocabularySynonym = new VocabularySynonym ($vocabularySynonym);
 		}
 		$count = count($vocabularySynonym);

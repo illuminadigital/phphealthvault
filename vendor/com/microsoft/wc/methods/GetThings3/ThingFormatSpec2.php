@@ -6,9 +6,6 @@ use com\microsoft\wc\methods\GetThings3\ThingSectionSpec2;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings3", prefix="")
- * })
  * @XmlEntity	(xml="ThingFormatSpec2")
  */
 class ThingFormatSpec2 {
@@ -60,7 +57,7 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateSection($section) {
-		if ( ! $section instanceof ThingSectionSpec2 ) {
+		if ( ! $section instanceof ThingSectionSpec2  && ! is_null($section) ) {
 			$section = new ThingSectionSpec2 ($section);
 		}
 		$count = count($section);
@@ -101,7 +98,7 @@ class ThingFormatSpec2 {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'xml', 0));
 		}
 		foreach ($xml as $entry) {
-			if (!is_string($entry)) {
+			if ( ! is_string($entry) && ! is_null($entry) ) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'xml', 'string'));
 			}
 		}
@@ -114,7 +111,7 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateXmlType($xml) {
-		if (!is_string($xml)) {
+		if ( ! is_string($xml) && ! is_null($xml) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'xml', 'string'));
 		}
 	
@@ -137,7 +134,7 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateTypeVersionFormat($typeVersionFormat) {
-		if ( ! $typeVersionFormat instanceof Guid ) {
+		if ( ! $typeVersionFormat instanceof Guid  && ! is_null($typeVersionFormat) ) {
 			$typeVersionFormat = new Guid ($typeVersionFormat);
 		}
 		$count = count($typeVersionFormat);
@@ -173,7 +170,7 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateBlobPayloadRequest($blobPayloadRequest) {
-		if ( ! $blobPayloadRequest instanceof BlobPayloadRequest ) {
+		if ( ! $blobPayloadRequest instanceof BlobPayloadRequest  && ! is_null($blobPayloadRequest) ) {
 			$blobPayloadRequest = new BlobPayloadRequest ($blobPayloadRequest);
 		}
 	

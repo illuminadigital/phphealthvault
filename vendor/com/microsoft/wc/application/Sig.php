@@ -5,9 +5,6 @@ use com\microsoft\wc\application\String16;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="Sig")
  */
 class Sig extends String1024 {

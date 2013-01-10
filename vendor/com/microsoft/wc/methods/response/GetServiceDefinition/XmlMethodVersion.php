@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetServiceDefinition;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetServiceDefinition", prefix="")
- * })
  * @XmlEntity	(xml="XmlMethodVersion")
  */
 class XmlMethodVersion {
@@ -51,7 +48,7 @@ class XmlMethodVersion {
 	}
 
 	protected function validateRequestSchemaUrl($requestSchemaUrl) {
-		if (!is_string($requestSchemaUrl)) {
+		if ( ! is_string($requestSchemaUrl) && ! is_null($requestSchemaUrl) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'requestSchemaUrl', 'string'));
 		}
 	
@@ -74,7 +71,7 @@ class XmlMethodVersion {
 	}
 
 	protected function validateResponseSchemaUrl($responseSchemaUrl) {
-		if (!is_string($responseSchemaUrl)) {
+		if ( ! is_string($responseSchemaUrl) && ! is_null($responseSchemaUrl) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'responseSchemaUrl', 'string'));
 		}
 	

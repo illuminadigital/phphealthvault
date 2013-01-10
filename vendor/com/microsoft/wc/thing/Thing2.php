@@ -12,9 +12,6 @@ use com\microsoft\wc\thing\SignatureInfo;
 use com\microsoft\wc\thing\DataXml;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="Thing2")
  */
 class Thing2 {
@@ -112,7 +109,7 @@ class Thing2 {
 	}
 
 	protected function validateThingId($thingId) {
-		if ( ! $thingId instanceof ThingKey ) {
+		if ( ! $thingId instanceof ThingKey  && ! is_null($thingId) ) {
 			$thingId = new ThingKey ($thingId);
 		}
 	
@@ -135,7 +132,7 @@ class Thing2 {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof ThingType ) {
+		if ( ! $typeId instanceof ThingType  && ! is_null($typeId) ) {
 			$typeId = new ThingType ($typeId);
 		}
 	
@@ -158,7 +155,7 @@ class Thing2 {
 	}
 
 	protected function validateThingState($thingState) {
-		if ( ! $thingState instanceof ThingState ) {
+		if ( ! $thingState instanceof ThingState  && ! is_null($thingState) ) {
 			$thingState = new ThingState ($thingState);
 		}
 	
@@ -181,7 +178,7 @@ class Thing2 {
 	}
 
 	protected function validateFlags($flags) {
-		if (!is_integer($flags)) {
+		if ( ! is_integer($flags) && ! is_null($flags) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'flags', 'integer'));
 		}
 	
@@ -204,7 +201,7 @@ class Thing2 {
 	}
 
 	protected function validateEffDate($effDate) {
-		if (!is_string($effDate)) {
+		if ( ! is_string($effDate) && ! is_null($effDate) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'effDate', 'string'));
 		}
 	
@@ -227,7 +224,7 @@ class Thing2 {
 	}
 
 	protected function validateCreated($created) {
-		if ( ! $created instanceof Audit2 ) {
+		if ( ! $created instanceof Audit2  && ! is_null($created) ) {
 			$created = new Audit2 ($created);
 		}
 	
@@ -250,7 +247,7 @@ class Thing2 {
 	}
 
 	protected function validateUpdated($updated) {
-		if ( ! $updated instanceof Audit2 ) {
+		if ( ! $updated instanceof Audit2  && ! is_null($updated) ) {
 			$updated = new Audit2 ($updated);
 		}
 	
@@ -273,7 +270,7 @@ class Thing2 {
 	}
 
 	protected function validateDataXml($dataXml) {
-		if ( ! $dataXml instanceof DataXml ) {
+		if ( ! $dataXml instanceof DataXml  && ! is_null($dataXml) ) {
 			$dataXml = new DataXml ($dataXml);
 		}
 		$count = count($dataXml);
@@ -309,7 +306,7 @@ class Thing2 {
 	}
 
 	protected function validateBlobPayload($blobPayload) {
-		if ( ! $blobPayload instanceof BlobPayload ) {
+		if ( ! $blobPayload instanceof BlobPayload  && ! is_null($blobPayload) ) {
 			$blobPayload = new BlobPayload ($blobPayload);
 		}
 	
@@ -332,7 +329,7 @@ class Thing2 {
 	}
 
 	protected function validateEffPermissions($effPermissions) {
-		if ( ! $effPermissions instanceof EffectivePermissions ) {
+		if ( ! $effPermissions instanceof EffectivePermissions  && ! is_null($effPermissions) ) {
 			$effPermissions = new EffectivePermissions ($effPermissions);
 		}
 	
@@ -355,7 +352,7 @@ class Thing2 {
 	}
 
 	protected function validateTags($tags) {
-		if ( ! $tags instanceof Stringz512 ) {
+		if ( ! $tags instanceof Stringz512  && ! is_null($tags) ) {
 			$tags = new Stringz512 ($tags);
 		}
 	
@@ -378,7 +375,7 @@ class Thing2 {
 	}
 
 	protected function validateSignatureInfo($signatureInfo) {
-		if ( ! $signatureInfo instanceof SignatureInfo ) {
+		if ( ! $signatureInfo instanceof SignatureInfo  && ! is_null($signatureInfo) ) {
 			$signatureInfo = new SignatureInfo ($signatureInfo);
 		}
 	

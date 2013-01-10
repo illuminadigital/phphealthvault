@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="Audit2")
  */
 class Audit2 {
@@ -40,7 +37,7 @@ class Audit2 {
 	}
 
 	protected function validateMasterAppId($masterAppId) {
-		if ( ! $masterAppId instanceof Guid ) {
+		if ( ! $masterAppId instanceof Guid  && ! is_null($masterAppId) ) {
 			$masterAppId = new Guid ($masterAppId);
 		}
 	

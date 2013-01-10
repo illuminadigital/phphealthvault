@@ -4,9 +4,6 @@ namespace com\microsoft\wc\subscription;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="coded-value")
  */
 class CodedValue {
@@ -81,7 +78,7 @@ class CodedValue {
 	}
 
 	protected function validateFamily($family) {
-		if (!is_string($family)) {
+		if ( ! is_string($family) && ! is_null($family) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'family', 'string'));
 		}
 	
@@ -127,7 +124,7 @@ class CodedValue {
 	}
 
 	protected function validateVersion($version) {
-		if (!is_string($version)) {
+		if ( ! is_string($version) && ! is_null($version) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'version', 'string'));
 		}
 	

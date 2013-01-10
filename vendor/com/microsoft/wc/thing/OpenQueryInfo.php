@@ -6,9 +6,6 @@ use com\microsoft\wc\thing\String255;
 use com\microsoft\wc\thing\String128;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="OpenQueryInfo")
  */
 class OpenQueryInfo {
@@ -141,7 +138,7 @@ class OpenQueryInfo {
 	}
 
 	protected function validateExpiresDate($expiresDate) {
-		if (!is_string($expiresDate)) {
+		if ( ! is_string($expiresDate) && ! is_null($expiresDate) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'expiresDate', 'string'));
 		}
 	
@@ -187,7 +184,7 @@ class OpenQueryInfo {
 	}
 
 	protected function validateNote($note) {
-		if ( ! $note instanceof String128 ) {
+		if ( ! $note instanceof String128  && ! is_null($note) ) {
 			$note = new String128 ($note);
 		}
 	

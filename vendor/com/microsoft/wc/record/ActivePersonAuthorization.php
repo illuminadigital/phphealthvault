@@ -7,9 +7,6 @@ use com\microsoft\wc\types\String255;
 use com\microsoft\wc\record\AuthXml;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="ActivePersonAuthorization")
  */
 class ActivePersonAuthorization {
@@ -257,7 +254,7 @@ class ActivePersonAuthorization {
 	}
 
 	protected function validateContactEmailValidated($contactEmailValidated) {
-		if (!is_bool($contactEmailValidated)) {
+		if ( ! is_bool($contactEmailValidated) && ! is_null($contactEmailValidated) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'contactEmailValidated', 'boolean'));
 		}
 	
@@ -280,7 +277,7 @@ class ActivePersonAuthorization {
 	}
 
 	protected function validateRecordDisplayName($recordDisplayName) {
-		if ( ! $recordDisplayName instanceof String255 ) {
+		if ( ! $recordDisplayName instanceof String255  && ! is_null($recordDisplayName) ) {
 			$recordDisplayName = new String255 ($recordDisplayName);
 		}
 	
@@ -303,7 +300,7 @@ class ActivePersonAuthorization {
 	}
 
 	protected function validateDateAuthExpires($dateAuthExpires) {
-		if (!is_string($dateAuthExpires)) {
+		if ( ! is_string($dateAuthExpires) && ! is_null($dateAuthExpires) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateAuthExpires', 'string'));
 		}
 	
@@ -326,7 +323,7 @@ class ActivePersonAuthorization {
 	}
 
 	protected function validateAuthXml($authXml) {
-		if ( ! $authXml instanceof AuthXml ) {
+		if ( ! $authXml instanceof AuthXml  && ! is_null($authXml) ) {
 			$authXml = new AuthXml ($authXml);
 		}
 	
@@ -349,7 +346,7 @@ class ActivePersonAuthorization {
 	}
 
 	protected function validateRelType($relType) {
-		if (!is_integer($relType)) {
+		if ( ! is_integer($relType) && ! is_null($relType) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'relType', 'integer'));
 		}
 	
@@ -372,7 +369,7 @@ class ActivePersonAuthorization {
 	}
 
 	protected function validateDateAuthCreated($dateAuthCreated) {
-		if (!is_string($dateAuthCreated)) {
+		if ( ! is_string($dateAuthCreated) && ! is_null($dateAuthCreated) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateAuthCreated', 'string'));
 		}
 	
@@ -395,7 +392,7 @@ class ActivePersonAuthorization {
 	}
 
 	protected function validateDateAuthUpdated($dateAuthUpdated) {
-		if (!is_string($dateAuthUpdated)) {
+		if ( ! is_string($dateAuthUpdated) && ! is_null($dateAuthUpdated) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateAuthUpdated', 'string'));
 		}
 	
@@ -418,7 +415,7 @@ class ActivePersonAuthorization {
 	}
 
 	protected function validateCanAccessAudit($canAccessAudit) {
-		if (!is_bool($canAccessAudit)) {
+		if ( ! is_bool($canAccessAudit) && ! is_null($canAccessAudit) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'canAccessAudit', 'boolean'));
 		}
 	

@@ -10,9 +10,6 @@ use com\microsoft\wc\types\String1024;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="NonActiveAuthorizationNoIds")
  */
 class NonActiveAuthorizationNoIds {
@@ -381,7 +378,7 @@ class NonActiveAuthorizationNoIds {
 	}
 
 	protected function validateRecordAuthorizationToken($recordAuthorizationToken) {
-		if ( ! $recordAuthorizationToken instanceof Base64 ) {
+		if ( ! $recordAuthorizationToken instanceof Base64  && ! is_null($recordAuthorizationToken) ) {
 			$recordAuthorizationToken = new Base64 ($recordAuthorizationToken);
 		}
 	
@@ -404,7 +401,7 @@ class NonActiveAuthorizationNoIds {
 	}
 
 	protected function validateEmailText($emailText) {
-		if ( ! $emailText instanceof String1024 ) {
+		if ( ! $emailText instanceof String1024  && ! is_null($emailText) ) {
 			$emailText = new String1024 ($emailText);
 		}
 	
@@ -427,7 +424,7 @@ class NonActiveAuthorizationNoIds {
 	}
 
 	protected function validateCanAccessAudit($canAccessAudit) {
-		if (!is_bool($canAccessAudit)) {
+		if ( ! is_bool($canAccessAudit) && ! is_null($canAccessAudit) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'canAccessAudit', 'boolean'));
 		}
 	
@@ -450,7 +447,7 @@ class NonActiveAuthorizationNoIds {
 	}
 
 	protected function validateRequestingApplicationId($requestingApplicationId) {
-		if ( ! $requestingApplicationId instanceof Guid ) {
+		if ( ! $requestingApplicationId instanceof Guid  && ! is_null($requestingApplicationId) ) {
 			$requestingApplicationId = new Guid ($requestingApplicationId);
 		}
 	

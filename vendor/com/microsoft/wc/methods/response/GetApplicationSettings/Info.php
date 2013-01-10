@@ -5,9 +5,6 @@ use com\microsoft\wc\types\AppSettings;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetApplicationSettings", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -47,7 +44,7 @@ class Info {
 	}
 
 	protected function validateAppSettings($appSettings) {
-		if ( ! $appSettings instanceof AppSettings ) {
+		if ( ! $appSettings instanceof AppSettings  && ! is_null($appSettings) ) {
 			$appSettings = new AppSettings ($appSettings);
 		}
 	
@@ -70,7 +67,7 @@ class Info {
 	}
 
 	protected function validateSelectedRecordId($selectedRecordId) {
-		if ( ! $selectedRecordId instanceof Guid ) {
+		if ( ! $selectedRecordId instanceof Guid  && ! is_null($selectedRecordId) ) {
 			$selectedRecordId = new Guid ($selectedRecordId);
 		}
 	

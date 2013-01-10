@@ -5,9 +5,6 @@ use com\microsoft\wc\thing\Sig;
 use com\microsoft\wc\thing\AppServerCredInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="AppServerCred")
  */
 class AppServerCred {

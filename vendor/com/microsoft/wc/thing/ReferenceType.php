@@ -6,9 +6,6 @@ use com\microsoft\wc\thing\DigestMethod;
 use com\microsoft\wc\thing\DigestValue;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="ReferenceType")
  */
 class ReferenceType {
@@ -70,7 +67,7 @@ class ReferenceType {
 	}
 
 	protected function validateTransforms($transforms) {
-		if ( ! $transforms instanceof Transforms ) {
+		if ( ! $transforms instanceof Transforms  && ! is_null($transforms) ) {
 			$transforms = new Transforms ($transforms);
 		}
 	
@@ -139,7 +136,7 @@ class ReferenceType {
 	}
 
 	protected function validateId($id) {
-		if (!is_string($id)) {
+		if ( ! is_string($id) && ! is_null($id) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'string'));
 		}
 	
@@ -162,7 +159,7 @@ class ReferenceType {
 	}
 
 	protected function validateURI($uRI) {
-		if (!is_string($uRI)) {
+		if ( ! is_string($uRI) && ! is_null($uRI) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'uRI', 'string'));
 		}
 	
@@ -185,7 +182,7 @@ class ReferenceType {
 	}
 
 	protected function validateType($type) {
-		if (!is_string($type)) {
+		if ( ! is_string($type) && ! is_null($type) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'type', 'string'));
 		}
 	

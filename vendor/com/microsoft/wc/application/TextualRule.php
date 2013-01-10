@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="TextualRule")
  */
 class TextualRule {
@@ -97,7 +94,7 @@ class TextualRule {
 	}
 
 	protected function validateTargetThingTypes($targetThingTypes) {
-		if (!is_string($targetThingTypes)) {
+		if ( ! is_string($targetThingTypes) && ! is_null($targetThingTypes) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'targetThingTypes', 'string'));
 		}
 	
@@ -120,7 +117,7 @@ class TextualRule {
 	}
 
 	protected function validateTargetSets($targetSets) {
-		if (!is_string($targetSets)) {
+		if ( ! is_string($targetSets) && ! is_null($targetSets) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'targetSets', 'string'));
 		}
 	
@@ -143,7 +140,7 @@ class TextualRule {
 	}
 
 	protected function validateTargetDates($targetDates) {
-		if (!is_string($targetDates)) {
+		if ( ! is_string($targetDates) && ! is_null($targetDates) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'targetDates', 'string'));
 		}
 	
@@ -166,7 +163,7 @@ class TextualRule {
 	}
 
 	protected function validateExceptThingTypes($exceptThingTypes) {
-		if (!is_string($exceptThingTypes)) {
+		if ( ! is_string($exceptThingTypes) && ! is_null($exceptThingTypes) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'exceptThingTypes', 'string'));
 		}
 	
@@ -189,7 +186,7 @@ class TextualRule {
 	}
 
 	protected function validateExceptSets($exceptSets) {
-		if (!is_string($exceptSets)) {
+		if ( ! is_string($exceptSets) && ! is_null($exceptSets) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'exceptSets', 'string'));
 		}
 	
@@ -212,7 +209,7 @@ class TextualRule {
 	}
 
 	protected function validateExceptDates($exceptDates) {
-		if (!is_string($exceptDates)) {
+		if ( ! is_string($exceptDates) && ! is_null($exceptDates) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'exceptDates', 'string'));
 		}
 	

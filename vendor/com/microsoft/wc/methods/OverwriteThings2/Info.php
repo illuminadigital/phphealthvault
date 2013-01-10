@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\OverwriteThings2;
 use com\microsoft\wc\thing\Thing2;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.OverwriteThings2", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

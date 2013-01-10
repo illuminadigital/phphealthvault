@@ -6,9 +6,6 @@ use com\microsoft\wc\types\Stringnz;
 use com\microsoft\wc\types\Stringz1024;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="BlobPayloadItem")
  */
 class BlobPayloadItem {
@@ -93,7 +90,7 @@ class BlobPayloadItem {
 	}
 
 	protected function validateContentLength($contentLength) {
-		if (!is_integer($contentLength)) {
+		if ( ! is_integer($contentLength) && ! is_null($contentLength) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'contentLength', 'integer'));
 		}
 	
@@ -162,7 +159,7 @@ class BlobPayloadItem {
 	}
 
 	protected function validateLegacyContentEncoding($legacyContentEncoding) {
-		if ( ! $legacyContentEncoding instanceof Stringz1024 ) {
+		if ( ! $legacyContentEncoding instanceof Stringz1024  && ! is_null($legacyContentEncoding) ) {
 			$legacyContentEncoding = new Stringz1024 ($legacyContentEncoding);
 		}
 	
@@ -185,7 +182,7 @@ class BlobPayloadItem {
 	}
 
 	protected function validateCurrentContentEncoding($currentContentEncoding) {
-		if ( ! $currentContentEncoding instanceof Stringz1024 ) {
+		if ( ! $currentContentEncoding instanceof Stringz1024  && ! is_null($currentContentEncoding) ) {
 			$currentContentEncoding = new Stringz1024 ($currentContentEncoding);
 		}
 	

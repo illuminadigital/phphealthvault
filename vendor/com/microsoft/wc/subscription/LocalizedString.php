@@ -4,9 +4,6 @@ namespace com\microsoft\wc\subscription;
 use com\microsoft\wc\subscription\Iso6391;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="LocalizedString")
  */
 class LocalizedString {
@@ -38,7 +35,7 @@ class LocalizedString {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof Iso6391 ) {
+		if ( ! $language instanceof Iso6391  && ! is_null($language) ) {
 			$language = new Iso6391 ($language);
 		}
 	

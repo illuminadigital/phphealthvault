@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetAuthorizedPeople;
 use com\microsoft\wc\types\PersonInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetAuthorizedPeople", prefix="")
- * })
  * @XmlEntity	(xml="GetAuthorizedPeopleResponse")
  */
 class GetAuthorizedPeopleResponse {
@@ -45,7 +42,7 @@ class GetAuthorizedPeopleResponse {
 	}
 
 	protected function validatePersonInfo($personInfo) {
-		if ( ! $personInfo instanceof PersonInfo ) {
+		if ( ! $personInfo instanceof PersonInfo  && ! is_null($personInfo) ) {
 			$personInfo = new PersonInfo ($personInfo);
 		}
 		$count = count($personInfo);

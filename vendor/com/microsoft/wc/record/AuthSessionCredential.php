@@ -5,9 +5,6 @@ use com\microsoft\wc\record\AuthSessionSubCredential;
 use com\microsoft\wc\types\HMACAlgorithm;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="AuthSessionCredential")
  */
 class AuthSessionCredential {

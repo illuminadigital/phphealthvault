@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 use com\microsoft\wc\thing\Reference;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="ManifestType")
  */
 class ManifestType {
@@ -80,7 +77,7 @@ class ManifestType {
 	}
 
 	protected function validateId($id) {
-		if (!is_string($id)) {
+		if ( ! is_string($id) && ! is_null($id) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'string'));
 		}
 	

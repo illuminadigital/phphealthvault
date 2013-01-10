@@ -4,9 +4,6 @@ namespace com\microsoft\wc\subscription;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="BlobHashAlgorithmParameters")
  */
 class BlobHashAlgorithmParameters {
@@ -38,7 +35,7 @@ class BlobHashAlgorithmParameters {
 	}
 
 	protected function validateBlockSize($blockSize) {
-		if (!is_integer($blockSize)) {
+		if ( ! is_integer($blockSize) && ! is_null($blockSize) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'blockSize', 'integer'));
 		}
 	

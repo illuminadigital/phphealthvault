@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Guid;
 use com\microsoft\wc\thing\ThingState;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings", prefix="wc-method-getthings")
- * })
  * @XmlEntity	(xml="ThingFilterSpec")
  */
 class ThingFilterSpec {
@@ -112,7 +109,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof Guid ) {
+		if ( ! $typeId instanceof Guid  && ! is_null($typeId) ) {
 			$typeId = new Guid ($typeId);
 		}
 		$count = count($typeId);
@@ -148,7 +145,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateThingState($thingState) {
-		if ( ! $thingState instanceof ThingState ) {
+		if ( ! $thingState instanceof ThingState  && ! is_null($thingState) ) {
 			$thingState = new ThingState ($thingState);
 		}
 		$count = count($thingState);
@@ -187,7 +184,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateEffDateMin($effDateMin) {
-		if (!is_string($effDateMin)) {
+		if ( ! is_string($effDateMin) && ! is_null($effDateMin) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'effDateMin', 'string'));
 		}
 	
@@ -210,7 +207,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateEffDateMax($effDateMax) {
-		if (!is_string($effDateMax)) {
+		if ( ! is_string($effDateMax) && ! is_null($effDateMax) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'effDateMax', 'string'));
 		}
 	
@@ -233,7 +230,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateCreatedAppId($createdAppId) {
-		if ( ! $createdAppId instanceof Guid ) {
+		if ( ! $createdAppId instanceof Guid  && ! is_null($createdAppId) ) {
 			$createdAppId = new Guid ($createdAppId);
 		}
 	
@@ -256,7 +253,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateCreatedPersonId($createdPersonId) {
-		if ( ! $createdPersonId instanceof Guid ) {
+		if ( ! $createdPersonId instanceof Guid  && ! is_null($createdPersonId) ) {
 			$createdPersonId = new Guid ($createdPersonId);
 		}
 	
@@ -279,7 +276,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateUpdatedAppId($updatedAppId) {
-		if ( ! $updatedAppId instanceof Guid ) {
+		if ( ! $updatedAppId instanceof Guid  && ! is_null($updatedAppId) ) {
 			$updatedAppId = new Guid ($updatedAppId);
 		}
 	
@@ -302,7 +299,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateUpdatedPersonId($updatedPersonId) {
-		if ( ! $updatedPersonId instanceof Guid ) {
+		if ( ! $updatedPersonId instanceof Guid  && ! is_null($updatedPersonId) ) {
 			$updatedPersonId = new Guid ($updatedPersonId);
 		}
 	
@@ -325,7 +322,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateCreatedDateMin($createdDateMin) {
-		if (!is_string($createdDateMin)) {
+		if ( ! is_string($createdDateMin) && ! is_null($createdDateMin) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'createdDateMin', 'string'));
 		}
 	
@@ -348,7 +345,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateCreatedDateMax($createdDateMax) {
-		if (!is_string($createdDateMax)) {
+		if ( ! is_string($createdDateMax) && ! is_null($createdDateMax) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'createdDateMax', 'string'));
 		}
 	
@@ -371,7 +368,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateUpdatedDateMin($updatedDateMin) {
-		if (!is_string($updatedDateMin)) {
+		if ( ! is_string($updatedDateMin) && ! is_null($updatedDateMin) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedDateMin', 'string'));
 		}
 	
@@ -394,7 +391,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateUpdatedDateMax($updatedDateMax) {
-		if (!is_string($updatedDateMax)) {
+		if ( ! is_string($updatedDateMax) && ! is_null($updatedDateMax) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedDateMax', 'string'));
 		}
 	
@@ -417,7 +414,7 @@ class ThingFilterSpec {
 	}
 
 	protected function validateXpath($xpath) {
-		if (!is_string($xpath)) {
+		if ( ! is_string($xpath) && ! is_null($xpath) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'xpath', 'string'));
 		}
 	

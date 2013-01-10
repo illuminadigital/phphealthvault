@@ -7,9 +7,6 @@ use com\microsoft\wc\types\Permission;
 use com\microsoft\wc\auth\Set;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.auth", prefix="wc-auth")
- * })
  * @XmlEntity	(xml="Rule")
  */
 class Rule {
@@ -83,7 +80,7 @@ class Rule {
 	}
 
 	protected function validateReason($reason) {
-		if ( ! $reason instanceof CultureSpecificString1024 ) {
+		if ( ! $reason instanceof CultureSpecificString1024  && ! is_null($reason) ) {
 			$reason = new CultureSpecificString1024 ($reason);
 		}
 		$count = count($reason);
@@ -119,7 +116,7 @@ class Rule {
 	}
 
 	protected function validateDisplayFlags($displayFlags) {
-		if (!is_integer($displayFlags)) {
+		if ( ! is_integer($displayFlags) && ! is_null($displayFlags) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'displayFlags', 'integer'));
 		}
 	
@@ -181,7 +178,7 @@ class Rule {
 	}
 
 	protected function validateTargetSet($targetSet) {
-		if ( ! $targetSet instanceof Set ) {
+		if ( ! $targetSet instanceof Set  && ! is_null($targetSet) ) {
 			$targetSet = new Set ($targetSet);
 		}
 		$count = count($targetSet);
@@ -217,7 +214,7 @@ class Rule {
 	}
 
 	protected function validateExceptionSet($exceptionSet) {
-		if ( ! $exceptionSet instanceof Set ) {
+		if ( ! $exceptionSet instanceof Set  && ! is_null($exceptionSet) ) {
 			$exceptionSet = new Set ($exceptionSet);
 		}
 		$count = count($exceptionSet);
@@ -253,7 +250,7 @@ class Rule {
 	}
 
 	protected function validateIsIncr($isIncr) {
-		if (!is_bool($isIncr)) {
+		if ( ! is_bool($isIncr) && ! is_null($isIncr) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'isIncr', 'boolean'));
 		}
 	
@@ -276,7 +273,7 @@ class Rule {
 	}
 
 	protected function validateIsOptional($isOptional) {
-		if (!is_bool($isOptional)) {
+		if ( ! is_bool($isOptional) && ! is_null($isOptional) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'isOptional', 'boolean'));
 		}
 	
@@ -299,7 +296,7 @@ class Rule {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof String16 ) {
+		if ( ! $name instanceof String16  && ! is_null($name) ) {
 			$name = new String16 ($name);
 		}
 	

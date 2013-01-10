@@ -7,9 +7,6 @@ use com\microsoft\wc\types\String255;
 use com\microsoft\wc\types\Location;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="ActiveAppAuthorization")
  */
 class ActiveAppAuthorization {
@@ -170,7 +167,7 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateDateAuthExpires($dateAuthExpires) {
-		if (!is_string($dateAuthExpires)) {
+		if ( ! is_string($dateAuthExpires) && ! is_null($dateAuthExpires) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateAuthExpires', 'string'));
 		}
 	
@@ -193,7 +190,7 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validatePersonOnlineAuthXml($personOnlineAuthXml) {
-		if ( ! $personOnlineAuthXml instanceof AuthXml ) {
+		if ( ! $personOnlineAuthXml instanceof AuthXml  && ! is_null($personOnlineAuthXml) ) {
 			$personOnlineAuthXml = new AuthXml ($personOnlineAuthXml);
 		}
 	
@@ -216,7 +213,7 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validatePersonOfflineAuthXml($personOfflineAuthXml) {
-		if ( ! $personOfflineAuthXml instanceof AuthXml ) {
+		if ( ! $personOfflineAuthXml instanceof AuthXml  && ! is_null($personOfflineAuthXml) ) {
 			$personOfflineAuthXml = new AuthXml ($personOfflineAuthXml);
 		}
 	
@@ -239,7 +236,7 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateDateAuthCreated($dateAuthCreated) {
-		if (!is_string($dateAuthCreated)) {
+		if ( ! is_string($dateAuthCreated) && ! is_null($dateAuthCreated) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateAuthCreated', 'string'));
 		}
 	
@@ -262,7 +259,7 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateDateAuthUpdated($dateAuthUpdated) {
-		if (!is_string($dateAuthUpdated)) {
+		if ( ! is_string($dateAuthUpdated) && ! is_null($dateAuthUpdated) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateAuthUpdated', 'string'));
 		}
 	
@@ -308,7 +305,7 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateAutoReconcileDocuments($autoReconcileDocuments) {
-		if (!is_bool($autoReconcileDocuments)) {
+		if ( ! is_bool($autoReconcileDocuments) && ! is_null($autoReconcileDocuments) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'autoReconcileDocuments', 'boolean'));
 		}
 	
@@ -331,7 +328,7 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateLocation($location) {
-		if ( ! $location instanceof Location ) {
+		if ( ! $location instanceof Location  && ! is_null($location) ) {
 			$location = new Location ($location);
 		}
 	

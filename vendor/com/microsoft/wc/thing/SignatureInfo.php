@@ -5,9 +5,6 @@ use com\microsoft\wc\thing\SignatureData;
 use com\microsoft\wc\thing\Signature;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="SignatureInfo")
  */
 class SignatureInfo {
@@ -68,7 +65,7 @@ class SignatureInfo {
 	}
 
 	protected function validateSignature($signature) {
-		if ( ! $signature instanceof Signature ) {
+		if ( ! $signature instanceof Signature  && ! is_null($signature) ) {
 			$signature = new Signature ($signature);
 		}
 	

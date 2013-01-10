@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\CreateConnectPackage;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.CreateConnectPackage", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

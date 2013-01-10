@@ -12,9 +12,6 @@ use com\microsoft\wc\record\IntegratedWindowsCredential;
 use com\microsoft\wc\types\String64;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="AssociatedCredInfo")
  */
 class AssociatedCredInfo {
@@ -297,7 +294,7 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateCredentialMetadata($credentialMetadata) {
-		if ( ! $credentialMetadata instanceof Stringnz ) {
+		if ( ! $credentialMetadata instanceof Stringnz  && ! is_null($credentialMetadata) ) {
 			$credentialMetadata = new Stringnz ($credentialMetadata);
 		}
 	
@@ -320,7 +317,7 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateCredentialName($credentialName) {
-		if ( ! $credentialName instanceof String64 ) {
+		if ( ! $credentialName instanceof String64  && ! is_null($credentialName) ) {
 			$credentialName = new String64 ($credentialName);
 		}
 	
@@ -343,7 +340,7 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateDateCreated($dateCreated) {
-		if (!is_string($dateCreated)) {
+		if ( ! is_string($dateCreated) && ! is_null($dateCreated) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateCreated', 'string'));
 		}
 	
@@ -366,7 +363,7 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateDateLastUsed($dateLastUsed) {
-		if (!is_string($dateLastUsed)) {
+		if ( ! is_string($dateLastUsed) && ! is_null($dateLastUsed) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateLastUsed', 'string'));
 		}
 	

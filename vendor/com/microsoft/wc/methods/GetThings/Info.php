@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetThings;
 use com\microsoft\wc\methods\GetThings\ThingRequestGroup;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings", prefix="wc-method-getthings")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

@@ -5,9 +5,6 @@ use com\microsoft\wc\auth\TextualPermissionsType;
 use com\microsoft\wc\auth\TextualRule;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.auth", prefix="wc-auth")
- * })
  * @XmlEntity	(xml="TextualPermissions")
  */
 class TextualPermissions {

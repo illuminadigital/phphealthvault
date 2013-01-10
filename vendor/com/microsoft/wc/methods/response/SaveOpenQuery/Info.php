@@ -5,9 +5,6 @@ namespace com\microsoft\wc\methods\response\SaveOpenQuery;
 
 use com\microsoft\wc\types\OpenQueryInfo;
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.SaveOpenQuery", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\types\OpenQueryInfo {

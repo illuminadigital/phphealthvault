@@ -10,9 +10,6 @@ use com\microsoft\wc\types\Version;
 use com\microsoft\wc\types\HashFinalized;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.request", prefix="wc-request")
- * })
  * @XmlEntity	(xml="Header")
  */
 class Header {
@@ -162,7 +159,7 @@ class Header {
 	}
 
 	protected function validateTargetPersonId($targetPersonId) {
-		if ( ! $targetPersonId instanceof Guid ) {
+		if ( ! $targetPersonId instanceof Guid  && ! is_null($targetPersonId) ) {
 			$targetPersonId = new Guid ($targetPersonId);
 		}
 	
@@ -185,7 +182,7 @@ class Header {
 	}
 
 	protected function validateRecordId($recordId) {
-		if ( ! $recordId instanceof Guid ) {
+		if ( ! $recordId instanceof Guid  && ! is_null($recordId) ) {
 			$recordId = new Guid ($recordId);
 		}
 	
@@ -254,7 +251,7 @@ class Header {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof Iso6391 ) {
+		if ( ! $language instanceof Iso6391  && ! is_null($language) ) {
 			$language = new Iso6391 ($language);
 		}
 	
@@ -277,7 +274,7 @@ class Header {
 	}
 
 	protected function validateCountry($country) {
-		if ( ! $country instanceof Iso3166 ) {
+		if ( ! $country instanceof Iso3166  && ! is_null($country) ) {
 			$country = new Iso3166 ($country);
 		}
 	
@@ -300,7 +297,7 @@ class Header {
 	}
 
 	protected function validateFinalXsl($finalXsl) {
-		if ( ! $finalXsl instanceof Xsl ) {
+		if ( ! $finalXsl instanceof Xsl  && ! is_null($finalXsl) ) {
 			$finalXsl = new Xsl ($finalXsl);
 		}
 	
@@ -392,7 +389,7 @@ class Header {
 	}
 
 	protected function validateInfoHash($infoHash) {
-		if ( ! $infoHash instanceof HashFinalized ) {
+		if ( ! $infoHash instanceof HashFinalized  && ! is_null($infoHash) ) {
 			$infoHash = new HashFinalized ($infoHash);
 		}
 	

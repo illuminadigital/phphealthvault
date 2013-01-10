@@ -7,9 +7,6 @@ use com\microsoft\wc\thing\Extension;
 use com\microsoft\wc\thing\RelatedThing;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="common")
  */
 class Common {
@@ -71,7 +68,7 @@ class Common {
 	}
 
 	protected function validateSource($source) {
-		if (!is_string($source)) {
+		if ( ! is_string($source) && ! is_null($source) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'source', 'string'));
 		}
 	
@@ -94,7 +91,7 @@ class Common {
 	}
 
 	protected function validateNote($note) {
-		if (!is_string($note)) {
+		if ( ! is_string($note) && ! is_null($note) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'note', 'string'));
 		}
 	
@@ -117,7 +114,7 @@ class Common {
 	}
 
 	protected function validateTags($tags) {
-		if ( ! $tags instanceof Stringz512 ) {
+		if ( ! $tags instanceof Stringz512  && ! is_null($tags) ) {
 			$tags = new Stringz512 ($tags);
 		}
 	
@@ -140,7 +137,7 @@ class Common {
 	}
 
 	protected function validateExtension($extension) {
-		if ( ! $extension instanceof Extension ) {
+		if ( ! $extension instanceof Extension  && ! is_null($extension) ) {
 			$extension = new Extension ($extension);
 		}
 		$count = count($extension);
@@ -176,7 +173,7 @@ class Common {
 	}
 
 	protected function validateRelatedThing($relatedThing) {
-		if ( ! $relatedThing instanceof RelatedThing ) {
+		if ( ! $relatedThing instanceof RelatedThing  && ! is_null($relatedThing) ) {
 			$relatedThing = new RelatedThing ($relatedThing);
 		}
 		$count = count($relatedThing);
@@ -212,7 +209,7 @@ class Common {
 	}
 
 	protected function validateClientThingId($clientThingId) {
-		if ( ! $clientThingId instanceof String255 ) {
+		if ( ! $clientThingId instanceof String255  && ! is_null($clientThingId) ) {
 			$clientThingId = new String255 ($clientThingId);
 		}
 	

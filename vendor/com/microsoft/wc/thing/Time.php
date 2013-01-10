@@ -7,9 +7,6 @@ use com\microsoft\wc\thing\Second;
 use com\microsoft\wc\thing\Millisecond;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="time")
  */
 class Time {
@@ -105,7 +102,7 @@ class Time {
 	}
 
 	protected function validateS($s) {
-		if ( ! $s instanceof Second ) {
+		if ( ! $s instanceof Second  && ! is_null($s) ) {
 			$s = new Second ($s);
 		}
 	
@@ -128,7 +125,7 @@ class Time {
 	}
 
 	protected function validateF($f) {
-		if ( ! $f instanceof Millisecond ) {
+		if ( ! $f instanceof Millisecond  && ! is_null($f) ) {
 			$f = new Millisecond ($f);
 		}
 	

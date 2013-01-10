@@ -11,9 +11,6 @@ use com\microsoft\wc\types\CultureSpecificString255;
 use com\microsoft\wc\types\CultureSpecificString;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="App")
  */
 class App {
@@ -176,7 +173,7 @@ class App {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof CultureSpecificString255 ) {
+		if ( ! $name instanceof CultureSpecificString255  && ! is_null($name) ) {
 			$name = new CultureSpecificString255 ($name);
 		}
 		$count = count($name);
@@ -258,7 +255,7 @@ class App {
 	}
 
 	protected function validateActionUrl($actionUrl) {
-		if (!is_string($actionUrl)) {
+		if ( ! is_string($actionUrl) && ! is_null($actionUrl) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'actionUrl', 'string'));
 		}
 	
@@ -281,7 +278,7 @@ class App {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! $description instanceof CultureSpecificString ) {
+		if ( ! $description instanceof CultureSpecificString  && ! is_null($description) ) {
 			$description = new CultureSpecificString ($description);
 		}
 		$count = count($description);
@@ -317,7 +314,7 @@ class App {
 	}
 
 	protected function validateAuthReason($authReason) {
-		if ( ! $authReason instanceof CultureSpecificString ) {
+		if ( ! $authReason instanceof CultureSpecificString  && ! is_null($authReason) ) {
 			$authReason = new CultureSpecificString ($authReason);
 		}
 		$count = count($authReason);
@@ -353,7 +350,7 @@ class App {
 	}
 
 	protected function validateDomainName($domainName) {
-		if ( ! $domainName instanceof String255 ) {
+		if ( ! $domainName instanceof String255  && ! is_null($domainName) ) {
 			$domainName = new String255 ($domainName);
 		}
 	
@@ -376,7 +373,7 @@ class App {
 	}
 
 	protected function validateClientServiceToken($clientServiceToken) {
-		if ( ! $clientServiceToken instanceof Guid ) {
+		if ( ! $clientServiceToken instanceof Guid  && ! is_null($clientServiceToken) ) {
 			$clientServiceToken = new Guid ($clientServiceToken);
 		}
 	
@@ -399,7 +396,7 @@ class App {
 	}
 
 	protected function validatePersistentTokens($persistentTokens) {
-		if ( ! $persistentTokens instanceof AppPersistentTokens ) {
+		if ( ! $persistentTokens instanceof AppPersistentTokens  && ! is_null($persistentTokens) ) {
 			$persistentTokens = new AppPersistentTokens ($persistentTokens);
 		}
 	
@@ -422,7 +419,7 @@ class App {
 	}
 
 	protected function validatePrivacyStatement($privacyStatement) {
-		if ( ! $privacyStatement instanceof StatementInfo ) {
+		if ( ! $privacyStatement instanceof StatementInfo  && ! is_null($privacyStatement) ) {
 			$privacyStatement = new StatementInfo ($privacyStatement);
 		}
 	
@@ -445,7 +442,7 @@ class App {
 	}
 
 	protected function validateTermsOfUse($termsOfUse) {
-		if ( ! $termsOfUse instanceof StatementInfo ) {
+		if ( ! $termsOfUse instanceof StatementInfo  && ! is_null($termsOfUse) ) {
 			$termsOfUse = new StatementInfo ($termsOfUse);
 		}
 	
@@ -468,7 +465,7 @@ class App {
 	}
 
 	protected function validateDtcSuccessMessage($dtcSuccessMessage) {
-		if ( ! $dtcSuccessMessage instanceof StatementInfo ) {
+		if ( ! $dtcSuccessMessage instanceof StatementInfo  && ! is_null($dtcSuccessMessage) ) {
 			$dtcSuccessMessage = new StatementInfo ($dtcSuccessMessage);
 		}
 	
@@ -491,7 +488,7 @@ class App {
 	}
 
 	protected function validateAppAttributes($appAttributes) {
-		if ( ! $appAttributes instanceof ApplicationAttributes ) {
+		if ( ! $appAttributes instanceof ApplicationAttributes  && ! is_null($appAttributes) ) {
 			$appAttributes = new ApplicationAttributes ($appAttributes);
 		}
 	
@@ -537,7 +534,7 @@ class App {
 	}
 
 	protected function validateMasterAppId($masterAppId) {
-		if ( ! $masterAppId instanceof Guid ) {
+		if ( ! $masterAppId instanceof Guid  && ! is_null($masterAppId) ) {
 			$masterAppId = new Guid ($masterAppId);
 		}
 	
@@ -560,7 +557,7 @@ class App {
 	}
 
 	protected function validateMasterAppName($masterAppName) {
-		if ( ! $masterAppName instanceof CultureSpecificString255 ) {
+		if ( ! $masterAppName instanceof CultureSpecificString255  && ! is_null($masterAppName) ) {
 			$masterAppName = new CultureSpecificString255 ($masterAppName);
 		}
 	
@@ -583,7 +580,7 @@ class App {
 	}
 
 	protected function validateCreatedDate($createdDate) {
-		if (!is_string($createdDate)) {
+		if ( ! is_string($createdDate) && ! is_null($createdDate) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'createdDate', 'string'));
 		}
 	
@@ -606,7 +603,7 @@ class App {
 	}
 
 	protected function validateUpdatedDate($updatedDate) {
-		if (!is_string($updatedDate)) {
+		if ( ! is_string($updatedDate) && ! is_null($updatedDate) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedDate', 'string'));
 		}
 	

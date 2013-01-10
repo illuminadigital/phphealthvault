@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetThingType;
 use com\microsoft\wc\methods\response\GetThingType\ThingTypeInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThingType", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -40,7 +37,7 @@ class Info {
 	}
 
 	protected function validateThingType($thingType) {
-		if ( ! $thingType instanceof ThingTypeInfo ) {
+		if ( ! $thingType instanceof ThingTypeInfo  && ! is_null($thingType) ) {
 			$thingType = new ThingTypeInfo ($thingType);
 		}
 		$count = count($thingType);

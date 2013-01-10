@@ -4,9 +4,6 @@ namespace com\microsoft\wc\vocab;
 use com\microsoft\wc\types\Stringnz;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.vocab", prefix="wc-vocab")
- * })
  * @XmlEntity	(xml="VocabularyAuthorization")
  */
 class VocabularyAuthorization {
@@ -68,7 +65,7 @@ class VocabularyAuthorization {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof Stringnz ) {
+		if ( ! $name instanceof Stringnz  && ! is_null($name) ) {
 			$name = new Stringnz ($name);
 		}
 	

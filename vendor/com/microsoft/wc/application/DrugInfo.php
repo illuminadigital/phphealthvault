@@ -5,9 +5,6 @@ use com\microsoft\wc\application\MedicationRoutes;
 use com\microsoft\wc\application\MedicationStrength;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="drug-info")
  */
 class DrugInfo {
@@ -45,7 +42,7 @@ class DrugInfo {
 	}
 
 	protected function validateStrength($strength) {
-		if ( ! $strength instanceof MedicationStrength ) {
+		if ( ! $strength instanceof MedicationStrength  && ! is_null($strength) ) {
 			$strength = new MedicationStrength ($strength);
 		}
 		$count = count($strength);
@@ -81,7 +78,7 @@ class DrugInfo {
 	}
 
 	protected function validateRoutes($routes) {
-		if ( ! $routes instanceof MedicationRoutes ) {
+		if ( ! $routes instanceof MedicationRoutes  && ! is_null($routes) ) {
 			$routes = new MedicationRoutes ($routes);
 		}
 	

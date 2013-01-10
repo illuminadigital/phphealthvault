@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetAuthorizedRecords;
 use com\microsoft\wc\types\Record;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetAuthorizedRecords", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -40,7 +37,7 @@ class Info {
 	}
 
 	protected function validateRecord($record) {
-		if ( ! $record instanceof Record ) {
+		if ( ! $record instanceof Record  && ! is_null($record) ) {
 			$record = new Record ($record);
 		}
 		$count = count($record);

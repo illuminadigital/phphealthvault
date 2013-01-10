@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetApplicationInfo;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetApplicationInfo", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -44,7 +41,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAllLanguages($allLanguages) {
-		if (!is_bool($allLanguages)) {
+		if ( ! is_bool($allLanguages) && ! is_null($allLanguages) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'allLanguages', 'boolean'));
 		}
 	
@@ -67,7 +64,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateChildAppId($childAppId) {
-		if ( ! $childAppId instanceof Guid ) {
+		if ( ! $childAppId instanceof Guid  && ! is_null($childAppId) ) {
 			$childAppId = new Guid ($childAppId);
 		}
 	

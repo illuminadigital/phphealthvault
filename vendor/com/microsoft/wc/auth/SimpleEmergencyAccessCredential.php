@@ -4,9 +4,6 @@ namespace com\microsoft\wc\auth;
 use com\microsoft\wc\types\String128nw;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.auth", prefix="wc-auth")
- * })
  * @XmlEntity	(xml="SimpleEmergencyAccessCredential")
  */
 class SimpleEmergencyAccessCredential {

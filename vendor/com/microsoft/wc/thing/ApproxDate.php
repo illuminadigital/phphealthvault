@@ -6,9 +6,6 @@ use com\microsoft\wc\thing\Month;
 use com\microsoft\wc\thing\Day;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="approx-date")
  */
 class ApproxDate {
@@ -75,7 +72,7 @@ class ApproxDate {
 	}
 
 	protected function validateM($m) {
-		if ( ! $m instanceof Month ) {
+		if ( ! $m instanceof Month  && ! is_null($m) ) {
 			$m = new Month ($m);
 		}
 	
@@ -98,7 +95,7 @@ class ApproxDate {
 	}
 
 	protected function validateD($d) {
-		if ( ! $d instanceof Day ) {
+		if ( ! $d instanceof Day  && ! is_null($d) ) {
 			$d = new Day ($d);
 		}
 	

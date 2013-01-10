@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetThingType;
 use com\microsoft\wc\methods\response\GetThingType\Column;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThingType", prefix="")
- * })
  * @XmlEntity	(xml="Columns")
  */
 class Columns {
@@ -38,7 +35,7 @@ class Columns {
 	}
 
 	protected function validateColumn($column) {
-		if ( ! $column instanceof Column ) {
+		if ( ! $column instanceof Column  && ! is_null($column) ) {
 			$column = new Column ($column);
 		}
 		$count = count($column);

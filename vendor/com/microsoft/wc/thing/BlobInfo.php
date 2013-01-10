@@ -6,9 +6,6 @@ use com\microsoft\wc\types\Stringz1024;
 use com\microsoft\wc\thing\BlobHashInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="BlobInfo")
  */
 class BlobInfo {
@@ -98,7 +95,7 @@ class BlobInfo {
 	}
 
 	protected function validateHashInfo($hashInfo) {
-		if ( ! $hashInfo instanceof BlobHashInfo ) {
+		if ( ! $hashInfo instanceof BlobHashInfo  && ! is_null($hashInfo) ) {
 			$hashInfo = new BlobHashInfo ($hashInfo);
 		}
 	

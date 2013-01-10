@@ -8,9 +8,6 @@ use com\microsoft\wc\types\Iso3166;
 use com\microsoft\wc\request\Info;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SaveOpenQuery", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -98,7 +95,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateExpires($expires) {
-		if (!is_integer($expires)) {
+		if ( ! is_integer($expires) && ! is_null($expires) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'expires', 'integer'));
 		}
 	
@@ -121,7 +118,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePinCode($pinCode) {
-		if ( ! $pinCode instanceof String128 ) {
+		if ( ! $pinCode instanceof String128  && ! is_null($pinCode) ) {
 			$pinCode = new String128 ($pinCode);
 		}
 	
@@ -144,7 +141,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateNote($note) {
-		if ( ! $note instanceof String128 ) {
+		if ( ! $note instanceof String128  && ! is_null($note) ) {
 			$note = new String128 ($note);
 		}
 	
@@ -213,7 +210,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRecordId($recordId) {
-		if ( ! $recordId instanceof Guid ) {
+		if ( ! $recordId instanceof Guid  && ! is_null($recordId) ) {
 			$recordId = new Guid ($recordId);
 		}
 	
@@ -236,7 +233,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof Iso6391 ) {
+		if ( ! $language instanceof Iso6391  && ! is_null($language) ) {
 			$language = new Iso6391 ($language);
 		}
 	
@@ -259,7 +256,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateCountry($country) {
-		if ( ! $country instanceof Iso3166 ) {
+		if ( ! $country instanceof Iso3166  && ! is_null($country) ) {
 			$country = new Iso3166 ($country);
 		}
 	
@@ -282,7 +279,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateFinalXsl($finalXsl) {
-		if (!is_string($finalXsl)) {
+		if ( ! is_string($finalXsl) && ! is_null($finalXsl) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'finalXsl', 'string'));
 		}
 	

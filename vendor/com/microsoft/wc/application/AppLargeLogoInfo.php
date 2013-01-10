@@ -5,9 +5,6 @@ use com\microsoft\wc\types\String255;
 use com\microsoft\wc\application\CultureSpecificAppLargeLogo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="AppLargeLogoInfo")
  */
 class AppLargeLogoInfo {

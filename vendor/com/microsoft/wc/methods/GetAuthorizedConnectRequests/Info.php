@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetAuthorizedConnectRequests;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetAuthorizedConnectRequests", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -40,7 +37,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAuthorizedConnectRequestsSince($authorizedConnectRequestsSince) {
-		if (!is_string($authorizedConnectRequestsSince)) {
+		if ( ! is_string($authorizedConnectRequestsSince) && ! is_null($authorizedConnectRequestsSince) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'authorizedConnectRequestsSince', 'string'));
 		}
 	

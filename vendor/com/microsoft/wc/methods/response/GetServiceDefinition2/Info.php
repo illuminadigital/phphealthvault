@@ -6,9 +6,6 @@ use com\microsoft\wc\methods\response\GetServiceDefinition2\Shell;
 use com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethod;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetServiceDefinition2", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -147,7 +144,7 @@ class Info {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'commonSchema', 0));
 		}
 		foreach ($commonSchema as $entry) {
-			if (!is_string($entry)) {
+			if ( ! is_string($entry) && ! is_null($entry) ) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'commonSchema', 'string'));
 			}
 		}
@@ -160,7 +157,7 @@ class Info {
 	}
 
 	protected function validateCommonSchemaType($commonSchema) {
-		if (!is_string($commonSchema)) {
+		if ( ! is_string($commonSchema) && ! is_null($commonSchema) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'commonSchema', 'string'));
 		}
 	

@@ -6,9 +6,6 @@ use com\microsoft\wc\types\BlobHashAlgorithmParameters;
 use com\microsoft\wc\types\Stringnz512;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="BlobHashInfo")
  */
 class BlobHashInfo {
@@ -75,7 +72,7 @@ class BlobHashInfo {
 	}
 
 	protected function validateParams($params) {
-		if ( ! $params instanceof BlobHashAlgorithmParameters ) {
+		if ( ! $params instanceof BlobHashAlgorithmParameters  && ! is_null($params) ) {
 			$params = new BlobHashAlgorithmParameters ($params);
 		}
 	

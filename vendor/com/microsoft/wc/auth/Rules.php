@@ -4,9 +4,6 @@ namespace com\microsoft\wc\auth;
 use com\microsoft\wc\auth\Rule;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.auth", prefix="wc-auth")
- * })
  * @XmlEntity	(xml="Rules")
  */
 class Rules {
@@ -38,7 +35,7 @@ class Rules {
 	}
 
 	protected function validateRule($rule) {
-		if ( ! $rule instanceof Rule ) {
+		if ( ! $rule instanceof Rule  && ! is_null($rule) ) {
 			$rule = new Rule ($rule);
 		}
 		$count = count($rule);

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetPersonAndRecordForAlternateId;
 use com\microsoft\wc\types\PersonInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetPersonAndRecordForAlternateId", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

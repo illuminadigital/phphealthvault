@@ -5,9 +5,6 @@ use com\microsoft\wc\subscription\Stringnz;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="HashFinalizedData")
  */
 class HashFinalizedData extends String512 {

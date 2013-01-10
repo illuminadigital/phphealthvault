@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetEventSubscriptions;
 use com\microsoft\wc\subscription\Subscriptions;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetEventSubscriptions", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

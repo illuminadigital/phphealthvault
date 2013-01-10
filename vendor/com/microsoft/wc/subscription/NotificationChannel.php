@@ -4,9 +4,6 @@ namespace com\microsoft\wc\subscription;
 use com\microsoft\wc\subscription\HttpNotificationChannel;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="NotificationChannel")
  */
 class NotificationChannel {

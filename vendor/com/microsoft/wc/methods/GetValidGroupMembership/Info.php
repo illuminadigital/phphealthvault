@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetValidGroupMembership;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetValidGroupMembership", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -40,7 +37,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateApplicationId($applicationId) {
-		if ( ! $applicationId instanceof Guid ) {
+		if ( ! $applicationId instanceof Guid  && ! is_null($applicationId) ) {
 			$applicationId = new Guid ($applicationId);
 		}
 		$count = count($applicationId);

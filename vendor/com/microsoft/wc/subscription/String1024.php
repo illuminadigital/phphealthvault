@@ -4,9 +4,6 @@ namespace com\microsoft\wc\subscription;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlRootEntity	(xml="string1024")
  */
 class String1024 {

@@ -5,9 +5,6 @@ namespace com\microsoft\wc\application;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="CultureSpecificStringnz")
  */
 class CultureSpecificStringnz extends Stringnz {
@@ -41,7 +38,7 @@ class CultureSpecificStringnz extends Stringnz {
 	}
 
 	protected function validateXmlLang($xmlLang) {
-		if (!is_string($xmlLang)) {
+		if ( ! is_string($xmlLang) && ! is_null($xmlLang) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'xmlLang', 'string'));
 		}
 	

@@ -6,9 +6,6 @@ use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\methods\CreateConnectPackage2\StreamedPackageBlobs;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.CreateConnectPackage2", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -72,7 +69,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateIdentityCode($identityCode) {
-		if (!is_string($identityCode)) {
+		if ( ! is_string($identityCode) && ! is_null($identityCode) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'identityCode', 'string'));
 		}
 	
@@ -187,7 +184,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateStreamedPackageBlobs($streamedPackageBlobs) {
-		if ( ! $streamedPackageBlobs instanceof StreamedPackageBlobs ) {
+		if ( ! $streamedPackageBlobs instanceof StreamedPackageBlobs  && ! is_null($streamedPackageBlobs) ) {
 			$streamedPackageBlobs = new StreamedPackageBlobs ($streamedPackageBlobs);
 		}
 	

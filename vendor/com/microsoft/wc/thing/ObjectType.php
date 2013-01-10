@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="ObjectType")
  */
 class ObjectType {
@@ -50,7 +47,7 @@ class ObjectType {
 	}
 
 	protected function validateId($id) {
-		if (!is_string($id)) {
+		if ( ! is_string($id) && ! is_null($id) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'string'));
 		}
 	
@@ -73,7 +70,7 @@ class ObjectType {
 	}
 
 	protected function validateMimeType($mimeType) {
-		if (!is_string($mimeType)) {
+		if ( ! is_string($mimeType) && ! is_null($mimeType) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'mimeType', 'string'));
 		}
 	
@@ -96,7 +93,7 @@ class ObjectType {
 	}
 
 	protected function validateEncoding($encoding) {
-		if (!is_string($encoding)) {
+		if ( ! is_string($encoding) && ! is_null($encoding) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'encoding', 'string'));
 		}
 	

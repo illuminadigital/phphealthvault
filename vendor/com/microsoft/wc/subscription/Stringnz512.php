@@ -5,9 +5,6 @@ namespace com\microsoft\wc\subscription;
 
 use _this\Stringnz;
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlRootEntity	(xml="stringnz512")
  */
 class Stringnz512 extends \_this\Stringnz {

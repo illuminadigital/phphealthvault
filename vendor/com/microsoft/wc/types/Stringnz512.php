@@ -5,9 +5,6 @@ namespace com\microsoft\wc\types;
 
 use _this\Stringnz;
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
- * })
  * @XmlRootEntity	(xml="stringnz512")
  */
 class Stringnz512 extends \_this\Stringnz {

@@ -9,9 +9,6 @@ use com\microsoft\wc\methods\response\GetThingType\TransformSource;
 use com\microsoft\wc\methods\response\GetThingType\Image;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThingType", prefix="")
- * })
  * @XmlEntity	(xml="ThingTypeInfo")
  */
 class ThingTypeInfo {
@@ -156,7 +153,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateUncreatable($uncreatable) {
-		if (!is_bool($uncreatable)) {
+		if ( ! is_bool($uncreatable) && ! is_null($uncreatable) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'uncreatable', 'boolean'));
 		}
 	
@@ -179,7 +176,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateImmutable($immutable) {
-		if (!is_bool($immutable)) {
+		if ( ! is_bool($immutable) && ! is_null($immutable) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'immutable', 'boolean'));
 		}
 	
@@ -202,7 +199,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateSingleton($singleton) {
-		if (!is_bool($singleton)) {
+		if ( ! is_bool($singleton) && ! is_null($singleton) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'singleton', 'boolean'));
 		}
 	
@@ -225,7 +222,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateXsd($xsd) {
-		if (!is_string($xsd)) {
+		if ( ! is_string($xsd) && ! is_null($xsd) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'xsd', 'string'));
 		}
 	
@@ -248,7 +245,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateColumns($columns) {
-		if ( ! $columns instanceof Columns ) {
+		if ( ! $columns instanceof Columns  && ! is_null($columns) ) {
 			$columns = new Columns ($columns);
 		}
 	
@@ -271,7 +268,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateTransforms($transforms) {
-		if ( ! $transforms instanceof Transforms ) {
+		if ( ! $transforms instanceof Transforms  && ! is_null($transforms) ) {
 			$transforms = new Transforms ($transforms);
 		}
 	
@@ -294,7 +291,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateTransformSource($transformSource) {
-		if ( ! $transformSource instanceof TransformSource ) {
+		if ( ! $transformSource instanceof TransformSource  && ! is_null($transformSource) ) {
 			$transformSource = new TransformSource ($transformSource);
 		}
 		$count = count($transformSource);
@@ -330,7 +327,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateImage($image) {
-		if ( ! $image instanceof Image ) {
+		if ( ! $image instanceof Image  && ! is_null($image) ) {
 			$image = new Image ($image);
 		}
 		$count = count($image);
@@ -366,7 +363,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateVersions($versions) {
-		if ( ! $versions instanceof Versions ) {
+		if ( ! $versions instanceof Versions  && ! is_null($versions) ) {
 			$versions = new Versions ($versions);
 		}
 	
@@ -389,7 +386,7 @@ class ThingTypeInfo {
 	}
 
 	protected function validateEffectiveDateXpath($effectiveDateXpath) {
-		if (!is_string($effectiveDateXpath)) {
+		if ( ! is_string($effectiveDateXpath) && ! is_null($effectiveDateXpath) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'effectiveDateXpath', 'string'));
 		}
 	

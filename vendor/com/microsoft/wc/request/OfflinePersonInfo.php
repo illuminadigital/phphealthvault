@@ -4,9 +4,6 @@ namespace com\microsoft\wc\request;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.request", prefix="")
- * })
  * @XmlEntity	(xml="OfflinePersonInfo")
  */
 class OfflinePersonInfo {

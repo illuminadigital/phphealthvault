@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\NewSignupCode;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.NewSignupCode", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

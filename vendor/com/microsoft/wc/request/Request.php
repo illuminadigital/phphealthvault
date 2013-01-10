@@ -7,7 +7,7 @@ use com\microsoft\wc\request\Info;
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.request", prefix="wc-request")
+ *   @XmlNamespace(url="urn:com.microsoft.wc.request", prefix="wc-request")
  * })
  * @XmlEntity	(xml="wc-request:request")
  */
@@ -52,7 +52,7 @@ class Request {
 	}
 
 	protected function validateAuth($auth) {
-		if ( ! $auth instanceof HMACFinalized ) {
+		if ( ! $auth instanceof HMACFinalized  && ! is_null($auth) ) {
 			$auth = new HMACFinalized ($auth);
 		}
 	

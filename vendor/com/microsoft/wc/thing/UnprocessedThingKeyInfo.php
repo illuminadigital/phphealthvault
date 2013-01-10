@@ -5,9 +5,6 @@ use com\microsoft\wc\thing\ThingKey;
 use com\microsoft\wc\thing\ThingType;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="UnprocessedThingKeyInfo")
  */
 class UnprocessedThingKeyInfo {

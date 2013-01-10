@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetAlternateIds;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetAlternateIds", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

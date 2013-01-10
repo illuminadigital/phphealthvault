@@ -5,9 +5,6 @@ use com\microsoft\wc\types\String64;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SearchVocabulary", prefix="")
- * })
  * @XmlEntity	(xml="VocabularySearchString")
  */
 class VocabularySearchString extends String255 {
@@ -41,7 +38,7 @@ class VocabularySearchString extends String255 {
 	}
 
 	protected function validateSearchMode($searchMode) {
-		if ( ! $searchMode instanceof String64 ) {
+		if ( ! $searchMode instanceof String64  && ! is_null($searchMode) ) {
 			$searchMode = new String64 ($searchMode);
 		}
 	

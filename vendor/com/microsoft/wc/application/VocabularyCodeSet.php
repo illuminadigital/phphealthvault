@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 use com\microsoft\wc\application\VocabularyCodeItem;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="VocabularyCodeSet")
  */
 class VocabularyCodeSet {
@@ -138,7 +135,7 @@ class VocabularyCodeSet {
 	}
 
 	protected function validateCodeItem($codeItem) {
-		if ( ! $codeItem instanceof VocabularyCodeItem ) {
+		if ( ! $codeItem instanceof VocabularyCodeItem  && ! is_null($codeItem) ) {
 			$codeItem = new VocabularyCodeItem ($codeItem);
 		}
 		$count = count($codeItem);
@@ -174,7 +171,7 @@ class VocabularyCodeSet {
 	}
 
 	protected function validateIsVocabTruncated($isVocabTruncated) {
-		if (!is_bool($isVocabTruncated)) {
+		if ( ! is_bool($isVocabTruncated) && ! is_null($isVocabTruncated) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'isVocabTruncated', 'boolean'));
 		}
 	
@@ -197,7 +194,7 @@ class VocabularyCodeSet {
 	}
 
 	protected function validateXmlLang($xmlLang) {
-		if (!is_string($xmlLang)) {
+		if ( ! is_string($xmlLang) && ! is_null($xmlLang) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'xmlLang', 'string'));
 		}
 	

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetAuthorizedConnectRequests;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetAuthorizedConnectRequests", prefix="")
- * })
  * @XmlEntity	(xml="ConnectRequest")
  */
 class ConnectRequest {

@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Stringnz;
 use com\microsoft\wc\types\CodableValue;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.vocab", prefix="wc-vocab")
- * })
  * @XmlEntity	(xml="medication-strength")
  */
 class MedicationStrength {
@@ -76,7 +73,7 @@ class MedicationStrength {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof Stringnz ) {
+		if ( ! $value instanceof Stringnz  && ! is_null($value) ) {
 			$value = new Stringnz ($value);
 		}
 	
@@ -99,7 +96,7 @@ class MedicationStrength {
 	}
 
 	protected function validateUnit($unit) {
-		if ( ! $unit instanceof CodableValue ) {
+		if ( ! $unit instanceof CodableValue  && ! is_null($unit) ) {
 			$unit = new CodableValue ($unit);
 		}
 	

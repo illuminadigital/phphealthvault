@@ -5,9 +5,6 @@ use com\microsoft\wc\types\AppServerCred;
 use com\microsoft\wc\auth\UserPassAuthSessionCred;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.CreateAuthenticatedSessionToken", prefix="")
- * })
  * @XmlEntity	(xml="Credential")
  */
 class Credential {

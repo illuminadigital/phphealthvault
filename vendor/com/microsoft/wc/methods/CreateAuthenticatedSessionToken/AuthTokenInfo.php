@@ -5,9 +5,6 @@ use com\microsoft\wc\types\AppInfo;
 use com\microsoft\wc\methods\CreateAuthenticatedSessionToken\Credential;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.CreateAuthenticatedSessionToken", prefix="")
- * })
  * @XmlEntity	(xml="AuthTokenInfo")
  */
 class AuthTokenInfo {

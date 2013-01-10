@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Guid;
 use com\microsoft\wc\methods\response\GetThingType\VersionInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThingType", prefix="")
- * })
  * @XmlEntity	(xml="Versions")
  */
 class Versions {

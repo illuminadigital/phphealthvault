@@ -8,9 +8,6 @@ use com\microsoft\wc\types\String255;
 use com\microsoft\wc\methods\GetThings\ThingFilterSpec;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings3", prefix="")
- * })
  * @XmlEntity	(xml="ThingRequestGroup2")
  */
 class ThingRequestGroup2 {
@@ -92,7 +89,7 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
+		if ( ! $id instanceof Guid  && ! is_null($id) ) {
 			$id = new Guid ($id);
 		}
 		$count = count($id);
@@ -128,7 +125,7 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateKey($key) {
-		if ( ! $key instanceof ThingKey ) {
+		if ( ! $key instanceof ThingKey  && ! is_null($key) ) {
 			$key = new ThingKey ($key);
 		}
 		$count = count($key);
@@ -164,7 +161,7 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateClientThingId($clientThingId) {
-		if ( ! $clientThingId instanceof String255 ) {
+		if ( ! $clientThingId instanceof String255  && ! is_null($clientThingId) ) {
 			$clientThingId = new String255 ($clientThingId);
 		}
 		$count = count($clientThingId);
@@ -200,7 +197,7 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateFilter($filter) {
-		if ( ! $filter instanceof ThingFilterSpec ) {
+		if ( ! $filter instanceof ThingFilterSpec  && ! is_null($filter) ) {
 			$filter = new ThingFilterSpec ($filter);
 		}
 		$count = count($filter);
@@ -259,7 +256,7 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateCurrentVersionOnly($currentVersionOnly) {
-		if (!is_bool($currentVersionOnly)) {
+		if ( ! is_bool($currentVersionOnly) && ! is_null($currentVersionOnly) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'currentVersionOnly', 'boolean'));
 		}
 	
@@ -282,7 +279,7 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateName($name) {
-		if (!is_string($name)) {
+		if ( ! is_string($name) && ! is_null($name) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
 		}
 	
@@ -305,7 +302,7 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateMax($max) {
-		if (!is_integer($max)) {
+		if ( ! is_integer($max) && ! is_null($max) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'max', 'integer'));
 		}
 	
@@ -328,7 +325,7 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateMaxFull($maxFull) {
-		if (!is_integer($maxFull)) {
+		if ( ! is_integer($maxFull) && ! is_null($maxFull) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maxFull', 'integer'));
 		}
 	

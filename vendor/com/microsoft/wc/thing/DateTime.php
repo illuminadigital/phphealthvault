@@ -6,9 +6,6 @@ use com\microsoft\wc\thing\Time;
 use com\microsoft\wc\types\CodableValue;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="date-time")
  */
 class DateTime {
@@ -76,7 +73,7 @@ class DateTime {
 	}
 
 	protected function validateTime($time) {
-		if ( ! $time instanceof Time ) {
+		if ( ! $time instanceof Time  && ! is_null($time) ) {
 			$time = new Time ($time);
 		}
 	
@@ -99,7 +96,7 @@ class DateTime {
 	}
 
 	protected function validateTz($tz) {
-		if ( ! $tz instanceof CodableValue ) {
+		if ( ! $tz instanceof CodableValue  && ! is_null($tz) ) {
 			$tz = new CodableValue ($tz);
 		}
 	

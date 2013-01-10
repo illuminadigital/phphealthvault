@@ -5,9 +5,6 @@ namespace com\microsoft\wc\vocab;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.vocab", prefix="wc-vocab")
- * })
  * @XmlEntity	(xml="VocabularyKeyInfo")
  */
 class VocabularyKeyInfo extends VocabularyKey {
@@ -41,7 +38,7 @@ class VocabularyKeyInfo extends VocabularyKey {
 	}
 
 	protected function validateDescription($description) {
-		if (!is_string($description)) {
+		if ( ! is_string($description) && ! is_null($description) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'string'));
 		}
 	

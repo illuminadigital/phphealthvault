@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Stringnz;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
- * })
  * @XmlEntity	(xml="HMACAlgorithmData")
  */
 class HMACAlgorithmData extends String512 {

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 use com\microsoft\wc\application\Stringnz;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="VocabularyKey")
  */
 class VocabularyKey {
@@ -87,7 +84,7 @@ class VocabularyKey {
 	}
 
 	protected function validateFamily($family) {
-		if ( ! $family instanceof Stringnz ) {
+		if ( ! $family instanceof Stringnz  && ! is_null($family) ) {
 			$family = new Stringnz ($family);
 		}
 	
@@ -110,7 +107,7 @@ class VocabularyKey {
 	}
 
 	protected function validateVersion($version) {
-		if ( ! $version instanceof Stringnz ) {
+		if ( ! $version instanceof Stringnz  && ! is_null($version) ) {
 			$version = new Stringnz ($version);
 		}
 	
@@ -133,7 +130,7 @@ class VocabularyKey {
 	}
 
 	protected function validateCodeValue($codeValue) {
-		if (!is_string($codeValue)) {
+		if ( ! is_string($codeValue) && ! is_null($codeValue) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'codeValue', 'string'));
 		}
 	
@@ -156,7 +153,7 @@ class VocabularyKey {
 	}
 
 	protected function validateXmlLang($xmlLang) {
-		if (!is_string($xmlLang)) {
+		if ( ! is_string($xmlLang) && ! is_null($xmlLang) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'xmlLang', 'string'));
 		}
 	

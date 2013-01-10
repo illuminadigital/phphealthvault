@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Stringnz;
 use com\microsoft\wc\types\CultureSpecificString;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
- * })
  * @XmlEntity	(xml="CultureSpecificExtensionItem")
  */
 class CultureSpecificExtensionItem {

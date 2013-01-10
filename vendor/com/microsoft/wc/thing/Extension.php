@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="extension")
  */
 class Extension {
@@ -79,7 +76,7 @@ class Extension {
 	}
 
 	protected function validateVer($ver) {
-		if (!is_string($ver)) {
+		if ( ! is_string($ver) && ! is_null($ver) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'ver', 'string'));
 		}
 	
@@ -102,7 +99,7 @@ class Extension {
 	}
 
 	protected function validateLogo($logo) {
-		if (!is_string($logo)) {
+		if ( ! is_string($logo) && ! is_null($logo) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'logo', 'string'));
 		}
 	
@@ -125,7 +122,7 @@ class Extension {
 	}
 
 	protected function validateXsl($xsl) {
-		if (!is_string($xsl)) {
+		if ( ! is_string($xsl) && ! is_null($xsl) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'xsl', 'string'));
 		}
 	

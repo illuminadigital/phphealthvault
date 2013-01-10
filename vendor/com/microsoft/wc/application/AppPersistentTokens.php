@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="AppPersistentTokens")
  */
 class AppPersistentTokens {
@@ -67,7 +64,7 @@ class AppPersistentTokens {
 	}
 
 	protected function validateTokenTtlSeconds($tokenTtlSeconds) {
-		if (!is_integer($tokenTtlSeconds)) {
+		if ( ! is_integer($tokenTtlSeconds) && ! is_null($tokenTtlSeconds) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'tokenTtlSeconds', 'integer'));
 		}
 	

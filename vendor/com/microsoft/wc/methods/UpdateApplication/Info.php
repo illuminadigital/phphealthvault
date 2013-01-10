@@ -17,9 +17,6 @@ use com\microsoft\wc\types\CultureSpecificString255;
 use com\microsoft\wc\types\CultureSpecificStringnz;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.UpdateApplication", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -202,7 +199,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof CultureSpecificString255 ) {
+		if ( ! $name instanceof CultureSpecificString255  && ! is_null($name) ) {
 			$name = new CultureSpecificString255 ($name);
 		}
 		$count = count($name);
@@ -238,7 +235,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePublicKeys($publicKeys) {
-		if ( ! $publicKeys instanceof PublicKeys ) {
+		if ( ! $publicKeys instanceof PublicKeys  && ! is_null($publicKeys) ) {
 			$publicKeys = new PublicKeys ($publicKeys);
 		}
 	
@@ -261,7 +258,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePersonOnlineBaseAuth($personOnlineBaseAuth) {
-		if ( ! $personOnlineBaseAuth instanceof AuthXml ) {
+		if ( ! $personOnlineBaseAuth instanceof AuthXml  && ! is_null($personOnlineBaseAuth) ) {
 			$personOnlineBaseAuth = new AuthXml ($personOnlineBaseAuth);
 		}
 	
@@ -284,7 +281,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePersonOfflineBaseAuth($personOfflineBaseAuth) {
-		if ( ! $personOfflineBaseAuth instanceof AuthXml ) {
+		if ( ! $personOfflineBaseAuth instanceof AuthXml  && ! is_null($personOfflineBaseAuth) ) {
 			$personOfflineBaseAuth = new AuthXml ($personOfflineBaseAuth);
 		}
 	
@@ -307,7 +304,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateMethods($methods) {
-		if ( ! $methods instanceof Stringnz ) {
+		if ( ! $methods instanceof Stringnz  && ! is_null($methods) ) {
 			$methods = new Stringnz ($methods);
 		}
 	
@@ -330,7 +327,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateActionUrl($actionUrl) {
-		if ( ! $actionUrl instanceof Stringnz ) {
+		if ( ! $actionUrl instanceof Stringnz  && ! is_null($actionUrl) ) {
 			$actionUrl = new Stringnz ($actionUrl);
 		}
 	
@@ -353,7 +350,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! $description instanceof CultureSpecificStringnz ) {
+		if ( ! $description instanceof CultureSpecificStringnz  && ! is_null($description) ) {
 			$description = new CultureSpecificStringnz ($description);
 		}
 		$count = count($description);
@@ -389,7 +386,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAuthReason($authReason) {
-		if ( ! $authReason instanceof CultureSpecificStringnz ) {
+		if ( ! $authReason instanceof CultureSpecificStringnz  && ! is_null($authReason) ) {
 			$authReason = new CultureSpecificStringnz ($authReason);
 		}
 		$count = count($authReason);
@@ -425,7 +422,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateDomainName($domainName) {
-		if ( ! $domainName instanceof String255 ) {
+		if ( ! $domainName instanceof String255  && ! is_null($domainName) ) {
 			$domainName = new String255 ($domainName);
 		}
 	
@@ -448,7 +445,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateLargeLogo($largeLogo) {
-		if ( ! $largeLogo instanceof AppLargeLogoInfo ) {
+		if ( ! $largeLogo instanceof AppLargeLogoInfo  && ! is_null($largeLogo) ) {
 			$largeLogo = new AppLargeLogoInfo ($largeLogo);
 		}
 	
@@ -471,7 +468,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateSmallLogo($smallLogo) {
-		if ( ! $smallLogo instanceof AppSmallLogoInfo ) {
+		if ( ! $smallLogo instanceof AppSmallLogoInfo  && ! is_null($smallLogo) ) {
 			$smallLogo = new AppSmallLogoInfo ($smallLogo);
 		}
 	
@@ -494,7 +491,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePersistentTokens($persistentTokens) {
-		if ( ! $persistentTokens instanceof AppPersistentTokens ) {
+		if ( ! $persistentTokens instanceof AppPersistentTokens  && ! is_null($persistentTokens) ) {
 			$persistentTokens = new AppPersistentTokens ($persistentTokens);
 		}
 	
@@ -517,7 +514,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppType($appType) {
-		if ( ! $appType instanceof Stringnz ) {
+		if ( ! $appType instanceof Stringnz  && ! is_null($appType) ) {
 			$appType = new Stringnz ($appType);
 		}
 	
@@ -540,7 +537,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePrivacyStatement($privacyStatement) {
-		if ( ! $privacyStatement instanceof StatementInfo ) {
+		if ( ! $privacyStatement instanceof StatementInfo  && ! is_null($privacyStatement) ) {
 			$privacyStatement = new StatementInfo ($privacyStatement);
 		}
 	
@@ -563,7 +560,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateTermsOfUse($termsOfUse) {
-		if ( ! $termsOfUse instanceof StatementInfo ) {
+		if ( ! $termsOfUse instanceof StatementInfo  && ! is_null($termsOfUse) ) {
 			$termsOfUse = new StatementInfo ($termsOfUse);
 		}
 	
@@ -586,7 +583,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppAuthRequired($appAuthRequired) {
-		if (!is_bool($appAuthRequired)) {
+		if ( ! is_bool($appAuthRequired) && ! is_null($appAuthRequired) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'appAuthRequired', 'boolean'));
 		}
 	
@@ -609,7 +606,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateIsPublished($isPublished) {
-		if (!is_bool($isPublished)) {
+		if ( ! is_bool($isPublished) && ! is_null($isPublished) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'isPublished', 'boolean'));
 		}
 	
@@ -632,7 +629,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateDtcSuccessMessage($dtcSuccessMessage) {
-		if ( ! $dtcSuccessMessage instanceof StatementInfo ) {
+		if ( ! $dtcSuccessMessage instanceof StatementInfo  && ! is_null($dtcSuccessMessage) ) {
 			$dtcSuccessMessage = new StatementInfo ($dtcSuccessMessage);
 		}
 	
@@ -655,7 +652,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppAttributes($appAttributes) {
-		if ( ! $appAttributes instanceof ApplicationAttributes ) {
+		if ( ! $appAttributes instanceof ApplicationAttributes  && ! is_null($appAttributes) ) {
 			$appAttributes = new ApplicationAttributes ($appAttributes);
 		}
 	
@@ -678,7 +675,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateValidIpPrefixes($validIpPrefixes) {
-		if ( ! $validIpPrefixes instanceof String255nw ) {
+		if ( ! $validIpPrefixes instanceof String255nw  && ! is_null($validIpPrefixes) ) {
 			$validIpPrefixes = new String255nw ($validIpPrefixes);
 		}
 	
@@ -701,7 +698,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateVocabularyAuthorizations($vocabularyAuthorizations) {
-		if ( ! $vocabularyAuthorizations instanceof VocabularyAuthorizations ) {
+		if ( ! $vocabularyAuthorizations instanceof VocabularyAuthorizations  && ! is_null($vocabularyAuthorizations) ) {
 			$vocabularyAuthorizations = new VocabularyAuthorizations ($vocabularyAuthorizations);
 		}
 	

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetValidGroupMembership;
 use com\microsoft\wc\thing\Thing;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetValidGroupMembership", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -39,7 +36,7 @@ class Info {
 	}
 
 	protected function validateThing($thing) {
-		if ( ! $thing instanceof Thing ) {
+		if ( ! $thing instanceof Thing  && ! is_null($thing) ) {
 			$thing = new Thing ($thing);
 		}
 		$count = count($thing);

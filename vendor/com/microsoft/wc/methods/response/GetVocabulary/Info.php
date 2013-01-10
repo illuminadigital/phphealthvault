@@ -5,9 +5,6 @@ use com\microsoft\wc\vocab\VocabularyCodeSet;
 use com\microsoft\wc\vocab\VocabularyKeyInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetVocabulary", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

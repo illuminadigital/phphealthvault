@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetThingType;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThingType", prefix="")
- * })
  * @XmlEntity	(xml="Transforms")
  */
 class Transforms {
@@ -43,7 +40,7 @@ class Transforms {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'tag', 0));
 		}
 		foreach ($tag as $entry) {
-			if (!is_string($entry)) {
+			if ( ! is_string($entry) && ! is_null($entry) ) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'tag', 'string'));
 			}
 		}
@@ -56,7 +53,7 @@ class Transforms {
 	}
 
 	protected function validateTagType($tag) {
-		if (!is_string($tag)) {
+		if ( ! is_string($tag) && ! is_null($tag) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'tag', 'string'));
 		}
 	

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\AddApplication;
 use com\microsoft\wc\types\Guid;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.AddApplication", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

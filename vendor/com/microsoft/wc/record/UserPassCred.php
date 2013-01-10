@@ -5,9 +5,6 @@ use com\microsoft\wc\types\LoginName;
 use com\microsoft\wc\types\String1024;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="UserPassCred")
  */
 class UserPassCred {

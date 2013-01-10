@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\DeletePendingConnectPackage;
 use com\microsoft\wc\types\Stringnz;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.DeletePendingConnectPackage", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

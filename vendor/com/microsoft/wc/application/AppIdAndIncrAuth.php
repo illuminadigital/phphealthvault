@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Guid;
 use com\microsoft\wc\auth\AuthXml;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="AppIdAndIncrAuth")
  */
 class AppIdAndIncrAuth {
@@ -86,7 +83,7 @@ class AppIdAndIncrAuth {
 	}
 
 	protected function validateIncrOnlineAuthXml($incrOnlineAuthXml) {
-		if ( ! $incrOnlineAuthXml instanceof AuthXml ) {
+		if ( ! $incrOnlineAuthXml instanceof AuthXml  && ! is_null($incrOnlineAuthXml) ) {
 			$incrOnlineAuthXml = new AuthXml ($incrOnlineAuthXml);
 		}
 	
@@ -109,7 +106,7 @@ class AppIdAndIncrAuth {
 	}
 
 	protected function validateIsIncrOnlineAuthReplace($isIncrOnlineAuthReplace) {
-		if (!is_bool($isIncrOnlineAuthReplace)) {
+		if ( ! is_bool($isIncrOnlineAuthReplace) && ! is_null($isIncrOnlineAuthReplace) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'isIncrOnlineAuthReplace', 'boolean'));
 		}
 	
@@ -132,7 +129,7 @@ class AppIdAndIncrAuth {
 	}
 
 	protected function validateIncrOfflineAuthXml($incrOfflineAuthXml) {
-		if ( ! $incrOfflineAuthXml instanceof AuthXml ) {
+		if ( ! $incrOfflineAuthXml instanceof AuthXml  && ! is_null($incrOfflineAuthXml) ) {
 			$incrOfflineAuthXml = new AuthXml ($incrOfflineAuthXml);
 		}
 	
@@ -155,7 +152,7 @@ class AppIdAndIncrAuth {
 	}
 
 	protected function validateIsIncrOfflineAuthReplace($isIncrOfflineAuthReplace) {
-		if (!is_bool($isIncrOfflineAuthReplace)) {
+		if ( ! is_bool($isIncrOfflineAuthReplace) && ! is_null($isIncrOfflineAuthReplace) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'isIncrOfflineAuthReplace', 'boolean'));
 		}
 	

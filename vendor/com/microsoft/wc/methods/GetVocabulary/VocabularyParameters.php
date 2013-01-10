@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetVocabulary;
 use com\microsoft\wc\vocab\VocabularyKey;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetVocabulary", prefix="")
- * })
  * @XmlEntity	(xml="VocabularyParameters")
  */
 class VocabularyParameters {

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\CreateConnectRequest;
 use com\microsoft\wc\types\Stringnz;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.CreateConnectRequest", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -156,7 +153,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateCallBackUrl($callBackUrl) {
-		if ( ! $callBackUrl instanceof Stringnz ) {
+		if ( ! $callBackUrl instanceof Stringnz  && ! is_null($callBackUrl) ) {
 			$callBackUrl = new Stringnz ($callBackUrl);
 		}
 	

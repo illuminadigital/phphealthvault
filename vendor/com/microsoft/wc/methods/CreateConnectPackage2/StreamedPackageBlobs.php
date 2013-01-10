@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\CreateConnectPackage2;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.CreateConnectPackage2", prefix="")
- * })
  * @XmlEntity	(xml="StreamedPackageBlobs")
  */
 class StreamedPackageBlobs {

@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Guid;
 use com\microsoft\wc\methods\GetThingType\ThingTypeSectionSpec;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThingType", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -59,7 +56,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
+		if ( ! $id instanceof Guid  && ! is_null($id) ) {
 			$id = new Guid ($id);
 		}
 		$count = count($id);
@@ -95,7 +92,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateSection($section) {
-		if ( ! $section instanceof ThingTypeSectionSpec ) {
+		if ( ! $section instanceof ThingTypeSectionSpec  && ! is_null($section) ) {
 			$section = new ThingTypeSectionSpec ($section);
 		}
 		$count = count($section);
@@ -139,7 +136,7 @@ class Info extends \com\microsoft\wc\request\Info {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'imageType', 0));
 		}
 		foreach ($imageType as $entry) {
-			if (!is_string($entry)) {
+			if ( ! is_string($entry) && ! is_null($entry) ) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'imageType', 'string'));
 			}
 		}
@@ -152,7 +149,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateImageTypeType($imageType) {
-		if (!is_string($imageType)) {
+		if ( ! is_string($imageType) && ! is_null($imageType) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'imageType', 'string'));
 		}
 	
@@ -175,7 +172,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateLastClientRefresh($lastClientRefresh) {
-		if (!is_string($lastClientRefresh)) {
+		if ( ! is_string($lastClientRefresh) && ! is_null($lastClientRefresh) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'lastClientRefresh', 'string'));
 		}
 	

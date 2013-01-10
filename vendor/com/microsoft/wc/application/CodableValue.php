@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 use com\microsoft\wc\application\CodedValue;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="codable-value")
  */
 class CodableValue {
@@ -69,7 +66,7 @@ class CodableValue {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof CodedValue ) {
+		if ( ! $code instanceof CodedValue  && ! is_null($code) ) {
 			$code = new CodedValue ($code);
 		}
 		$count = count($code);

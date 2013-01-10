@@ -5,9 +5,6 @@ use com\microsoft\wc\subscription\String128nw;
 use com\microsoft\wc\subscription\EventingKeyVersionId;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="HVEventingSharedKey")
  */
 class HVEventingSharedKey {

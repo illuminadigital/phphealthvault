@@ -5,9 +5,6 @@ namespace com\microsoft\wc\application;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="LanguageCompetency")
  */
 class LanguageCompetency extends Iso6391 {
@@ -39,7 +36,7 @@ class LanguageCompetency extends Iso6391 {
 	}
 
 	protected function validateIsPrimary($isPrimary) {
-		if (!is_bool($isPrimary)) {
+		if ( ! is_bool($isPrimary) && ! is_null($isPrimary) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'isPrimary', 'boolean'));
 		}
 	

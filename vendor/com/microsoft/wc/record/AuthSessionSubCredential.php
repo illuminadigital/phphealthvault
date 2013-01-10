@@ -4,9 +4,6 @@ namespace com\microsoft\wc\record;
 use com\microsoft\wc\record\SimplePassportCredential;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="AuthSessionSubCredential")
  */
 class AuthSessionSubCredential {

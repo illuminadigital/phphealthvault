@@ -5,9 +5,6 @@ use com\microsoft\wc\vocab\VocabularyCodeSet;
 use com\microsoft\wc\vocab\VocabularyKeyInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.SearchVocabulary", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -46,7 +43,7 @@ class Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! $vocabularyKey instanceof VocabularyKeyInfo ) {
+		if ( ! $vocabularyKey instanceof VocabularyKeyInfo  && ! is_null($vocabularyKey) ) {
 			$vocabularyKey = new VocabularyKeyInfo ($vocabularyKey);
 		}
 		$count = count($vocabularyKey);

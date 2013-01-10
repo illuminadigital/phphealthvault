@@ -6,9 +6,6 @@ use com\microsoft\wc\application\AppRecordAuthAction;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="Token")
  */
 class Token extends Stringz1024 {

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetPersonInfo;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetPersonInfo", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -40,7 +37,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateGroupMembership($groupMembership) {
-		if (!is_bool($groupMembership)) {
+		if ( ! is_bool($groupMembership) && ! is_null($groupMembership) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'groupMembership', 'boolean'));
 		}
 	

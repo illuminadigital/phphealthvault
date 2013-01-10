@@ -5,9 +5,6 @@ use com\microsoft\wc\auth\Token;
 use com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.CreateAuthenticatedSessionToken", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

@@ -5,9 +5,6 @@ use com\microsoft\wc\record\TextualPermissionsType;
 use com\microsoft\wc\record\TextualRule;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.record", prefix="wc-record")
- * })
  * @XmlEntity	(xml="TextualPermissions")
  */
 class TextualPermissions {

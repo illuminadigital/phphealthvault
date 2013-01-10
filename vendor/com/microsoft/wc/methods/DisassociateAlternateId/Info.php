@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\DisassociateAlternateId;
 use com\microsoft\wc\types\String255nw;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.DisassociateAlternateId", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

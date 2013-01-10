@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetThings;
 use com\microsoft\wc\methods\response\GetThings\ThingResponseGroup;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThings", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\application;
 use com\microsoft\wc\application\VocabularyMappingItem;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="vocabulary-mapping")
  */
 class VocabularyMapping {
@@ -39,7 +36,7 @@ class VocabularyMapping {
 	}
 
 	protected function validateVocabularyMappingItem($vocabularyMappingItem) {
-		if ( ! $vocabularyMappingItem instanceof VocabularyMappingItem ) {
+		if ( ! $vocabularyMappingItem instanceof VocabularyMappingItem  && ! is_null($vocabularyMappingItem) ) {
 			$vocabularyMappingItem = new VocabularyMappingItem ($vocabularyMappingItem);
 		}
 		$count = count($vocabularyMappingItem);

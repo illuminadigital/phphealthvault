@@ -10,9 +10,6 @@ use com\microsoft\wc\thing\SPKIData;
 use com\microsoft\wc\thing\MgmtData;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="KeyInfoType")
  */
 class KeyInfoType {
@@ -247,7 +244,7 @@ class KeyInfoType {
 	}
 
 	protected function validateId($id) {
-		if (!is_string($id)) {
+		if ( ! is_string($id) && ! is_null($id) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'string'));
 		}
 	

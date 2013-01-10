@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 use com\microsoft\wc\types\Permission;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="EffectivePermissions")
  */
 class EffectivePermissions {
@@ -83,7 +80,7 @@ class EffectivePermissions {
 	}
 
 	protected function validateImmutable($immutable) {
-		if (!is_bool($immutable)) {
+		if ( ! is_bool($immutable) && ! is_null($immutable) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'immutable', 'boolean'));
 		}
 	

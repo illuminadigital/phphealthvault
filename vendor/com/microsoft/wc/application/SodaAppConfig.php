@@ -6,9 +6,6 @@ use com\microsoft\wc\types\String255;
 use com\microsoft\wc\application\PublicKeys;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="SodaAppConfig")
  */
 class SodaAppConfig {

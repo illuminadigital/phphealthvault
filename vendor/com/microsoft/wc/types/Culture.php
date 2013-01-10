@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Iso6391;
 use com\microsoft\wc\types\Iso3166;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
- * })
  * @XmlEntity	(xml="Culture")
  */
 class Culture {
@@ -46,7 +43,7 @@ class Culture {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof Iso6391 ) {
+		if ( ! $language instanceof Iso6391  && ! is_null($language) ) {
 			$language = new Iso6391 ($language);
 		}
 	
@@ -69,7 +66,7 @@ class Culture {
 	}
 
 	protected function validateCountry($country) {
-		if ( ! $country instanceof Iso3166 ) {
+		if ( ! $country instanceof Iso3166  && ! is_null($country) ) {
 			$country = new Iso3166 ($country);
 		}
 	

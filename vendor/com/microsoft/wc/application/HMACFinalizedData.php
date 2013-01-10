@@ -5,9 +5,6 @@ use com\microsoft\wc\application\Stringnz;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="HMACFinalizedData")
  */
 class HMACFinalizedData extends String512 {

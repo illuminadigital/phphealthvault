@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetThings;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings", prefix="wc-method-getthings")
- * })
  * @XmlRootEntity	(xml="ThingSectionSpec")
  */
 class ThingSectionSpec {

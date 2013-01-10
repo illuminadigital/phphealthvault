@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Guid;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="ThingKey")
  */
 class ThingKey extends Guid {

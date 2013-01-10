@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\OverwriteThings;
 use com\microsoft\wc\thing\ThingKey;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.OverwriteThings", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info {

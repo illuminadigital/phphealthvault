@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetServiceDefinition2;
 use com\microsoft\wc\methods\response\GetServiceDefinition2\ShellRedirectToken;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetServiceDefinition2", prefix="")
- * })
  * @XmlEntity	(xml="Shell")
  */
 class Shell {
@@ -97,7 +94,7 @@ class Shell {
 	}
 
 	protected function validateRedirectToken($redirectToken) {
-		if ( ! $redirectToken instanceof ShellRedirectToken ) {
+		if ( ! $redirectToken instanceof ShellRedirectToken  && ! is_null($redirectToken) ) {
 			$redirectToken = new ShellRedirectToken ($redirectToken);
 		}
 		$count = count($redirectToken);

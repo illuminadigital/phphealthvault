@@ -10,9 +10,6 @@ use com\microsoft\wc\subscription\String3nw;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="Record")
  */
 class Record extends String255 {
@@ -165,7 +162,7 @@ class Record extends String255 {
 	}
 
 	protected function validateRecordCustodian($recordCustodian) {
-		if (!is_bool($recordCustodian)) {
+		if ( ! is_bool($recordCustodian) && ! is_null($recordCustodian) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'recordCustodian', 'boolean'));
 		}
 	
@@ -211,7 +208,7 @@ class Record extends String255 {
 	}
 
 	protected function validateRelName($relName) {
-		if ( ! $relName instanceof String255 ) {
+		if ( ! $relName instanceof String255  && ! is_null($relName) ) {
 			$relName = new String255 ($relName);
 		}
 	
@@ -234,7 +231,7 @@ class Record extends String255 {
 	}
 
 	protected function validateAuthExpires($authExpires) {
-		if (!is_string($authExpires)) {
+		if ( ! is_string($authExpires) && ! is_null($authExpires) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'authExpires', 'string'));
 		}
 	
@@ -257,7 +254,7 @@ class Record extends String255 {
 	}
 
 	protected function validateAuthExpired($authExpired) {
-		if (!is_bool($authExpired)) {
+		if ( ! is_bool($authExpired) && ! is_null($authExpired) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'authExpired', 'boolean'));
 		}
 	
@@ -280,7 +277,7 @@ class Record extends String255 {
 	}
 
 	protected function validateDisplayName($displayName) {
-		if ( ! $displayName instanceof String255 ) {
+		if ( ! $displayName instanceof String255  && ! is_null($displayName) ) {
 			$displayName = new String255 ($displayName);
 		}
 	
@@ -326,7 +323,7 @@ class Record extends String255 {
 	}
 
 	protected function validateDateCreated($dateCreated) {
-		if (!is_string($dateCreated)) {
+		if ( ! is_string($dateCreated) && ! is_null($dateCreated) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateCreated', 'string'));
 		}
 	
@@ -349,7 +346,7 @@ class Record extends String255 {
 	}
 
 	protected function validateMaxSizeBytes($maxSizeBytes) {
-		if ( ! $maxSizeBytes instanceof PositiveLong ) {
+		if ( ! $maxSizeBytes instanceof PositiveLong  && ! is_null($maxSizeBytes) ) {
 			$maxSizeBytes = new PositiveLong ($maxSizeBytes);
 		}
 	
@@ -372,7 +369,7 @@ class Record extends String255 {
 	}
 
 	protected function validateSizeBytes($sizeBytes) {
-		if ( ! $sizeBytes instanceof PositiveLong ) {
+		if ( ! $sizeBytes instanceof PositiveLong  && ! is_null($sizeBytes) ) {
 			$sizeBytes = new PositiveLong ($sizeBytes);
 		}
 	
@@ -395,7 +392,7 @@ class Record extends String255 {
 	}
 
 	protected function validateAppRecordAuthAction($appRecordAuthAction) {
-		if ( ! $appRecordAuthAction instanceof AppRecordAuthAction ) {
+		if ( ! $appRecordAuthAction instanceof AppRecordAuthAction  && ! is_null($appRecordAuthAction) ) {
 			$appRecordAuthAction = new AppRecordAuthAction ($appRecordAuthAction);
 		}
 	
@@ -418,7 +415,7 @@ class Record extends String255 {
 	}
 
 	protected function validateAutoReconcileDocuments($autoReconcileDocuments) {
-		if (!is_bool($autoReconcileDocuments)) {
+		if ( ! is_bool($autoReconcileDocuments) && ! is_null($autoReconcileDocuments) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'autoReconcileDocuments', 'boolean'));
 		}
 	
@@ -441,7 +438,7 @@ class Record extends String255 {
 	}
 
 	protected function validateAppSpecificRecordId($appSpecificRecordId) {
-		if (!is_string($appSpecificRecordId)) {
+		if ( ! is_string($appSpecificRecordId) && ! is_null($appSpecificRecordId) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'appSpecificRecordId', 'string'));
 		}
 	
@@ -464,7 +461,7 @@ class Record extends String255 {
 	}
 
 	protected function validateLocationCountry($locationCountry) {
-		if ( ! $locationCountry instanceof String3nw ) {
+		if ( ! $locationCountry instanceof String3nw  && ! is_null($locationCountry) ) {
 			$locationCountry = new String3nw ($locationCountry);
 		}
 	
@@ -487,7 +484,7 @@ class Record extends String255 {
 	}
 
 	protected function validateLocationStateProvince($locationStateProvince) {
-		if ( ! $locationStateProvince instanceof String3nw ) {
+		if ( ! $locationStateProvince instanceof String3nw  && ! is_null($locationStateProvince) ) {
 			$locationStateProvince = new String3nw ($locationStateProvince);
 		}
 	
@@ -510,7 +507,7 @@ class Record extends String255 {
 	}
 
 	protected function validateDateUpdated($dateUpdated) {
-		if (!is_string($dateUpdated)) {
+		if ( ! is_string($dateUpdated) && ! is_null($dateUpdated) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateUpdated', 'string'));
 		}
 	

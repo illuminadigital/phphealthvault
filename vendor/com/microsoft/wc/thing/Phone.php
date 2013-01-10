@@ -4,9 +4,6 @@ namespace com\microsoft\wc\thing;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="Phone")
  */
 class Phone {
@@ -50,7 +47,7 @@ class Phone {
 	}
 
 	protected function validateDescription($description) {
-		if (!is_string($description)) {
+		if ( ! is_string($description) && ! is_null($description) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'string'));
 		}
 	
@@ -73,7 +70,7 @@ class Phone {
 	}
 
 	protected function validateIsPrimary($isPrimary) {
-		if (!is_bool($isPrimary)) {
+		if ( ! is_bool($isPrimary) && ! is_null($isPrimary) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'isPrimary', 'boolean'));
 		}
 	

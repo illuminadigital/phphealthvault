@@ -5,9 +5,6 @@ use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\UnprocessedThingKeyInfo;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThings3", prefix="")
- * })
  * @XmlEntity	(xml="ThingResponseGroup2")
  */
 class ThingResponseGroup2 {
@@ -59,7 +56,7 @@ class ThingResponseGroup2 {
 	}
 
 	protected function validateThing($thing) {
-		if ( ! $thing instanceof Thing2 ) {
+		if ( ! $thing instanceof Thing2  && ! is_null($thing) ) {
 			$thing = new Thing2 ($thing);
 		}
 		$count = count($thing);
@@ -95,7 +92,7 @@ class ThingResponseGroup2 {
 	}
 
 	protected function validateUnprocessedThingKeyInfo($unprocessedThingKeyInfo) {
-		if ( ! $unprocessedThingKeyInfo instanceof UnprocessedThingKeyInfo ) {
+		if ( ! $unprocessedThingKeyInfo instanceof UnprocessedThingKeyInfo  && ! is_null($unprocessedThingKeyInfo) ) {
 			$unprocessedThingKeyInfo = new UnprocessedThingKeyInfo ($unprocessedThingKeyInfo);
 		}
 		$count = count($unprocessedThingKeyInfo);
@@ -131,7 +128,7 @@ class ThingResponseGroup2 {
 	}
 
 	protected function validateFiltered($filtered) {
-		if (!is_bool($filtered)) {
+		if ( ! is_bool($filtered) && ! is_null($filtered) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'filtered', 'boolean'));
 		}
 	
@@ -154,7 +151,7 @@ class ThingResponseGroup2 {
 	}
 
 	protected function validateName($name) {
-		if (!is_string($name)) {
+		if ( ! is_string($name) && ! is_null($name) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
 		}
 	

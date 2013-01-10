@@ -4,9 +4,6 @@ namespace com\microsoft\wc\vocab;
 use com\microsoft\wc\vocab\InfoXml;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.vocab", prefix="wc-vocab")
- * })
  * @XmlEntity	(xml="VocabularyCodeItem")
  */
 class VocabularyCodeItem {
@@ -81,7 +78,7 @@ class VocabularyCodeItem {
 	}
 
 	protected function validateDisplayText($displayText) {
-		if (!is_string($displayText)) {
+		if ( ! is_string($displayText) && ! is_null($displayText) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'displayText', 'string'));
 		}
 	
@@ -104,7 +101,7 @@ class VocabularyCodeItem {
 	}
 
 	protected function validateAbbreviationText($abbreviationText) {
-		if (!is_string($abbreviationText)) {
+		if ( ! is_string($abbreviationText) && ! is_null($abbreviationText) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'abbreviationText', 'string'));
 		}
 	
@@ -127,7 +124,7 @@ class VocabularyCodeItem {
 	}
 
 	protected function validateInfoXml($infoXml) {
-		if ( ! $infoXml instanceof InfoXml ) {
+		if ( ! $infoXml instanceof InfoXml  && ! is_null($infoXml) ) {
 			$infoXml = new InfoXml ($infoXml);
 		}
 	

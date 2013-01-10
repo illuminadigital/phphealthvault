@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetUpdatedRecordsForApplication;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetUpdatedRecordsForApplication", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -40,7 +37,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateUpdateDate($updateDate) {
-		if (!is_string($updateDate)) {
+		if ( ! is_string($updateDate) && ! is_null($updateDate) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'updateDate', 'string'));
 		}
 	

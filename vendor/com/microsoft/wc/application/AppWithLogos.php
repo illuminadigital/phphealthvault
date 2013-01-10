@@ -17,9 +17,6 @@ use com\microsoft\wc\types\Stringnz;
 use com\microsoft\wc\types\CultureSpecificString;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
- * })
  * @XmlEntity	(xml="AppWithLogos")
  */
 class AppWithLogos {
@@ -312,7 +309,7 @@ class AppWithLogos {
 	}
 
 	protected function validateActionUrl($actionUrl) {
-		if (!is_string($actionUrl)) {
+		if ( ! is_string($actionUrl) && ! is_null($actionUrl) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'actionUrl', 'string'));
 		}
 	
@@ -335,7 +332,7 @@ class AppWithLogos {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! $description instanceof CultureSpecificString ) {
+		if ( ! $description instanceof CultureSpecificString  && ! is_null($description) ) {
 			$description = new CultureSpecificString ($description);
 		}
 		$count = count($description);
@@ -371,7 +368,7 @@ class AppWithLogos {
 	}
 
 	protected function validateAuthReason($authReason) {
-		if ( ! $authReason instanceof CultureSpecificString ) {
+		if ( ! $authReason instanceof CultureSpecificString  && ! is_null($authReason) ) {
 			$authReason = new CultureSpecificString ($authReason);
 		}
 		$count = count($authReason);
@@ -407,7 +404,7 @@ class AppWithLogos {
 	}
 
 	protected function validateDomainName($domainName) {
-		if ( ! $domainName instanceof String255 ) {
+		if ( ! $domainName instanceof String255  && ! is_null($domainName) ) {
 			$domainName = new String255 ($domainName);
 		}
 	
@@ -430,7 +427,7 @@ class AppWithLogos {
 	}
 
 	protected function validateClientServiceToken($clientServiceToken) {
-		if ( ! $clientServiceToken instanceof Guid ) {
+		if ( ! $clientServiceToken instanceof Guid  && ! is_null($clientServiceToken) ) {
 			$clientServiceToken = new Guid ($clientServiceToken);
 		}
 	
@@ -453,7 +450,7 @@ class AppWithLogos {
 	}
 
 	protected function validateLargeLogo($largeLogo) {
-		if ( ! $largeLogo instanceof AppLargeLogoInfo ) {
+		if ( ! $largeLogo instanceof AppLargeLogoInfo  && ! is_null($largeLogo) ) {
 			$largeLogo = new AppLargeLogoInfo ($largeLogo);
 		}
 	
@@ -476,7 +473,7 @@ class AppWithLogos {
 	}
 
 	protected function validateSmallLogo($smallLogo) {
-		if ( ! $smallLogo instanceof AppSmallLogoInfo ) {
+		if ( ! $smallLogo instanceof AppSmallLogoInfo  && ! is_null($smallLogo) ) {
 			$smallLogo = new AppSmallLogoInfo ($smallLogo);
 		}
 	
@@ -499,7 +496,7 @@ class AppWithLogos {
 	}
 
 	protected function validatePersistentTokens($persistentTokens) {
-		if ( ! $persistentTokens instanceof AppPersistentTokens ) {
+		if ( ! $persistentTokens instanceof AppPersistentTokens  && ! is_null($persistentTokens) ) {
 			$persistentTokens = new AppPersistentTokens ($persistentTokens);
 		}
 	
@@ -545,7 +542,7 @@ class AppWithLogos {
 	}
 
 	protected function validatePersonOfflineBaseAuthXml($personOfflineBaseAuthXml) {
-		if ( ! $personOfflineBaseAuthXml instanceof AuthXml ) {
+		if ( ! $personOfflineBaseAuthXml instanceof AuthXml  && ! is_null($personOfflineBaseAuthXml) ) {
 			$personOfflineBaseAuthXml = new AuthXml ($personOfflineBaseAuthXml);
 		}
 	
@@ -568,7 +565,7 @@ class AppWithLogos {
 	}
 
 	protected function validatePrivacyStatement($privacyStatement) {
-		if ( ! $privacyStatement instanceof StatementInfo ) {
+		if ( ! $privacyStatement instanceof StatementInfo  && ! is_null($privacyStatement) ) {
 			$privacyStatement = new StatementInfo ($privacyStatement);
 		}
 	
@@ -591,7 +588,7 @@ class AppWithLogos {
 	}
 
 	protected function validateTermsOfUse($termsOfUse) {
-		if ( ! $termsOfUse instanceof StatementInfo ) {
+		if ( ! $termsOfUse instanceof StatementInfo  && ! is_null($termsOfUse) ) {
 			$termsOfUse = new StatementInfo ($termsOfUse);
 		}
 	
@@ -614,7 +611,7 @@ class AppWithLogos {
 	}
 
 	protected function validateDtcSuccessMessage($dtcSuccessMessage) {
-		if ( ! $dtcSuccessMessage instanceof StatementInfo ) {
+		if ( ! $dtcSuccessMessage instanceof StatementInfo  && ! is_null($dtcSuccessMessage) ) {
 			$dtcSuccessMessage = new StatementInfo ($dtcSuccessMessage);
 		}
 	
@@ -637,7 +634,7 @@ class AppWithLogos {
 	}
 
 	protected function validateAppAttributes($appAttributes) {
-		if ( ! $appAttributes instanceof ApplicationAttributes ) {
+		if ( ! $appAttributes instanceof ApplicationAttributes  && ! is_null($appAttributes) ) {
 			$appAttributes = new ApplicationAttributes ($appAttributes);
 		}
 	
@@ -683,7 +680,7 @@ class AppWithLogos {
 	}
 
 	protected function validateMasterAppId($masterAppId) {
-		if ( ! $masterAppId instanceof Guid ) {
+		if ( ! $masterAppId instanceof Guid  && ! is_null($masterAppId) ) {
 			$masterAppId = new Guid ($masterAppId);
 		}
 	
@@ -706,7 +703,7 @@ class AppWithLogos {
 	}
 
 	protected function validateMasterAppName($masterAppName) {
-		if ( ! $masterAppName instanceof CultureSpecificString255 ) {
+		if ( ! $masterAppName instanceof CultureSpecificString255  && ! is_null($masterAppName) ) {
 			$masterAppName = new CultureSpecificString255 ($masterAppName);
 		}
 	
@@ -729,7 +726,7 @@ class AppWithLogos {
 	}
 
 	protected function validateCreatedDate($createdDate) {
-		if (!is_string($createdDate)) {
+		if ( ! is_string($createdDate) && ! is_null($createdDate) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'createdDate', 'string'));
 		}
 	
@@ -752,7 +749,7 @@ class AppWithLogos {
 	}
 
 	protected function validateUpdatedDate($updatedDate) {
-		if (!is_string($updatedDate)) {
+		if ( ! is_string($updatedDate) && ! is_null($updatedDate) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedDate', 'string'));
 		}
 	
@@ -775,7 +772,7 @@ class AppWithLogos {
 	}
 
 	protected function validateValidIpPrefixes($validIpPrefixes) {
-		if ( ! $validIpPrefixes instanceof String255nw ) {
+		if ( ! $validIpPrefixes instanceof String255nw  && ! is_null($validIpPrefixes) ) {
 			$validIpPrefixes = new String255nw ($validIpPrefixes);
 		}
 	
@@ -798,7 +795,7 @@ class AppWithLogos {
 	}
 
 	protected function validateVocabularyAuthorizations($vocabularyAuthorizations) {
-		if ( ! $vocabularyAuthorizations instanceof VocabularyAuthorizations ) {
+		if ( ! $vocabularyAuthorizations instanceof VocabularyAuthorizations  && ! is_null($vocabularyAuthorizations) ) {
 			$vocabularyAuthorizations = new VocabularyAuthorizations ($vocabularyAuthorizations);
 		}
 	
@@ -821,7 +818,7 @@ class AppWithLogos {
 	}
 
 	protected function validateChildVocabularyAuthorizationsCeiling($childVocabularyAuthorizationsCeiling) {
-		if ( ! $childVocabularyAuthorizationsCeiling instanceof VocabularyAuthorizations ) {
+		if ( ! $childVocabularyAuthorizationsCeiling instanceof VocabularyAuthorizations  && ! is_null($childVocabularyAuthorizationsCeiling) ) {
 			$childVocabularyAuthorizationsCeiling = new VocabularyAuthorizations ($childVocabularyAuthorizationsCeiling);
 		}
 	
@@ -844,7 +841,7 @@ class AppWithLogos {
 	}
 
 	protected function validateMethods($methods) {
-		if ( ! $methods instanceof Stringnz ) {
+		if ( ! $methods instanceof Stringnz  && ! is_null($methods) ) {
 			$methods = new Stringnz ($methods);
 		}
 	

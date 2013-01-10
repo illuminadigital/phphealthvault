@@ -7,9 +7,6 @@ use com\microsoft\wc\thing\KeyInfo;
 use com\microsoft\wc\thing\Object;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="SignatureType")
  */
 class SignatureType {
@@ -111,7 +108,7 @@ class SignatureType {
 	}
 
 	protected function validateKeyInfo($keyInfo) {
-		if ( ! $keyInfo instanceof KeyInfo ) {
+		if ( ! $keyInfo instanceof KeyInfo  && ! is_null($keyInfo) ) {
 			$keyInfo = new KeyInfo ($keyInfo);
 		}
 	
@@ -134,7 +131,7 @@ class SignatureType {
 	}
 
 	protected function validateObject($object) {
-		if ( ! $object instanceof Object ) {
+		if ( ! $object instanceof Object  && ! is_null($object) ) {
 			$object = new Object ($object);
 		}
 		$count = count($object);
@@ -170,7 +167,7 @@ class SignatureType {
 	}
 
 	protected function validateId($id) {
-		if (!is_string($id)) {
+		if ( ! is_string($id) && ! is_null($id) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'string'));
 		}
 	

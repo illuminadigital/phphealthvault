@@ -12,9 +12,6 @@ use com\microsoft\wc\thing\Signature;
 use com\microsoft\wc\thing\DataXml;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="Thing")
  */
 class Thing {
@@ -112,7 +109,7 @@ class Thing {
 	}
 
 	protected function validateThingId($thingId) {
-		if ( ! $thingId instanceof ThingKey ) {
+		if ( ! $thingId instanceof ThingKey  && ! is_null($thingId) ) {
 			$thingId = new ThingKey ($thingId);
 		}
 	
@@ -135,7 +132,7 @@ class Thing {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof ThingType ) {
+		if ( ! $typeId instanceof ThingType  && ! is_null($typeId) ) {
 			$typeId = new ThingType ($typeId);
 		}
 	
@@ -158,7 +155,7 @@ class Thing {
 	}
 
 	protected function validateThingState($thingState) {
-		if ( ! $thingState instanceof ThingState ) {
+		if ( ! $thingState instanceof ThingState  && ! is_null($thingState) ) {
 			$thingState = new ThingState ($thingState);
 		}
 	
@@ -181,7 +178,7 @@ class Thing {
 	}
 
 	protected function validateFlags($flags) {
-		if (!is_integer($flags)) {
+		if ( ! is_integer($flags) && ! is_null($flags) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'flags', 'integer'));
 		}
 	
@@ -204,7 +201,7 @@ class Thing {
 	}
 
 	protected function validateEffDate($effDate) {
-		if (!is_string($effDate)) {
+		if ( ! is_string($effDate) && ! is_null($effDate) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'effDate', 'string'));
 		}
 	
@@ -227,7 +224,7 @@ class Thing {
 	}
 
 	protected function validateCreated($created) {
-		if ( ! $created instanceof Audit ) {
+		if ( ! $created instanceof Audit  && ! is_null($created) ) {
 			$created = new Audit ($created);
 		}
 	
@@ -250,7 +247,7 @@ class Thing {
 	}
 
 	protected function validateUpdated($updated) {
-		if ( ! $updated instanceof Audit ) {
+		if ( ! $updated instanceof Audit  && ! is_null($updated) ) {
 			$updated = new Audit ($updated);
 		}
 	
@@ -273,7 +270,7 @@ class Thing {
 	}
 
 	protected function validateDataXml($dataXml) {
-		if ( ! $dataXml instanceof DataXml ) {
+		if ( ! $dataXml instanceof DataXml  && ! is_null($dataXml) ) {
 			$dataXml = new DataXml ($dataXml);
 		}
 		$count = count($dataXml);
@@ -309,7 +306,7 @@ class Thing {
 	}
 
 	protected function validateDataOther($dataOther) {
-		if ( ! $dataOther instanceof DataOther ) {
+		if ( ! $dataOther instanceof DataOther  && ! is_null($dataOther) ) {
 			$dataOther = new DataOther ($dataOther);
 		}
 	
@@ -332,7 +329,7 @@ class Thing {
 	}
 
 	protected function validateEffPermissions($effPermissions) {
-		if ( ! $effPermissions instanceof EffectivePermissions ) {
+		if ( ! $effPermissions instanceof EffectivePermissions  && ! is_null($effPermissions) ) {
 			$effPermissions = new EffectivePermissions ($effPermissions);
 		}
 	
@@ -355,7 +352,7 @@ class Thing {
 	}
 
 	protected function validateTags($tags) {
-		if ( ! $tags instanceof String512 ) {
+		if ( ! $tags instanceof String512  && ! is_null($tags) ) {
 			$tags = new String512 ($tags);
 		}
 	
@@ -378,7 +375,7 @@ class Thing {
 	}
 
 	protected function validateSignature($signature) {
-		if ( ! $signature instanceof Signature ) {
+		if ( ! $signature instanceof Signature  && ! is_null($signature) ) {
 			$signature = new Signature ($signature);
 		}
 	

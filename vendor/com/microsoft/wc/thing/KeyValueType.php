@@ -5,9 +5,6 @@ use com\microsoft\wc\thing\DSAKeyValue;
 use com\microsoft\wc\thing\RSAKeyValue;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="KeyValueType")
  */
 class KeyValueType {

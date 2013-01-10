@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\SetApplicationSettings;
 use com\microsoft\wc\types\AppSettings;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SetApplicationSettings", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -40,7 +37,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppSettings($appSettings) {
-		if ( ! $appSettings instanceof AppSettings ) {
+		if ( ! $appSettings instanceof AppSettings  && ! is_null($appSettings) ) {
 			$appSettings = new AppSettings ($appSettings);
 		}
 	

@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\GetThings3;
 use com\microsoft\wc\methods\GetThings3\BlobFilters;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings3", prefix="")
- * })
  * @XmlEntity	(xml="BlobPayloadRequest")
  */
 class BlobPayloadRequest {
@@ -44,7 +41,7 @@ class BlobPayloadRequest {
 	}
 
 	protected function validateBlobFilters($blobFilters) {
-		if ( ! $blobFilters instanceof BlobFilters ) {
+		if ( ! $blobFilters instanceof BlobFilters  && ! is_null($blobFilters) ) {
 			$blobFilters = new BlobFilters ($blobFilters);
 		}
 	

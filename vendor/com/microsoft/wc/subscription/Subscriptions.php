@@ -4,9 +4,6 @@ namespace com\microsoft\wc\subscription;
 use com\microsoft\wc\subscription\Subscription;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="Subscriptions")
  */
 class Subscriptions {
@@ -39,7 +36,7 @@ class Subscriptions {
 	}
 
 	protected function validateSubscription($subscription) {
-		if ( ! $subscription instanceof Subscription ) {
+		if ( ! $subscription instanceof Subscription  && ! is_null($subscription) ) {
 			$subscription = new Subscription ($subscription);
 		}
 		$count = count($subscription);

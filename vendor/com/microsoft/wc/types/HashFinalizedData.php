@@ -5,9 +5,6 @@ use com\microsoft\wc\types\Stringnz;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
- * })
  * @XmlEntity	(xml="HashFinalizedData")
  */
 class HashFinalizedData extends String512 {

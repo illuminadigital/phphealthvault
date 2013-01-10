@@ -4,9 +4,6 @@ namespace com\microsoft\wc\methods\response\GetThingType;
 
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThingType", prefix="")
- * })
  * @XmlEntity	(xml="Column")
  */
 class Column {
@@ -154,7 +151,7 @@ class Column {
 	}
 
 	protected function validateVisible($visible) {
-		if (!is_bool($visible)) {
+		if ( ! is_bool($visible) && ! is_null($visible) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'visible', 'boolean'));
 		}
 	

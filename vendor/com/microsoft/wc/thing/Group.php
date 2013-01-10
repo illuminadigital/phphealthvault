@@ -6,9 +6,6 @@ use com\microsoft\wc\thing\Guid;
 use com\microsoft\wc\thing\EmailAddress;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
- * })
  * @XmlEntity	(xml="Group")
  */
 class Group {

@@ -6,9 +6,6 @@ use com\microsoft\wc\subscription\NotificationAuthenticationInfo;
 use com\microsoft\wc\subscription\NotificationChannel;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.subscription", prefix="wc-subscription")
- * })
  * @XmlEntity	(xml="Common")
  */
 class Common {
@@ -53,7 +50,7 @@ class Common {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
+		if ( ! $id instanceof Guid  && ! is_null($id) ) {
 			$id = new Guid ($id);
 		}
 	

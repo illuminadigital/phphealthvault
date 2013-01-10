@@ -5,9 +5,6 @@ use com\microsoft\wc\vocab\VocabularyKey;
 use com\microsoft\wc\methods\SearchVocabulary\VocabularySearchParams;
 
 /**
- * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SearchVocabulary", prefix="")
- * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {
@@ -46,7 +43,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! $vocabularyKey instanceof VocabularyKey ) {
+		if ( ! $vocabularyKey instanceof VocabularyKey  && ! is_null($vocabularyKey) ) {
 			$vocabularyKey = new VocabularyKey ($vocabularyKey);
 		}
 	
