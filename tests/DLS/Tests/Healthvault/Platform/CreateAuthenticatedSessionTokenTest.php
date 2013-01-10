@@ -42,6 +42,8 @@ class CreateAuthenticatedSessionTokenTest extends HealthvaultTestCase {
 		$driver = $this->getDriverWithUSDevelopmentConfiguration();
 		$method = $driver->getPlatformMethod('CreateAuthenticatedSessionToken');
 	
+		var_dump($method);
+		
 		$response = $method->execute();
 	
 		echo($response);

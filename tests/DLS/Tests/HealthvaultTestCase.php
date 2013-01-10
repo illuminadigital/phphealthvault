@@ -13,19 +13,19 @@ class HealthvaultTestCase extends PHPUnit_Framework_TestCase {
 	
 	public function getDriverWithMockConfiguration()
 	{
-		$mockConfiguration = new TargetOverrideConfiguration($this->applicationId, NULL, 'bar.baz');
+		$mockConfiguration = new TargetOverrideConfiguration($this->applicationId, __DIR__ .'/../../../samples/app.pem', 'bar.baz');
 		return new Driver($mockConfiguration);
 	}
 	
 	public function getDriverWithRowConfiguration()
 	{
-		$rowConfiguration = new HealthvaultRowConfiguration($this->applicationId);
+		$rowConfiguration = new HealthvaultRowConfiguration($this->applicationId, __DIR__ . '/../../../samples/app.pem');
 		return new Driver($rowConfiguration);
 	}
 
 	public function getDriverWithUSDevelopmentConfiguration()
 	{
-		$rowConfiguration = new HealthvaultUSDevelopmentConfiguration($this->applicationId);
+		$rowConfiguration = new HealthvaultUSDevelopmentConfiguration($this->applicationId, __DIR__ .'/../../../samples/app.pem');
 		return new Driver($rowConfiguration);
 	}
 }

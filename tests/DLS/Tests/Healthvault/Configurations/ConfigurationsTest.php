@@ -9,7 +9,7 @@ class ConfigurationsTest extends HealthvaultTestCase {
 	 */
 	public function theConfigurationShouldBeSetByParameters()
 	{
-		$configuration = new \DLS\Healthvault\BaseHealthvaultConfiguration($this->applicationId, NULL, 'foo.bar.baz');
+		$configuration = new \DLS\Healthvault\BaseHealthvaultConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem', 'foo.bar.baz');
 		
 		$this->assertEquals($this->applicationId, $configuration->getApplicationId());
 		$this->assertEquals('https://platform.foo.bar.baz', $configuration->getBasePlatformUrl());
@@ -23,6 +23,7 @@ class ConfigurationsTest extends HealthvaultTestCase {
 		$confArray = array(
 			'applicationId' => $this->applicationId, 
 			'baseUrl' => 'foo.bar.baz',
+			'privateKey' =>__DIR__ . '/../../../../../samples/app.pem', 
 		);
 		
 		$configuration = new \DLS\Healthvault\BaseHealthvaultConfiguration($confArray);
@@ -36,7 +37,7 @@ class ConfigurationsTest extends HealthvaultTestCase {
 	 */
 	public function theRowConfigurationShouldHaveValidUrls()
 	{
-		$configuration = new \DLS\Healthvault\Configurations\HealthvaultROWConfiguration($this->applicationId);
+		$configuration = new \DLS\Healthvault\Configurations\HealthvaultROWConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem');
 		
 		$this->assertEquals('https://account.healthvault.co.uk', $configuration->getBaseShellUrl());
 		$this->assertEquals('https://platform.healthvault.co.uk', $configuration->getBasePlatformUrl());
@@ -47,11 +48,11 @@ class ConfigurationsTest extends HealthvaultTestCase {
 	 */
 	public function theMockConfigurationReturnsDifferentTargets()
 	{
-		$configuration = new \DLS\Healthvault\Configurations\HealthvaultROWConfiguration($this->applicationId);
+		$configuration = new \DLS\Healthvault\Configurations\HealthvaultROWConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem');
 		
 		$this->assertNull($configuration->getReturnUrl('Auth'));
 		
-		$configuration = new \DLS\Tests\Mocks\TargetOverrideConfiguration($this->applicationId, NULL, 'bar.baz');
+		$configuration = new \DLS\Tests\Mocks\TargetOverrideConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem', 'bar.baz');
 		
 		$this->assertEquals('https://account.bar.baz', $configuration->getBaseShellUrl());
 		$this->assertEquals('http://foo.bar.baz/Auth', $configuration->getReturnUrl('Auth'));
