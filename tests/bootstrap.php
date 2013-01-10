@@ -20,6 +20,18 @@ $classLoader->register();
 $classLoader = new \Doctrine\Common\ClassLoader('DLS\Healthvault', realpath(__DIR__ . '/../vendor'));
 $classLoader->register();
 
+$classLoader = new \Doctrine\Common\ClassLoader('DLS\Types', realpath(__DIR__ . '/../vendor'));
+$classLoader->register();
+
+// Register the entities
+$classLoader = new \Doctrine\Common\ClassLoader('com', realpath(__DIR__ . '/../vendor'));
+$classLoader->register();
+
+$classLoader = new \Doctrine\Common\ClassLoader('org', realpath(__DIR__ . '/../vendor'));
+$classLoader->register();
+
 // Register our tests
 $classLoader = new \Doctrine\Common\ClassLoader('DLS\Tests', realpath(__DIR__ . '/../tests'));
 $classLoader->register();
+
+
