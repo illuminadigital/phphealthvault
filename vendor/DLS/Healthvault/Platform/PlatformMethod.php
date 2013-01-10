@@ -1,44 +1,91 @@
 <?php
 namespace DLS\Healthvault\Platform;
 
-use DLS\Healthvault\Entity\Type\HMACFinalized;
+use org\w3\www\_2001\XMLSchema\NonNegativeInteger;
+
+//use DLS\Healthvault\Entity\Type\HMACFinalized;
+use com\microsoft\wc\types\HMACFinalized;
+use com\microsoft\wc\types\Stringnz;
 
 use DLS\Healthvault\HealthvaultConfigurationInterface;
 
-use DLS\Healthvault\Entity\Request\MethodRequest;
-use DLS\Healthvault\Entity\Type\Header;
+//use DLS\Healthvault\Entity\Request\MethodRequest;
+//use DLS\Healthvault\Entity\Type\Header;
+
+use com\microsoft\wc\request\Request;
+use com\microsoft\wc\request\Header;
 
 class PlatformMethod
 {
     protected $configuration = NULL;
     protected $methodName = NULL;
     protected $methodVersion = 1;
-    protected $version = 1;
     protected $requestData = NULL;
+    
+    private $libraryVersion = 'PHPHV v0.01';
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
         
-        $this->requestData = new MethodRequest();
+        $this->requestData = new /*Method*/Request();
         
         $this->requestData->setHeader($this->getHeader());
-        $this->requestData->setAuth($this->getAuth());
+        //$this->requestData->setAuth($this->getAuth());
+        
+        try {
+        	$className = $this->getInfoClassName();
+        	$this->requestData->setInfo(new $className());
+        } 
+        catch (Exception $e)
+        {
+        	// Ignore
+        	echo 'Loading request data failed';	
+        }
+    }
+    
+    protected function getInfoClassName()
+    {
+    	return sprintf('\com\microsoft\wc\methods\%s\Info', $this->methodName);
     }
     
     protected function getHeader()
     {
-        $headerObj = new Header();
-        $headerObj->setMethod($this->methodName);
-        $headerObj->setMethodVersion($this->methodVersion);
-        $headerObj->setVersion($this->version);
+        //$headerObj = new Header();
+        $headerObj = $this->requestData->getHeader();
+        
+        $headerObj->setMethod($this->getMethodName());
+        
+        $methodVersion = $this->getMethodVersion();
+        if ( ! empty ($methodVersion)){
+        	$headerObj->setMethodVersion($methodVersion);
+        }
+        
+        $headerObj->getAppId()->setValue($this->configuration->getApplicationId());
+        
+        $headerObj->getVersion()->setValue($this->libraryVersion);
+        
+        $headerObj->setMsgTime(date('c'));
+//        $headerObj->setMsgTtl(new NonNegativeInteger(36000));
+        $headerObj->setMsgTtl(36000);
         
         return $headerObj;
     }
     
+    protected function getMethodVersion()
+    {
+    	if ( ! empty($this->methodVersion) )
+    	{
+    		return $this->methodVersion;
+    	}
+    	
+    	return NULL;
+    }
+    
     protected function getAuth()
     {
-    	$authObj = new HMACFinalized();
+    	// $authObj = new HMACFinalized();
+    	$authObj = $this->requestData->getAuth();
     	
     	return $authObj;
     }
@@ -54,9 +101,16 @@ class PlatformMethod
         
         $response = $this->sendRequest($request);
         
-        $unmarshaller = $this->configuration->getMarshallingService();
+        if ( ! empty($response) )
+        {
+        	$unmarshaller = $this->configuration->getMarshallingService();
         
-        $responseObject = $unmarshaller->unmarshalFromString($response);
+        	$responseObject = $unmarshaller->unmarshalFromString($response);
+        }
+        else
+        {
+        	$responseObject = NULL;
+        }
                 
         return $responseObject;
     }
@@ -69,15 +123,19 @@ class PlatformMethod
     	$infoText = $this->extractPayload($marshaller->marshalToString($info));    	
     	
     	$infoHash = $this->getHashDigest($infoText);
-    	$header = $this->requestData->getHeader();
-    	$header->getHash()->setValue($infoHash);
-
+    	$header = $this->getHeader();
+    	$hash = $header->getInfoHash()->getHashData();
+    	$hash->setAlgName(/*new Stringnz(*/'SHA1'/*)*/);
+    	$hash->setValue($infoHash);
+    	
     	$headerText = $this->extractPayload($marshaller->marshalToString($header));
     	$hmacHash = $this->getAuthHash($this->configuration->getSecretDigest(), $headerText);
-    	$auth = $this->requestData->getAuth();
+    	$auth = $this->getAuth();
     	$hmac = $auth->getHmacData();
-    	$hmac->setAlgorithmName($hmacHash['algorithm']);
+    	$hmac->setAlgName(/*new Stringnz(*/$hmacHash['algorithm']/*)*/);
     	$hmac->setValue($hmacHash['hash']);
+    	
+    	var_dump($this->requestData);
     	
     	return $marshaller->marshalToString($this->requestData);
     }

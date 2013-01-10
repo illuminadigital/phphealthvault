@@ -4,6 +4,8 @@ namespace DLS\Healthvault;
 use DLS\Healthvault\Shell\ShellMethodFactory;
 use DLS\Healthvault\Platform\PlatformMethodFactory;
 
+use Doctrine\OXM\Types\Type;
+
 class Driver {
     
     /**
@@ -19,6 +21,9 @@ class Driver {
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
+        
+        // We need to change the default "DateTime" handler for OXM to be an ISO-8601 compliant one
+        Type::overrideType(Type::DATETIME, '\DLS\Types\XMLSchemaDateTimeType');
     }
     
     public function getShellMethod($methodName)

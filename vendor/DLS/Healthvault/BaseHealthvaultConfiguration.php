@@ -153,7 +153,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	$OXMConfiguration = new \Doctrine\OXM\Configuration();
     	
     	$paths = array(
-    		__DIR__ . '/Entity',
+    		__DIR__ . '/../../com',
     	);
     	
     	$annotationDriver = $OXMConfiguration->newDefaultAnnotationDriver($paths);
