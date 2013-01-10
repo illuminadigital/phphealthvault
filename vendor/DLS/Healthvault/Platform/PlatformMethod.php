@@ -22,6 +22,8 @@ class PlatformMethod
     protected $methodVersion = 1;
     protected $requestData = NULL;
     
+    protected $mustBeAuthorised = TRUE;
+    
     private $libraryVersion = 'PHPHV v0.01';
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
@@ -119,24 +121,25 @@ class PlatformMethod
     {
     	$marshaller = $this->configuration->getMarshallingService();
     	 
-    	$info = $this->requestData->getInfo();
-    	$infoText = $this->extractPayload($marshaller->marshalToString($info));    	
-    	
-    	$infoHash = $this->getHashDigest($infoText);
-    	$header = $this->getHeader();
-    	$hash = $header->getInfoHash()->getHashData();
-    	$hash->setAlgName(/*new Stringnz(*/'SHA1'/*)*/);
-    	$hash->setValue($infoHash);
-    	
-    	$headerText = $this->extractPayload($marshaller->marshalToString($header));
-    	$hmacHash = $this->getAuthHash($this->configuration->getSecretDigest(), $headerText);
-    	$auth = $this->getAuth();
-    	$hmac = $auth->getHmacData();
-    	$hmac->setAlgName(/*new Stringnz(*/$hmacHash['algorithm']/*)*/);
-    	$hmac->setValue($hmacHash['hash']);
-    	
-    	var_dump($this->requestData);
-    	
+    	if ($this->mustBeAuthorised) {
+	    	$info = $this->requestData->getInfo();
+	    	$infoText = $this->extractPayload($marshaller->marshalToString($info));    	
+	    	
+	    	$infoHash = $this->getHashDigest($infoText);
+	    	$header = $this->getHeader();
+	    	$hash = $header->getInfoHash()->getHashData();
+	    	$hash->setAlgName('SHA1');
+	    	$hash->setValue($infoHash);
+	    	
+	    	$headerText = $this->extractPayload($marshaller->marshalToString($header));
+	    	$hmacHash = $this->getAuthHash($this->configuration->getSecretDigest(), $headerText);
+	    	$auth = $this->getAuth();
+	    	$hmac = $auth->getHmacData();
+	    	$hmac->setAlgName($hmacHash['algorithm']);
+	    	$hmac->setValue($hmacHash['hash']);
+    	}
+	    	
+    	//return $this->removeNamespaces($marshaller->marshalToString($this->requestData));
     	return $marshaller->marshalToString($this->requestData);
     }
     
@@ -167,7 +170,31 @@ class PlatformMethod
     
     protected function extractPayload($xml)
     {
+//    	$xml = $this->removeNamespaces($xml, TRUE);
+    	
     	return preg_replace('/^.*?<([A-Za-z][^ ]+.*)>\s*(.*?)\s*<\/\1>.*$/s', '$2', $xml);
+    }
+    
+    protected function removeNamespaces($xml, $removeAll = FALSE)
+    {
+    	$startPos = 0;
+    	
+    	if ( ! $removeAll) {
+    		$matches = array();
+    		if (preg_match('/(?<!\?)>/', $xml, $matches, PREG_OFFSET_CAPTURE) >= 1)
+    		{
+    			$startPos = $matches[0][1] +1;
+    			
+    			var_dump($startPos);
+    		}
+    	}
+    	
+    	$prefix = substr($xml, 0, $startPos);
+    	$xml = substr($xml, $startPos);
+    	
+    	$xml = preg_replace('/\sxmlns:.*?=(["\']).*?\1/', '', $xml, -1);
+    	
+    	return $prefix . $xml;
     }
     
     protected function getUrl()
@@ -194,11 +221,10 @@ class PlatformMethod
     	
     	if ($response === FALSE)
     	{
-    		var_dump(sprintf('Failed to send request to %s', $this->getUrl()));
-    		//throw new \NetworkIOException(sprintf('Failed to send request to %s', $this->getUrl()));
+    		//var_dump(sprintf('Failed to send request to %s', $this->getUrl()));
+    		throw new \NetworkIOException(sprintf('Failed to send request to %s', $this->getUrl()));
     	}
     	
-    	var_dump($this->getUrl());
     	print_r($response);
     }
 }
