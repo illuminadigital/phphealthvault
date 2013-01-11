@@ -59,4 +59,9 @@ class Driver {
         
         return $this->platformMethodFactory;
     }
+    
+    public function getConfiguration()
+    {
+    	return $this->configuration;
+    }
 }
