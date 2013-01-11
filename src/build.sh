@@ -24,7 +24,7 @@ for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method
 do
 	echo $i
 	cd /tmp/$$/`dirname $i`
-	php $XSD2PHPBASE/src/tools/legko.php compile-schema --schema `basename $i` --dest $DESTBASE/vendor --binding hv
+	php $XSD2PHPBASE/src/tools/legko.php compile-schema --schema `basename $i` --dest $DESTBASE/src --binding hv
 done
 
 echo "Cleaning up"
@@ -33,7 +33,7 @@ rm -rf /tmp/$$
 
 echo "Fixing up method inheritance"
 
-for i in $DESTBASE/vendor/com/microsoft/wc/methods/*/Info.php
+for i in $DESTBASE/src/com/microsoft/wc/methods/*/Info.php
 do
 	echo $i
 	sed -i~ 's#class Info {#class Info extends \\com\\microsoft\\wc\\request\\Info {#' $i
@@ -54,7 +54,7 @@ done
 #done
 
 echo "Fix root element namespace"
-for i in $DESTBASE/vendor/com/microsoft/wc/request/Request.php
+for i in $DESTBASE/src/com/microsoft/wc/request/Request.php
 do
 	echo $i
 	sed -i~ 's#^\(\s*\*\s*\)\(@XmlEntity.*xml="\)#\1@XmlNamespaces ({\n\1  @XmlNamespace(url="urn:com.microsoft.wc.request", prefix="wc-request")\n\1})\n\1\2wc-request:#; ' $i

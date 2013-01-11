@@ -234,4 +234,9 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	// FIXME: This is not correct(!)
     	return '50054D4FAEE16F69AAF66B7596ED30F9922B949E';
     }
+    
+    public function setToken($token)
+    {
+    	error_log('setToken called');
+    }
 }

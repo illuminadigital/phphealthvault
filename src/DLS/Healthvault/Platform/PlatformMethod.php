@@ -24,7 +24,7 @@ class PlatformMethod
     
     protected $mustBeAuthorised = TRUE;
     
-    private $libraryVersion = 'PHPHV v0.01';
+    private $libraryVersion = '0.0.0.1'; //PHPHV v0.01';
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
@@ -100,6 +100,10 @@ class PlatformMethod
     public function execute()
     {
         $request = $this->getRequestXML();
+        
+        file_put_contents(tempnam(sys_get_temp_dir(), 'rq'), $request);
+        
+        echo $this->getUrl();
         
         $response = $this->sendRequest($request);
         

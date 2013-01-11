@@ -44,8 +44,8 @@ class CreateAuthenticatedSessionTokenMethod extends PlatformMethod {
 
 		// Generate the signature
 		$signatureText = ''; // Passed by reference
-		openssl_sign($credentialText, $signature, $this->configuration->getPrivateKey(), OPENSSL_ALGO_SHA1);
-		$signatureText = trim(base64_encode($signature));
+		openssl_sign($credentialText, $signatureText, $this->configuration->getPrivateKey(), OPENSSL_ALGO_SHA1);
+		$signatureText = trim(base64_encode($signatureText));
 
 		$signature = $appServer->getSig();
 		$signature->setSigMethod('RSA-SHA1'); // This must agree with the openssl_sign call above

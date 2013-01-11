@@ -17,17 +17,17 @@ $classLoader = new \Doctrine\Common\ClassLoader('Doctrine\OXM', realpath(MARSHAL
 $classLoader->register();
 
 // Register our library
-$classLoader = new \Doctrine\Common\ClassLoader('DLS\Healthvault', realpath(__DIR__ . '/../vendor'));
+$classLoader = new \Doctrine\Common\ClassLoader('DLS\Healthvault', realpath(__DIR__ . '/../src'));
 $classLoader->register();
 
-$classLoader = new \Doctrine\Common\ClassLoader('DLS\Types', realpath(__DIR__ . '/../vendor'));
+$classLoader = new \Doctrine\Common\ClassLoader('DLS\Types', realpath(__DIR__ . '/../src'));
 $classLoader->register();
 
 // Register the entities
-$classLoader = new \Doctrine\Common\ClassLoader('com', realpath(__DIR__ . '/../vendor'));
+$classLoader = new \Doctrine\Common\ClassLoader('com', realpath(__DIR__ . '/../src'));
 $classLoader->register();
 
-$classLoader = new \Doctrine\Common\ClassLoader('org', realpath(__DIR__ . '/../vendor'));
+$classLoader = new \Doctrine\Common\ClassLoader('org', realpath(__DIR__ . '/../src'));
 $classLoader->register();
 
 // Register our tests
