@@ -1,0 +1,28 @@
+{
+	"name": "illuminadigital/phphealthvault",
+	
+	"repositories": [
+	    {
+	        "type": "package",
+	        "package": {
+	            "name": "illuminadigital/php-xml-marshalling",
+	            "version": "1.0",
+	            "dist": {
+	                "url": "file:///var/www/vhosts/dists/php-xml-marshalling.zip",
+	                "type": "zip"
+	            }
+	        }
+	    }
+	],
+	
+	"require": {
+	    "illuminadigital/php-xml-marshalling": "1.0"
+	},
+	
+	"autoload": {
+	    "psr-0": { 
+			"DLS": "src",	        
+			"com": "src",	        
+	    }
+	}
+}
