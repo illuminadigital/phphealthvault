@@ -14,6 +14,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     protected $marshallingService;
     protected $sharedSecret;
     protected $secretDigest;
+    protected $token;
     
     public function __construct($application, $privateKey = NULL, $baseUrl = NULL, $marshallingService = NULL)
     {
@@ -237,6 +238,11 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     
     public function setToken($token)
     {
-    	error_log('setToken called');
+    	$this->token = $token;
+    }
+    
+    public function getToken($token)
+    {
+    	return $this->token;
     }
 }

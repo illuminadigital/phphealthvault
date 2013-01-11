@@ -135,6 +135,11 @@ class PlatformMethod
 	    	$hash->setAlgName('SHA1');
 	    	$hash->setValue($infoHash);
 	    	
+	    	$authToken = $header->getAuthSession()->getAuthToken();
+	    	$authToken->setValue($this->configuration->getPrivateKey());
+	    	$userAuthToken = $header->getAuthSession()->getUserAuthToken();
+	    	$userAuthToken->setValue($this->configuration->getToken());
+	    	
 	    	$headerText = $this->extractPayload($marshaller->marshalToString($header));
 	    	$hmacHash = $this->getAuthHash($this->configuration->getSecretDigest(), $headerText);
 	    	$auth = $this->getAuth();
