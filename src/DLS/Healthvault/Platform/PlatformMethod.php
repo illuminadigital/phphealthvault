@@ -135,10 +135,9 @@ class PlatformMethod
 	    	$hash->setAlgName('SHA1');
 	    	$hash->setValue($infoHash);
 	    	
-	    	$authToken = $header->getAuthSession()->getAuthToken();
-	    	$authToken->setValue($this->configuration->getPrivateKey());
-	    	$userAuthToken = $header->getAuthSession()->getUserAuthToken();
-	    	$userAuthToken->setValue($this->configuration->getToken());
+	    	$authSession = $header->getAuthSession();
+	    	$authSession->setAuthToken($this->configuration->getPrivateKey());
+	    	$authSession->setUserAuthToken($this->configuration->getToken());
 	    	
 	    	$headerText = $this->extractPayload($marshaller->marshalToString($header));
 	    	$hmacHash = $this->getAuthHash($this->configuration->getSecretDigest(), $headerText);
@@ -180,8 +179,19 @@ class PlatformMethod
     protected function extractPayload($xml)
     {
 //    	$xml = $this->removeNamespaces($xml, TRUE);
+
+    	$count = 0;
+    	$payload = preg_replace('/^.*?<([A-Za-z][^ ]+.*?)>\s*(.*?)\s*<\/\1>.*$/s', '$2', $xml, -1, $count);
     	
-    	return preg_replace('/^.*?<([A-Za-z][^ ]+.*)>\s*(.*?)\s*<\/\1>.*$/s', '$2', $xml);
+    	if ($count !== 1) {
+    		$payload = preg_replace('/^.*?<([A-Za-z][^ ]+.*?)\/>\s*$/s', '', $xml, -1, $count);
+    	}
+    	
+    	if ($count !== 1) {
+    		$payload = FALSE;
+    	}
+    	
+    	return $payload;
     }
     
     protected function removeNamespaces($xml, $removeAll = FALSE)

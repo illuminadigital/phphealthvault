@@ -11,8 +11,6 @@ class GetPersonInfoMethod extends PlatformMethod
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
         parent::__construct($configuration);
-        
-//        $this->requestData->setInfo(new GetPersonInfoRequest());
     }
     
     public function setFetchGroups($state = TRUE)

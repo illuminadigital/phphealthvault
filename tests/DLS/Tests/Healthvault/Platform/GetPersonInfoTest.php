@@ -18,7 +18,7 @@ class GetPersonInfoTest extends HealthvaultTestCase {
 	}
 	
 	/**
-	 * test
+	 * @test
 	 */
 	public function createsValidHeaders()
 	{
@@ -34,11 +34,14 @@ class GetPersonInfoTest extends HealthvaultTestCase {
 		
 		$getRequestXmlMethod->setAccessible(TRUE);
 		
-		echo($getRequestXmlMethod->invoke($method));
+		$xml = $getRequestXmlMethod->invoke($method);
+		
+		error_log($xml);
+		var_dump($xml);
 	}
 	
 	/** 
-	 * test 
+	 * @test 
 	 */
 	public function executesTheMethod()
 	{

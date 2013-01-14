@@ -16,7 +16,7 @@ class CreateAuthenticatedSessionTokenTest extends HealthvaultTestCase {
 		$this->assertEquals('CreateAuthenticatedSessionToken', $method->getMethodName());
 	}
 	
-	/**
+	/*
 	 * @test
 	 */
 	public function createsValidHeaders()
@@ -34,7 +34,7 @@ class CreateAuthenticatedSessionTokenTest extends HealthvaultTestCase {
 		echo($getRequestXmlMethod->invoke($method));
 	}
 	
-	/**
+	/*
 	 * @test
 	 */
 	public function executesTheMethod()
@@ -42,7 +42,7 @@ class CreateAuthenticatedSessionTokenTest extends HealthvaultTestCase {
 		$driver = $this->getDriverWithUSDevelopmentConfiguration();
 		$method = $driver->getPlatformMethod('CreateAuthenticatedSessionToken');
 	
-		var_dump($method);
+		//var_dump($method);
 		
 		$response = $method->execute();
 	
