@@ -3,26 +3,21 @@
 	
 	"repositories": [
 	    {
-	        "type": "package",
-	        "package": {
-	            "name": "illuminadigital/php-xml-marshalling",
-	            "version": "1.0",
-	            "dist": {
-	                "url": "file:///var/www/vhosts/dists/php-xml-marshalling.zip",
-	                "type": "zip"
-	            }
-	        }
+		    "type": "vcs",
+            "url": "file:///var/www/vhosts/php-xml-marshalling",
+            "type": "git",
+            "reference": "master"
 	    }
 	],
 	
 	"require": {
-	    "illuminadigital/php-xml-marshalling": "1.0"
+	    "illuminadigital/php-xml-marshalling": "dev-master"
 	},
 	
 	"autoload": {
 	    "psr-0": { 
 			"DLS": "src",	        
-			"com": "src",	        
+			"com": "src"	        
 	    }
 	}
 }
