@@ -136,7 +136,7 @@ class PlatformMethod
 	    	$hash->setValue($infoHash);
 	    	
 	    	$authSession = $header->getAuthSession();
-	    	$authSession->setAuthToken($this->configuration->getPrivateKey());
+	    	$authSession->setAuthToken($this->getAuthToken());
 	    	$authSession->setUserAuthToken($this->configuration->getToken());
 	    	
 	    	$headerText = $this->extractPayload($marshaller->marshalToString($header));
@@ -245,5 +245,18 @@ class PlatformMethod
     	}
     	
     	print_r($response);
+    }
+    
+    protected function getAuthToken()
+    {
+    	$driver = new \DLS\Healthvault\Driver($this->configuration);
+    	
+    	$authTokenMethod = $driver->getPlatformMethod('CreateAuthenticatedSessionToken');
+    	
+    	$authTokenResponse = $authTokenMethod->execute();
+    	
+    	var_dump($authTokenResponse);
+    	
+    	return 'foo';
     }
 }
