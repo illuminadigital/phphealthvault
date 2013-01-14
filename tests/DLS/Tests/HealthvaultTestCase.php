@@ -24,6 +24,12 @@ class HealthvaultTestCase extends PHPUnit_Framework_TestCase {
 		return $rowConfiguration;
 	}
 	
+	public function getUSDevelopmentConfiguration() {
+		$rowConfiguration = new HealthvaultUSDevelopmentConfiguration($this->applicationId, __DIR__ . '/../../../samples/app.pem');
+		
+		return $rowConfiguration;
+	}
+	
 	public function getDriverWithMockConfiguration()
 	{
 		$mockConfiguration = $this->getMockConfiguration();
@@ -40,7 +46,7 @@ class HealthvaultTestCase extends PHPUnit_Framework_TestCase {
 
 	public function getDriverWithUSDevelopmentConfiguration()
 	{
-		$rowConfiguration = $this->getRowConfiguration();
+		$rowConfiguration = $this->getUSDevelopmentConfiguration();
 		
 		return new Driver($rowConfiguration);
 	}

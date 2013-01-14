@@ -22,7 +22,7 @@ class GetPersonInfoTest extends HealthvaultTestCase {
 	 */
 	public function createsValidHeaders()
 	{
-		$driver = $this->getDriverWithMockConfiguration();
+		$driver = $this->getDriverWithUSDevelopmentConfiguration();
 		$method = $driver->getPlatformMethod('GetPersonInfo');
 		
 		$method->fetchGroups();
