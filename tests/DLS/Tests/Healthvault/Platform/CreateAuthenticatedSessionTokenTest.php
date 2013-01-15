@@ -16,7 +16,7 @@ class CreateAuthenticatedSessionTokenTest extends HealthvaultTestCase {
 		$this->assertEquals('CreateAuthenticatedSessionToken', $method->getMethodName());
 	}
 	
-	/*
+	/**
 	 * @test
 	 */
 	public function createsValidHeaders()
@@ -31,7 +31,7 @@ class CreateAuthenticatedSessionTokenTest extends HealthvaultTestCase {
 		
 		$getRequestXmlMethod->setAccessible(TRUE);
 		
-		echo($getRequestXmlMethod->invoke($method));
+		error_log($getRequestXmlMethod->invoke($method));
 	}
 	
 	/*

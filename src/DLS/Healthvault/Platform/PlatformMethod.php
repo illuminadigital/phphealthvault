@@ -64,6 +64,8 @@ class PlatformMethod
         }
         
         $headerObj->getAppId()->setValue($this->configuration->getApplicationId());
+        $headerObj->setLanguage($this->getLanguage());
+        $headerObj->setCountry($this->getCountry());
         
         $headerObj->getVersion()->setValue($this->libraryVersion);
         
@@ -72,6 +74,16 @@ class PlatformMethod
         $headerObj->setMsgTtl(36000);
         
         return $headerObj;
+    }
+    
+    protected function getLanguage()
+    {
+    	return 'en';
+    }
+    
+    protected function getCountry()
+    {
+    	return 'US';
     }
     
     protected function getMethodVersion()
@@ -139,6 +151,14 @@ class PlatformMethod
 	    	$authSession->setAuthToken($this->getAuthToken());
 	    	$authSession->setUserAuthToken($this->configuration->getToken());
 	    	
+	    	$token = $this->configuration->getToken();
+	    	if ( empty($token) )
+	    	{
+	    		$token = 'foobar';
+	    	}
+	    	
+	    	$authSession->setUserAuthToken($token);
+	    	
 	    	$headerText = $this->extractPayload($marshaller->marshalToString($header));
 	    	$hmacHash = $this->getAuthHash($this->configuration->getSecretDigest(), $headerText);
 	    	$auth = $this->getAuth();
@@ -175,11 +195,17 @@ class PlatformMethod
     		'hash' => base64_encode(hash_hmac('SHA1', $content, $digest, TRUE)),
     	);
     }
-    
+
+    /**
+     * Extract the payload from an XML packet.
+     * 
+     * This is the content within the root element.
+     * 
+     * @param string $xml
+     * @return boolean|string The payload string or FALSE on failure
+     */
     protected function extractPayload($xml)
     {
-//    	$xml = $this->removeNamespaces($xml, TRUE);
-
     	$count = 0;
     	$payload = preg_replace('/^.*?<([A-Za-z][^ ]+.*?)>\s*(.*?)\s*<\/\1>.*$/s', '$2', $xml, -1, $count);
     	
@@ -192,6 +218,44 @@ class PlatformMethod
     	}
     	
     	return $payload;
+    }
+    
+    /**
+     * Extract the root element from an XML packet.
+     * 
+     * This is the content including root element. The name of this element can optionally be changed.
+     * 
+     * @param string $xml
+     * @param string $forceName The Name to set the Root Element to
+     * @return boolean|string The root element string or FALSE on failure
+     */
+    protected function extractRootElement($xml, $forceName = NULL)
+    {
+    	$count = 0;
+    	
+    	if (! empty($forceName)) {
+    		$replacement = '<' . $forceName .'$2</' . $forceName .'>';
+    	} else {
+    		$replacement = '$1';
+    	} 
+    	
+    	$rootContent = preg_replace('/^.*?<([A-Za-z][^ ]+)(.*?>\s*.*?\s*)<\/\1\s*>.*$/s', $replacement, $xml, -1, $count);
+    	
+    	if ($count !== 1) {
+    	    if (! empty($forceName)) {
+	    		$replacement = '<' . $forceName .' />';
+	    	} else {
+	    		$replacement = '$1';
+	    	}
+	    	 
+    		$rootContent = preg_replace('/^.*?(<([A-Za-z][^ ]+.*?)\/>)\s*$/s', $replacement, $xml, -1, $count);
+    	}
+    	
+    	if ($count !== 1) {
+    		return FALSE;
+    	}
+    	
+    	return $rootContent;
     }
     
     protected function removeNamespaces($xml, $removeAll = FALSE)
@@ -227,8 +291,9 @@ class PlatformMethod
     	
     	curl_setopt($conn, CURLOPT_RETURNTRANSFER, TRUE); // We want the content returned to us
     	curl_setopt($conn, CURLOPT_POST, TRUE);
-    	
-    	curl_setopt($conn, CURLOPT_HEADER, array(
+    	curl_setopt($conn, CURLOPT_HEADER, FALSE);
+    	 
+    	curl_setopt($conn, CURLOPT_HTTPHEADER, array(
     		'Content-Type' => 'text/xml'
     	));
     	
@@ -245,6 +310,8 @@ class PlatformMethod
     	}
     	
     	print_r($response);
+    	
+    	return $response;
     }
     
     protected function getAuthToken()

@@ -48,10 +48,15 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
             $this->marshallingService = $this->getDefaultMarshallingService();
         }
 
-        $this->sharedSecret = hash($this->getSharedSecretHash(), uniqid(rand(0,1), TRUE));
+        $this->sharedSecret = hash($this->getSharedSecretHash(), $this->getSeed());
         $this->secretDigest = hash_hmac($this->getSecretDigestHash(), $this->sharedSecret, $this->sharedSecret);
         
         $this->checkConfiguration();
+    }
+    
+    protected function getSeed() {
+    	return '050f526f2ccdfc6.57002582';
+    	return uniqid(rand(0,1), TRUE);
     }
     
     protected function setFromArray($data)
@@ -173,13 +178,16 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	
     	$marshaller = new XmlMarshaller($metadataFactory);
     	
-    	//$marshaller->setIndent(0); // Do not indent
+    	$marshaller->setIndent(0); // Do not indent
     	
     	return $marshaller;
     }
     
-    public function getSharedSecret()
+    public function getSharedSecret($base64Encode = FALSE)
     {
+        if ($base64Encode) {
+    		return base64_encode($this->sharedSecret);
+    	}
     	return $this->sharedSecret;
     }
     
@@ -188,8 +196,12 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	return 'SHA1';
     }
     
-    public function getSecretDigest()
+    public function getSecretDigest($base64Encode = FALSE)
     {
+    	if ($base64Encode) {
+    		return base64_encode($this->secretDigest);
+    	}
+    	// else
     	return $this->secretDigest;
     }
     
@@ -241,7 +253,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	$this->token = $token;
     }
     
-    public function getToken($token)
+    public function getToken()
     {
     	return $this->token;
     }

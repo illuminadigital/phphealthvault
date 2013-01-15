@@ -27,11 +27,11 @@ class CreateAuthenticatedSessionTokenMethod extends PlatformMethod {
 		
 		$secretData = $appServerCredential->getSharedSecret()->getHmacAlg();
 		$secretData->setAlgName('HMAC' . $this->configuration->getSecretDigestHash());
-		$secretData->setValue($this->configuration->getSecretDigest());
+		$secretData->setValue($this->configuration->getSecretDigest(TRUE));
 		
 		$signature = $appServer->getSig();
 		$signature->setDigestMethod($this->configuration->getSecretDigestHash());
-		
+		// The value will be set later		
 	}
 	
 	protected function getRequestXML() {
@@ -40,8 +40,8 @@ class CreateAuthenticatedSessionTokenMethod extends PlatformMethod {
 		$appServer = $this->requestData->getInfo()->getAuthInfo()->getCredential()->getAppServer();
 		
 		$credential = $appServer->getContent();
-		$credentialText = $this->extractPayload($marshaller->marshalToString($credential));
-
+		$credentialText = $this->extractRootElement($marshaller->marshalToString($credential), 'content');
+		
 		// Generate the signature
 		$signatureText = ''; // Passed by reference
 		openssl_sign($credentialText, $signatureText, $this->configuration->getPrivateKey(), OPENSSL_ALGO_SHA1);
