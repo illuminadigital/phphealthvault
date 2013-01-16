@@ -11,7 +11,7 @@ class CryptoBinary {
 	 */
 
 	/**
-	 * @XmlValue	(type="base64Binary", name="CryptoBinary")
+	 * @XmlValue	(type="string", name="CryptoBinary")
 	 */
 	protected $value;
 

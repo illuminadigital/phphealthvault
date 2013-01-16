@@ -11,7 +11,7 @@ class DigestValueType {
 	 */
 
 	/**
-	 * @XmlValue	(type="base64Binary", name="DigestValueType")
+	 * @XmlValue	(type="string", name="DigestValueType")
 	 */
 	protected $value;
 

@@ -11,7 +11,7 @@ class PositiveLong {
 	 */
 
 	/**
-	 * @XmlValue	(type="long", name="positiveLong")
+	 * @XmlValue	(type="integer", name="positiveLong")
 	 */
 	protected $value;
 

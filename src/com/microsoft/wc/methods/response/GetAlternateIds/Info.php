@@ -13,7 +13,7 @@ class Info {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetAlternateIds\", name="alternate-ids")
+	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetAlternateIds\AlternateIds", name="alternate-ids")
 	 */
 	protected $alternateIds;
 
@@ -37,8 +37,8 @@ class Info {
 	}
 
 	protected function validateAlternateIds($alternateIds) {
-		if (!is_($alternateIds)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'alternateIds', ''));
+		if (!is_alternate-ids($alternateIds)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'alternateIds', 'alternate-ids'));
 		}
 	
 		return $alternateIds;

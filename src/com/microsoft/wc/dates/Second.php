@@ -11,7 +11,7 @@ class Second {
 	 */
 
 	/**
-	 * @XmlValue	(type="int", name="second")
+	 * @XmlValue	(type="integer", name="second")
 	 */
 	protected $value;
 

@@ -11,7 +11,7 @@ class Statement {
 	 */
 
 	/**
-	 * @XmlValue	(type="base64Binary", name="Statement")
+	 * @XmlValue	(type="string", name="Statement")
 	 */
 	protected $value;
 

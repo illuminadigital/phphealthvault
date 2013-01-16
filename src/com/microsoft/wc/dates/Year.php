@@ -11,7 +11,7 @@ class Year {
 	 */
 
 	/**
-	 * @XmlValue	(type="int", name="year")
+	 * @XmlValue	(type="integer", name="year")
 	 */
 	protected $value;
 

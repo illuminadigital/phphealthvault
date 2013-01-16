@@ -13,7 +13,7 @@ class Info {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication\", collection="true", name="record-id")
+	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication\RecordId", collection="true", name="record-id")
 	 */
 	protected $recordId;
 
@@ -42,8 +42,8 @@ class Info {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'recordId', 0));
 		}
 		foreach ($recordId as $entry) {
-			if ( ! is_($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', ''));
+			if ( ! is_record-id($entry) && ! is_null($entry) ) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', 'record-id'));
 			}
 		}
 	
@@ -55,8 +55,8 @@ class Info {
 	}
 
 	protected function validateRecordIdType($recordId) {
-		if ( ! is_($recordId) && ! is_null($recordId) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', ''));
+		if ( ! is_record-id($recordId) && ! is_null($recordId) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', 'record-id'));
 		}
 	
 		return $recordId;

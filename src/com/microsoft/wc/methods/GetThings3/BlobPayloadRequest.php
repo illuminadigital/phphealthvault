@@ -16,7 +16,7 @@ class BlobPayloadRequest {
 	protected $blobFilters;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\GetThings3\", name="blob-format")
+	 * @XmlElement	(type="\com\microsoft\wc\methods\GetThings3\BlobFormat", name="blob-format")
 	 */
 	protected $blobFormat;
 
@@ -64,8 +64,8 @@ class BlobPayloadRequest {
 	}
 
 	protected function validateBlobFormat($blobFormat) {
-		if (!is_($blobFormat)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'blobFormat', ''));
+		if (!is_blob-format($blobFormat)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'blobFormat', 'blob-format'));
 		}
 	
 		return $blobFormat;

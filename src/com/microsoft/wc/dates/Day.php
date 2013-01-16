@@ -11,7 +11,7 @@ class Day {
 	 */
 
 	/**
-	 * @XmlValue	(type="int", name="day")
+	 * @XmlValue	(type="integer", name="day")
 	 */
 	protected $value;
 

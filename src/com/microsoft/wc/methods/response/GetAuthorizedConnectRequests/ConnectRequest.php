@@ -17,7 +17,7 @@ class ConnectRequest {
 	protected $personId;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\", name="record-id")
+	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\RecordId", name="record-id")
 	 */
 	protected $recordId;
 
@@ -77,8 +77,8 @@ class ConnectRequest {
 	}
 
 	protected function validateRecordId($recordId) {
-		if (!is_($recordId)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', ''));
+		if (!is_record-id($recordId)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', 'record-id'));
 		}
 	
 		return $recordId;

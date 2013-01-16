@@ -11,7 +11,7 @@ class AppLargeLogo {
 	 */
 
 	/**
-	 * @XmlValue	(type="base64Binary", name="AppLargeLogo")
+	 * @XmlValue	(type="string", name="AppLargeLogo")
 	 */
 	protected $value;
 

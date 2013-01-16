@@ -11,7 +11,7 @@ class Month {
 	 */
 
 	/**
-	 * @XmlValue	(type="int", name="month")
+	 * @XmlValue	(type="integer", name="month")
 	 */
 	protected $value;
 

@@ -11,7 +11,7 @@ class Hour {
 	 */
 
 	/**
-	 * @XmlValue	(type="int", name="hour")
+	 * @XmlValue	(type="integer", name="hour")
 	 */
 	protected $value;
 

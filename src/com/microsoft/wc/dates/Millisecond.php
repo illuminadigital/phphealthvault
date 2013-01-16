@@ -11,7 +11,7 @@ class Millisecond {
 	 */
 
 	/**
-	 * @XmlValue	(type="int", name="millisecond")
+	 * @XmlValue	(type="integer", name="millisecond")
 	 */
 	protected $value;
 
