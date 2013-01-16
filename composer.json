@@ -17,7 +17,8 @@
 	"autoload": {
 	    "psr-0": { 
 			"DLS": "src",	        
-			"com": "src"	        
+			"com": "src",
+			"org": "src"
 	    }
 	}
 }
