@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\CreateAuthenticatedSessionToken;
 
-use com\microsoft\wc\types\AppServerCred;
-use com\microsoft\wc\auth\UserPassAuthSessionCred;
+
 
 /**
  * @XmlEntity	(xml="Credential")
@@ -36,7 +35,7 @@ class Credential {
 	}
 	
 	protected function createAppserver() {
-		return new AppServerCred();
+		return new \com\microsoft\wc\types\AppServerCred();
 	}
 
 	public function setAppserver($appserver) {
@@ -44,8 +43,8 @@ class Credential {
 	}
 
 	protected function validateAppserver($appserver) {
-		if ( ! $appserver instanceof AppServerCred ) {
-			$appserver = new AppServerCred ($appserver);
+		if ( ! $appserver instanceof \com\microsoft\wc\types\AppServerCred ) {
+			$appserver = new \com\microsoft\wc\types\AppServerCred ($appserver);
 		}
 	
 		return $appserver;
@@ -59,7 +58,7 @@ class Credential {
 	}
 	
 	protected function createUserpassauthsession() {
-		return new UserPassAuthSessionCred();
+		return new \com\microsoft\wc\auth\UserPassAuthSessionCred();
 	}
 
 	public function setUserpassauthsession($userpassauthsession) {
@@ -67,8 +66,8 @@ class Credential {
 	}
 
 	protected function validateUserpassauthsession($userpassauthsession) {
-		if ( ! $userpassauthsession instanceof UserPassAuthSessionCred ) {
-			$userpassauthsession = new UserPassAuthSessionCred ($userpassauthsession);
+		if ( ! $userpassauthsession instanceof \com\microsoft\wc\auth\UserPassAuthSessionCred ) {
+			$userpassauthsession = new \com\microsoft\wc\auth\UserPassAuthSessionCred ($userpassauthsession);
 		}
 	
 		return $userpassauthsession;

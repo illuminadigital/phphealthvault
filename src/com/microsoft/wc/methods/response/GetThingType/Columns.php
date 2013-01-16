@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetThingType;
 
-use com\microsoft\wc\methods\response\GetThingType\Column;
+
 
 /**
  * @XmlEntity	(xml="Columns")
@@ -35,8 +35,8 @@ class Columns {
 	}
 
 	protected function validateColumn($column) {
-		if ( ! $column instanceof Column  && ! is_null($column) ) {
-			$column = new Column ($column);
+		if ( ! $column instanceof \com\microsoft\wc\methods\response\GetThingType\Column  && ! is_null($column) ) {
+			$column = new \com\microsoft\wc\methods\response\GetThingType\Column ($column);
 		}
 		$count = count($column);
 		if ($count < 0) {

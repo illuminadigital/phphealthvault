@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\subscription;
 
-use com\microsoft\wc\subscription\TypeIds;
+
 
 /**
  * @XmlEntity	(xml="RecordItemChangedEventFilter")
@@ -28,7 +28,7 @@ class RecordItemChangedEventFilter {
 	}
 	
 	protected function createTypeIds() {
-		return new TypeIds();
+		return new \com\microsoft\wc\subscription\TypeIds();
 	}
 
 	public function setTypeIds($typeIds) {
@@ -36,8 +36,8 @@ class RecordItemChangedEventFilter {
 	}
 
 	protected function validateTypeIds($typeIds) {
-		if ( ! $typeIds instanceof TypeIds ) {
-			$typeIds = new TypeIds ($typeIds);
+		if ( ! $typeIds instanceof \com\microsoft\wc\subscription\TypeIds ) {
+			$typeIds = new \com\microsoft\wc\subscription\TypeIds ($typeIds);
 		}
 	
 		return $typeIds;

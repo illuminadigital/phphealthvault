@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\OverwriteThings2;
 
-use com\microsoft\wc\thing\Thing2;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateThing($thing) {
-		if ( ! $thing instanceof Thing2 ) {
-			$thing = new Thing2 ($thing);
+		if ( ! $thing instanceof \com\microsoft\wc\thing\Thing2 ) {
+			$thing = new \com\microsoft\wc\thing\Thing2 ($thing);
 		}
 		$count = count($thing);
 		if ($count < 1) {

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\CultureSpecificExtensionItem;
+
 
 /**
  * @XmlEntity	(xml="CultureSpecificExtensionItems")
@@ -35,8 +35,8 @@ class CultureSpecificExtensionItems {
 	}
 
 	protected function validateExtensionItem($extensionItem) {
-		if ( ! $extensionItem instanceof CultureSpecificExtensionItem ) {
-			$extensionItem = new CultureSpecificExtensionItem ($extensionItem);
+		if ( ! $extensionItem instanceof \com\microsoft\wc\types\CultureSpecificExtensionItem ) {
+			$extensionItem = new \com\microsoft\wc\types\CultureSpecificExtensionItem ($extensionItem);
 		}
 		$count = count($extensionItem);
 		if ($count < 1) {

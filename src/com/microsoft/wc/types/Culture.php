@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Iso6391;
-use com\microsoft\wc\types\Iso3166;
+
 
 /**
  * @XmlEntity	(xml="Culture")
@@ -35,7 +34,7 @@ class Culture {
 	}
 	
 	protected function createLanguage() {
-		return new Iso6391();
+		return new \com\microsoft\wc\types\Iso6391();
 	}
 
 	public function setLanguage($language) {
@@ -43,8 +42,8 @@ class Culture {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof Iso6391  && ! is_null($language) ) {
-			$language = new Iso6391 ($language);
+		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
+			$language = new \com\microsoft\wc\types\Iso6391 ($language);
 		}
 	
 		return $language;
@@ -58,7 +57,7 @@ class Culture {
 	}
 	
 	protected function createCountry() {
-		return new Iso3166();
+		return new \com\microsoft\wc\types\Iso3166();
 	}
 
 	public function setCountry($country) {
@@ -66,8 +65,8 @@ class Culture {
 	}
 
 	protected function validateCountry($country) {
-		if ( ! $country instanceof Iso3166  && ! is_null($country) ) {
-			$country = new Iso3166 ($country);
+		if ( ! $country instanceof \com\microsoft\wc\types\Iso3166  && ! is_null($country) ) {
+			$country = new \com\microsoft\wc\types\Iso3166 ($country);
 		}
 	
 		return $country;

@@ -1,13 +1,12 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Stringnz;
 
 
 /**
  * @XmlEntity	(xml="HashFinalizedData")
  */
-class HashFinalizedData extends String512 {
+class HashFinalizedData extends \com\microsoft\wc\types\String512 {
 	/**
 	 * The resulting hash digest.
 	 * Microsoft HealthVault will compute the hash over the same data that was used to compute this digest and compare them.
@@ -30,7 +29,7 @@ class HashFinalizedData extends String512 {
 	}
 	
 	protected function createAlgName() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setAlgName($algName) {
@@ -38,8 +37,8 @@ class HashFinalizedData extends String512 {
 	}
 
 	protected function validateAlgName($algName) {
-		if ( ! $algName instanceof Stringnz ) {
-			$algName = new Stringnz ($algName);
+		if ( ! $algName instanceof \com\microsoft\wc\types\Stringnz ) {
+			$algName = new \com\microsoft\wc\types\Stringnz ($algName);
 		}
 	
 		return $algName;

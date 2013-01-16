@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\SearchVocabulary;
 
-use com\microsoft\wc\methods\SearchVocabulary\VocabularySearchString;
+
 
 /**
  * @XmlEntity	(xml="VocabularySearchParams")
@@ -35,7 +35,7 @@ class VocabularySearchParams {
 	}
 	
 	protected function createSearchString() {
-		return new VocabularySearchString();
+		return new \com\microsoft\wc\methods\SearchVocabulary\VocabularySearchString();
 	}
 
 	public function setSearchString($searchString) {
@@ -43,8 +43,8 @@ class VocabularySearchParams {
 	}
 
 	protected function validateSearchString($searchString) {
-		if ( ! $searchString instanceof VocabularySearchString ) {
-			$searchString = new VocabularySearchString ($searchString);
+		if ( ! $searchString instanceof \com\microsoft\wc\methods\SearchVocabulary\VocabularySearchString ) {
+			$searchString = new \com\microsoft\wc\methods\SearchVocabulary\VocabularySearchString ($searchString);
 		}
 	
 		return $searchString;

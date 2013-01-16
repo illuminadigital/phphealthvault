@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\types\CodedValue;
+
 
 /**
  * @XmlEntity	(xml="vocabulary-mapping-item")
@@ -28,7 +28,7 @@ class VocabularyMappingItem {
 	}
 	
 	protected function createReferenceId() {
-		return new CodedValue();
+		return new \com\microsoft\wc\types\CodedValue();
 	}
 
 	public function setReferenceId($referenceId) {
@@ -36,8 +36,8 @@ class VocabularyMappingItem {
 	}
 
 	protected function validateReferenceId($referenceId) {
-		if ( ! $referenceId instanceof CodedValue ) {
-			$referenceId = new CodedValue ($referenceId);
+		if ( ! $referenceId instanceof \com\microsoft\wc\types\CodedValue ) {
+			$referenceId = new \com\microsoft\wc\types\CodedValue ($referenceId);
 		}
 	
 		return $referenceId;

@@ -1,13 +1,12 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\types\Guid;
 
 
 /**
  * @XmlEntity	(xml="ThingKey")
  */
-class ThingKey extends Guid {
+class ThingKey extends \com\microsoft\wc\types\Guid {
 	/**
 	 */
 
@@ -28,7 +27,7 @@ class ThingKey extends Guid {
 	}
 	
 	protected function createVersionStamp() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setVersionStamp($versionStamp) {
@@ -36,8 +35,8 @@ class ThingKey extends Guid {
 	}
 
 	protected function validateVersionStamp($versionStamp) {
-		if ( ! $versionStamp instanceof Guid ) {
-			$versionStamp = new Guid ($versionStamp);
+		if ( ! $versionStamp instanceof \com\microsoft\wc\types\Guid ) {
+			$versionStamp = new \com\microsoft\wc\types\Guid ($versionStamp);
 		}
 	
 		return $versionStamp;

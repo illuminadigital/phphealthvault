@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\auth\UserPassCred;
+
 
 /**
  * @XmlEntity	(xml="SimpleUserPassCredential")
@@ -29,7 +29,7 @@ class SimpleUserPassCredential {
 	}
 	
 	protected function createSimpleUserpass() {
-		return new UserPassCred();
+		return new \com\microsoft\wc\auth\UserPassCred();
 	}
 
 	public function setSimpleUserpass($simpleUserpass) {
@@ -37,8 +37,8 @@ class SimpleUserPassCredential {
 	}
 
 	protected function validateSimpleUserpass($simpleUserpass) {
-		if ( ! $simpleUserpass instanceof UserPassCred ) {
-			$simpleUserpass = new UserPassCred ($simpleUserpass);
+		if ( ! $simpleUserpass instanceof \com\microsoft\wc\auth\UserPassCred ) {
+			$simpleUserpass = new \com\microsoft\wc\auth\UserPassCred ($simpleUserpass);
 		}
 	
 		return $simpleUserpass;

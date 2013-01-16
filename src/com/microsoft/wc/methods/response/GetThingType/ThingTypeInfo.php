@@ -1,12 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetThingType;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\methods\response\GetThingType\Columns;
-use com\microsoft\wc\methods\response\GetThingType\Transforms;
-use com\microsoft\wc\methods\response\GetThingType\Versions;
-use com\microsoft\wc\methods\response\GetThingType\TransformSource;
-use com\microsoft\wc\methods\response\GetThingType\Image;
+
 
 /**
  * @XmlEntity	(xml="ThingTypeInfo")
@@ -99,7 +94,7 @@ class ThingTypeInfo {
 	}
 	
 	protected function createId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setId($id) {
@@ -107,8 +102,8 @@ class ThingTypeInfo {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 	
 		return $id;
@@ -237,7 +232,7 @@ class ThingTypeInfo {
 	}
 	
 	protected function createColumns() {
-		return new Columns();
+		return new \com\microsoft\wc\methods\response\GetThingType\Columns();
 	}
 
 	public function setColumns($columns) {
@@ -245,8 +240,8 @@ class ThingTypeInfo {
 	}
 
 	protected function validateColumns($columns) {
-		if ( ! $columns instanceof Columns  && ! is_null($columns) ) {
-			$columns = new Columns ($columns);
+		if ( ! $columns instanceof \com\microsoft\wc\methods\response\GetThingType\Columns  && ! is_null($columns) ) {
+			$columns = new \com\microsoft\wc\methods\response\GetThingType\Columns ($columns);
 		}
 	
 		return $columns;
@@ -260,7 +255,7 @@ class ThingTypeInfo {
 	}
 	
 	protected function createTransforms() {
-		return new Transforms();
+		return new \com\microsoft\wc\methods\response\GetThingType\Transforms();
 	}
 
 	public function setTransforms($transforms) {
@@ -268,8 +263,8 @@ class ThingTypeInfo {
 	}
 
 	protected function validateTransforms($transforms) {
-		if ( ! $transforms instanceof Transforms  && ! is_null($transforms) ) {
-			$transforms = new Transforms ($transforms);
+		if ( ! $transforms instanceof \com\microsoft\wc\methods\response\GetThingType\Transforms  && ! is_null($transforms) ) {
+			$transforms = new \com\microsoft\wc\methods\response\GetThingType\Transforms ($transforms);
 		}
 	
 		return $transforms;
@@ -291,8 +286,8 @@ class ThingTypeInfo {
 	}
 
 	protected function validateTransformSource($transformSource) {
-		if ( ! $transformSource instanceof TransformSource  && ! is_null($transformSource) ) {
-			$transformSource = new TransformSource ($transformSource);
+		if ( ! $transformSource instanceof \com\microsoft\wc\methods\response\GetThingType\TransformSource  && ! is_null($transformSource) ) {
+			$transformSource = new \com\microsoft\wc\methods\response\GetThingType\TransformSource ($transformSource);
 		}
 		$count = count($transformSource);
 		if ($count < 0) {
@@ -327,8 +322,8 @@ class ThingTypeInfo {
 	}
 
 	protected function validateImage($image) {
-		if ( ! $image instanceof Image  && ! is_null($image) ) {
-			$image = new Image ($image);
+		if ( ! $image instanceof \com\microsoft\wc\methods\response\GetThingType\Image  && ! is_null($image) ) {
+			$image = new \com\microsoft\wc\methods\response\GetThingType\Image ($image);
 		}
 		$count = count($image);
 		if ($count < 0) {
@@ -355,7 +350,7 @@ class ThingTypeInfo {
 	}
 	
 	protected function createVersions() {
-		return new Versions();
+		return new \com\microsoft\wc\methods\response\GetThingType\Versions();
 	}
 
 	public function setVersions($versions) {
@@ -363,8 +358,8 @@ class ThingTypeInfo {
 	}
 
 	protected function validateVersions($versions) {
-		if ( ! $versions instanceof Versions  && ! is_null($versions) ) {
-			$versions = new Versions ($versions);
+		if ( ! $versions instanceof \com\microsoft\wc\methods\response\GetThingType\Versions  && ! is_null($versions) ) {
+			$versions = new \com\microsoft\wc\methods\response\GetThingType\Versions ($versions);
 		}
 	
 		return $versions;

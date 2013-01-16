@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\LoginName;
-use com\microsoft\wc\types\String1024;
+
 
 /**
  * @XmlEntity	(xml="UserPassCred")
@@ -36,7 +35,7 @@ class UserPassCred {
 	}
 	
 	protected function createUsername() {
-		return new LoginName();
+		return new \com\microsoft\wc\types\LoginName();
 	}
 
 	public function setUsername($username) {
@@ -44,8 +43,8 @@ class UserPassCred {
 	}
 
 	protected function validateUsername($username) {
-		if ( ! $username instanceof LoginName ) {
-			$username = new LoginName ($username);
+		if ( ! $username instanceof \com\microsoft\wc\types\LoginName ) {
+			$username = new \com\microsoft\wc\types\LoginName ($username);
 		}
 	
 		return $username;
@@ -59,7 +58,7 @@ class UserPassCred {
 	}
 	
 	protected function createPassword() {
-		return new String1024();
+		return new \com\microsoft\wc\types\String1024();
 	}
 
 	public function setPassword($password) {
@@ -67,8 +66,8 @@ class UserPassCred {
 	}
 
 	protected function validatePassword($password) {
-		if ( ! $password instanceof String1024 ) {
-			$password = new String1024 ($password);
+		if ( ! $password instanceof \com\microsoft\wc\types\String1024 ) {
+			$password = new \com\microsoft\wc\types\String1024 ($password);
 		}
 	
 		return $password;

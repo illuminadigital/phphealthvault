@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\PositiveLong;
+
 
 /**
  * @XmlEntity	(xml="SimpleFacebookCredential")
@@ -29,7 +29,7 @@ class SimpleFacebookCredential {
 	}
 	
 	protected function createUserId() {
-		return new PositiveLong();
+		return new \com\microsoft\wc\types\PositiveLong();
 	}
 
 	public function setUserId($userId) {
@@ -37,8 +37,8 @@ class SimpleFacebookCredential {
 	}
 
 	protected function validateUserId($userId) {
-		if ( ! $userId instanceof PositiveLong ) {
-			$userId = new PositiveLong ($userId);
+		if ( ! $userId instanceof \com\microsoft\wc\types\PositiveLong ) {
+			$userId = new \com\microsoft\wc\types\PositiveLong ($userId);
 		}
 	
 		return $userId;

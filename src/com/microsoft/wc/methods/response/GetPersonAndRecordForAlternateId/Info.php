@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetPersonAndRecordForAlternateId;
 
-use com\microsoft\wc\types\PersonInfo;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info {
 	}
 	
 	protected function createPersonInfo() {
-		return new PersonInfo();
+		return new \com\microsoft\wc\types\PersonInfo();
 	}
 
 	public function setPersonInfo($personInfo) {
@@ -37,8 +37,8 @@ class Info {
 	}
 
 	protected function validatePersonInfo($personInfo) {
-		if ( ! $personInfo instanceof PersonInfo ) {
-			$personInfo = new PersonInfo ($personInfo);
+		if ( ! $personInfo instanceof \com\microsoft\wc\types\PersonInfo ) {
+			$personInfo = new \com\microsoft\wc\types\PersonInfo ($personInfo);
 		}
 	
 		return $personInfo;

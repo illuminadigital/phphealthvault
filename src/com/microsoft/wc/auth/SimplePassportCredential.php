@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\Puid;
+
 
 /**
  * @XmlEntity	(xml="SimplePassportCredential")
@@ -29,7 +29,7 @@ class SimplePassportCredential {
 	}
 	
 	protected function createPuid() {
-		return new Puid();
+		return new \com\microsoft\wc\types\Puid();
 	}
 
 	public function setPuid($puid) {
@@ -37,8 +37,8 @@ class SimplePassportCredential {
 	}
 
 	protected function validatePuid($puid) {
-		if ( ! $puid instanceof Puid ) {
-			$puid = new Puid ($puid);
+		if ( ! $puid instanceof \com\microsoft\wc\types\Puid ) {
+			$puid = new \com\microsoft\wc\types\Puid ($puid);
 		}
 	
 		return $puid;

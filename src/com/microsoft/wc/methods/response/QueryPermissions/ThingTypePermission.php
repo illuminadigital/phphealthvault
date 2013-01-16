@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\QueryPermissions;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\methods\response\QueryPermissions\Permissions;
+
 
 /**
  * @XmlEntity	(xml="ThingTypePermission")
@@ -41,7 +40,7 @@ class ThingTypePermission {
 	}
 	
 	protected function createThingTypeId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setThingTypeId($thingTypeId) {
@@ -49,8 +48,8 @@ class ThingTypePermission {
 	}
 
 	protected function validateThingTypeId($thingTypeId) {
-		if ( ! $thingTypeId instanceof Guid ) {
-			$thingTypeId = new Guid ($thingTypeId);
+		if ( ! $thingTypeId instanceof \com\microsoft\wc\types\Guid ) {
+			$thingTypeId = new \com\microsoft\wc\types\Guid ($thingTypeId);
 		}
 	
 		return $thingTypeId;
@@ -64,7 +63,7 @@ class ThingTypePermission {
 	}
 	
 	protected function createOnlineAccessPermissions() {
-		return new Permissions();
+		return new \com\microsoft\wc\methods\response\QueryPermissions\Permissions();
 	}
 
 	public function setOnlineAccessPermissions($onlineAccessPermissions) {
@@ -72,8 +71,8 @@ class ThingTypePermission {
 	}
 
 	protected function validateOnlineAccessPermissions($onlineAccessPermissions) {
-		if ( ! $onlineAccessPermissions instanceof Permissions  && ! is_null($onlineAccessPermissions) ) {
-			$onlineAccessPermissions = new Permissions ($onlineAccessPermissions);
+		if ( ! $onlineAccessPermissions instanceof \com\microsoft\wc\methods\response\QueryPermissions\Permissions  && ! is_null($onlineAccessPermissions) ) {
+			$onlineAccessPermissions = new \com\microsoft\wc\methods\response\QueryPermissions\Permissions ($onlineAccessPermissions);
 		}
 	
 		return $onlineAccessPermissions;
@@ -87,7 +86,7 @@ class ThingTypePermission {
 	}
 	
 	protected function createOfflineAccessPermissions() {
-		return new Permissions();
+		return new \com\microsoft\wc\methods\response\QueryPermissions\Permissions();
 	}
 
 	public function setOfflineAccessPermissions($offlineAccessPermissions) {
@@ -95,8 +94,8 @@ class ThingTypePermission {
 	}
 
 	protected function validateOfflineAccessPermissions($offlineAccessPermissions) {
-		if ( ! $offlineAccessPermissions instanceof Permissions  && ! is_null($offlineAccessPermissions) ) {
-			$offlineAccessPermissions = new Permissions ($offlineAccessPermissions);
+		if ( ! $offlineAccessPermissions instanceof \com\microsoft\wc\methods\response\QueryPermissions\Permissions  && ! is_null($offlineAccessPermissions) ) {
+			$offlineAccessPermissions = new \com\microsoft\wc\methods\response\QueryPermissions\Permissions ($offlineAccessPermissions);
 		}
 	
 		return $offlineAccessPermissions;

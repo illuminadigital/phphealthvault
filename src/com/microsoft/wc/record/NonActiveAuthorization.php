@@ -1,13 +1,7 @@
 <?php
 namespace com\microsoft\wc\record;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\EmailAddress;
-use com\microsoft\wc\record\AuthorizedRecordState;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\record\AuthXml;
-use com\microsoft\wc\types\Base64;
-use com\microsoft\wc\types\String1024;
+
 
 /**
  * @XmlEntity	(xml="NonActiveAuthorization")
@@ -47,7 +41,7 @@ class NonActiveAuthorization {
 	protected $dateAuthExpires;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\record\AuthXml", name="auth-xml")
+	 * @XmlElement	(type="\com\microsoft\wc\auth\AuthXml", name="auth-xml")
 	 */
 	protected $authXml;
 
@@ -141,7 +135,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createRecordId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setRecordId($recordId) {
@@ -149,8 +143,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateRecordId($recordId) {
-		if ( ! $recordId instanceof Guid ) {
-			$recordId = new Guid ($recordId);
+		if ( ! $recordId instanceof \com\microsoft\wc\types\Guid ) {
+			$recordId = new \com\microsoft\wc\types\Guid ($recordId);
 		}
 	
 		return $recordId;
@@ -164,7 +158,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createEmailAddress() {
-		return new EmailAddress();
+		return new \com\microsoft\wc\types\EmailAddress();
 	}
 
 	public function setEmailAddress($emailAddress) {
@@ -172,8 +166,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateEmailAddress($emailAddress) {
-		if ( ! $emailAddress instanceof EmailAddress ) {
-			$emailAddress = new EmailAddress ($emailAddress);
+		if ( ! $emailAddress instanceof \com\microsoft\wc\types\EmailAddress ) {
+			$emailAddress = new \com\microsoft\wc\types\EmailAddress ($emailAddress);
 		}
 	
 		return $emailAddress;
@@ -210,7 +204,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createAuthorizedRecordState() {
-		return new AuthorizedRecordState();
+		return new \com\microsoft\wc\record\AuthorizedRecordState();
 	}
 
 	public function setAuthorizedRecordState($authorizedRecordState) {
@@ -218,8 +212,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateAuthorizedRecordState($authorizedRecordState) {
-		if ( ! $authorizedRecordState instanceof AuthorizedRecordState ) {
-			$authorizedRecordState = new AuthorizedRecordState ($authorizedRecordState);
+		if ( ! $authorizedRecordState instanceof \com\microsoft\wc\record\AuthorizedRecordState ) {
+			$authorizedRecordState = new \com\microsoft\wc\record\AuthorizedRecordState ($authorizedRecordState);
 		}
 	
 		return $authorizedRecordState;
@@ -233,7 +227,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createRecordDisplayName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setRecordDisplayName($recordDisplayName) {
@@ -241,8 +235,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateRecordDisplayName($recordDisplayName) {
-		if ( ! $recordDisplayName instanceof String255 ) {
-			$recordDisplayName = new String255 ($recordDisplayName);
+		if ( ! $recordDisplayName instanceof \com\microsoft\wc\types\String255 ) {
+			$recordDisplayName = new \com\microsoft\wc\types\String255 ($recordDisplayName);
 		}
 	
 		return $recordDisplayName;
@@ -279,7 +273,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createAuthXml() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setAuthXml($authXml) {
@@ -287,8 +281,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateAuthXml($authXml) {
-		if ( ! $authXml instanceof AuthXml ) {
-			$authXml = new AuthXml ($authXml);
+		if ( ! $authXml instanceof \com\microsoft\wc\auth\AuthXml ) {
+			$authXml = new \com\microsoft\wc\auth\AuthXml ($authXml);
 		}
 	
 		return $authXml;
@@ -371,7 +365,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createGrantorName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setGrantorName($grantorName) {
@@ -379,8 +373,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateGrantorName($grantorName) {
-		if ( ! $grantorName instanceof String255 ) {
-			$grantorName = new String255 ($grantorName);
+		if ( ! $grantorName instanceof \com\microsoft\wc\types\String255 ) {
+			$grantorName = new \com\microsoft\wc\types\String255 ($grantorName);
 		}
 	
 		return $grantorName;
@@ -394,7 +388,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createGrantorPersonId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setGrantorPersonId($grantorPersonId) {
@@ -402,8 +396,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateGrantorPersonId($grantorPersonId) {
-		if ( ! $grantorPersonId instanceof Guid ) {
-			$grantorPersonId = new Guid ($grantorPersonId);
+		if ( ! $grantorPersonId instanceof \com\microsoft\wc\types\Guid ) {
+			$grantorPersonId = new \com\microsoft\wc\types\Guid ($grantorPersonId);
 		}
 	
 		return $grantorPersonId;
@@ -417,7 +411,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createGranteeName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setGranteeName($granteeName) {
@@ -425,8 +419,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateGranteeName($granteeName) {
-		if ( ! $granteeName instanceof String255 ) {
-			$granteeName = new String255 ($granteeName);
+		if ( ! $granteeName instanceof \com\microsoft\wc\types\String255 ) {
+			$granteeName = new \com\microsoft\wc\types\String255 ($granteeName);
 		}
 	
 		return $granteeName;
@@ -440,7 +434,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createRecordAuthorizationToken() {
-		return new Base64();
+		return new \com\microsoft\wc\types\Base64();
 	}
 
 	public function setRecordAuthorizationToken($recordAuthorizationToken) {
@@ -448,8 +442,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateRecordAuthorizationToken($recordAuthorizationToken) {
-		if ( ! $recordAuthorizationToken instanceof Base64  && ! is_null($recordAuthorizationToken) ) {
-			$recordAuthorizationToken = new Base64 ($recordAuthorizationToken);
+		if ( ! $recordAuthorizationToken instanceof \com\microsoft\wc\types\Base64  && ! is_null($recordAuthorizationToken) ) {
+			$recordAuthorizationToken = new \com\microsoft\wc\types\Base64 ($recordAuthorizationToken);
 		}
 	
 		return $recordAuthorizationToken;
@@ -463,7 +457,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createEmailText() {
-		return new String1024();
+		return new \com\microsoft\wc\types\String1024();
 	}
 
 	public function setEmailText($emailText) {
@@ -471,8 +465,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateEmailText($emailText) {
-		if ( ! $emailText instanceof String1024  && ! is_null($emailText) ) {
-			$emailText = new String1024 ($emailText);
+		if ( ! $emailText instanceof \com\microsoft\wc\types\String1024  && ! is_null($emailText) ) {
+			$emailText = new \com\microsoft\wc\types\String1024 ($emailText);
 		}
 	
 		return $emailText;
@@ -509,7 +503,7 @@ class NonActiveAuthorization {
 	}
 	
 	protected function createRequestingApplicationId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setRequestingApplicationId($requestingApplicationId) {
@@ -517,8 +511,8 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateRequestingApplicationId($requestingApplicationId) {
-		if ( ! $requestingApplicationId instanceof Guid  && ! is_null($requestingApplicationId) ) {
-			$requestingApplicationId = new Guid ($requestingApplicationId);
+		if ( ! $requestingApplicationId instanceof \com\microsoft\wc\types\Guid  && ! is_null($requestingApplicationId) ) {
+			$requestingApplicationId = new \com\microsoft\wc\types\Guid ($requestingApplicationId);
 		}
 	
 		return $requestingApplicationId;

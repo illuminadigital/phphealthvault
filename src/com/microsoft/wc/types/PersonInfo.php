@@ -1,13 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\types\AppSettings;
-use com\microsoft\wc\types\Groups;
-use com\microsoft\wc\types\Culture;
-use com\microsoft\wc\types\Location;
-use com\microsoft\wc\types\Record;
+
 
 /**
  * @XmlEntity	(xml="PersonInfo")
@@ -89,7 +83,7 @@ class PersonInfo {
 	}
 	
 	protected function createPersonId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setPersonId($personId) {
@@ -97,8 +91,8 @@ class PersonInfo {
 	}
 
 	protected function validatePersonId($personId) {
-		if ( ! $personId instanceof Guid ) {
-			$personId = new Guid ($personId);
+		if ( ! $personId instanceof \com\microsoft\wc\types\Guid ) {
+			$personId = new \com\microsoft\wc\types\Guid ($personId);
 		}
 	
 		return $personId;
@@ -112,7 +106,7 @@ class PersonInfo {
 	}
 	
 	protected function createName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setName($name) {
@@ -120,8 +114,8 @@ class PersonInfo {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof String255 ) {
-			$name = new String255 ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\String255 ) {
+			$name = new \com\microsoft\wc\types\String255 ($name);
 		}
 	
 		return $name;
@@ -135,7 +129,7 @@ class PersonInfo {
 	}
 	
 	protected function createAppSettings() {
-		return new AppSettings();
+		return new \com\microsoft\wc\types\AppSettings();
 	}
 
 	public function setAppSettings($appSettings) {
@@ -143,8 +137,8 @@ class PersonInfo {
 	}
 
 	protected function validateAppSettings($appSettings) {
-		if ( ! $appSettings instanceof AppSettings  && ! is_null($appSettings) ) {
-			$appSettings = new AppSettings ($appSettings);
+		if ( ! $appSettings instanceof \com\microsoft\wc\types\AppSettings  && ! is_null($appSettings) ) {
+			$appSettings = new \com\microsoft\wc\types\AppSettings ($appSettings);
 		}
 	
 		return $appSettings;
@@ -158,7 +152,7 @@ class PersonInfo {
 	}
 	
 	protected function createSelectedRecordId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setSelectedRecordId($selectedRecordId) {
@@ -166,8 +160,8 @@ class PersonInfo {
 	}
 
 	protected function validateSelectedRecordId($selectedRecordId) {
-		if ( ! $selectedRecordId instanceof Guid  && ! is_null($selectedRecordId) ) {
-			$selectedRecordId = new Guid ($selectedRecordId);
+		if ( ! $selectedRecordId instanceof \com\microsoft\wc\types\Guid  && ! is_null($selectedRecordId) ) {
+			$selectedRecordId = new \com\microsoft\wc\types\Guid ($selectedRecordId);
 		}
 	
 		return $selectedRecordId;
@@ -212,8 +206,8 @@ class PersonInfo {
 	}
 
 	protected function validateRecord($record) {
-		if ( ! $record instanceof Record  && ! is_null($record) ) {
-			$record = new Record ($record);
+		if ( ! $record instanceof \com\microsoft\wc\types\Record  && ! is_null($record) ) {
+			$record = new \com\microsoft\wc\types\Record ($record);
 		}
 		$count = count($record);
 		if ($count < 0) {
@@ -240,7 +234,7 @@ class PersonInfo {
 	}
 	
 	protected function createGroups() {
-		return new Groups();
+		return new \com\microsoft\wc\types\Groups();
 	}
 
 	public function setGroups($groups) {
@@ -248,8 +242,8 @@ class PersonInfo {
 	}
 
 	protected function validateGroups($groups) {
-		if ( ! $groups instanceof Groups  && ! is_null($groups) ) {
-			$groups = new Groups ($groups);
+		if ( ! $groups instanceof \com\microsoft\wc\types\Groups  && ! is_null($groups) ) {
+			$groups = new \com\microsoft\wc\types\Groups ($groups);
 		}
 	
 		return $groups;
@@ -263,7 +257,7 @@ class PersonInfo {
 	}
 	
 	protected function createPreferredCulture() {
-		return new Culture();
+		return new \com\microsoft\wc\types\Culture();
 	}
 
 	public function setPreferredCulture($preferredCulture) {
@@ -271,8 +265,8 @@ class PersonInfo {
 	}
 
 	protected function validatePreferredCulture($preferredCulture) {
-		if ( ! $preferredCulture instanceof Culture  && ! is_null($preferredCulture) ) {
-			$preferredCulture = new Culture ($preferredCulture);
+		if ( ! $preferredCulture instanceof \com\microsoft\wc\types\Culture  && ! is_null($preferredCulture) ) {
+			$preferredCulture = new \com\microsoft\wc\types\Culture ($preferredCulture);
 		}
 	
 		return $preferredCulture;
@@ -286,7 +280,7 @@ class PersonInfo {
 	}
 	
 	protected function createPreferredUiculture() {
-		return new Culture();
+		return new \com\microsoft\wc\types\Culture();
 	}
 
 	public function setPreferredUiculture($preferredUiculture) {
@@ -294,8 +288,8 @@ class PersonInfo {
 	}
 
 	protected function validatePreferredUiculture($preferredUiculture) {
-		if ( ! $preferredUiculture instanceof Culture  && ! is_null($preferredUiculture) ) {
-			$preferredUiculture = new Culture ($preferredUiculture);
+		if ( ! $preferredUiculture instanceof \com\microsoft\wc\types\Culture  && ! is_null($preferredUiculture) ) {
+			$preferredUiculture = new \com\microsoft\wc\types\Culture ($preferredUiculture);
 		}
 	
 		return $preferredUiculture;
@@ -309,7 +303,7 @@ class PersonInfo {
 	}
 	
 	protected function createLocation() {
-		return new Location();
+		return new \com\microsoft\wc\types\Location();
 	}
 
 	public function setLocation($location) {
@@ -317,8 +311,8 @@ class PersonInfo {
 	}
 
 	protected function validateLocation($location) {
-		if ( ! $location instanceof Location  && ! is_null($location) ) {
-			$location = new Location ($location);
+		if ( ! $location instanceof \com\microsoft\wc\types\Location  && ! is_null($location) ) {
+			$location = new \com\microsoft\wc\types\Location ($location);
 		}
 	
 		return $location;

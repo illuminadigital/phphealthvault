@@ -1,15 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\thing\ThingKey;
-use com\microsoft\wc\thing\ThingType;
-use com\microsoft\wc\thing\ThingState;
-use com\microsoft\wc\thing\Audit2;
-use com\microsoft\wc\thing\BlobPayload;
-use com\microsoft\wc\thing\EffectivePermissions;
-use com\microsoft\wc\types\Stringz512;
-use com\microsoft\wc\thing\SignatureInfo;
-use com\microsoft\wc\thing\DataXml;
+
 
 /**
  * @XmlEntity	(xml="Thing2")
@@ -101,7 +93,7 @@ class Thing2 {
 	}
 	
 	protected function createThingId() {
-		return new ThingKey();
+		return new \com\microsoft\wc\thing\ThingKey();
 	}
 
 	public function setThingId($thingId) {
@@ -109,8 +101,8 @@ class Thing2 {
 	}
 
 	protected function validateThingId($thingId) {
-		if ( ! $thingId instanceof ThingKey  && ! is_null($thingId) ) {
-			$thingId = new ThingKey ($thingId);
+		if ( ! $thingId instanceof \com\microsoft\wc\thing\ThingKey  && ! is_null($thingId) ) {
+			$thingId = new \com\microsoft\wc\thing\ThingKey ($thingId);
 		}
 	
 		return $thingId;
@@ -124,7 +116,7 @@ class Thing2 {
 	}
 	
 	protected function createTypeId() {
-		return new ThingType();
+		return new \com\microsoft\wc\thing\ThingType();
 	}
 
 	public function setTypeId($typeId) {
@@ -132,8 +124,8 @@ class Thing2 {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof ThingType  && ! is_null($typeId) ) {
-			$typeId = new ThingType ($typeId);
+		if ( ! $typeId instanceof \com\microsoft\wc\thing\ThingType  && ! is_null($typeId) ) {
+			$typeId = new \com\microsoft\wc\thing\ThingType ($typeId);
 		}
 	
 		return $typeId;
@@ -147,7 +139,7 @@ class Thing2 {
 	}
 	
 	protected function createThingState() {
-		return new ThingState();
+		return new \com\microsoft\wc\thing\ThingState();
 	}
 
 	public function setThingState($thingState) {
@@ -155,8 +147,8 @@ class Thing2 {
 	}
 
 	protected function validateThingState($thingState) {
-		if ( ! $thingState instanceof ThingState  && ! is_null($thingState) ) {
-			$thingState = new ThingState ($thingState);
+		if ( ! $thingState instanceof \com\microsoft\wc\thing\ThingState  && ! is_null($thingState) ) {
+			$thingState = new \com\microsoft\wc\thing\ThingState ($thingState);
 		}
 	
 		return $thingState;
@@ -216,7 +208,7 @@ class Thing2 {
 	}
 	
 	protected function createCreated() {
-		return new Audit2();
+		return new \com\microsoft\wc\thing\Audit2();
 	}
 
 	public function setCreated($created) {
@@ -224,8 +216,8 @@ class Thing2 {
 	}
 
 	protected function validateCreated($created) {
-		if ( ! $created instanceof Audit2  && ! is_null($created) ) {
-			$created = new Audit2 ($created);
+		if ( ! $created instanceof \com\microsoft\wc\thing\Audit2  && ! is_null($created) ) {
+			$created = new \com\microsoft\wc\thing\Audit2 ($created);
 		}
 	
 		return $created;
@@ -239,7 +231,7 @@ class Thing2 {
 	}
 	
 	protected function createUpdated() {
-		return new Audit2();
+		return new \com\microsoft\wc\thing\Audit2();
 	}
 
 	public function setUpdated($updated) {
@@ -247,8 +239,8 @@ class Thing2 {
 	}
 
 	protected function validateUpdated($updated) {
-		if ( ! $updated instanceof Audit2  && ! is_null($updated) ) {
-			$updated = new Audit2 ($updated);
+		if ( ! $updated instanceof \com\microsoft\wc\thing\Audit2  && ! is_null($updated) ) {
+			$updated = new \com\microsoft\wc\thing\Audit2 ($updated);
 		}
 	
 		return $updated;
@@ -270,8 +262,8 @@ class Thing2 {
 	}
 
 	protected function validateDataXml($dataXml) {
-		if ( ! $dataXml instanceof DataXml  && ! is_null($dataXml) ) {
-			$dataXml = new DataXml ($dataXml);
+		if ( ! $dataXml instanceof \com\microsoft\wc\thing\DataXml  && ! is_null($dataXml) ) {
+			$dataXml = new \com\microsoft\wc\thing\DataXml ($dataXml);
 		}
 		$count = count($dataXml);
 		if ($count < 0) {
@@ -298,7 +290,7 @@ class Thing2 {
 	}
 	
 	protected function createBlobPayload() {
-		return new BlobPayload();
+		return new \com\microsoft\wc\thing\BlobPayload();
 	}
 
 	public function setBlobPayload($blobPayload) {
@@ -306,8 +298,8 @@ class Thing2 {
 	}
 
 	protected function validateBlobPayload($blobPayload) {
-		if ( ! $blobPayload instanceof BlobPayload  && ! is_null($blobPayload) ) {
-			$blobPayload = new BlobPayload ($blobPayload);
+		if ( ! $blobPayload instanceof \com\microsoft\wc\thing\BlobPayload  && ! is_null($blobPayload) ) {
+			$blobPayload = new \com\microsoft\wc\thing\BlobPayload ($blobPayload);
 		}
 	
 		return $blobPayload;
@@ -321,7 +313,7 @@ class Thing2 {
 	}
 	
 	protected function createEffPermissions() {
-		return new EffectivePermissions();
+		return new \com\microsoft\wc\thing\EffectivePermissions();
 	}
 
 	public function setEffPermissions($effPermissions) {
@@ -329,8 +321,8 @@ class Thing2 {
 	}
 
 	protected function validateEffPermissions($effPermissions) {
-		if ( ! $effPermissions instanceof EffectivePermissions  && ! is_null($effPermissions) ) {
-			$effPermissions = new EffectivePermissions ($effPermissions);
+		if ( ! $effPermissions instanceof \com\microsoft\wc\thing\EffectivePermissions  && ! is_null($effPermissions) ) {
+			$effPermissions = new \com\microsoft\wc\thing\EffectivePermissions ($effPermissions);
 		}
 	
 		return $effPermissions;
@@ -344,7 +336,7 @@ class Thing2 {
 	}
 	
 	protected function createTags() {
-		return new Stringz512();
+		return new \com\microsoft\wc\types\Stringz512();
 	}
 
 	public function setTags($tags) {
@@ -352,8 +344,8 @@ class Thing2 {
 	}
 
 	protected function validateTags($tags) {
-		if ( ! $tags instanceof Stringz512  && ! is_null($tags) ) {
-			$tags = new Stringz512 ($tags);
+		if ( ! $tags instanceof \com\microsoft\wc\types\Stringz512  && ! is_null($tags) ) {
+			$tags = new \com\microsoft\wc\types\Stringz512 ($tags);
 		}
 	
 		return $tags;
@@ -367,7 +359,7 @@ class Thing2 {
 	}
 	
 	protected function createSignatureInfo() {
-		return new SignatureInfo();
+		return new \com\microsoft\wc\thing\SignatureInfo();
 	}
 
 	public function setSignatureInfo($signatureInfo) {
@@ -375,8 +367,8 @@ class Thing2 {
 	}
 
 	protected function validateSignatureInfo($signatureInfo) {
-		if ( ! $signatureInfo instanceof SignatureInfo  && ! is_null($signatureInfo) ) {
-			$signatureInfo = new SignatureInfo ($signatureInfo);
+		if ( ! $signatureInfo instanceof \com\microsoft\wc\thing\SignatureInfo  && ! is_null($signatureInfo) ) {
+			$signatureInfo = new \com\microsoft\wc\thing\SignatureInfo ($signatureInfo);
 		}
 	
 		return $signatureInfo;

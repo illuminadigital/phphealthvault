@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\types\Stringnz;
+
 
 /**
  * @XmlEntity	(xml="VocabularyAuthorization")
@@ -34,7 +34,7 @@ class VocabularyAuthorization {
 	}
 	
 	protected function createFamily() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setFamily($family) {
@@ -42,8 +42,8 @@ class VocabularyAuthorization {
 	}
 
 	protected function validateFamily($family) {
-		if ( ! $family instanceof Stringnz ) {
-			$family = new Stringnz ($family);
+		if ( ! $family instanceof \com\microsoft\wc\types\Stringnz ) {
+			$family = new \com\microsoft\wc\types\Stringnz ($family);
 		}
 	
 		return $family;
@@ -57,7 +57,7 @@ class VocabularyAuthorization {
 	}
 	
 	protected function createName() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setName($name) {
@@ -65,8 +65,8 @@ class VocabularyAuthorization {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof Stringnz  && ! is_null($name) ) {
-			$name = new Stringnz ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($name) ) {
+			$name = new \com\microsoft\wc\types\Stringnz ($name);
 		}
 	
 		return $name;

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetAuthorizedConnectRequests;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="ConnectRequest")
@@ -46,7 +46,7 @@ class ConnectRequest {
 	}
 	
 	protected function createPersonId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setPersonId($personId) {
@@ -54,8 +54,8 @@ class ConnectRequest {
 	}
 
 	protected function validatePersonId($personId) {
-		if ( ! $personId instanceof Guid ) {
-			$personId = new Guid ($personId);
+		if ( ! $personId instanceof \com\microsoft\wc\types\Guid ) {
+			$personId = new \com\microsoft\wc\types\Guid ($personId);
 		}
 	
 		return $personId;
@@ -92,7 +92,7 @@ class ConnectRequest {
 	}
 	
 	protected function createAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setAppId($appId) {
@@ -100,8 +100,8 @@ class ConnectRequest {
 	}
 
 	protected function validateAppId($appId) {
-		if ( ! $appId instanceof Guid ) {
-			$appId = new Guid ($appId);
+		if ( ! $appId instanceof \com\microsoft\wc\types\Guid ) {
+			$appId = new \com\microsoft\wc\types\Guid ($appId);
 		}
 	
 		return $appId;

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\subscription;
 
-use com\microsoft\wc\subscription\RecordItemChangedEventFilters;
+
 
 /**
  * @XmlEntity	(xml="RecordItemChangedEvent")
@@ -29,7 +29,7 @@ class RecordItemChangedEvent {
 	}
 	
 	protected function createFilters() {
-		return new RecordItemChangedEventFilters();
+		return new \com\microsoft\wc\subscription\RecordItemChangedEventFilters();
 	}
 
 	public function setFilters($filters) {
@@ -37,8 +37,8 @@ class RecordItemChangedEvent {
 	}
 
 	protected function validateFilters($filters) {
-		if ( ! $filters instanceof RecordItemChangedEventFilters ) {
-			$filters = new RecordItemChangedEventFilters ($filters);
+		if ( ! $filters instanceof \com\microsoft\wc\subscription\RecordItemChangedEventFilters ) {
+			$filters = new \com\microsoft\wc\subscription\RecordItemChangedEventFilters ($filters);
 		}
 	
 		return $filters;

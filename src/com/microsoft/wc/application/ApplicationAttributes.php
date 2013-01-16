@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\application;
 
-use com\microsoft\wc\types\Stringnz;
+
 
 /**
  * @XmlEntity	(xml="ApplicationAttributes")
@@ -35,8 +35,8 @@ class ApplicationAttributes {
 	}
 
 	protected function validateAppAttribute($appAttribute) {
-		if ( ! $appAttribute instanceof Stringnz ) {
-			$appAttribute = new Stringnz ($appAttribute);
+		if ( ! $appAttribute instanceof \com\microsoft\wc\types\Stringnz ) {
+			$appAttribute = new \com\microsoft\wc\types\Stringnz ($appAttribute);
 		}
 		$count = count($appAttribute);
 		if ($count < 1) {

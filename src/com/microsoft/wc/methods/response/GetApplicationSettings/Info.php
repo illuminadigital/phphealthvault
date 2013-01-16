@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetApplicationSettings;
 
-use com\microsoft\wc\types\AppSettings;
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -36,7 +35,7 @@ class Info {
 	}
 	
 	protected function createAppSettings() {
-		return new AppSettings();
+		return new \com\microsoft\wc\types\AppSettings();
 	}
 
 	public function setAppSettings($appSettings) {
@@ -44,8 +43,8 @@ class Info {
 	}
 
 	protected function validateAppSettings($appSettings) {
-		if ( ! $appSettings instanceof AppSettings  && ! is_null($appSettings) ) {
-			$appSettings = new AppSettings ($appSettings);
+		if ( ! $appSettings instanceof \com\microsoft\wc\types\AppSettings  && ! is_null($appSettings) ) {
+			$appSettings = new \com\microsoft\wc\types\AppSettings ($appSettings);
 		}
 	
 		return $appSettings;
@@ -59,7 +58,7 @@ class Info {
 	}
 	
 	protected function createSelectedRecordId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setSelectedRecordId($selectedRecordId) {
@@ -67,8 +66,8 @@ class Info {
 	}
 
 	protected function validateSelectedRecordId($selectedRecordId) {
-		if ( ! $selectedRecordId instanceof Guid  && ! is_null($selectedRecordId) ) {
-			$selectedRecordId = new Guid ($selectedRecordId);
+		if ( ! $selectedRecordId instanceof \com\microsoft\wc\types\Guid  && ! is_null($selectedRecordId) ) {
+			$selectedRecordId = new \com\microsoft\wc\types\Guid ($selectedRecordId);
 		}
 	
 		return $selectedRecordId;

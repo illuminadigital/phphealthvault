@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\application;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\application\PublicKeys;
+
 
 /**
  * @XmlEntity	(xml="SodaAppConfig")
@@ -48,7 +46,7 @@ class SodaAppConfig {
 	}
 	
 	protected function createId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setId($id) {
@@ -56,8 +54,8 @@ class SodaAppConfig {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 	
 		return $id;
@@ -71,7 +69,7 @@ class SodaAppConfig {
 	}
 	
 	protected function createParentId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setParentId($parentId) {
@@ -79,8 +77,8 @@ class SodaAppConfig {
 	}
 
 	protected function validateParentId($parentId) {
-		if ( ! $parentId instanceof Guid ) {
-			$parentId = new Guid ($parentId);
+		if ( ! $parentId instanceof \com\microsoft\wc\types\Guid ) {
+			$parentId = new \com\microsoft\wc\types\Guid ($parentId);
 		}
 	
 		return $parentId;
@@ -94,7 +92,7 @@ class SodaAppConfig {
 	}
 	
 	protected function createName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setName($name) {
@@ -102,8 +100,8 @@ class SodaAppConfig {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof String255 ) {
-			$name = new String255 ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\String255 ) {
+			$name = new \com\microsoft\wc\types\String255 ($name);
 		}
 	
 		return $name;
@@ -117,7 +115,7 @@ class SodaAppConfig {
 	}
 	
 	protected function createPublicKeys() {
-		return new PublicKeys();
+		return new \com\microsoft\wc\application\PublicKeys();
 	}
 
 	public function setPublicKeys($publicKeys) {
@@ -125,8 +123,8 @@ class SodaAppConfig {
 	}
 
 	protected function validatePublicKeys($publicKeys) {
-		if ( ! $publicKeys instanceof PublicKeys ) {
-			$publicKeys = new PublicKeys ($publicKeys);
+		if ( ! $publicKeys instanceof \com\microsoft\wc\application\PublicKeys ) {
+			$publicKeys = new \com\microsoft\wc\application\PublicKeys ($publicKeys);
 		}
 	
 		return $publicKeys;

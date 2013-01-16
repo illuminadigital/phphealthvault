@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\types\CodableValue;
+
 
 /**
  * @XmlEntity	(xml="medication-routes")
@@ -36,8 +36,8 @@ class MedicationRoutes {
 	}
 
 	protected function validateRoute($route) {
-		if ( ! $route instanceof CodableValue ) {
-			$route = new CodableValue ($route);
+		if ( ! $route instanceof \com\microsoft\wc\types\CodableValue ) {
+			$route = new \com\microsoft\wc\types\CodableValue ($route);
 		}
 		$count = count($route);
 		if ($count < 1) {

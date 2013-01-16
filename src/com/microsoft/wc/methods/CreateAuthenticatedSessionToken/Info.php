@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\CreateAuthenticatedSessionToken;
 
-use com\microsoft\wc\methods\CreateAuthenticatedSessionToken\AuthTokenInfo;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createAuthInfo() {
-		return new AuthTokenInfo();
+		return new \com\microsoft\wc\methods\CreateAuthenticatedSessionToken\AuthTokenInfo();
 	}
 
 	public function setAuthInfo($authInfo) {
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAuthInfo($authInfo) {
-		if ( ! $authInfo instanceof AuthTokenInfo ) {
-			$authInfo = new AuthTokenInfo ($authInfo);
+		if ( ! $authInfo instanceof \com\microsoft\wc\methods\CreateAuthenticatedSessionToken\AuthTokenInfo ) {
+			$authInfo = new \com\microsoft\wc\methods\CreateAuthenticatedSessionToken\AuthTokenInfo ($authInfo);
 		}
 	
 		return $authInfo;

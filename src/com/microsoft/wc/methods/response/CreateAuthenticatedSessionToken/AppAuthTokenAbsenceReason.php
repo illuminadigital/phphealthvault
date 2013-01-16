@@ -1,7 +1,6 @@
 <?php
 namespace com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken;
 
-use com\microsoft\wc\types\Guid;
 
 
 /**
@@ -30,7 +29,7 @@ class AppAuthTokenAbsenceReason extends AuthTokenAbsenceReason {
 	}
 	
 	protected function createAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setAppId($appId) {
@@ -38,8 +37,8 @@ class AppAuthTokenAbsenceReason extends AuthTokenAbsenceReason {
 	}
 
 	protected function validateAppId($appId) {
-		if ( ! $appId instanceof Guid ) {
-			$appId = new Guid ($appId);
+		if ( ! $appId instanceof \com\microsoft\wc\types\Guid ) {
+			$appId = new \com\microsoft\wc\types\Guid ($appId);
 		}
 	
 		return $appId;

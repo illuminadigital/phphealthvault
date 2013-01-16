@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\subscription;
 
-use com\microsoft\wc\subscription\String128nw;
-use com\microsoft\wc\subscription\EventingKeyVersionId;
+
 
 /**
  * @XmlEntity	(xml="HVEventingSharedKey")
@@ -14,7 +13,7 @@ class HVEventingSharedKey {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\subscription\String128nw", name="notification-key")
+	 * @XmlElement	(type="\com\microsoft\wc\types\String128nw", name="notification-key")
 	 */
 	protected $notificationKey;
 
@@ -36,7 +35,7 @@ class HVEventingSharedKey {
 	}
 	
 	protected function createNotificationKey() {
-		return new String128nw();
+		return new \com\microsoft\wc\types\String128nw();
 	}
 
 	public function setNotificationKey($notificationKey) {
@@ -44,8 +43,8 @@ class HVEventingSharedKey {
 	}
 
 	protected function validateNotificationKey($notificationKey) {
-		if ( ! $notificationKey instanceof String128nw ) {
-			$notificationKey = new String128nw ($notificationKey);
+		if ( ! $notificationKey instanceof \com\microsoft\wc\types\String128nw ) {
+			$notificationKey = new \com\microsoft\wc\types\String128nw ($notificationKey);
 		}
 	
 		return $notificationKey;
@@ -59,7 +58,7 @@ class HVEventingSharedKey {
 	}
 	
 	protected function createNotificationKeyVersionId() {
-		return new EventingKeyVersionId();
+		return new \com\microsoft\wc\subscription\EventingKeyVersionId();
 	}
 
 	public function setNotificationKeyVersionId($notificationKeyVersionId) {
@@ -67,8 +66,8 @@ class HVEventingSharedKey {
 	}
 
 	protected function validateNotificationKeyVersionId($notificationKeyVersionId) {
-		if ( ! $notificationKeyVersionId instanceof EventingKeyVersionId ) {
-			$notificationKeyVersionId = new EventingKeyVersionId ($notificationKeyVersionId);
+		if ( ! $notificationKeyVersionId instanceof \com\microsoft\wc\subscription\EventingKeyVersionId ) {
+			$notificationKeyVersionId = new \com\microsoft\wc\subscription\EventingKeyVersionId ($notificationKeyVersionId);
 		}
 	
 		return $notificationKeyVersionId;

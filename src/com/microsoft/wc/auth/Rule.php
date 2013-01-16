@@ -1,10 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\String16;
-use com\microsoft\wc\types\CultureSpecificString1024;
-use com\microsoft\wc\types\Permission;
-use com\microsoft\wc\auth\Set;
+
 
 /**
  * @XmlEntity	(xml="Rule")
@@ -80,8 +77,8 @@ class Rule {
 	}
 
 	protected function validateReason($reason) {
-		if ( ! $reason instanceof CultureSpecificString1024  && ! is_null($reason) ) {
-			$reason = new CultureSpecificString1024 ($reason);
+		if ( ! $reason instanceof \com\microsoft\wc\types\CultureSpecificString1024  && ! is_null($reason) ) {
+			$reason = new \com\microsoft\wc\types\CultureSpecificString1024 ($reason);
 		}
 		$count = count($reason);
 		if ($count < 0) {
@@ -139,8 +136,8 @@ class Rule {
 	}
 
 	protected function validatePermission($permission) {
-		if ( ! $permission instanceof Permission ) {
-			$permission = new Permission ($permission);
+		if ( ! $permission instanceof \com\microsoft\wc\types\Permission ) {
+			$permission = new \com\microsoft\wc\types\Permission ($permission);
 		}
 		$count = count($permission);
 		if ($count < 1) {
@@ -178,8 +175,8 @@ class Rule {
 	}
 
 	protected function validateTargetSet($targetSet) {
-		if ( ! $targetSet instanceof Set  && ! is_null($targetSet) ) {
-			$targetSet = new Set ($targetSet);
+		if ( ! $targetSet instanceof \com\microsoft\wc\auth\Set  && ! is_null($targetSet) ) {
+			$targetSet = new \com\microsoft\wc\auth\Set ($targetSet);
 		}
 		$count = count($targetSet);
 		if ($count < 0) {
@@ -214,8 +211,8 @@ class Rule {
 	}
 
 	protected function validateExceptionSet($exceptionSet) {
-		if ( ! $exceptionSet instanceof Set  && ! is_null($exceptionSet) ) {
-			$exceptionSet = new Set ($exceptionSet);
+		if ( ! $exceptionSet instanceof \com\microsoft\wc\auth\Set  && ! is_null($exceptionSet) ) {
+			$exceptionSet = new \com\microsoft\wc\auth\Set ($exceptionSet);
 		}
 		$count = count($exceptionSet);
 		if ($count < 0) {
@@ -288,7 +285,7 @@ class Rule {
 	}
 	
 	protected function createName() {
-		return new String16();
+		return new \com\microsoft\wc\types\String16();
 	}
 
 	public function setName($name) {
@@ -296,8 +293,8 @@ class Rule {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof String16  && ! is_null($name) ) {
-			$name = new String16 ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\String16  && ! is_null($name) ) {
+			$name = new \com\microsoft\wc\types\String16 ($name);
 		}
 	
 		return $name;

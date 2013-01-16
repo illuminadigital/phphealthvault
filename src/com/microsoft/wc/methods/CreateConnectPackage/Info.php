@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\CreateConnectPackage;
 
-use com\microsoft\wc\types\Stringnz;
-use com\microsoft\wc\thing\Thing;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -77,7 +76,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createFriendlyName() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setFriendlyName($friendlyName) {
@@ -85,8 +84,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateFriendlyName($friendlyName) {
-		if ( ! $friendlyName instanceof Stringnz ) {
-			$friendlyName = new Stringnz ($friendlyName);
+		if ( ! $friendlyName instanceof \com\microsoft\wc\types\Stringnz ) {
+			$friendlyName = new \com\microsoft\wc\types\Stringnz ($friendlyName);
 		}
 	
 		return $friendlyName;
@@ -100,7 +99,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createQuestion() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setQuestion($question) {
@@ -108,8 +107,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateQuestion($question) {
-		if ( ! $question instanceof Stringnz ) {
-			$question = new Stringnz ($question);
+		if ( ! $question instanceof \com\microsoft\wc\types\Stringnz ) {
+			$question = new \com\microsoft\wc\types\Stringnz ($question);
 		}
 	
 		return $question;
@@ -123,7 +122,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createExternalId() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setExternalId($externalId) {
@@ -131,8 +130,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateExternalId($externalId) {
-		if ( ! $externalId instanceof Stringnz ) {
-			$externalId = new Stringnz ($externalId);
+		if ( ! $externalId instanceof \com\microsoft\wc\types\Stringnz ) {
+			$externalId = new \com\microsoft\wc\types\Stringnz ($externalId);
 		}
 	
 		return $externalId;
@@ -146,7 +145,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createPackage() {
-		return new Thing();
+		return new \com\microsoft\wc\thing\Thing();
 	}
 
 	public function setPackage($package) {
@@ -154,8 +153,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePackage($package) {
-		if ( ! $package instanceof Thing ) {
-			$package = new Thing ($package);
+		if ( ! $package instanceof \com\microsoft\wc\thing\Thing ) {
+			$package = new \com\microsoft\wc\thing\Thing ($package);
 		}
 	
 		return $package;

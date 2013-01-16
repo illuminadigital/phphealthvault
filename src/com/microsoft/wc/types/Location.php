@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\String3nw;
+
 
 /**
  * @XmlEntity	(xml="Location")
@@ -34,7 +34,7 @@ class Location {
 	}
 	
 	protected function createCountry() {
-		return new String3nw();
+		return new \com\microsoft\wc\types\String3nw();
 	}
 
 	public function setCountry($country) {
@@ -42,8 +42,8 @@ class Location {
 	}
 
 	protected function validateCountry($country) {
-		if ( ! $country instanceof String3nw ) {
-			$country = new String3nw ($country);
+		if ( ! $country instanceof \com\microsoft\wc\types\String3nw ) {
+			$country = new \com\microsoft\wc\types\String3nw ($country);
 		}
 	
 		return $country;
@@ -57,7 +57,7 @@ class Location {
 	}
 	
 	protected function createStateProvince() {
-		return new String3nw();
+		return new \com\microsoft\wc\types\String3nw();
 	}
 
 	public function setStateProvince($stateProvince) {
@@ -65,8 +65,8 @@ class Location {
 	}
 
 	protected function validateStateProvince($stateProvince) {
-		if ( ! $stateProvince instanceof String3nw  && ! is_null($stateProvince) ) {
-			$stateProvince = new String3nw ($stateProvince);
+		if ( ! $stateProvince instanceof \com\microsoft\wc\types\String3nw  && ! is_null($stateProvince) ) {
+			$stateProvince = new \com\microsoft\wc\types\String3nw ($stateProvince);
 		}
 	
 		return $stateProvince;

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\String255nw;
+
 
 /**
  * @XmlEntity	(xml="IntegratedWindowsCredential")
@@ -29,7 +29,7 @@ class IntegratedWindowsCredential {
 	}
 	
 	protected function createSid() {
-		return new String255nw();
+		return new \com\microsoft\wc\types\String255nw();
 	}
 
 	public function setSid($sid) {
@@ -37,8 +37,8 @@ class IntegratedWindowsCredential {
 	}
 
 	protected function validateSid($sid) {
-		if ( ! $sid instanceof String255nw ) {
-			$sid = new String255nw ($sid);
+		if ( ! $sid instanceof \com\microsoft\wc\types\String255nw ) {
+			$sid = new \com\microsoft\wc\types\String255nw ($sid);
 		}
 	
 		return $sid;

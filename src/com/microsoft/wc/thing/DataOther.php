@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\types\Stringz1024;
+
 
 /**
  * @XmlEntity	(xml="DataOther")
@@ -33,7 +33,7 @@ class DataOther {
 	}
 	
 	protected function createContentType() {
-		return new Stringz1024();
+		return new \com\microsoft\wc\types\Stringz1024();
 	}
 
 	public function setContentType($contentType) {
@@ -41,8 +41,8 @@ class DataOther {
 	}
 
 	protected function validateContentType($contentType) {
-		if ( ! $contentType instanceof Stringz1024  && ! is_null($contentType) ) {
-			$contentType = new Stringz1024 ($contentType);
+		if ( ! $contentType instanceof \com\microsoft\wc\types\Stringz1024  && ! is_null($contentType) ) {
+			$contentType = new \com\microsoft\wc\types\Stringz1024 ($contentType);
 		}
 	
 		return $contentType;
@@ -56,7 +56,7 @@ class DataOther {
 	}
 	
 	protected function createContentEncoding() {
-		return new Stringz1024();
+		return new \com\microsoft\wc\types\Stringz1024();
 	}
 
 	public function setContentEncoding($contentEncoding) {
@@ -64,8 +64,8 @@ class DataOther {
 	}
 
 	protected function validateContentEncoding($contentEncoding) {
-		if ( ! $contentEncoding instanceof Stringz1024  && ! is_null($contentEncoding) ) {
-			$contentEncoding = new Stringz1024 ($contentEncoding);
+		if ( ! $contentEncoding instanceof \com\microsoft\wc\types\Stringz1024  && ! is_null($contentEncoding) ) {
+			$contentEncoding = new \com\microsoft\wc\types\Stringz1024 ($contentEncoding);
 		}
 	
 		return $contentEncoding;

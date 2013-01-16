@@ -3,11 +3,10 @@ namespace com\microsoft\wc\types;
 
 
 
-
 /**
  * @XmlEntity	(xml="CultureSpecificUrl")
  */
-class CultureSpecificUrl extends Url {
+class CultureSpecificUrl extends \com\microsoft\wc\types\Url {
 	/**
 	 * The CultureSpecific... classes are intended for use with data that can be localized for one or more languages and cultures.
 	 * The CultureSpecific... classes should be upward compatibile with the base types.

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetServiceDefinition2;
 
-use com\microsoft\wc\methods\response\GetServiceDefinition2\ShellRedirectToken;
+
 
 /**
  * @XmlEntity	(xml="Shell")
@@ -94,8 +94,8 @@ class Shell {
 	}
 
 	protected function validateRedirectToken($redirectToken) {
-		if ( ! $redirectToken instanceof ShellRedirectToken  && ! is_null($redirectToken) ) {
-			$redirectToken = new ShellRedirectToken ($redirectToken);
+		if ( ! $redirectToken instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\ShellRedirectToken  && ! is_null($redirectToken) ) {
+			$redirectToken = new \com\microsoft\wc\methods\response\GetServiceDefinition2\ShellRedirectToken ($redirectToken);
 		}
 		$count = count($redirectToken);
 		if ($count < 0) {

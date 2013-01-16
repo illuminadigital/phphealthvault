@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetThings;
 
-use com\microsoft\wc\methods\GetThings\ThingRequestGroup;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateGroup($group) {
-		if ( ! $group instanceof ThingRequestGroup ) {
-			$group = new ThingRequestGroup ($group);
+		if ( ! $group instanceof \com\microsoft\wc\methods\GetThings\ThingRequestGroup ) {
+			$group = new \com\microsoft\wc\methods\GetThings\ThingRequestGroup ($group);
 		}
 		$count = count($group);
 		if ($count < 1) {

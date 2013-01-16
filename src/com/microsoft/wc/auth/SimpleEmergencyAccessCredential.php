@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\String128nw;
+
 
 /**
  * @XmlEntity	(xml="SimpleEmergencyAccessCredential")
@@ -28,7 +28,7 @@ class SimpleEmergencyAccessCredential {
 	}
 	
 	protected function createAccessCode() {
-		return new String128nw();
+		return new \com\microsoft\wc\types\String128nw();
 	}
 
 	public function setAccessCode($accessCode) {
@@ -36,8 +36,8 @@ class SimpleEmergencyAccessCredential {
 	}
 
 	protected function validateAccessCode($accessCode) {
-		if ( ! $accessCode instanceof String128nw ) {
-			$accessCode = new String128nw ($accessCode);
+		if ( ! $accessCode instanceof \com\microsoft\wc\types\String128nw ) {
+			$accessCode = new \com\microsoft\wc\types\String128nw ($accessCode);
 		}
 	
 		return $accessCode;

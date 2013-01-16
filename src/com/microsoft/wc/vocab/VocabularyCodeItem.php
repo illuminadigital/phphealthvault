@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\vocab\InfoXml;
+
 
 /**
  * @XmlEntity	(xml="VocabularyCodeItem")
@@ -116,7 +116,7 @@ class VocabularyCodeItem {
 	}
 	
 	protected function createInfoXml() {
-		return new InfoXml();
+		return new \com\microsoft\wc\vocab\InfoXml();
 	}
 
 	public function setInfoXml($infoXml) {
@@ -124,8 +124,8 @@ class VocabularyCodeItem {
 	}
 
 	protected function validateInfoXml($infoXml) {
-		if ( ! $infoXml instanceof InfoXml  && ! is_null($infoXml) ) {
-			$infoXml = new InfoXml ($infoXml);
+		if ( ! $infoXml instanceof \com\microsoft\wc\vocab\InfoXml  && ! is_null($infoXml) ) {
+			$infoXml = new \com\microsoft\wc\vocab\InfoXml ($infoXml);
 		}
 	
 		return $infoXml;

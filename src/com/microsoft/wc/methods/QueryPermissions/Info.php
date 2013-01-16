@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\QueryPermissions;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateThingTypeId($thingTypeId) {
-		if ( ! $thingTypeId instanceof Guid ) {
-			$thingTypeId = new Guid ($thingTypeId);
+		if ( ! $thingTypeId instanceof \com\microsoft\wc\types\Guid ) {
+			$thingTypeId = new \com\microsoft\wc\types\Guid ($thingTypeId);
 		}
 		$count = count($thingTypeId);
 		if ($count < 1) {

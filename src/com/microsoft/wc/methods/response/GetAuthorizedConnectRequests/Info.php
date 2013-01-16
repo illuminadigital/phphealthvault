@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetAuthorizedConnectRequests;
 
-use com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\ConnectRequest;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -65,8 +65,8 @@ class Info {
 	}
 
 	protected function validateConnectRequest($connectRequest) {
-		if ( ! $connectRequest instanceof ConnectRequest  && ! is_null($connectRequest) ) {
-			$connectRequest = new ConnectRequest ($connectRequest);
+		if ( ! $connectRequest instanceof \com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\ConnectRequest  && ! is_null($connectRequest) ) {
+			$connectRequest = new \com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\ConnectRequest ($connectRequest);
 		}
 		$count = count($connectRequest);
 		if ($count < 0) {

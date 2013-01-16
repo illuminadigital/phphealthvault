@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\types\Permission;
+
 
 /**
  * @XmlEntity	(xml="EffectivePermissions")
@@ -41,8 +41,8 @@ class EffectivePermissions {
 	}
 
 	protected function validatePermission($permission) {
-		if ( ! $permission instanceof Permission ) {
-			$permission = new Permission ($permission);
+		if ( ! $permission instanceof \com\microsoft\wc\types\Permission ) {
+			$permission = new \com\microsoft\wc\types\Permission ($permission);
 		}
 		$count = count($permission);
 		if ($count < 1) {

@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\String128;
-use com\microsoft\wc\types\String1024;
-use com\microsoft\wc\types\HMACAlgorithm;
+
 
 /**
  * @XmlEntity	(xml="UserPassAuthSessionCred")
@@ -43,7 +41,7 @@ class UserPassAuthSessionCred {
 	}
 	
 	protected function createUsername() {
-		return new String128();
+		return new \com\microsoft\wc\types\String128();
 	}
 
 	public function setUsername($username) {
@@ -51,8 +49,8 @@ class UserPassAuthSessionCred {
 	}
 
 	protected function validateUsername($username) {
-		if ( ! $username instanceof String128 ) {
-			$username = new String128 ($username);
+		if ( ! $username instanceof \com\microsoft\wc\types\String128 ) {
+			$username = new \com\microsoft\wc\types\String128 ($username);
 		}
 	
 		return $username;
@@ -66,7 +64,7 @@ class UserPassAuthSessionCred {
 	}
 	
 	protected function createPassword() {
-		return new String1024();
+		return new \com\microsoft\wc\types\String1024();
 	}
 
 	public function setPassword($password) {
@@ -74,8 +72,8 @@ class UserPassAuthSessionCred {
 	}
 
 	protected function validatePassword($password) {
-		if ( ! $password instanceof String1024 ) {
-			$password = new String1024 ($password);
+		if ( ! $password instanceof \com\microsoft\wc\types\String1024 ) {
+			$password = new \com\microsoft\wc\types\String1024 ($password);
 		}
 	
 		return $password;
@@ -89,7 +87,7 @@ class UserPassAuthSessionCred {
 	}
 	
 	protected function createSharedSecret() {
-		return new HMACAlgorithm();
+		return new \com\microsoft\wc\types\HMACAlgorithm();
 	}
 
 	public function setSharedSecret($sharedSecret) {
@@ -97,8 +95,8 @@ class UserPassAuthSessionCred {
 	}
 
 	protected function validateSharedSecret($sharedSecret) {
-		if ( ! $sharedSecret instanceof HMACAlgorithm ) {
-			$sharedSecret = new HMACAlgorithm ($sharedSecret);
+		if ( ! $sharedSecret instanceof \com\microsoft\wc\types\HMACAlgorithm ) {
+			$sharedSecret = new \com\microsoft\wc\types\HMACAlgorithm ($sharedSecret);
 		}
 	
 		return $sharedSecret;

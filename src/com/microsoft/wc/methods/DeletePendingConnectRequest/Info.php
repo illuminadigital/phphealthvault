@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\DeletePendingConnectRequest;
 
-use com\microsoft\wc\types\Stringnz;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createExternalId() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setExternalId($externalId) {
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateExternalId($externalId) {
-		if ( ! $externalId instanceof Stringnz ) {
-			$externalId = new Stringnz ($externalId);
+		if ( ! $externalId instanceof \com\microsoft\wc\types\Stringnz ) {
+			$externalId = new \com\microsoft\wc\types\Stringnz ($externalId);
 		}
 	
 		return $externalId;

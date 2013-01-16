@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\vocab\VocabularyCodeItem;
+
 
 /**
  * @XmlEntity	(xml="VocabularyCodeSet")
@@ -135,8 +135,8 @@ class VocabularyCodeSet {
 	}
 
 	protected function validateCodeItem($codeItem) {
-		if ( ! $codeItem instanceof VocabularyCodeItem  && ! is_null($codeItem) ) {
-			$codeItem = new VocabularyCodeItem ($codeItem);
+		if ( ! $codeItem instanceof \com\microsoft\wc\vocab\VocabularyCodeItem  && ! is_null($codeItem) ) {
+			$codeItem = new \com\microsoft\wc\vocab\VocabularyCodeItem ($codeItem);
 		}
 		$count = count($codeItem);
 		if ($count < 0) {

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetApplicationInfo;
 
-use com\microsoft\wc\application\AppWithLogos;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info {
 	}
 	
 	protected function createApplication() {
-		return new AppWithLogos();
+		return new \com\microsoft\wc\application\AppWithLogos();
 	}
 
 	public function setApplication($application) {
@@ -37,8 +37,8 @@ class Info {
 	}
 
 	protected function validateApplication($application) {
-		if ( ! $application instanceof AppWithLogos ) {
-			$application = new AppWithLogos ($application);
+		if ( ! $application instanceof \com\microsoft\wc\application\AppWithLogos ) {
+			$application = new \com\microsoft\wc\application\AppWithLogos ($application);
 		}
 	
 		return $application;

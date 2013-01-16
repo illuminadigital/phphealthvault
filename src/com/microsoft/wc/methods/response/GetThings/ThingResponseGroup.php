@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetThings;
 
-use com\microsoft\wc\thing\Thing;
-use com\microsoft\wc\thing\UnprocessedThingKeyInfo;
+
 
 /**
  * @XmlEntity	(xml="ThingResponseGroup")
@@ -56,8 +55,8 @@ class ThingResponseGroup {
 	}
 
 	protected function validateThing($thing) {
-		if ( ! $thing instanceof Thing  && ! is_null($thing) ) {
-			$thing = new Thing ($thing);
+		if ( ! $thing instanceof \com\microsoft\wc\thing\Thing  && ! is_null($thing) ) {
+			$thing = new \com\microsoft\wc\thing\Thing ($thing);
 		}
 		$count = count($thing);
 		if ($count < 0) {
@@ -92,8 +91,8 @@ class ThingResponseGroup {
 	}
 
 	protected function validateUnprocessedThingKeyInfo($unprocessedThingKeyInfo) {
-		if ( ! $unprocessedThingKeyInfo instanceof UnprocessedThingKeyInfo  && ! is_null($unprocessedThingKeyInfo) ) {
-			$unprocessedThingKeyInfo = new UnprocessedThingKeyInfo ($unprocessedThingKeyInfo);
+		if ( ! $unprocessedThingKeyInfo instanceof \com\microsoft\wc\thing\UnprocessedThingKeyInfo  && ! is_null($unprocessedThingKeyInfo) ) {
+			$unprocessedThingKeyInfo = new \com\microsoft\wc\thing\UnprocessedThingKeyInfo ($unprocessedThingKeyInfo);
 		}
 		$count = count($unprocessedThingKeyInfo);
 		if ($count < 0) {

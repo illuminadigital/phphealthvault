@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\application;
 
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\application\CultureSpecificStatement;
+
 
 /**
  * @XmlEntity	(xml="StatementInfo")
@@ -42,8 +41,8 @@ class StatementInfo {
 	}
 
 	protected function validateStatement($statement) {
-		if ( ! $statement instanceof CultureSpecificStatement ) {
-			$statement = new CultureSpecificStatement ($statement);
+		if ( ! $statement instanceof \com\microsoft\wc\application\CultureSpecificStatement ) {
+			$statement = new \com\microsoft\wc\application\CultureSpecificStatement ($statement);
 		}
 		$count = count($statement);
 		if ($count < 1) {
@@ -70,7 +69,7 @@ class StatementInfo {
 	}
 	
 	protected function createContentType() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setContentType($contentType) {
@@ -78,8 +77,8 @@ class StatementInfo {
 	}
 
 	protected function validateContentType($contentType) {
-		if ( ! $contentType instanceof String255 ) {
-			$contentType = new String255 ($contentType);
+		if ( ! $contentType instanceof \com\microsoft\wc\types\String255 ) {
+			$contentType = new \com\microsoft\wc\types\String255 ($contentType);
 		}
 	
 		return $contentType;

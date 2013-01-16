@@ -1,13 +1,12 @@
 <?php
 namespace com\microsoft\wc\methods\SearchVocabulary;
 
-use com\microsoft\wc\types\String64;
 
 
 /**
  * @XmlEntity	(xml="VocabularySearchString")
  */
-class VocabularySearchString extends String255 {
+class VocabularySearchString extends \com\microsoft\wc\types\String255 {
 	/**
 	 * Type defining a vocabulary search string.
 	 * The search string is a culture specific string of characters against which vocabulary items are compared using the specified search mode.
@@ -30,7 +29,7 @@ class VocabularySearchString extends String255 {
 	}
 	
 	protected function createSearchMode() {
-		return new String64();
+		return new \com\microsoft\wc\types\String64();
 	}
 
 	public function setSearchMode($searchMode) {
@@ -38,8 +37,8 @@ class VocabularySearchString extends String255 {
 	}
 
 	protected function validateSearchMode($searchMode) {
-		if ( ! $searchMode instanceof String64  && ! is_null($searchMode) ) {
-			$searchMode = new String64 ($searchMode);
+		if ( ! $searchMode instanceof \com\microsoft\wc\types\String64  && ! is_null($searchMode) ) {
+			$searchMode = new \com\microsoft\wc\types\String64 ($searchMode);
 		}
 	
 		return $searchMode;

@@ -1,20 +1,7 @@
 <?php
 namespace com\microsoft\wc\application;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\application\AppLargeLogoInfo;
-use com\microsoft\wc\application\AppSmallLogoInfo;
-use com\microsoft\wc\application\AppPersistentTokens;
-use com\microsoft\wc\auth\AuthXml;
-use com\microsoft\wc\application\StatementInfo;
-use com\microsoft\wc\application\ApplicationAttributes;
-use com\microsoft\wc\types\String32;
-use com\microsoft\wc\types\CultureSpecificString255;
-use com\microsoft\wc\types\String255nw;
-use com\microsoft\wc\vocab\VocabularyAuthorizations;
-use com\microsoft\wc\types\Stringnz;
-use com\microsoft\wc\types\CultureSpecificString;
+
 
 /**
  * @XmlEntity	(xml="AppWithLogos")
@@ -196,7 +183,7 @@ class AppWithLogos {
 	}
 	
 	protected function createId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setId($id) {
@@ -204,8 +191,8 @@ class AppWithLogos {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 	
 		return $id;
@@ -227,8 +214,8 @@ class AppWithLogos {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof CultureSpecificString255 ) {
-			$name = new CultureSpecificString255 ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\CultureSpecificString255 ) {
+			$name = new \com\microsoft\wc\types\CultureSpecificString255 ($name);
 		}
 		$count = count($name);
 		if ($count < 1) {
@@ -332,8 +319,8 @@ class AppWithLogos {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! $description instanceof CultureSpecificString  && ! is_null($description) ) {
-			$description = new CultureSpecificString ($description);
+		if ( ! $description instanceof \com\microsoft\wc\types\CultureSpecificString  && ! is_null($description) ) {
+			$description = new \com\microsoft\wc\types\CultureSpecificString ($description);
 		}
 		$count = count($description);
 		if ($count < 0) {
@@ -368,8 +355,8 @@ class AppWithLogos {
 	}
 
 	protected function validateAuthReason($authReason) {
-		if ( ! $authReason instanceof CultureSpecificString  && ! is_null($authReason) ) {
-			$authReason = new CultureSpecificString ($authReason);
+		if ( ! $authReason instanceof \com\microsoft\wc\types\CultureSpecificString  && ! is_null($authReason) ) {
+			$authReason = new \com\microsoft\wc\types\CultureSpecificString ($authReason);
 		}
 		$count = count($authReason);
 		if ($count < 0) {
@@ -396,7 +383,7 @@ class AppWithLogos {
 	}
 	
 	protected function createDomainName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setDomainName($domainName) {
@@ -404,8 +391,8 @@ class AppWithLogos {
 	}
 
 	protected function validateDomainName($domainName) {
-		if ( ! $domainName instanceof String255  && ! is_null($domainName) ) {
-			$domainName = new String255 ($domainName);
+		if ( ! $domainName instanceof \com\microsoft\wc\types\String255  && ! is_null($domainName) ) {
+			$domainName = new \com\microsoft\wc\types\String255 ($domainName);
 		}
 	
 		return $domainName;
@@ -419,7 +406,7 @@ class AppWithLogos {
 	}
 	
 	protected function createClientServiceToken() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setClientServiceToken($clientServiceToken) {
@@ -427,8 +414,8 @@ class AppWithLogos {
 	}
 
 	protected function validateClientServiceToken($clientServiceToken) {
-		if ( ! $clientServiceToken instanceof Guid  && ! is_null($clientServiceToken) ) {
-			$clientServiceToken = new Guid ($clientServiceToken);
+		if ( ! $clientServiceToken instanceof \com\microsoft\wc\types\Guid  && ! is_null($clientServiceToken) ) {
+			$clientServiceToken = new \com\microsoft\wc\types\Guid ($clientServiceToken);
 		}
 	
 		return $clientServiceToken;
@@ -442,7 +429,7 @@ class AppWithLogos {
 	}
 	
 	protected function createLargeLogo() {
-		return new AppLargeLogoInfo();
+		return new \com\microsoft\wc\application\AppLargeLogoInfo();
 	}
 
 	public function setLargeLogo($largeLogo) {
@@ -450,8 +437,8 @@ class AppWithLogos {
 	}
 
 	protected function validateLargeLogo($largeLogo) {
-		if ( ! $largeLogo instanceof AppLargeLogoInfo  && ! is_null($largeLogo) ) {
-			$largeLogo = new AppLargeLogoInfo ($largeLogo);
+		if ( ! $largeLogo instanceof \com\microsoft\wc\application\AppLargeLogoInfo  && ! is_null($largeLogo) ) {
+			$largeLogo = new \com\microsoft\wc\application\AppLargeLogoInfo ($largeLogo);
 		}
 	
 		return $largeLogo;
@@ -465,7 +452,7 @@ class AppWithLogos {
 	}
 	
 	protected function createSmallLogo() {
-		return new AppSmallLogoInfo();
+		return new \com\microsoft\wc\application\AppSmallLogoInfo();
 	}
 
 	public function setSmallLogo($smallLogo) {
@@ -473,8 +460,8 @@ class AppWithLogos {
 	}
 
 	protected function validateSmallLogo($smallLogo) {
-		if ( ! $smallLogo instanceof AppSmallLogoInfo  && ! is_null($smallLogo) ) {
-			$smallLogo = new AppSmallLogoInfo ($smallLogo);
+		if ( ! $smallLogo instanceof \com\microsoft\wc\application\AppSmallLogoInfo  && ! is_null($smallLogo) ) {
+			$smallLogo = new \com\microsoft\wc\application\AppSmallLogoInfo ($smallLogo);
 		}
 	
 		return $smallLogo;
@@ -488,7 +475,7 @@ class AppWithLogos {
 	}
 	
 	protected function createPersistentTokens() {
-		return new AppPersistentTokens();
+		return new \com\microsoft\wc\application\AppPersistentTokens();
 	}
 
 	public function setPersistentTokens($persistentTokens) {
@@ -496,8 +483,8 @@ class AppWithLogos {
 	}
 
 	protected function validatePersistentTokens($persistentTokens) {
-		if ( ! $persistentTokens instanceof AppPersistentTokens  && ! is_null($persistentTokens) ) {
-			$persistentTokens = new AppPersistentTokens ($persistentTokens);
+		if ( ! $persistentTokens instanceof \com\microsoft\wc\application\AppPersistentTokens  && ! is_null($persistentTokens) ) {
+			$persistentTokens = new \com\microsoft\wc\application\AppPersistentTokens ($persistentTokens);
 		}
 	
 		return $persistentTokens;
@@ -511,7 +498,7 @@ class AppWithLogos {
 	}
 	
 	protected function createPersonOnlineBaseAuthXml() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setPersonOnlineBaseAuthXml($personOnlineBaseAuthXml) {
@@ -519,8 +506,8 @@ class AppWithLogos {
 	}
 
 	protected function validatePersonOnlineBaseAuthXml($personOnlineBaseAuthXml) {
-		if ( ! $personOnlineBaseAuthXml instanceof AuthXml ) {
-			$personOnlineBaseAuthXml = new AuthXml ($personOnlineBaseAuthXml);
+		if ( ! $personOnlineBaseAuthXml instanceof \com\microsoft\wc\auth\AuthXml ) {
+			$personOnlineBaseAuthXml = new \com\microsoft\wc\auth\AuthXml ($personOnlineBaseAuthXml);
 		}
 	
 		return $personOnlineBaseAuthXml;
@@ -534,7 +521,7 @@ class AppWithLogos {
 	}
 	
 	protected function createPersonOfflineBaseAuthXml() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setPersonOfflineBaseAuthXml($personOfflineBaseAuthXml) {
@@ -542,8 +529,8 @@ class AppWithLogos {
 	}
 
 	protected function validatePersonOfflineBaseAuthXml($personOfflineBaseAuthXml) {
-		if ( ! $personOfflineBaseAuthXml instanceof AuthXml  && ! is_null($personOfflineBaseAuthXml) ) {
-			$personOfflineBaseAuthXml = new AuthXml ($personOfflineBaseAuthXml);
+		if ( ! $personOfflineBaseAuthXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($personOfflineBaseAuthXml) ) {
+			$personOfflineBaseAuthXml = new \com\microsoft\wc\auth\AuthXml ($personOfflineBaseAuthXml);
 		}
 	
 		return $personOfflineBaseAuthXml;
@@ -557,7 +544,7 @@ class AppWithLogos {
 	}
 	
 	protected function createPrivacyStatement() {
-		return new StatementInfo();
+		return new \com\microsoft\wc\application\StatementInfo();
 	}
 
 	public function setPrivacyStatement($privacyStatement) {
@@ -565,8 +552,8 @@ class AppWithLogos {
 	}
 
 	protected function validatePrivacyStatement($privacyStatement) {
-		if ( ! $privacyStatement instanceof StatementInfo  && ! is_null($privacyStatement) ) {
-			$privacyStatement = new StatementInfo ($privacyStatement);
+		if ( ! $privacyStatement instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($privacyStatement) ) {
+			$privacyStatement = new \com\microsoft\wc\application\StatementInfo ($privacyStatement);
 		}
 	
 		return $privacyStatement;
@@ -580,7 +567,7 @@ class AppWithLogos {
 	}
 	
 	protected function createTermsOfUse() {
-		return new StatementInfo();
+		return new \com\microsoft\wc\application\StatementInfo();
 	}
 
 	public function setTermsOfUse($termsOfUse) {
@@ -588,8 +575,8 @@ class AppWithLogos {
 	}
 
 	protected function validateTermsOfUse($termsOfUse) {
-		if ( ! $termsOfUse instanceof StatementInfo  && ! is_null($termsOfUse) ) {
-			$termsOfUse = new StatementInfo ($termsOfUse);
+		if ( ! $termsOfUse instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($termsOfUse) ) {
+			$termsOfUse = new \com\microsoft\wc\application\StatementInfo ($termsOfUse);
 		}
 	
 		return $termsOfUse;
@@ -603,7 +590,7 @@ class AppWithLogos {
 	}
 	
 	protected function createDtcSuccessMessage() {
-		return new StatementInfo();
+		return new \com\microsoft\wc\application\StatementInfo();
 	}
 
 	public function setDtcSuccessMessage($dtcSuccessMessage) {
@@ -611,8 +598,8 @@ class AppWithLogos {
 	}
 
 	protected function validateDtcSuccessMessage($dtcSuccessMessage) {
-		if ( ! $dtcSuccessMessage instanceof StatementInfo  && ! is_null($dtcSuccessMessage) ) {
-			$dtcSuccessMessage = new StatementInfo ($dtcSuccessMessage);
+		if ( ! $dtcSuccessMessage instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($dtcSuccessMessage) ) {
+			$dtcSuccessMessage = new \com\microsoft\wc\application\StatementInfo ($dtcSuccessMessage);
 		}
 	
 		return $dtcSuccessMessage;
@@ -626,7 +613,7 @@ class AppWithLogos {
 	}
 	
 	protected function createAppAttributes() {
-		return new ApplicationAttributes();
+		return new \com\microsoft\wc\application\ApplicationAttributes();
 	}
 
 	public function setAppAttributes($appAttributes) {
@@ -634,8 +621,8 @@ class AppWithLogos {
 	}
 
 	protected function validateAppAttributes($appAttributes) {
-		if ( ! $appAttributes instanceof ApplicationAttributes  && ! is_null($appAttributes) ) {
-			$appAttributes = new ApplicationAttributes ($appAttributes);
+		if ( ! $appAttributes instanceof \com\microsoft\wc\application\ApplicationAttributes  && ! is_null($appAttributes) ) {
+			$appAttributes = new \com\microsoft\wc\application\ApplicationAttributes ($appAttributes);
 		}
 	
 		return $appAttributes;
@@ -649,7 +636,7 @@ class AppWithLogos {
 	}
 	
 	protected function createAppType() {
-		return new String32();
+		return new \com\microsoft\wc\types\String32();
 	}
 
 	public function setAppType($appType) {
@@ -657,8 +644,8 @@ class AppWithLogos {
 	}
 
 	protected function validateAppType($appType) {
-		if ( ! $appType instanceof String32 ) {
-			$appType = new String32 ($appType);
+		if ( ! $appType instanceof \com\microsoft\wc\types\String32 ) {
+			$appType = new \com\microsoft\wc\types\String32 ($appType);
 		}
 	
 		return $appType;
@@ -672,7 +659,7 @@ class AppWithLogos {
 	}
 	
 	protected function createMasterAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setMasterAppId($masterAppId) {
@@ -680,8 +667,8 @@ class AppWithLogos {
 	}
 
 	protected function validateMasterAppId($masterAppId) {
-		if ( ! $masterAppId instanceof Guid  && ! is_null($masterAppId) ) {
-			$masterAppId = new Guid ($masterAppId);
+		if ( ! $masterAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($masterAppId) ) {
+			$masterAppId = new \com\microsoft\wc\types\Guid ($masterAppId);
 		}
 	
 		return $masterAppId;
@@ -695,7 +682,7 @@ class AppWithLogos {
 	}
 	
 	protected function createMasterAppName() {
-		return new CultureSpecificString255();
+		return new \com\microsoft\wc\types\CultureSpecificString255();
 	}
 
 	public function setMasterAppName($masterAppName) {
@@ -703,8 +690,8 @@ class AppWithLogos {
 	}
 
 	protected function validateMasterAppName($masterAppName) {
-		if ( ! $masterAppName instanceof CultureSpecificString255  && ! is_null($masterAppName) ) {
-			$masterAppName = new CultureSpecificString255 ($masterAppName);
+		if ( ! $masterAppName instanceof \com\microsoft\wc\types\CultureSpecificString255  && ! is_null($masterAppName) ) {
+			$masterAppName = new \com\microsoft\wc\types\CultureSpecificString255 ($masterAppName);
 		}
 	
 		return $masterAppName;
@@ -764,7 +751,7 @@ class AppWithLogos {
 	}
 	
 	protected function createValidIpPrefixes() {
-		return new String255nw();
+		return new \com\microsoft\wc\types\String255nw();
 	}
 
 	public function setValidIpPrefixes($validIpPrefixes) {
@@ -772,8 +759,8 @@ class AppWithLogos {
 	}
 
 	protected function validateValidIpPrefixes($validIpPrefixes) {
-		if ( ! $validIpPrefixes instanceof String255nw  && ! is_null($validIpPrefixes) ) {
-			$validIpPrefixes = new String255nw ($validIpPrefixes);
+		if ( ! $validIpPrefixes instanceof \com\microsoft\wc\types\String255nw  && ! is_null($validIpPrefixes) ) {
+			$validIpPrefixes = new \com\microsoft\wc\types\String255nw ($validIpPrefixes);
 		}
 	
 		return $validIpPrefixes;
@@ -787,7 +774,7 @@ class AppWithLogos {
 	}
 	
 	protected function createVocabularyAuthorizations() {
-		return new VocabularyAuthorizations();
+		return new \com\microsoft\wc\vocab\VocabularyAuthorizations();
 	}
 
 	public function setVocabularyAuthorizations($vocabularyAuthorizations) {
@@ -795,8 +782,8 @@ class AppWithLogos {
 	}
 
 	protected function validateVocabularyAuthorizations($vocabularyAuthorizations) {
-		if ( ! $vocabularyAuthorizations instanceof VocabularyAuthorizations  && ! is_null($vocabularyAuthorizations) ) {
-			$vocabularyAuthorizations = new VocabularyAuthorizations ($vocabularyAuthorizations);
+		if ( ! $vocabularyAuthorizations instanceof \com\microsoft\wc\vocab\VocabularyAuthorizations  && ! is_null($vocabularyAuthorizations) ) {
+			$vocabularyAuthorizations = new \com\microsoft\wc\vocab\VocabularyAuthorizations ($vocabularyAuthorizations);
 		}
 	
 		return $vocabularyAuthorizations;
@@ -810,7 +797,7 @@ class AppWithLogos {
 	}
 	
 	protected function createChildVocabularyAuthorizationsCeiling() {
-		return new VocabularyAuthorizations();
+		return new \com\microsoft\wc\vocab\VocabularyAuthorizations();
 	}
 
 	public function setChildVocabularyAuthorizationsCeiling($childVocabularyAuthorizationsCeiling) {
@@ -818,8 +805,8 @@ class AppWithLogos {
 	}
 
 	protected function validateChildVocabularyAuthorizationsCeiling($childVocabularyAuthorizationsCeiling) {
-		if ( ! $childVocabularyAuthorizationsCeiling instanceof VocabularyAuthorizations  && ! is_null($childVocabularyAuthorizationsCeiling) ) {
-			$childVocabularyAuthorizationsCeiling = new VocabularyAuthorizations ($childVocabularyAuthorizationsCeiling);
+		if ( ! $childVocabularyAuthorizationsCeiling instanceof \com\microsoft\wc\vocab\VocabularyAuthorizations  && ! is_null($childVocabularyAuthorizationsCeiling) ) {
+			$childVocabularyAuthorizationsCeiling = new \com\microsoft\wc\vocab\VocabularyAuthorizations ($childVocabularyAuthorizationsCeiling);
 		}
 	
 		return $childVocabularyAuthorizationsCeiling;
@@ -833,7 +820,7 @@ class AppWithLogos {
 	}
 	
 	protected function createMethods() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setMethods($methods) {
@@ -841,8 +828,8 @@ class AppWithLogos {
 	}
 
 	protected function validateMethods($methods) {
-		if ( ! $methods instanceof Stringnz  && ! is_null($methods) ) {
-			$methods = new Stringnz ($methods);
+		if ( ! $methods instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($methods) ) {
+			$methods = new \com\microsoft\wc\types\Stringnz ($methods);
 		}
 	
 		return $methods;

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\request;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="OfflinePersonInfo")
@@ -27,7 +27,7 @@ class OfflinePersonInfo {
 	}
 	
 	protected function createOfflinePersonId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setOfflinePersonId($offlinePersonId) {
@@ -35,8 +35,8 @@ class OfflinePersonInfo {
 	}
 
 	protected function validateOfflinePersonId($offlinePersonId) {
-		if ( ! $offlinePersonId instanceof Guid ) {
-			$offlinePersonId = new Guid ($offlinePersonId);
+		if ( ! $offlinePersonId instanceof \com\microsoft\wc\types\Guid ) {
+			$offlinePersonId = new \com\microsoft\wc\types\Guid ($offlinePersonId);
 		}
 	
 		return $offlinePersonId;

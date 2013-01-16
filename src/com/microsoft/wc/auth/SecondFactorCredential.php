@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\auth\SimplePhoneFactorCredential;
+
 
 /**
  * @XmlEntity	(xml="SecondFactorCredential")
@@ -28,7 +28,7 @@ class SecondFactorCredential {
 	}
 	
 	protected function createSimplePhoneFactor() {
-		return new SimplePhoneFactorCredential();
+		return new \com\microsoft\wc\auth\SimplePhoneFactorCredential();
 	}
 
 	public function setSimplePhoneFactor($simplePhoneFactor) {
@@ -36,8 +36,8 @@ class SecondFactorCredential {
 	}
 
 	protected function validateSimplePhoneFactor($simplePhoneFactor) {
-		if ( ! $simplePhoneFactor instanceof SimplePhoneFactorCredential ) {
-			$simplePhoneFactor = new SimplePhoneFactorCredential ($simplePhoneFactor);
+		if ( ! $simplePhoneFactor instanceof \com\microsoft\wc\auth\SimplePhoneFactorCredential ) {
+			$simplePhoneFactor = new \com\microsoft\wc\auth\SimplePhoneFactorCredential ($simplePhoneFactor);
 		}
 	
 		return $simplePhoneFactor;

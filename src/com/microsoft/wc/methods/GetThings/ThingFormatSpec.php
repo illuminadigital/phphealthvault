@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetThings;
 
-use com\microsoft\wc\methods\GetThings\ThingSectionSpec;
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="ThingFormatSpec")
@@ -50,8 +49,8 @@ class ThingFormatSpec {
 	}
 
 	protected function validateSection($section) {
-		if ( ! $section instanceof ThingSectionSpec  && ! is_null($section) ) {
-			$section = new ThingSectionSpec ($section);
+		if ( ! $section instanceof \com\microsoft\wc\methods\GetThings\ThingSectionSpec  && ! is_null($section) ) {
+			$section = new \com\microsoft\wc\methods\GetThings\ThingSectionSpec ($section);
 		}
 		$count = count($section);
 		if ($count < 0) {
@@ -127,8 +126,8 @@ class ThingFormatSpec {
 	}
 
 	protected function validateTypeVersionFormat($typeVersionFormat) {
-		if ( ! $typeVersionFormat instanceof Guid  && ! is_null($typeVersionFormat) ) {
-			$typeVersionFormat = new Guid ($typeVersionFormat);
+		if ( ! $typeVersionFormat instanceof \com\microsoft\wc\types\Guid  && ! is_null($typeVersionFormat) ) {
+			$typeVersionFormat = new \com\microsoft\wc\types\Guid ($typeVersionFormat);
 		}
 		$count = count($typeVersionFormat);
 		if ($count < 0) {

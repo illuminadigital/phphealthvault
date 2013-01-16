@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetServiceDefinition2;
 
-use com\microsoft\wc\methods\response\GetServiceDefinition2\Platform;
-use com\microsoft\wc\methods\response\GetServiceDefinition2\Shell;
-use com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethod;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -49,7 +47,7 @@ class Info {
 	}
 	
 	protected function createPlatform() {
-		return new Platform();
+		return new \com\microsoft\wc\methods\response\GetServiceDefinition2\Platform();
 	}
 
 	public function setPlatform($platform) {
@@ -57,8 +55,8 @@ class Info {
 	}
 
 	protected function validatePlatform($platform) {
-		if ( ! $platform instanceof Platform ) {
-			$platform = new Platform ($platform);
+		if ( ! $platform instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\Platform ) {
+			$platform = new \com\microsoft\wc\methods\response\GetServiceDefinition2\Platform ($platform);
 		}
 	
 		return $platform;
@@ -72,7 +70,7 @@ class Info {
 	}
 	
 	protected function createShell() {
-		return new Shell();
+		return new \com\microsoft\wc\methods\response\GetServiceDefinition2\Shell();
 	}
 
 	public function setShell($shell) {
@@ -80,8 +78,8 @@ class Info {
 	}
 
 	protected function validateShell($shell) {
-		if ( ! $shell instanceof Shell ) {
-			$shell = new Shell ($shell);
+		if ( ! $shell instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\Shell ) {
+			$shell = new \com\microsoft\wc\methods\response\GetServiceDefinition2\Shell ($shell);
 		}
 	
 		return $shell;
@@ -103,8 +101,8 @@ class Info {
 	}
 
 	protected function validateXmlMethod($xmlMethod) {
-		if ( ! $xmlMethod instanceof XmlMethod ) {
-			$xmlMethod = new XmlMethod ($xmlMethod);
+		if ( ! $xmlMethod instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethod ) {
+			$xmlMethod = new \com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethod ($xmlMethod);
 		}
 		$count = count($xmlMethod);
 		if ($count < 1) {

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\QueryPermissions;
 
-use com\microsoft\wc\types\Permission;
+
 
 /**
  * @XmlEntity	(xml="Permissions")
@@ -35,8 +35,8 @@ class Permissions {
 	}
 
 	protected function validatePermission($permission) {
-		if ( ! $permission instanceof Permission ) {
-			$permission = new Permission ($permission);
+		if ( ! $permission instanceof \com\microsoft\wc\types\Permission ) {
+			$permission = new \com\microsoft\wc\types\Permission ($permission);
 		}
 		$count = count($permission);
 		if ($count < 1) {

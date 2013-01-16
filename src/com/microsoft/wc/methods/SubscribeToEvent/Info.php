@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\SubscribeToEvent;
 
-use com\microsoft\wc\subscription\Subscription;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -27,7 +27,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createSubscription() {
-		return new Subscription();
+		return new \com\microsoft\wc\subscription\Subscription();
 	}
 
 	public function setSubscription($subscription) {
@@ -35,8 +35,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateSubscription($subscription) {
-		if ( ! $subscription instanceof Subscription ) {
-			$subscription = new Subscription ($subscription);
+		if ( ! $subscription instanceof \com\microsoft\wc\subscription\Subscription ) {
+			$subscription = new \com\microsoft\wc\subscription\Subscription ($subscription);
 		}
 	
 		return $subscription;

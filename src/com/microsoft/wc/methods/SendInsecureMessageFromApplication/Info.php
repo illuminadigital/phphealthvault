@@ -1,10 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\SendInsecureMessageFromApplication;
 
-use com\microsoft\wc\methods\SendInsecureMessageFromApplication\FromMailbox;
-use com\microsoft\wc\types\RcptRecord;
-use com\microsoft\wc\types\RcptAddress;
-use com\microsoft\wc\types\RcptPerson;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -68,7 +65,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createFromMailbox() {
-		return new FromMailbox();
+		return new \com\microsoft\wc\methods\SendInsecureMessageFromApplication\FromMailbox();
 	}
 
 	public function setFromMailbox($fromMailbox) {
@@ -76,8 +73,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateFromMailbox($fromMailbox) {
-		if ( ! $fromMailbox instanceof FromMailbox ) {
-			$fromMailbox = new FromMailbox ($fromMailbox);
+		if ( ! $fromMailbox instanceof \com\microsoft\wc\methods\SendInsecureMessageFromApplication\FromMailbox ) {
+			$fromMailbox = new \com\microsoft\wc\methods\SendInsecureMessageFromApplication\FromMailbox ($fromMailbox);
 		}
 	
 		return $fromMailbox;
@@ -99,8 +96,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptAddress($rcptAddress) {
-		if ( ! $rcptAddress instanceof RcptAddress  && ! is_null($rcptAddress) ) {
-			$rcptAddress = new RcptAddress ($rcptAddress);
+		if ( ! $rcptAddress instanceof \com\microsoft\wc\types\RcptAddress  && ! is_null($rcptAddress) ) {
+			$rcptAddress = new \com\microsoft\wc\types\RcptAddress ($rcptAddress);
 		}
 		$count = count($rcptAddress);
 		if ($count < 0) {
@@ -135,8 +132,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptPerson($rcptPerson) {
-		if ( ! $rcptPerson instanceof RcptPerson  && ! is_null($rcptPerson) ) {
-			$rcptPerson = new RcptPerson ($rcptPerson);
+		if ( ! $rcptPerson instanceof \com\microsoft\wc\types\RcptPerson  && ! is_null($rcptPerson) ) {
+			$rcptPerson = new \com\microsoft\wc\types\RcptPerson ($rcptPerson);
 		}
 		$count = count($rcptPerson);
 		if ($count < 0) {
@@ -163,7 +160,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createRcptRecord() {
-		return new RcptRecord();
+		return new \com\microsoft\wc\types\RcptRecord();
 	}
 
 	public function setRcptRecord($rcptRecord) {
@@ -171,8 +168,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptRecord($rcptRecord) {
-		if ( ! $rcptRecord instanceof RcptRecord  && ! is_null($rcptRecord) ) {
-			$rcptRecord = new RcptRecord ($rcptRecord);
+		if ( ! $rcptRecord instanceof \com\microsoft\wc\types\RcptRecord  && ! is_null($rcptRecord) ) {
+			$rcptRecord = new \com\microsoft\wc\types\RcptRecord ($rcptRecord);
 		}
 	
 		return $rcptRecord;

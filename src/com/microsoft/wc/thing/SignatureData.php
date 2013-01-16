@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\thing\HealthVaultThingSignatureMethod;
-use com\microsoft\wc\thing\BlobSignatureInfo;
-use com\microsoft\wc\types\Stringnznw;
+
 
 /**
  * @XmlEntity	(xml="SignatureData")
@@ -41,7 +39,7 @@ class SignatureData {
 	}
 	
 	protected function createHvSignatureMethod() {
-		return new HealthVaultThingSignatureMethod();
+		return new \com\microsoft\wc\thing\HealthVaultThingSignatureMethod();
 	}
 
 	public function setHvSignatureMethod($hvSignatureMethod) {
@@ -49,8 +47,8 @@ class SignatureData {
 	}
 
 	protected function validateHvSignatureMethod($hvSignatureMethod) {
-		if ( ! $hvSignatureMethod instanceof HealthVaultThingSignatureMethod ) {
-			$hvSignatureMethod = new HealthVaultThingSignatureMethod ($hvSignatureMethod);
+		if ( ! $hvSignatureMethod instanceof \com\microsoft\wc\thing\HealthVaultThingSignatureMethod ) {
+			$hvSignatureMethod = new \com\microsoft\wc\thing\HealthVaultThingSignatureMethod ($hvSignatureMethod);
 		}
 	
 		return $hvSignatureMethod;
@@ -64,7 +62,7 @@ class SignatureData {
 	}
 	
 	protected function createBlobSignatureInfo() {
-		return new BlobSignatureInfo();
+		return new \com\microsoft\wc\thing\BlobSignatureInfo();
 	}
 
 	public function setBlobSignatureInfo($blobSignatureInfo) {
@@ -72,8 +70,8 @@ class SignatureData {
 	}
 
 	protected function validateBlobSignatureInfo($blobSignatureInfo) {
-		if ( ! $blobSignatureInfo instanceof BlobSignatureInfo  && ! is_null($blobSignatureInfo) ) {
-			$blobSignatureInfo = new BlobSignatureInfo ($blobSignatureInfo);
+		if ( ! $blobSignatureInfo instanceof \com\microsoft\wc\thing\BlobSignatureInfo  && ! is_null($blobSignatureInfo) ) {
+			$blobSignatureInfo = new \com\microsoft\wc\thing\BlobSignatureInfo ($blobSignatureInfo);
 		}
 	
 		return $blobSignatureInfo;
@@ -87,7 +85,7 @@ class SignatureData {
 	}
 	
 	protected function createAlgorithmTag() {
-		return new Stringnznw();
+		return new \com\microsoft\wc\types\Stringnznw();
 	}
 
 	public function setAlgorithmTag($algorithmTag) {
@@ -95,8 +93,8 @@ class SignatureData {
 	}
 
 	protected function validateAlgorithmTag($algorithmTag) {
-		if ( ! $algorithmTag instanceof Stringnznw ) {
-			$algorithmTag = new Stringnznw ($algorithmTag);
+		if ( ! $algorithmTag instanceof \com\microsoft\wc\types\Stringnznw ) {
+			$algorithmTag = new \com\microsoft\wc\types\Stringnznw ($algorithmTag);
 		}
 	
 		return $algorithmTag;

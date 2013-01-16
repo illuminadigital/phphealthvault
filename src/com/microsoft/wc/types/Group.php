@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\EmailAddress;
+
 
 /**
  * @XmlEntity	(xml="Group")
@@ -43,7 +41,7 @@ class Group {
 	}
 	
 	protected function createName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setName($name) {
@@ -51,8 +49,8 @@ class Group {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof String255 ) {
-			$name = new String255 ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\String255 ) {
+			$name = new \com\microsoft\wc\types\String255 ($name);
 		}
 	
 		return $name;
@@ -66,7 +64,7 @@ class Group {
 	}
 	
 	protected function createId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setId($id) {
@@ -74,8 +72,8 @@ class Group {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 	
 		return $id;
@@ -89,7 +87,7 @@ class Group {
 	}
 	
 	protected function createContactEmail() {
-		return new EmailAddress();
+		return new \com\microsoft\wc\types\EmailAddress();
 	}
 
 	public function setContactEmail($contactEmail) {
@@ -97,8 +95,8 @@ class Group {
 	}
 
 	protected function validateContactEmail($contactEmail) {
-		if ( ! $contactEmail instanceof EmailAddress ) {
-			$contactEmail = new EmailAddress ($contactEmail);
+		if ( ! $contactEmail instanceof \com\microsoft\wc\types\EmailAddress ) {
+			$contactEmail = new \com\microsoft\wc\types\EmailAddress ($contactEmail);
 		}
 	
 		return $contactEmail;

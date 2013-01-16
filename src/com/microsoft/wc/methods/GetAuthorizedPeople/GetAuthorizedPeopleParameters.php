@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetAuthorizedPeople;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="GetAuthorizedPeopleParameters")
@@ -40,7 +40,7 @@ class GetAuthorizedPeopleParameters {
 	}
 	
 	protected function createPersonIdCursor() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setPersonIdCursor($personIdCursor) {
@@ -48,8 +48,8 @@ class GetAuthorizedPeopleParameters {
 	}
 
 	protected function validatePersonIdCursor($personIdCursor) {
-		if ( ! $personIdCursor instanceof Guid  && ! is_null($personIdCursor) ) {
-			$personIdCursor = new Guid ($personIdCursor);
+		if ( ! $personIdCursor instanceof \com\microsoft\wc\types\Guid  && ! is_null($personIdCursor) ) {
+			$personIdCursor = new \com\microsoft\wc\types\Guid ($personIdCursor);
 		}
 	
 		return $personIdCursor;

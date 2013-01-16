@@ -1,19 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\AddApplication;
 
-use com\microsoft\wc\application\PublicKeys;
-use com\microsoft\wc\auth\AuthXml;
-use com\microsoft\wc\types\Stringnz;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\application\AppLargeLogoInfo;
-use com\microsoft\wc\application\AppSmallLogoInfo;
-use com\microsoft\wc\application\AppPersistentTokens;
-use com\microsoft\wc\application\StatementInfo;
-use com\microsoft\wc\application\ApplicationAttributes;
-use com\microsoft\wc\types\String255nw;
-use com\microsoft\wc\vocab\VocabularyAuthorizations;
-use com\microsoft\wc\types\CultureSpecificString255;
-use com\microsoft\wc\types\CultureSpecificStringnz;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -169,8 +157,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof CultureSpecificString255 ) {
-			$name = new CultureSpecificString255 ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\CultureSpecificString255 ) {
+			$name = new \com\microsoft\wc\types\CultureSpecificString255 ($name);
 		}
 		$count = count($name);
 		if ($count < 1) {
@@ -197,7 +185,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createPublicKeys() {
-		return new PublicKeys();
+		return new \com\microsoft\wc\application\PublicKeys();
 	}
 
 	public function setPublicKeys($publicKeys) {
@@ -205,8 +193,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePublicKeys($publicKeys) {
-		if ( ! $publicKeys instanceof PublicKeys ) {
-			$publicKeys = new PublicKeys ($publicKeys);
+		if ( ! $publicKeys instanceof \com\microsoft\wc\application\PublicKeys ) {
+			$publicKeys = new \com\microsoft\wc\application\PublicKeys ($publicKeys);
 		}
 	
 		return $publicKeys;
@@ -220,7 +208,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createPersonOnlineBaseAuth() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setPersonOnlineBaseAuth($personOnlineBaseAuth) {
@@ -228,8 +216,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePersonOnlineBaseAuth($personOnlineBaseAuth) {
-		if ( ! $personOnlineBaseAuth instanceof AuthXml  && ! is_null($personOnlineBaseAuth) ) {
-			$personOnlineBaseAuth = new AuthXml ($personOnlineBaseAuth);
+		if ( ! $personOnlineBaseAuth instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($personOnlineBaseAuth) ) {
+			$personOnlineBaseAuth = new \com\microsoft\wc\auth\AuthXml ($personOnlineBaseAuth);
 		}
 	
 		return $personOnlineBaseAuth;
@@ -243,7 +231,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createPersonOfflineBaseAuth() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setPersonOfflineBaseAuth($personOfflineBaseAuth) {
@@ -251,8 +239,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePersonOfflineBaseAuth($personOfflineBaseAuth) {
-		if ( ! $personOfflineBaseAuth instanceof AuthXml ) {
-			$personOfflineBaseAuth = new AuthXml ($personOfflineBaseAuth);
+		if ( ! $personOfflineBaseAuth instanceof \com\microsoft\wc\auth\AuthXml ) {
+			$personOfflineBaseAuth = new \com\microsoft\wc\auth\AuthXml ($personOfflineBaseAuth);
 		}
 	
 		return $personOfflineBaseAuth;
@@ -266,7 +254,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createMethods() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setMethods($methods) {
@@ -274,8 +262,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateMethods($methods) {
-		if ( ! $methods instanceof Stringnz  && ! is_null($methods) ) {
-			$methods = new Stringnz ($methods);
+		if ( ! $methods instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($methods) ) {
+			$methods = new \com\microsoft\wc\types\Stringnz ($methods);
 		}
 	
 		return $methods;
@@ -289,7 +277,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createActionUrl() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setActionUrl($actionUrl) {
@@ -297,8 +285,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateActionUrl($actionUrl) {
-		if ( ! $actionUrl instanceof Stringnz  && ! is_null($actionUrl) ) {
-			$actionUrl = new Stringnz ($actionUrl);
+		if ( ! $actionUrl instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($actionUrl) ) {
+			$actionUrl = new \com\microsoft\wc\types\Stringnz ($actionUrl);
 		}
 	
 		return $actionUrl;
@@ -320,8 +308,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! $description instanceof CultureSpecificStringnz ) {
-			$description = new CultureSpecificStringnz ($description);
+		if ( ! $description instanceof \com\microsoft\wc\types\CultureSpecificStringnz ) {
+			$description = new \com\microsoft\wc\types\CultureSpecificStringnz ($description);
 		}
 		$count = count($description);
 		if ($count < 1) {
@@ -356,8 +344,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAuthReason($authReason) {
-		if ( ! $authReason instanceof CultureSpecificStringnz ) {
-			$authReason = new CultureSpecificStringnz ($authReason);
+		if ( ! $authReason instanceof \com\microsoft\wc\types\CultureSpecificStringnz ) {
+			$authReason = new \com\microsoft\wc\types\CultureSpecificStringnz ($authReason);
 		}
 		$count = count($authReason);
 		if ($count < 1) {
@@ -384,7 +372,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createDomainName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setDomainName($domainName) {
@@ -392,8 +380,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateDomainName($domainName) {
-		if ( ! $domainName instanceof String255  && ! is_null($domainName) ) {
-			$domainName = new String255 ($domainName);
+		if ( ! $domainName instanceof \com\microsoft\wc\types\String255  && ! is_null($domainName) ) {
+			$domainName = new \com\microsoft\wc\types\String255 ($domainName);
 		}
 	
 		return $domainName;
@@ -407,7 +395,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createLargeLogo() {
-		return new AppLargeLogoInfo();
+		return new \com\microsoft\wc\application\AppLargeLogoInfo();
 	}
 
 	public function setLargeLogo($largeLogo) {
@@ -415,8 +403,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateLargeLogo($largeLogo) {
-		if ( ! $largeLogo instanceof AppLargeLogoInfo ) {
-			$largeLogo = new AppLargeLogoInfo ($largeLogo);
+		if ( ! $largeLogo instanceof \com\microsoft\wc\application\AppLargeLogoInfo ) {
+			$largeLogo = new \com\microsoft\wc\application\AppLargeLogoInfo ($largeLogo);
 		}
 	
 		return $largeLogo;
@@ -430,7 +418,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createSmallLogo() {
-		return new AppSmallLogoInfo();
+		return new \com\microsoft\wc\application\AppSmallLogoInfo();
 	}
 
 	public function setSmallLogo($smallLogo) {
@@ -438,8 +426,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateSmallLogo($smallLogo) {
-		if ( ! $smallLogo instanceof AppSmallLogoInfo  && ! is_null($smallLogo) ) {
-			$smallLogo = new AppSmallLogoInfo ($smallLogo);
+		if ( ! $smallLogo instanceof \com\microsoft\wc\application\AppSmallLogoInfo  && ! is_null($smallLogo) ) {
+			$smallLogo = new \com\microsoft\wc\application\AppSmallLogoInfo ($smallLogo);
 		}
 	
 		return $smallLogo;
@@ -453,7 +441,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createPersistentTokens() {
-		return new AppPersistentTokens();
+		return new \com\microsoft\wc\application\AppPersistentTokens();
 	}
 
 	public function setPersistentTokens($persistentTokens) {
@@ -461,8 +449,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePersistentTokens($persistentTokens) {
-		if ( ! $persistentTokens instanceof AppPersistentTokens  && ! is_null($persistentTokens) ) {
-			$persistentTokens = new AppPersistentTokens ($persistentTokens);
+		if ( ! $persistentTokens instanceof \com\microsoft\wc\application\AppPersistentTokens  && ! is_null($persistentTokens) ) {
+			$persistentTokens = new \com\microsoft\wc\application\AppPersistentTokens ($persistentTokens);
 		}
 	
 		return $persistentTokens;
@@ -476,7 +464,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createAppType() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setAppType($appType) {
@@ -484,8 +472,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppType($appType) {
-		if ( ! $appType instanceof Stringnz  && ! is_null($appType) ) {
-			$appType = new Stringnz ($appType);
+		if ( ! $appType instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($appType) ) {
+			$appType = new \com\microsoft\wc\types\Stringnz ($appType);
 		}
 	
 		return $appType;
@@ -499,7 +487,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createPrivacyStatement() {
-		return new StatementInfo();
+		return new \com\microsoft\wc\application\StatementInfo();
 	}
 
 	public function setPrivacyStatement($privacyStatement) {
@@ -507,8 +495,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePrivacyStatement($privacyStatement) {
-		if ( ! $privacyStatement instanceof StatementInfo  && ! is_null($privacyStatement) ) {
-			$privacyStatement = new StatementInfo ($privacyStatement);
+		if ( ! $privacyStatement instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($privacyStatement) ) {
+			$privacyStatement = new \com\microsoft\wc\application\StatementInfo ($privacyStatement);
 		}
 	
 		return $privacyStatement;
@@ -522,7 +510,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createTermsOfUse() {
-		return new StatementInfo();
+		return new \com\microsoft\wc\application\StatementInfo();
 	}
 
 	public function setTermsOfUse($termsOfUse) {
@@ -530,8 +518,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateTermsOfUse($termsOfUse) {
-		if ( ! $termsOfUse instanceof StatementInfo  && ! is_null($termsOfUse) ) {
-			$termsOfUse = new StatementInfo ($termsOfUse);
+		if ( ! $termsOfUse instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($termsOfUse) ) {
+			$termsOfUse = new \com\microsoft\wc\application\StatementInfo ($termsOfUse);
 		}
 	
 		return $termsOfUse;
@@ -591,7 +579,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createDtcSuccessMessage() {
-		return new StatementInfo();
+		return new \com\microsoft\wc\application\StatementInfo();
 	}
 
 	public function setDtcSuccessMessage($dtcSuccessMessage) {
@@ -599,8 +587,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateDtcSuccessMessage($dtcSuccessMessage) {
-		if ( ! $dtcSuccessMessage instanceof StatementInfo  && ! is_null($dtcSuccessMessage) ) {
-			$dtcSuccessMessage = new StatementInfo ($dtcSuccessMessage);
+		if ( ! $dtcSuccessMessage instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($dtcSuccessMessage) ) {
+			$dtcSuccessMessage = new \com\microsoft\wc\application\StatementInfo ($dtcSuccessMessage);
 		}
 	
 		return $dtcSuccessMessage;
@@ -614,7 +602,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createAppAttributes() {
-		return new ApplicationAttributes();
+		return new \com\microsoft\wc\application\ApplicationAttributes();
 	}
 
 	public function setAppAttributes($appAttributes) {
@@ -622,8 +610,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppAttributes($appAttributes) {
-		if ( ! $appAttributes instanceof ApplicationAttributes  && ! is_null($appAttributes) ) {
-			$appAttributes = new ApplicationAttributes ($appAttributes);
+		if ( ! $appAttributes instanceof \com\microsoft\wc\application\ApplicationAttributes  && ! is_null($appAttributes) ) {
+			$appAttributes = new \com\microsoft\wc\application\ApplicationAttributes ($appAttributes);
 		}
 	
 		return $appAttributes;
@@ -637,7 +625,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createValidIpPrefixes() {
-		return new String255nw();
+		return new \com\microsoft\wc\types\String255nw();
 	}
 
 	public function setValidIpPrefixes($validIpPrefixes) {
@@ -645,8 +633,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateValidIpPrefixes($validIpPrefixes) {
-		if ( ! $validIpPrefixes instanceof String255nw  && ! is_null($validIpPrefixes) ) {
-			$validIpPrefixes = new String255nw ($validIpPrefixes);
+		if ( ! $validIpPrefixes instanceof \com\microsoft\wc\types\String255nw  && ! is_null($validIpPrefixes) ) {
+			$validIpPrefixes = new \com\microsoft\wc\types\String255nw ($validIpPrefixes);
 		}
 	
 		return $validIpPrefixes;
@@ -660,7 +648,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createVocabularyAuthorizations() {
-		return new VocabularyAuthorizations();
+		return new \com\microsoft\wc\vocab\VocabularyAuthorizations();
 	}
 
 	public function setVocabularyAuthorizations($vocabularyAuthorizations) {
@@ -668,8 +656,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateVocabularyAuthorizations($vocabularyAuthorizations) {
-		if ( ! $vocabularyAuthorizations instanceof VocabularyAuthorizations  && ! is_null($vocabularyAuthorizations) ) {
-			$vocabularyAuthorizations = new VocabularyAuthorizations ($vocabularyAuthorizations);
+		if ( ! $vocabularyAuthorizations instanceof \com\microsoft\wc\vocab\VocabularyAuthorizations  && ! is_null($vocabularyAuthorizations) ) {
+			$vocabularyAuthorizations = new \com\microsoft\wc\vocab\VocabularyAuthorizations ($vocabularyAuthorizations);
 		}
 	
 		return $vocabularyAuthorizations;

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetVocabulary;
 
-use com\microsoft\wc\methods\GetVocabulary\VocabularyParameters;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createVocabularyParameters() {
-		return new VocabularyParameters();
+		return new \com\microsoft\wc\methods\GetVocabulary\VocabularyParameters();
 	}
 
 	public function setVocabularyParameters($vocabularyParameters) {
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateVocabularyParameters($vocabularyParameters) {
-		if ( ! $vocabularyParameters instanceof VocabularyParameters  && ! is_null($vocabularyParameters) ) {
-			$vocabularyParameters = new VocabularyParameters ($vocabularyParameters);
+		if ( ! $vocabularyParameters instanceof \com\microsoft\wc\methods\GetVocabulary\VocabularyParameters  && ! is_null($vocabularyParameters) ) {
+			$vocabularyParameters = new \com\microsoft\wc\methods\GetVocabulary\VocabularyParameters ($vocabularyParameters);
 		}
 	
 		return $vocabularyParameters;

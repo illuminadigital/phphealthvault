@@ -3,11 +3,10 @@ namespace com\microsoft\wc\thing;
 
 
 
-
 /**
  * @XmlEntity	(xml="ThingType")
  */
-class ThingType extends Guid {
+class ThingType extends \com\microsoft\wc\types\Guid {
 	/**
 	 */
 

@@ -3,11 +3,10 @@ namespace com\microsoft\wc\types;
 
 
 
-
 /**
  * @XmlEntity	(xml="LanguageCompetency")
  */
-class LanguageCompetency extends Iso6391 {
+class LanguageCompetency extends \com\microsoft\wc\types\Iso6391 {
 	/**
 	 */
 

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\SendInsecureMessageFromApplication;
 
-use com\microsoft\wc\types\String255;
+
 
 /**
  * @XmlEntity	(xml="FromMailbox")
@@ -34,7 +34,7 @@ class FromMailbox {
 	}
 	
 	protected function createMailboxName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setMailboxName($mailboxName) {
@@ -42,8 +42,8 @@ class FromMailbox {
 	}
 
 	protected function validateMailboxName($mailboxName) {
-		if ( ! $mailboxName instanceof String255 ) {
-			$mailboxName = new String255 ($mailboxName);
+		if ( ! $mailboxName instanceof \com\microsoft\wc\types\String255 ) {
+			$mailboxName = new \com\microsoft\wc\types\String255 ($mailboxName);
 		}
 	
 		return $mailboxName;
@@ -57,7 +57,7 @@ class FromMailbox {
 	}
 	
 	protected function createName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setName($name) {
@@ -65,8 +65,8 @@ class FromMailbox {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof String255 ) {
-			$name = new String255 ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\String255 ) {
+			$name = new \com\microsoft\wc\types\String255 ($name);
 		}
 	
 		return $name;

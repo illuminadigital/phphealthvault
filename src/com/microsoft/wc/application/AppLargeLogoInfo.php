@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\application;
 
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\application\CultureSpecificAppLargeLogo;
+
 
 /**
  * @XmlEntity	(xml="AppLargeLogoInfo")
@@ -42,8 +41,8 @@ class AppLargeLogoInfo {
 	}
 
 	protected function validateLogo($logo) {
-		if ( ! $logo instanceof CultureSpecificAppLargeLogo ) {
-			$logo = new CultureSpecificAppLargeLogo ($logo);
+		if ( ! $logo instanceof \com\microsoft\wc\application\CultureSpecificAppLargeLogo ) {
+			$logo = new \com\microsoft\wc\application\CultureSpecificAppLargeLogo ($logo);
 		}
 		$count = count($logo);
 		if ($count < 1) {
@@ -70,7 +69,7 @@ class AppLargeLogoInfo {
 	}
 	
 	protected function createContentType() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setContentType($contentType) {
@@ -78,8 +77,8 @@ class AppLargeLogoInfo {
 	}
 
 	protected function validateContentType($contentType) {
-		if ( ! $contentType instanceof String255 ) {
-			$contentType = new String255 ($contentType);
+		if ( ! $contentType instanceof \com\microsoft\wc\types\String255 ) {
+			$contentType = new \com\microsoft\wc\types\String255 ($contentType);
 		}
 	
 		return $contentType;

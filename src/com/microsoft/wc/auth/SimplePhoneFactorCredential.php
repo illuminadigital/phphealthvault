@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\String64;
-use com\microsoft\wc\types\String32;
+
 
 /**
  * @XmlEntity	(xml="SimplePhoneFactorCredential")
@@ -36,7 +35,7 @@ class SimplePhoneFactorCredential {
 	}
 	
 	protected function createId() {
-		return new String64();
+		return new \com\microsoft\wc\types\String64();
 	}
 
 	public function setId($id) {
@@ -44,8 +43,8 @@ class SimplePhoneFactorCredential {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof String64 ) {
-			$id = new String64 ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\String64 ) {
+			$id = new \com\microsoft\wc\types\String64 ($id);
 		}
 	
 		return $id;
@@ -59,7 +58,7 @@ class SimplePhoneFactorCredential {
 	}
 	
 	protected function createPhoneNumber() {
-		return new String32();
+		return new \com\microsoft\wc\types\String32();
 	}
 
 	public function setPhoneNumber($phoneNumber) {
@@ -67,8 +66,8 @@ class SimplePhoneFactorCredential {
 	}
 
 	protected function validatePhoneNumber($phoneNumber) {
-		if ( ! $phoneNumber instanceof String32 ) {
-			$phoneNumber = new String32 ($phoneNumber);
+		if ( ! $phoneNumber instanceof \com\microsoft\wc\types\String32 ) {
+			$phoneNumber = new \com\microsoft\wc\types\String32 ($phoneNumber);
 		}
 	
 		return $phoneNumber;

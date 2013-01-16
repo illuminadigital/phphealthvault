@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\thing\Common;
+
 
 /**
  * @XmlEntity	(xml="DataXml")
@@ -33,7 +33,7 @@ class DataXml {
 	}
 	
 	protected function createCommon() {
-		return new Common();
+		return new \com\microsoft\wc\thing\Common();
 	}
 
 	public function setCommon($common) {
@@ -41,8 +41,8 @@ class DataXml {
 	}
 
 	protected function validateCommon($common) {
-		if ( ! $common instanceof Common  && ! is_null($common) ) {
-			$common = new Common ($common);
+		if ( ! $common instanceof \com\microsoft\wc\thing\Common  && ! is_null($common) ) {
+			$common = new \com\microsoft\wc\thing\Common ($common);
 		}
 	
 		return $common;

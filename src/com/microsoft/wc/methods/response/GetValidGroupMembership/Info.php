@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetValidGroupMembership;
 
-use com\microsoft\wc\thing\Thing;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -36,8 +36,8 @@ class Info {
 	}
 
 	protected function validateThing($thing) {
-		if ( ! $thing instanceof Thing  && ! is_null($thing) ) {
-			$thing = new Thing ($thing);
+		if ( ! $thing instanceof \com\microsoft\wc\thing\Thing  && ! is_null($thing) ) {
+			$thing = new \com\microsoft\wc\thing\Thing ($thing);
 		}
 		$count = count($thing);
 		if ($count < 0) {

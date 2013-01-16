@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Group;
+
 
 /**
  * @XmlEntity	(xml="Groups")
@@ -36,8 +36,8 @@ class Groups {
 	}
 
 	protected function validateGroup($group) {
-		if ( ! $group instanceof Group ) {
-			$group = new Group ($group);
+		if ( ! $group instanceof \com\microsoft\wc\types\Group ) {
+			$group = new \com\microsoft\wc\types\Group ($group);
 		}
 		$count = count($group);
 		if ($count < 1) {

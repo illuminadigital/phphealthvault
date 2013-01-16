@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\types\Stringz255;
-use com\microsoft\wc\types\Stringz1024;
-use com\microsoft\wc\thing\BlobHashInfo;
+
 
 /**
  * @XmlEntity	(xml="BlobInfo")
@@ -41,7 +39,7 @@ class BlobInfo {
 	}
 	
 	protected function createName() {
-		return new Stringz255();
+		return new \com\microsoft\wc\types\Stringz255();
 	}
 
 	public function setName($name) {
@@ -49,8 +47,8 @@ class BlobInfo {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof Stringz255 ) {
-			$name = new Stringz255 ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\Stringz255 ) {
+			$name = new \com\microsoft\wc\types\Stringz255 ($name);
 		}
 	
 		return $name;
@@ -64,7 +62,7 @@ class BlobInfo {
 	}
 	
 	protected function createContentType() {
-		return new Stringz1024();
+		return new \com\microsoft\wc\types\Stringz1024();
 	}
 
 	public function setContentType($contentType) {
@@ -72,8 +70,8 @@ class BlobInfo {
 	}
 
 	protected function validateContentType($contentType) {
-		if ( ! $contentType instanceof Stringz1024 ) {
-			$contentType = new Stringz1024 ($contentType);
+		if ( ! $contentType instanceof \com\microsoft\wc\types\Stringz1024 ) {
+			$contentType = new \com\microsoft\wc\types\Stringz1024 ($contentType);
 		}
 	
 		return $contentType;
@@ -87,7 +85,7 @@ class BlobInfo {
 	}
 	
 	protected function createHashInfo() {
-		return new BlobHashInfo();
+		return new \com\microsoft\wc\thing\BlobHashInfo();
 	}
 
 	public function setHashInfo($hashInfo) {
@@ -95,8 +93,8 @@ class BlobInfo {
 	}
 
 	protected function validateHashInfo($hashInfo) {
-		if ( ! $hashInfo instanceof BlobHashInfo  && ! is_null($hashInfo) ) {
-			$hashInfo = new BlobHashInfo ($hashInfo);
+		if ( ! $hashInfo instanceof \com\microsoft\wc\thing\BlobHashInfo  && ! is_null($hashInfo) ) {
+			$hashInfo = new \com\microsoft\wc\thing\BlobHashInfo ($hashInfo);
 		}
 	
 		return $hashInfo;

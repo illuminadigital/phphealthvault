@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\auth\TextualPermissionsType;
-use com\microsoft\wc\auth\TextualRule;
+
 
 /**
  * @XmlEntity	(xml="TextualPermissions")
@@ -34,7 +33,7 @@ class TextualPermissions {
 	}
 	
 	protected function createTextualPermissionsType() {
-		return new TextualPermissionsType();
+		return new \com\microsoft\wc\auth\TextualPermissionsType();
 	}
 
 	public function setTextualPermissionsType($textualPermissionsType) {
@@ -42,8 +41,8 @@ class TextualPermissions {
 	}
 
 	protected function validateTextualPermissionsType($textualPermissionsType) {
-		if ( ! $textualPermissionsType instanceof TextualPermissionsType ) {
-			$textualPermissionsType = new TextualPermissionsType ($textualPermissionsType);
+		if ( ! $textualPermissionsType instanceof \com\microsoft\wc\auth\TextualPermissionsType ) {
+			$textualPermissionsType = new \com\microsoft\wc\auth\TextualPermissionsType ($textualPermissionsType);
 		}
 	
 		return $textualPermissionsType;
@@ -57,7 +56,7 @@ class TextualPermissions {
 	}
 	
 	protected function createTextualRule() {
-		return new TextualRule();
+		return new \com\microsoft\wc\auth\TextualRule();
 	}
 
 	public function setTextualRule($textualRule) {
@@ -65,8 +64,8 @@ class TextualPermissions {
 	}
 
 	protected function validateTextualRule($textualRule) {
-		if ( ! $textualRule instanceof TextualRule ) {
-			$textualRule = new TextualRule ($textualRule);
+		if ( ! $textualRule instanceof \com\microsoft\wc\auth\TextualRule ) {
+			$textualRule = new \com\microsoft\wc\auth\TextualRule ($textualRule);
 		}
 	
 		return $textualRule;

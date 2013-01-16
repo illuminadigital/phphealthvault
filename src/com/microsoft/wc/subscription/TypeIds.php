@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\subscription;
 
-use com\microsoft\wc\subscription\Guid;
+
 
 /**
  * @XmlEntity	(xml="TypeIds")
@@ -12,7 +12,7 @@ class TypeIds {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\subscription\Guid", collection="true", name="type-id")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", collection="true", name="type-id")
 	 */
 	protected $typeId;
 
@@ -36,8 +36,8 @@ class TypeIds {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof Guid ) {
-			$typeId = new Guid ($typeId);
+		if ( ! $typeId instanceof \com\microsoft\wc\types\Guid ) {
+			$typeId = new \com\microsoft\wc\types\Guid ($typeId);
 		}
 		$count = count($typeId);
 		if ($count < 1) {

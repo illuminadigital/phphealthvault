@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetAuthorizedRecords;
 
-use com\microsoft\wc\types\Record;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -37,8 +37,8 @@ class Info {
 	}
 
 	protected function validateRecord($record) {
-		if ( ! $record instanceof Record  && ! is_null($record) ) {
-			$record = new Record ($record);
+		if ( ! $record instanceof \com\microsoft\wc\types\Record  && ! is_null($record) ) {
+			$record = new \com\microsoft\wc\types\Record ($record);
 		}
 		$count = count($record);
 		if ($count < 0) {

@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetThings3;
 
-use com\microsoft\wc\methods\GetThings3\BlobPayloadRequest;
-use com\microsoft\wc\methods\GetThings3\ThingSectionSpec2;
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="ThingFormatSpec2")
@@ -57,8 +55,8 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateSection($section) {
-		if ( ! $section instanceof ThingSectionSpec2  && ! is_null($section) ) {
-			$section = new ThingSectionSpec2 ($section);
+		if ( ! $section instanceof \com\microsoft\wc\methods\GetThings3\ThingSectionSpec2  && ! is_null($section) ) {
+			$section = new \com\microsoft\wc\methods\GetThings3\ThingSectionSpec2 ($section);
 		}
 		$count = count($section);
 		if ($count < 0) {
@@ -134,8 +132,8 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateTypeVersionFormat($typeVersionFormat) {
-		if ( ! $typeVersionFormat instanceof Guid  && ! is_null($typeVersionFormat) ) {
-			$typeVersionFormat = new Guid ($typeVersionFormat);
+		if ( ! $typeVersionFormat instanceof \com\microsoft\wc\types\Guid  && ! is_null($typeVersionFormat) ) {
+			$typeVersionFormat = new \com\microsoft\wc\types\Guid ($typeVersionFormat);
 		}
 		$count = count($typeVersionFormat);
 		if ($count < 0) {
@@ -162,7 +160,7 @@ class ThingFormatSpec2 {
 	}
 	
 	protected function createBlobPayloadRequest() {
-		return new BlobPayloadRequest();
+		return new \com\microsoft\wc\methods\GetThings3\BlobPayloadRequest();
 	}
 
 	public function setBlobPayloadRequest($blobPayloadRequest) {
@@ -170,8 +168,8 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateBlobPayloadRequest($blobPayloadRequest) {
-		if ( ! $blobPayloadRequest instanceof BlobPayloadRequest  && ! is_null($blobPayloadRequest) ) {
-			$blobPayloadRequest = new BlobPayloadRequest ($blobPayloadRequest);
+		if ( ! $blobPayloadRequest instanceof \com\microsoft\wc\methods\GetThings3\BlobPayloadRequest  && ! is_null($blobPayloadRequest) ) {
+			$blobPayloadRequest = new \com\microsoft\wc\methods\GetThings3\BlobPayloadRequest ($blobPayloadRequest);
 		}
 	
 		return $blobPayloadRequest;

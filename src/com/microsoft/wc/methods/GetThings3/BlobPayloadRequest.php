@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetThings3;
 
-use com\microsoft\wc\methods\GetThings3\BlobFilters;
+
 
 /**
  * @XmlEntity	(xml="BlobPayloadRequest")
@@ -33,7 +33,7 @@ class BlobPayloadRequest {
 	}
 	
 	protected function createBlobFilters() {
-		return new BlobFilters();
+		return new \com\microsoft\wc\methods\GetThings3\BlobFilters();
 	}
 
 	public function setBlobFilters($blobFilters) {
@@ -41,8 +41,8 @@ class BlobPayloadRequest {
 	}
 
 	protected function validateBlobFilters($blobFilters) {
-		if ( ! $blobFilters instanceof BlobFilters  && ! is_null($blobFilters) ) {
-			$blobFilters = new BlobFilters ($blobFilters);
+		if ( ! $blobFilters instanceof \com\microsoft\wc\methods\GetThings3\BlobFilters  && ! is_null($blobFilters) ) {
+			$blobFilters = new \com\microsoft\wc\methods\GetThings3\BlobFilters ($blobFilters);
 		}
 	
 		return $blobFilters;

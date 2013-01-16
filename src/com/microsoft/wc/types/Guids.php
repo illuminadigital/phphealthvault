@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="guids")
@@ -35,8 +35,8 @@ class Guids {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 		$count = count($id);
 		if ($count < 1) {

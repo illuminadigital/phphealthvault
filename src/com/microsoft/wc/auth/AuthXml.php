@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\auth\Auth;
+
 
 /**
  * @XmlEntity	(xml="AuthXml")
@@ -27,7 +27,7 @@ class AuthXml {
 	}
 	
 	protected function createAuth() {
-		return new Auth();
+		return new \com\microsoft\wc\auth\Auth();
 	}
 
 	public function setAuth($auth) {
@@ -35,8 +35,8 @@ class AuthXml {
 	}
 
 	protected function validateAuth($auth) {
-		if ( ! $auth instanceof Auth  && ! is_null($auth) ) {
-			$auth = new Auth ($auth);
+		if ( ! $auth instanceof \com\microsoft\wc\auth\Auth  && ! is_null($auth) ) {
+			$auth = new \com\microsoft\wc\auth\Auth ($auth);
 		}
 	
 		return $auth;

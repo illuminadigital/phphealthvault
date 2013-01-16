@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\SearchVocabulary;
 
-use com\microsoft\wc\vocab\VocabularyCodeSet;
-use com\microsoft\wc\vocab\VocabularyKeyInfo;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -43,8 +42,8 @@ class Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! $vocabularyKey instanceof VocabularyKeyInfo  && ! is_null($vocabularyKey) ) {
-			$vocabularyKey = new VocabularyKeyInfo ($vocabularyKey);
+		if ( ! $vocabularyKey instanceof \com\microsoft\wc\vocab\VocabularyKeyInfo  && ! is_null($vocabularyKey) ) {
+			$vocabularyKey = new \com\microsoft\wc\vocab\VocabularyKeyInfo ($vocabularyKey);
 		}
 		$count = count($vocabularyKey);
 		if ($count < 0) {
@@ -71,7 +70,7 @@ class Info {
 	}
 	
 	protected function createCodeSetResult() {
-		return new VocabularyCodeSet();
+		return new \com\microsoft\wc\vocab\VocabularyCodeSet();
 	}
 
 	public function setCodeSetResult($codeSetResult) {
@@ -79,8 +78,8 @@ class Info {
 	}
 
 	protected function validateCodeSetResult($codeSetResult) {
-		if ( ! $codeSetResult instanceof VocabularyCodeSet ) {
-			$codeSetResult = new VocabularyCodeSet ($codeSetResult);
+		if ( ! $codeSetResult instanceof \com\microsoft\wc\vocab\VocabularyCodeSet ) {
+			$codeSetResult = new \com\microsoft\wc\vocab\VocabularyCodeSet ($codeSetResult);
 		}
 	
 		return $codeSetResult;

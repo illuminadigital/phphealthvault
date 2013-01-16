@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\types\String128;
+
 
 /**
  * @XmlEntity	(xml="OpenQueryInfo")
@@ -61,7 +59,7 @@ class OpenQueryInfo {
 	}
 	
 	protected function createQueryId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setQueryId($queryId) {
@@ -69,8 +67,8 @@ class OpenQueryInfo {
 	}
 
 	protected function validateQueryId($queryId) {
-		if ( ! $queryId instanceof Guid ) {
-			$queryId = new Guid ($queryId);
+		if ( ! $queryId instanceof \com\microsoft\wc\types\Guid ) {
+			$queryId = new \com\microsoft\wc\types\Guid ($queryId);
 		}
 	
 		return $queryId;
@@ -84,7 +82,7 @@ class OpenQueryInfo {
 	}
 	
 	protected function createAppName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setAppName($appName) {
@@ -92,8 +90,8 @@ class OpenQueryInfo {
 	}
 
 	protected function validateAppName($appName) {
-		if ( ! $appName instanceof String255 ) {
-			$appName = new String255 ($appName);
+		if ( ! $appName instanceof \com\microsoft\wc\types\String255 ) {
+			$appName = new \com\microsoft\wc\types\String255 ($appName);
 		}
 	
 		return $appName;
@@ -176,7 +174,7 @@ class OpenQueryInfo {
 	}
 	
 	protected function createNote() {
-		return new String128();
+		return new \com\microsoft\wc\types\String128();
 	}
 
 	public function setNote($note) {
@@ -184,8 +182,8 @@ class OpenQueryInfo {
 	}
 
 	protected function validateNote($note) {
-		if ( ! $note instanceof String128  && ! is_null($note) ) {
-			$note = new String128 ($note);
+		if ( ! $note instanceof \com\microsoft\wc\types\String128  && ! is_null($note) ) {
+			$note = new \com\microsoft\wc\types\String128 ($note);
 		}
 	
 		return $note;

@@ -24,7 +24,7 @@ for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method
 do
 	echo $i
 	cd /tmp/$$/`dirname $i`
-	php $XSD2PHPBASE/src/tools/legko.php compile-schema --schema `basename $i` --dest $DESTBASE/src --binding hv
+	php $XSD2PHPBASE/src/tools/legko.php compile-schema --schema `basename $i` --dest $DESTBASE/src --binding hv --debug
 done
 
 echo "Cleaning up"

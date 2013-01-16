@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Iso6391;
+
 
 /**
  * @XmlEntity	(xml="LocalizedString")
@@ -27,7 +27,7 @@ class LocalizedString {
 	}
 	
 	protected function createLanguage() {
-		return new Iso6391();
+		return new \com\microsoft\wc\types\Iso6391();
 	}
 
 	public function setLanguage($language) {
@@ -35,8 +35,8 @@ class LocalizedString {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof Iso6391  && ! is_null($language) ) {
-			$language = new Iso6391 ($language);
+		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
+			$language = new \com\microsoft\wc\types\Iso6391 ($language);
 		}
 	
 		return $language;

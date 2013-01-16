@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="Audit2")
@@ -29,7 +29,7 @@ class Audit2 {
 	}
 	
 	protected function createMasterAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setMasterAppId($masterAppId) {
@@ -37,8 +37,8 @@ class Audit2 {
 	}
 
 	protected function validateMasterAppId($masterAppId) {
-		if ( ! $masterAppId instanceof Guid  && ! is_null($masterAppId) ) {
-			$masterAppId = new Guid ($masterAppId);
+		if ( ! $masterAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($masterAppId) ) {
+			$masterAppId = new \com\microsoft\wc\types\Guid ($masterAppId);
 		}
 	
 		return $masterAppId;

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\CodedValue;
+
 
 /**
  * @XmlEntity	(xml="codable-value")
@@ -66,8 +66,8 @@ class CodableValue {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof CodedValue  && ! is_null($code) ) {
-			$code = new CodedValue ($code);
+		if ( ! $code instanceof \com\microsoft\wc\types\CodedValue  && ! is_null($code) ) {
+			$code = new \com\microsoft\wc\types\CodedValue ($code);
 		}
 		$count = count($code);
 		if ($count < 0) {

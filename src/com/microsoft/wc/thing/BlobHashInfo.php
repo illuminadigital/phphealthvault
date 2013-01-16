@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\types\Stringz255;
-use com\microsoft\wc\types\BlobHashAlgorithmParameters;
-use com\microsoft\wc\types\Stringnz512;
+
 
 /**
  * @XmlEntity	(xml="BlobHashInfo")
@@ -41,7 +39,7 @@ class BlobHashInfo {
 	}
 	
 	protected function createAlgorithm() {
-		return new Stringz255();
+		return new \com\microsoft\wc\types\Stringz255();
 	}
 
 	public function setAlgorithm($algorithm) {
@@ -49,8 +47,8 @@ class BlobHashInfo {
 	}
 
 	protected function validateAlgorithm($algorithm) {
-		if ( ! $algorithm instanceof Stringz255 ) {
-			$algorithm = new Stringz255 ($algorithm);
+		if ( ! $algorithm instanceof \com\microsoft\wc\types\Stringz255 ) {
+			$algorithm = new \com\microsoft\wc\types\Stringz255 ($algorithm);
 		}
 	
 		return $algorithm;
@@ -64,7 +62,7 @@ class BlobHashInfo {
 	}
 	
 	protected function createParams() {
-		return new BlobHashAlgorithmParameters();
+		return new \com\microsoft\wc\types\BlobHashAlgorithmParameters();
 	}
 
 	public function setParams($params) {
@@ -72,8 +70,8 @@ class BlobHashInfo {
 	}
 
 	protected function validateParams($params) {
-		if ( ! $params instanceof BlobHashAlgorithmParameters  && ! is_null($params) ) {
-			$params = new BlobHashAlgorithmParameters ($params);
+		if ( ! $params instanceof \com\microsoft\wc\types\BlobHashAlgorithmParameters  && ! is_null($params) ) {
+			$params = new \com\microsoft\wc\types\BlobHashAlgorithmParameters ($params);
 		}
 	
 		return $params;
@@ -87,7 +85,7 @@ class BlobHashInfo {
 	}
 	
 	protected function createHash() {
-		return new Stringnz512();
+		return new \com\microsoft\wc\types\Stringnz512();
 	}
 
 	public function setHash($hash) {
@@ -95,8 +93,8 @@ class BlobHashInfo {
 	}
 
 	protected function validateHash($hash) {
-		if ( ! $hash instanceof Stringnz512 ) {
-			$hash = new Stringnz512 ($hash);
+		if ( ! $hash instanceof \com\microsoft\wc\types\Stringnz512 ) {
+			$hash = new \com\microsoft\wc\types\Stringnz512 ($hash);
 		}
 	
 		return $hash;

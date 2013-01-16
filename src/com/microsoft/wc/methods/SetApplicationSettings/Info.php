@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\SetApplicationSettings;
 
-use com\microsoft\wc\types\AppSettings;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createAppSettings() {
-		return new AppSettings();
+		return new \com\microsoft\wc\types\AppSettings();
 	}
 
 	public function setAppSettings($appSettings) {
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppSettings($appSettings) {
-		if ( ! $appSettings instanceof AppSettings  && ! is_null($appSettings) ) {
-			$appSettings = new AppSettings ($appSettings);
+		if ( ! $appSettings instanceof \com\microsoft\wc\types\AppSettings  && ! is_null($appSettings) ) {
+			$appSettings = new \com\microsoft\wc\types\AppSettings ($appSettings);
 		}
 	
 		return $appSettings;

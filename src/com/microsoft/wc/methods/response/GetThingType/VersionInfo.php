@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetThingType;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="VersionInfo")
@@ -40,7 +40,7 @@ class VersionInfo {
 	}
 	
 	protected function createVersionTypeId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setVersionTypeId($versionTypeId) {
@@ -48,8 +48,8 @@ class VersionInfo {
 	}
 
 	protected function validateVersionTypeId($versionTypeId) {
-		if ( ! $versionTypeId instanceof Guid ) {
-			$versionTypeId = new Guid ($versionTypeId);
+		if ( ! $versionTypeId instanceof \com\microsoft\wc\types\Guid ) {
+			$versionTypeId = new \com\microsoft\wc\types\Guid ($versionTypeId);
 		}
 	
 		return $versionTypeId;

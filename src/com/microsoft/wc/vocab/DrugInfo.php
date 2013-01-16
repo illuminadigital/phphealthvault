@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\vocab\MedicationRoutes;
-use com\microsoft\wc\vocab\MedicationStrength;
+
 
 /**
  * @XmlEntity	(xml="drug-info")
@@ -42,8 +41,8 @@ class DrugInfo {
 	}
 
 	protected function validateStrength($strength) {
-		if ( ! $strength instanceof MedicationStrength  && ! is_null($strength) ) {
-			$strength = new MedicationStrength ($strength);
+		if ( ! $strength instanceof \com\microsoft\wc\vocab\MedicationStrength  && ! is_null($strength) ) {
+			$strength = new \com\microsoft\wc\vocab\MedicationStrength ($strength);
 		}
 		$count = count($strength);
 		if ($count < 0) {
@@ -70,7 +69,7 @@ class DrugInfo {
 	}
 	
 	protected function createRoutes() {
-		return new MedicationRoutes();
+		return new \com\microsoft\wc\vocab\MedicationRoutes();
 	}
 
 	public function setRoutes($routes) {
@@ -78,8 +77,8 @@ class DrugInfo {
 	}
 
 	protected function validateRoutes($routes) {
-		if ( ! $routes instanceof MedicationRoutes  && ! is_null($routes) ) {
-			$routes = new MedicationRoutes ($routes);
+		if ( ! $routes instanceof \com\microsoft\wc\vocab\MedicationRoutes  && ! is_null($routes) ) {
+			$routes = new \com\microsoft\wc\vocab\MedicationRoutes ($routes);
 		}
 	
 		return $routes;

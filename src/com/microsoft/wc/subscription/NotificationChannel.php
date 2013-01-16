@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\subscription;
 
-use com\microsoft\wc\subscription\HttpNotificationChannel;
+
 
 /**
  * @XmlEntity	(xml="NotificationChannel")
@@ -27,7 +27,7 @@ class NotificationChannel {
 	}
 	
 	protected function createHttpNotificationChannel() {
-		return new HttpNotificationChannel();
+		return new \com\microsoft\wc\subscription\HttpNotificationChannel();
 	}
 
 	public function setHttpNotificationChannel($httpNotificationChannel) {
@@ -35,8 +35,8 @@ class NotificationChannel {
 	}
 
 	protected function validateHttpNotificationChannel($httpNotificationChannel) {
-		if ( ! $httpNotificationChannel instanceof HttpNotificationChannel ) {
-			$httpNotificationChannel = new HttpNotificationChannel ($httpNotificationChannel);
+		if ( ! $httpNotificationChannel instanceof \com\microsoft\wc\subscription\HttpNotificationChannel ) {
+			$httpNotificationChannel = new \com\microsoft\wc\subscription\HttpNotificationChannel ($httpNotificationChannel);
 		}
 	
 		return $httpNotificationChannel;

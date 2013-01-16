@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetThings;
 
-use com\microsoft\wc\methods\response\GetThings\ThingResponseGroup;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -28,7 +28,7 @@ class Info {
 	}
 	
 	protected function createGroup() {
-		return new ThingResponseGroup();
+		return new \com\microsoft\wc\methods\response\GetThings\ThingResponseGroup();
 	}
 
 	public function setGroup($group) {
@@ -36,8 +36,8 @@ class Info {
 	}
 
 	protected function validateGroup($group) {
-		if ( ! $group instanceof ThingResponseGroup ) {
-			$group = new ThingResponseGroup ($group);
+		if ( ! $group instanceof \com\microsoft\wc\methods\response\GetThings\ThingResponseGroup ) {
+			$group = new \com\microsoft\wc\methods\response\GetThings\ThingResponseGroup ($group);
 		}
 	
 		return $group;

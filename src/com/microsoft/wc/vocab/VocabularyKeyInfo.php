@@ -3,11 +3,10 @@ namespace com\microsoft\wc\vocab;
 
 
 
-
 /**
  * @XmlEntity	(xml="VocabularyKeyInfo")
  */
-class VocabularyKeyInfo extends VocabularyKey {
+class VocabularyKeyInfo extends \com\microsoft\wc\vocab\VocabularyKey {
 	/**
 	 * Summary information about a vocabulary in the system.
 	 * This information is made up of the key and a description of the vocabulary. The key is made up of the name, family, and version.

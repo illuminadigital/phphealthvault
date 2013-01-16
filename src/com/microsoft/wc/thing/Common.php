@@ -1,10 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\types\Stringz512;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\thing\Extension;
-use com\microsoft\wc\thing\RelatedThing;
+
 
 /**
  * @XmlEntity	(xml="common")
@@ -106,7 +103,7 @@ class Common {
 	}
 	
 	protected function createTags() {
-		return new Stringz512();
+		return new \com\microsoft\wc\types\Stringz512();
 	}
 
 	public function setTags($tags) {
@@ -114,8 +111,8 @@ class Common {
 	}
 
 	protected function validateTags($tags) {
-		if ( ! $tags instanceof Stringz512  && ! is_null($tags) ) {
-			$tags = new Stringz512 ($tags);
+		if ( ! $tags instanceof \com\microsoft\wc\types\Stringz512  && ! is_null($tags) ) {
+			$tags = new \com\microsoft\wc\types\Stringz512 ($tags);
 		}
 	
 		return $tags;
@@ -137,8 +134,8 @@ class Common {
 	}
 
 	protected function validateExtension($extension) {
-		if ( ! $extension instanceof Extension  && ! is_null($extension) ) {
-			$extension = new Extension ($extension);
+		if ( ! $extension instanceof \com\microsoft\wc\thing\Extension  && ! is_null($extension) ) {
+			$extension = new \com\microsoft\wc\thing\Extension ($extension);
 		}
 		$count = count($extension);
 		if ($count < 0) {
@@ -173,8 +170,8 @@ class Common {
 	}
 
 	protected function validateRelatedThing($relatedThing) {
-		if ( ! $relatedThing instanceof RelatedThing  && ! is_null($relatedThing) ) {
-			$relatedThing = new RelatedThing ($relatedThing);
+		if ( ! $relatedThing instanceof \com\microsoft\wc\thing\RelatedThing  && ! is_null($relatedThing) ) {
+			$relatedThing = new \com\microsoft\wc\thing\RelatedThing ($relatedThing);
 		}
 		$count = count($relatedThing);
 		if ($count < 0) {
@@ -201,7 +198,7 @@ class Common {
 	}
 	
 	protected function createClientThingId() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setClientThingId($clientThingId) {
@@ -209,8 +206,8 @@ class Common {
 	}
 
 	protected function validateClientThingId($clientThingId) {
-		if ( ! $clientThingId instanceof String255  && ! is_null($clientThingId) ) {
-			$clientThingId = new String255 ($clientThingId);
+		if ( ! $clientThingId instanceof \com\microsoft\wc\types\String255  && ! is_null($clientThingId) ) {
+			$clientThingId = new \com\microsoft\wc\types\String255 ($clientThingId);
 		}
 	
 		return $clientThingId;

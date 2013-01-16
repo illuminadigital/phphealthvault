@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\DeleteOpenQuery;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info {
 	}
 	
 	protected function createQueryId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setQueryId($queryId) {
@@ -37,8 +37,8 @@ class Info {
 	}
 
 	protected function validateQueryId($queryId) {
-		if ( ! $queryId instanceof Guid ) {
-			$queryId = new Guid ($queryId);
+		if ( ! $queryId instanceof \com\microsoft\wc\types\Guid ) {
+			$queryId = new \com\microsoft\wc\types\Guid ($queryId);
 		}
 	
 		return $queryId;

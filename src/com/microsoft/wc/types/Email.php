@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\EmailAddress;
+
 
 /**
  * @XmlEntity	(xml="Email")
@@ -85,7 +85,7 @@ class Email {
 	}
 	
 	protected function createAddress() {
-		return new EmailAddress();
+		return new \com\microsoft\wc\types\EmailAddress();
 	}
 
 	public function setAddress($address) {
@@ -93,8 +93,8 @@ class Email {
 	}
 
 	protected function validateAddress($address) {
-		if ( ! $address instanceof EmailAddress ) {
-			$address = new EmailAddress ($address);
+		if ( ! $address instanceof \com\microsoft\wc\types\EmailAddress ) {
+			$address = new \com\microsoft\wc\types\EmailAddress ($address);
 		}
 	
 		return $address;

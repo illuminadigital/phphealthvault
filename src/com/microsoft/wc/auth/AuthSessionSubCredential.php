@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\auth\SimplePassportCredential;
+
 
 /**
  * @XmlEntity	(xml="AuthSessionSubCredential")
@@ -29,7 +29,7 @@ class AuthSessionSubCredential {
 	}
 	
 	protected function createSimplePassport() {
-		return new SimplePassportCredential();
+		return new \com\microsoft\wc\auth\SimplePassportCredential();
 	}
 
 	public function setSimplePassport($simplePassport) {
@@ -37,8 +37,8 @@ class AuthSessionSubCredential {
 	}
 
 	protected function validateSimplePassport($simplePassport) {
-		if ( ! $simplePassport instanceof SimplePassportCredential ) {
-			$simplePassport = new SimplePassportCredential ($simplePassport);
+		if ( ! $simplePassport instanceof \com\microsoft\wc\auth\SimplePassportCredential ) {
+			$simplePassport = new \com\microsoft\wc\auth\SimplePassportCredential ($simplePassport);
 		}
 	
 		return $simplePassport;

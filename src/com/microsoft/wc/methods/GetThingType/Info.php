@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetThingType;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\methods\GetThingType\ThingTypeSectionSpec;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -56,8 +55,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid  && ! is_null($id) ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid  && ! is_null($id) ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 		$count = count($id);
 		if ($count < 0) {
@@ -92,8 +91,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateSection($section) {
-		if ( ! $section instanceof ThingTypeSectionSpec  && ! is_null($section) ) {
-			$section = new ThingTypeSectionSpec ($section);
+		if ( ! $section instanceof \com\microsoft\wc\methods\GetThingType\ThingTypeSectionSpec  && ! is_null($section) ) {
+			$section = new \com\microsoft\wc\methods\GetThingType\ThingTypeSectionSpec ($section);
 		}
 		$count = count($section);
 		if ($count < 0) {

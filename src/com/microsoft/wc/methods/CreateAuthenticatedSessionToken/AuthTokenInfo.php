@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\CreateAuthenticatedSessionToken;
 
-use com\microsoft\wc\types\AppInfo;
-use com\microsoft\wc\methods\CreateAuthenticatedSessionToken\Credential;
+
 
 /**
  * @XmlEntity	(xml="AuthTokenInfo")
@@ -36,7 +35,7 @@ class AuthTokenInfo {
 	}
 	
 	protected function createAppId() {
-		return new AppInfo();
+		return new \com\microsoft\wc\types\AppInfo();
 	}
 
 	public function setAppId($appId) {
@@ -44,8 +43,8 @@ class AuthTokenInfo {
 	}
 
 	protected function validateAppId($appId) {
-		if ( ! $appId instanceof AppInfo ) {
-			$appId = new AppInfo ($appId);
+		if ( ! $appId instanceof \com\microsoft\wc\types\AppInfo ) {
+			$appId = new \com\microsoft\wc\types\AppInfo ($appId);
 		}
 	
 		return $appId;
@@ -59,7 +58,7 @@ class AuthTokenInfo {
 	}
 	
 	protected function createCredential() {
-		return new Credential();
+		return new \com\microsoft\wc\methods\CreateAuthenticatedSessionToken\Credential();
 	}
 
 	public function setCredential($credential) {
@@ -67,8 +66,8 @@ class AuthTokenInfo {
 	}
 
 	protected function validateCredential($credential) {
-		if ( ! $credential instanceof Credential ) {
-			$credential = new Credential ($credential);
+		if ( ! $credential instanceof \com\microsoft\wc\methods\CreateAuthenticatedSessionToken\Credential ) {
+			$credential = new \com\microsoft\wc\methods\CreateAuthenticatedSessionToken\Credential ($credential);
 		}
 	
 		return $credential;

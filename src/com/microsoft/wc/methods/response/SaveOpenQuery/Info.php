@@ -3,7 +3,6 @@ namespace com\microsoft\wc\methods\response\SaveOpenQuery;
 
 
 
-use com\microsoft\wc\types\OpenQueryInfo;
 /**
  * @XmlEntity	(xml="info")
  */

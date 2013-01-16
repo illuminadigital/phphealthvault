@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\HashFinalizedData;
+
 
 /**
  * @XmlEntity	(xml="HashFinalized")
@@ -29,7 +29,7 @@ class HashFinalized {
 	}
 	
 	protected function createHashData() {
-		return new HashFinalizedData();
+		return new \com\microsoft\wc\types\HashFinalizedData();
 	}
 
 	public function setHashData($hashData) {
@@ -37,8 +37,8 @@ class HashFinalized {
 	}
 
 	protected function validateHashData($hashData) {
-		if ( ! $hashData instanceof HashFinalizedData ) {
-			$hashData = new HashFinalizedData ($hashData);
+		if ( ! $hashData instanceof \com\microsoft\wc\types\HashFinalizedData ) {
+			$hashData = new \com\microsoft\wc\types\HashFinalizedData ($hashData);
 		}
 	
 		return $hashData;

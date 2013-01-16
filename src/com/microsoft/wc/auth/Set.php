@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\DateRange;
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="Set")
@@ -42,8 +41,8 @@ class Set {
 	}
 
 	protected function validateDateRange($dateRange) {
-		if ( ! $dateRange instanceof DateRange  && ! is_null($dateRange) ) {
-			$dateRange = new DateRange ($dateRange);
+		if ( ! $dateRange instanceof \com\microsoft\wc\types\DateRange  && ! is_null($dateRange) ) {
+			$dateRange = new \com\microsoft\wc\types\DateRange ($dateRange);
 		}
 		$count = count($dateRange);
 		if ($count < 0) {
@@ -78,8 +77,8 @@ class Set {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof Guid  && ! is_null($typeId) ) {
-			$typeId = new Guid ($typeId);
+		if ( ! $typeId instanceof \com\microsoft\wc\types\Guid  && ! is_null($typeId) ) {
+			$typeId = new \com\microsoft\wc\types\Guid ($typeId);
 		}
 		$count = count($typeId);
 		if ($count < 0) {

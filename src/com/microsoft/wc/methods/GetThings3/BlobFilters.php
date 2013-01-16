@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetThings3;
 
-use com\microsoft\wc\methods\GetThings3\BlobFilterSpec;
+
 
 /**
  * @XmlEntity	(xml="BlobFilters")
@@ -35,8 +35,8 @@ class BlobFilters {
 	}
 
 	protected function validateBlobFilter($blobFilter) {
-		if ( ! $blobFilter instanceof BlobFilterSpec ) {
-			$blobFilter = new BlobFilterSpec ($blobFilter);
+		if ( ! $blobFilter instanceof \com\microsoft\wc\methods\GetThings3\BlobFilterSpec ) {
+			$blobFilter = new \com\microsoft\wc\methods\GetThings3\BlobFilterSpec ($blobFilter);
 		}
 		$count = count($blobFilter);
 		if ($count < 1) {

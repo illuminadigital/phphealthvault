@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\vocab\VocabularyMappingItem;
+
 
 /**
  * @XmlEntity	(xml="vocabulary-mapping")
@@ -36,8 +36,8 @@ class VocabularyMapping {
 	}
 
 	protected function validateVocabularyMappingItem($vocabularyMappingItem) {
-		if ( ! $vocabularyMappingItem instanceof VocabularyMappingItem  && ! is_null($vocabularyMappingItem) ) {
-			$vocabularyMappingItem = new VocabularyMappingItem ($vocabularyMappingItem);
+		if ( ! $vocabularyMappingItem instanceof \com\microsoft\wc\vocab\VocabularyMappingItem  && ! is_null($vocabularyMappingItem) ) {
+			$vocabularyMappingItem = new \com\microsoft\wc\vocab\VocabularyMappingItem ($vocabularyMappingItem);
 		}
 		$count = count($vocabularyMappingItem);
 		if ($count < 0) {

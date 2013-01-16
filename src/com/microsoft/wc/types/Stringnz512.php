@@ -3,16 +3,15 @@ namespace com\microsoft\wc\types;
 
 
 
-use _this\Stringnz;
 /**
  * @XmlRootEntity	(xml="stringnz512")
  */
-class Stringnz512 extends \_this\Stringnz {
+class Stringnz512 extends \com\microsoft\wc\types\Stringnz {
 	/**
 	 */
 
 	/**
-	 * @XmlElement	(type="\_this\Stringnz", name="value")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="value")
 	 */
 	protected $value;
 
@@ -28,7 +27,7 @@ class Stringnz512 extends \_this\Stringnz {
 	}
 	
 	protected function createValue() {
-		return NULL;
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setValue($value) {
@@ -36,8 +35,8 @@ class Stringnz512 extends \_this\Stringnz {
 	}
 
 	protected function validateValue($value) {
-		if (!is_this:stringnz($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'this:stringnz'));
+		if ( ! $value instanceof \com\microsoft\wc\types\Stringnz ) {
+			$value = new \com\microsoft\wc\types\Stringnz ($value);
 		}
 
 		if (strlen($value) < 1) {

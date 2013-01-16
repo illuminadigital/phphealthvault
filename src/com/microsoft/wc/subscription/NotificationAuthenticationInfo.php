@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\subscription;
 
-use com\microsoft\wc\subscription\HVEventingSharedKey;
+
 
 /**
  * @XmlEntity	(xml="NotificationAuthenticationInfo")
@@ -27,7 +27,7 @@ class NotificationAuthenticationInfo {
 	}
 	
 	protected function createHvEventingSharedKey() {
-		return new HVEventingSharedKey();
+		return new \com\microsoft\wc\subscription\HVEventingSharedKey();
 	}
 
 	public function setHvEventingSharedKey($hvEventingSharedKey) {
@@ -35,8 +35,8 @@ class NotificationAuthenticationInfo {
 	}
 
 	protected function validateHvEventingSharedKey($hvEventingSharedKey) {
-		if ( ! $hvEventingSharedKey instanceof HVEventingSharedKey ) {
-			$hvEventingSharedKey = new HVEventingSharedKey ($hvEventingSharedKey);
+		if ( ! $hvEventingSharedKey instanceof \com\microsoft\wc\subscription\HVEventingSharedKey ) {
+			$hvEventingSharedKey = new \com\microsoft\wc\subscription\HVEventingSharedKey ($hvEventingSharedKey);
 		}
 	
 		return $hvEventingSharedKey;

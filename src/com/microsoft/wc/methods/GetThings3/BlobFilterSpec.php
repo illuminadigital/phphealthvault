@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetThings3;
 
-use com\microsoft\wc\types\Stringnwz64;
+
 
 /**
  * @XmlEntity	(xml="BlobFilterSpec")
@@ -27,7 +27,7 @@ class BlobFilterSpec {
 	}
 	
 	protected function createBlobName() {
-		return new Stringnwz64();
+		return new \com\microsoft\wc\types\Stringnwz64();
 	}
 
 	public function setBlobName($blobName) {
@@ -35,8 +35,8 @@ class BlobFilterSpec {
 	}
 
 	protected function validateBlobName($blobName) {
-		if ( ! $blobName instanceof Stringnwz64 ) {
-			$blobName = new Stringnwz64 ($blobName);
+		if ( ! $blobName instanceof \com\microsoft\wc\types\Stringnwz64 ) {
+			$blobName = new \com\microsoft\wc\types\Stringnwz64 ($blobName);
 		}
 	
 		return $blobName;

@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetThingType;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\methods\response\GetThingType\VersionInfo;
+
 
 /**
  * @XmlEntity	(xml="Versions")
@@ -43,8 +42,8 @@ class Versions {
 	}
 
 	protected function validateVersionInfo($versionInfo) {
-		if ( ! $versionInfo instanceof VersionInfo ) {
-			$versionInfo = new VersionInfo ($versionInfo);
+		if ( ! $versionInfo instanceof \com\microsoft\wc\methods\response\GetThingType\VersionInfo ) {
+			$versionInfo = new \com\microsoft\wc\methods\response\GetThingType\VersionInfo ($versionInfo);
 		}
 		$count = count($versionInfo);
 		if ($count < 1) {
@@ -71,7 +70,7 @@ class Versions {
 	}
 	
 	protected function createThingTypeId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setThingTypeId($thingTypeId) {
@@ -79,8 +78,8 @@ class Versions {
 	}
 
 	protected function validateThingTypeId($thingTypeId) {
-		if ( ! $thingTypeId instanceof Guid ) {
-			$thingTypeId = new Guid ($thingTypeId);
+		if ( ! $thingTypeId instanceof \com\microsoft\wc\types\Guid ) {
+			$thingTypeId = new \com\microsoft\wc\types\Guid ($thingTypeId);
 		}
 	
 		return $thingTypeId;

@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\NewApplicationCreationInfo;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\String64;
-use com\microsoft\wc\types\String512;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -42,7 +40,7 @@ class Info {
 	}
 	
 	protected function createAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setAppId($appId) {
@@ -50,8 +48,8 @@ class Info {
 	}
 
 	protected function validateAppId($appId) {
-		if ( ! $appId instanceof Guid ) {
-			$appId = new Guid ($appId);
+		if ( ! $appId instanceof \com\microsoft\wc\types\Guid ) {
+			$appId = new \com\microsoft\wc\types\Guid ($appId);
 		}
 	
 		return $appId;
@@ -65,7 +63,7 @@ class Info {
 	}
 	
 	protected function createSharedSecret() {
-		return new String64();
+		return new \com\microsoft\wc\types\String64();
 	}
 
 	public function setSharedSecret($sharedSecret) {
@@ -73,8 +71,8 @@ class Info {
 	}
 
 	protected function validateSharedSecret($sharedSecret) {
-		if ( ! $sharedSecret instanceof String64 ) {
-			$sharedSecret = new String64 ($sharedSecret);
+		if ( ! $sharedSecret instanceof \com\microsoft\wc\types\String64 ) {
+			$sharedSecret = new \com\microsoft\wc\types\String64 ($sharedSecret);
 		}
 	
 		return $sharedSecret;
@@ -88,7 +86,7 @@ class Info {
 	}
 	
 	protected function createAppToken() {
-		return new String512();
+		return new \com\microsoft\wc\types\String512();
 	}
 
 	public function setAppToken($appToken) {
@@ -96,8 +94,8 @@ class Info {
 	}
 
 	protected function validateAppToken($appToken) {
-		if ( ! $appToken instanceof String512 ) {
-			$appToken = new String512 ($appToken);
+		if ( ! $appToken instanceof \com\microsoft\wc\types\String512 ) {
+			$appToken = new \com\microsoft\wc\types\String512 ($appToken);
 		}
 	
 		return $appToken;

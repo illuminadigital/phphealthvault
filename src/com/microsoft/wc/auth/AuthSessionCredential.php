@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\auth\AuthSessionSubCredential;
-use com\microsoft\wc\types\HMACAlgorithm;
+
 
 /**
  * @XmlEntity	(xml="AuthSessionCredential")
@@ -36,7 +35,7 @@ class AuthSessionCredential {
 	}
 	
 	protected function createSubCredential() {
-		return new AuthSessionSubCredential();
+		return new \com\microsoft\wc\auth\AuthSessionSubCredential();
 	}
 
 	public function setSubCredential($subCredential) {
@@ -44,8 +43,8 @@ class AuthSessionCredential {
 	}
 
 	protected function validateSubCredential($subCredential) {
-		if ( ! $subCredential instanceof AuthSessionSubCredential ) {
-			$subCredential = new AuthSessionSubCredential ($subCredential);
+		if ( ! $subCredential instanceof \com\microsoft\wc\auth\AuthSessionSubCredential ) {
+			$subCredential = new \com\microsoft\wc\auth\AuthSessionSubCredential ($subCredential);
 		}
 	
 		return $subCredential;
@@ -59,7 +58,7 @@ class AuthSessionCredential {
 	}
 	
 	protected function createSharedSecret() {
-		return new HMACAlgorithm();
+		return new \com\microsoft\wc\types\HMACAlgorithm();
 	}
 
 	public function setSharedSecret($sharedSecret) {
@@ -67,8 +66,8 @@ class AuthSessionCredential {
 	}
 
 	protected function validateSharedSecret($sharedSecret) {
-		if ( ! $sharedSecret instanceof HMACAlgorithm ) {
-			$sharedSecret = new HMACAlgorithm ($sharedSecret);
+		if ( ! $sharedSecret instanceof \com\microsoft\wc\types\HMACAlgorithm ) {
+			$sharedSecret = new \com\microsoft\wc\types\HMACAlgorithm ($sharedSecret);
 		}
 	
 		return $sharedSecret;

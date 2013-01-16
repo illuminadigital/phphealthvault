@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetThings;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\thing\ThingState;
+
 
 /**
  * @XmlEntity	(xml="ThingFilterSpec")
@@ -109,8 +108,8 @@ class ThingFilterSpec {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof Guid  && ! is_null($typeId) ) {
-			$typeId = new Guid ($typeId);
+		if ( ! $typeId instanceof \com\microsoft\wc\types\Guid  && ! is_null($typeId) ) {
+			$typeId = new \com\microsoft\wc\types\Guid ($typeId);
 		}
 		$count = count($typeId);
 		if ($count < 0) {
@@ -145,8 +144,8 @@ class ThingFilterSpec {
 	}
 
 	protected function validateThingState($thingState) {
-		if ( ! $thingState instanceof ThingState  && ! is_null($thingState) ) {
-			$thingState = new ThingState ($thingState);
+		if ( ! $thingState instanceof \com\microsoft\wc\thing\ThingState  && ! is_null($thingState) ) {
+			$thingState = new \com\microsoft\wc\thing\ThingState ($thingState);
 		}
 		$count = count($thingState);
 		if ($count < 0) {
@@ -222,7 +221,7 @@ class ThingFilterSpec {
 	}
 	
 	protected function createCreatedAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setCreatedAppId($createdAppId) {
@@ -230,8 +229,8 @@ class ThingFilterSpec {
 	}
 
 	protected function validateCreatedAppId($createdAppId) {
-		if ( ! $createdAppId instanceof Guid  && ! is_null($createdAppId) ) {
-			$createdAppId = new Guid ($createdAppId);
+		if ( ! $createdAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($createdAppId) ) {
+			$createdAppId = new \com\microsoft\wc\types\Guid ($createdAppId);
 		}
 	
 		return $createdAppId;
@@ -245,7 +244,7 @@ class ThingFilterSpec {
 	}
 	
 	protected function createCreatedPersonId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setCreatedPersonId($createdPersonId) {
@@ -253,8 +252,8 @@ class ThingFilterSpec {
 	}
 
 	protected function validateCreatedPersonId($createdPersonId) {
-		if ( ! $createdPersonId instanceof Guid  && ! is_null($createdPersonId) ) {
-			$createdPersonId = new Guid ($createdPersonId);
+		if ( ! $createdPersonId instanceof \com\microsoft\wc\types\Guid  && ! is_null($createdPersonId) ) {
+			$createdPersonId = new \com\microsoft\wc\types\Guid ($createdPersonId);
 		}
 	
 		return $createdPersonId;
@@ -268,7 +267,7 @@ class ThingFilterSpec {
 	}
 	
 	protected function createUpdatedAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setUpdatedAppId($updatedAppId) {
@@ -276,8 +275,8 @@ class ThingFilterSpec {
 	}
 
 	protected function validateUpdatedAppId($updatedAppId) {
-		if ( ! $updatedAppId instanceof Guid  && ! is_null($updatedAppId) ) {
-			$updatedAppId = new Guid ($updatedAppId);
+		if ( ! $updatedAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($updatedAppId) ) {
+			$updatedAppId = new \com\microsoft\wc\types\Guid ($updatedAppId);
 		}
 	
 		return $updatedAppId;
@@ -291,7 +290,7 @@ class ThingFilterSpec {
 	}
 	
 	protected function createUpdatedPersonId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setUpdatedPersonId($updatedPersonId) {
@@ -299,8 +298,8 @@ class ThingFilterSpec {
 	}
 
 	protected function validateUpdatedPersonId($updatedPersonId) {
-		if ( ! $updatedPersonId instanceof Guid  && ! is_null($updatedPersonId) ) {
-			$updatedPersonId = new Guid ($updatedPersonId);
+		if ( ! $updatedPersonId instanceof \com\microsoft\wc\types\Guid  && ! is_null($updatedPersonId) ) {
+			$updatedPersonId = new \com\microsoft\wc\types\Guid ($updatedPersonId);
 		}
 	
 		return $updatedPersonId;

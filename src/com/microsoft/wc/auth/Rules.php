@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\auth\Rule;
+
 
 /**
  * @XmlEntity	(xml="Rules")
@@ -35,8 +35,8 @@ class Rules {
 	}
 
 	protected function validateRule($rule) {
-		if ( ! $rule instanceof Rule  && ! is_null($rule) ) {
-			$rule = new Rule ($rule);
+		if ( ! $rule instanceof \com\microsoft\wc\auth\Rule  && ! is_null($rule) ) {
+			$rule = new \com\microsoft\wc\auth\Rule ($rule);
 		}
 		$count = count($rule);
 		if ($count < 0) {

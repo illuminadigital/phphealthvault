@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetServiceDefinition2;
 
-use com\microsoft\wc\methods\response\GetServiceDefinition2\ConfigurationEntry;
+
 
 /**
  * @XmlEntity	(xml="Platform")
@@ -94,8 +94,8 @@ class Platform {
 	}
 
 	protected function validateConfiguration($configuration) {
-		if ( ! $configuration instanceof ConfigurationEntry  && ! is_null($configuration) ) {
-			$configuration = new ConfigurationEntry ($configuration);
+		if ( ! $configuration instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\ConfigurationEntry  && ! is_null($configuration) ) {
+			$configuration = new \com\microsoft\wc\methods\response\GetServiceDefinition2\ConfigurationEntry ($configuration);
 		}
 		$count = count($configuration);
 		if ($count < 0) {

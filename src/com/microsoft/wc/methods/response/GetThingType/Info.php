@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetThingType;
 
-use com\microsoft\wc\methods\response\GetThingType\ThingTypeInfo;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -37,8 +37,8 @@ class Info {
 	}
 
 	protected function validateThingType($thingType) {
-		if ( ! $thingType instanceof ThingTypeInfo  && ! is_null($thingType) ) {
-			$thingType = new ThingTypeInfo ($thingType);
+		if ( ! $thingType instanceof \com\microsoft\wc\methods\response\GetThingType\ThingTypeInfo  && ! is_null($thingType) ) {
+			$thingType = new \com\microsoft\wc\methods\response\GetThingType\ThingTypeInfo ($thingType);
 		}
 		$count = count($thingType);
 		if ($count < 0) {

@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\subscription;
 
-use com\microsoft\wc\subscription\Common;
-use com\microsoft\wc\subscription\RecordItemChangedEvent;
+
 
 /**
  * @XmlEntity	(xml="Subscription")
@@ -36,7 +35,7 @@ class Subscription {
 	}
 	
 	protected function createCommon() {
-		return new Common();
+		return new \com\microsoft\wc\subscription\Common();
 	}
 
 	public function setCommon($common) {
@@ -44,8 +43,8 @@ class Subscription {
 	}
 
 	protected function validateCommon($common) {
-		if ( ! $common instanceof Common ) {
-			$common = new Common ($common);
+		if ( ! $common instanceof \com\microsoft\wc\subscription\Common ) {
+			$common = new \com\microsoft\wc\subscription\Common ($common);
 		}
 	
 		return $common;
@@ -59,7 +58,7 @@ class Subscription {
 	}
 	
 	protected function createRecordItemChangedEvent() {
-		return new RecordItemChangedEvent();
+		return new \com\microsoft\wc\subscription\RecordItemChangedEvent();
 	}
 
 	public function setRecordItemChangedEvent($recordItemChangedEvent) {
@@ -67,8 +66,8 @@ class Subscription {
 	}
 
 	protected function validateRecordItemChangedEvent($recordItemChangedEvent) {
-		if ( ! $recordItemChangedEvent instanceof RecordItemChangedEvent ) {
-			$recordItemChangedEvent = new RecordItemChangedEvent ($recordItemChangedEvent);
+		if ( ! $recordItemChangedEvent instanceof \com\microsoft\wc\subscription\RecordItemChangedEvent ) {
+			$recordItemChangedEvent = new \com\microsoft\wc\subscription\RecordItemChangedEvent ($recordItemChangedEvent);
 		}
 	
 		return $recordItemChangedEvent;

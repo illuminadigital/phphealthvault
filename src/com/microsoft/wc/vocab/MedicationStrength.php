@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\types\Stringnz;
-use com\microsoft\wc\types\CodableValue;
+
 
 /**
  * @XmlEntity	(xml="medication-strength")
@@ -42,7 +41,7 @@ class MedicationStrength {
 	}
 	
 	protected function createDisplayText() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setDisplayText($displayText) {
@@ -50,8 +49,8 @@ class MedicationStrength {
 	}
 
 	protected function validateDisplayText($displayText) {
-		if ( ! $displayText instanceof Stringnz ) {
-			$displayText = new Stringnz ($displayText);
+		if ( ! $displayText instanceof \com\microsoft\wc\types\Stringnz ) {
+			$displayText = new \com\microsoft\wc\types\Stringnz ($displayText);
 		}
 	
 		return $displayText;
@@ -65,7 +64,7 @@ class MedicationStrength {
 	}
 	
 	protected function createValue() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setValue($value) {
@@ -73,8 +72,8 @@ class MedicationStrength {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof Stringnz  && ! is_null($value) ) {
-			$value = new Stringnz ($value);
+		if ( ! $value instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($value) ) {
+			$value = new \com\microsoft\wc\types\Stringnz ($value);
 		}
 	
 		return $value;
@@ -88,7 +87,7 @@ class MedicationStrength {
 	}
 	
 	protected function createUnit() {
-		return new CodableValue();
+		return new \com\microsoft\wc\types\CodableValue();
 	}
 
 	public function setUnit($unit) {
@@ -96,8 +95,8 @@ class MedicationStrength {
 	}
 
 	protected function validateUnit($unit) {
-		if ( ! $unit instanceof CodableValue  && ! is_null($unit) ) {
-			$unit = new CodableValue ($unit);
+		if ( ! $unit instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($unit) ) {
+			$unit = new \com\microsoft\wc\types\CodableValue ($unit);
 		}
 	
 		return $unit;

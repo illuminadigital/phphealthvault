@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Sig;
-use com\microsoft\wc\types\AppServerCredInfo;
+
 
 /**
  * @XmlEntity	(xml="AppServerCred")
@@ -36,7 +35,7 @@ class AppServerCred {
 	}
 	
 	protected function createSig() {
-		return new Sig();
+		return new \com\microsoft\wc\types\Sig();
 	}
 
 	public function setSig($sig) {
@@ -44,8 +43,8 @@ class AppServerCred {
 	}
 
 	protected function validateSig($sig) {
-		if ( ! $sig instanceof Sig ) {
-			$sig = new Sig ($sig);
+		if ( ! $sig instanceof \com\microsoft\wc\types\Sig ) {
+			$sig = new \com\microsoft\wc\types\Sig ($sig);
 		}
 	
 		return $sig;
@@ -59,7 +58,7 @@ class AppServerCred {
 	}
 	
 	protected function createContent() {
-		return new AppServerCredInfo();
+		return new \com\microsoft\wc\types\AppServerCredInfo();
 	}
 
 	public function setContent($content) {
@@ -67,8 +66,8 @@ class AppServerCred {
 	}
 
 	protected function validateContent($content) {
-		if ( ! $content instanceof AppServerCredInfo ) {
-			$content = new AppServerCredInfo ($content);
+		if ( ! $content instanceof \com\microsoft\wc\types\AppServerCredInfo ) {
+			$content = new \com\microsoft\wc\types\AppServerCredInfo ($content);
 		}
 	
 		return $content;

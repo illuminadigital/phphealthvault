@@ -1,15 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\thing\ThingKey;
-use com\microsoft\wc\thing\ThingType;
-use com\microsoft\wc\thing\ThingState;
-use com\microsoft\wc\thing\Audit;
-use com\microsoft\wc\thing\DataOther;
-use com\microsoft\wc\thing\EffectivePermissions;
-use com\microsoft\wc\types\String512;
-use com\microsoft\wc\thing\Signature;
-use com\microsoft\wc\thing\DataXml;
+
 
 /**
  * @XmlEntity	(xml="Thing")
@@ -74,7 +66,7 @@ class Thing {
 	protected $tags;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig#\Signature", name="Signature")
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\Signature", name="Signature")
 	 */
 	protected $signature;
 
@@ -101,7 +93,7 @@ class Thing {
 	}
 	
 	protected function createThingId() {
-		return new ThingKey();
+		return new \com\microsoft\wc\thing\ThingKey();
 	}
 
 	public function setThingId($thingId) {
@@ -109,8 +101,8 @@ class Thing {
 	}
 
 	protected function validateThingId($thingId) {
-		if ( ! $thingId instanceof ThingKey  && ! is_null($thingId) ) {
-			$thingId = new ThingKey ($thingId);
+		if ( ! $thingId instanceof \com\microsoft\wc\thing\ThingKey  && ! is_null($thingId) ) {
+			$thingId = new \com\microsoft\wc\thing\ThingKey ($thingId);
 		}
 	
 		return $thingId;
@@ -124,7 +116,7 @@ class Thing {
 	}
 	
 	protected function createTypeId() {
-		return new ThingType();
+		return new \com\microsoft\wc\thing\ThingType();
 	}
 
 	public function setTypeId($typeId) {
@@ -132,8 +124,8 @@ class Thing {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof ThingType  && ! is_null($typeId) ) {
-			$typeId = new ThingType ($typeId);
+		if ( ! $typeId instanceof \com\microsoft\wc\thing\ThingType  && ! is_null($typeId) ) {
+			$typeId = new \com\microsoft\wc\thing\ThingType ($typeId);
 		}
 	
 		return $typeId;
@@ -147,7 +139,7 @@ class Thing {
 	}
 	
 	protected function createThingState() {
-		return new ThingState();
+		return new \com\microsoft\wc\thing\ThingState();
 	}
 
 	public function setThingState($thingState) {
@@ -155,8 +147,8 @@ class Thing {
 	}
 
 	protected function validateThingState($thingState) {
-		if ( ! $thingState instanceof ThingState  && ! is_null($thingState) ) {
-			$thingState = new ThingState ($thingState);
+		if ( ! $thingState instanceof \com\microsoft\wc\thing\ThingState  && ! is_null($thingState) ) {
+			$thingState = new \com\microsoft\wc\thing\ThingState ($thingState);
 		}
 	
 		return $thingState;
@@ -216,7 +208,7 @@ class Thing {
 	}
 	
 	protected function createCreated() {
-		return new Audit();
+		return new \com\microsoft\wc\thing\Audit();
 	}
 
 	public function setCreated($created) {
@@ -224,8 +216,8 @@ class Thing {
 	}
 
 	protected function validateCreated($created) {
-		if ( ! $created instanceof Audit  && ! is_null($created) ) {
-			$created = new Audit ($created);
+		if ( ! $created instanceof \com\microsoft\wc\thing\Audit  && ! is_null($created) ) {
+			$created = new \com\microsoft\wc\thing\Audit ($created);
 		}
 	
 		return $created;
@@ -239,7 +231,7 @@ class Thing {
 	}
 	
 	protected function createUpdated() {
-		return new Audit();
+		return new \com\microsoft\wc\thing\Audit();
 	}
 
 	public function setUpdated($updated) {
@@ -247,8 +239,8 @@ class Thing {
 	}
 
 	protected function validateUpdated($updated) {
-		if ( ! $updated instanceof Audit  && ! is_null($updated) ) {
-			$updated = new Audit ($updated);
+		if ( ! $updated instanceof \com\microsoft\wc\thing\Audit  && ! is_null($updated) ) {
+			$updated = new \com\microsoft\wc\thing\Audit ($updated);
 		}
 	
 		return $updated;
@@ -270,8 +262,8 @@ class Thing {
 	}
 
 	protected function validateDataXml($dataXml) {
-		if ( ! $dataXml instanceof DataXml  && ! is_null($dataXml) ) {
-			$dataXml = new DataXml ($dataXml);
+		if ( ! $dataXml instanceof \com\microsoft\wc\thing\DataXml  && ! is_null($dataXml) ) {
+			$dataXml = new \com\microsoft\wc\thing\DataXml ($dataXml);
 		}
 		$count = count($dataXml);
 		if ($count < 0) {
@@ -298,7 +290,7 @@ class Thing {
 	}
 	
 	protected function createDataOther() {
-		return new DataOther();
+		return new \com\microsoft\wc\thing\DataOther();
 	}
 
 	public function setDataOther($dataOther) {
@@ -306,8 +298,8 @@ class Thing {
 	}
 
 	protected function validateDataOther($dataOther) {
-		if ( ! $dataOther instanceof DataOther  && ! is_null($dataOther) ) {
-			$dataOther = new DataOther ($dataOther);
+		if ( ! $dataOther instanceof \com\microsoft\wc\thing\DataOther  && ! is_null($dataOther) ) {
+			$dataOther = new \com\microsoft\wc\thing\DataOther ($dataOther);
 		}
 	
 		return $dataOther;
@@ -321,7 +313,7 @@ class Thing {
 	}
 	
 	protected function createEffPermissions() {
-		return new EffectivePermissions();
+		return new \com\microsoft\wc\thing\EffectivePermissions();
 	}
 
 	public function setEffPermissions($effPermissions) {
@@ -329,8 +321,8 @@ class Thing {
 	}
 
 	protected function validateEffPermissions($effPermissions) {
-		if ( ! $effPermissions instanceof EffectivePermissions  && ! is_null($effPermissions) ) {
-			$effPermissions = new EffectivePermissions ($effPermissions);
+		if ( ! $effPermissions instanceof \com\microsoft\wc\thing\EffectivePermissions  && ! is_null($effPermissions) ) {
+			$effPermissions = new \com\microsoft\wc\thing\EffectivePermissions ($effPermissions);
 		}
 	
 		return $effPermissions;
@@ -344,7 +336,7 @@ class Thing {
 	}
 	
 	protected function createTags() {
-		return new String512();
+		return new \com\microsoft\wc\types\String512();
 	}
 
 	public function setTags($tags) {
@@ -352,8 +344,8 @@ class Thing {
 	}
 
 	protected function validateTags($tags) {
-		if ( ! $tags instanceof String512  && ! is_null($tags) ) {
-			$tags = new String512 ($tags);
+		if ( ! $tags instanceof \com\microsoft\wc\types\String512  && ! is_null($tags) ) {
+			$tags = new \com\microsoft\wc\types\String512 ($tags);
 		}
 	
 		return $tags;
@@ -367,7 +359,7 @@ class Thing {
 	}
 	
 	protected function createSignature() {
-		return new Signature();
+		return new \org\w3\www\_2000\_09\xmldsig\Signature();
 	}
 
 	public function setSignature($signature) {
@@ -375,8 +367,8 @@ class Thing {
 	}
 
 	protected function validateSignature($signature) {
-		if ( ! $signature instanceof Signature  && ! is_null($signature) ) {
-			$signature = new Signature ($signature);
+		if ( ! $signature instanceof \org\w3\www\_2000\_09\xmldsig\Signature  && ! is_null($signature) ) {
+			$signature = new \org\w3\www\_2000\_09\xmldsig\Signature ($signature);
 		}
 	
 		return $signature;

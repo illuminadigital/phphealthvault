@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\subscription;
 
-use com\microsoft\wc\subscription\Guid;
-use com\microsoft\wc\subscription\NotificationAuthenticationInfo;
-use com\microsoft\wc\subscription\NotificationChannel;
+
 
 /**
  * @XmlEntity	(xml="Common")
@@ -14,7 +12,7 @@ class Common {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\subscription\Guid", name="id")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="id")
 	 */
 	protected $id;
 
@@ -42,7 +40,7 @@ class Common {
 	}
 	
 	protected function createId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setId($id) {
@@ -50,8 +48,8 @@ class Common {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid  && ! is_null($id) ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid  && ! is_null($id) ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 	
 		return $id;
@@ -65,7 +63,7 @@ class Common {
 	}
 	
 	protected function createNotificationAuthenticationInfo() {
-		return new NotificationAuthenticationInfo();
+		return new \com\microsoft\wc\subscription\NotificationAuthenticationInfo();
 	}
 
 	public function setNotificationAuthenticationInfo($notificationAuthenticationInfo) {
@@ -73,8 +71,8 @@ class Common {
 	}
 
 	protected function validateNotificationAuthenticationInfo($notificationAuthenticationInfo) {
-		if ( ! $notificationAuthenticationInfo instanceof NotificationAuthenticationInfo ) {
-			$notificationAuthenticationInfo = new NotificationAuthenticationInfo ($notificationAuthenticationInfo);
+		if ( ! $notificationAuthenticationInfo instanceof \com\microsoft\wc\subscription\NotificationAuthenticationInfo ) {
+			$notificationAuthenticationInfo = new \com\microsoft\wc\subscription\NotificationAuthenticationInfo ($notificationAuthenticationInfo);
 		}
 	
 		return $notificationAuthenticationInfo;
@@ -88,7 +86,7 @@ class Common {
 	}
 	
 	protected function createNotificationChannel() {
-		return new NotificationChannel();
+		return new \com\microsoft\wc\subscription\NotificationChannel();
 	}
 
 	public function setNotificationChannel($notificationChannel) {
@@ -96,8 +94,8 @@ class Common {
 	}
 
 	protected function validateNotificationChannel($notificationChannel) {
-		if ( ! $notificationChannel instanceof NotificationChannel ) {
-			$notificationChannel = new NotificationChannel ($notificationChannel);
+		if ( ! $notificationChannel instanceof \com\microsoft\wc\subscription\NotificationChannel ) {
+			$notificationChannel = new \com\microsoft\wc\subscription\NotificationChannel ($notificationChannel);
 		}
 	
 		return $notificationChannel;

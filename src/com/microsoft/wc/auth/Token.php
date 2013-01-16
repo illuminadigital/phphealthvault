@@ -1,14 +1,12 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\AppRecordAuthAction;
 
 
 /**
  * @XmlEntity	(xml="Token")
  */
-class Token extends Stringz1024 {
+class Token extends \com\microsoft\wc\types\Stringz1024 {
 	/**
 	 * The authenticated session token.
 	 * If the request succeeded, then an authenticated session token is returned.
@@ -37,7 +35,7 @@ class Token extends Stringz1024 {
 	}
 	
 	protected function createAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setAppId($appId) {
@@ -45,8 +43,8 @@ class Token extends Stringz1024 {
 	}
 
 	protected function validateAppId($appId) {
-		if ( ! $appId instanceof Guid ) {
-			$appId = new Guid ($appId);
+		if ( ! $appId instanceof \com\microsoft\wc\types\Guid ) {
+			$appId = new \com\microsoft\wc\types\Guid ($appId);
 		}
 	
 		return $appId;
@@ -60,7 +58,7 @@ class Token extends Stringz1024 {
 	}
 	
 	protected function createAppRecordAuthAction() {
-		return new AppRecordAuthAction();
+		return new \com\microsoft\wc\types\AppRecordAuthAction();
 	}
 
 	public function setAppRecordAuthAction($appRecordAuthAction) {
@@ -68,8 +66,8 @@ class Token extends Stringz1024 {
 	}
 
 	protected function validateAppRecordAuthAction($appRecordAuthAction) {
-		if ( ! $appRecordAuthAction instanceof AppRecordAuthAction ) {
-			$appRecordAuthAction = new AppRecordAuthAction ($appRecordAuthAction);
+		if ( ! $appRecordAuthAction instanceof \com\microsoft\wc\types\AppRecordAuthAction ) {
+			$appRecordAuthAction = new \com\microsoft\wc\types\AppRecordAuthAction ($appRecordAuthAction);
 		}
 	
 		return $appRecordAuthAction;

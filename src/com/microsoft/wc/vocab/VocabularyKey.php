@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\types\Stringnz;
+
 
 /**
  * @XmlEntity	(xml="VocabularyKey")
@@ -53,7 +53,7 @@ class VocabularyKey {
 	}
 	
 	protected function createName() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setName($name) {
@@ -61,8 +61,8 @@ class VocabularyKey {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof Stringnz ) {
-			$name = new Stringnz ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\Stringnz ) {
+			$name = new \com\microsoft\wc\types\Stringnz ($name);
 		}
 	
 		return $name;
@@ -76,7 +76,7 @@ class VocabularyKey {
 	}
 	
 	protected function createFamily() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setFamily($family) {
@@ -84,8 +84,8 @@ class VocabularyKey {
 	}
 
 	protected function validateFamily($family) {
-		if ( ! $family instanceof Stringnz  && ! is_null($family) ) {
-			$family = new Stringnz ($family);
+		if ( ! $family instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($family) ) {
+			$family = new \com\microsoft\wc\types\Stringnz ($family);
 		}
 	
 		return $family;
@@ -99,7 +99,7 @@ class VocabularyKey {
 	}
 	
 	protected function createVersion() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setVersion($version) {
@@ -107,8 +107,8 @@ class VocabularyKey {
 	}
 
 	protected function validateVersion($version) {
-		if ( ! $version instanceof Stringnz  && ! is_null($version) ) {
-			$version = new Stringnz ($version);
+		if ( ! $version instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($version) ) {
+			$version = new \com\microsoft\wc\types\Stringnz ($version);
 		}
 	
 		return $version;

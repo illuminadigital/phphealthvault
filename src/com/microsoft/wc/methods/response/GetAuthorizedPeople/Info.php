@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetAuthorizedPeople;
 
-use com\microsoft\wc\methods\response\GetAuthorizedPeople\GetAuthorizedPeopleResponse;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info {
 	}
 	
 	protected function createResponseResults() {
-		return new GetAuthorizedPeopleResponse();
+		return new \com\microsoft\wc\methods\response\GetAuthorizedPeople\GetAuthorizedPeopleResponse();
 	}
 
 	public function setResponseResults($responseResults) {
@@ -37,8 +37,8 @@ class Info {
 	}
 
 	protected function validateResponseResults($responseResults) {
-		if ( ! $responseResults instanceof GetAuthorizedPeopleResponse ) {
-			$responseResults = new GetAuthorizedPeopleResponse ($responseResults);
+		if ( ! $responseResults instanceof \com\microsoft\wc\methods\response\GetAuthorizedPeople\GetAuthorizedPeopleResponse ) {
+			$responseResults = new \com\microsoft\wc\methods\response\GetAuthorizedPeople\GetAuthorizedPeopleResponse ($responseResults);
 		}
 	
 		return $responseResults;

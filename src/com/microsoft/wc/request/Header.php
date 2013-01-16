@@ -1,13 +1,7 @@
 <?php
 namespace com\microsoft\wc\request;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\request\AuthenticatedSessionInfo;
-use com\microsoft\wc\types\Iso6391;
-use com\microsoft\wc\types\Iso3166;
-use com\microsoft\wc\request\Xsl;
-use com\microsoft\wc\types\Version;
-use com\microsoft\wc\types\HashFinalized;
+
 
 /**
  * @XmlEntity	(xml="Header")
@@ -151,7 +145,7 @@ class Header {
 	}
 	
 	protected function createTargetPersonId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setTargetPersonId($targetPersonId) {
@@ -159,8 +153,8 @@ class Header {
 	}
 
 	protected function validateTargetPersonId($targetPersonId) {
-		if ( ! $targetPersonId instanceof Guid  && ! is_null($targetPersonId) ) {
-			$targetPersonId = new Guid ($targetPersonId);
+		if ( ! $targetPersonId instanceof \com\microsoft\wc\types\Guid  && ! is_null($targetPersonId) ) {
+			$targetPersonId = new \com\microsoft\wc\types\Guid ($targetPersonId);
 		}
 	
 		return $targetPersonId;
@@ -174,7 +168,7 @@ class Header {
 	}
 	
 	protected function createRecordId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setRecordId($recordId) {
@@ -182,8 +176,8 @@ class Header {
 	}
 
 	protected function validateRecordId($recordId) {
-		if ( ! $recordId instanceof Guid  && ! is_null($recordId) ) {
-			$recordId = new Guid ($recordId);
+		if ( ! $recordId instanceof \com\microsoft\wc\types\Guid  && ! is_null($recordId) ) {
+			$recordId = new \com\microsoft\wc\types\Guid ($recordId);
 		}
 	
 		return $recordId;
@@ -197,7 +191,7 @@ class Header {
 	}
 	
 	protected function createAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setAppId($appId) {
@@ -205,8 +199,8 @@ class Header {
 	}
 
 	protected function validateAppId($appId) {
-		if ( ! $appId instanceof Guid ) {
-			$appId = new Guid ($appId);
+		if ( ! $appId instanceof \com\microsoft\wc\types\Guid ) {
+			$appId = new \com\microsoft\wc\types\Guid ($appId);
 		}
 	
 		return $appId;
@@ -220,7 +214,7 @@ class Header {
 	}
 	
 	protected function createAuthSession() {
-		return new AuthenticatedSessionInfo();
+		return new \com\microsoft\wc\request\AuthenticatedSessionInfo();
 	}
 
 	public function setAuthSession($authSession) {
@@ -228,8 +222,8 @@ class Header {
 	}
 
 	protected function validateAuthSession($authSession) {
-		if ( ! $authSession instanceof AuthenticatedSessionInfo ) {
-			$authSession = new AuthenticatedSessionInfo ($authSession);
+		if ( ! $authSession instanceof \com\microsoft\wc\request\AuthenticatedSessionInfo ) {
+			$authSession = new \com\microsoft\wc\request\AuthenticatedSessionInfo ($authSession);
 		}
 	
 		return $authSession;
@@ -243,7 +237,7 @@ class Header {
 	}
 	
 	protected function createLanguage() {
-		return new Iso6391();
+		return new \com\microsoft\wc\types\Iso6391();
 	}
 
 	public function setLanguage($language) {
@@ -251,8 +245,8 @@ class Header {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof Iso6391  && ! is_null($language) ) {
-			$language = new Iso6391 ($language);
+		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
+			$language = new \com\microsoft\wc\types\Iso6391 ($language);
 		}
 	
 		return $language;
@@ -266,7 +260,7 @@ class Header {
 	}
 	
 	protected function createCountry() {
-		return new Iso3166();
+		return new \com\microsoft\wc\types\Iso3166();
 	}
 
 	public function setCountry($country) {
@@ -274,8 +268,8 @@ class Header {
 	}
 
 	protected function validateCountry($country) {
-		if ( ! $country instanceof Iso3166  && ! is_null($country) ) {
-			$country = new Iso3166 ($country);
+		if ( ! $country instanceof \com\microsoft\wc\types\Iso3166  && ! is_null($country) ) {
+			$country = new \com\microsoft\wc\types\Iso3166 ($country);
 		}
 	
 		return $country;
@@ -289,7 +283,7 @@ class Header {
 	}
 	
 	protected function createFinalXsl() {
-		return new Xsl();
+		return new \com\microsoft\wc\request\Xsl();
 	}
 
 	public function setFinalXsl($finalXsl) {
@@ -297,8 +291,8 @@ class Header {
 	}
 
 	protected function validateFinalXsl($finalXsl) {
-		if ( ! $finalXsl instanceof Xsl  && ! is_null($finalXsl) ) {
-			$finalXsl = new Xsl ($finalXsl);
+		if ( ! $finalXsl instanceof \com\microsoft\wc\request\Xsl  && ! is_null($finalXsl) ) {
+			$finalXsl = new \com\microsoft\wc\request\Xsl ($finalXsl);
 		}
 	
 		return $finalXsl;
@@ -358,7 +352,7 @@ class Header {
 	}
 	
 	protected function createVersion() {
-		return new Version();
+		return new \com\microsoft\wc\types\Version();
 	}
 
 	public function setVersion($version) {
@@ -366,8 +360,8 @@ class Header {
 	}
 
 	protected function validateVersion($version) {
-		if ( ! $version instanceof Version ) {
-			$version = new Version ($version);
+		if ( ! $version instanceof \com\microsoft\wc\types\Version ) {
+			$version = new \com\microsoft\wc\types\Version ($version);
 		}
 	
 		return $version;
@@ -381,7 +375,7 @@ class Header {
 	}
 	
 	protected function createInfoHash() {
-		return new HashFinalized();
+		return new \com\microsoft\wc\types\HashFinalized();
 	}
 
 	public function setInfoHash($infoHash) {
@@ -389,8 +383,8 @@ class Header {
 	}
 
 	protected function validateInfoHash($infoHash) {
-		if ( ! $infoHash instanceof HashFinalized  && ! is_null($infoHash) ) {
-			$infoHash = new HashFinalized ($infoHash);
+		if ( ! $infoHash instanceof \com\microsoft\wc\types\HashFinalized  && ! is_null($infoHash) ) {
+			$infoHash = new \com\microsoft\wc\types\HashFinalized ($infoHash);
 		}
 	
 		return $infoHash;

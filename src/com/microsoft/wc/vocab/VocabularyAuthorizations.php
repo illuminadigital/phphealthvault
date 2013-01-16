@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\vocab\VocabularyAuthorization;
+
 
 /**
  * @XmlEntity	(xml="VocabularyAuthorizations")
@@ -36,8 +36,8 @@ class VocabularyAuthorizations {
 	}
 
 	protected function validateVocabularyAuthorization($vocabularyAuthorization) {
-		if ( ! $vocabularyAuthorization instanceof VocabularyAuthorization ) {
-			$vocabularyAuthorization = new VocabularyAuthorization ($vocabularyAuthorization);
+		if ( ! $vocabularyAuthorization instanceof \com\microsoft\wc\vocab\VocabularyAuthorization ) {
+			$vocabularyAuthorization = new \com\microsoft\wc\vocab\VocabularyAuthorization ($vocabularyAuthorization);
 		}
 		$count = count($vocabularyAuthorization);
 		if ($count < 1) {

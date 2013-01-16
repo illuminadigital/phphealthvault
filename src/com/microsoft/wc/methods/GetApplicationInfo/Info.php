@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetApplicationInfo;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -56,7 +56,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createChildAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setChildAppId($childAppId) {
@@ -64,8 +64,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateChildAppId($childAppId) {
-		if ( ! $childAppId instanceof Guid  && ! is_null($childAppId) ) {
-			$childAppId = new Guid ($childAppId);
+		if ( ! $childAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($childAppId) ) {
+			$childAppId = new \com\microsoft\wc\types\Guid ($childAppId);
 		}
 	
 		return $childAppId;

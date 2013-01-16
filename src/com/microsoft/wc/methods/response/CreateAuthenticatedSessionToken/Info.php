@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken;
 
-use com\microsoft\wc\auth\Token;
-use com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -36,7 +35,7 @@ class Info {
 	}
 	
 	protected function createToken() {
-		return new Token();
+		return new \com\microsoft\wc\auth\Token();
 	}
 
 	public function setToken($token) {
@@ -44,8 +43,8 @@ class Info {
 	}
 
 	protected function validateToken($token) {
-		if ( ! $token instanceof Token ) {
-			$token = new Token ($token);
+		if ( ! $token instanceof \com\microsoft\wc\auth\Token ) {
+			$token = new \com\microsoft\wc\auth\Token ($token);
 		}
 	
 		return $token;
@@ -59,7 +58,7 @@ class Info {
 	}
 	
 	protected function createTokenAbsenceReason() {
-		return new AppAuthTokenAbsenceReason();
+		return new \com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason();
 	}
 
 	public function setTokenAbsenceReason($tokenAbsenceReason) {
@@ -67,8 +66,8 @@ class Info {
 	}
 
 	protected function validateTokenAbsenceReason($tokenAbsenceReason) {
-		if ( ! $tokenAbsenceReason instanceof AppAuthTokenAbsenceReason ) {
-			$tokenAbsenceReason = new AppAuthTokenAbsenceReason ($tokenAbsenceReason);
+		if ( ! $tokenAbsenceReason instanceof \com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason ) {
+			$tokenAbsenceReason = new \com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason ($tokenAbsenceReason);
 		}
 	
 		return $tokenAbsenceReason;

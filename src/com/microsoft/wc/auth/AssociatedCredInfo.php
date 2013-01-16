@@ -1,15 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\Stringnz;
-use com\microsoft\wc\auth\UserPassCred;
-use com\microsoft\wc\auth\SimplePassportCredential;
-use com\microsoft\wc\auth\SimpleOpenIdCredential;
-use com\microsoft\wc\auth\SimpleFacebookCredential;
-use com\microsoft\wc\auth\SimpleEmergencyAccessCredential;
-use com\microsoft\wc\auth\SimplePhoneFactorCredential;
-use com\microsoft\wc\auth\IntegratedWindowsCredential;
-use com\microsoft\wc\types\String64;
+
 
 /**
  * @XmlEntity	(xml="AssociatedCredInfo")
@@ -102,7 +94,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createSimpleEncrypted() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setSimpleEncrypted($simpleEncrypted) {
@@ -110,8 +102,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateSimpleEncrypted($simpleEncrypted) {
-		if ( ! $simpleEncrypted instanceof Stringnz ) {
-			$simpleEncrypted = new Stringnz ($simpleEncrypted);
+		if ( ! $simpleEncrypted instanceof \com\microsoft\wc\types\Stringnz ) {
+			$simpleEncrypted = new \com\microsoft\wc\types\Stringnz ($simpleEncrypted);
 		}
 	
 		return $simpleEncrypted;
@@ -125,7 +117,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createSimpleUserpass() {
-		return new UserPassCred();
+		return new \com\microsoft\wc\auth\UserPassCred();
 	}
 
 	public function setSimpleUserpass($simpleUserpass) {
@@ -133,8 +125,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateSimpleUserpass($simpleUserpass) {
-		if ( ! $simpleUserpass instanceof UserPassCred ) {
-			$simpleUserpass = new UserPassCred ($simpleUserpass);
+		if ( ! $simpleUserpass instanceof \com\microsoft\wc\auth\UserPassCred ) {
+			$simpleUserpass = new \com\microsoft\wc\auth\UserPassCred ($simpleUserpass);
 		}
 	
 		return $simpleUserpass;
@@ -148,7 +140,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createSimplePassport() {
-		return new SimplePassportCredential();
+		return new \com\microsoft\wc\auth\SimplePassportCredential();
 	}
 
 	public function setSimplePassport($simplePassport) {
@@ -156,8 +148,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateSimplePassport($simplePassport) {
-		if ( ! $simplePassport instanceof SimplePassportCredential ) {
-			$simplePassport = new SimplePassportCredential ($simplePassport);
+		if ( ! $simplePassport instanceof \com\microsoft\wc\auth\SimplePassportCredential ) {
+			$simplePassport = new \com\microsoft\wc\auth\SimplePassportCredential ($simplePassport);
 		}
 	
 		return $simplePassport;
@@ -171,7 +163,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createSimpleOpenid() {
-		return new SimpleOpenIdCredential();
+		return new \com\microsoft\wc\auth\SimpleOpenIdCredential();
 	}
 
 	public function setSimpleOpenid($simpleOpenid) {
@@ -179,8 +171,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateSimpleOpenid($simpleOpenid) {
-		if ( ! $simpleOpenid instanceof SimpleOpenIdCredential ) {
-			$simpleOpenid = new SimpleOpenIdCredential ($simpleOpenid);
+		if ( ! $simpleOpenid instanceof \com\microsoft\wc\auth\SimpleOpenIdCredential ) {
+			$simpleOpenid = new \com\microsoft\wc\auth\SimpleOpenIdCredential ($simpleOpenid);
 		}
 	
 		return $simpleOpenid;
@@ -194,7 +186,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createSimpleFacebook() {
-		return new SimpleFacebookCredential();
+		return new \com\microsoft\wc\auth\SimpleFacebookCredential();
 	}
 
 	public function setSimpleFacebook($simpleFacebook) {
@@ -202,8 +194,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateSimpleFacebook($simpleFacebook) {
-		if ( ! $simpleFacebook instanceof SimpleFacebookCredential ) {
-			$simpleFacebook = new SimpleFacebookCredential ($simpleFacebook);
+		if ( ! $simpleFacebook instanceof \com\microsoft\wc\auth\SimpleFacebookCredential ) {
+			$simpleFacebook = new \com\microsoft\wc\auth\SimpleFacebookCredential ($simpleFacebook);
 		}
 	
 		return $simpleFacebook;
@@ -217,7 +209,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createSimpleEmergencyAccess() {
-		return new SimpleEmergencyAccessCredential();
+		return new \com\microsoft\wc\auth\SimpleEmergencyAccessCredential();
 	}
 
 	public function setSimpleEmergencyAccess($simpleEmergencyAccess) {
@@ -225,8 +217,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateSimpleEmergencyAccess($simpleEmergencyAccess) {
-		if ( ! $simpleEmergencyAccess instanceof SimpleEmergencyAccessCredential ) {
-			$simpleEmergencyAccess = new SimpleEmergencyAccessCredential ($simpleEmergencyAccess);
+		if ( ! $simpleEmergencyAccess instanceof \com\microsoft\wc\auth\SimpleEmergencyAccessCredential ) {
+			$simpleEmergencyAccess = new \com\microsoft\wc\auth\SimpleEmergencyAccessCredential ($simpleEmergencyAccess);
 		}
 	
 		return $simpleEmergencyAccess;
@@ -240,7 +232,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createSimplePhoneFactor() {
-		return new SimplePhoneFactorCredential();
+		return new \com\microsoft\wc\auth\SimplePhoneFactorCredential();
 	}
 
 	public function setSimplePhoneFactor($simplePhoneFactor) {
@@ -248,8 +240,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateSimplePhoneFactor($simplePhoneFactor) {
-		if ( ! $simplePhoneFactor instanceof SimplePhoneFactorCredential ) {
-			$simplePhoneFactor = new SimplePhoneFactorCredential ($simplePhoneFactor);
+		if ( ! $simplePhoneFactor instanceof \com\microsoft\wc\auth\SimplePhoneFactorCredential ) {
+			$simplePhoneFactor = new \com\microsoft\wc\auth\SimplePhoneFactorCredential ($simplePhoneFactor);
 		}
 	
 		return $simplePhoneFactor;
@@ -263,7 +255,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createIntegratedWindows() {
-		return new IntegratedWindowsCredential();
+		return new \com\microsoft\wc\auth\IntegratedWindowsCredential();
 	}
 
 	public function setIntegratedWindows($integratedWindows) {
@@ -271,8 +263,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateIntegratedWindows($integratedWindows) {
-		if ( ! $integratedWindows instanceof IntegratedWindowsCredential ) {
-			$integratedWindows = new IntegratedWindowsCredential ($integratedWindows);
+		if ( ! $integratedWindows instanceof \com\microsoft\wc\auth\IntegratedWindowsCredential ) {
+			$integratedWindows = new \com\microsoft\wc\auth\IntegratedWindowsCredential ($integratedWindows);
 		}
 	
 		return $integratedWindows;
@@ -286,7 +278,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createCredentialMetadata() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setCredentialMetadata($credentialMetadata) {
@@ -294,8 +286,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateCredentialMetadata($credentialMetadata) {
-		if ( ! $credentialMetadata instanceof Stringnz  && ! is_null($credentialMetadata) ) {
-			$credentialMetadata = new Stringnz ($credentialMetadata);
+		if ( ! $credentialMetadata instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($credentialMetadata) ) {
+			$credentialMetadata = new \com\microsoft\wc\types\Stringnz ($credentialMetadata);
 		}
 	
 		return $credentialMetadata;
@@ -309,7 +301,7 @@ class AssociatedCredInfo {
 	}
 	
 	protected function createCredentialName() {
-		return new String64();
+		return new \com\microsoft\wc\types\String64();
 	}
 
 	public function setCredentialName($credentialName) {
@@ -317,8 +309,8 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateCredentialName($credentialName) {
-		if ( ! $credentialName instanceof String64  && ! is_null($credentialName) ) {
-			$credentialName = new String64 ($credentialName);
+		if ( ! $credentialName instanceof \com\microsoft\wc\types\String64  && ! is_null($credentialName) ) {
+			$credentialName = new \com\microsoft\wc\types\String64 ($credentialName);
 		}
 	
 		return $credentialName;

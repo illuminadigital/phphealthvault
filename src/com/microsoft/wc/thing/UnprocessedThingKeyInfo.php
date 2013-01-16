@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\thing\ThingKey;
-use com\microsoft\wc\thing\ThingType;
+
 
 /**
  * @XmlEntity	(xml="UnprocessedThingKeyInfo")
@@ -42,7 +41,7 @@ class UnprocessedThingKeyInfo {
 	}
 	
 	protected function createThingId() {
-		return new ThingKey();
+		return new \com\microsoft\wc\thing\ThingKey();
 	}
 
 	public function setThingId($thingId) {
@@ -50,8 +49,8 @@ class UnprocessedThingKeyInfo {
 	}
 
 	protected function validateThingId($thingId) {
-		if ( ! $thingId instanceof ThingKey ) {
-			$thingId = new ThingKey ($thingId);
+		if ( ! $thingId instanceof \com\microsoft\wc\thing\ThingKey ) {
+			$thingId = new \com\microsoft\wc\thing\ThingKey ($thingId);
 		}
 	
 		return $thingId;
@@ -65,7 +64,7 @@ class UnprocessedThingKeyInfo {
 	}
 	
 	protected function createTypeId() {
-		return new ThingType();
+		return new \com\microsoft\wc\thing\ThingType();
 	}
 
 	public function setTypeId($typeId) {
@@ -73,8 +72,8 @@ class UnprocessedThingKeyInfo {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof ThingType ) {
-			$typeId = new ThingType ($typeId);
+		if ( ! $typeId instanceof \com\microsoft\wc\thing\ThingType ) {
+			$typeId = new \com\microsoft\wc\thing\ThingType ($typeId);
 		}
 	
 		return $typeId;

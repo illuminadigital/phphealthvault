@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\DeletePendingConnectPackage;
 
-use com\microsoft\wc\types\Stringnz;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -35,7 +35,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createIdentityCode() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setIdentityCode($identityCode) {
@@ -43,8 +43,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateIdentityCode($identityCode) {
-		if ( ! $identityCode instanceof Stringnz ) {
-			$identityCode = new Stringnz ($identityCode);
+		if ( ! $identityCode instanceof \com\microsoft\wc\types\Stringnz ) {
+			$identityCode = new \com\microsoft\wc\types\Stringnz ($identityCode);
 		}
 	
 		return $identityCode;
@@ -58,7 +58,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createExternalId() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setExternalId($externalId) {
@@ -66,8 +66,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateExternalId($externalId) {
-		if ( ! $externalId instanceof Stringnz ) {
-			$externalId = new Stringnz ($externalId);
+		if ( ! $externalId instanceof \com\microsoft\wc\types\Stringnz ) {
+			$externalId = new \com\microsoft\wc\types\Stringnz ($externalId);
 		}
 	
 		return $externalId;

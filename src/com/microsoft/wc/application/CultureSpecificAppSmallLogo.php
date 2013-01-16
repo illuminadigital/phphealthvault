@@ -3,11 +3,10 @@ namespace com\microsoft\wc\application;
 
 
 
-
 /**
  * @XmlEntity	(xml="CultureSpecificAppSmallLogo")
  */
-class CultureSpecificAppSmallLogo extends AppSmallLogo {
+class CultureSpecificAppSmallLogo extends \com\microsoft\wc\application\AppSmallLogo {
 	/**
 	 * The CultureSpecific... classes are intended for use with data that can be localized for one or more languages and cultures.
 	 * The CultureSpecific... classes should be upward compatibile with the base types.

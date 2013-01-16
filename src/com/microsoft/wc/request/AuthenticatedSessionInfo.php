@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\request;
 
-use com\microsoft\wc\request\OfflinePersonInfo;
+
 
 /**
  * @XmlEntity	(xml="AuthenticatedSessionInfo")
@@ -87,7 +87,7 @@ class AuthenticatedSessionInfo {
 	}
 	
 	protected function createOfflinePersonInfo() {
-		return new OfflinePersonInfo();
+		return new \com\microsoft\wc\request\OfflinePersonInfo();
 	}
 
 	public function setOfflinePersonInfo($offlinePersonInfo) {
@@ -95,8 +95,8 @@ class AuthenticatedSessionInfo {
 	}
 
 	protected function validateOfflinePersonInfo($offlinePersonInfo) {
-		if ( ! $offlinePersonInfo instanceof OfflinePersonInfo ) {
-			$offlinePersonInfo = new OfflinePersonInfo ($offlinePersonInfo);
+		if ( ! $offlinePersonInfo instanceof \com\microsoft\wc\request\OfflinePersonInfo ) {
+			$offlinePersonInfo = new \com\microsoft\wc\request\OfflinePersonInfo ($offlinePersonInfo);
 		}
 	
 		return $offlinePersonInfo;

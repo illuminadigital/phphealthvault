@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetVocabulary;
 
-use com\microsoft\wc\vocab\VocabularyCodeSet;
-use com\microsoft\wc\vocab\VocabularyKeyInfo;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -44,8 +43,8 @@ class Info {
 	}
 
 	protected function validateVocabulary($vocabulary) {
-		if ( ! $vocabulary instanceof VocabularyCodeSet ) {
-			$vocabulary = new VocabularyCodeSet ($vocabulary);
+		if ( ! $vocabulary instanceof \com\microsoft\wc\vocab\VocabularyCodeSet ) {
+			$vocabulary = new \com\microsoft\wc\vocab\VocabularyCodeSet ($vocabulary);
 		}
 		$count = count($vocabulary);
 		if ($count < 1) {
@@ -80,8 +79,8 @@ class Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! $vocabularyKey instanceof VocabularyKeyInfo ) {
-			$vocabularyKey = new VocabularyKeyInfo ($vocabularyKey);
+		if ( ! $vocabularyKey instanceof \com\microsoft\wc\vocab\VocabularyKeyInfo ) {
+			$vocabularyKey = new \com\microsoft\wc\vocab\VocabularyKeyInfo ($vocabularyKey);
 		}
 		$count = count($vocabularyKey);
 		if ($count < 1) {

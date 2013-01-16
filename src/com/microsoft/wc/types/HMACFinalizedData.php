@@ -1,13 +1,12 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Stringnz;
 
 
 /**
  * @XmlEntity	(xml="HMACFinalizedData")
  */
-class HMACFinalizedData extends String512 {
+class HMACFinalizedData extends \com\microsoft\wc\types\String512 {
 	/**
 	 * The resulting HMAC digest.
 	 * The digest is computed by Microsoft HealthVault and is then compared to this result.
@@ -30,7 +29,7 @@ class HMACFinalizedData extends String512 {
 	}
 	
 	protected function createAlgName() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setAlgName($algName) {
@@ -38,8 +37,8 @@ class HMACFinalizedData extends String512 {
 	}
 
 	protected function validateAlgName($algName) {
-		if ( ! $algName instanceof Stringnz ) {
-			$algName = new Stringnz ($algName);
+		if ( ! $algName instanceof \com\microsoft\wc\types\Stringnz ) {
+			$algName = new \com\microsoft\wc\types\Stringnz ($algName);
 		}
 	
 		return $algName;

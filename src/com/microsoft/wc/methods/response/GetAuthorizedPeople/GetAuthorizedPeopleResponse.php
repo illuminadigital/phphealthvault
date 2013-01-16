@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetAuthorizedPeople;
 
-use com\microsoft\wc\types\PersonInfo;
+
 
 /**
  * @XmlEntity	(xml="GetAuthorizedPeopleResponse")
@@ -42,8 +42,8 @@ class GetAuthorizedPeopleResponse {
 	}
 
 	protected function validatePersonInfo($personInfo) {
-		if ( ! $personInfo instanceof PersonInfo  && ! is_null($personInfo) ) {
-			$personInfo = new PersonInfo ($personInfo);
+		if ( ! $personInfo instanceof \com\microsoft\wc\types\PersonInfo  && ! is_null($personInfo) ) {
+			$personInfo = new \com\microsoft\wc\types\PersonInfo ($personInfo);
 		}
 		$count = count($personInfo);
 		if ($count < 0) {

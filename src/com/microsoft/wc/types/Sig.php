@@ -1,13 +1,12 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\String16;
 
 
 /**
  * @XmlEntity	(xml="Sig")
  */
-class Sig extends String1024 {
+class Sig extends \com\microsoft\wc\types\String1024 {
 	/**
 	 * A digital signature produced by an application to prove possession of a private key.
 	 * Each application server has at least one public key associated to its application identifier. Microsoft HealthVault verifies the signature using the public key specified via the thumbprint.
@@ -42,7 +41,7 @@ class Sig extends String1024 {
 	}
 	
 	protected function createDigestMethod() {
-		return new String16();
+		return new \com\microsoft\wc\types\String16();
 	}
 
 	public function setDigestMethod($digestMethod) {
@@ -50,8 +49,8 @@ class Sig extends String1024 {
 	}
 
 	protected function validateDigestMethod($digestMethod) {
-		if ( ! $digestMethod instanceof String16 ) {
-			$digestMethod = new String16 ($digestMethod);
+		if ( ! $digestMethod instanceof \com\microsoft\wc\types\String16 ) {
+			$digestMethod = new \com\microsoft\wc\types\String16 ($digestMethod);
 		}
 	
 		return $digestMethod;
@@ -65,7 +64,7 @@ class Sig extends String1024 {
 	}
 	
 	protected function createSigMethod() {
-		return new String16();
+		return new \com\microsoft\wc\types\String16();
 	}
 
 	public function setSigMethod($sigMethod) {
@@ -73,8 +72,8 @@ class Sig extends String1024 {
 	}
 
 	protected function validateSigMethod($sigMethod) {
-		if ( ! $sigMethod instanceof String16 ) {
-			$sigMethod = new String16 ($sigMethod);
+		if ( ! $sigMethod instanceof \com\microsoft\wc\types\String16 ) {
+			$sigMethod = new \com\microsoft\wc\types\String16 ($sigMethod);
 		}
 	
 		return $sigMethod;

@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Stringnz;
-use com\microsoft\wc\types\CultureSpecificString;
+
 
 /**
  * @XmlEntity	(xml="CultureSpecificExtensionItem")
@@ -35,7 +34,7 @@ class CultureSpecificExtensionItem {
 	}
 	
 	protected function createName() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setName($name) {
@@ -43,8 +42,8 @@ class CultureSpecificExtensionItem {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof Stringnz ) {
-			$name = new Stringnz ($name);
+		if ( ! $name instanceof \com\microsoft\wc\types\Stringnz ) {
+			$name = new \com\microsoft\wc\types\Stringnz ($name);
 		}
 	
 		return $name;
@@ -66,8 +65,8 @@ class CultureSpecificExtensionItem {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof CultureSpecificString ) {
-			$value = new CultureSpecificString ($value);
+		if ( ! $value instanceof \com\microsoft\wc\types\CultureSpecificString ) {
+			$value = new \com\microsoft\wc\types\CultureSpecificString ($value);
 		}
 		$count = count($value);
 		if ($count < 1) {

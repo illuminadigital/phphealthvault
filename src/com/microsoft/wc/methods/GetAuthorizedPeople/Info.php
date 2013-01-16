@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetAuthorizedPeople;
 
-use com\microsoft\wc\methods\GetAuthorizedPeople\GetAuthorizedPeopleParameters;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createParameters() {
-		return new GetAuthorizedPeopleParameters();
+		return new \com\microsoft\wc\methods\GetAuthorizedPeople\GetAuthorizedPeopleParameters();
 	}
 
 	public function setParameters($parameters) {
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateParameters($parameters) {
-		if ( ! $parameters instanceof GetAuthorizedPeopleParameters ) {
-			$parameters = new GetAuthorizedPeopleParameters ($parameters);
+		if ( ! $parameters instanceof \com\microsoft\wc\methods\GetAuthorizedPeople\GetAuthorizedPeopleParameters ) {
+			$parameters = new \com\microsoft\wc\methods\GetAuthorizedPeople\GetAuthorizedPeopleParameters ($parameters);
 		}
 	
 		return $parameters;

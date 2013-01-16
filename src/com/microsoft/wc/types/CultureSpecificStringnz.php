@@ -3,11 +3,10 @@ namespace com\microsoft\wc\types;
 
 
 
-
 /**
  * @XmlEntity	(xml="CultureSpecificStringnz")
  */
-class CultureSpecificStringnz extends Stringnz {
+class CultureSpecificStringnz extends \com\microsoft\wc\types\Stringnz {
 	/**
 	 * The CultureSpecific... classes are intended for use with data that can be localized for one or more languages and cultures.
 	 * The CultureSpecific... classes should be upward compatibile with the base types.

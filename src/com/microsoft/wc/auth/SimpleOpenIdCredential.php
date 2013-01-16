@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\auth;
 
-use com\microsoft\wc\types\String128;
+
 
 /**
  * @XmlEntity	(xml="SimpleOpenIdCredential")
@@ -29,7 +29,7 @@ class SimpleOpenIdCredential {
 	}
 	
 	protected function createClaimedId() {
-		return new String128();
+		return new \com\microsoft\wc\types\String128();
 	}
 
 	public function setClaimedId($claimedId) {
@@ -37,8 +37,8 @@ class SimpleOpenIdCredential {
 	}
 
 	protected function validateClaimedId($claimedId) {
-		if ( ! $claimedId instanceof String128 ) {
-			$claimedId = new String128 ($claimedId);
+		if ( ! $claimedId instanceof \com\microsoft\wc\types\String128 ) {
+			$claimedId = new \com\microsoft\wc\types\String128 ($claimedId);
 		}
 	
 		return $claimedId;

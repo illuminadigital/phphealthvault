@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\record;
 
-use com\microsoft\wc\types\EmailAddress;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\record\AuthXml;
+
 
 /**
  * @XmlEntity	(xml="ActivePersonAuthorizationNoIds")
@@ -48,7 +46,7 @@ class ActivePersonAuthorizationNoIds {
 	protected $dateAuthExpires;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\record\AuthXml", name="auth-xml")
+	 * @XmlElement	(type="\com\microsoft\wc\auth\AuthXml", name="auth-xml")
 	 */
 	protected $authXml;
 
@@ -164,7 +162,7 @@ class ActivePersonAuthorizationNoIds {
 	}
 	
 	protected function createContactEmail() {
-		return new EmailAddress();
+		return new \com\microsoft\wc\types\EmailAddress();
 	}
 
 	public function setContactEmail($contactEmail) {
@@ -172,8 +170,8 @@ class ActivePersonAuthorizationNoIds {
 	}
 
 	protected function validateContactEmail($contactEmail) {
-		if ( ! $contactEmail instanceof EmailAddress ) {
-			$contactEmail = new EmailAddress ($contactEmail);
+		if ( ! $contactEmail instanceof \com\microsoft\wc\types\EmailAddress ) {
+			$contactEmail = new \com\microsoft\wc\types\EmailAddress ($contactEmail);
 		}
 	
 		return $contactEmail;
@@ -210,7 +208,7 @@ class ActivePersonAuthorizationNoIds {
 	}
 	
 	protected function createRecordDisplayName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setRecordDisplayName($recordDisplayName) {
@@ -218,8 +216,8 @@ class ActivePersonAuthorizationNoIds {
 	}
 
 	protected function validateRecordDisplayName($recordDisplayName) {
-		if ( ! $recordDisplayName instanceof String255  && ! is_null($recordDisplayName) ) {
-			$recordDisplayName = new String255 ($recordDisplayName);
+		if ( ! $recordDisplayName instanceof \com\microsoft\wc\types\String255  && ! is_null($recordDisplayName) ) {
+			$recordDisplayName = new \com\microsoft\wc\types\String255 ($recordDisplayName);
 		}
 	
 		return $recordDisplayName;
@@ -256,7 +254,7 @@ class ActivePersonAuthorizationNoIds {
 	}
 	
 	protected function createAuthXml() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setAuthXml($authXml) {
@@ -264,8 +262,8 @@ class ActivePersonAuthorizationNoIds {
 	}
 
 	protected function validateAuthXml($authXml) {
-		if ( ! $authXml instanceof AuthXml  && ! is_null($authXml) ) {
-			$authXml = new AuthXml ($authXml);
+		if ( ! $authXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($authXml) ) {
+			$authXml = new \com\microsoft\wc\auth\AuthXml ($authXml);
 		}
 	
 		return $authXml;

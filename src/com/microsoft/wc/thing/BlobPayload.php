@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\thing\BlobPayloadItem;
+
 
 /**
  * @XmlEntity	(xml="BlobPayload")
@@ -35,8 +35,8 @@ class BlobPayload {
 	}
 
 	protected function validateBlob($blob) {
-		if ( ! $blob instanceof BlobPayloadItem ) {
-			$blob = new BlobPayloadItem ($blob);
+		if ( ! $blob instanceof \com\microsoft\wc\thing\BlobPayloadItem ) {
+			$blob = new \com\microsoft\wc\thing\BlobPayloadItem ($blob);
 		}
 		$count = count($blob);
 		if ($count < 1) {

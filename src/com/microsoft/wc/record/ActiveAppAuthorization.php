@@ -1,10 +1,7 @@
 <?php
 namespace com\microsoft\wc\record;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\record\AuthXml;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\types\Location;
+
 
 /**
  * @XmlEntity	(xml="ActiveAppAuthorization")
@@ -34,12 +31,12 @@ class ActiveAppAuthorization {
 	protected $dateAuthExpires;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\record\AuthXml", name="person-online-auth-xml")
+	 * @XmlElement	(type="\com\microsoft\wc\auth\AuthXml", name="person-online-auth-xml")
 	 */
 	protected $personOnlineAuthXml;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\record\AuthXml", name="person-offline-auth-xml")
+	 * @XmlElement	(type="\com\microsoft\wc\auth\AuthXml", name="person-offline-auth-xml")
 	 */
 	protected $personOfflineAuthXml;
 
@@ -90,7 +87,7 @@ class ActiveAppAuthorization {
 	}
 	
 	protected function createRecordId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setRecordId($recordId) {
@@ -98,8 +95,8 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateRecordId($recordId) {
-		if ( ! $recordId instanceof Guid ) {
-			$recordId = new Guid ($recordId);
+		if ( ! $recordId instanceof \com\microsoft\wc\types\Guid ) {
+			$recordId = new \com\microsoft\wc\types\Guid ($recordId);
 		}
 	
 		return $recordId;
@@ -113,7 +110,7 @@ class ActiveAppAuthorization {
 	}
 	
 	protected function createApplicationId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setApplicationId($applicationId) {
@@ -121,8 +118,8 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateApplicationId($applicationId) {
-		if ( ! $applicationId instanceof Guid ) {
-			$applicationId = new Guid ($applicationId);
+		if ( ! $applicationId instanceof \com\microsoft\wc\types\Guid ) {
+			$applicationId = new \com\microsoft\wc\types\Guid ($applicationId);
 		}
 	
 		return $applicationId;
@@ -182,7 +179,7 @@ class ActiveAppAuthorization {
 	}
 	
 	protected function createPersonOnlineAuthXml() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setPersonOnlineAuthXml($personOnlineAuthXml) {
@@ -190,8 +187,8 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validatePersonOnlineAuthXml($personOnlineAuthXml) {
-		if ( ! $personOnlineAuthXml instanceof AuthXml  && ! is_null($personOnlineAuthXml) ) {
-			$personOnlineAuthXml = new AuthXml ($personOnlineAuthXml);
+		if ( ! $personOnlineAuthXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($personOnlineAuthXml) ) {
+			$personOnlineAuthXml = new \com\microsoft\wc\auth\AuthXml ($personOnlineAuthXml);
 		}
 	
 		return $personOnlineAuthXml;
@@ -205,7 +202,7 @@ class ActiveAppAuthorization {
 	}
 	
 	protected function createPersonOfflineAuthXml() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setPersonOfflineAuthXml($personOfflineAuthXml) {
@@ -213,8 +210,8 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validatePersonOfflineAuthXml($personOfflineAuthXml) {
-		if ( ! $personOfflineAuthXml instanceof AuthXml  && ! is_null($personOfflineAuthXml) ) {
-			$personOfflineAuthXml = new AuthXml ($personOfflineAuthXml);
+		if ( ! $personOfflineAuthXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($personOfflineAuthXml) ) {
+			$personOfflineAuthXml = new \com\microsoft\wc\auth\AuthXml ($personOfflineAuthXml);
 		}
 	
 		return $personOfflineAuthXml;
@@ -274,7 +271,7 @@ class ActiveAppAuthorization {
 	}
 	
 	protected function createRecordDisplayName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setRecordDisplayName($recordDisplayName) {
@@ -282,8 +279,8 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateRecordDisplayName($recordDisplayName) {
-		if ( ! $recordDisplayName instanceof String255 ) {
-			$recordDisplayName = new String255 ($recordDisplayName);
+		if ( ! $recordDisplayName instanceof \com\microsoft\wc\types\String255 ) {
+			$recordDisplayName = new \com\microsoft\wc\types\String255 ($recordDisplayName);
 		}
 	
 		return $recordDisplayName;
@@ -320,7 +317,7 @@ class ActiveAppAuthorization {
 	}
 	
 	protected function createLocation() {
-		return new Location();
+		return new \com\microsoft\wc\types\Location();
 	}
 
 	public function setLocation($location) {
@@ -328,8 +325,8 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateLocation($location) {
-		if ( ! $location instanceof Location  && ! is_null($location) ) {
-			$location = new Location ($location);
+		if ( ! $location instanceof \com\microsoft\wc\types\Location  && ! is_null($location) ) {
+			$location = new \com\microsoft\wc\types\Location ($location);
 		}
 	
 		return $location;

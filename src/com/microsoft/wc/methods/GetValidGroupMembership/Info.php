@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetValidGroupMembership;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateApplicationId($applicationId) {
-		if ( ! $applicationId instanceof Guid  && ! is_null($applicationId) ) {
-			$applicationId = new Guid ($applicationId);
+		if ( ! $applicationId instanceof \com\microsoft\wc\types\Guid  && ! is_null($applicationId) ) {
+			$applicationId = new \com\microsoft\wc\types\Guid ($applicationId);
 		}
 		$count = count($applicationId);
 		if ($count < 0) {

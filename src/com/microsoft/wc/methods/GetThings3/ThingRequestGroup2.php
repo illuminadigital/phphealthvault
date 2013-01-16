@@ -1,11 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetThings3;
 
-use com\microsoft\wc\methods\GetThings3\ThingFormatSpec2;
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\thing\ThingKey;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\methods\GetThings\ThingFilterSpec;
+
 
 /**
  * @XmlEntity	(xml="ThingRequestGroup2")
@@ -89,8 +85,8 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid  && ! is_null($id) ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid  && ! is_null($id) ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 		$count = count($id);
 		if ($count < 0) {
@@ -125,8 +121,8 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateKey($key) {
-		if ( ! $key instanceof ThingKey  && ! is_null($key) ) {
-			$key = new ThingKey ($key);
+		if ( ! $key instanceof \com\microsoft\wc\thing\ThingKey  && ! is_null($key) ) {
+			$key = new \com\microsoft\wc\thing\ThingKey ($key);
 		}
 		$count = count($key);
 		if ($count < 0) {
@@ -161,8 +157,8 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateClientThingId($clientThingId) {
-		if ( ! $clientThingId instanceof String255  && ! is_null($clientThingId) ) {
-			$clientThingId = new String255 ($clientThingId);
+		if ( ! $clientThingId instanceof \com\microsoft\wc\types\String255  && ! is_null($clientThingId) ) {
+			$clientThingId = new \com\microsoft\wc\types\String255 ($clientThingId);
 		}
 		$count = count($clientThingId);
 		if ($count < 0) {
@@ -197,8 +193,8 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateFilter($filter) {
-		if ( ! $filter instanceof ThingFilterSpec  && ! is_null($filter) ) {
-			$filter = new ThingFilterSpec ($filter);
+		if ( ! $filter instanceof \com\microsoft\wc\methods\GetThings\ThingFilterSpec  && ! is_null($filter) ) {
+			$filter = new \com\microsoft\wc\methods\GetThings\ThingFilterSpec ($filter);
 		}
 		$count = count($filter);
 		if ($count < 0) {
@@ -225,7 +221,7 @@ class ThingRequestGroup2 {
 	}
 	
 	protected function createFormat() {
-		return new ThingFormatSpec2();
+		return new \com\microsoft\wc\methods\GetThings3\ThingFormatSpec2();
 	}
 
 	public function setFormat($format) {
@@ -233,8 +229,8 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateFormat($format) {
-		if ( ! $format instanceof ThingFormatSpec2 ) {
-			$format = new ThingFormatSpec2 ($format);
+		if ( ! $format instanceof \com\microsoft\wc\methods\GetThings3\ThingFormatSpec2 ) {
+			$format = new \com\microsoft\wc\methods\GetThings3\ThingFormatSpec2 ($format);
 		}
 	
 		return $format;

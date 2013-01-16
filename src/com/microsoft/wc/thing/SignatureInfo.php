@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\thing\SignatureData;
-use com\microsoft\wc\thing\Signature;
+
 
 /**
  * @XmlEntity	(xml="SignatureInfo")
@@ -17,7 +16,7 @@ class SignatureInfo {
 	protected $sigData;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig#\Signature", name="Signature")
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\Signature", name="Signature")
 	 */
 	protected $signature;
 
@@ -34,7 +33,7 @@ class SignatureInfo {
 	}
 	
 	protected function createSigData() {
-		return new SignatureData();
+		return new \com\microsoft\wc\thing\SignatureData();
 	}
 
 	public function setSigData($sigData) {
@@ -42,8 +41,8 @@ class SignatureInfo {
 	}
 
 	protected function validateSigData($sigData) {
-		if ( ! $sigData instanceof SignatureData ) {
-			$sigData = new SignatureData ($sigData);
+		if ( ! $sigData instanceof \com\microsoft\wc\thing\SignatureData ) {
+			$sigData = new \com\microsoft\wc\thing\SignatureData ($sigData);
 		}
 	
 		return $sigData;
@@ -57,7 +56,7 @@ class SignatureInfo {
 	}
 	
 	protected function createSignature() {
-		return new Signature();
+		return new \org\w3\www\_2000\_09\xmldsig\Signature();
 	}
 
 	public function setSignature($signature) {
@@ -65,8 +64,8 @@ class SignatureInfo {
 	}
 
 	protected function validateSignature($signature) {
-		if ( ! $signature instanceof Signature  && ! is_null($signature) ) {
-			$signature = new Signature ($signature);
+		if ( ! $signature instanceof \org\w3\www\_2000\_09\xmldsig\Signature  && ! is_null($signature) ) {
+			$signature = new \org\w3\www\_2000\_09\xmldsig\Signature ($signature);
 		}
 	
 		return $signature;

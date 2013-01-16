@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\vocab;
 
-use com\microsoft\wc\vocab\VocabularySynonym;
+
 
 /**
  * @XmlEntity	(xml="vocabulary-synonyms")
@@ -36,8 +36,8 @@ class VocabularySynonyms {
 	}
 
 	protected function validateVocabularySynonym($vocabularySynonym) {
-		if ( ! $vocabularySynonym instanceof VocabularySynonym  && ! is_null($vocabularySynonym) ) {
-			$vocabularySynonym = new VocabularySynonym ($vocabularySynonym);
+		if ( ! $vocabularySynonym instanceof \com\microsoft\wc\vocab\VocabularySynonym  && ! is_null($vocabularySynonym) ) {
+			$vocabularySynonym = new \com\microsoft\wc\vocab\VocabularySynonym ($vocabularySynonym);
 		}
 		$count = count($vocabularySynonym);
 		if ($count < 0) {

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\subscription;
 
-use com\microsoft\wc\subscription\Subscription;
+
 
 /**
  * @XmlEntity	(xml="Subscriptions")
@@ -36,8 +36,8 @@ class Subscriptions {
 	}
 
 	protected function validateSubscription($subscription) {
-		if ( ! $subscription instanceof Subscription  && ! is_null($subscription) ) {
-			$subscription = new Subscription ($subscription);
+		if ( ! $subscription instanceof \com\microsoft\wc\subscription\Subscription  && ! is_null($subscription) ) {
+			$subscription = new \com\microsoft\wc\subscription\Subscription ($subscription);
 		}
 		$count = count($subscription);
 		if ($count < 0) {

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\request;
 
-use com\microsoft\wc\types\String128;
+
 
 /**
  * @XmlEntity	(xml="Xsl")
@@ -27,7 +27,7 @@ class Xsl {
 	}
 	
 	protected function createContentType() {
-		return new String128();
+		return new \com\microsoft\wc\types\String128();
 	}
 
 	public function setContentType($contentType) {
@@ -35,8 +35,8 @@ class Xsl {
 	}
 
 	protected function validateContentType($contentType) {
-		if ( ! $contentType instanceof String128  && ! is_null($contentType) ) {
-			$contentType = new String128 ($contentType);
+		if ( ! $contentType instanceof \com\microsoft\wc\types\String128  && ! is_null($contentType) ) {
+			$contentType = new \com\microsoft\wc\types\String128 ($contentType);
 		}
 	
 		return $contentType;

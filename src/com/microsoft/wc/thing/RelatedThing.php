@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\String255;
+
 
 /**
  * @XmlEntity	(xml="RelatedThing")
@@ -48,7 +47,7 @@ class RelatedThing {
 	}
 	
 	protected function createThingId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setThingId($thingId) {
@@ -56,8 +55,8 @@ class RelatedThing {
 	}
 
 	protected function validateThingId($thingId) {
-		if ( ! $thingId instanceof Guid ) {
-			$thingId = new Guid ($thingId);
+		if ( ! $thingId instanceof \com\microsoft\wc\types\Guid ) {
+			$thingId = new \com\microsoft\wc\types\Guid ($thingId);
 		}
 	
 		return $thingId;
@@ -71,7 +70,7 @@ class RelatedThing {
 	}
 	
 	protected function createVersionStamp() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setVersionStamp($versionStamp) {
@@ -79,8 +78,8 @@ class RelatedThing {
 	}
 
 	protected function validateVersionStamp($versionStamp) {
-		if ( ! $versionStamp instanceof Guid  && ! is_null($versionStamp) ) {
-			$versionStamp = new Guid ($versionStamp);
+		if ( ! $versionStamp instanceof \com\microsoft\wc\types\Guid  && ! is_null($versionStamp) ) {
+			$versionStamp = new \com\microsoft\wc\types\Guid ($versionStamp);
 		}
 	
 		return $versionStamp;
@@ -94,7 +93,7 @@ class RelatedThing {
 	}
 	
 	protected function createClientThingId() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setClientThingId($clientThingId) {
@@ -102,8 +101,8 @@ class RelatedThing {
 	}
 
 	protected function validateClientThingId($clientThingId) {
-		if ( ! $clientThingId instanceof String255  && ! is_null($clientThingId) ) {
-			$clientThingId = new String255 ($clientThingId);
+		if ( ! $clientThingId instanceof \com\microsoft\wc\types\String255  && ! is_null($clientThingId) ) {
+			$clientThingId = new \com\microsoft\wc\types\String255 ($clientThingId);
 		}
 	
 		return $clientThingId;

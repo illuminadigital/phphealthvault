@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\HMACAlgorithm;
+
 
 /**
  * @XmlEntity	(xml="AppServerCredInfo")
@@ -36,7 +35,7 @@ class AppServerCredInfo {
 	}
 	
 	protected function createAppId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setAppId($appId) {
@@ -44,8 +43,8 @@ class AppServerCredInfo {
 	}
 
 	protected function validateAppId($appId) {
-		if ( ! $appId instanceof Guid ) {
-			$appId = new Guid ($appId);
+		if ( ! $appId instanceof \com\microsoft\wc\types\Guid ) {
+			$appId = new \com\microsoft\wc\types\Guid ($appId);
 		}
 	
 		return $appId;
@@ -59,7 +58,7 @@ class AppServerCredInfo {
 	}
 	
 	protected function createSharedSecret() {
-		return new HMACAlgorithm();
+		return new \com\microsoft\wc\types\HMACAlgorithm();
 	}
 
 	public function setSharedSecret($sharedSecret) {
@@ -67,8 +66,8 @@ class AppServerCredInfo {
 	}
 
 	protected function validateSharedSecret($sharedSecret) {
-		if ( ! $sharedSecret instanceof HMACAlgorithm ) {
-			$sharedSecret = new HMACAlgorithm ($sharedSecret);
+		if ( ! $sharedSecret instanceof \com\microsoft\wc\types\HMACAlgorithm ) {
+			$sharedSecret = new \com\microsoft\wc\types\HMACAlgorithm ($sharedSecret);
 		}
 	
 		return $sharedSecret;

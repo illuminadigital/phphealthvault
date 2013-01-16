@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\SubscribeToEvent;
 
-use com\microsoft\wc\types\Guid;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -27,7 +27,7 @@ class Info {
 	}
 	
 	protected function createSubscriptionId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setSubscriptionId($subscriptionId) {
@@ -35,8 +35,8 @@ class Info {
 	}
 
 	protected function validateSubscriptionId($subscriptionId) {
-		if ( ! $subscriptionId instanceof Guid ) {
-			$subscriptionId = new Guid ($subscriptionId);
+		if ( ! $subscriptionId instanceof \com\microsoft\wc\types\Guid ) {
+			$subscriptionId = new \com\microsoft\wc\types\Guid ($subscriptionId);
 		}
 	
 		return $subscriptionId;

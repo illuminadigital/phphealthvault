@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\thing;
 
-use com\microsoft\wc\thing\BlobInfo;
-use com\microsoft\wc\types\Stringnz;
-use com\microsoft\wc\types\Stringz1024;
+
 
 /**
  * @XmlEntity	(xml="BlobPayloadItem")
@@ -59,7 +57,7 @@ class BlobPayloadItem {
 	}
 	
 	protected function createBlobInfo() {
-		return new BlobInfo();
+		return new \com\microsoft\wc\thing\BlobInfo();
 	}
 
 	public function setBlobInfo($blobInfo) {
@@ -67,8 +65,8 @@ class BlobPayloadItem {
 	}
 
 	protected function validateBlobInfo($blobInfo) {
-		if ( ! $blobInfo instanceof BlobInfo ) {
-			$blobInfo = new BlobInfo ($blobInfo);
+		if ( ! $blobInfo instanceof \com\microsoft\wc\thing\BlobInfo ) {
+			$blobInfo = new \com\microsoft\wc\thing\BlobInfo ($blobInfo);
 		}
 	
 		return $blobInfo;
@@ -105,7 +103,7 @@ class BlobPayloadItem {
 	}
 	
 	protected function createBase64data() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setBase64data($base64data) {
@@ -113,8 +111,8 @@ class BlobPayloadItem {
 	}
 
 	protected function validateBase64data($base64data) {
-		if ( ! $base64data instanceof Stringnz ) {
-			$base64data = new Stringnz ($base64data);
+		if ( ! $base64data instanceof \com\microsoft\wc\types\Stringnz ) {
+			$base64data = new \com\microsoft\wc\types\Stringnz ($base64data);
 		}
 	
 		return $base64data;
@@ -151,7 +149,7 @@ class BlobPayloadItem {
 	}
 	
 	protected function createLegacyContentEncoding() {
-		return new Stringz1024();
+		return new \com\microsoft\wc\types\Stringz1024();
 	}
 
 	public function setLegacyContentEncoding($legacyContentEncoding) {
@@ -159,8 +157,8 @@ class BlobPayloadItem {
 	}
 
 	protected function validateLegacyContentEncoding($legacyContentEncoding) {
-		if ( ! $legacyContentEncoding instanceof Stringz1024  && ! is_null($legacyContentEncoding) ) {
-			$legacyContentEncoding = new Stringz1024 ($legacyContentEncoding);
+		if ( ! $legacyContentEncoding instanceof \com\microsoft\wc\types\Stringz1024  && ! is_null($legacyContentEncoding) ) {
+			$legacyContentEncoding = new \com\microsoft\wc\types\Stringz1024 ($legacyContentEncoding);
 		}
 	
 		return $legacyContentEncoding;
@@ -174,7 +172,7 @@ class BlobPayloadItem {
 	}
 	
 	protected function createCurrentContentEncoding() {
-		return new Stringz1024();
+		return new \com\microsoft\wc\types\Stringz1024();
 	}
 
 	public function setCurrentContentEncoding($currentContentEncoding) {
@@ -182,8 +180,8 @@ class BlobPayloadItem {
 	}
 
 	protected function validateCurrentContentEncoding($currentContentEncoding) {
-		if ( ! $currentContentEncoding instanceof Stringz1024  && ! is_null($currentContentEncoding) ) {
-			$currentContentEncoding = new Stringz1024 ($currentContentEncoding);
+		if ( ! $currentContentEncoding instanceof \com\microsoft\wc\types\Stringz1024  && ! is_null($currentContentEncoding) ) {
+			$currentContentEncoding = new \com\microsoft\wc\types\Stringz1024 ($currentContentEncoding);
 		}
 	
 		return $currentContentEncoding;

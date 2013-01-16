@@ -1,11 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\SaveOpenQuery;
 
-use com\microsoft\wc\types\String128;
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\Iso6391;
-use com\microsoft\wc\types\Iso3166;
-use com\microsoft\wc\request\Info;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -110,7 +106,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createPinCode() {
-		return new String128();
+		return new \com\microsoft\wc\types\String128();
 	}
 
 	public function setPinCode($pinCode) {
@@ -118,8 +114,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePinCode($pinCode) {
-		if ( ! $pinCode instanceof String128  && ! is_null($pinCode) ) {
-			$pinCode = new String128 ($pinCode);
+		if ( ! $pinCode instanceof \com\microsoft\wc\types\String128  && ! is_null($pinCode) ) {
+			$pinCode = new \com\microsoft\wc\types\String128 ($pinCode);
 		}
 	
 		return $pinCode;
@@ -133,7 +129,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createNote() {
-		return new String128();
+		return new \com\microsoft\wc\types\String128();
 	}
 
 	public function setNote($note) {
@@ -141,8 +137,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateNote($note) {
-		if ( ! $note instanceof String128  && ! is_null($note) ) {
-			$note = new String128 ($note);
+		if ( ! $note instanceof \com\microsoft\wc\types\String128  && ! is_null($note) ) {
+			$note = new \com\microsoft\wc\types\String128 ($note);
 		}
 	
 		return $note;
@@ -202,7 +198,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createRecordId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setRecordId($recordId) {
@@ -210,8 +206,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRecordId($recordId) {
-		if ( ! $recordId instanceof Guid  && ! is_null($recordId) ) {
-			$recordId = new Guid ($recordId);
+		if ( ! $recordId instanceof \com\microsoft\wc\types\Guid  && ! is_null($recordId) ) {
+			$recordId = new \com\microsoft\wc\types\Guid ($recordId);
 		}
 	
 		return $recordId;
@@ -225,7 +221,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createLanguage() {
-		return new Iso6391();
+		return new \com\microsoft\wc\types\Iso6391();
 	}
 
 	public function setLanguage($language) {
@@ -233,8 +229,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof Iso6391  && ! is_null($language) ) {
-			$language = new Iso6391 ($language);
+		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
+			$language = new \com\microsoft\wc\types\Iso6391 ($language);
 		}
 	
 		return $language;
@@ -248,7 +244,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createCountry() {
-		return new Iso3166();
+		return new \com\microsoft\wc\types\Iso3166();
 	}
 
 	public function setCountry($country) {
@@ -256,8 +252,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateCountry($country) {
-		if ( ! $country instanceof Iso3166  && ! is_null($country) ) {
-			$country = new Iso3166 ($country);
+		if ( ! $country instanceof \com\microsoft\wc\types\Iso3166  && ! is_null($country) ) {
+			$country = new \com\microsoft\wc\types\Iso3166 ($country);
 		}
 	
 		return $country;
@@ -294,7 +290,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createInfo() {
-		return new Info();
+		return new \com\microsoft\wc\request\Info();
 	}
 
 	public function setInfo($info) {
@@ -302,8 +298,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateInfo($info) {
-		if ( ! $info instanceof Info ) {
-			$info = new Info ($info);
+		if ( ! $info instanceof \com\microsoft\wc\request\Info ) {
+			$info = new \com\microsoft\wc\request\Info ($info);
 		}
 	
 		return $info;

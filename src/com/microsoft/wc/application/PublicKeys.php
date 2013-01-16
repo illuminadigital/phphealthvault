@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\application;
 
-use com\microsoft\wc\application\PublicKey;
+
 
 /**
  * @XmlEntity	(xml="PublicKeys")
@@ -35,8 +35,8 @@ class PublicKeys {
 	}
 
 	protected function validatePublicKey($publicKey) {
-		if ( ! $publicKey instanceof PublicKey ) {
-			$publicKey = new PublicKey ($publicKey);
+		if ( ! $publicKey instanceof \com\microsoft\wc\application\PublicKey ) {
+			$publicKey = new \com\microsoft\wc\application\PublicKey ($publicKey);
 		}
 		$count = count($publicKey);
 		if ($count < 1) {

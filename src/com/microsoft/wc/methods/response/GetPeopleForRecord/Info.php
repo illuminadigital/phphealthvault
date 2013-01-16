@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetPeopleForRecord;
 
-use com\microsoft\wc\record\ActivePersonAuthorizationNoIds;
-use com\microsoft\wc\record\NonActiveAuthorizationNoIds;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -44,8 +43,8 @@ class Info {
 	}
 
 	protected function validateActivePersonAuthorization($activePersonAuthorization) {
-		if ( ! $activePersonAuthorization instanceof ActivePersonAuthorizationNoIds ) {
-			$activePersonAuthorization = new ActivePersonAuthorizationNoIds ($activePersonAuthorization);
+		if ( ! $activePersonAuthorization instanceof \com\microsoft\wc\record\ActivePersonAuthorizationNoIds ) {
+			$activePersonAuthorization = new \com\microsoft\wc\record\ActivePersonAuthorizationNoIds ($activePersonAuthorization);
 		}
 		$count = count($activePersonAuthorization);
 		if ($count < 1) {
@@ -80,8 +79,8 @@ class Info {
 	}
 
 	protected function validateNonActiveAuthorization($nonActiveAuthorization) {
-		if ( ! $nonActiveAuthorization instanceof NonActiveAuthorizationNoIds  && ! is_null($nonActiveAuthorization) ) {
-			$nonActiveAuthorization = new NonActiveAuthorizationNoIds ($nonActiveAuthorization);
+		if ( ! $nonActiveAuthorization instanceof \com\microsoft\wc\record\NonActiveAuthorizationNoIds  && ! is_null($nonActiveAuthorization) ) {
+			$nonActiveAuthorization = new \com\microsoft\wc\record\NonActiveAuthorizationNoIds ($nonActiveAuthorization);
 		}
 		$count = count($nonActiveAuthorization);
 		if ($count < 0) {

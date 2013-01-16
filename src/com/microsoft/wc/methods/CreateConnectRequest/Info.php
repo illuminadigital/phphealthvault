@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\CreateConnectRequest;
 
-use com\microsoft\wc\types\Stringnz;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -53,7 +53,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createFriendlyName() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setFriendlyName($friendlyName) {
@@ -61,8 +61,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateFriendlyName($friendlyName) {
-		if ( ! $friendlyName instanceof Stringnz ) {
-			$friendlyName = new Stringnz ($friendlyName);
+		if ( ! $friendlyName instanceof \com\microsoft\wc\types\Stringnz ) {
+			$friendlyName = new \com\microsoft\wc\types\Stringnz ($friendlyName);
 		}
 	
 		return $friendlyName;
@@ -76,7 +76,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createQuestion() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setQuestion($question) {
@@ -84,8 +84,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateQuestion($question) {
-		if ( ! $question instanceof Stringnz ) {
-			$question = new Stringnz ($question);
+		if ( ! $question instanceof \com\microsoft\wc\types\Stringnz ) {
+			$question = new \com\microsoft\wc\types\Stringnz ($question);
 		}
 	
 		return $question;
@@ -99,7 +99,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createAnswer() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setAnswer($answer) {
@@ -107,8 +107,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAnswer($answer) {
-		if ( ! $answer instanceof Stringnz ) {
-			$answer = new Stringnz ($answer);
+		if ( ! $answer instanceof \com\microsoft\wc\types\Stringnz ) {
+			$answer = new \com\microsoft\wc\types\Stringnz ($answer);
 		}
 	
 		return $answer;
@@ -122,7 +122,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createExternalId() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setExternalId($externalId) {
@@ -130,8 +130,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateExternalId($externalId) {
-		if ( ! $externalId instanceof Stringnz ) {
-			$externalId = new Stringnz ($externalId);
+		if ( ! $externalId instanceof \com\microsoft\wc\types\Stringnz ) {
+			$externalId = new \com\microsoft\wc\types\Stringnz ($externalId);
 		}
 	
 		return $externalId;
@@ -145,7 +145,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createCallBackUrl() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setCallBackUrl($callBackUrl) {
@@ -153,8 +153,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateCallBackUrl($callBackUrl) {
-		if ( ! $callBackUrl instanceof Stringnz  && ! is_null($callBackUrl) ) {
-			$callBackUrl = new Stringnz ($callBackUrl);
+		if ( ! $callBackUrl instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($callBackUrl) ) {
+			$callBackUrl = new \com\microsoft\wc\types\Stringnz ($callBackUrl);
 		}
 	
 		return $callBackUrl;

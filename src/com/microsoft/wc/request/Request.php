@@ -1,9 +1,7 @@
 <?php
 namespace com\microsoft\wc\request;
 
-use com\microsoft\wc\types\HMACFinalized;
-use com\microsoft\wc\request\Header;
-use com\microsoft\wc\request\Info;
+
 
 /**
  * @XmlNamespaces ({
@@ -44,7 +42,7 @@ class Request {
 	}
 	
 	protected function createAuth() {
-		return new HMACFinalized();
+		return new \com\microsoft\wc\types\HMACFinalized();
 	}
 
 	public function setAuth($auth) {
@@ -52,8 +50,8 @@ class Request {
 	}
 
 	protected function validateAuth($auth) {
-		if ( ! $auth instanceof HMACFinalized  && ! is_null($auth) ) {
-			$auth = new HMACFinalized ($auth);
+		if ( ! $auth instanceof \com\microsoft\wc\types\HMACFinalized  && ! is_null($auth) ) {
+			$auth = new \com\microsoft\wc\types\HMACFinalized ($auth);
 		}
 	
 		return $auth;
@@ -67,7 +65,7 @@ class Request {
 	}
 	
 	protected function createHeader() {
-		return new Header();
+		return new \com\microsoft\wc\request\Header();
 	}
 
 	public function setHeader($header) {
@@ -75,8 +73,8 @@ class Request {
 	}
 
 	protected function validateHeader($header) {
-		if ( ! $header instanceof Header ) {
-			$header = new Header ($header);
+		if ( ! $header instanceof \com\microsoft\wc\request\Header ) {
+			$header = new \com\microsoft\wc\request\Header ($header);
 		}
 	
 		return $header;
@@ -90,7 +88,7 @@ class Request {
 	}
 	
 	protected function createInfo() {
-		return new Info();
+		return new \com\microsoft\wc\request\Info();
 	}
 
 	public function setInfo($info) {
@@ -98,8 +96,8 @@ class Request {
 	}
 
 	protected function validateInfo($info) {
-		if ( ! $info instanceof Info ) {
-			$info = new Info ($info);
+		if ( ! $info instanceof \com\microsoft\wc\request\Info ) {
+			$info = new \com\microsoft\wc\request\Info ($info);
 		}
 	
 		return $info;

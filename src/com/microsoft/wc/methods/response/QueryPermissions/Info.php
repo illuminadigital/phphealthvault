@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\QueryPermissions;
 
-use com\microsoft\wc\methods\response\QueryPermissions\ThingTypePermission;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -37,8 +37,8 @@ class Info {
 	}
 
 	protected function validateThingTypePermission($thingTypePermission) {
-		if ( ! $thingTypePermission instanceof ThingTypePermission  && ! is_null($thingTypePermission) ) {
-			$thingTypePermission = new ThingTypePermission ($thingTypePermission);
+		if ( ! $thingTypePermission instanceof \com\microsoft\wc\methods\response\QueryPermissions\ThingTypePermission  && ! is_null($thingTypePermission) ) {
+			$thingTypePermission = new \com\microsoft\wc\methods\response\QueryPermissions\ThingTypePermission ($thingTypePermission);
 		}
 		$count = count($thingTypePermission);
 		if ($count < 0) {

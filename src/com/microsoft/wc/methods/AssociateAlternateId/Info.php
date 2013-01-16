@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\AssociateAlternateId;
 
-use com\microsoft\wc\types\String255nw;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -29,7 +29,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createAlternateId() {
-		return new String255nw();
+		return new \com\microsoft\wc\types\String255nw();
 	}
 
 	public function setAlternateId($alternateId) {
@@ -37,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAlternateId($alternateId) {
-		if ( ! $alternateId instanceof String255nw ) {
-			$alternateId = new String255nw ($alternateId);
+		if ( ! $alternateId instanceof \com\microsoft\wc\types\String255nw ) {
+			$alternateId = new \com\microsoft\wc\types\String255nw ($alternateId);
 		}
 	
 		return $alternateId;

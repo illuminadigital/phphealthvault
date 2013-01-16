@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\application;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\auth\AuthXml;
+
 
 /**
  * @XmlEntity	(xml="AppIdAndIncrAuth")
@@ -52,7 +51,7 @@ class AppIdAndIncrAuth {
 	}
 	
 	protected function createId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setId($id) {
@@ -60,8 +59,8 @@ class AppIdAndIncrAuth {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 	
 		return $id;
@@ -75,7 +74,7 @@ class AppIdAndIncrAuth {
 	}
 	
 	protected function createIncrOnlineAuthXml() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setIncrOnlineAuthXml($incrOnlineAuthXml) {
@@ -83,8 +82,8 @@ class AppIdAndIncrAuth {
 	}
 
 	protected function validateIncrOnlineAuthXml($incrOnlineAuthXml) {
-		if ( ! $incrOnlineAuthXml instanceof AuthXml  && ! is_null($incrOnlineAuthXml) ) {
-			$incrOnlineAuthXml = new AuthXml ($incrOnlineAuthXml);
+		if ( ! $incrOnlineAuthXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($incrOnlineAuthXml) ) {
+			$incrOnlineAuthXml = new \com\microsoft\wc\auth\AuthXml ($incrOnlineAuthXml);
 		}
 	
 		return $incrOnlineAuthXml;
@@ -121,7 +120,7 @@ class AppIdAndIncrAuth {
 	}
 	
 	protected function createIncrOfflineAuthXml() {
-		return new AuthXml();
+		return new \com\microsoft\wc\auth\AuthXml();
 	}
 
 	public function setIncrOfflineAuthXml($incrOfflineAuthXml) {
@@ -129,8 +128,8 @@ class AppIdAndIncrAuth {
 	}
 
 	protected function validateIncrOfflineAuthXml($incrOfflineAuthXml) {
-		if ( ! $incrOfflineAuthXml instanceof AuthXml  && ! is_null($incrOfflineAuthXml) ) {
-			$incrOfflineAuthXml = new AuthXml ($incrOfflineAuthXml);
+		if ( ! $incrOfflineAuthXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($incrOfflineAuthXml) ) {
+			$incrOfflineAuthXml = new \com\microsoft\wc\auth\AuthXml ($incrOfflineAuthXml);
 		}
 	
 		return $incrOfflineAuthXml;

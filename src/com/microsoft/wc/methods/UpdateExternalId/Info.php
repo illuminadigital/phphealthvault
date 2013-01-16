@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\UpdateExternalId;
 
-use com\microsoft\wc\types\Stringnz;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -41,7 +41,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createIdentityCode() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setIdentityCode($identityCode) {
@@ -49,8 +49,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateIdentityCode($identityCode) {
-		if ( ! $identityCode instanceof Stringnz ) {
-			$identityCode = new Stringnz ($identityCode);
+		if ( ! $identityCode instanceof \com\microsoft\wc\types\Stringnz ) {
+			$identityCode = new \com\microsoft\wc\types\Stringnz ($identityCode);
 		}
 	
 		return $identityCode;
@@ -64,7 +64,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createOldExternalId() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setOldExternalId($oldExternalId) {
@@ -72,8 +72,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateOldExternalId($oldExternalId) {
-		if ( ! $oldExternalId instanceof Stringnz ) {
-			$oldExternalId = new Stringnz ($oldExternalId);
+		if ( ! $oldExternalId instanceof \com\microsoft\wc\types\Stringnz ) {
+			$oldExternalId = new \com\microsoft\wc\types\Stringnz ($oldExternalId);
 		}
 	
 		return $oldExternalId;
@@ -87,7 +87,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createNewExternalId() {
-		return new Stringnz();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setNewExternalId($newExternalId) {
@@ -95,8 +95,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateNewExternalId($newExternalId) {
-		if ( ! $newExternalId instanceof Stringnz ) {
-			$newExternalId = new Stringnz ($newExternalId);
+		if ( ! $newExternalId instanceof \com\microsoft\wc\types\Stringnz ) {
+			$newExternalId = new \com\microsoft\wc\types\Stringnz ($newExternalId);
 		}
 	
 		return $newExternalId;

@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\SearchVocabulary;
 
-use com\microsoft\wc\vocab\VocabularyKey;
-use com\microsoft\wc\methods\SearchVocabulary\VocabularySearchParams;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -35,7 +34,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createVocabularyKey() {
-		return new VocabularyKey();
+		return new \com\microsoft\wc\vocab\VocabularyKey();
 	}
 
 	public function setVocabularyKey($vocabularyKey) {
@@ -43,8 +42,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! $vocabularyKey instanceof VocabularyKey  && ! is_null($vocabularyKey) ) {
-			$vocabularyKey = new VocabularyKey ($vocabularyKey);
+		if ( ! $vocabularyKey instanceof \com\microsoft\wc\vocab\VocabularyKey  && ! is_null($vocabularyKey) ) {
+			$vocabularyKey = new \com\microsoft\wc\vocab\VocabularyKey ($vocabularyKey);
 		}
 	
 		return $vocabularyKey;
@@ -58,7 +57,7 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 	
 	protected function createTextSearchParameters() {
-		return new VocabularySearchParams();
+		return new \com\microsoft\wc\methods\SearchVocabulary\VocabularySearchParams();
 	}
 
 	public function setTextSearchParameters($textSearchParameters) {
@@ -66,8 +65,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateTextSearchParameters($textSearchParameters) {
-		if ( ! $textSearchParameters instanceof VocabularySearchParams ) {
-			$textSearchParameters = new VocabularySearchParams ($textSearchParameters);
+		if ( ! $textSearchParameters instanceof \com\microsoft\wc\methods\SearchVocabulary\VocabularySearchParams ) {
+			$textSearchParameters = new \com\microsoft\wc\methods\SearchVocabulary\VocabularySearchParams ($textSearchParameters);
 		}
 	
 		return $textSearchParameters;

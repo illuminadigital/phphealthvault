@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\GetServiceDefinition2;
 
-use com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethodVersion;
+
 
 /**
  * @XmlEntity	(xml="XmlMethod")
@@ -65,8 +65,8 @@ class XmlMethod {
 	}
 
 	protected function validateVersion($version) {
-		if ( ! $version instanceof XmlMethodVersion  && ! is_null($version) ) {
-			$version = new XmlMethodVersion ($version);
+		if ( ! $version instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethodVersion  && ! is_null($version) ) {
+			$version = new \com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethodVersion ($version);
 		}
 		$count = count($version);
 		if ($count < 0) {

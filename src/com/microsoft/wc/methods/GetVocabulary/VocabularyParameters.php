@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\GetVocabulary;
 
-use com\microsoft\wc\vocab\VocabularyKey;
+
 
 /**
  * @XmlEntity	(xml="VocabularyParameters")
@@ -42,8 +42,8 @@ class VocabularyParameters {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! $vocabularyKey instanceof VocabularyKey ) {
-			$vocabularyKey = new VocabularyKey ($vocabularyKey);
+		if ( ! $vocabularyKey instanceof \com\microsoft\wc\vocab\VocabularyKey ) {
+			$vocabularyKey = new \com\microsoft\wc\vocab\VocabularyKey ($vocabularyKey);
 		}
 		$count = count($vocabularyKey);
 		if ($count < 1) {

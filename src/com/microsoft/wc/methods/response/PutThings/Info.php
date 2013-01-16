@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\PutThings;
 
-use com\microsoft\wc\thing\ThingKey;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -35,8 +35,8 @@ class Info {
 	}
 
 	protected function validateThingId($thingId) {
-		if ( ! $thingId instanceof ThingKey ) {
-			$thingId = new ThingKey ($thingId);
+		if ( ! $thingId instanceof \com\microsoft\wc\thing\ThingKey ) {
+			$thingId = new \com\microsoft\wc\thing\ThingKey ($thingId);
 		}
 		$count = count($thingId);
 		if ($count < 1) {

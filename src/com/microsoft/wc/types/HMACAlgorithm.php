@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\HMACAlgorithmData;
+
 
 /**
  * @XmlEntity	(xml="HMACAlgorithm")
@@ -29,7 +29,7 @@ class HMACAlgorithm {
 	}
 	
 	protected function createHmacAlg() {
-		return new HMACAlgorithmData();
+		return new \com\microsoft\wc\types\HMACAlgorithmData();
 	}
 
 	public function setHmacAlg($hmacAlg) {
@@ -37,8 +37,8 @@ class HMACAlgorithm {
 	}
 
 	protected function validateHmacAlg($hmacAlg) {
-		if ( ! $hmacAlg instanceof HMACAlgorithmData ) {
-			$hmacAlg = new HMACAlgorithmData ($hmacAlg);
+		if ( ! $hmacAlg instanceof \com\microsoft\wc\types\HMACAlgorithmData ) {
+			$hmacAlg = new \com\microsoft\wc\types\HMACAlgorithmData ($hmacAlg);
 		}
 	
 		return $hmacAlg;

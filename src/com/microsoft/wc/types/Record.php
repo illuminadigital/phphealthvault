@@ -1,18 +1,12 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\Guid;
-use com\microsoft\wc\types\String255;
-use com\microsoft\wc\types\RecordState;
-use com\microsoft\wc\types\PositiveLong;
-use com\microsoft\wc\types\AppRecordAuthAction;
-use com\microsoft\wc\types\String3nw;
 
 
 /**
  * @XmlEntity	(xml="Record")
  */
-class Record extends String255 {
+class Record extends \com\microsoft\wc\types\String255 {
 	/**
 	 * Basic information about the authenticated person's view of a health record.
 	 * Health records are a place to store health and fitness related data. Each person may be authorized to zero to many health records. This type represents the metadata about the authenticated person's view of the record, including it's unique identifier, the relationship the authorized person has with the owner of the record, the name of the record, whether the authorized person is a custodian of the record, and more.
@@ -131,7 +125,7 @@ class Record extends String255 {
 	}
 	
 	protected function createId() {
-		return new Guid();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setId($id) {
@@ -139,8 +133,8 @@ class Record extends String255 {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof Guid ) {
-			$id = new Guid ($id);
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 	
 		return $id;
@@ -200,7 +194,7 @@ class Record extends String255 {
 	}
 	
 	protected function createRelName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setRelName($relName) {
@@ -208,8 +202,8 @@ class Record extends String255 {
 	}
 
 	protected function validateRelName($relName) {
-		if ( ! $relName instanceof String255  && ! is_null($relName) ) {
-			$relName = new String255 ($relName);
+		if ( ! $relName instanceof \com\microsoft\wc\types\String255  && ! is_null($relName) ) {
+			$relName = new \com\microsoft\wc\types\String255 ($relName);
 		}
 	
 		return $relName;
@@ -269,7 +263,7 @@ class Record extends String255 {
 	}
 	
 	protected function createDisplayName() {
-		return new String255();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setDisplayName($displayName) {
@@ -277,8 +271,8 @@ class Record extends String255 {
 	}
 
 	protected function validateDisplayName($displayName) {
-		if ( ! $displayName instanceof String255  && ! is_null($displayName) ) {
-			$displayName = new String255 ($displayName);
+		if ( ! $displayName instanceof \com\microsoft\wc\types\String255  && ! is_null($displayName) ) {
+			$displayName = new \com\microsoft\wc\types\String255 ($displayName);
 		}
 	
 		return $displayName;
@@ -292,7 +286,7 @@ class Record extends String255 {
 	}
 	
 	protected function createState() {
-		return new RecordState();
+		return new \com\microsoft\wc\types\RecordState();
 	}
 
 	public function setState($state) {
@@ -300,8 +294,8 @@ class Record extends String255 {
 	}
 
 	protected function validateState($state) {
-		if ( ! $state instanceof RecordState ) {
-			$state = new RecordState ($state);
+		if ( ! $state instanceof \com\microsoft\wc\types\RecordState ) {
+			$state = new \com\microsoft\wc\types\RecordState ($state);
 		}
 	
 		return $state;
@@ -338,7 +332,7 @@ class Record extends String255 {
 	}
 	
 	protected function createMaxSizeBytes() {
-		return new PositiveLong();
+		return new \com\microsoft\wc\types\PositiveLong();
 	}
 
 	public function setMaxSizeBytes($maxSizeBytes) {
@@ -346,8 +340,8 @@ class Record extends String255 {
 	}
 
 	protected function validateMaxSizeBytes($maxSizeBytes) {
-		if ( ! $maxSizeBytes instanceof PositiveLong  && ! is_null($maxSizeBytes) ) {
-			$maxSizeBytes = new PositiveLong ($maxSizeBytes);
+		if ( ! $maxSizeBytes instanceof \com\microsoft\wc\types\PositiveLong  && ! is_null($maxSizeBytes) ) {
+			$maxSizeBytes = new \com\microsoft\wc\types\PositiveLong ($maxSizeBytes);
 		}
 	
 		return $maxSizeBytes;
@@ -361,7 +355,7 @@ class Record extends String255 {
 	}
 	
 	protected function createSizeBytes() {
-		return new PositiveLong();
+		return new \com\microsoft\wc\types\PositiveLong();
 	}
 
 	public function setSizeBytes($sizeBytes) {
@@ -369,8 +363,8 @@ class Record extends String255 {
 	}
 
 	protected function validateSizeBytes($sizeBytes) {
-		if ( ! $sizeBytes instanceof PositiveLong  && ! is_null($sizeBytes) ) {
-			$sizeBytes = new PositiveLong ($sizeBytes);
+		if ( ! $sizeBytes instanceof \com\microsoft\wc\types\PositiveLong  && ! is_null($sizeBytes) ) {
+			$sizeBytes = new \com\microsoft\wc\types\PositiveLong ($sizeBytes);
 		}
 	
 		return $sizeBytes;
@@ -384,7 +378,7 @@ class Record extends String255 {
 	}
 	
 	protected function createAppRecordAuthAction() {
-		return new AppRecordAuthAction();
+		return new \com\microsoft\wc\types\AppRecordAuthAction();
 	}
 
 	public function setAppRecordAuthAction($appRecordAuthAction) {
@@ -392,8 +386,8 @@ class Record extends String255 {
 	}
 
 	protected function validateAppRecordAuthAction($appRecordAuthAction) {
-		if ( ! $appRecordAuthAction instanceof AppRecordAuthAction  && ! is_null($appRecordAuthAction) ) {
-			$appRecordAuthAction = new AppRecordAuthAction ($appRecordAuthAction);
+		if ( ! $appRecordAuthAction instanceof \com\microsoft\wc\types\AppRecordAuthAction  && ! is_null($appRecordAuthAction) ) {
+			$appRecordAuthAction = new \com\microsoft\wc\types\AppRecordAuthAction ($appRecordAuthAction);
 		}
 	
 		return $appRecordAuthAction;
@@ -453,7 +447,7 @@ class Record extends String255 {
 	}
 	
 	protected function createLocationCountry() {
-		return new String3nw();
+		return new \com\microsoft\wc\types\String3nw();
 	}
 
 	public function setLocationCountry($locationCountry) {
@@ -461,8 +455,8 @@ class Record extends String255 {
 	}
 
 	protected function validateLocationCountry($locationCountry) {
-		if ( ! $locationCountry instanceof String3nw  && ! is_null($locationCountry) ) {
-			$locationCountry = new String3nw ($locationCountry);
+		if ( ! $locationCountry instanceof \com\microsoft\wc\types\String3nw  && ! is_null($locationCountry) ) {
+			$locationCountry = new \com\microsoft\wc\types\String3nw ($locationCountry);
 		}
 	
 		return $locationCountry;
@@ -476,7 +470,7 @@ class Record extends String255 {
 	}
 	
 	protected function createLocationStateProvince() {
-		return new String3nw();
+		return new \com\microsoft\wc\types\String3nw();
 	}
 
 	public function setLocationStateProvince($locationStateProvince) {
@@ -484,8 +478,8 @@ class Record extends String255 {
 	}
 
 	protected function validateLocationStateProvince($locationStateProvince) {
-		if ( ! $locationStateProvince instanceof String3nw  && ! is_null($locationStateProvince) ) {
-			$locationStateProvince = new String3nw ($locationStateProvince);
+		if ( ! $locationStateProvince instanceof \com\microsoft\wc\types\String3nw  && ! is_null($locationStateProvince) ) {
+			$locationStateProvince = new \com\microsoft\wc\types\String3nw ($locationStateProvince);
 		}
 	
 		return $locationStateProvince;

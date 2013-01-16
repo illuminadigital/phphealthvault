@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\types;
 
-use com\microsoft\wc\types\HMACFinalizedData;
+
 
 /**
  * @XmlEntity	(xml="HMACFinalized")
@@ -29,7 +29,7 @@ class HMACFinalized {
 	}
 	
 	protected function createHmacData() {
-		return new HMACFinalizedData();
+		return new \com\microsoft\wc\types\HMACFinalizedData();
 	}
 
 	public function setHmacData($hmacData) {
@@ -37,8 +37,8 @@ class HMACFinalized {
 	}
 
 	protected function validateHmacData($hmacData) {
-		if ( ! $hmacData instanceof HMACFinalizedData ) {
-			$hmacData = new HMACFinalizedData ($hmacData);
+		if ( ! $hmacData instanceof \com\microsoft\wc\types\HMACFinalizedData ) {
+			$hmacData = new \com\microsoft\wc\types\HMACFinalizedData ($hmacData);
 		}
 	
 		return $hmacData;

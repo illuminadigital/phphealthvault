@@ -1,8 +1,7 @@
 <?php
 namespace com\microsoft\wc\methods\response\BeginPutBlob;
 
-use com\microsoft\wc\types\Stringz255;
-use com\microsoft\wc\types\BlobHashAlgorithmParameters;
+
 
 /**
  * @XmlEntity	(xml="info")
@@ -123,7 +122,7 @@ class Info {
 	}
 	
 	protected function createBlobHashAlgorithm() {
-		return new Stringz255();
+		return new \com\microsoft\wc\types\Stringz255();
 	}
 
 	public function setBlobHashAlgorithm($blobHashAlgorithm) {
@@ -131,8 +130,8 @@ class Info {
 	}
 
 	protected function validateBlobHashAlgorithm($blobHashAlgorithm) {
-		if ( ! $blobHashAlgorithm instanceof Stringz255 ) {
-			$blobHashAlgorithm = new Stringz255 ($blobHashAlgorithm);
+		if ( ! $blobHashAlgorithm instanceof \com\microsoft\wc\types\Stringz255 ) {
+			$blobHashAlgorithm = new \com\microsoft\wc\types\Stringz255 ($blobHashAlgorithm);
 		}
 	
 		return $blobHashAlgorithm;
@@ -146,7 +145,7 @@ class Info {
 	}
 	
 	protected function createBlobHashParameters() {
-		return new BlobHashAlgorithmParameters();
+		return new \com\microsoft\wc\types\BlobHashAlgorithmParameters();
 	}
 
 	public function setBlobHashParameters($blobHashParameters) {
@@ -154,8 +153,8 @@ class Info {
 	}
 
 	protected function validateBlobHashParameters($blobHashParameters) {
-		if ( ! $blobHashParameters instanceof BlobHashAlgorithmParameters ) {
-			$blobHashParameters = new BlobHashAlgorithmParameters ($blobHashParameters);
+		if ( ! $blobHashParameters instanceof \com\microsoft\wc\types\BlobHashAlgorithmParameters ) {
+			$blobHashParameters = new \com\microsoft\wc\types\BlobHashAlgorithmParameters ($blobHashParameters);
 		}
 	
 		return $blobHashParameters;
