@@ -167,8 +167,10 @@ class PlatformMethod
 	    	$hmac->setValue($hmacHash['hash']);
     	}
 	    	
-    	//return $this->removeNamespaces($marshaller->marshalToString($this->requestData));
-    	return $marshaller->marshalToString($this->requestData);
+    	$xml = $marshaller->marshalToString($this->requestData);
+    	$xml = $this->removeNamespaces($xml);
+    	
+    	return $xml;
     }
     
     public function getMethodName()
@@ -206,6 +208,8 @@ class PlatformMethod
      */
     protected function extractPayload($xml)
     {
+    	$xml = $this->removeNamespaces($xml, TRUE);
+    	
     	$count = 0;
     	$payload = preg_replace('/^.*?<([A-Za-z][^ ]+.*?)>\s*(.*?)\s*<\/\1>.*$/s', '$2', $xml, -1, $count);
     	
@@ -231,6 +235,8 @@ class PlatformMethod
      */
     protected function extractRootElement($xml, $forceName = NULL)
     {
+    	$xml = $this->removeNamespaces($xml, TRUE);
+    	
     	$count = 0;
     	
     	if (! empty($forceName)) {
@@ -267,15 +273,13 @@ class PlatformMethod
     		if (preg_match('/(?<!\?)>/', $xml, $matches, PREG_OFFSET_CAPTURE) >= 1)
     		{
     			$startPos = $matches[0][1] +1;
-    			
-    			var_dump($startPos);
     		}
     	}
     	
     	$prefix = substr($xml, 0, $startPos);
     	$xml = substr($xml, $startPos);
     	
-    	$xml = preg_replace('/\sxmlns:.*?=(["\']).*?\1/', '', $xml, -1);
+    	$xml = preg_replace('/\sxmlns(:.*?)?=(["\']).*?\2/', '', $xml, -1);
     	
     	return $prefix . $xml;
     }
