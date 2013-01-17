@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\AddApplication;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info {
+class Info extends \com\microsoft\wc\methods\response\Info {
 	/**
 	 * The element of the response that contains the method specific return value(s).
 	 * All response schemas contain the info element which contain the return value of the method. If the method does not define an info element, the method has no return value.

@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\GetApplicationInfo;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info {
+class Info extends \com\microsoft\wc\methods\response\Info {
 	/**
 	 * GetApplicationInfo returns information about the calling application.
 	 * Configuration and installation values are returned for the calling application.

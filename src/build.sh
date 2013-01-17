@@ -33,10 +33,17 @@ rm -rf /tmp/$$
 
 echo "Fixing up method inheritance"
 
-for i in $DESTBASE/src/com/microsoft/wc/methods/*/Info.php
+# Don't want to catch "response"
+for i in $DESTBASE/src/com/microsoft/wc/methods/[A-Z]*/Info.php
 do
 	echo $i
 	sed -i~ 's#class Info {#class Info extends \\com\\microsoft\\wc\\request\\Info {#' $i
+done 
+
+for i in $DESTBASE/src/com/microsoft/wc/methods/response/*/Info.php
+do
+	echo $i
+	sed -i~ 's#class Info {#class Info extends \\com\\microsoft\\wc\\methods\\response\\Info {#' $i
 done 
 
 #echo "Header fix"

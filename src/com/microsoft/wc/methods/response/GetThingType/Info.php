@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\GetThingType;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info {
+class Info extends \com\microsoft\wc\methods\response\Info {
 	/**
 	 * The element of the request that contains the method specific parameters.
 	 * All requests contain the info element to pass parameters that are specific to each method. If the method does not define an info element, the method does not take any parameters.

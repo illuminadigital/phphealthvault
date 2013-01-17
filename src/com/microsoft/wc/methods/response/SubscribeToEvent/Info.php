@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\SubscribeToEvent;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info {
+class Info extends \com\microsoft\wc\methods\response\Info {
 	/**
 	 */
 

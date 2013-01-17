@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\GetPeopleForRecord;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info {
+class Info extends \com\microsoft\wc\methods\response\Info {
 	/**
 	 * The element that contains the method specific response.
 	 * All responses contain the info element to return data that are specific to each method. If the method does not define an info element, the method does not expect any data for the response.

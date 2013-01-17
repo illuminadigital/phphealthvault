@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info {
+class Info extends \com\microsoft\wc\methods\response\Info {
 	/**
 	 * The response for the request to create an authenticated session token.
 	 * When a token is requested, if the request is a success then there will be a token. Otherwise, there will be an absence reason.

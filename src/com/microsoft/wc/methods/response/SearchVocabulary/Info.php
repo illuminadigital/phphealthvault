@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\SearchVocabulary;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info {
+class Info extends \com\microsoft\wc\methods\response\Info {
 	/**
 	 * Specifies the schema for the SearchVocabulary method response.
 	 */

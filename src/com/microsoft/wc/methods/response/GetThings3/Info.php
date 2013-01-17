@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\GetThings3;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info {
+class Info extends \com\microsoft\wc\methods\response\Info {
 	/**
 	 * Contains the response of the GetThings method request.
 	 */
