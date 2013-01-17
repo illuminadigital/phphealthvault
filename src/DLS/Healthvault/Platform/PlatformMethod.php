@@ -63,7 +63,10 @@ class PlatformMethod
         	$headerObj->setMethodVersion($methodVersion);
         }
         
-        $headerObj->getAppId()->setValue($this->configuration->getApplicationId());
+        if ( ! $this->mustBeAuthorised) {
+	        $headerObj->getAppId()->setValue($this->configuration->getApplicationId());
+        }
+        
         $headerObj->setLanguage($this->getLanguage());
         $headerObj->setCountry($this->getCountry());
         
@@ -115,7 +118,7 @@ class PlatformMethod
         
         file_put_contents(tempnam(sys_get_temp_dir(), 'rq'), $request);
         
-        echo $this->getUrl();
+        echo 'Request: ' . $request . "\n";
         
         $response = $this->sendRequest($request);
         
@@ -123,14 +126,24 @@ class PlatformMethod
         {
         	$unmarshaller = $this->configuration->getMarshallingService();
         
+        echo 'Response: ' . $response. "\n";
+        
         	$responseObject = $unmarshaller->unmarshalFromString($response);
         }
         else
         {
         	$responseObject = NULL;
         }
-                
-        return $responseObject;
+
+        if ($responseObject && $responseObject->getStatus()->getCode() == 0) {
+	        return $responseObject->getInfo();
+        }
+        // else 
+        // FIXME: Should thrown an exception
+        error_log('Error executing method');
+        error_log(print_r($responseObject, TRUE));
+        
+        return NULL;
     }
     
     protected function getRequestXML()
@@ -149,6 +162,7 @@ class PlatformMethod
 	    	
 	    	$authSession = $header->getAuthSession();
 	    	$authSession->setAuthToken($this->getAuthToken());
+	    	var_dump($this->configuration->getToken());
 	    	$authSession->setUserAuthToken($this->configuration->getToken());
 	    	
 	    	$token = $this->configuration->getToken();
@@ -326,8 +340,10 @@ class PlatformMethod
     	
     	$authTokenResponse = $authTokenMethod->execute();
     	
-    	var_dump($authTokenResponse);
-    	
-    	return 'foo';
+    	if ($authTokenResponse) {
+    		return $authTokenResponse->getToken()->getValue();
+    	}
+    	// else
+    	return NULL;
     }
 }
