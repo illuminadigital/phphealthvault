@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\GetThings3;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings3", prefix="")
+ * })
  * @XmlEntity	(xml="BlobPayloadRequest")
  */
 class BlobPayloadRequest {
@@ -56,7 +59,7 @@ class BlobPayloadRequest {
 	}
 	
 	protected function createBlobFormat() {
-		return NULL;
+		return new \com\microsoft\wc\methods\GetThings3\BlobFormat();
 	}
 
 	public function setBlobFormat($blobFormat) {
@@ -64,8 +67,8 @@ class BlobPayloadRequest {
 	}
 
 	protected function validateBlobFormat($blobFormat) {
-		if (!is_blob-format($blobFormat)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'blobFormat', 'blob-format'));
+		if ( ! $blobFormat instanceof \com\microsoft\wc\methods\GetThings3\BlobFormat ) {
+			$blobFormat = new \com\microsoft\wc\methods\GetThings3\BlobFormat ($blobFormat);
 		}
 	
 		return $blobFormat;

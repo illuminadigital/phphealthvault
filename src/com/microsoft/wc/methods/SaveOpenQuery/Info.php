@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\SaveOpenQuery;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SaveOpenQuery", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetServiceDefinition;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetServiceDefinition", prefix="")
+ * })
  * @XmlEntity	(xml="SDKAssembly")
  */
 class SDKAssembly {

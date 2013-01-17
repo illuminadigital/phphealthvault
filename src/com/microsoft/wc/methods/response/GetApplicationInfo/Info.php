@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetApplicationInfo;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetApplicationInfo", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

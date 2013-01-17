@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetServiceDefinition2;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetServiceDefinition2", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

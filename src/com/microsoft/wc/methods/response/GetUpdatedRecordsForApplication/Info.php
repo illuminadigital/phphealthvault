@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetUpdatedRecordsForApplication", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -37,12 +40,15 @@ class Info {
 	}
 
 	protected function validateRecordId($recordId) {
+		if ( ! $recordId instanceof \com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication\RecordId  && ! is_null($recordId) ) {
+			$recordId = new \com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication\RecordId ($recordId);
+		}
 		$count = count($recordId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'recordId', 0));
 		}
 		foreach ($recordId as $entry) {
-			if ( ! is_record-id($entry) && ! is_null($entry) ) {
+			if (!($entry instanceof RecordId)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', 'record-id'));
 			}
 		}
@@ -51,14 +57,6 @@ class Info {
 	}
 
 	public function addRecordId($recordId) {
-		$this->recordId[] = $this->validateRecordIdType($recordId);
-	}
-
-	protected function validateRecordIdType($recordId) {
-		if ( ! is_record-id($recordId) && ! is_null($recordId) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', 'record-id'));
-		}
-	
-		return $recordId;
+		$this->recordId[] = $recordId;
 	}
 } // end class Info

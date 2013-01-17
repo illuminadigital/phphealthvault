@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\DeletePendingConnectRequest;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.DeletePendingConnectRequest", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

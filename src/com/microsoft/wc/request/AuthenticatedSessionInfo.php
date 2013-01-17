@@ -4,6 +4,9 @@ namespace com\microsoft\wc\request;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.request", prefix="")
+ * })
  * @XmlEntity	(xml="AuthenticatedSessionInfo")
  */
 class AuthenticatedSessionInfo {

@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\GetThingType;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThingType", prefix="")
+ * })
  * @XmlRootEntity	(xml="ThingTypeSectionSpec")
  */
 class ThingTypeSectionSpec {

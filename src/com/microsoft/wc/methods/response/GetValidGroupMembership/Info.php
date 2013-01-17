@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetValidGroupMembership;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetValidGroupMembership", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

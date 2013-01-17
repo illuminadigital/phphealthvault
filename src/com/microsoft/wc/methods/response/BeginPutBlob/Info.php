@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\BeginPutBlob;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.BeginPutBlob", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

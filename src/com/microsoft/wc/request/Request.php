@@ -5,6 +5,9 @@ namespace com\microsoft\wc\request;
 
 /**
  * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.request", prefix="")
+ * })
+ * @XmlNamespaces ({
  *   @XmlNamespace(url="urn:com.microsoft.wc.request", prefix="wc-request")
  * })
  * @XmlEntity	(xml="wc-request:request")

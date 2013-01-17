@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.CreateAuthenticatedSessionToken", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

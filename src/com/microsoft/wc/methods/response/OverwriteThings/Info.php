@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\OverwriteThings;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.OverwriteThings", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

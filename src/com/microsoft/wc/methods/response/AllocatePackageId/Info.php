@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\AllocatePackageId;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.AllocatePackageId", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

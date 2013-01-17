@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\NewApplicationCreationInfo;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.NewApplicationCreationInfo", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

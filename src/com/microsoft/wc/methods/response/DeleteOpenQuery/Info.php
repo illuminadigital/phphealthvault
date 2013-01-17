@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\DeleteOpenQuery;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.DeleteOpenQuery", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

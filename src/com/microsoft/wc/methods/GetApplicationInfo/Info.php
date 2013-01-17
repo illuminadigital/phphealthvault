@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\GetApplicationInfo;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetApplicationInfo", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

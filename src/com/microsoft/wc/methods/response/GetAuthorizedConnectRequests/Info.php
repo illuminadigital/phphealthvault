@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetAuthorizedConnectRequests;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetAuthorizedConnectRequests", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

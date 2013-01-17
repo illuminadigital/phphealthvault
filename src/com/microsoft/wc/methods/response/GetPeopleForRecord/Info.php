@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetPeopleForRecord;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetPeopleForRecord", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

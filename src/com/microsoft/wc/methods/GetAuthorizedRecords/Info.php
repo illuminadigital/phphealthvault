@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\GetAuthorizedRecords;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetAuthorizedRecords", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

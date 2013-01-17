@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetPersonInfo;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetPersonInfo", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

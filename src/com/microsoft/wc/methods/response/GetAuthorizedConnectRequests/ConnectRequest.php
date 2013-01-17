@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetAuthorizedConnectRequests;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetAuthorizedConnectRequests", prefix="")
+ * })
  * @XmlEntity	(xml="ConnectRequest")
  */
 class ConnectRequest {
@@ -69,7 +72,7 @@ class ConnectRequest {
 	}
 	
 	protected function createRecordId() {
-		return NULL;
+		return new \com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\RecordId();
 	}
 
 	public function setRecordId($recordId) {
@@ -77,8 +80,8 @@ class ConnectRequest {
 	}
 
 	protected function validateRecordId($recordId) {
-		if (!is_record-id($recordId)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', 'record-id'));
+		if ( ! $recordId instanceof \com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\RecordId ) {
+			$recordId = new \com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\RecordId ($recordId);
 		}
 	
 		return $recordId;

@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\SearchVocabulary;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SearchVocabulary", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetThings;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThings", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

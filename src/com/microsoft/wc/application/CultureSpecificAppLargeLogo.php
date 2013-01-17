@@ -4,6 +4,9 @@ namespace com\microsoft\wc\application;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.application", prefix="wc-app")
+ * })
  * @XmlEntity	(xml="CultureSpecificAppLargeLogo")
  */
 class CultureSpecificAppLargeLogo extends \com\microsoft\wc\application\AppLargeLogo {

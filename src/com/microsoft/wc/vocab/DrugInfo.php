@@ -4,6 +4,9 @@ namespace com\microsoft\wc\vocab;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.vocab", prefix="wc-vocab")
+ * })
  * @XmlEntity	(xml="drug-info")
  */
 class DrugInfo {

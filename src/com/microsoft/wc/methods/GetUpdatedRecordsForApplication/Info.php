@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\GetUpdatedRecordsForApplication;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetUpdatedRecordsForApplication", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

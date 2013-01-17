@@ -4,6 +4,9 @@ namespace com\microsoft\wc\thing;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.thing", prefix="wc-thing")
+ * })
  * @XmlEntity	(xml="BlobSignatureInfo")
  */
 class BlobSignatureInfo {
@@ -35,12 +38,15 @@ class BlobSignatureInfo {
 	}
 
 	protected function validateItem($item) {
+		if ( ! $item instanceof \com\microsoft\wc\methods\CreateConnectPackage2\Item ) {
+			$item = new \com\microsoft\wc\methods\CreateConnectPackage2\Item ($item);
+		}
 		$count = count($item);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'item', 1));
 		}
 		foreach ($item as $entry) {
-			if (!is_item($entry)) {
+			if (!($entry instanceof Item)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'item', 'item'));
 			}
 		}
@@ -49,14 +55,6 @@ class BlobSignatureInfo {
 	}
 
 	public function addItem($item) {
-		$this->item[] = $this->validateItemType($item);
-	}
-
-	protected function validateItemType($item) {
-		if (!is_item($item)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'item', 'item'));
-		}
-	
-		return $item;
+		$this->item[] = $item;
 	}
 } // end class BlobSignatureInfo

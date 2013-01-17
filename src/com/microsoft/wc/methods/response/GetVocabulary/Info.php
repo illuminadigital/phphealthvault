@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetVocabulary;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetVocabulary", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\SetApplicationSettings;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SetApplicationSettings", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

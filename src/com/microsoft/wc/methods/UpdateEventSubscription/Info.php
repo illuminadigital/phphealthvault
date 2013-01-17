@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\UpdateEventSubscription;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.UpdateEventSubscription", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info extends \com\microsoft\wc\request\Info {

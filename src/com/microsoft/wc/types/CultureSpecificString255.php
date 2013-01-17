@@ -4,6 +4,9 @@ namespace com\microsoft\wc\types;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
+ * })
  * @XmlEntity	(xml="CultureSpecificString255")
  */
 class CultureSpecificString255 extends \com\microsoft\wc\types\String255 {

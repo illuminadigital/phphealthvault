@@ -4,6 +4,9 @@ namespace com\microsoft\wc\types;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
+ * })
  * @XmlRootEntity	(xml="iso3166")
  */
 class Iso3166 {

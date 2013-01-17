@@ -4,6 +4,9 @@ namespace com\microsoft\wc\dates;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.dates", prefix="d")
+ * })
  * @XmlRootEntity	(xml="hour")
  */
 class Hour {

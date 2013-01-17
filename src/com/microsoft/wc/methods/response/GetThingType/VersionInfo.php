@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetThingType;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetThingType", prefix="")
+ * })
  * @XmlEntity	(xml="VersionInfo")
  */
 class VersionInfo {

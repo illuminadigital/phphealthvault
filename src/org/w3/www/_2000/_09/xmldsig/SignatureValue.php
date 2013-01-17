@@ -4,6 +4,9 @@ namespace org\w3\www\_2000\_09\xmldsig;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="http://www.w3.org/2000/09/xmldsig#", prefix="ds")
+ * })
  * @XmlEntity	(xml="SignatureValue")
  */
 class SignatureValue extends \org\w3\www\_2000\_09\xmldsig\SignatureValueType {

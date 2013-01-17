@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\AddApplication;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.AddApplication", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\PutThings;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.PutThings", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {

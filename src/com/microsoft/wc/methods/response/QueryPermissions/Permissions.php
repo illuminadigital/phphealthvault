@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\QueryPermissions;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.QueryPermissions", prefix="")
+ * })
  * @XmlEntity	(xml="Permissions")
  */
 class Permissions {

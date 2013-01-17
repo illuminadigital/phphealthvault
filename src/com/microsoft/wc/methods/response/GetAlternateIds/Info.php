@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetAlternateIds;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetAlternateIds", prefix="")
+ * })
  * @XmlEntity	(xml="info")
  */
 class Info {
@@ -29,7 +32,7 @@ class Info {
 	}
 	
 	protected function createAlternateIds() {
-		return NULL;
+		return new \com\microsoft\wc\methods\response\GetAlternateIds\AlternateIds();
 	}
 
 	public function setAlternateIds($alternateIds) {
@@ -37,8 +40,8 @@ class Info {
 	}
 
 	protected function validateAlternateIds($alternateIds) {
-		if (!is_alternate-ids($alternateIds)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'alternateIds', 'alternate-ids'));
+		if ( ! $alternateIds instanceof \com\microsoft\wc\methods\response\GetAlternateIds\AlternateIds ) {
+			$alternateIds = new \com\microsoft\wc\methods\response\GetAlternateIds\AlternateIds ($alternateIds);
 		}
 	
 		return $alternateIds;

@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\response\GetAuthorizedPeople;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.GetAuthorizedPeople", prefix="")
+ * })
  * @XmlEntity	(xml="GetAuthorizedPeopleResponse")
  */
 class GetAuthorizedPeopleResponse {

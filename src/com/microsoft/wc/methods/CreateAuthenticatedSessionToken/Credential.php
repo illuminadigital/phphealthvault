@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\CreateAuthenticatedSessionToken;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.CreateAuthenticatedSessionToken", prefix="")
+ * })
  * @XmlEntity	(xml="Credential")
  */
 class Credential {

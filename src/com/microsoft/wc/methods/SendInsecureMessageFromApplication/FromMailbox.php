@@ -4,6 +4,9 @@ namespace com\microsoft\wc\methods\SendInsecureMessageFromApplication;
 
 
 /**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.SendInsecureMessageFromApplication", prefix="")
+ * })
  * @XmlEntity	(xml="FromMailbox")
  */
 class FromMailbox {
