@@ -12,9 +12,9 @@ class CreateAuthenticatedSessionTokenMethod extends PlatformMethod {
 
 	public function __construct(HealthvaultConfigurationInterface $configuration)
 	{
-		parent::__construct($configuration);
+		$this->mustBeAuthorised = FALSE; // Must be before the constructor 
 		
-		$this->mustBeAuthorised = FALSE;
+		parent::__construct($configuration);
 		
 		$authInfo = $this->requestData->getInfo()->getAuthInfo();
 		
