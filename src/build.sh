@@ -20,7 +20,7 @@ done
 
 DEFDIR=`pwd`
 cd /tmp/$$
-for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print`
+for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print -o -type f -name 'thingtype-*.xsd' -print`
 do
 	echo $i
 	cd /tmp/$$/`dirname $i`
@@ -37,13 +37,19 @@ echo "Fixing up method inheritance"
 for i in $DESTBASE/src/com/microsoft/wc/methods/[A-Z]*/Info.php
 do
 	echo $i
-	sed -i~ 's#class Info {#class Info extends \\com\\microsoft\\wc\\request\\Info {#' $i
+	sed -i 's#class Info {#class Info extends \\com\\microsoft\\wc\\request\\Info {#' $i
 done 
 
 for i in $DESTBASE/src/com/microsoft/wc/methods/response/*/Info.php
 do
 	echo $i
-	sed -i~ 's#class Info {#class Info extends \\com\\microsoft\\wc\\methods\\response\\Info {#' $i
+	sed -i 's#class Info {#class Info extends \\com\\microsoft\\wc\\methods\\response\\Info {#' $i
+done 
+
+for i in $DESTBASE/src/com/microsoft/wc/thing/*/*.php
+do
+	echo $i
+	sed -i 's#extends Com\.microsoft\.wc\.thing\.Thing {#extends \\com\\microsoft\\wc\\thing\\Thing {#' $i
 done 
 
 #echo "Header fix"

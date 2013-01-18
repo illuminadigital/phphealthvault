@@ -1,0 +1,48 @@
+<?php
+namespace hl7_org\v3;
+
+
+
+/**
+ * @XmlNamespaces ({
+ *	@XmlNamespace(url="urn:hl7-org:v3", prefix="")
+ * })
+ * @XmlEntity	(xml="ADXP")
+ */
+class ADXP extends \ST\ST {
+	/**
+	 * A character string that may have a type-tag signifying its role in the address. Typical parts that exist in about every address are street, house number, or post box, postal code, city, country but other roles may be defined regionally, nationally, or on an enterprise level (e.g. in military addresses). Addresses are usually broken up into lines, which are indicated by special line-breaking delimiter elements (e.g., DEL).
+	 */
+
+	/**
+	 * @XmlAttribute	(type="string", name="partType")
+	 */
+	protected $partType;
+
+	public function __construct($partType = NULL) {
+		$this->partType = ($partType===NULL) ? NULL : $this->validatePartType($partType);
+	}
+
+	public function getPartType() {
+		if ($this->partType===NULL) {
+			$this->partType = $this->createPartType();
+		}
+		return $this->partType;
+	}
+	
+	protected function createPartType() {
+		return new \hl7_org\v3\AddressPartType();
+	}
+
+	public function setPartType($partType) {
+		$this->partType = $this->validatePartType($partType);
+	}
+
+	protected function validatePartType($partType) {
+		if ( ! $partType instanceof \hl7_org\v3\AddressPartType ) {
+			$partType = new \hl7_org\v3\AddressPartType ($partType);
+		}
+	
+		return $partType;
+	}
+} // end class ADXP
