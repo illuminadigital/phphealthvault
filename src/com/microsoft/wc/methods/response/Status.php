@@ -19,8 +19,14 @@ class Status {
 	 */
 	protected $code;
 
-	public function __construct($code = NULL) {
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\methods\response\Error", name="error")
+	 */
+	protected $error;
+
+	public function __construct($code = NULL, $error = NULL) {
 		$this->code = ($code===NULL) ? NULL : $this->validateCode($code);
+		$this->error = ($error===NULL) ? NULL : $this->validateError($error);
 	}
 
 	public function getCode() {
@@ -44,5 +50,28 @@ class Status {
 		}
 	
 		return $code;
+	}
+
+	public function getError() {
+		if ($this->error===NULL) {
+			$this->error = $this->createError();
+		}
+		return $this->error;
+	}
+	
+	protected function createError() {
+		return new \com\microsoft\wc\methods\response\Error();
+	}
+
+	public function setError($error) {
+		$this->error = $this->validateError($error);
+	}
+
+	protected function validateError($error) {
+		if ( ! $error instanceof \com\microsoft\wc\methods\response\Error  && ! is_null($error) ) {
+			$error = new \com\microsoft\wc\methods\response\Error ($error);
+		}
+	
+		return $error;
 	}
 } // end class Status
