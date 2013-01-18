@@ -24,7 +24,7 @@ class PlatformMethod
     
     protected $mustBeAuthorised = TRUE;
     
-    private $libraryVersion = '0.0.0.1'; //PHPHV v0.01';
+    private $libraryVersion = 'PHPHV v0.01';
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
@@ -72,9 +72,8 @@ class PlatformMethod
         
         $headerObj->getVersion()->setValue($this->libraryVersion);
         
-        $headerObj->setMsgTime(date('c'));
-//        $headerObj->setMsgTtl(new NonNegativeInteger(36000));
-        $headerObj->setMsgTtl(36000);
+        $headerObj->setMsgTime(date('c')); // ISO-8601 format
+        $headerObj->setMsgTtl(1800);
         
         return $headerObj;
     }
@@ -118,7 +117,7 @@ class PlatformMethod
         
         file_put_contents(tempnam(sys_get_temp_dir(), 'rq'), $request);
         
-        echo 'Request: ' . $request . "\n";
+        echo '<h3>Request</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $request) . "\n";
         
         $response = $this->sendRequest($request);
         
@@ -126,7 +125,7 @@ class PlatformMethod
         {
         	$unmarshaller = $this->configuration->getMarshallingService();
         
-        echo 'Response: ' . $response. "\n";
+        echo '<h3>Response</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $response). "\n";
         
         	$responseObject = $unmarshaller->unmarshalFromString($response);
         }
@@ -152,7 +151,8 @@ class PlatformMethod
     	 
     	if ($this->mustBeAuthorised) {
 	    	$info = $this->requestData->getInfo();
-	    	$infoText = $this->extractPayload($marshaller->marshalToString($info));    	
+	    	$infoXml = $marshaller->marshalToString($info);
+	    	$infoText = $this->extractRootElement($infoXml);    	
 	    	
 	    	$infoHash = $this->getHashDigest($infoText);
 	    	$header = $this->getHeader();
@@ -166,14 +166,11 @@ class PlatformMethod
 	    	$authSession->setUserAuthToken($this->configuration->getToken());
 	    	
 	    	$token = $this->configuration->getToken();
-	    	if ( empty($token) )
-	    	{
-	    		$token = 'foobar';
-	    	}
 	    	
 	    	$authSession->setUserAuthToken($token);
 	    	
-	    	$headerText = $this->extractPayload($marshaller->marshalToString($header));
+	    	$headerXml = $marshaller->marshalToString($header);
+	    	$headerText = $this->extractRootElement($headerXml, 'header');
 	    	$hmacHash = $this->getAuthHash($this->configuration->getSecretDigest(), $headerText);
 	    	$auth = $this->getAuth();
 	    	$hmac = $auth->getHmacData();
@@ -259,8 +256,8 @@ class PlatformMethod
     		$replacement = '$1';
     	} 
     	
-    	$rootContent = preg_replace('/^.*?<([A-Za-z][^ ]+)(.*?>\s*.*?\s*)<\/\1\s*>.*$/s', $replacement, $xml, -1, $count);
-    	
+    	$rootContent = preg_replace('/^.*?<([A-Za-z][^ >]+)(.*?>\s*.*?\s*)<\/\1\s*>.*$/s', $replacement, $xml, -1, $count);
+
     	if ($count !== 1) {
     	    if (! empty($forceName)) {
 	    		$replacement = '<' . $forceName .' />';
@@ -268,9 +265,9 @@ class PlatformMethod
 	    		$replacement = '$1';
 	    	}
 	    	 
-    		$rootContent = preg_replace('/^.*?(<([A-Za-z][^ ]+.*?)\/>)\s*$/s', $replacement, $xml, -1, $count);
+    		$rootContent = preg_replace('/^.*?(<([A-Za-z][^ >]+.*?)\/>)\s*$/s', $replacement, $xml, -1, $count);
     	}
-    	
+    	 
     	if ($count !== 1) {
     		return FALSE;
     	}
@@ -310,7 +307,7 @@ class PlatformMethod
     	curl_setopt($conn, CURLOPT_RETURNTRANSFER, TRUE); // We want the content returned to us
     	curl_setopt($conn, CURLOPT_POST, TRUE);
     	curl_setopt($conn, CURLOPT_HEADER, FALSE);
-    	 
+    	
     	curl_setopt($conn, CURLOPT_HTTPHEADER, array(
     		'Content-Type' => 'text/xml'
     	));
@@ -327,7 +324,7 @@ class PlatformMethod
     		throw new \NetworkIOException(sprintf('Failed to send request to %s', $this->getUrl()));
     	}
     	
-    	print_r($response);
+    	//print_r($response);
     	
     	return $response;
     }
