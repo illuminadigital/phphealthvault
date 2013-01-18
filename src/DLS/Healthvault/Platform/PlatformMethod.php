@@ -24,6 +24,8 @@ class PlatformMethod
     
     protected $mustBeAuthorised = TRUE;
     
+    protected static $appAuthToken = NULL;
+    
     private $libraryVersion = 'PHPHV v0.01';
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
@@ -104,11 +106,6 @@ class PlatformMethod
     	$authObj = $this->requestData->getAuth();
     	
     	return $authObj;
-    }
-    
-    protected function buildRequest()
-    {
-        
     }
     
     public function execute()
@@ -331,16 +328,18 @@ class PlatformMethod
     
     protected function getAuthToken()
     {
-    	$driver = new \DLS\Healthvault\Driver($this->configuration);
-    	
-    	$authTokenMethod = $driver->getPlatformMethod('CreateAuthenticatedSessionToken');
-    	
-    	$authTokenResponse = $authTokenMethod->execute();
-    	
-    	if ($authTokenResponse) {
-    		return $authTokenResponse->getToken()->getValue();
+    	if (empty(self::$appAuthToken)) {
+	    	$driver = new \DLS\Healthvault\Driver($this->configuration);
+	    	
+	    	$authTokenMethod = $driver->getPlatformMethod('CreateAuthenticatedSessionToken');
+	    	
+	    	$authTokenResponse = $authTokenMethod->execute();
+	    	
+	    	if ($authTokenResponse) {
+		    	self::$appAuthToken = $authTokenResponse->getToken()->getValue();
+	    	} 
     	}
-    	// else
-    	return NULL;
+    	
+    	return self::$appAuthToken;
     }
 }
