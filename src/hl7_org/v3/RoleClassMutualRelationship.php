@@ -14,7 +14,7 @@ class RoleClassMutualRelationship {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\", name="value")
+	 * @XmlValue	(type="string", name="RoleClassMutualRelationship")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class RoleClassMutualRelationship {
 	}
 
 	protected function validateValue($value) {
-		if (!is_($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', ''));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 	
 		return $value;

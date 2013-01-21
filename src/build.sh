@@ -20,7 +20,7 @@ echo "Generating master classes"
 
 DEFDIR=`pwd`
 cd /tmp/$$
-for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'respons*.xsd' -print -o -type f -name 'thingtype-*.xsd' -print`
+for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print -o -type f -name 'thingtype-*.xsd' -print -o -name response.xsd -print`
 do
 	echo $i
 	cd /tmp/$$/`dirname $i`
