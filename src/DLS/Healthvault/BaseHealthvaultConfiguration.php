@@ -15,6 +15,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     protected $sharedSecret;
     protected $secretDigest;
     protected $token;
+    protected $record;
     
     public function __construct($application, $privateKey = NULL, $baseUrl = NULL, $marshallingService = NULL)
     {
@@ -257,5 +258,24 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     public function getToken()
     {
     	return $this->token;
+    }
+    
+    public function setRecord($record)
+    {
+       if ( ! $record instanceof \com\microsoft\wc\types\Guid && ! is_string($record) )
+       {
+           return FALSE;
+       }
+       
+       if (is_string($record)) {
+       	   $record = new \com\microsoft\wc\types\Guid($record);
+       }
+       
+       $this->record = $record;
+    }
+    
+    public function getRecord()
+    {
+       return $this->record;
     }
 }

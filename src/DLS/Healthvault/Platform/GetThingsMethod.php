@@ -9,6 +9,7 @@ class GetThingsMethod extends PlatformMethod
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
+        $this->mustIncludeRecord = TRUE;
         parent::__construct($configuration);
     }
 
@@ -49,7 +50,9 @@ class GetThingsMethod extends PlatformMethod
     		$section = new \com\microsoft\wc\methods\GetThings\ThingSectionSpec($sectionName);
     		$format->addSection($section);
     	}
-    	
+
+        $format->addXml('');
+    	 
     	return $format;
     }
     

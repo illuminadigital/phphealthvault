@@ -23,6 +23,7 @@ class PlatformMethod
     protected $requestData = NULL;
     
     protected $mustBeAuthorised = TRUE;
+    protected $mustIncludeRecord = FALSE;
     
     protected static $appAuthToken = NULL;
     
@@ -69,6 +70,10 @@ class PlatformMethod
 	        $headerObj->getAppId()->setValue($this->configuration->getApplicationId());
         }
         
+        if  ( $this->mustIncludeRecord) {
+            $headerObj->setRecordId($this->configuration->getRecord());
+        }
+ 
         $headerObj->setLanguage($this->getLanguage());
         $headerObj->setCountry($this->getCountry());
         
