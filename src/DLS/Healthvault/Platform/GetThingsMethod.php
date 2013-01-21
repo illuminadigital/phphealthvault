@@ -25,7 +25,10 @@ class GetThingsMethod extends PlatformMethod
 	    	$lastGroup = $groups[$lastGroupIndex];
     	}
     	
-    	$lastGroup->addFilter(new \com\microsoft\wc\methods\GetThings\ThingFilterSpec($id));
+		$filterSpec = new \com\microsoft\wc\methods\GetThings\ThingFilterSpec();
+		$filterSpec->addTypeId(new \com\microsoft\wc\types\Guid($id));
+		
+		$lastGroup->addFilter($filterSpec);
     }
     
     public function createGroup($format = NULL) {
