@@ -18,7 +18,7 @@ class GetThingsMethod extends PlatformMethod
     	if (empty($groups)) {
     		$lastGroup = $this->createGroup();
     		
-    		$this->getInfo()->addGroup($lastGroup);
+    		$this->requestData->getInfo()->addGroup($lastGroup);
     	} else {
 	    	$groupIndexes = array_keys($groups);
 	    	$lastGroupIndex = array_pop($groupIndexes);
