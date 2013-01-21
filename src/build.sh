@@ -46,7 +46,7 @@ do
 	sed -i 's#class Info {#class Info extends \\com\\microsoft\\wc\\methods\\response\\Info {#' $i
 done 
 
-for i in $DESTBASE/src/com/microsoft/wc/thing/*/*.php
+for i in `find $DESTBASE/src/com/microsoft/wc/thing -type f -name '*.php' -print`
 do
 	echo $i
 	sed -i 's#extends Com\.microsoft\.wc\.thing\.Thing {#extends \\com\\microsoft\\wc\\thing\\Thing {#' $i

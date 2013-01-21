@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\password\_protected\package;
  * })
  * @XmlEntity	(xml="password-protected-package")
  */
-class PasswordProtectedPackage extends Com.microsoft.wc.thing.Thing {
+class PasswordProtectedPackage extends \com\microsoft\wc\thing\Thing {
 	/**
 	 * Defines the schema for a package that can contain a password encrypted blob.
 	 */
