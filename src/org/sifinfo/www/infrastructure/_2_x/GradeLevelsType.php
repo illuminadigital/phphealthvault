@@ -15,7 +15,7 @@ class GradeLevelsType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\GradeLevel", collection="true", name="GradeLevel")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\GradeLevel", collection="true", name="GradeLevel")
 	 */
 	protected $gradeLevel;
 

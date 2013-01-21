@@ -15,7 +15,7 @@ class SubjectAreaListType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\SubjectArea", collection="true", name="SubjectArea")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SubjectArea", collection="true", name="SubjectArea")
 	 */
 	protected $subjectArea;
 

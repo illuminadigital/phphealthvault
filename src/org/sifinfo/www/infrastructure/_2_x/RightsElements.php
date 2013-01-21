@@ -14,7 +14,7 @@ class RightsElements {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\RightsElement", collection="true", name="RightsElement")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\RightsElement", collection="true", name="RightsElement")
 	 */
 	protected $rightsElement;
 

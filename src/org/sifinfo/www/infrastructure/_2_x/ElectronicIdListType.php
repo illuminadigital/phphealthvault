@@ -15,7 +15,7 @@ class ElectronicIdListType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\ElectronicId", collection="true", name="ElectronicId")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ElectronicId", collection="true", name="ElectronicId")
 	 */
 	protected $electronicId;
 

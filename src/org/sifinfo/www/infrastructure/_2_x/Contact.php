@@ -14,7 +14,7 @@ class Contact {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\Relationship", name="Relationship")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Relationship", name="Relationship")
 	 */
 	protected $relationship;
 

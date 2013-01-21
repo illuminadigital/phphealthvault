@@ -20,12 +20,12 @@ class BaseNameType {
 	protected $prefix;
 
 	/**
-	 * @XmlElement	(type="\\LastName", name="LastName")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\LastName", name="LastName")
 	 */
 	protected $lastName;
 
 	/**
-	 * @XmlElement	(type="\\FirstName", name="FirstName")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\FirstName", name="FirstName")
 	 */
 	protected $firstName;
 

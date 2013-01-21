@@ -19,7 +19,7 @@ class SchoolContact {
 	protected $publishInDirectory;
 
 	/**
-	 * @XmlElement	(type="\\ContactInfo", name="ContactInfo")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ContactInfo", name="ContactInfo")
 	 */
 	protected $contactInfo;
 

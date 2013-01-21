@@ -14,7 +14,7 @@ class SchoolInfoData {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\LocalId", name="LocalId")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\LocalId", name="LocalId")
 	 */
 	protected $localId;
 
@@ -29,7 +29,7 @@ class SchoolInfoData {
 	protected $nCESId;
 
 	/**
-	 * @XmlElement	(type="\\SchoolName", name="SchoolName")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SchoolName", name="SchoolName")
 	 */
 	protected $schoolName;
 

@@ -14,7 +14,7 @@ class Addresses {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\Address", collection="true", name="Address")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Address", collection="true", name="Address")
 	 */
 	protected $address;
 

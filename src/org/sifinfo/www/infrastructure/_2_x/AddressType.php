@@ -30,12 +30,12 @@ class AddressType {
 	protected $county;
 
 	/**
-	 * @XmlElement	(type="\\StateProvince", name="StateProvince")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\StateProvince", name="StateProvince")
 	 */
 	protected $stateProvince;
 
 	/**
-	 * @XmlElement	(type="\\Country", name="Country")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Country", name="Country")
 	 */
 	protected $country;
 

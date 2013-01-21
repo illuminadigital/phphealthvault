@@ -14,7 +14,7 @@ class Names {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\Name", collection="true", name="Name")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Name", collection="true", name="Name")
 	 */
 	protected $name;
 

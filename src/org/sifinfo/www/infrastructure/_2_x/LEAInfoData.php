@@ -29,7 +29,7 @@ class LEAInfoData {
 	protected $nCESId;
 
 	/**
-	 * @XmlElement	(type="\\LEAName", name="LEAName")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\LEAName", name="LEAName")
 	 */
 	protected $lEAName;
 

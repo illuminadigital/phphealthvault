@@ -14,7 +14,7 @@ class ParentGuardian1 {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\Name", name="Name")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Name", name="Name")
 	 */
 	protected $name;
 

@@ -15,7 +15,7 @@ class OtherIdListType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\OtherId", collection="true", name="OtherId")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\OtherId", collection="true", name="OtherId")
 	 */
 	protected $otherId;
 

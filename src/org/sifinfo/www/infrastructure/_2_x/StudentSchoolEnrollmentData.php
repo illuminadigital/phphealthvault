@@ -14,7 +14,7 @@ class StudentSchoolEnrollmentData {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\GradeLevel", name="GradeLevel")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\GradeLevel", name="GradeLevel")
 	 */
 	protected $gradeLevel;
 

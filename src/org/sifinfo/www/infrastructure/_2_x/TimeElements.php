@@ -14,7 +14,7 @@ class TimeElements {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\TimeElement", collection="true", name="TimeElement")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\TimeElement", collection="true", name="TimeElement")
 	 */
 	protected $timeElement;
 

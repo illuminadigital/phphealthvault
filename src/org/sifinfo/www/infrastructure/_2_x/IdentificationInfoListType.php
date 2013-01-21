@@ -14,7 +14,7 @@ class IdentificationInfoListType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\\IdentificationInfo", collection="true", name="IdentificationInfo")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\IdentificationInfo", collection="true", name="IdentificationInfo")
 	 */
 	protected $identificationInfo;
 
