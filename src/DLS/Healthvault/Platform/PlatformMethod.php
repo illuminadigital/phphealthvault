@@ -159,7 +159,6 @@ class PlatformMethod
 	    	
 	    	$authSession = $header->getAuthSession();
 	    	$authSession->setAuthToken($this->getAuthToken());
-	    	var_dump($this->configuration->getToken());
 	    	$authSession->setUserAuthToken($this->configuration->getToken());
 	    	
 	    	$token = $this->configuration->getToken();
@@ -250,7 +249,7 @@ class PlatformMethod
     	if (! empty($forceName)) {
     		$replacement = '<' . $forceName .'$2</' . $forceName .'>';
     	} else {
-    		$replacement = '$1';
+    		$replacement = '<$1$2</$1>';
     	} 
     	
     	$rootContent = preg_replace('/^.*?<([A-Za-z][^ >]+)(.*?>\s*.*?\s*)<\/\1\s*>.*$/s', $replacement, $xml, -1, $count);
