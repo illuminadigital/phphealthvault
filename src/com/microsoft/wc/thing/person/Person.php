@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\person;
  * })
  * @XmlEntity	(xml="person")
  */
-class Person extends \com\microsoft\wc\types\Person {
+class Person extends \com\microsoft\wc\thing\types\Person {
 	/**
 	 * Information related to a contact.
 	 * A contact may be an emergency contact, contact informationfor a doctor, lawyer, etc.
