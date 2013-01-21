@@ -9,7 +9,7 @@ namespace org\sifinfo\www\infrastructure\_2_x;
  * })
  * @XmlEntity	(xml="ExtendedContentType")
  */
-class ExtendedContentType extends AnyType {
+class ExtendedContentType {
 	/**
 	 */
 

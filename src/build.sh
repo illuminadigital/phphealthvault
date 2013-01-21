@@ -10,17 +10,17 @@ cp -r $SCHEMABASE/platform /tmp/$$
 
 echo "Generating master classes"
 
-for i in `find $SCHEMABASE/platform/web/xsd -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print`
-do
-	echo $i
-	FNAME=/tmp/$$`echo $i | sed -e 's#$SCHEMABASE##' `
-	mkdir -p `dirname $FNAME`
-	#perl -e 'while (defined($f = <>)) { $content .= $f; } $content =~ m#xmlns[^=]*="http://www.w3.org/2001/XMLSchema# && $content =~ s#(<schema.*?>)#\1\n<import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="XMLSchema.xsd" />#s;; print $content;' $i > $FNAME  
-done
+#for i in `find $SCHEMABASE/platform/web/xsd -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print`
+#do
+	#	echo $i
+	#	FNAME=/tmp/$$`echo $i | sed -e 's#$SCHEMABASE##' `
+	#	mkdir -p `dirname $FNAME`
+	#	#perl -e 'while (defined($f = <>)) { $content .= $f; } $content =~ m#xmlns[^=]*="http://www.w3.org/2001/XMLSchema# && $content =~ s#(<schema.*?>)#\1\n<import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="XMLSchema.xsd" />#s;; print $content;' $i > $FNAME  
+#done
 
 DEFDIR=`pwd`
 cd /tmp/$$
-for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print -o -type f -name 'thingtype-*.xsd' -print`
+for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'respons*.xsd' -print -o -type f -name 'thingtype-*.xsd' -print`
 do
 	echo $i
 	cd /tmp/$$/`dirname $i`
