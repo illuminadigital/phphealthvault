@@ -13,7 +13,7 @@ class GetThingsMethod extends PlatformMethod
     }
 
     public function addBasicFilter($id) {
-    	$groups = $this->getInfo()->getGroup();
+    	$groups = $this->requestData->getInfo()->getGroup();
     	
     	if (empty($groups)) {
     		$lastGroup = $this->createGroup();
