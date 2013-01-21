@@ -14,7 +14,7 @@ class ObjectNameType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\", name="value")
+	 * @XmlValue	(type="string", name="ObjectNameType")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class ObjectNameType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', ''));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 	
 		return $value;

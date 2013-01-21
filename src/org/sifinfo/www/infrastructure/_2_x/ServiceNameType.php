@@ -14,7 +14,7 @@ class ServiceNameType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NCName", name="value")
+	 * @XmlValue	(type="string", name="ServiceNameType")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class ServiceNameType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_NCName($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'NCName'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 	
 		return $value;
