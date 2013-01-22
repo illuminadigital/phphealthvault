@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\contraindication;
  * })
  * @XmlEntity	(xml="contraindication")
  */
-class Contraindication extends \com\microsoft\wc\thing\Thing {
+class Contraindication extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to an contraindication.
 	 * This thing type is used to store substances (such as food or drugs) that interacts badly with a specific condition or drugs a patient is already taking.

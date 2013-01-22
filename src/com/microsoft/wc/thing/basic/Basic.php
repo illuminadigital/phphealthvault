@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\basic;
  * })
  * @XmlEntity	(xml="basic")
  */
-class Basic extends \com\microsoft\wc\thing\Thing {
+class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines a set of data about the health record that isconsidered not to be personally-identifiable.
 	 * Unlike the personal demographic information, this datais consider to be less sensitive in nature.

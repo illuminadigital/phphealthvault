@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\dietary_intake;
  * })
  * @XmlEntity	(xml="dietary-intake")
  */
-class DietaryIntake extends \com\microsoft\wc\thing\Thing {
+class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * The amount of dietary nutrients and minerals consumed.
 	 */

@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\healthcare_proxy;
  * })
  * @XmlEntity	(xml="healthcare-proxy")
  */
-class HealthcareProxy extends \com\microsoft\wc\thing\Thing {
+class HealthcareProxy extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a healthcare proxy.
 	 * This thing type describes the healthcare proxy of a person.

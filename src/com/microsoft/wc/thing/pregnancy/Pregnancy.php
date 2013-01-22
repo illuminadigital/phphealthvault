@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\pregnancy;
  * })
  * @XmlEntity	(xml="pregnancy")
  */
-class Pregnancy extends \com\microsoft\wc\thing\Thing {
+class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Record of a pregnancy.
 	 */

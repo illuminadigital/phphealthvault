@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\family_history_condition;
  * })
  * @XmlEntity	(xml="family-history-condition")
  */
-class FamilyHistoryCondition extends \com\microsoft\wc\thing\Thing {
+class FamilyHistoryCondition extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A condition of a relative.
 	 * Note: Please use the family history type instead of this type.Stores a condition that a relative of the record-owner has.

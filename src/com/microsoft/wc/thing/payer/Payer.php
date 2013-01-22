@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\payer;
  * })
  * @XmlEntity	(xml="payer")
  */
-class Payer extends \com\microsoft\wc\thing\Thing {
+class Payer extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information about the person or organization that paysfor health and medical related bills.
 	 */

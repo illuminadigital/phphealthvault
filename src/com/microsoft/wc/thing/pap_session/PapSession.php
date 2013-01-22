@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\pap_session;
  * })
  * @XmlEntity	(xml="pap-session")
  */
-class PapSession extends \com\microsoft\wc\thing\Thing {
+class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * The Positive Airway Pressure (PAP) Session records data collected during a PAP session. A common use for PAP therapy is in the treatment of sleep apnea.
 	 */

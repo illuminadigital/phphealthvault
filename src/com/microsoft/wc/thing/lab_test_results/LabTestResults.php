@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\lab_test_results;
  * })
  * @XmlEntity	(xml="lab-test-results")
  */
-class LabTestResults extends \com\microsoft\wc\thing\Thing {
+class LabTestResults extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A series of lab test results.
 	 */

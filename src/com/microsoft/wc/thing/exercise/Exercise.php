@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\exercise;
  * })
  * @XmlEntity	(xml="exercise")
  */
-class Exercise extends \com\microsoft\wc\thing\Thing {
+class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Records the completion of an exercise.
 	 * Sample data - such as heartrate values collected at intervals during the exercise - arestored using the exercise sample type. All samples for an exercise should be added to the relateditems collection for the exercise. The exercise type is an update to the aerobic exercise session type, and there are certaincomplexities to supporting existing data. See "Using the Exercise Type"for more information.

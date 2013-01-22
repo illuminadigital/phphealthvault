@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\daily_medication_usage;
  * })
  * @XmlEntity	(xml="daily-medication-usage")
  */
-class DailyMedicationUsage extends \com\microsoft\wc\thing\Thing {
+class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Recording the act taking a medication.
 	 */

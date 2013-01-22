@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\blood_oxygen_saturation;
  * })
  * @XmlEntity	(xml="blood-oxygen-saturation")
  */
-class BloodOxygenSaturation extends \com\microsoft\wc\thing\Thing {
+class BloodOxygenSaturation extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Percentage of oxygen saturation in the blood.
 	 */

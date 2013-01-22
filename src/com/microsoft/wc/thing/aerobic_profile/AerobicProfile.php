@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\aerobic_profile;
  * })
  * @XmlEntity	(xml="aerobic-profile")
  */
-class AerobicProfile extends \com\microsoft\wc\thing\Thing {
+class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A summary of a person's aerobic condition.
 	 * A person's aerobic profile is made up of a set ofmeasurements that indicate the aerobic capabilities of the person.

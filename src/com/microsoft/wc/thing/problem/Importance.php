@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\problem;
  * })
  * @XmlEntity	(xml="importance")
  */
-class Importance extends \com\microsoft\wc\thing\Thing {
+class Importance extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 */
 

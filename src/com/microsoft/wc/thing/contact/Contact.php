@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\contact;
  * })
  * @XmlEntity	(xml="contact")
  */
-class Contact extends \com\microsoft\wc\thing\Thing {
+class Contact extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * This is the contact information for the person owninga health record in Microsoft HealthVault.
 	 * This data should not be confused with the 'person'type which is contact information for an emergencycontact or someone else related to the health record.

@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\question_answer;
  * })
  * @XmlEntity	(xml="question-answer")
  */
-class QuestionAnswer extends \com\microsoft\wc\thing\Thing {
+class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A question that was asked and the answers given.
 	 */

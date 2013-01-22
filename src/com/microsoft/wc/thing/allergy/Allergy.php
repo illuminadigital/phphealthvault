@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\allergy;
  * })
  * @XmlEntity	(xml="allergy")
  */
-class Allergy extends \com\microsoft\wc\thing\Thing {
+class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to an allergy.
 	 * This thing type describes an allergy a person has. Theallergic-episode type defines an occurrence of that episode resulting in symptoms.

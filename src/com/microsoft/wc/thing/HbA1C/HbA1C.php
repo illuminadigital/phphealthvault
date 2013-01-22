@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\HbA1C;
  * })
  * @XmlEntity	(xml="HbA1C")
  */
-class HbA1C extends \com\microsoft\wc\thing\Thing {
+class HbA1C extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines a single HbA1C reading.
 	 * HbA1c is a test that measures the amount of glycosylated hemoglobin in your blood.

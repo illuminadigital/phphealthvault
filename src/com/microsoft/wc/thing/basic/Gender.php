@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\basic;
  * })
  * @XmlEntity	(xml="gender")
  */
-class Gender extends \com\microsoft\wc\thing\Thing {
+class Gender extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * The person's gender.
 	 * [m]ale or [f]emale

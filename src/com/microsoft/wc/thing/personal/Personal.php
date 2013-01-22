@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\personal;
  * })
  * @XmlEntity	(xml="personal")
  */
-class Personal extends \com\microsoft\wc\thing\Thing {
+class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Personal demographic information this is more sensitve innature.
 	 * This data is more sensitive than the "basic" thing typedata and may not be disclosed as freely as the "basic"thing type.

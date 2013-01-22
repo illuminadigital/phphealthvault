@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\medical_images;
  * })
  * @XmlEntity	(xml="medical-image-study")
  */
-class MedicalImageStudy extends \com\microsoft\wc\thing\Thing {
+class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A collection of medical images.
 	 * DICOM data is stored in the named blob portion of the data type, and it is recommended that normalDICOM conventions are used for naming.An application may store XDS-i manifest information in XML format in the xds-i element.

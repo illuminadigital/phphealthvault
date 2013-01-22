@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\group_membership;
  * })
  * @XmlEntity	(xml="group-membership")
  */
-class GroupMembership extends \com\microsoft\wc\thing\Thing {
+class GroupMembership extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Memberships of the record owner.
 	 */

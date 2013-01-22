@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\comment;
  * })
  * @XmlEntity	(xml="comment")
  */
-class Comment extends \com\microsoft\wc\thing\Thing {
+class Comment extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A comment associated with another data item.
 	 */

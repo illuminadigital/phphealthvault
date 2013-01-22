@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\sjam;
  * })
  * @XmlEntity	(xml="sleep-am")
  */
-class SleepAm extends \com\microsoft\wc\thing\Thing {
+class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Schema for a morning sleep journal.
 	 * A morning sleep journal reflects back on the previous nightssleep. The data items were adapted from the NIH publication #06-5271,November 2005, "Your Guide to Healthy Sleep", ISBN 1-933236-05-1.

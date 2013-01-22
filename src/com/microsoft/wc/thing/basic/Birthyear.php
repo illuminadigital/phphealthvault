@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\basic;
  * })
  * @XmlEntity	(xml="birthyear")
  */
-class Birthyear extends \com\microsoft\wc\thing\Thing {
+class Birthyear extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * The year the person was born.
 	 * A year between 1000 and 3000.

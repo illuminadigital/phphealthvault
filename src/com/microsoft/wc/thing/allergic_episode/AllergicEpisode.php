@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\allergic_episode;
  * })
  * @XmlEntity	(xml="allergic-episode")
  */
-class AllergicEpisode extends \com\microsoft\wc\thing\Thing {
+class AllergicEpisode extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a single instance of an allergicreaction.
 	 */

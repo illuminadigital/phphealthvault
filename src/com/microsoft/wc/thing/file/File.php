@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\file;
  * })
  * @XmlEntity	(xml="file")
  */
-class File extends \com\microsoft\wc\thing\Thing {
+class File extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines the schema for a file which can be uploaded toMicrosoft HealthVault.
 	 * Files are stored as encoded data in the "other data" section of things. Most files are stored as base64 encodedbinary with the appropriate content-type set for thetype of the file.

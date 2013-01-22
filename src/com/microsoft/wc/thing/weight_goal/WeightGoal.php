@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\weight_goal;
  * })
  * @XmlEntity	(xml="weight-goal")
  */
-class WeightGoal extends \com\microsoft\wc\thing\Thing {
+class WeightGoal extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A target weight range with an associated target date.
 	 * More than one weight goal may exist in a record. It isup to the application to determine which is the activegoal.The thing's effective-date implies the date on whichthe goal was initiated, for purposes of graphing, etc.

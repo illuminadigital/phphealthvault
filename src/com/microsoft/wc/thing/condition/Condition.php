@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\condition;
  * })
  * @XmlEntity	(xml="condition")
  */
-class Condition extends \com\microsoft\wc\thing\Thing {
+class Condition extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines a single health or medical issue/problem.
 	 * CCR qualifiers and other notes should go in thecommon/note section of the thing.

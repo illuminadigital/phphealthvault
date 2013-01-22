@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\heart_rate;
  * })
  * @XmlEntity	(xml="heart-rate")
  */
-class HeartRate extends \com\microsoft\wc\thing\Thing {
+class HeartRate extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A measurement of the record owner's heart rate.
 	 */

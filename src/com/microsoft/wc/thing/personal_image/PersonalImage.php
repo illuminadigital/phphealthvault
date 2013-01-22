@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\personal_image;
  * })
  * @XmlEntity	(xml="personal-image")
  */
-class PersonalImage extends \com\microsoft\wc\thing\Thing {
+class PersonalImage extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * An image that represents the person.
 	 * This type has no XML data associated with it. All datais stored as base64 encoded binary data in the "otherdata" section of the thing.

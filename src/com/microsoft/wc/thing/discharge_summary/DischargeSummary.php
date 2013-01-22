@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\discharge_summary;
  * })
  * @XmlEntity	(xml="discharge-summary")
  */
-class DischargeSummary extends \com\microsoft\wc\thing\Thing {
+class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to the discharge summary.
 	 * This thing type describes the discharge summary of a person.

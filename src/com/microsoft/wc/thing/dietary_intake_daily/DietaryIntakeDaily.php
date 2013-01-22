@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\dietary_intake_daily;
  * })
  * @XmlEntity	(xml="dietary-intake-daily")
  */
-class DietaryIntakeDaily extends \com\microsoft\wc\thing\Thing {
+class DietaryIntakeDaily extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * The amount of dietary nutrients and minerals consumed in a day.
 	 */

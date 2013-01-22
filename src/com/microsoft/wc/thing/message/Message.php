@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\message;
  * })
  * @XmlEntity	(xml="message")
  */
-class Message extends \com\microsoft\wc\thing\Thing {
+class Message extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * The Message type is used to store a multipart message, including message text and attachments.
 	 * The message is stored in two forms.The "FullMessage" blob contains the message in the native format.The text of the message is available in the blobs denoted by the 'html-blob-name" and"text-blob-name" element. Any attachments to the message are described in the "attachments"element. The data stored is intended to be compatible with the SendMail Multipart MIME format

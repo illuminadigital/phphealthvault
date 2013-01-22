@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\link;
  * })
  * @XmlEntity	(xml="link")
  */
-class Link extends \com\microsoft\wc\thing\Thing {
+class Link extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines the schema for a web link saved as a favorite inMicrosoft HealthVault.
 	 */

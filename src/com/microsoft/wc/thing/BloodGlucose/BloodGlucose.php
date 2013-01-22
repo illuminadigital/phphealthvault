@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\BloodGlucose;
  * })
  * @XmlEntity	(xml="blood-glucose")
  */
-class BloodGlucose extends \com\microsoft\wc\thing\Thing {
+class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines a single blood glucose reading.
 	 */

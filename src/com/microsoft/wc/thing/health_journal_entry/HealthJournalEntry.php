@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\health_journal_entry;
  * })
  * @XmlEntity	(xml="health-journal-entry")
  */
-class HealthJournalEntry extends \com\microsoft\wc\thing\Thing {
+class HealthJournalEntry extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a health journal entry.
 	 */

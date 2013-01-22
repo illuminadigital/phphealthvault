@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\password\_protected\package;
  * })
  * @XmlEntity	(xml="algorithm-name")
  */
-class AlgorithmName extends \com\microsoft\wc\thing\Thing {
+class AlgorithmName extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Algorithm used for the encryption.
 	 */

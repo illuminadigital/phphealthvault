@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\emotion;
  * })
  * @XmlEntity	(xml="emotion")
  */
-class Emotion extends \com\microsoft\wc\thing\Thing {
+class Emotion extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A subjective record of an emotional state.
 	 */

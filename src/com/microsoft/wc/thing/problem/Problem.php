@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\problem;
  * })
  * @XmlEntity	(xml="problem")
  */
-class Problem extends \com\microsoft\wc\thing\Thing {
+class Problem extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a medical problem (please see remarks).
 	 * Note: We are in the process of merging the problem and condition types, andrecommend that applications use the condition type instead of the problem type. This thing type describes the medical problem of a person.

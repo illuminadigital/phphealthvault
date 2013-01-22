@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\calorie_guideline;
  * })
  * @XmlEntity	(xml="calorie-guideline")
  */
-class CalorieGuideline extends \com\microsoft\wc\thing\Thing {
+class CalorieGuideline extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Stores suggested calorie intake guidelines.
 	 * Examples: Daily calories suggested for weight loss, calories needed for weight maintenance, BMR.

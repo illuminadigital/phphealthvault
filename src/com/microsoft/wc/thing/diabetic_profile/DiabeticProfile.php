@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\diabetic_profile;
  * })
  * @XmlEntity	(xml="diabetic-profile")
  */
-class DiabeticProfile extends \com\microsoft\wc\thing\Thing {
+class DiabeticProfile extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A summary of a person's diabetic condition.
 	 * A person's diabetic profile is made up of a set ofmeasurements that indicate the diabetic capabilities of the person.

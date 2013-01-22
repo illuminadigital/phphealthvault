@@ -14,6 +14,11 @@ class DataXml {
 	 */
 
 	/**
+	 * @XmlElement	(type="\com\microsoft\wc\thing\AnyMixed", collection="true", name="*")
+	 */
+	protected $any;
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\Common", name="common")
 	 */
 	protected $common;
@@ -23,9 +28,51 @@ class DataXml {
 	 */
 	protected $transform;
 
-	public function __construct($common = NULL, $transform = NULL) {
+	public function __construct($any = NULL, $common = NULL, $transform = NULL) {
+		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 		$this->common = ($common===NULL) ? NULL : $this->validateCommon($common);
 		$this->transform = ($transform===NULL) ? NULL : $this->validateTransform($transform);
+	}
+
+	public function getAny() {
+		if ($this->any===NULL) {
+			$this->any = $this->createAny();
+		}
+		return $this->any;
+	}
+	
+	protected function createAny() {
+		return array();
+	}
+
+	public function setAny($any) {
+		$this->any = $this->validateAny($any);
+	}
+
+	protected function validateAny($any) {
+		$count = count($any);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'any', 0));
+		}
+		foreach ($any as $entry) {
+			if ( ! is_AnyMixed($entry) && ! is_null($entry) ) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+			}
+		}
+	
+		return $any;
+	}
+
+	public function addAny($any) {
+		$this->any[] = $this->validateAnyType($any);
+	}
+
+	protected function validateAnyType($any) {
+		if ( ! is_AnyMixed($any) && ! is_null($any) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+		}
+	
+		return $any;
 	}
 
 	public function getCommon() {

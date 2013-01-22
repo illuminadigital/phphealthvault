@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\height;
  * })
  * @XmlEntity	(xml="height")
  */
-class Height extends \com\microsoft\wc\thing\Thing {
+class Height extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information about a height measurement.
 	 */

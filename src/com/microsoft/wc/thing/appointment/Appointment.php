@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\appointment;
  * })
  * @XmlEntity	(xml="appointment")
  */
-class Appointment extends \com\microsoft\wc\thing\Thing {
+class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a medical appointment.
 	 * This thing type describes the appointment a person has.

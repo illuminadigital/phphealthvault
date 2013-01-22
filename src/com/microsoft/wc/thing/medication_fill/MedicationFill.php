@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\medication_fill;
  * })
  * @XmlEntity	(xml="medication-fill")
  */
-class MedicationFill extends \com\microsoft\wc\thing\Thing {
+class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to filling a medication.
 	 * This type contains information related to filling a medication, and is related to the medication type.Instances of this type are typically linked to a medication instance using related items. For example, if the medication is prescribed, the medication fill describes typical information that apharmacy would add.

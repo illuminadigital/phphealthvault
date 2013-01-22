@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\status;
  * })
  * @XmlEntity	(xml="status")
  */
-class Status extends \com\microsoft\wc\thing\Thing {
+class Status extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Stores status information about a specific health record item.
 	 * Each status is related to one or more health record items which are storedas related items.For example, the HealthVault Shell creates a status item to indicate that a CCR or CCD document has been reconciled, and that document is linked using a related item.

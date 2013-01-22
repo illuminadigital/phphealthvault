@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\body_dimension;
  * })
  * @XmlEntity	(xml="body-dimension")
  */
-class BodyDimension extends \com\microsoft\wc\thing\Thing {
+class BodyDimension extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Stores a body dimension.
 	 * Examples: Waist size, head circumference, length (pediatric).

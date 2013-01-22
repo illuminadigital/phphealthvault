@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\insulin;
  * })
  * @XmlEntity	(xml="insulin-injection")
  */
-class InsulinInjection extends \com\microsoft\wc\thing\Thing {
+class InsulinInjection extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Any insulin injection used to treat diabetes.
 	 * The injection may or may not have a device component.Each new injection package should have a new insulin-injection thing, evenif there is a containing device that is reusable.Changes in regimen (min/max doses per day) should alsocause a new thing to be created.

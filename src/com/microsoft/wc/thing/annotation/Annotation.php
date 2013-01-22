@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\annotation;
  * })
  * @XmlEntity	(xml="annotation")
  */
-class Annotation extends \com\microsoft\wc\thing\Thing {
+class Annotation extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a medical annotation.
 	 * This thing type describes the medical annotation results of a person.

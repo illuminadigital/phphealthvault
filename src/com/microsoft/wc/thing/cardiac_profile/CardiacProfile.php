@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\cardiac_profile;
  * })
  * @XmlEntity	(xml="cardiac-profile")
  */
-class CardiacProfile extends \com\microsoft\wc\thing\Thing {
+class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A summary of a person's cardiac condition.
 	 * A person's cardiac profile is made up of a set ofanswers to common questions and measurements that indicate thecardiac condition of the person.

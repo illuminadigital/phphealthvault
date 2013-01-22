@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\explanation_of_benefits;
  * })
  * @XmlEntity	(xml="explanation-of-benefits")
  */
-class ExplanationOfBenefits extends \com\microsoft\wc\thing\Thing {
+class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * An Explanation of Benefits (EOB) that contains information about an insurance claim.
 	 */

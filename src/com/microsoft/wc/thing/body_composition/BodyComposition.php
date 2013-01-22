@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\body_composition;
  * })
  * @XmlEntity	(xml="body-composition")
  */
-class BodyComposition extends \com\microsoft\wc\thing\Thing {
+class BodyComposition extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information about the body composition of the record owner.
 	 * Examples: % body fat, lean muscle mass.

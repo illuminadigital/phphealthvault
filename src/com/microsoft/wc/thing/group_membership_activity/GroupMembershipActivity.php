@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\group_membership_activity;
  * })
  * @XmlEntity	(xml="group-membership-activity")
  */
-class GroupMembershipActivity extends \com\microsoft\wc\thing\Thing {
+class GroupMembershipActivity extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Describes an activity related to group membership.
 	 */

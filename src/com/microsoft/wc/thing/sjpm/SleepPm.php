@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\sjpm;
  * })
  * @XmlEntity	(xml="sleep-pm")
  */
-class SleepPm extends \com\microsoft\wc\thing\Thing {
+class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines an evening sleep journal.
 	 * The data items in this schema are adapted from NIHpublication #06-5271, November 2005, "Your Guide toHealthy Sleep", ISBN 1-933236-05-1.

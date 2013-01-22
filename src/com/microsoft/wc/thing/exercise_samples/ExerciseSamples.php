@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\exercise_samples;
  * })
  * @XmlEntity	(xml="exercise-samples")
  */
-class ExerciseSamples extends \com\microsoft\wc\thing\Thing {
+class ExerciseSamples extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Stores a set of samples related to an exercise.
 	 * Examples: Heart rate samples, speed samples, position samples.Exercise samples are related to exercises through related items.

@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\weight;
  * })
  * @XmlEntity	(xml="weight")
  */
-class Weight extends \com\microsoft\wc\thing\Thing {
+class Weight extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A single weight measurement.
 	 */

@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\vital_signs;
  * })
  * @XmlEntity	(xml="vital-signs")
  */
-class VitalSigns extends \com\microsoft\wc\thing\Thing {
+class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to vital signs.
 	 * This thing type describes the vital signs of a person.

@@ -14,6 +14,11 @@ class TransformType {
 	 */
 
 	/**
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\AnyMixed", collection="true", name="*")
+	 */
+	protected $any;
+
+	/**
 	 * @XmlText	(type="string", name="XPath")
 	 */
 	protected $xPath;
@@ -23,9 +28,51 @@ class TransformType {
 	 */
 	protected $algorithm;
 
-	public function __construct($xPath = NULL, $algorithm = NULL) {
+	public function __construct($any = NULL, $xPath = NULL, $algorithm = NULL) {
+		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 		$this->xPath = ($xPath===NULL) ? NULL : $this->validateXPath($xPath);
 		$this->algorithm = ($algorithm===NULL) ? NULL : $this->validateAlgorithm($algorithm);
+	}
+
+	public function getAny() {
+		if ($this->any===NULL) {
+			$this->any = $this->createAny();
+		}
+		return $this->any;
+	}
+	
+	protected function createAny() {
+		return array();
+	}
+
+	public function setAny($any) {
+		$this->any = $this->validateAny($any);
+	}
+
+	protected function validateAny($any) {
+		$count = count($any);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'any', 0));
+		}
+		foreach ($any as $entry) {
+			if ( ! is_AnyMixed($entry) && ! is_null($entry) ) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+			}
+		}
+	
+		return $any;
+	}
+
+	public function addAny($any) {
+		$this->any[] = $this->validateAnyType($any);
+	}
+
+	protected function validateAnyType($any) {
+		if ( ! is_AnyMixed($any) && ! is_null($any) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+		}
+	
+		return $any;
 	}
 
 	public function getXPath() {

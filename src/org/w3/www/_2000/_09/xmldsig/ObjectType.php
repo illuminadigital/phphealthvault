@@ -14,6 +14,11 @@ class ObjectType {
 	 */
 
 	/**
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\AnyMixed", collection="true", name="*")
+	 */
+	protected $any;
+
+	/**
 	 * @XmlAttribute	(type="string", name="Id")
 	 */
 	protected $id;
@@ -28,10 +33,52 @@ class ObjectType {
 	 */
 	protected $encoding;
 
-	public function __construct($id = NULL, $mimeType = NULL, $encoding = NULL) {
+	public function __construct($any = NULL, $id = NULL, $mimeType = NULL, $encoding = NULL) {
+		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 		$this->mimeType = ($mimeType===NULL) ? NULL : $this->validateMimeType($mimeType);
 		$this->encoding = ($encoding===NULL) ? NULL : $this->validateEncoding($encoding);
+	}
+
+	public function getAny() {
+		if ($this->any===NULL) {
+			$this->any = $this->createAny();
+		}
+		return $this->any;
+	}
+	
+	protected function createAny() {
+		return array();
+	}
+
+	public function setAny($any) {
+		$this->any = $this->validateAny($any);
+	}
+
+	protected function validateAny($any) {
+		$count = count($any);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'any', 0));
+		}
+		foreach ($any as $entry) {
+			if ( ! is_AnyMixed($entry) && ! is_null($entry) ) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+			}
+		}
+	
+		return $any;
+	}
+
+	public function addAny($any) {
+		$this->any[] = $this->validateAnyType($any);
+	}
+
+	protected function validateAnyType($any) {
+		if ( ! is_AnyMixed($any) && ! is_null($any) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+		}
+	
+		return $any;
 	}
 
 	public function getId() {

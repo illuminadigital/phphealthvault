@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\goal;
  * })
  * @XmlEntity	(xml="health-goal")
  */
-class HealthGoal extends \com\microsoft\wc\thing\Thing {
+class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A health goal defines a target for a measurement or action to be performed by a user.
 	 * Example goals: maintain averge blood glucose level below 90 mg/dl, walk 1000 steps per day.

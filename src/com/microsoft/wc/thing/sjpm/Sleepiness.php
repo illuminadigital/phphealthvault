@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\sjpm;
  * })
  * @XmlEntity	(xml="sleepiness")
  */
-class Sleepiness extends \com\microsoft\wc\thing\Thing {
+class Sleepiness extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * How sleepy the person felt during the day.
 	 * 1 = So sleepy had to struggle to stay awayduring much of the day,2 = Somewhat tired3 = Fairly alert4 = Wide awake

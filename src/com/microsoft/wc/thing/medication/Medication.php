@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\medication;
  * })
  * @XmlEntity	(xml="medication")
  */
-class Medication extends \com\microsoft\wc\thing\Thing {
+class Medication extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a medication.
 	 * Note: Please use the new version of this data type instead of this version.This thing type describes a medication a person has.

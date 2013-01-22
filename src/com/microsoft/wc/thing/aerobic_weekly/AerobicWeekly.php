@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\aerobic_weekly;
  * })
  * @XmlEntity	(xml="aerobic-weekly")
  */
-class AerobicWeekly extends \com\microsoft\wc\thing\Thing {
+class AerobicWeekly extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines a weekly goal for aerobic exercise.
 	 * The thing's effective_date metadata implies the date on whichthis goal was initiated, for purposes of graphing, etc.

@@ -9,10 +9,10 @@ namespace com\microsoft\wc\thing\application;
  * })
  * @XmlEntity	(xml="app-specific")
  */
-class AppSpecific extends \com\microsoft\wc\thing\Thing {
+class AppSpecific extends \com\microsoft\wc\thing\AnyMixed {
 	/**
-	 * Application specific data in XML form.
-	 * An application can define any arbitrary XMLas it's data. It may or may not adhere toa published schema.
+	 * Defines a thing type to store arbitrary application data.
+	 * Applications are responsible for using the format-appidand format-tag to guarantee uniques of the data format.
 	 */
 
 	const ID = 'a5033c9d-08cf-4204-9bd3-cb412ce39fc0';
@@ -38,11 +38,17 @@ class AppSpecific extends \com\microsoft\wc\thing\Thing {
 	 */
 	protected $summary;
 
-	public function __construct($formatAppid = NULL, $formatTag = NULL, $when = NULL, $summary = NULL) {
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\thing\application\AnyMixed", collection="true", name="*")
+	 */
+	protected $any;
+
+	public function __construct($formatAppid = NULL, $formatTag = NULL, $when = NULL, $summary = NULL, $any = NULL) {
 		$this->formatAppid = ($formatAppid===NULL) ? NULL : $this->validateFormatAppid($formatAppid);
 		$this->formatTag = ($formatTag===NULL) ? NULL : $this->validateFormatTag($formatTag);
 		$this->when = ($when===NULL) ? NULL : $this->validateWhen($when);
 		$this->summary = ($summary===NULL) ? NULL : $this->validateSummary($summary);
+		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 	}
 
 	public function getFormatAppid() {
@@ -135,5 +141,46 @@ class AppSpecific extends \com\microsoft\wc\thing\Thing {
 		}
 	
 		return $summary;
+	}
+
+	public function getAny() {
+		if ($this->any===NULL) {
+			$this->any = $this->createAny();
+		}
+		return $this->any;
+	}
+	
+	protected function createAny() {
+		return array();
+	}
+
+	public function setAny($any) {
+		$this->any = $this->validateAny($any);
+	}
+
+	protected function validateAny($any) {
+		$count = count($any);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'any', 0));
+		}
+		foreach ($any as $entry) {
+			if ( ! is_AnyMixed($entry) && ! is_null($entry) ) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+			}
+		}
+	
+		return $any;
+	}
+
+	public function addAny($any) {
+		$this->any[] = $this->validateAnyType($any);
+	}
+
+	protected function validateAnyType($any) {
+		if ( ! is_AnyMixed($any) && ! is_null($any) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+		}
+	
+		return $any;
 	}
 } // end class AppSpecific

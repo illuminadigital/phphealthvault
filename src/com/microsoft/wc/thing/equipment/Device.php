@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\equipment;
  * })
  * @XmlEntity	(xml="device")
  */
-class Device extends \com\microsoft\wc\thing\Thing {
+class Device extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to medical equipment.
 	 * This thing type describes medical equipment a person has.

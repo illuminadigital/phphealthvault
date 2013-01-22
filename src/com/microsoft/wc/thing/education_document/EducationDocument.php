@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\education_document;
  * })
  * @XmlEntity	(xml="education-document")
  */
-class EducationDocument extends \com\microsoft\wc\thing\Thing {
+class EducationDocument extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines the schema for an education document which can be uploaded toMicrosoft HealthVault.
 	 * The Education Document type is intended to store documents related toa student's education such as assignments and exams.

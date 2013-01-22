@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\directive;
  * })
  * @XmlEntity	(xml="directive")
  */
-class Directive extends \com\microsoft\wc\thing\Thing {
+class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A single advance directive.
 	 * An advance directive (or advance health directive) islegal directive when dealing with health related issues.Examples include living wills and power of attorney forhealth care.

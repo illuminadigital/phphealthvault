@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\family_history_person;
  * })
  * @XmlEntity	(xml="family-history-person")
  */
-class FamilyHistoryPerson extends \com\microsoft\wc\thing\Thing {
+class FamilyHistoryPerson extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information about a relative of the record owner.
 	 * Note: Please use the family history type instead of this type.Stores information about a relative of the record owner, such as a mother, father, or aunt.

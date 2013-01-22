@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\insulin_injection_use;
  * })
  * @XmlEntity	(xml="diabetes-insulin-injection-use")
  */
-class DiabetesInsulinInjectionUse extends \com\microsoft\wc\thing\Thing {
+class DiabetesInsulinInjectionUse extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A single use of an insulin-injection.
 	 * Note, this may wrap more than one "dose" if multipleinjections per use are prescribed.

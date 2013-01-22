@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\radiology_lab_results;
  * })
  * @XmlEntity	(xml="radiology-lab-results")
  */
-class RadiologyLabResults extends \com\microsoft\wc\thing\Thing {
+class RadiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a radiology lab-results.
 	 * This thing type describes the radiology lab results a person has.

@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\concern;
  * })
  * @XmlEntity	(xml="concern")
  */
-class Concern extends \com\microsoft\wc\thing\Thing {
+class Concern extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A concern that a person has about a condition or life issue.
 	 * Concerns are more general than conditions, and are about the person's feelings. Examples include"concerned about managing a chronic condition", "family issues", "emotional issues", etc.

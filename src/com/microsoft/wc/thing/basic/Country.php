@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\basic;
  * })
  * @XmlEntity	(xml="country")
  */
-class Country extends \com\microsoft\wc\thing\Thing {
+class Country extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * The country of residence as an ISO-3166two character code.
 	 */

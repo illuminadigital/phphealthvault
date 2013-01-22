@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\life_goal;
  * })
  * @XmlEntity	(xml="life-goal")
  */
-class LifeGoal extends \com\microsoft\wc\thing\Thing {
+class LifeGoal extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * An unmeasurable "checklist" goal of the type you mightstick up on the fridge as a New Year's resolution.
 	 * The effective-date implies the date on which this goalwas initiated.

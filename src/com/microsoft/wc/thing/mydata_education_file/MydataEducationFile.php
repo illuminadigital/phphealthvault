@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\mydata_education_file;
  * })
  * @XmlEntity	(xml="mydata-education-file")
  */
-class MydataEducationFile extends \com\microsoft\wc\thing\Thing {
+class MydataEducationFile extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines the schema for a MyData education file which can be uploaded toMicrosoft HealthVault.
 	 * This data type is intended to store the U.S. Department of Education'sMyData initiative documents. For more information about theMyData initiative see: http://www.ed.gov/edblogs/technology/mydata/

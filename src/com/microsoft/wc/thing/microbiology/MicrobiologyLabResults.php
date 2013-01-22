@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\microbiology;
  * })
  * @XmlEntity	(xml="microbiology-lab-results")
  */
-class MicrobiologyLabResults extends \com\microsoft\wc\thing\Thing {
+class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a microbiology lab test.
 	 * This thing type describes the microbiology lab test results of a person.

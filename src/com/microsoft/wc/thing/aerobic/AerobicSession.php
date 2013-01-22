@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\aerobic;
  * })
  * @XmlEntity	(xml="aerobic-session")
  */
-class AerobicSession extends \com\microsoft\wc\thing\Thing {
+class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A single session of aerobic exercise.
 	 * Note: Please use the new exercise type instead of this type.An aerobic session is a single instance of exercise likerunning, biking, etc.

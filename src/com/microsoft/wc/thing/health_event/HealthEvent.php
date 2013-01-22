@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\health_event;
  * })
  * @XmlEntity	(xml="health-event")
  */
-class HealthEvent extends \com\microsoft\wc\thing\Thing {
+class HealthEvent extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Represents a health event.
 	 * A health event is a health-related occurence for the owner of the record.For children, it might be used to record the date that the child first crawls or talks.For adults, it might be used to record the date of an accident or progress through a rehabilitation.

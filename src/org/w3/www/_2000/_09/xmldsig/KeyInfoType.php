@@ -49,11 +49,16 @@ class KeyInfoType {
 	protected $mgmtData;
 
 	/**
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\AnyMixed", collection="true", name="*")
+	 */
+	protected $any;
+
+	/**
 	 * @XmlAttribute	(type="string", name="Id")
 	 */
 	protected $id;
 
-	public function __construct($keyName = NULL, $keyValue = NULL, $retrievalMethod = NULL, $x509Data = NULL, $pGPData = NULL, $sPKIData = NULL, $mgmtData = NULL, $id = NULL) {
+	public function __construct($keyName = NULL, $keyValue = NULL, $retrievalMethod = NULL, $x509Data = NULL, $pGPData = NULL, $sPKIData = NULL, $mgmtData = NULL, $any = NULL, $id = NULL) {
 		$this->keyName = ($keyName===NULL) ? NULL : $this->validateKeyName($keyName);
 		$this->keyValue = ($keyValue===NULL) ? NULL : $this->validateKeyValue($keyValue);
 		$this->retrievalMethod = ($retrievalMethod===NULL) ? NULL : $this->validateRetrievalMethod($retrievalMethod);
@@ -61,6 +66,7 @@ class KeyInfoType {
 		$this->pGPData = ($pGPData===NULL) ? NULL : $this->validatePGPData($pGPData);
 		$this->sPKIData = ($sPKIData===NULL) ? NULL : $this->validateSPKIData($sPKIData);
 		$this->mgmtData = ($mgmtData===NULL) ? NULL : $this->validateMgmtData($mgmtData);
+		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 	}
 
@@ -223,6 +229,47 @@ class KeyInfoType {
 		}
 	
 		return $mgmtData;
+	}
+
+	public function getAny() {
+		if ($this->any===NULL) {
+			$this->any = $this->createAny();
+		}
+		return $this->any;
+	}
+	
+	protected function createAny() {
+		return array();
+	}
+
+	public function setAny($any) {
+		$this->any = $this->validateAny($any);
+	}
+
+	protected function validateAny($any) {
+		$count = count($any);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'any', 0));
+		}
+		foreach ($any as $entry) {
+			if ( ! is_AnyMixed($entry) && ! is_null($entry) ) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+			}
+		}
+	
+		return $any;
+	}
+
+	public function addAny($any) {
+		$this->any[] = $this->validateAnyType($any);
+	}
+
+	protected function validateAnyType($any) {
+		if ( ! is_AnyMixed($any) && ! is_null($any) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+		}
+	
+		return $any;
 	}
 
 	public function getId() {

@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\respiratory_profile;
  * })
  * @XmlEntity	(xml="respiratory-profile")
  */
-class RespiratoryProfile extends \com\microsoft\wc\thing\Thing {
+class RespiratoryProfile extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A summary of a person's respiratory condition.
 	 * A person's respiratory profile is made up of a set ofanswers to common questions and measurements that indicate therespiratory condition of the person.

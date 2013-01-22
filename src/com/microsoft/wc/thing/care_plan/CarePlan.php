@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\care_plan;
  * })
  * @XmlEntity	(xml="care-plan")
  */
-class CarePlan extends \com\microsoft\wc\thing\Thing {
+class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a care plan.
 	 */

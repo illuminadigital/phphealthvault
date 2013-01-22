@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\inhaler_use;
  * })
  * @XmlEntity	(xml="asthma-inhaler-use")
  */
-class AsthmaInhalerUse extends \com\microsoft\wc\thing\Thing {
+class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A single use of an inhaler.
 	 * Note, this may wrap more than one "dose" if multiplepuffs per use are prescribed.

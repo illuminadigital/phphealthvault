@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\spirometer;
  * })
  * @XmlEntity	(xml="spirometer")
  */
-class Spirometer extends \com\microsoft\wc\thing\Thing {
+class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A single reading from a spirometer.
 	 * Note: Please use the peak flow type instead of this type.

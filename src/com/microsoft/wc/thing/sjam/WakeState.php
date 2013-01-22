@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\sjam;
  * })
  * @XmlEntity	(xml="wake-state")
  */
-class WakeState extends \com\microsoft\wc\thing\Thing {
+class WakeState extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * An evaluation of how the person felt when they got up in the morning.
 	 * 1 = Wide awake,2 = Awake but a little tired,3 = Sleepy

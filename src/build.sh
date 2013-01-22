@@ -18,6 +18,8 @@ echo "Generating master classes"
 	#	#perl -e 'while (defined($f = <>)) { $content .= $f; } $content =~ m#xmlns[^=]*="http://www.w3.org/2001/XMLSchema# && $content =~ s#(<schema.*?>)#\1\n<import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="XMLSchema.xsd" />#s;; print $content;' $i > $FNAME  
 #done
 
+####
+
 DEFDIR=`pwd`
 cd /tmp/$$
 for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print -o -type f -name 'thingtype-*.xsd' -print -o -name response.xsd -print`
@@ -30,6 +32,27 @@ done
 echo "Cleaning up"
 cd $DEFDIR
 rm -rf /tmp/$$
+
+echo "Creating missing Any classes"
+for i in `find $DESTBASE/src -type f -print0 | xargs -0 grep -h 'type="[^"]*AnyMixed"' | perl -ne '/type="([^"]*AnyMixed)"/ && do { $class = $1; $class =~ s#\\\\#\\/#g; print "$class\n"; }' | sort -u` 
+do
+	echo $i
+	FNAME=$DESTBASE/src$i.php
+	NSPACE=`dirname $i | cut -c2- | tr '/' '\\\\'`
+	CNAME=`basename $i`
+	
+	cat > $FNAME << EOC
+<?php
+namespace $NSPACE;
+
+/**
+ * @XmlEntity(xml="*")
+ */ 
+class $CNAME {
+}
+EOC
+done	
+
 
 echo "Fixing up method inheritance"
 
@@ -49,9 +72,10 @@ done
 for i in `find $DESTBASE/src/com/microsoft/wc/thing -type f -name '*.php' -print`
 do
 	echo $i
-	sed -i 's#extends Com\.microsoft\.wc\.thing\.Thing {#extends \\com\\microsoft\\wc\\thing\\Thing {#' $i
+	sed -i 's#extends Com\.microsoft\.wc\.thing\.Thing {#extends \\com\\microsoft\\wc\\thing\\AnyMixed {#' $i
 done 
 
+####
 #echo "Header fix"
 #for i in $DESTBASE/vendor/com/microsoft/wc/request/Header.php
 #do
@@ -65,6 +89,7 @@ done
 	#	echo $i
 	#	sed -i~ 's#\(XmlNamespace.*prefix="\)#\1wc-request#; ' $i
 #done
+####
 
 echo "Fix root element namespace"
 for i in $DESTBASE/src/com/microsoft/wc/request/Request.php

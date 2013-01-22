@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\genetic_snp_result;
  * })
  * @XmlEntity	(xml="genetic-snp-results")
  */
-class GeneticSnpResults extends \com\microsoft\wc\thing\Thing {
+class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Stores a collection of results of a SNP genetic test.
 	 * The SNP data is stored in the other-data section of the object, and mustbe fetched by specifying HealthItemRecordSections.OtherData.The format of the other-data section is the HealthVault comma-separated format.Within the comma-separated data, each SNP is encoded as follows:[refSNP id],[strand orientation],[result],[assay id],[start position],[end position]Where:refSNP id: identifier from NCBI dbSNP database.strand orientation: "+" encodes top, "-" encodes bottom.result: the result of the test.assay id: Platform-dependent id.start position: Start position on the chromosome.end position: End position on the chromosome.Example: rs1891906,-,GT,SNP_C-315533,940106,940107

@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\immunization;
  * })
  * @XmlEntity	(xml="immunization")
  */
-class Immunization extends \com\microsoft\wc\thing\Thing {
+class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to an immunization.
 	 * Note: Please use the new version of this data type instead of this version.

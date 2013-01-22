@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\family_history;
  * })
  * @XmlEntity	(xml="family-history")
  */
-class FamilyHistory extends \com\microsoft\wc\thing\Thing {
+class FamilyHistory extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a family history.
 	 * Note: Please use the new version of this data type instead of this version.This thing type describes the family history of a person.

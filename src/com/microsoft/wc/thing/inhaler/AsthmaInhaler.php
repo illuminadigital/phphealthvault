@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\inhaler;
  * })
  * @XmlEntity	(xml="asthma-inhaler")
  */
-class AsthmaInhaler extends \com\microsoft\wc\thing\Thing {
+class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Any inhaler unit used to treat asthma.
 	 * The inhaler may or may not have a device component.Each new canister should have a new inhaler thing, evenif there is a containing device that is reusable. Changes in regimen (min/max doses per day) should alsocause a new thing to be created.

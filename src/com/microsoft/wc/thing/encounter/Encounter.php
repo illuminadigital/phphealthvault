@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\encounter;
  * })
  * @XmlEntity	(xml="encounter")
  */
-class Encounter extends \com\microsoft\wc\thing\Thing {
+class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a medical encounter.
 	 * Note: Please use the new version of this data type instead of this version.This thing type describes the medical encounter a person has.

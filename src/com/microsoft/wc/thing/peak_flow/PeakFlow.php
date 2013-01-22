@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\peak_flow;
  * })
  * @XmlEntity	(xml="peak-flow")
  */
-class PeakFlow extends \com\microsoft\wc\thing\Thing {
+class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * A peak flow measurement.
 	 * Peak flow measures are typically collected on a daily basis by patients to track theirlung function.

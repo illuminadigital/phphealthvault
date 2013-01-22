@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\cholesterol_profile;
  * })
  * @XmlEntity	(xml="cholesterol-profile")
  */
-class CholesterolProfile extends \com\microsoft\wc\thing\Thing {
+class CholesterolProfile extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines cholesterol reading in the blood.
 	 */

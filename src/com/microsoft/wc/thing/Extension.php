@@ -14,6 +14,11 @@ class Extension {
 	 */
 
 	/**
+	 * @XmlElement	(type="\com\microsoft\wc\thing\AnyMixed", collection="true", name="*")
+	 */
+	protected $any;
+
+	/**
 	 * @XmlAttribute	(type="string", name="source")
 	 */
 	protected $source;
@@ -33,11 +38,53 @@ class Extension {
 	 */
 	protected $xsl;
 
-	public function __construct($source = NULL, $ver = NULL, $logo = NULL, $xsl = NULL) {
+	public function __construct($any = NULL, $source = NULL, $ver = NULL, $logo = NULL, $xsl = NULL) {
+		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 		$this->source = ($source===NULL) ? NULL : $this->validateSource($source);
 		$this->ver = ($ver===NULL) ? NULL : $this->validateVer($ver);
 		$this->logo = ($logo===NULL) ? NULL : $this->validateLogo($logo);
 		$this->xsl = ($xsl===NULL) ? NULL : $this->validateXsl($xsl);
+	}
+
+	public function getAny() {
+		if ($this->any===NULL) {
+			$this->any = $this->createAny();
+		}
+		return $this->any;
+	}
+	
+	protected function createAny() {
+		return array();
+	}
+
+	public function setAny($any) {
+		$this->any = $this->validateAny($any);
+	}
+
+	protected function validateAny($any) {
+		$count = count($any);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'any', 0));
+		}
+		foreach ($any as $entry) {
+			if ( ! is_AnyMixed($entry) && ! is_null($entry) ) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+			}
+		}
+	
+		return $any;
+	}
+
+	public function addAny($any) {
+		$this->any[] = $this->validateAnyType($any);
+	}
+
+	protected function validateAnyType($any) {
+		if ( ! is_AnyMixed($any) && ! is_null($any) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+		}
+	
+		return $any;
 	}
 
 	public function getSource() {

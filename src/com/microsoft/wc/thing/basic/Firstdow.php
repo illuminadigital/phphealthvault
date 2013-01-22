@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\basic;
  * })
  * @XmlEntity	(xml="firstdow")
  */
-class Firstdow extends \com\microsoft\wc\thing\Thing {
+class Firstdow extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * The users preferred first day of the week.
 	 * The user can define which day of the weekthey want calendars and weekly computationsto start with. 1 = Sunday2 = Monday3 = Tuesday4 = Wednesday5 = Thursday6 = Friday7 = Saturday

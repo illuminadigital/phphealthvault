@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\application_data_reference;
  * })
  * @XmlEntity	(xml="application-data-reference")
  */
-class ApplicationDataReference extends \com\microsoft\wc\thing\Thing {
+class ApplicationDataReference extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information that can be used by an application to render content from anotherapplication.
 	 */

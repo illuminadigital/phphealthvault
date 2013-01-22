@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\procedure;
  * })
  * @XmlEntity	(xml="procedure")
  */
-class Procedure extends \com\microsoft\wc\thing\Thing {
+class Procedure extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a procedure.
 	 * Note: Please use the new version of this data type instead of this version.This thing type describes the procedure results of a person.

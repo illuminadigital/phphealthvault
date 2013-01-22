@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\BloodPressure;
  * })
  * @XmlEntity	(xml="blood-pressure")
  */
-class BloodPressure extends \com\microsoft\wc\thing\Thing {
+class BloodPressure extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Defines a single blood pressure reading.
 	 */

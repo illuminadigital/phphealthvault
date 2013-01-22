@@ -9,7 +9,7 @@ namespace com\microsoft\wc\thing\health_assessment;
  * })
  * @XmlEntity	(xml="health-assessment")
  */
-class HealthAssessment extends \com\microsoft\wc\thing\Thing {
+class HealthAssessment extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Contains the results of a health assessment.
 	 * Examples of health assessment include high blood pressure assessment and diabetes assessment.
