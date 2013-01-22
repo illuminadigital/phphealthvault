@@ -31,7 +31,7 @@ class ANY {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -39,9 +39,6 @@ class ANY {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}

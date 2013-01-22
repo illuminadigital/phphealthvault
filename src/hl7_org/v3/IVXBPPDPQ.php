@@ -30,7 +30,7 @@ class IVXBPPDPQ extends \PPD_PQ\PPDPQ {
 	}
 	
 	protected function createInclusive() {
-		return new \hl7_org\v3\Bl();
+		return NULL;
 	}
 
 	public function setInclusive($inclusive) {
@@ -38,9 +38,6 @@ class IVXBPPDPQ extends \PPD_PQ\PPDPQ {
 	}
 
 	protected function validateInclusive($inclusive) {
-		if ( ! $inclusive instanceof \hl7_org\v3\Bl  && ! is_null($inclusive) ) {
-			$inclusive = new \hl7_org\v3\Bl ($inclusive);
-		}
 	
 		return $inclusive;
 	}

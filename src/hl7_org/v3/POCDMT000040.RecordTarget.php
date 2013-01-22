@@ -184,7 +184,7 @@ class POCDMT000040.RecordTarget {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -192,9 +192,6 @@ class POCDMT000040.RecordTarget {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -207,7 +204,7 @@ class POCDMT000040.RecordTarget {
 	}
 	
 	protected function createTypeCode() {
-		return new \hl7_org\v3\ParticipationType();
+		return NULL;
 	}
 
 	public function setTypeCode($typeCode) {
@@ -215,9 +212,6 @@ class POCDMT000040.RecordTarget {
 	}
 
 	protected function validateTypeCode($typeCode) {
-		if ( ! $typeCode instanceof \hl7_org\v3\ParticipationType  && ! is_null($typeCode) ) {
-			$typeCode = new \hl7_org\v3\ParticipationType ($typeCode);
-		}
 	
 		return $typeCode;
 	}
@@ -230,7 +224,7 @@ class POCDMT000040.RecordTarget {
 	}
 	
 	protected function createContextControlCode() {
-		return new \hl7_org\v3\ContextControl();
+		return NULL;
 	}
 
 	public function setContextControlCode($contextControlCode) {
@@ -238,9 +232,6 @@ class POCDMT000040.RecordTarget {
 	}
 
 	protected function validateContextControlCode($contextControlCode) {
-		if ( ! $contextControlCode instanceof \hl7_org\v3\ContextControl  && ! is_null($contextControlCode) ) {
-			$contextControlCode = new \hl7_org\v3\ContextControl ($contextControlCode);
-		}
 	
 		return $contextControlCode;
 	}

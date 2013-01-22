@@ -38,23 +38,22 @@ class OtherRecords {
 	}
 
 	protected function validateStudentRecordPackageRefId($studentRecordPackageRefId) {
-		if ( ! $studentRecordPackageRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType ) {
-			$studentRecordPackageRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($studentRecordPackageRefId);
-		}
 		$count = count($studentRecordPackageRefId);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'studentRecordPackageRefId', 1));
 		}
 		foreach ($studentRecordPackageRefId as $entry) {
-			if (!($entry instanceof IdRefType)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'studentRecordPackageRefId', 'IdRefType'));
-			}
 		}
 	
 		return $studentRecordPackageRefId;
 	}
 
 	public function addStudentRecordPackageRefId($studentRecordPackageRefId) {
-		$this->studentRecordPackageRefId[] = $studentRecordPackageRefId;
+		$this->studentRecordPackageRefId[] = $this->validateStudentRecordPackageRefIdType($studentRecordPackageRefId);
+	}
+
+	protected function validateStudentRecordPackageRefIdType($studentRecordPackageRefId) {
+	
+		return $studentRecordPackageRefId;
 	}
 } // end class OtherRecords

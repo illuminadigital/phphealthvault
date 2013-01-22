@@ -236,7 +236,7 @@ class POCDMT000040.Authenticator {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -244,9 +244,6 @@ class POCDMT000040.Authenticator {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -259,7 +256,7 @@ class POCDMT000040.Authenticator {
 	}
 	
 	protected function createTypeCode() {
-		return new \hl7_org\v3\ParticipationType();
+		return NULL;
 	}
 
 	public function setTypeCode($typeCode) {
@@ -267,9 +264,6 @@ class POCDMT000040.Authenticator {
 	}
 
 	protected function validateTypeCode($typeCode) {
-		if ( ! $typeCode instanceof \hl7_org\v3\ParticipationType  && ! is_null($typeCode) ) {
-			$typeCode = new \hl7_org\v3\ParticipationType ($typeCode);
-		}
 	
 		return $typeCode;
 	}

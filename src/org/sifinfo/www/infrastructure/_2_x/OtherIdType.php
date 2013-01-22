@@ -31,7 +31,7 @@ class OtherIdType {
 	}
 	
 	protected function createType() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0147IdentificationSystemType();
+		return NULL;
 	}
 
 	public function setType($type) {
@@ -39,9 +39,6 @@ class OtherIdType {
 	}
 
 	protected function validateType($type) {
-		if ( ! $type instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0147IdentificationSystemType ) {
-			$type = new \org\sifinfo\www\infrastructure\_2_x\NCES0147IdentificationSystemType ($type);
-		}
 	
 		return $type;
 	}

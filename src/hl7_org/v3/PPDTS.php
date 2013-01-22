@@ -59,7 +59,7 @@ class PPDTS extends \TS\TS {
 	}
 	
 	protected function createDistributionType() {
-		return new \hl7_org\v3\ProbabilityDistributionType();
+		return NULL;
 	}
 
 	public function setDistributionType($distributionType) {
@@ -67,9 +67,6 @@ class PPDTS extends \TS\TS {
 	}
 
 	protected function validateDistributionType($distributionType) {
-		if ( ! $distributionType instanceof \hl7_org\v3\ProbabilityDistributionType  && ! is_null($distributionType) ) {
-			$distributionType = new \hl7_org\v3\ProbabilityDistributionType ($distributionType);
-		}
 	
 		return $distributionType;
 	}

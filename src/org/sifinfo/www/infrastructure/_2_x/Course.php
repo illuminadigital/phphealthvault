@@ -60,7 +60,7 @@ class Course {
 	}
 	
 	protected function createSchoolAttendedRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setSchoolAttendedRefId($schoolAttendedRefId) {
@@ -68,9 +68,6 @@ class Course {
 	}
 
 	protected function validateSchoolAttendedRefId($schoolAttendedRefId) {
-		if ( ! $schoolAttendedRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType  && ! is_null($schoolAttendedRefId) ) {
-			$schoolAttendedRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($schoolAttendedRefId);
-		}
 	
 		return $schoolAttendedRefId;
 	}
@@ -106,7 +103,7 @@ class Course {
 	}
 	
 	protected function createStartDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setStartDate($startDate) {
@@ -114,9 +111,6 @@ class Course {
 	}
 
 	protected function validateStartDate($startDate) {
-		if ( ! $startDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($startDate) ) {
-			$startDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($startDate);
-		}
 	
 		return $startDate;
 	}
@@ -129,7 +123,7 @@ class Course {
 	}
 	
 	protected function createEndDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setEndDate($endDate) {
@@ -137,9 +131,6 @@ class Course {
 	}
 
 	protected function validateEndDate($endDate) {
-		if ( ! $endDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($endDate) ) {
-			$endDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($endDate);
-		}
 	
 		return $endDate;
 	}

@@ -76,7 +76,7 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createSession() {
-		return new \com\microsoft\wc\thing\aerobic\AerobicSession();
+		return new \com\microsoft\wc\thing\types\AerobicSession();
 	}
 
 	public function setSession($session) {
@@ -84,8 +84,8 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSession($session) {
-		if ( ! $session instanceof \com\microsoft\wc\thing\aerobic\AerobicSession ) {
-			$session = new \com\microsoft\wc\thing\aerobic\AerobicSession ($session);
+		if ( ! $session instanceof \com\microsoft\wc\thing\types\AerobicSession ) {
+			$session = new \com\microsoft\wc\thing\types\AerobicSession ($session);
 		}
 	
 		return $session;

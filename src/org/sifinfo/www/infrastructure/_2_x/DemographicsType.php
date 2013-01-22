@@ -150,7 +150,7 @@ class DemographicsType {
 	}
 	
 	protected function createHispanicLatino() {
-		return new \org\sifinfo\www\infrastructure\_2_x\HispanicLatinoType();
+		return NULL;
 	}
 
 	public function setHispanicLatino($hispanicLatino) {
@@ -158,9 +158,6 @@ class DemographicsType {
 	}
 
 	protected function validateHispanicLatino($hispanicLatino) {
-		if ( ! $hispanicLatino instanceof \org\sifinfo\www\infrastructure\_2_x\HispanicLatinoType  && ! is_null($hispanicLatino) ) {
-			$hispanicLatino = new \org\sifinfo\www\infrastructure\_2_x\HispanicLatinoType ($hispanicLatino);
-		}
 	
 		return $hispanicLatino;
 	}
@@ -173,7 +170,7 @@ class DemographicsType {
 	}
 	
 	protected function createGender() {
-		return new \org\sifinfo\www\infrastructure\_2_x\GenderType();
+		return NULL;
 	}
 
 	public function setGender($gender) {
@@ -181,9 +178,6 @@ class DemographicsType {
 	}
 
 	protected function validateGender($gender) {
-		if ( ! $gender instanceof \org\sifinfo\www\infrastructure\_2_x\GenderType  && ! is_null($gender) ) {
-			$gender = new \org\sifinfo\www\infrastructure\_2_x\GenderType ($gender);
-		}
 	
 		return $gender;
 	}
@@ -196,7 +190,7 @@ class DemographicsType {
 	}
 	
 	protected function createBirthDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\BirthDateType();
+		return NULL;
 	}
 
 	public function setBirthDate($birthDate) {
@@ -204,9 +198,6 @@ class DemographicsType {
 	}
 
 	protected function validateBirthDate($birthDate) {
-		if ( ! $birthDate instanceof \org\sifinfo\www\infrastructure\_2_x\BirthDateType  && ! is_null($birthDate) ) {
-			$birthDate = new \org\sifinfo\www\infrastructure\_2_x\BirthDateType ($birthDate);
-		}
 	
 		return $birthDate;
 	}
@@ -219,7 +210,7 @@ class DemographicsType {
 	}
 	
 	protected function createBirthDateVerification() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0315BirthdateVerificationType();
+		return NULL;
 	}
 
 	public function setBirthDateVerification($birthDateVerification) {
@@ -227,9 +218,6 @@ class DemographicsType {
 	}
 
 	protected function validateBirthDateVerification($birthDateVerification) {
-		if ( ! $birthDateVerification instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0315BirthdateVerificationType  && ! is_null($birthDateVerification) ) {
-			$birthDateVerification = new \org\sifinfo\www\infrastructure\_2_x\NCES0315BirthdateVerificationType ($birthDateVerification);
-		}
 	
 		return $birthDateVerification;
 	}
@@ -288,7 +276,7 @@ class DemographicsType {
 	}
 	
 	protected function createStateOfBirth() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StateProvinceType();
+		return NULL;
 	}
 
 	public function setStateOfBirth($stateOfBirth) {
@@ -296,9 +284,6 @@ class DemographicsType {
 	}
 
 	protected function validateStateOfBirth($stateOfBirth) {
-		if ( ! $stateOfBirth instanceof \org\sifinfo\www\infrastructure\_2_x\StateProvinceType  && ! is_null($stateOfBirth) ) {
-			$stateOfBirth = new \org\sifinfo\www\infrastructure\_2_x\StateProvinceType ($stateOfBirth);
-		}
 	
 		return $stateOfBirth;
 	}
@@ -311,7 +296,7 @@ class DemographicsType {
 	}
 	
 	protected function createCountryOfBirth() {
-		return new \org\sifinfo\www\infrastructure\_2_x\CountryType();
+		return NULL;
 	}
 
 	public function setCountryOfBirth($countryOfBirth) {
@@ -319,9 +304,6 @@ class DemographicsType {
 	}
 
 	protected function validateCountryOfBirth($countryOfBirth) {
-		if ( ! $countryOfBirth instanceof \org\sifinfo\www\infrastructure\_2_x\CountryType  && ! is_null($countryOfBirth) ) {
-			$countryOfBirth = new \org\sifinfo\www\infrastructure\_2_x\CountryType ($countryOfBirth);
-		}
 	
 		return $countryOfBirth;
 	}
@@ -403,7 +385,7 @@ class DemographicsType {
 	}
 	
 	protected function createCitizenshipStatus() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0322CitizenshipStatusType();
+		return NULL;
 	}
 
 	public function setCitizenshipStatus($citizenshipStatus) {
@@ -411,9 +393,6 @@ class DemographicsType {
 	}
 
 	protected function validateCitizenshipStatus($citizenshipStatus) {
-		if ( ! $citizenshipStatus instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0322CitizenshipStatusType  && ! is_null($citizenshipStatus) ) {
-			$citizenshipStatus = new \org\sifinfo\www\infrastructure\_2_x\NCES0322CitizenshipStatusType ($citizenshipStatus);
-		}
 	
 		return $citizenshipStatus;
 	}
@@ -495,7 +474,7 @@ class DemographicsType {
 	}
 	
 	protected function createMaritalStatus() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0330MaritalStatusType();
+		return NULL;
 	}
 
 	public function setMaritalStatus($maritalStatus) {
@@ -503,9 +482,6 @@ class DemographicsType {
 	}
 
 	protected function validateMaritalStatus($maritalStatus) {
-		if ( ! $maritalStatus instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0330MaritalStatusType  && ! is_null($maritalStatus) ) {
-			$maritalStatus = new \org\sifinfo\www\infrastructure\_2_x\NCES0330MaritalStatusType ($maritalStatus);
-		}
 	
 		return $maritalStatus;
 	}

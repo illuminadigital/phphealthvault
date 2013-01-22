@@ -36,7 +36,7 @@ class AcademicFocus {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0229ProgramTypeType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -44,9 +44,6 @@ class AcademicFocus {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0229ProgramTypeType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0229ProgramTypeType ($code);
-		}
 	
 		return $code;
 	}

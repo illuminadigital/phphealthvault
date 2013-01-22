@@ -146,7 +146,7 @@ class StudentSchoolEnrollmentData {
 	}
 	
 	protected function createSchoolAttendedRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setSchoolAttendedRefId($schoolAttendedRefId) {
@@ -154,9 +154,6 @@ class StudentSchoolEnrollmentData {
 	}
 
 	protected function validateSchoolAttendedRefId($schoolAttendedRefId) {
-		if ( ! $schoolAttendedRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType ) {
-			$schoolAttendedRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($schoolAttendedRefId);
-		}
 	
 		return $schoolAttendedRefId;
 	}

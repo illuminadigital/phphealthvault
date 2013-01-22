@@ -123,7 +123,7 @@ class Requirement {
 	}
 	
 	protected function createStatusDeterminationDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setStatusDeterminationDate($statusDeterminationDate) {
@@ -131,9 +131,6 @@ class Requirement {
 	}
 
 	protected function validateStatusDeterminationDate($statusDeterminationDate) {
-		if ( ! $statusDeterminationDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($statusDeterminationDate) ) {
-			$statusDeterminationDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($statusDeterminationDate);
-		}
 	
 		return $statusDeterminationDate;
 	}

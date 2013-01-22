@@ -94,7 +94,7 @@ class StudentSchoolRelationship {
 	}
 	
 	protected function createNonResidentAttendReason() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0599NonResidentAttendanceRationaleType();
+		return NULL;
 	}
 
 	public function setNonResidentAttendReason($nonResidentAttendReason) {
@@ -102,9 +102,6 @@ class StudentSchoolRelationship {
 	}
 
 	protected function validateNonResidentAttendReason($nonResidentAttendReason) {
-		if ( ! $nonResidentAttendReason instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0599NonResidentAttendanceRationaleType  && ! is_null($nonResidentAttendReason) ) {
-			$nonResidentAttendReason = new \org\sifinfo\www\infrastructure\_2_x\NCES0599NonResidentAttendanceRationaleType ($nonResidentAttendReason);
-		}
 	
 		return $nonResidentAttendReason;
 	}

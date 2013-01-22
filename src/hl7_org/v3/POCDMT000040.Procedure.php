@@ -868,7 +868,7 @@ class POCDMT000040.Procedure {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -876,9 +876,6 @@ class POCDMT000040.Procedure {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -891,7 +888,7 @@ class POCDMT000040.Procedure {
 	}
 	
 	protected function createClassCode() {
-		return new \hl7_org\v3\ActClass();
+		return NULL;
 	}
 
 	public function setClassCode($classCode) {
@@ -899,9 +896,6 @@ class POCDMT000040.Procedure {
 	}
 
 	protected function validateClassCode($classCode) {
-		if ( ! $classCode instanceof \hl7_org\v3\ActClass ) {
-			$classCode = new \hl7_org\v3\ActClass ($classCode);
-		}
 	
 		return $classCode;
 	}
@@ -914,7 +908,7 @@ class POCDMT000040.Procedure {
 	}
 	
 	protected function createMoodCode() {
-		return new \hl7_org\v3\XDocumentProcedureMood();
+		return NULL;
 	}
 
 	public function setMoodCode($moodCode) {
@@ -922,9 +916,6 @@ class POCDMT000040.Procedure {
 	}
 
 	protected function validateMoodCode($moodCode) {
-		if ( ! $moodCode instanceof \hl7_org\v3\XDocumentProcedureMood ) {
-			$moodCode = new \hl7_org\v3\XDocumentProcedureMood ($moodCode);
-		}
 	
 		return $moodCode;
 	}
@@ -937,7 +928,7 @@ class POCDMT000040.Procedure {
 	}
 	
 	protected function createNegationInd() {
-		return new \hl7_org\v3\Bl();
+		return NULL;
 	}
 
 	public function setNegationInd($negationInd) {
@@ -945,9 +936,6 @@ class POCDMT000040.Procedure {
 	}
 
 	protected function validateNegationInd($negationInd) {
-		if ( ! $negationInd instanceof \hl7_org\v3\Bl  && ! is_null($negationInd) ) {
-			$negationInd = new \hl7_org\v3\Bl ($negationInd);
-		}
 	
 		return $negationInd;
 	}

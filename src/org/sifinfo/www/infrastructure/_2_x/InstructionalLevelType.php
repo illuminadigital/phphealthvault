@@ -37,7 +37,7 @@ class InstructionalLevelType {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0437InstructionalLevelType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -45,9 +45,6 @@ class InstructionalLevelType {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0437InstructionalLevelType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0437InstructionalLevelType ($code);
-		}
 	
 		return $code;
 	}

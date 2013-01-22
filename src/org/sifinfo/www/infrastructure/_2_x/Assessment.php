@@ -101,7 +101,7 @@ class Assessment {
 	}
 	
 	protected function createAdministrationDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setAdministrationDate($administrationDate) {
@@ -109,9 +109,6 @@ class Assessment {
 	}
 
 	protected function validateAdministrationDate($administrationDate) {
-		if ( ! $administrationDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($administrationDate) ) {
-			$administrationDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($administrationDate);
-		}
 	
 		return $administrationDate;
 	}
@@ -216,7 +213,7 @@ class Assessment {
 	}
 	
 	protected function createTestScoreType() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0056AssessmentReportingMethodType();
+		return NULL;
 	}
 
 	public function setTestScoreType($testScoreType) {
@@ -224,9 +221,6 @@ class Assessment {
 	}
 
 	protected function validateTestScoreType($testScoreType) {
-		if ( ! $testScoreType instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0056AssessmentReportingMethodType  && ! is_null($testScoreType) ) {
-			$testScoreType = new \org\sifinfo\www\infrastructure\_2_x\NCES0056AssessmentReportingMethodType ($testScoreType);
-		}
 	
 		return $testScoreType;
 	}

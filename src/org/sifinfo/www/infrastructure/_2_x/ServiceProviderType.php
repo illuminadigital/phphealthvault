@@ -36,7 +36,7 @@ class ServiceProviderType {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0557JobClassificationType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -44,9 +44,6 @@ class ServiceProviderType {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0557JobClassificationType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0557JobClassificationType ($code);
-		}
 	
 		return $code;
 	}

@@ -37,7 +37,7 @@ class StudentRecordPackageType extends AbstractContentPackageType {
 	}
 	
 	protected function createSifRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\RefIdType();
+		return NULL;
 	}
 
 	public function setSifRefId($sifRefId) {
@@ -45,9 +45,6 @@ class StudentRecordPackageType extends AbstractContentPackageType {
 	}
 
 	protected function validateSifRefId($sifRefId) {
-		if ( ! $sifRefId instanceof \org\sifinfo\www\infrastructure\_2_x\RefIdType ) {
-			$sifRefId = new \org\sifinfo\www\infrastructure\_2_x\RefIdType ($sifRefId);
-		}
 	
 		return $sifRefId;
 	}

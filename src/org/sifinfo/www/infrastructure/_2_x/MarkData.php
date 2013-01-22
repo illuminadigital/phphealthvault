@@ -204,7 +204,7 @@ class MarkData {
 	}
 	
 	protected function createMarkValueInfoDataRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setMarkValueInfoDataRefId($markValueInfoDataRefId) {
@@ -212,9 +212,6 @@ class MarkData {
 	}
 
 	protected function validateMarkValueInfoDataRefId($markValueInfoDataRefId) {
-		if ( ! $markValueInfoDataRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType ) {
-			$markValueInfoDataRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($markValueInfoDataRefId);
-		}
 	
 		return $markValueInfoDataRefId;
 	}

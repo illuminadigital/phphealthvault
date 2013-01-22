@@ -95,7 +95,7 @@ class DemographicsData {
 	}
 	
 	protected function createGender() {
-		return new \org\sifinfo\www\infrastructure\_2_x\GenderType();
+		return NULL;
 	}
 
 	public function setGender($gender) {
@@ -103,9 +103,6 @@ class DemographicsData {
 	}
 
 	protected function validateGender($gender) {
-		if ( ! $gender instanceof \org\sifinfo\www\infrastructure\_2_x\GenderType  && ! is_null($gender) ) {
-			$gender = new \org\sifinfo\www\infrastructure\_2_x\GenderType ($gender);
-		}
 	
 		return $gender;
 	}
@@ -118,7 +115,7 @@ class DemographicsData {
 	}
 	
 	protected function createBirthDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\BirthDateType();
+		return NULL;
 	}
 
 	public function setBirthDate($birthDate) {
@@ -126,9 +123,6 @@ class DemographicsData {
 	}
 
 	protected function validateBirthDate($birthDate) {
-		if ( ! $birthDate instanceof \org\sifinfo\www\infrastructure\_2_x\BirthDateType  && ! is_null($birthDate) ) {
-			$birthDate = new \org\sifinfo\www\infrastructure\_2_x\BirthDateType ($birthDate);
-		}
 	
 		return $birthDate;
 	}
@@ -187,7 +181,7 @@ class DemographicsData {
 	}
 	
 	protected function createHispanicLatino() {
-		return new \org\sifinfo\www\infrastructure\_2_x\HispanicLatinoType();
+		return NULL;
 	}
 
 	public function setHispanicLatino($hispanicLatino) {
@@ -195,9 +189,6 @@ class DemographicsData {
 	}
 
 	protected function validateHispanicLatino($hispanicLatino) {
-		if ( ! $hispanicLatino instanceof \org\sifinfo\www\infrastructure\_2_x\HispanicLatinoType  && ! is_null($hispanicLatino) ) {
-			$hispanicLatino = new \org\sifinfo\www\infrastructure\_2_x\HispanicLatinoType ($hispanicLatino);
-		}
 	
 		return $hispanicLatino;
 	}
@@ -210,7 +201,7 @@ class DemographicsData {
 	}
 	
 	protected function createCountryOfBirth() {
-		return new \org\sifinfo\www\infrastructure\_2_x\CountryType();
+		return NULL;
 	}
 
 	public function setCountryOfBirth($countryOfBirth) {
@@ -218,9 +209,6 @@ class DemographicsData {
 	}
 
 	protected function validateCountryOfBirth($countryOfBirth) {
-		if ( ! $countryOfBirth instanceof \org\sifinfo\www\infrastructure\_2_x\CountryType  && ! is_null($countryOfBirth) ) {
-			$countryOfBirth = new \org\sifinfo\www\infrastructure\_2_x\CountryType ($countryOfBirth);
-		}
 	
 		return $countryOfBirth;
 	}

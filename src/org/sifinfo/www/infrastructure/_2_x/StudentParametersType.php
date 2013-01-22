@@ -127,7 +127,7 @@ class StudentParametersType {
 	}
 	
 	protected function createStateProvinceId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType();
+		return NULL;
 	}
 
 	public function setStateProvinceId($stateProvinceId) {
@@ -135,9 +135,6 @@ class StudentParametersType {
 	}
 
 	protected function validateStateProvinceId($stateProvinceId) {
-		if ( ! $stateProvinceId instanceof \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType  && ! is_null($stateProvinceId) ) {
-			$stateProvinceId = new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType ($stateProvinceId);
-		}
 	
 		return $stateProvinceId;
 	}
@@ -150,7 +147,7 @@ class StudentParametersType {
 	}
 	
 	protected function createLocalId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\LocalIdType();
+		return NULL;
 	}
 
 	public function setLocalId($localId) {
@@ -158,9 +155,6 @@ class StudentParametersType {
 	}
 
 	protected function validateLocalId($localId) {
-		if ( ! $localId instanceof \org\sifinfo\www\infrastructure\_2_x\LocalIdType  && ! is_null($localId) ) {
-			$localId = new \org\sifinfo\www\infrastructure\_2_x\LocalIdType ($localId);
-		}
 	
 		return $localId;
 	}
@@ -173,7 +167,7 @@ class StudentParametersType {
 	}
 	
 	protected function createSifRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setSifRefId($sifRefId) {
@@ -181,9 +175,6 @@ class StudentParametersType {
 	}
 
 	protected function validateSifRefId($sifRefId) {
-		if ( ! $sifRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType  && ! is_null($sifRefId) ) {
-			$sifRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($sifRefId);
-		}
 	
 		return $sifRefId;
 	}
@@ -219,7 +210,7 @@ class StudentParametersType {
 	}
 	
 	protected function createSSN() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SSNType();
+		return NULL;
 	}
 
 	public function setSSN($sSN) {
@@ -227,9 +218,6 @@ class StudentParametersType {
 	}
 
 	protected function validateSSN($sSN) {
-		if ( ! $sSN instanceof \org\sifinfo\www\infrastructure\_2_x\SSNType  && ! is_null($sSN) ) {
-			$sSN = new \org\sifinfo\www\infrastructure\_2_x\SSNType ($sSN);
-		}
 	
 		return $sSN;
 	}
@@ -403,7 +391,7 @@ class StudentParametersType {
 	}
 	
 	protected function createGraduationDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\GraduationDateType();
+		return NULL;
 	}
 
 	public function setGraduationDate($graduationDate) {
@@ -411,9 +399,6 @@ class StudentParametersType {
 	}
 
 	protected function validateGraduationDate($graduationDate) {
-		if ( ! $graduationDate instanceof \org\sifinfo\www\infrastructure\_2_x\GraduationDateType  && ! is_null($graduationDate) ) {
-			$graduationDate = new \org\sifinfo\www\infrastructure\_2_x\GraduationDateType ($graduationDate);
-		}
 	
 		return $graduationDate;
 	}

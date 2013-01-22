@@ -30,7 +30,7 @@ class UVPTS extends \TS\TS {
 	}
 	
 	protected function createProbability() {
-		return new \hl7_org\v3\Probability();
+		return NULL;
 	}
 
 	public function setProbability($probability) {
@@ -38,9 +38,6 @@ class UVPTS extends \TS\TS {
 	}
 
 	protected function validateProbability($probability) {
-		if ( ! $probability instanceof \hl7_org\v3\Probability  && ! is_null($probability) ) {
-			$probability = new \hl7_org\v3\Probability ($probability);
-		}
 	
 		return $probability;
 	}

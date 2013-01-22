@@ -31,7 +31,7 @@ class PQR extends \CV\CV {
 	}
 	
 	protected function createValue() {
-		return new \hl7_org\v3\Real();
+		return NULL;
 	}
 
 	public function setValue($value) {
@@ -39,9 +39,6 @@ class PQR extends \CV\CV {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \hl7_org\v3\Real  && ! is_null($value) ) {
-			$value = new \hl7_org\v3\Real ($value);
-		}
 	
 		return $value;
 	}

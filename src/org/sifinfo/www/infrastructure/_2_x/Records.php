@@ -48,7 +48,7 @@ class Records {
 	}
 	
 	protected function createStudentDemographicRecordRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setStudentDemographicRecordRefId($studentDemographicRecordRefId) {
@@ -56,9 +56,6 @@ class Records {
 	}
 
 	protected function validateStudentDemographicRecordRefId($studentDemographicRecordRefId) {
-		if ( ! $studentDemographicRecordRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType ) {
-			$studentDemographicRecordRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($studentDemographicRecordRefId);
-		}
 	
 		return $studentDemographicRecordRefId;
 	}
@@ -71,7 +68,7 @@ class Records {
 	}
 	
 	protected function createStudentAcademicRecordRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setStudentAcademicRecordRefId($studentAcademicRecordRefId) {
@@ -79,9 +76,6 @@ class Records {
 	}
 
 	protected function validateStudentAcademicRecordRefId($studentAcademicRecordRefId) {
-		if ( ! $studentAcademicRecordRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType  && ! is_null($studentAcademicRecordRefId) ) {
-			$studentAcademicRecordRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($studentAcademicRecordRefId);
-		}
 	
 		return $studentAcademicRecordRefId;
 	}
@@ -94,7 +88,7 @@ class Records {
 	}
 	
 	protected function createStudentSpecialEducationRecordRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setStudentSpecialEducationRecordRefId($studentSpecialEducationRecordRefId) {
@@ -102,9 +96,6 @@ class Records {
 	}
 
 	protected function validateStudentSpecialEducationRecordRefId($studentSpecialEducationRecordRefId) {
-		if ( ! $studentSpecialEducationRecordRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType  && ! is_null($studentSpecialEducationRecordRefId) ) {
-			$studentSpecialEducationRecordRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($studentSpecialEducationRecordRefId);
-		}
 	
 		return $studentSpecialEducationRecordRefId;
 	}

@@ -95,7 +95,7 @@ class MealStatusType {
 	}
 	
 	protected function createSchoolYear() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SchoolYearType();
+		return NULL;
 	}
 
 	public function setSchoolYear($schoolYear) {
@@ -103,9 +103,6 @@ class MealStatusType {
 	}
 
 	protected function validateSchoolYear($schoolYear) {
-		if ( ! $schoolYear instanceof \org\sifinfo\www\infrastructure\_2_x\SchoolYearType  && ! is_null($schoolYear) ) {
-			$schoolYear = new \org\sifinfo\www\infrastructure\_2_x\SchoolYearType ($schoolYear);
-		}
 	
 		return $schoolYear;
 	}

@@ -36,7 +36,7 @@ class MediumOfInstruction {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0209MediumOfInstructionType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -44,9 +44,6 @@ class MediumOfInstruction {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0209MediumOfInstructionType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0209MediumOfInstructionType ($code);
-		}
 	
 		return $code;
 	}

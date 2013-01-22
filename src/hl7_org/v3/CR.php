@@ -89,7 +89,7 @@ class CR extends \ANY\ANY {
 	}
 	
 	protected function createInverted() {
-		return new \hl7_org\v3\Bn();
+		return NULL;
 	}
 
 	public function setInverted($inverted) {
@@ -97,9 +97,6 @@ class CR extends \ANY\ANY {
 	}
 
 	protected function validateInverted($inverted) {
-		if ( ! $inverted instanceof \hl7_org\v3\Bn  && ! is_null($inverted) ) {
-			$inverted = new \hl7_org\v3\Bn ($inverted);
-		}
 	
 		return $inverted;
 	}

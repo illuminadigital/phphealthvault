@@ -184,7 +184,7 @@ class POCDMT000040.Component5 {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -192,9 +192,6 @@ class POCDMT000040.Component5 {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -207,7 +204,7 @@ class POCDMT000040.Component5 {
 	}
 	
 	protected function createTypeCode() {
-		return new \hl7_org\v3\ActRelationshipHasComponent();
+		return NULL;
 	}
 
 	public function setTypeCode($typeCode) {
@@ -215,9 +212,6 @@ class POCDMT000040.Component5 {
 	}
 
 	protected function validateTypeCode($typeCode) {
-		if ( ! $typeCode instanceof \hl7_org\v3\ActRelationshipHasComponent  && ! is_null($typeCode) ) {
-			$typeCode = new \hl7_org\v3\ActRelationshipHasComponent ($typeCode);
-		}
 	
 		return $typeCode;
 	}
@@ -230,7 +224,7 @@ class POCDMT000040.Component5 {
 	}
 	
 	protected function createContextConductionInd() {
-		return new \hl7_org\v3\Bl();
+		return NULL;
 	}
 
 	public function setContextConductionInd($contextConductionInd) {
@@ -238,9 +232,6 @@ class POCDMT000040.Component5 {
 	}
 
 	protected function validateContextConductionInd($contextConductionInd) {
-		if ( ! $contextConductionInd instanceof \hl7_org\v3\Bl  && ! is_null($contextConductionInd) ) {
-			$contextConductionInd = new \hl7_org\v3\Bl ($contextConductionInd);
-		}
 	
 		return $contextConductionInd;
 	}

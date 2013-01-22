@@ -30,7 +30,7 @@ class IdRefType {
 	}
 	
 	protected function createValue() {
-		return new \org\sifinfo\www\infrastructure\_2_x\RefIdType();
+		return NULL;
 	}
 
 	public function setValue($value) {
@@ -38,9 +38,6 @@ class IdRefType {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \org\sifinfo\www\infrastructure\_2_x\RefIdType ) {
-			$value = new \org\sifinfo\www\infrastructure\_2_x\RefIdType ($value);
-		}
 	
 		return $value;
 	}

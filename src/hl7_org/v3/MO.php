@@ -37,7 +37,7 @@ class MO extends \QTY\QTY {
 	}
 	
 	protected function createValue() {
-		return new \hl7_org\v3\Real();
+		return NULL;
 	}
 
 	public function setValue($value) {
@@ -45,9 +45,6 @@ class MO extends \QTY\QTY {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \hl7_org\v3\Real  && ! is_null($value) ) {
-			$value = new \hl7_org\v3\Real ($value);
-		}
 	
 		return $value;
 	}
@@ -60,7 +57,7 @@ class MO extends \QTY\QTY {
 	}
 	
 	protected function createCurrency() {
-		return new \hl7_org\v3\Cs();
+		return NULL;
 	}
 
 	public function setCurrency($currency) {
@@ -68,9 +65,6 @@ class MO extends \QTY\QTY {
 	}
 
 	protected function validateCurrency($currency) {
-		if ( ! $currency instanceof \hl7_org\v3\Cs  && ! is_null($currency) ) {
-			$currency = new \hl7_org\v3\Cs ($currency);
-		}
 	
 		return $currency;
 	}

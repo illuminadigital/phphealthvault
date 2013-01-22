@@ -67,7 +67,7 @@ class StudentRecordExchangeType {
 	}
 	
 	protected function createStateProvinceId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType();
+		return NULL;
 	}
 
 	public function setStateProvinceId($stateProvinceId) {
@@ -75,9 +75,6 @@ class StudentRecordExchangeType {
 	}
 
 	protected function validateStateProvinceId($stateProvinceId) {
-		if ( ! $stateProvinceId instanceof \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType  && ! is_null($stateProvinceId) ) {
-			$stateProvinceId = new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType ($stateProvinceId);
-		}
 	
 		return $stateProvinceId;
 	}
@@ -90,7 +87,7 @@ class StudentRecordExchangeType {
 	}
 	
 	protected function createLocalId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\LocalIdType();
+		return NULL;
 	}
 
 	public function setLocalId($localId) {
@@ -98,9 +95,6 @@ class StudentRecordExchangeType {
 	}
 
 	protected function validateLocalId($localId) {
-		if ( ! $localId instanceof \org\sifinfo\www\infrastructure\_2_x\LocalIdType  && ! is_null($localId) ) {
-			$localId = new \org\sifinfo\www\infrastructure\_2_x\LocalIdType ($localId);
-		}
 	
 		return $localId;
 	}
@@ -113,7 +107,7 @@ class StudentRecordExchangeType {
 	}
 	
 	protected function createStudentPersonalRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setStudentPersonalRefId($studentPersonalRefId) {
@@ -121,9 +115,6 @@ class StudentRecordExchangeType {
 	}
 
 	protected function validateStudentPersonalRefId($studentPersonalRefId) {
-		if ( ! $studentPersonalRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType  && ! is_null($studentPersonalRefId) ) {
-			$studentPersonalRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($studentPersonalRefId);
-		}
 	
 		return $studentPersonalRefId;
 	}
@@ -205,7 +196,7 @@ class StudentRecordExchangeType {
 	}
 	
 	protected function createRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\RefIdType();
+		return NULL;
 	}
 
 	public function setRefId($refId) {
@@ -213,9 +204,6 @@ class StudentRecordExchangeType {
 	}
 
 	protected function validateRefId($refId) {
-		if ( ! $refId instanceof \org\sifinfo\www\infrastructure\_2_x\RefIdType ) {
-			$refId = new \org\sifinfo\www\infrastructure\_2_x\RefIdType ($refId);
-		}
 	
 		return $refId;
 	}

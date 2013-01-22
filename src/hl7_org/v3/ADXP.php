@@ -31,7 +31,7 @@ class ADXP extends \ST\ST {
 	}
 	
 	protected function createPartType() {
-		return new \hl7_org\v3\AddressPartType();
+		return NULL;
 	}
 
 	public function setPartType($partType) {
@@ -39,9 +39,6 @@ class ADXP extends \ST\ST {
 	}
 
 	protected function validatePartType($partType) {
-		if ( ! $partType instanceof \hl7_org\v3\AddressPartType ) {
-			$partType = new \hl7_org\v3\AddressPartType ($partType);
-		}
 	
 		return $partType;
 	}

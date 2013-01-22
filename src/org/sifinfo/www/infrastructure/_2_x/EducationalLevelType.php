@@ -30,7 +30,7 @@ class EducationalLevelType {
 	}
 	
 	protected function createValue() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0332HighestLevelOfEducationCompletedType();
+		return NULL;
 	}
 
 	public function setValue($value) {
@@ -38,9 +38,6 @@ class EducationalLevelType {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0332HighestLevelOfEducationCompletedType ) {
-			$value = new \org\sifinfo\www\infrastructure\_2_x\NCES0332HighestLevelOfEducationCompletedType ($value);
-		}
 	
 		return $value;
 	}

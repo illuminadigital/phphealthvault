@@ -19,7 +19,7 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Basic Demographic Information';
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Gender", name="gender")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\basic\Gender", name="gender")
 	 */
 	protected $gender;
 

@@ -31,7 +31,7 @@ class BN extends \ANYNonNull\ANYNonNull {
 	}
 	
 	protected function createValue() {
-		return new \hl7_org\v3\Bn();
+		return NULL;
 	}
 
 	public function setValue($value) {
@@ -39,9 +39,6 @@ class BN extends \ANYNonNull\ANYNonNull {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \hl7_org\v3\Bn  && ! is_null($value) ) {
-			$value = new \hl7_org\v3\Bn ($value);
-		}
 	
 		return $value;
 	}

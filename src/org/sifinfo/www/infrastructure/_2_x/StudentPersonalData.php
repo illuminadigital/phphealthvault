@@ -144,7 +144,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createLocalId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\LocalIdType();
+		return NULL;
 	}
 
 	public function setLocalId($localId) {
@@ -152,9 +152,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateLocalId($localId) {
-		if ( ! $localId instanceof \org\sifinfo\www\infrastructure\_2_x\LocalIdType  && ! is_null($localId) ) {
-			$localId = new \org\sifinfo\www\infrastructure\_2_x\LocalIdType ($localId);
-		}
 	
 		return $localId;
 	}
@@ -167,7 +164,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createStateProvinceId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType();
+		return NULL;
 	}
 
 	public function setStateProvinceId($stateProvinceId) {
@@ -175,9 +172,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateStateProvinceId($stateProvinceId) {
-		if ( ! $stateProvinceId instanceof \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType  && ! is_null($stateProvinceId) ) {
-			$stateProvinceId = new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType ($stateProvinceId);
-		}
 	
 		return $stateProvinceId;
 	}
@@ -190,7 +184,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createSSN() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SSNType();
+		return NULL;
 	}
 
 	public function setSSN($sSN) {
@@ -198,9 +192,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateSSN($sSN) {
-		if ( ! $sSN instanceof \org\sifinfo\www\infrastructure\_2_x\SSNType  && ! is_null($sSN) ) {
-			$sSN = new \org\sifinfo\www\infrastructure\_2_x\SSNType ($sSN);
-		}
 	
 		return $sSN;
 	}
@@ -351,7 +342,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createIDEA() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IDEAType();
+		return NULL;
 	}
 
 	public function setIDEA($iDEA) {
@@ -359,9 +350,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateIDEA($iDEA) {
-		if ( ! $iDEA instanceof \org\sifinfo\www\infrastructure\_2_x\IDEAType  && ! is_null($iDEA) ) {
-			$iDEA = new \org\sifinfo\www\infrastructure\_2_x\IDEAType ($iDEA);
-		}
 	
 		return $iDEA;
 	}
@@ -374,7 +362,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createMigrant() {
-		return new \org\sifinfo\www\infrastructure\_2_x\MigrantType();
+		return NULL;
 	}
 
 	public function setMigrant($migrant) {
@@ -382,9 +370,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateMigrant($migrant) {
-		if ( ! $migrant instanceof \org\sifinfo\www\infrastructure\_2_x\MigrantType  && ! is_null($migrant) ) {
-			$migrant = new \org\sifinfo\www\infrastructure\_2_x\MigrantType ($migrant);
-		}
 	
 		return $migrant;
 	}
@@ -397,7 +382,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createTitle1() {
-		return new \org\sifinfo\www\infrastructure\_2_x\Title1Type();
+		return NULL;
 	}
 
 	public function setTitle1($title1) {
@@ -405,9 +390,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateTitle1($title1) {
-		if ( ! $title1 instanceof \org\sifinfo\www\infrastructure\_2_x\Title1Type  && ! is_null($title1) ) {
-			$title1 = new \org\sifinfo\www\infrastructure\_2_x\Title1Type ($title1);
-		}
 	
 		return $title1;
 	}
@@ -420,7 +402,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createGiftedTalented() {
-		return new \org\sifinfo\www\infrastructure\_2_x\GiftedTalentedType();
+		return NULL;
 	}
 
 	public function setGiftedTalented($giftedTalented) {
@@ -428,9 +410,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateGiftedTalented($giftedTalented) {
-		if ( ! $giftedTalented instanceof \org\sifinfo\www\infrastructure\_2_x\GiftedTalentedType  && ! is_null($giftedTalented) ) {
-			$giftedTalented = new \org\sifinfo\www\infrastructure\_2_x\GiftedTalentedType ($giftedTalented);
-		}
 	
 		return $giftedTalented;
 	}
@@ -443,7 +422,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createEconomicDisadvantage() {
-		return new \org\sifinfo\www\infrastructure\_2_x\EconomicDisadvantageType();
+		return NULL;
 	}
 
 	public function setEconomicDisadvantage($economicDisadvantage) {
@@ -451,9 +430,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateEconomicDisadvantage($economicDisadvantage) {
-		if ( ! $economicDisadvantage instanceof \org\sifinfo\www\infrastructure\_2_x\EconomicDisadvantageType  && ! is_null($economicDisadvantage) ) {
-			$economicDisadvantage = new \org\sifinfo\www\infrastructure\_2_x\EconomicDisadvantageType ($economicDisadvantage);
-		}
 	
 		return $economicDisadvantage;
 	}
@@ -466,7 +442,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createELL() {
-		return new \org\sifinfo\www\infrastructure\_2_x\ELLType();
+		return NULL;
 	}
 
 	public function setELL($eLL) {
@@ -474,9 +450,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateELL($eLL) {
-		if ( ! $eLL instanceof \org\sifinfo\www\infrastructure\_2_x\ELLType  && ! is_null($eLL) ) {
-			$eLL = new \org\sifinfo\www\infrastructure\_2_x\ELLType ($eLL);
-		}
 	
 		return $eLL;
 	}
@@ -489,7 +462,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createHomeless() {
-		return new \org\sifinfo\www\infrastructure\_2_x\HomelessType();
+		return NULL;
 	}
 
 	public function setHomeless($homeless) {
@@ -497,9 +470,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateHomeless($homeless) {
-		if ( ! $homeless instanceof \org\sifinfo\www\infrastructure\_2_x\HomelessType  && ! is_null($homeless) ) {
-			$homeless = new \org\sifinfo\www\infrastructure\_2_x\HomelessType ($homeless);
-		}
 	
 		return $homeless;
 	}
@@ -512,7 +482,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createSection504() {
-		return new \org\sifinfo\www\infrastructure\_2_x\Section504Type();
+		return NULL;
 	}
 
 	public function setSection504($section504) {
@@ -520,9 +490,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateSection504($section504) {
-		if ( ! $section504 instanceof \org\sifinfo\www\infrastructure\_2_x\Section504Type  && ! is_null($section504) ) {
-			$section504 = new \org\sifinfo\www\infrastructure\_2_x\Section504Type ($section504);
-		}
 	
 		return $section504;
 	}
@@ -535,7 +502,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createVocationalConcentrator() {
-		return new \org\sifinfo\www\infrastructure\_2_x\VocationalConcentratorType();
+		return NULL;
 	}
 
 	public function setVocationalConcentrator($vocationalConcentrator) {
@@ -543,9 +510,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateVocationalConcentrator($vocationalConcentrator) {
-		if ( ! $vocationalConcentrator instanceof \org\sifinfo\www\infrastructure\_2_x\VocationalConcentratorType  && ! is_null($vocationalConcentrator) ) {
-			$vocationalConcentrator = new \org\sifinfo\www\infrastructure\_2_x\VocationalConcentratorType ($vocationalConcentrator);
-		}
 	
 		return $vocationalConcentrator;
 	}
@@ -558,7 +522,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createImmigrant() {
-		return new \org\sifinfo\www\infrastructure\_2_x\ImmigrantType();
+		return NULL;
 	}
 
 	public function setImmigrant($immigrant) {
@@ -566,9 +530,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateImmigrant($immigrant) {
-		if ( ! $immigrant instanceof \org\sifinfo\www\infrastructure\_2_x\ImmigrantType  && ! is_null($immigrant) ) {
-			$immigrant = new \org\sifinfo\www\infrastructure\_2_x\ImmigrantType ($immigrant);
-		}
 	
 		return $immigrant;
 	}
@@ -581,7 +542,7 @@ class StudentPersonalData {
 	}
 	
 	protected function createNeglectedDelinquent() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NeglectedDelinquentType();
+		return NULL;
 	}
 
 	public function setNeglectedDelinquent($neglectedDelinquent) {
@@ -589,9 +550,6 @@ class StudentPersonalData {
 	}
 
 	protected function validateNeglectedDelinquent($neglectedDelinquent) {
-		if ( ! $neglectedDelinquent instanceof \org\sifinfo\www\infrastructure\_2_x\NeglectedDelinquentType  && ! is_null($neglectedDelinquent) ) {
-			$neglectedDelinquent = new \org\sifinfo\www\infrastructure\_2_x\NeglectedDelinquentType ($neglectedDelinquent);
-		}
 	
 		return $neglectedDelinquent;
 	}

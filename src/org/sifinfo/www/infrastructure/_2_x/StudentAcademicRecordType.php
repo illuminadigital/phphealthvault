@@ -173,7 +173,7 @@ class StudentAcademicRecordType {
 	}
 	
 	protected function createDistrictEntryDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setDistrictEntryDate($districtEntryDate) {
@@ -181,9 +181,6 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateDistrictEntryDate($districtEntryDate) {
-		if ( ! $districtEntryDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($districtEntryDate) ) {
-			$districtEntryDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($districtEntryDate);
-		}
 	
 		return $districtEntryDate;
 	}
@@ -449,7 +446,7 @@ class StudentAcademicRecordType {
 	}
 	
 	protected function createRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\RefIdType();
+		return NULL;
 	}
 
 	public function setRefId($refId) {
@@ -457,9 +454,6 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateRefId($refId) {
-		if ( ! $refId instanceof \org\sifinfo\www\infrastructure\_2_x\RefIdType ) {
-			$refId = new \org\sifinfo\www\infrastructure\_2_x\RefIdType ($refId);
-		}
 	
 		return $refId;
 	}
@@ -472,7 +466,7 @@ class StudentAcademicRecordType {
 	}
 	
 	protected function createSifRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\RefIdType();
+		return NULL;
 	}
 
 	public function setSifRefId($sifRefId) {
@@ -480,9 +474,6 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateSifRefId($sifRefId) {
-		if ( ! $sifRefId instanceof \org\sifinfo\www\infrastructure\_2_x\RefIdType ) {
-			$sifRefId = new \org\sifinfo\www\infrastructure\_2_x\RefIdType ($sifRefId);
-		}
 	
 		return $sifRefId;
 	}

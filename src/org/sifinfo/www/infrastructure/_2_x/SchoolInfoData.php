@@ -113,7 +113,7 @@ class SchoolInfoData {
 	}
 	
 	protected function createStateProvinceId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType();
+		return NULL;
 	}
 
 	public function setStateProvinceId($stateProvinceId) {
@@ -121,9 +121,6 @@ class SchoolInfoData {
 	}
 
 	protected function validateStateProvinceId($stateProvinceId) {
-		if ( ! $stateProvinceId instanceof \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType  && ! is_null($stateProvinceId) ) {
-			$stateProvinceId = new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType ($stateProvinceId);
-		}
 	
 		return $stateProvinceId;
 	}
@@ -136,7 +133,7 @@ class SchoolInfoData {
 	}
 	
 	protected function createNCESId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCESIdType();
+		return NULL;
 	}
 
 	public function setNCESId($nCESId) {
@@ -144,9 +141,6 @@ class SchoolInfoData {
 	}
 
 	protected function validateNCESId($nCESId) {
-		if ( ! $nCESId instanceof \org\sifinfo\www\infrastructure\_2_x\NCESIdType  && ! is_null($nCESId) ) {
-			$nCESId = new \org\sifinfo\www\infrastructure\_2_x\NCESIdType ($nCESId);
-		}
 	
 		return $nCESId;
 	}
@@ -182,7 +176,7 @@ class SchoolInfoData {
 	}
 	
 	protected function createSchoolURL() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SchoolURLType();
+		return NULL;
 	}
 
 	public function setSchoolURL($schoolURL) {
@@ -190,9 +184,6 @@ class SchoolInfoData {
 	}
 
 	protected function validateSchoolURL($schoolURL) {
-		if ( ! $schoolURL instanceof \org\sifinfo\www\infrastructure\_2_x\SchoolURLType  && ! is_null($schoolURL) ) {
-			$schoolURL = new \org\sifinfo\www\infrastructure\_2_x\SchoolURLType ($schoolURL);
-		}
 	
 		return $schoolURL;
 	}

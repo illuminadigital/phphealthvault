@@ -113,7 +113,7 @@ class ED extends \BIN\BIN {
 	}
 	
 	protected function createMediaType() {
-		return new \hl7_org\v3\Cs();
+		return NULL;
 	}
 
 	public function setMediaType($mediaType) {
@@ -121,9 +121,6 @@ class ED extends \BIN\BIN {
 	}
 
 	protected function validateMediaType($mediaType) {
-		if ( ! $mediaType instanceof \hl7_org\v3\Cs  && ! is_null($mediaType) ) {
-			$mediaType = new \hl7_org\v3\Cs ($mediaType);
-		}
 	
 		return $mediaType;
 	}
@@ -136,7 +133,7 @@ class ED extends \BIN\BIN {
 	}
 	
 	protected function createLanguage() {
-		return new \hl7_org\v3\Cs();
+		return NULL;
 	}
 
 	public function setLanguage($language) {
@@ -144,9 +141,6 @@ class ED extends \BIN\BIN {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof \hl7_org\v3\Cs  && ! is_null($language) ) {
-			$language = new \hl7_org\v3\Cs ($language);
-		}
 	
 		return $language;
 	}
@@ -159,7 +153,7 @@ class ED extends \BIN\BIN {
 	}
 	
 	protected function createCompression() {
-		return new \hl7_org\v3\CompressionAlgorithm();
+		return NULL;
 	}
 
 	public function setCompression($compression) {
@@ -167,9 +161,6 @@ class ED extends \BIN\BIN {
 	}
 
 	protected function validateCompression($compression) {
-		if ( ! $compression instanceof \hl7_org\v3\CompressionAlgorithm  && ! is_null($compression) ) {
-			$compression = new \hl7_org\v3\CompressionAlgorithm ($compression);
-		}
 	
 		return $compression;
 	}
@@ -182,7 +173,7 @@ class ED extends \BIN\BIN {
 	}
 	
 	protected function createIntegrityCheck() {
-		return new \hl7_org\v3\Bin();
+		return NULL;
 	}
 
 	public function setIntegrityCheck($integrityCheck) {
@@ -190,9 +181,6 @@ class ED extends \BIN\BIN {
 	}
 
 	protected function validateIntegrityCheck($integrityCheck) {
-		if ( ! $integrityCheck instanceof \hl7_org\v3\Bin  && ! is_null($integrityCheck) ) {
-			$integrityCheck = new \hl7_org\v3\Bin ($integrityCheck);
-		}
 	
 		return $integrityCheck;
 	}
@@ -205,7 +193,7 @@ class ED extends \BIN\BIN {
 	}
 	
 	protected function createIntegrityCheckAlgorithm() {
-		return new \hl7_org\v3\IntegrityCheckAlgorithm();
+		return NULL;
 	}
 
 	public function setIntegrityCheckAlgorithm($integrityCheckAlgorithm) {
@@ -213,9 +201,6 @@ class ED extends \BIN\BIN {
 	}
 
 	protected function validateIntegrityCheckAlgorithm($integrityCheckAlgorithm) {
-		if ( ! $integrityCheckAlgorithm instanceof \hl7_org\v3\IntegrityCheckAlgorithm  && ! is_null($integrityCheckAlgorithm) ) {
-			$integrityCheckAlgorithm = new \hl7_org\v3\IntegrityCheckAlgorithm ($integrityCheckAlgorithm);
-		}
 	
 		return $integrityCheckAlgorithm;
 	}

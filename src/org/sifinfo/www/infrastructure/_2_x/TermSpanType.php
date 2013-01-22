@@ -36,7 +36,7 @@ class TermSpanType {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0266SessionTypeType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -44,9 +44,6 @@ class TermSpanType {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0266SessionTypeType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0266SessionTypeType ($code);
-		}
 	
 		return $code;
 	}

@@ -30,7 +30,7 @@ class RefIdType {
 	}
 	
 	protected function createValue() {
-		return new \org\sifinfo\www\infrastructure\_2_x\GUIDType();
+		return NULL;
 	}
 
 	public function setValue($value) {
@@ -38,9 +38,6 @@ class RefIdType {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \org\sifinfo\www\infrastructure\_2_x\GUIDType ) {
-			$value = new \org\sifinfo\www\infrastructure\_2_x\GUIDType ($value);
-		}
 	
 		return $value;
 	}

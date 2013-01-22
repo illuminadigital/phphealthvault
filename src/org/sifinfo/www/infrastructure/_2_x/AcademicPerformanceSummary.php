@@ -304,7 +304,7 @@ class AcademicPerformanceSummary {
 	}
 	
 	protected function createClassRankingDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setClassRankingDate($classRankingDate) {
@@ -312,9 +312,6 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateClassRankingDate($classRankingDate) {
-		if ( ! $classRankingDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($classRankingDate) ) {
-			$classRankingDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($classRankingDate);
-		}
 	
 		return $classRankingDate;
 	}
@@ -327,7 +324,7 @@ class AcademicPerformanceSummary {
 	}
 	
 	protected function createProjectedGraduationDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setProjectedGraduationDate($projectedGraduationDate) {
@@ -335,9 +332,6 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateProjectedGraduationDate($projectedGraduationDate) {
-		if ( ! $projectedGraduationDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($projectedGraduationDate) ) {
-			$projectedGraduationDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($projectedGraduationDate);
-		}
 	
 		return $projectedGraduationDate;
 	}
@@ -350,7 +344,7 @@ class AcademicPerformanceSummary {
 	}
 	
 	protected function createGraduationDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setGraduationDate($graduationDate) {
@@ -358,9 +352,6 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateGraduationDate($graduationDate) {
-		if ( ! $graduationDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($graduationDate) ) {
-			$graduationDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($graduationDate);
-		}
 	
 		return $graduationDate;
 	}
@@ -396,7 +387,7 @@ class AcademicPerformanceSummary {
 	}
 	
 	protected function createAcademicTrack() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0106CourseInstructionalLevelType();
+		return NULL;
 	}
 
 	public function setAcademicTrack($academicTrack) {
@@ -404,9 +395,6 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateAcademicTrack($academicTrack) {
-		if ( ! $academicTrack instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0106CourseInstructionalLevelType  && ! is_null($academicTrack) ) {
-			$academicTrack = new \org\sifinfo\www\infrastructure\_2_x\NCES0106CourseInstructionalLevelType ($academicTrack);
-		}
 	
 		return $academicTrack;
 	}

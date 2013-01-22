@@ -96,7 +96,7 @@ class SchoolCourseInfoData {
 	}
 	
 	protected function createCourseCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\CourseCodeType();
+		return NULL;
 	}
 
 	public function setCourseCode($courseCode) {
@@ -104,9 +104,6 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateCourseCode($courseCode) {
-		if ( ! $courseCode instanceof \org\sifinfo\www\infrastructure\_2_x\CourseCodeType  && ! is_null($courseCode) ) {
-			$courseCode = new \org\sifinfo\www\infrastructure\_2_x\CourseCodeType ($courseCode);
-		}
 	
 		return $courseCode;
 	}
@@ -119,7 +116,7 @@ class SchoolCourseInfoData {
 	}
 	
 	protected function createStateCourseCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StateCourseCodeType();
+		return NULL;
 	}
 
 	public function setStateCourseCode($stateCourseCode) {
@@ -127,9 +124,6 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateStateCourseCode($stateCourseCode) {
-		if ( ! $stateCourseCode instanceof \org\sifinfo\www\infrastructure\_2_x\StateCourseCodeType  && ! is_null($stateCourseCode) ) {
-			$stateCourseCode = new \org\sifinfo\www\infrastructure\_2_x\StateCourseCodeType ($stateCourseCode);
-		}
 	
 		return $stateCourseCode;
 	}
@@ -142,7 +136,7 @@ class SchoolCourseInfoData {
 	}
 	
 	protected function createDistrictCourseCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\DistrictCourseCodeType();
+		return NULL;
 	}
 
 	public function setDistrictCourseCode($districtCourseCode) {
@@ -150,9 +144,6 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateDistrictCourseCode($districtCourseCode) {
-		if ( ! $districtCourseCode instanceof \org\sifinfo\www\infrastructure\_2_x\DistrictCourseCodeType  && ! is_null($districtCourseCode) ) {
-			$districtCourseCode = new \org\sifinfo\www\infrastructure\_2_x\DistrictCourseCodeType ($districtCourseCode);
-		}
 	
 		return $districtCourseCode;
 	}
@@ -211,7 +202,7 @@ class SchoolCourseInfoData {
 	}
 	
 	protected function createCourseTitle() {
-		return new \org\sifinfo\www\infrastructure\_2_x\CourseTitleType();
+		return NULL;
 	}
 
 	public function setCourseTitle($courseTitle) {
@@ -219,9 +210,6 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateCourseTitle($courseTitle) {
-		if ( ! $courseTitle instanceof \org\sifinfo\www\infrastructure\_2_x\CourseTitleType  && ! is_null($courseTitle) ) {
-			$courseTitle = new \org\sifinfo\www\infrastructure\_2_x\CourseTitleType ($courseTitle);
-		}
 	
 		return $courseTitle;
 	}
@@ -303,7 +291,7 @@ class SchoolCourseInfoData {
 	}
 	
 	protected function createGraduationRequirement() {
-		return new \org\sifinfo\www\infrastructure\_2_x\GraduationRequirementType();
+		return NULL;
 	}
 
 	public function setGraduationRequirement($graduationRequirement) {
@@ -311,9 +299,6 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateGraduationRequirement($graduationRequirement) {
-		if ( ! $graduationRequirement instanceof \org\sifinfo\www\infrastructure\_2_x\GraduationRequirementType  && ! is_null($graduationRequirement) ) {
-			$graduationRequirement = new \org\sifinfo\www\infrastructure\_2_x\GraduationRequirementType ($graduationRequirement);
-		}
 	
 		return $graduationRequirement;
 	}

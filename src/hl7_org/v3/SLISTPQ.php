@@ -88,7 +88,7 @@ class SLISTPQ extends \ANY\ANY {
 	}
 	
 	protected function createDigits() {
-		return new \hl7_org\v3\ListInt();
+		return NULL;
 	}
 
 	public function setDigits($digits) {
@@ -96,9 +96,6 @@ class SLISTPQ extends \ANY\ANY {
 	}
 
 	protected function validateDigits($digits) {
-		if ( ! $digits instanceof \hl7_org\v3\ListInt ) {
-			$digits = new \hl7_org\v3\ListInt ($digits);
-		}
 	
 		return $digits;
 	}

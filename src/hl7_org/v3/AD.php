@@ -862,7 +862,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createUse() {
-		return new \hl7_org\v3\SetPostalAddressUse();
+		return NULL;
 	}
 
 	public function setUse($use) {
@@ -870,9 +870,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateUse($use) {
-		if ( ! $use instanceof \hl7_org\v3\SetPostalAddressUse  && ! is_null($use) ) {
-			$use = new \hl7_org\v3\SetPostalAddressUse ($use);
-		}
 	
 		return $use;
 	}
@@ -885,7 +882,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createIsNotOrdered() {
-		return new \hl7_org\v3\Bl();
+		return NULL;
 	}
 
 	public function setIsNotOrdered($isNotOrdered) {
@@ -893,9 +890,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateIsNotOrdered($isNotOrdered) {
-		if ( ! $isNotOrdered instanceof \hl7_org\v3\Bl  && ! is_null($isNotOrdered) ) {
-			$isNotOrdered = new \hl7_org\v3\Bl ($isNotOrdered);
-		}
 	
 		return $isNotOrdered;
 	}

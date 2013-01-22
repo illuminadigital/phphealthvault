@@ -36,7 +36,7 @@ class EntryType {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0619EntryTypeType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -44,9 +44,6 @@ class EntryType {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0619EntryTypeType  && ! is_null($code) ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0619EntryTypeType ($code);
-		}
 	
 		return $code;
 	}

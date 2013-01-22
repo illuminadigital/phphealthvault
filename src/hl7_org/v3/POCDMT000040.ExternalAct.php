@@ -255,7 +255,7 @@ class POCDMT000040.ExternalAct {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -263,9 +263,6 @@ class POCDMT000040.ExternalAct {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -278,7 +275,7 @@ class POCDMT000040.ExternalAct {
 	}
 	
 	protected function createClassCode() {
-		return new \hl7_org\v3\ActClassRoot();
+		return NULL;
 	}
 
 	public function setClassCode($classCode) {
@@ -286,9 +283,6 @@ class POCDMT000040.ExternalAct {
 	}
 
 	protected function validateClassCode($classCode) {
-		if ( ! $classCode instanceof \hl7_org\v3\ActClassRoot  && ! is_null($classCode) ) {
-			$classCode = new \hl7_org\v3\ActClassRoot ($classCode);
-		}
 	
 		return $classCode;
 	}
@@ -301,7 +295,7 @@ class POCDMT000040.ExternalAct {
 	}
 	
 	protected function createMoodCode() {
-		return new \hl7_org\v3\ActMood();
+		return NULL;
 	}
 
 	public function setMoodCode($moodCode) {
@@ -309,9 +303,6 @@ class POCDMT000040.ExternalAct {
 	}
 
 	protected function validateMoodCode($moodCode) {
-		if ( ! $moodCode instanceof \hl7_org\v3\ActMood  && ! is_null($moodCode) ) {
-			$moodCode = new \hl7_org\v3\ActMood ($moodCode);
-		}
 	
 		return $moodCode;
 	}

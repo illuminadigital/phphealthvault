@@ -58,24 +58,23 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateSection($section) {
-		if ( ! $section instanceof \com\microsoft\wc\methods\GetThings3\ThingSectionSpec2  && ! is_null($section) ) {
-			$section = new \com\microsoft\wc\methods\GetThings3\ThingSectionSpec2 ($section);
-		}
 		$count = count($section);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'section', 0));
 		}
 		foreach ($section as $entry) {
-			if (!($entry instanceof ThingSectionSpec2)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'section', 'ThingSectionSpec2'));
-			}
 		}
 	
 		return $section;
 	}
 
 	public function addSection($section) {
-		$this->section[] = $section;
+		$this->section[] = $this->validateSectionType($section);
+	}
+
+	protected function validateSectionType($section) {
+	
+		return $section;
 	}
 
 	public function getXml() {

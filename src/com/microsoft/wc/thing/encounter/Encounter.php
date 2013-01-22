@@ -39,7 +39,7 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	protected $duration;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Address", name="location")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Address", name="location")
 	 */
 	protected $location;
 

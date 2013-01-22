@@ -234,7 +234,7 @@ class AddressType {
 	}
 	
 	protected function createType() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0025AddressTypeType();
+		return NULL;
 	}
 
 	public function setType($type) {
@@ -242,9 +242,6 @@ class AddressType {
 	}
 
 	protected function validateType($type) {
-		if ( ! $type instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0025AddressTypeType ) {
-			$type = new \org\sifinfo\www\infrastructure\_2_x\NCES0025AddressTypeType ($type);
-		}
 	
 		return $type;
 	}

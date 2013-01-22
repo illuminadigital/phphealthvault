@@ -278,7 +278,7 @@ class POCDMT000040.ManufacturedProduct {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -286,9 +286,6 @@ class POCDMT000040.ManufacturedProduct {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -301,7 +298,7 @@ class POCDMT000040.ManufacturedProduct {
 	}
 	
 	protected function createClassCode() {
-		return new \hl7_org\v3\RoleClassManufacturedProduct();
+		return NULL;
 	}
 
 	public function setClassCode($classCode) {
@@ -309,9 +306,6 @@ class POCDMT000040.ManufacturedProduct {
 	}
 
 	protected function validateClassCode($classCode) {
-		if ( ! $classCode instanceof \hl7_org\v3\RoleClassManufacturedProduct  && ! is_null($classCode) ) {
-			$classCode = new \hl7_org\v3\RoleClassManufacturedProduct ($classCode);
-		}
 	
 		return $classCode;
 	}

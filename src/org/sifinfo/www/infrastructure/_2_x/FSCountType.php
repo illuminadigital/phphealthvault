@@ -107,7 +107,7 @@ class FSCountType {
 	}
 	
 	protected function createMealType() {
-		return new \org\sifinfo\www\infrastructure\_2_x\MealTypeType();
+		return NULL;
 	}
 
 	public function setMealType($mealType) {
@@ -115,9 +115,6 @@ class FSCountType {
 	}
 
 	protected function validateMealType($mealType) {
-		if ( ! $mealType instanceof \org\sifinfo\www\infrastructure\_2_x\MealTypeType  && ! is_null($mealType) ) {
-			$mealType = new \org\sifinfo\www\infrastructure\_2_x\MealTypeType ($mealType);
-		}
 	
 		return $mealType;
 	}

@@ -31,7 +31,7 @@ class CourseCreditsType {
 	}
 	
 	protected function createType() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0108CreditTypeEarnedType();
+		return NULL;
 	}
 
 	public function setType($type) {
@@ -39,9 +39,6 @@ class CourseCreditsType {
 	}
 
 	protected function validateType($type) {
-		if ( ! $type instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0108CreditTypeEarnedType ) {
-			$type = new \org\sifinfo\www\infrastructure\_2_x\NCES0108CreditTypeEarnedType ($type);
-		}
 	
 		return $type;
 	}

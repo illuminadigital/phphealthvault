@@ -79,7 +79,7 @@ class PQ extends \QTY\QTY {
 	}
 	
 	protected function createValue() {
-		return new \hl7_org\v3\Real();
+		return NULL;
 	}
 
 	public function setValue($value) {
@@ -87,9 +87,6 @@ class PQ extends \QTY\QTY {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \hl7_org\v3\Real  && ! is_null($value) ) {
-			$value = new \hl7_org\v3\Real ($value);
-		}
 	
 		return $value;
 	}
@@ -102,7 +99,7 @@ class PQ extends \QTY\QTY {
 	}
 	
 	protected function createUnit() {
-		return new \hl7_org\v3\Cs();
+		return NULL;
 	}
 
 	public function setUnit($unit) {
@@ -110,9 +107,6 @@ class PQ extends \QTY\QTY {
 	}
 
 	protected function validateUnit($unit) {
-		if ( ! $unit instanceof \hl7_org\v3\Cs  && ! is_null($unit) ) {
-			$unit = new \hl7_org\v3\Cs ($unit);
-		}
 	
 		return $unit;
 	}

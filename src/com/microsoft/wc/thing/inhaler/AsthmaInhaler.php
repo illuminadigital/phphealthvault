@@ -147,7 +147,7 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createPurpose() {
-		return new \com\microsoft\wc\thing\inhaler\Purpose();
+		return NULL;
 	}
 
 	public function setPurpose($purpose) {
@@ -155,9 +155,6 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePurpose($purpose) {
-		if ( ! $purpose instanceof \com\microsoft\wc\thing\inhaler\Purpose  && ! is_null($purpose) ) {
-			$purpose = new \com\microsoft\wc\thing\inhaler\Purpose ($purpose);
-		}
 	
 		return $purpose;
 	}

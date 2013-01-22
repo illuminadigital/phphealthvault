@@ -22,7 +22,7 @@ class CodableValue {
 	protected $text;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\CodedValue", collection="true", name="code")
+	 * @XmlElement	(type="\com\microsoft\wc\types\CodedValue", collection="true", name="code")
 	 */
 	protected $code;
 
@@ -70,8 +70,8 @@ class CodableValue {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \com\microsoft\wc\thing\types\CodedValue  && ! is_null($code) ) {
-			$code = new \com\microsoft\wc\thing\types\CodedValue ($code);
+		if ( ! $code instanceof \com\microsoft\wc\types\CodedValue  && ! is_null($code) ) {
+			$code = new \com\microsoft\wc\types\CodedValue ($code);
 		}
 		$count = count($code);
 		if ($count < 0) {

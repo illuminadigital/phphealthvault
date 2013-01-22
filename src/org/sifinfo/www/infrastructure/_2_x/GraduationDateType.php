@@ -30,7 +30,7 @@ class GraduationDateType {
 	}
 	
 	protected function createValue() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setValue($value) {
@@ -38,9 +38,6 @@ class GraduationDateType {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType ) {
-			$value = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($value);
-		}
 	
 		return $value;
 	}

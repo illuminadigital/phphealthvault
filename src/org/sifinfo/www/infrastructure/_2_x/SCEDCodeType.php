@@ -55,7 +55,7 @@ class SCEDCodeType {
 	}
 	
 	protected function createCourseDescription() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SCEDCourseTitlesType();
+		return NULL;
 	}
 
 	public function setCourseDescription($courseDescription) {
@@ -63,9 +63,6 @@ class SCEDCodeType {
 	}
 
 	protected function validateCourseDescription($courseDescription) {
-		if ( ! $courseDescription instanceof \org\sifinfo\www\infrastructure\_2_x\SCEDCourseTitlesType ) {
-			$courseDescription = new \org\sifinfo\www\infrastructure\_2_x\SCEDCourseTitlesType ($courseDescription);
-		}
 	
 		return $courseDescription;
 	}

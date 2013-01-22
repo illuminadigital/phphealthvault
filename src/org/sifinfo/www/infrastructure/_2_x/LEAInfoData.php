@@ -54,7 +54,7 @@ class LEAInfoData {
 	}
 	
 	protected function createLocalId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\LocalIdType();
+		return NULL;
 	}
 
 	public function setLocalId($localId) {
@@ -62,9 +62,6 @@ class LEAInfoData {
 	}
 
 	protected function validateLocalId($localId) {
-		if ( ! $localId instanceof \org\sifinfo\www\infrastructure\_2_x\LocalIdType  && ! is_null($localId) ) {
-			$localId = new \org\sifinfo\www\infrastructure\_2_x\LocalIdType ($localId);
-		}
 	
 		return $localId;
 	}
@@ -77,7 +74,7 @@ class LEAInfoData {
 	}
 	
 	protected function createStateProvinceId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType();
+		return NULL;
 	}
 
 	public function setStateProvinceId($stateProvinceId) {
@@ -85,9 +82,6 @@ class LEAInfoData {
 	}
 
 	protected function validateStateProvinceId($stateProvinceId) {
-		if ( ! $stateProvinceId instanceof \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType  && ! is_null($stateProvinceId) ) {
-			$stateProvinceId = new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType ($stateProvinceId);
-		}
 	
 		return $stateProvinceId;
 	}
@@ -100,7 +94,7 @@ class LEAInfoData {
 	}
 	
 	protected function createNCESId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCESIdType();
+		return NULL;
 	}
 
 	public function setNCESId($nCESId) {
@@ -108,9 +102,6 @@ class LEAInfoData {
 	}
 
 	protected function validateNCESId($nCESId) {
-		if ( ! $nCESId instanceof \org\sifinfo\www\infrastructure\_2_x\NCESIdType  && ! is_null($nCESId) ) {
-			$nCESId = new \org\sifinfo\www\infrastructure\_2_x\NCESIdType ($nCESId);
-		}
 	
 		return $nCESId;
 	}

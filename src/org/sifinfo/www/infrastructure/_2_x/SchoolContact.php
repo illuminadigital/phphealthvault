@@ -36,7 +36,7 @@ class SchoolContact {
 	}
 	
 	protected function createPublishInDirectory() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PublishInDirectoryType();
+		return NULL;
 	}
 
 	public function setPublishInDirectory($publishInDirectory) {
@@ -44,9 +44,6 @@ class SchoolContact {
 	}
 
 	protected function validatePublishInDirectory($publishInDirectory) {
-		if ( ! $publishInDirectory instanceof \org\sifinfo\www\infrastructure\_2_x\PublishInDirectoryType  && ! is_null($publishInDirectory) ) {
-			$publishInDirectory = new \org\sifinfo\www\infrastructure\_2_x\PublishInDirectoryType ($publishInDirectory);
-		}
 	
 		return $publishInDirectory;
 	}

@@ -94,9 +94,6 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateSection($section) {
-		if ( ! $section instanceof \com\microsoft\wc\methods\GetThingType\ThingTypeSectionSpec  && ! is_null($section) ) {
-			$section = new \com\microsoft\wc\methods\GetThingType\ThingTypeSectionSpec ($section);
-		}
 		$count = count($section);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'section', 0));
@@ -105,16 +102,18 @@ class Info extends \com\microsoft\wc\request\Info {
 			throw new \Exception(sprintf('Supplied %s array has more than the required number (%d) of entries.', 'section', 7));
 		}
 		foreach ($section as $entry) {
-			if (!($entry instanceof ThingTypeSectionSpec)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'section', 'ThingTypeSectionSpec'));
-			}
 		}
 	
 		return $section;
 	}
 
 	public function addSection($section) {
-		$this->section[] = $section;
+		$this->section[] = $this->validateSectionType($section);
+	}
+
+	protected function validateSectionType($section) {
+	
+		return $section;
 	}
 
 	public function getImageType() {

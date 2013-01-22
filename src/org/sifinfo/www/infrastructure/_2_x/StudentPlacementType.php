@@ -768,7 +768,7 @@ class StudentPlacementType {
 	}
 	
 	protected function createRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\RefIdType();
+		return NULL;
 	}
 
 	public function setRefId($refId) {
@@ -776,9 +776,6 @@ class StudentPlacementType {
 	}
 
 	protected function validateRefId($refId) {
-		if ( ! $refId instanceof \org\sifinfo\www\infrastructure\_2_x\RefIdType ) {
-			$refId = new \org\sifinfo\www\infrastructure\_2_x\RefIdType ($refId);
-		}
 	
 		return $refId;
 	}
@@ -791,7 +788,7 @@ class StudentPlacementType {
 	}
 	
 	protected function createStudentParticipationRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setStudentParticipationRefId($studentParticipationRefId) {
@@ -799,9 +796,6 @@ class StudentPlacementType {
 	}
 
 	protected function validateStudentParticipationRefId($studentParticipationRefId) {
-		if ( ! $studentParticipationRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType ) {
-			$studentParticipationRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($studentParticipationRefId);
-		}
 	
 		return $studentParticipationRefId;
 	}
@@ -814,7 +808,7 @@ class StudentPlacementType {
 	}
 	
 	protected function createStudentPersonalRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setStudentPersonalRefId($studentPersonalRefId) {
@@ -822,9 +816,6 @@ class StudentPlacementType {
 	}
 
 	protected function validateStudentPersonalRefId($studentPersonalRefId) {
-		if ( ! $studentPersonalRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType ) {
-			$studentPersonalRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($studentPersonalRefId);
-		}
 	
 		return $studentPersonalRefId;
 	}

@@ -486,7 +486,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -494,9 +494,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -509,7 +506,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createTypeCode() {
-		return new \hl7_org\v3\XActRelationshipEntryRelationship();
+		return NULL;
 	}
 
 	public function setTypeCode($typeCode) {
@@ -517,9 +514,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateTypeCode($typeCode) {
-		if ( ! $typeCode instanceof \hl7_org\v3\XActRelationshipEntryRelationship ) {
-			$typeCode = new \hl7_org\v3\XActRelationshipEntryRelationship ($typeCode);
-		}
 	
 		return $typeCode;
 	}
@@ -532,7 +526,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createInversionInd() {
-		return new \hl7_org\v3\Bl();
+		return NULL;
 	}
 
 	public function setInversionInd($inversionInd) {
@@ -540,9 +534,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateInversionInd($inversionInd) {
-		if ( ! $inversionInd instanceof \hl7_org\v3\Bl  && ! is_null($inversionInd) ) {
-			$inversionInd = new \hl7_org\v3\Bl ($inversionInd);
-		}
 	
 		return $inversionInd;
 	}
@@ -555,7 +546,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createContextConductionInd() {
-		return new \hl7_org\v3\Bl();
+		return NULL;
 	}
 
 	public function setContextConductionInd($contextConductionInd) {
@@ -563,9 +554,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateContextConductionInd($contextConductionInd) {
-		if ( ! $contextConductionInd instanceof \hl7_org\v3\Bl  && ! is_null($contextConductionInd) ) {
-			$contextConductionInd = new \hl7_org\v3\Bl ($contextConductionInd);
-		}
 	
 		return $contextConductionInd;
 	}
@@ -578,7 +566,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createNegationInd() {
-		return new \hl7_org\v3\Bl();
+		return NULL;
 	}
 
 	public function setNegationInd($negationInd) {
@@ -586,9 +574,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateNegationInd($negationInd) {
-		if ( ! $negationInd instanceof \hl7_org\v3\Bl  && ! is_null($negationInd) ) {
-			$negationInd = new \hl7_org\v3\Bl ($negationInd);
-		}
 	
 		return $negationInd;
 	}

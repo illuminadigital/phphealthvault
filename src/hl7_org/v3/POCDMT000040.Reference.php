@@ -294,7 +294,7 @@ class POCDMT000040.Reference {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -302,9 +302,6 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -317,7 +314,7 @@ class POCDMT000040.Reference {
 	}
 	
 	protected function createTypeCode() {
-		return new \hl7_org\v3\XActRelationshipExternalReference();
+		return NULL;
 	}
 
 	public function setTypeCode($typeCode) {
@@ -325,9 +322,6 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateTypeCode($typeCode) {
-		if ( ! $typeCode instanceof \hl7_org\v3\XActRelationshipExternalReference ) {
-			$typeCode = new \hl7_org\v3\XActRelationshipExternalReference ($typeCode);
-		}
 	
 		return $typeCode;
 	}

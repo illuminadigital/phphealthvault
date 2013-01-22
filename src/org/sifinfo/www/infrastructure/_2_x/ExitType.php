@@ -36,7 +36,7 @@ class ExitType {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0644ExitWithdrawalTypeType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -44,9 +44,6 @@ class ExitType {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0644ExitWithdrawalTypeType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0644ExitWithdrawalTypeType ($code);
-		}
 	
 		return $code;
 	}

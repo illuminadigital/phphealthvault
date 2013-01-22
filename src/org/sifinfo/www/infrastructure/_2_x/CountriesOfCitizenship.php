@@ -38,23 +38,22 @@ class CountriesOfCitizenship {
 	}
 
 	protected function validateCountryOfCitizenship($countryOfCitizenship) {
-		if ( ! $countryOfCitizenship instanceof \org\sifinfo\www\infrastructure\_2_x\CountryType ) {
-			$countryOfCitizenship = new \org\sifinfo\www\infrastructure\_2_x\CountryType ($countryOfCitizenship);
-		}
 		$count = count($countryOfCitizenship);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'countryOfCitizenship', 1));
 		}
 		foreach ($countryOfCitizenship as $entry) {
-			if (!($entry instanceof CountryType)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'countryOfCitizenship', 'CountryType'));
-			}
 		}
 	
 		return $countryOfCitizenship;
 	}
 
 	public function addCountryOfCitizenship($countryOfCitizenship) {
-		$this->countryOfCitizenship[] = $countryOfCitizenship;
+		$this->countryOfCitizenship[] = $this->validateCountryOfCitizenshipType($countryOfCitizenship);
+	}
+
+	protected function validateCountryOfCitizenshipType($countryOfCitizenship) {
+	
+		return $countryOfCitizenship;
 	}
 } // end class CountriesOfCitizenship

@@ -205,7 +205,7 @@ class EN extends \ANY\ANY {
 	}
 	
 	protected function createUse() {
-		return new \hl7_org\v3\SetEntityNameUse();
+		return NULL;
 	}
 
 	public function setUse($use) {
@@ -213,9 +213,6 @@ class EN extends \ANY\ANY {
 	}
 
 	protected function validateUse($use) {
-		if ( ! $use instanceof \hl7_org\v3\SetEntityNameUse  && ! is_null($use) ) {
-			$use = new \hl7_org\v3\SetEntityNameUse ($use);
-		}
 	
 		return $use;
 	}

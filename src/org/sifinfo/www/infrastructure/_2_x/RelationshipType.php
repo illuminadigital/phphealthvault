@@ -37,7 +37,7 @@ class RelationshipType {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0609RelationshipToStudentType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -45,9 +45,6 @@ class RelationshipType {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0609RelationshipToStudentType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0609RelationshipToStudentType ($code);
-		}
 	
 		return $code;
 	}

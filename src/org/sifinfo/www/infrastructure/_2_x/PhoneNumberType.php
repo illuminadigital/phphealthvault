@@ -118,7 +118,7 @@ class PhoneNumberType {
 	}
 	
 	protected function createType() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0280TelephoneNumberTypeType();
+		return NULL;
 	}
 
 	public function setType($type) {
@@ -126,9 +126,6 @@ class PhoneNumberType {
 	}
 
 	protected function validateType($type) {
-		if ( ! $type instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0280TelephoneNumberTypeType ) {
-			$type = new \org\sifinfo\www\infrastructure\_2_x\NCES0280TelephoneNumberTypeType ($type);
-		}
 	
 		return $type;
 	}

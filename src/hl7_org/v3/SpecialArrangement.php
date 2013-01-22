@@ -30,7 +30,7 @@ class SpecialArrangement {
 	}
 	
 	protected function createValue() {
-		return new \hl7_org\v3\Cs();
+		return new \hl7_org\v3\CS();
 	}
 
 	public function setValue($value) {
@@ -38,8 +38,8 @@ class SpecialArrangement {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \hl7_org\v3\Cs ) {
-			$value = new \hl7_org\v3\Cs ($value);
+		if ( ! $value instanceof \hl7_org\v3\CS ) {
+			$value = new \hl7_org\v3\CS ($value);
 		}
 	
 		return $value;

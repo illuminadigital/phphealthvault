@@ -142,7 +142,7 @@ class BaseNameType {
 	}
 	
 	protected function createMiddleName() {
-		return new \org\sifinfo\www\infrastructure\_2_x\MiddleNameType();
+		return NULL;
 	}
 
 	public function setMiddleName($middleName) {
@@ -150,9 +150,6 @@ class BaseNameType {
 	}
 
 	protected function validateMiddleName($middleName) {
-		if ( ! $middleName instanceof \org\sifinfo\www\infrastructure\_2_x\MiddleNameType  && ! is_null($middleName) ) {
-			$middleName = new \org\sifinfo\www\infrastructure\_2_x\MiddleNameType ($middleName);
-		}
 	
 		return $middleName;
 	}

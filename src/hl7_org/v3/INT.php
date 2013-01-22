@@ -31,7 +31,7 @@ class INT extends \QTY\QTY {
 	}
 	
 	protected function createValue() {
-		return new \hl7_org\v3\Int();
+		return 0;
 	}
 
 	public function setValue($value) {
@@ -39,9 +39,6 @@ class INT extends \QTY\QTY {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \hl7_org\v3\Int  && ! is_null($value) ) {
-			$value = new \hl7_org\v3\Int ($value);
-		}
 	
 		return $value;
 	}

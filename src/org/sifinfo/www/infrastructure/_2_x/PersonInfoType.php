@@ -73,7 +73,7 @@ class PersonInfoType {
 	}
 	
 	protected function createLocalId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\LocalIdType();
+		return NULL;
 	}
 
 	public function setLocalId($localId) {
@@ -81,9 +81,6 @@ class PersonInfoType {
 	}
 
 	protected function validateLocalId($localId) {
-		if ( ! $localId instanceof \org\sifinfo\www\infrastructure\_2_x\LocalIdType  && ! is_null($localId) ) {
-			$localId = new \org\sifinfo\www\infrastructure\_2_x\LocalIdType ($localId);
-		}
 	
 		return $localId;
 	}

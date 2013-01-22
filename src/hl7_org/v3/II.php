@@ -49,7 +49,7 @@ class II extends \ANY\ANY {
 	}
 	
 	protected function createRoot() {
-		return new \hl7_org\v3\Uid();
+		return NULL;
 	}
 
 	public function setRoot($root) {
@@ -57,9 +57,6 @@ class II extends \ANY\ANY {
 	}
 
 	protected function validateRoot($root) {
-		if ( ! $root instanceof \hl7_org\v3\Uid  && ! is_null($root) ) {
-			$root = new \hl7_org\v3\Uid ($root);
-		}
 	
 		return $root;
 	}
@@ -72,7 +69,7 @@ class II extends \ANY\ANY {
 	}
 	
 	protected function createExtension() {
-		return new \hl7_org\v3\St();
+		return NULL;
 	}
 
 	public function setExtension($extension) {
@@ -80,9 +77,6 @@ class II extends \ANY\ANY {
 	}
 
 	protected function validateExtension($extension) {
-		if ( ! $extension instanceof \hl7_org\v3\St  && ! is_null($extension) ) {
-			$extension = new \hl7_org\v3\St ($extension);
-		}
 	
 		return $extension;
 	}
@@ -95,7 +89,7 @@ class II extends \ANY\ANY {
 	}
 	
 	protected function createAssigningAuthorityName() {
-		return new \hl7_org\v3\St();
+		return NULL;
 	}
 
 	public function setAssigningAuthorityName($assigningAuthorityName) {
@@ -103,9 +97,6 @@ class II extends \ANY\ANY {
 	}
 
 	protected function validateAssigningAuthorityName($assigningAuthorityName) {
-		if ( ! $assigningAuthorityName instanceof \hl7_org\v3\St  && ! is_null($assigningAuthorityName) ) {
-			$assigningAuthorityName = new \hl7_org\v3\St ($assigningAuthorityName);
-		}
 	
 		return $assigningAuthorityName;
 	}
@@ -118,7 +109,7 @@ class II extends \ANY\ANY {
 	}
 	
 	protected function createDisplayable() {
-		return new \hl7_org\v3\Bl();
+		return NULL;
 	}
 
 	public function setDisplayable($displayable) {
@@ -126,9 +117,6 @@ class II extends \ANY\ANY {
 	}
 
 	protected function validateDisplayable($displayable) {
-		if ( ! $displayable instanceof \hl7_org\v3\Bl  && ! is_null($displayable) ) {
-			$displayable = new \hl7_org\v3\Bl ($displayable);
-		}
 	
 		return $displayable;
 	}

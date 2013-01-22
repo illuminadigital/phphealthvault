@@ -73,7 +73,7 @@ class TEL extends \URL\URL {
 	}
 	
 	protected function createUse() {
-		return new \hl7_org\v3\SetTelecommunicationAddressUse();
+		return NULL;
 	}
 
 	public function setUse($use) {
@@ -81,9 +81,6 @@ class TEL extends \URL\URL {
 	}
 
 	protected function validateUse($use) {
-		if ( ! $use instanceof \hl7_org\v3\SetTelecommunicationAddressUse  && ! is_null($use) ) {
-			$use = new \hl7_org\v3\SetTelecommunicationAddressUse ($use);
-		}
 	
 		return $use;
 	}

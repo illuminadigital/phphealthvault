@@ -38,23 +38,22 @@ class CountriesOfResidency {
 	}
 
 	protected function validateCountryOfResidency($countryOfResidency) {
-		if ( ! $countryOfResidency instanceof \org\sifinfo\www\infrastructure\_2_x\CountryType ) {
-			$countryOfResidency = new \org\sifinfo\www\infrastructure\_2_x\CountryType ($countryOfResidency);
-		}
 		$count = count($countryOfResidency);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'countryOfResidency', 1));
 		}
 		foreach ($countryOfResidency as $entry) {
-			if (!($entry instanceof CountryType)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'countryOfResidency', 'CountryType'));
-			}
 		}
 	
 		return $countryOfResidency;
 	}
 
 	public function addCountryOfResidency($countryOfResidency) {
-		$this->countryOfResidency[] = $countryOfResidency;
+		$this->countryOfResidency[] = $this->validateCountryOfResidencyType($countryOfResidency);
+	}
+
+	protected function validateCountryOfResidencyType($countryOfResidency) {
+	
+		return $countryOfResidency;
 	}
 } // end class CountriesOfResidency

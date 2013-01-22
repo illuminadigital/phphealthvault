@@ -30,7 +30,7 @@ class Bn {
 	}
 	
 	protected function createValue() {
-		return new \hl7_org\v3\Bl();
+		return new \hl7_org\v3\BL();
 	}
 
 	public function setValue($value) {
@@ -38,8 +38,8 @@ class Bn {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \hl7_org\v3\Bl ) {
-			$value = new \hl7_org\v3\Bl ($value);
+		if ( ! $value instanceof \hl7_org\v3\BL ) {
+			$value = new \hl7_org\v3\BL ($value);
 		}
 	
 		return $value;

@@ -36,7 +36,7 @@ class DwellingArrangement {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0600DwellingArrangementType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -44,9 +44,6 @@ class DwellingArrangement {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0600DwellingArrangementType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0600DwellingArrangementType ($code);
-		}
 	
 		return $code;
 	}

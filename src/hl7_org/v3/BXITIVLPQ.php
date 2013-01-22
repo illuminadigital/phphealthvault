@@ -30,7 +30,7 @@ class BXITIVLPQ extends \IVL_PQ\IVLPQ {
 	}
 	
 	protected function createQty() {
-		return new \hl7_org\v3\Int();
+		return 0;
 	}
 
 	public function setQty($qty) {
@@ -38,9 +38,6 @@ class BXITIVLPQ extends \IVL_PQ\IVLPQ {
 	}
 
 	protected function validateQty($qty) {
-		if ( ! $qty instanceof \hl7_org\v3\Int  && ! is_null($qty) ) {
-			$qty = new \hl7_org\v3\Int ($qty);
-		}
 	
 		return $qty;
 	}

@@ -95,7 +95,7 @@ class PIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createAlignment() {
-		return new \hl7_org\v3\CalendarCycle();
+		return NULL;
 	}
 
 	public function setAlignment($alignment) {
@@ -103,9 +103,6 @@ class PIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validateAlignment($alignment) {
-		if ( ! $alignment instanceof \hl7_org\v3\CalendarCycle  && ! is_null($alignment) ) {
-			$alignment = new \hl7_org\v3\CalendarCycle ($alignment);
-		}
 	
 		return $alignment;
 	}
@@ -118,7 +115,7 @@ class PIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createInstitutionSpecified() {
-		return new \hl7_org\v3\Bl();
+		return NULL;
 	}
 
 	public function setInstitutionSpecified($institutionSpecified) {
@@ -126,9 +123,6 @@ class PIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validateInstitutionSpecified($institutionSpecified) {
-		if ( ! $institutionSpecified instanceof \hl7_org\v3\Bl  && ! is_null($institutionSpecified) ) {
-			$institutionSpecified = new \hl7_org\v3\Bl ($institutionSpecified);
-		}
 	
 		return $institutionSpecified;
 	}

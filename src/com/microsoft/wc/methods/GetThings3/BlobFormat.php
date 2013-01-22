@@ -30,7 +30,7 @@ class BlobFormat {
 	}
 	
 	protected function createBlobFormatSpec() {
-		return new \com\microsoft\wc\methods\GetThings3\BlobFormatSpec();
+		return NULL;
 	}
 
 	public function setBlobFormatSpec($blobFormatSpec) {
@@ -38,9 +38,6 @@ class BlobFormat {
 	}
 
 	protected function validateBlobFormatSpec($blobFormatSpec) {
-		if ( ! $blobFormatSpec instanceof \com\microsoft\wc\methods\GetThings3\BlobFormatSpec ) {
-			$blobFormatSpec = new \com\microsoft\wc\methods\GetThings3\BlobFormatSpec ($blobFormatSpec);
-		}
 	
 		return $blobFormatSpec;
 	}

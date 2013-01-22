@@ -165,7 +165,7 @@ class StudentParticipationData {
 	}
 	
 	protected function createReferralDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setReferralDate($referralDate) {
@@ -173,9 +173,6 @@ class StudentParticipationData {
 	}
 
 	protected function validateReferralDate($referralDate) {
-		if ( ! $referralDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($referralDate) ) {
-			$referralDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($referralDate);
-		}
 	
 		return $referralDate;
 	}
@@ -211,7 +208,7 @@ class StudentParticipationData {
 	}
 	
 	protected function createEvaluationDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setEvaluationDate($evaluationDate) {
@@ -219,9 +216,6 @@ class StudentParticipationData {
 	}
 
 	protected function validateEvaluationDate($evaluationDate) {
-		if ( ! $evaluationDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($evaluationDate) ) {
-			$evaluationDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($evaluationDate);
-		}
 	
 		return $evaluationDate;
 	}
@@ -234,7 +228,7 @@ class StudentParticipationData {
 	}
 	
 	protected function createReevaluationDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setReevaluationDate($reevaluationDate) {
@@ -242,9 +236,6 @@ class StudentParticipationData {
 	}
 
 	protected function validateReevaluationDate($reevaluationDate) {
-		if ( ! $reevaluationDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($reevaluationDate) ) {
-			$reevaluationDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($reevaluationDate);
-		}
 	
 		return $reevaluationDate;
 	}
@@ -280,7 +271,7 @@ class StudentParticipationData {
 	}
 	
 	protected function createProgramPlanDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setProgramPlanDate($programPlanDate) {
@@ -288,9 +279,6 @@ class StudentParticipationData {
 	}
 
 	protected function validateProgramPlanDate($programPlanDate) {
-		if ( ! $programPlanDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($programPlanDate) ) {
-			$programPlanDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($programPlanDate);
-		}
 	
 		return $programPlanDate;
 	}
@@ -303,7 +291,7 @@ class StudentParticipationData {
 	}
 	
 	protected function createProgramPlanEffectiveDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setProgramPlanEffectiveDate($programPlanEffectiveDate) {
@@ -311,9 +299,6 @@ class StudentParticipationData {
 	}
 
 	protected function validateProgramPlanEffectiveDate($programPlanEffectiveDate) {
-		if ( ! $programPlanEffectiveDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($programPlanEffectiveDate) ) {
-			$programPlanEffectiveDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($programPlanEffectiveDate);
-		}
 	
 		return $programPlanEffectiveDate;
 	}

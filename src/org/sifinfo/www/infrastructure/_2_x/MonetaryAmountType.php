@@ -31,7 +31,7 @@ class MonetaryAmountType {
 	}
 	
 	protected function createCurrency() {
-		return new \org\sifinfo\www\infrastructure\_2_x\ISO4217CurrencyNamesAndCodeElementsType();
+		return NULL;
 	}
 
 	public function setCurrency($currency) {
@@ -39,9 +39,6 @@ class MonetaryAmountType {
 	}
 
 	protected function validateCurrency($currency) {
-		if ( ! $currency instanceof \org\sifinfo\www\infrastructure\_2_x\ISO4217CurrencyNamesAndCodeElementsType  && ! is_null($currency) ) {
-			$currency = new \org\sifinfo\www\infrastructure\_2_x\ISO4217CurrencyNamesAndCodeElementsType ($currency);
-		}
 	
 		return $currency;
 	}

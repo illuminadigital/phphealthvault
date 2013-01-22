@@ -94,7 +94,7 @@ class GLISTTS extends \ANY\ANY {
 	}
 	
 	protected function createPeriod() {
-		return new \hl7_org\v3\Int();
+		return 0;
 	}
 
 	public function setPeriod($period) {
@@ -102,9 +102,6 @@ class GLISTTS extends \ANY\ANY {
 	}
 
 	protected function validatePeriod($period) {
-		if ( ! $period instanceof \hl7_org\v3\Int  && ! is_null($period) ) {
-			$period = new \hl7_org\v3\Int ($period);
-		}
 	
 		return $period;
 	}
@@ -117,7 +114,7 @@ class GLISTTS extends \ANY\ANY {
 	}
 	
 	protected function createDenominator() {
-		return new \hl7_org\v3\Int();
+		return 0;
 	}
 
 	public function setDenominator($denominator) {
@@ -125,9 +122,6 @@ class GLISTTS extends \ANY\ANY {
 	}
 
 	protected function validateDenominator($denominator) {
-		if ( ! $denominator instanceof \hl7_org\v3\Int  && ! is_null($denominator) ) {
-			$denominator = new \hl7_org\v3\Int ($denominator);
-		}
 	
 		return $denominator;
 	}

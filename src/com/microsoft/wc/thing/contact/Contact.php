@@ -35,7 +35,7 @@ class Contact extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createContact() {
-		return new \com\microsoft\wc\thing\contact\Contact();
+		return new \com\microsoft\wc\thing\types\Contact();
 	}
 
 	public function setContact($contact) {
@@ -43,8 +43,8 @@ class Contact extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateContact($contact) {
-		if ( ! $contact instanceof \com\microsoft\wc\thing\contact\Contact ) {
-			$contact = new \com\microsoft\wc\thing\contact\Contact ($contact);
+		if ( ! $contact instanceof \com\microsoft\wc\thing\types\Contact ) {
+			$contact = new \com\microsoft\wc\thing\types\Contact ($contact);
 		}
 	
 		return $contact;

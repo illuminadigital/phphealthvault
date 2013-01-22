@@ -55,7 +55,7 @@ class SC extends \ST\ST {
 	}
 	
 	protected function createCode() {
-		return new \hl7_org\v3\Cs();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -63,9 +63,6 @@ class SC extends \ST\ST {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \hl7_org\v3\Cs  && ! is_null($code) ) {
-			$code = new \hl7_org\v3\Cs ($code);
-		}
 	
 		return $code;
 	}
@@ -78,7 +75,7 @@ class SC extends \ST\ST {
 	}
 	
 	protected function createCodeSystem() {
-		return new \hl7_org\v3\Uid();
+		return NULL;
 	}
 
 	public function setCodeSystem($codeSystem) {
@@ -86,9 +83,6 @@ class SC extends \ST\ST {
 	}
 
 	protected function validateCodeSystem($codeSystem) {
-		if ( ! $codeSystem instanceof \hl7_org\v3\Uid  && ! is_null($codeSystem) ) {
-			$codeSystem = new \hl7_org\v3\Uid ($codeSystem);
-		}
 	
 		return $codeSystem;
 	}
@@ -101,7 +95,7 @@ class SC extends \ST\ST {
 	}
 	
 	protected function createCodeSystemName() {
-		return new \hl7_org\v3\St();
+		return NULL;
 	}
 
 	public function setCodeSystemName($codeSystemName) {
@@ -109,9 +103,6 @@ class SC extends \ST\ST {
 	}
 
 	protected function validateCodeSystemName($codeSystemName) {
-		if ( ! $codeSystemName instanceof \hl7_org\v3\St  && ! is_null($codeSystemName) ) {
-			$codeSystemName = new \hl7_org\v3\St ($codeSystemName);
-		}
 	
 		return $codeSystemName;
 	}
@@ -124,7 +115,7 @@ class SC extends \ST\ST {
 	}
 	
 	protected function createCodeSystemVersion() {
-		return new \hl7_org\v3\St();
+		return NULL;
 	}
 
 	public function setCodeSystemVersion($codeSystemVersion) {
@@ -132,9 +123,6 @@ class SC extends \ST\ST {
 	}
 
 	protected function validateCodeSystemVersion($codeSystemVersion) {
-		if ( ! $codeSystemVersion instanceof \hl7_org\v3\St  && ! is_null($codeSystemVersion) ) {
-			$codeSystemVersion = new \hl7_org\v3\St ($codeSystemVersion);
-		}
 	
 		return $codeSystemVersion;
 	}
@@ -147,7 +135,7 @@ class SC extends \ST\ST {
 	}
 	
 	protected function createDisplayName() {
-		return new \hl7_org\v3\St();
+		return NULL;
 	}
 
 	public function setDisplayName($displayName) {
@@ -155,9 +143,6 @@ class SC extends \ST\ST {
 	}
 
 	protected function validateDisplayName($displayName) {
-		if ( ! $displayName instanceof \hl7_org\v3\St  && ! is_null($displayName) ) {
-			$displayName = new \hl7_org\v3\St ($displayName);
-		}
 	
 		return $displayName;
 	}

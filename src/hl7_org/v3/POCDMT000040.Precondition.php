@@ -178,7 +178,7 @@ class POCDMT000040.Precondition {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -186,9 +186,6 @@ class POCDMT000040.Precondition {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -201,7 +198,7 @@ class POCDMT000040.Precondition {
 	}
 	
 	protected function createTypeCode() {
-		return new \hl7_org\v3\ActRelationshipType();
+		return NULL;
 	}
 
 	public function setTypeCode($typeCode) {
@@ -209,9 +206,6 @@ class POCDMT000040.Precondition {
 	}
 
 	protected function validateTypeCode($typeCode) {
-		if ( ! $typeCode instanceof \hl7_org\v3\ActRelationshipType  && ! is_null($typeCode) ) {
-			$typeCode = new \hl7_org\v3\ActRelationshipType ($typeCode);
-		}
 	
 		return $typeCode;
 	}

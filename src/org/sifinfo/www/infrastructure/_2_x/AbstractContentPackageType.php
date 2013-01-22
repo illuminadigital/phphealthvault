@@ -147,7 +147,7 @@ class AbstractContentPackageType {
 	}
 	
 	protected function createRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\RefIdType();
+		return NULL;
 	}
 
 	public function setRefId($refId) {
@@ -155,9 +155,6 @@ class AbstractContentPackageType {
 	}
 
 	protected function validateRefId($refId) {
-		if ( ! $refId instanceof \org\sifinfo\www\infrastructure\_2_x\RefIdType ) {
-			$refId = new \org\sifinfo\www\infrastructure\_2_x\RefIdType ($refId);
-		}
 	
 		return $refId;
 	}

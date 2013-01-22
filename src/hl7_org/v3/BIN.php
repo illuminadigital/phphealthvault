@@ -31,7 +31,7 @@ class BIN extends \ANY\ANY {
 	}
 	
 	protected function createRepresentation() {
-		return new \hl7_org\v3\BinaryDataEncoding();
+		return NULL;
 	}
 
 	public function setRepresentation($representation) {
@@ -39,9 +39,6 @@ class BIN extends \ANY\ANY {
 	}
 
 	protected function validateRepresentation($representation) {
-		if ( ! $representation instanceof \hl7_org\v3\BinaryDataEncoding  && ! is_null($representation) ) {
-			$representation = new \hl7_org\v3\BinaryDataEncoding ($representation);
-		}
 	
 		return $representation;
 	}

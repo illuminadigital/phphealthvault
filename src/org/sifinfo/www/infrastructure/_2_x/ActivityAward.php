@@ -107,7 +107,7 @@ class ActivityAward {
 	}
 	
 	protected function createInvolvementCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0679ActivityInvolvementCodeType();
+		return NULL;
 	}
 
 	public function setInvolvementCode($involvementCode) {
@@ -115,9 +115,6 @@ class ActivityAward {
 	}
 
 	protected function validateInvolvementCode($involvementCode) {
-		if ( ! $involvementCode instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0679ActivityInvolvementCodeType  && ! is_null($involvementCode) ) {
-			$involvementCode = new \org\sifinfo\www\infrastructure\_2_x\NCES0679ActivityInvolvementCodeType ($involvementCode);
-		}
 	
 		return $involvementCode;
 	}
@@ -130,7 +127,7 @@ class ActivityAward {
 	}
 	
 	protected function createInvolvementBeginningDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setInvolvementBeginningDate($involvementBeginningDate) {
@@ -138,9 +135,6 @@ class ActivityAward {
 	}
 
 	protected function validateInvolvementBeginningDate($involvementBeginningDate) {
-		if ( ! $involvementBeginningDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($involvementBeginningDate) ) {
-			$involvementBeginningDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($involvementBeginningDate);
-		}
 	
 		return $involvementBeginningDate;
 	}
@@ -153,7 +147,7 @@ class ActivityAward {
 	}
 	
 	protected function createInvolvementEndingDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setInvolvementEndingDate($involvementEndingDate) {
@@ -161,9 +155,6 @@ class ActivityAward {
 	}
 
 	protected function validateInvolvementEndingDate($involvementEndingDate) {
-		if ( ! $involvementEndingDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($involvementEndingDate) ) {
-			$involvementEndingDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($involvementEndingDate);
-		}
 	
 		return $involvementEndingDate;
 	}
@@ -199,7 +190,7 @@ class ActivityAward {
 	}
 	
 	protected function createHonorsInformationCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0674HonorsTypeType();
+		return NULL;
 	}
 
 	public function setHonorsInformationCode($honorsInformationCode) {
@@ -207,9 +198,6 @@ class ActivityAward {
 	}
 
 	protected function validateHonorsInformationCode($honorsInformationCode) {
-		if ( ! $honorsInformationCode instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0674HonorsTypeType  && ! is_null($honorsInformationCode) ) {
-			$honorsInformationCode = new \org\sifinfo\www\infrastructure\_2_x\NCES0674HonorsTypeType ($honorsInformationCode);
-		}
 	
 		return $honorsInformationCode;
 	}
@@ -245,7 +233,7 @@ class ActivityAward {
 	}
 	
 	protected function createDiplomaCredentialHonorsCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0684DiplomaCredentialLevelAndHonorsType();
+		return NULL;
 	}
 
 	public function setDiplomaCredentialHonorsCode($diplomaCredentialHonorsCode) {
@@ -253,9 +241,6 @@ class ActivityAward {
 	}
 
 	protected function validateDiplomaCredentialHonorsCode($diplomaCredentialHonorsCode) {
-		if ( ! $diplomaCredentialHonorsCode instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0684DiplomaCredentialLevelAndHonorsType  && ! is_null($diplomaCredentialHonorsCode) ) {
-			$diplomaCredentialHonorsCode = new \org\sifinfo\www\infrastructure\_2_x\NCES0684DiplomaCredentialLevelAndHonorsType ($diplomaCredentialHonorsCode);
-		}
 	
 		return $diplomaCredentialHonorsCode;
 	}

@@ -30,7 +30,7 @@ class SXCMMO extends \MO\MO {
 	}
 	
 	protected function createOperator() {
-		return new \hl7_org\v3\SetOperator();
+		return NULL;
 	}
 
 	public function setOperator($operator) {
@@ -38,9 +38,6 @@ class SXCMMO extends \MO\MO {
 	}
 
 	protected function validateOperator($operator) {
-		if ( ! $operator instanceof \hl7_org\v3\SetOperator  && ! is_null($operator) ) {
-			$operator = new \hl7_org\v3\SetOperator ($operator);
-		}
 	
 		return $operator;
 	}

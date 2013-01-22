@@ -36,7 +36,7 @@ class EnglishProficiencyType {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0585EnglishProficiencyType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -44,9 +44,6 @@ class EnglishProficiencyType {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0585EnglishProficiencyType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0585EnglishProficiencyType ($code);
-		}
 	
 		return $code;
 	}

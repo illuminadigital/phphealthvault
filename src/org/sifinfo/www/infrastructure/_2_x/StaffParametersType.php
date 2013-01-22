@@ -103,7 +103,7 @@ class StaffParametersType {
 	}
 	
 	protected function createStateProvinceId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType();
+		return NULL;
 	}
 
 	public function setStateProvinceId($stateProvinceId) {
@@ -111,9 +111,6 @@ class StaffParametersType {
 	}
 
 	protected function validateStateProvinceId($stateProvinceId) {
-		if ( ! $stateProvinceId instanceof \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType  && ! is_null($stateProvinceId) ) {
-			$stateProvinceId = new \org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType ($stateProvinceId);
-		}
 	
 		return $stateProvinceId;
 	}
@@ -126,7 +123,7 @@ class StaffParametersType {
 	}
 	
 	protected function createLocalId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\LocalIdType();
+		return NULL;
 	}
 
 	public function setLocalId($localId) {
@@ -134,9 +131,6 @@ class StaffParametersType {
 	}
 
 	protected function validateLocalId($localId) {
-		if ( ! $localId instanceof \org\sifinfo\www\infrastructure\_2_x\LocalIdType  && ! is_null($localId) ) {
-			$localId = new \org\sifinfo\www\infrastructure\_2_x\LocalIdType ($localId);
-		}
 	
 		return $localId;
 	}
@@ -149,7 +143,7 @@ class StaffParametersType {
 	}
 	
 	protected function createSifRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setSifRefId($sifRefId) {
@@ -157,9 +151,6 @@ class StaffParametersType {
 	}
 
 	protected function validateSifRefId($sifRefId) {
-		if ( ! $sifRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType  && ! is_null($sifRefId) ) {
-			$sifRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($sifRefId);
-		}
 	
 		return $sifRefId;
 	}
@@ -172,7 +163,7 @@ class StaffParametersType {
 	}
 	
 	protected function createSSN() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SSNType();
+		return NULL;
 	}
 
 	public function setSSN($sSN) {
@@ -180,9 +171,6 @@ class StaffParametersType {
 	}
 
 	protected function validateSSN($sSN) {
-		if ( ! $sSN instanceof \org\sifinfo\www\infrastructure\_2_x\SSNType  && ! is_null($sSN) ) {
-			$sSN = new \org\sifinfo\www\infrastructure\_2_x\SSNType ($sSN);
-		}
 	
 		return $sSN;
 	}

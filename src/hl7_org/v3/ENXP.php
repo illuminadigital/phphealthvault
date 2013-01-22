@@ -37,7 +37,7 @@ class ENXP extends \ST\ST {
 	}
 	
 	protected function createPartType() {
-		return new \hl7_org\v3\EntityNamePartType();
+		return NULL;
 	}
 
 	public function setPartType($partType) {
@@ -45,9 +45,6 @@ class ENXP extends \ST\ST {
 	}
 
 	protected function validatePartType($partType) {
-		if ( ! $partType instanceof \hl7_org\v3\EntityNamePartType ) {
-			$partType = new \hl7_org\v3\EntityNamePartType ($partType);
-		}
 	
 		return $partType;
 	}
@@ -60,7 +57,7 @@ class ENXP extends \ST\ST {
 	}
 	
 	protected function createQualifier() {
-		return new \hl7_org\v3\SetEntityNamePartQualifier();
+		return NULL;
 	}
 
 	public function setQualifier($qualifier) {
@@ -68,9 +65,6 @@ class ENXP extends \ST\ST {
 	}
 
 	protected function validateQualifier($qualifier) {
-		if ( ! $qualifier instanceof \hl7_org\v3\SetEntityNamePartQualifier  && ! is_null($qualifier) ) {
-			$qualifier = new \hl7_org\v3\SetEntityNamePartQualifier ($qualifier);
-		}
 	
 		return $qualifier;
 	}

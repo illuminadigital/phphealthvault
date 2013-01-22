@@ -36,7 +36,7 @@ class ResidencyStatus {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0598PublicSchoolResidenceStatusType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -44,9 +44,6 @@ class ResidencyStatus {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0598PublicSchoolResidenceStatusType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NCES0598PublicSchoolResidenceStatusType ($code);
-		}
 	
 		return $code;
 	}

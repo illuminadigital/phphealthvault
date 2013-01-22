@@ -117,7 +117,7 @@ class Contact {
 	}
 	
 	protected function createEducationalLevel() {
-		return new \org\sifinfo\www\infrastructure\_2_x\EducationalLevelType();
+		return NULL;
 	}
 
 	public function setEducationalLevel($educationalLevel) {
@@ -125,9 +125,6 @@ class Contact {
 	}
 
 	protected function validateEducationalLevel($educationalLevel) {
-		if ( ! $educationalLevel instanceof \org\sifinfo\www\infrastructure\_2_x\EducationalLevelType  && ! is_null($educationalLevel) ) {
-			$educationalLevel = new \org\sifinfo\www\infrastructure\_2_x\EducationalLevelType ($educationalLevel);
-		}
 	
 		return $educationalLevel;
 	}

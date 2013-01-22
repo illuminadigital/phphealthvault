@@ -381,7 +381,7 @@ class POCDMT000040.Organization {
 	}
 	
 	protected function createNullFlavor() {
-		return new \hl7_org\v3\NullFlavor();
+		return NULL;
 	}
 
 	public function setNullFlavor($nullFlavor) {
@@ -389,9 +389,6 @@ class POCDMT000040.Organization {
 	}
 
 	protected function validateNullFlavor($nullFlavor) {
-		if ( ! $nullFlavor instanceof \hl7_org\v3\NullFlavor  && ! is_null($nullFlavor) ) {
-			$nullFlavor = new \hl7_org\v3\NullFlavor ($nullFlavor);
-		}
 	
 		return $nullFlavor;
 	}
@@ -404,7 +401,7 @@ class POCDMT000040.Organization {
 	}
 	
 	protected function createClassCode() {
-		return new \hl7_org\v3\EntityClassOrganization();
+		return NULL;
 	}
 
 	public function setClassCode($classCode) {
@@ -412,9 +409,6 @@ class POCDMT000040.Organization {
 	}
 
 	protected function validateClassCode($classCode) {
-		if ( ! $classCode instanceof \hl7_org\v3\EntityClassOrganization  && ! is_null($classCode) ) {
-			$classCode = new \hl7_org\v3\EntityClassOrganization ($classCode);
-		}
 	
 		return $classCode;
 	}
@@ -427,7 +421,7 @@ class POCDMT000040.Organization {
 	}
 	
 	protected function createDeterminerCode() {
-		return new \hl7_org\v3\EntityDeterminer();
+		return NULL;
 	}
 
 	public function setDeterminerCode($determinerCode) {
@@ -435,9 +429,6 @@ class POCDMT000040.Organization {
 	}
 
 	protected function validateDeterminerCode($determinerCode) {
-		if ( ! $determinerCode instanceof \hl7_org\v3\EntityDeterminer  && ! is_null($determinerCode) ) {
-			$determinerCode = new \hl7_org\v3\EntityDeterminer ($determinerCode);
-		}
 	
 		return $determinerCode;
 	}

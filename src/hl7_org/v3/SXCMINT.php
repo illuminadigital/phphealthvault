@@ -30,7 +30,7 @@ class SXCMINT extends \INT\INT {
 	}
 	
 	protected function createOperator() {
-		return new \hl7_org\v3\SetOperator();
+		return NULL;
 	}
 
 	public function setOperator($operator) {
@@ -38,9 +38,6 @@ class SXCMINT extends \INT\INT {
 	}
 
 	protected function validateOperator($operator) {
-		if ( ! $operator instanceof \hl7_org\v3\SetOperator  && ! is_null($operator) ) {
-			$operator = new \hl7_org\v3\SetOperator ($operator);
-		}
 	
 		return $operator;
 	}

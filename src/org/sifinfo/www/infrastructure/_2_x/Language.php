@@ -48,7 +48,7 @@ class Language {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NISOZ3953LanguageCodesType();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -56,9 +56,6 @@ class Language {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\NISOZ3953LanguageCodesType ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\NISOZ3953LanguageCodesType ($code);
-		}
 	
 		return $code;
 	}
@@ -94,7 +91,7 @@ class Language {
 	}
 	
 	protected function createLanguageType() {
-		return new \org\sifinfo\www\infrastructure\_2_x\NCES0327LanguageTypeType();
+		return NULL;
 	}
 
 	public function setLanguageType($languageType) {
@@ -102,9 +99,6 @@ class Language {
 	}
 
 	protected function validateLanguageType($languageType) {
-		if ( ! $languageType instanceof \org\sifinfo\www\infrastructure\_2_x\NCES0327LanguageTypeType  && ! is_null($languageType) ) {
-			$languageType = new \org\sifinfo\www\infrastructure\_2_x\NCES0327LanguageTypeType ($languageType);
-		}
 	
 		return $languageType;
 	}

@@ -78,7 +78,7 @@ class TermInfoData {
 	}
 	
 	protected function createSchoolYear() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SchoolYearType();
+		return NULL;
 	}
 
 	public function setSchoolYear($schoolYear) {
@@ -86,9 +86,6 @@ class TermInfoData {
 	}
 
 	protected function validateSchoolYear($schoolYear) {
-		if ( ! $schoolYear instanceof \org\sifinfo\www\infrastructure\_2_x\SchoolYearType  && ! is_null($schoolYear) ) {
-			$schoolYear = new \org\sifinfo\www\infrastructure\_2_x\SchoolYearType ($schoolYear);
-		}
 	
 		return $schoolYear;
 	}
@@ -101,7 +98,7 @@ class TermInfoData {
 	}
 	
 	protected function createStartDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setStartDate($startDate) {
@@ -109,9 +106,6 @@ class TermInfoData {
 	}
 
 	protected function validateStartDate($startDate) {
-		if ( ! $startDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($startDate) ) {
-			$startDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($startDate);
-		}
 	
 		return $startDate;
 	}
@@ -124,7 +118,7 @@ class TermInfoData {
 	}
 	
 	protected function createEndDate() {
-		return new \org\sifinfo\www\infrastructure\_2_x\PartialDateType();
+		return NULL;
 	}
 
 	public function setEndDate($endDate) {
@@ -132,9 +126,6 @@ class TermInfoData {
 	}
 
 	protected function validateEndDate($endDate) {
-		if ( ! $endDate instanceof \org\sifinfo\www\infrastructure\_2_x\PartialDateType  && ! is_null($endDate) ) {
-			$endDate = new \org\sifinfo\www\infrastructure\_2_x\PartialDateType ($endDate);
-		}
 	
 		return $endDate;
 	}
@@ -262,7 +253,7 @@ class TermInfoData {
 	}
 	
 	protected function createSchoolAttendedRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\IdRefType();
+		return NULL;
 	}
 
 	public function setSchoolAttendedRefId($schoolAttendedRefId) {
@@ -270,9 +261,6 @@ class TermInfoData {
 	}
 
 	protected function validateSchoolAttendedRefId($schoolAttendedRefId) {
-		if ( ! $schoolAttendedRefId instanceof \org\sifinfo\www\infrastructure\_2_x\IdRefType ) {
-			$schoolAttendedRefId = new \org\sifinfo\www\infrastructure\_2_x\IdRefType ($schoolAttendedRefId);
-		}
 	
 		return $schoolAttendedRefId;
 	}

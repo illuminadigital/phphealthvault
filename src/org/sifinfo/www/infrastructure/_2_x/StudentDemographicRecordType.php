@@ -188,7 +188,7 @@ class StudentDemographicRecordType {
 	}
 	
 	protected function createRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\RefIdType();
+		return NULL;
 	}
 
 	public function setRefId($refId) {
@@ -196,9 +196,6 @@ class StudentDemographicRecordType {
 	}
 
 	protected function validateRefId($refId) {
-		if ( ! $refId instanceof \org\sifinfo\www\infrastructure\_2_x\RefIdType ) {
-			$refId = new \org\sifinfo\www\infrastructure\_2_x\RefIdType ($refId);
-		}
 	
 		return $refId;
 	}
@@ -211,7 +208,7 @@ class StudentDemographicRecordType {
 	}
 	
 	protected function createSifRefId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\RefIdType();
+		return NULL;
 	}
 
 	public function setSifRefId($sifRefId) {
@@ -219,9 +216,6 @@ class StudentDemographicRecordType {
 	}
 
 	protected function validateSifRefId($sifRefId) {
-		if ( ! $sifRefId instanceof \org\sifinfo\www\infrastructure\_2_x\RefIdType ) {
-			$sifRefId = new \org\sifinfo\www\infrastructure\_2_x\RefIdType ($sifRefId);
-		}
 	
 		return $sifRefId;
 	}
