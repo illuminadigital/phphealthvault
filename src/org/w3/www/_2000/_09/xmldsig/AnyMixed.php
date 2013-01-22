@@ -1,5 +1,5 @@
 <?php
-namespace \org\w3\www\_2000\_09\xmldsig;
+namespace org\w3\www\_2000\_09\xmldsig;
 
 /**
  * @XmlEntity(xml="*")

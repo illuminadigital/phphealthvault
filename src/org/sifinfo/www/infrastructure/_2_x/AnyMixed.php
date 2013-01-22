@@ -1,5 +1,5 @@
 <?php
-namespace \org\sifinfo\www\infrastructure\_2_x;
+namespace org\sifinfo\www\infrastructure\_2_x;
 
 /**
  * @XmlEntity(xml="*")
