@@ -90,10 +90,10 @@ class Setting
     /**
      * Set user
      *
-     * @param \Illumina\SecurityBundle\Entity\User $user
+     * @param \Illumina\HealthvaultSecurityBundle\Entity\User $user
      * @return Settings
      */
-    public function setUser(\Illumina\SecurityBundle\Entity\User $user = null)
+    public function setUser(\Illumina\HealthvaultSecurityBundle\Entity\User $user = null)
     {
         $this->user = $user;
     
@@ -103,7 +103,7 @@ class Setting
     /**
      * Get user
      *
-     * @return \Illumina\SecurityBundle\Entity\User 
+     * @return \Illumina\HealthvaultSecurityBundle\Entity\User 
      */
     public function getUser()
     {
