@@ -119,7 +119,7 @@ class PlatformMethod
         
         file_put_contents(tempnam(sys_get_temp_dir(), 'rq'), $request);
         
-        echo '<h3>Request</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $request) . "\n";
+        // echo '<h3>Request</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $request) . "\n";
         
         $response = $this->sendRequest($request);
         
@@ -127,7 +127,7 @@ class PlatformMethod
         {
         	$unmarshaller = $this->configuration->getMarshallingService();
         
-        echo '<h3>Response</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $response). "\n";
+        // echo '<h3>Response</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $response). "\n";
         
         	$responseObject = $unmarshaller->unmarshalFromString($response);
         }
