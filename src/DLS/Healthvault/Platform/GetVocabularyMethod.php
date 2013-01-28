@@ -25,7 +25,7 @@ class GetVocabularyMethod extends PlatformMethod
         $key = new VocabularyKey($name, $family);
         
         $parameters->addVocabularyKey($key);
-        $parameters->setFixedCulture(TRUE);
+        $parameters->setFixedCulture(FALSE);
         
         return $key;
     }
