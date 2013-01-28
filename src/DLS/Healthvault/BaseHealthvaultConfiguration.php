@@ -220,20 +220,28 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     public function setPrivateKey($key)
     {
     	if (is_string($key)) {
-    		// This is the filename, not the resource
+    		// This is not a resource so must be the key itself or a filename
     		
     		$this->privateKey = NULL;
     		
-    		$keyData = file_get_contents($key);
-
-    		if ($keyData === FALSE) {
-    			throw new \Exception('Unable to read the private key from the file: ' . $e->getMessage());
+    		if (substr($key, 0, 31) === '-----BEGIN RSA PRIVATE KEY-----')
+    		{
+    		    $keyData = $key;
+    		} 
+    		else
+    		{
+    		    // Assume it is a filename
+        		$keyData = file_get_contents($key);
+    
+        		if ($keyData === FALSE) {
+        			throw new \Exception('Unable to read the private key from the file: ' . $e->getMessage());
+        		}
     		}
     		
     		$privateKey = openssl_pkey_get_private($keyData);
     		
     		if ($privateKey === FALSE) {
-    			throw new \Exception('Unable to generate the private key from the file: ' . $e->getMessage());
+    			throw new \Exception('Unable to generate the private key from the data: ' . $e->getMessage());
     		}
     		
     		$this->privateKey = $privateKey;
