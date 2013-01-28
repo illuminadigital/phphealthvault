@@ -138,14 +138,14 @@ class Condition
     static public function getPossibleCategories()
     {
         return array(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            'Aliquam facilisis turpis eget nisl sodales pretium.',
-            'In at nibh a ipsum elementum adipiscing ut ut erat.',
-            'Pellentesque malesuada porta est, at fringilla tellus tincidunt vitae.',
-            'Quisque vehicula dui quis diam condimentum non varius quam ultrices.',
-            'Etiam vitae odio et risus pretium posuere eu nec orci.',
-            'Duis pharetra enim ut justo luctus luctus.',
-            'Integer ac lacus risus, id tempor tortor.',
+            'Lorem ipsum dolor sit amet.',
+            'Aliquam facilisis turpis.',
+            'In at nibh a ipsum.',
+            'Pellentesque malesuada porta.',
+            'Quisque vehicula dui quis.',
+            'Etiam vitae odio et risus.',
+            'Duis pharetra enim ut.',
+            'Integer ac lacus risus.',
         );
     }
 }
