@@ -27,6 +27,8 @@ class HealthvaultTestCase extends PHPUnit_Framework_TestCase {
 	public function getUSDevelopmentConfiguration() {
 		$rowConfiguration = new HealthvaultUSDevelopmentConfiguration($this->applicationId, __DIR__ . '/../../../samples/app.pem');
 		
+		$rowConfiguration->setToken('ASAAAJGYk+KvXOtFkwBwUMtHaBbV+OQRYBPm6fn92vWAT7P53CYP8/TqZqaXE3UWOhaoPwkayQXGFzu2J1HVATwVfeV/xavess6DzEp/bH3E9A1Hd3dIJuIK+HWz2DUv21u20u02bfYMHDtRDRqMW/MMD0nnxDFIcwg+KBFhyKSK9j+vBAuFLAcZdTOVDKKkJFmipw==');
+		
 		return $rowConfiguration;
 	}
 	
