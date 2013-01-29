@@ -23,6 +23,13 @@ class GetThingsMethod extends PlatformMethod
 		$lastGroup->addFilter($filterSpec);
     }
     
+    public function addBasicIdFilter($id) {
+        $group = $this->createGroup();
+        $group->getId()->setValue($id);
+        
+        $this->requestData->getInfo()->addGroup($group);
+    }
+    
     public function getLastGroup() {
         $groups = $this->requestData->getInfo()->getGroup();
          
