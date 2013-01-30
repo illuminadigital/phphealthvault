@@ -38,12 +38,18 @@ class ThingConverter
         $newThing->setFlags($originalThing->getFlags());
         $newThing->setEffDate($originalThing->getEffDate());
         $newThing->setDataXml($originalThing->getDataXml());
-        $newThing->setEffPermissions($originalThing->getEffPermissions());
-        $newThing->getSignatureInfo()->setSignature($originalThing->getSignature());
         
         if ($originalThing->getThingId()->getValue())
         {
             $newThing->setThingId($originalThing->getThingId());
+        }
+        
+        /* Permissions switch from 0..1 to 0..5 ie single to array*/
+        $permissions = $originalThing->getEffPermissions();
+        $permissionsValue = ($permissions->getPermission()) ? $permissions->getPermission()->getValue() : NULL;
+        if ( ! empty($permissionsValue)) 
+        {
+            $newThing->addEffPermissions($permissions);
         }
         
         if ($originalThing->getCreated()->getTimestamp())
@@ -64,6 +70,12 @@ class ThingConverter
         if ($originalThing->getTags()->getValue())
         {
             $newThing->setTags($originalThing->getTags());
+        }
+        
+        $signature = $originalThing->getSignature();
+        if ($signature && $signature->getId())
+        {
+            $newThing->getSignatureInfo()->setSignature($signature);
         }
         
         return $newThing;
