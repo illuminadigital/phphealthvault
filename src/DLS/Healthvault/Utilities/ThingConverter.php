@@ -33,7 +33,6 @@ class ThingConverter
     {
         $newThing = new Thing2();
         
-        $newThing->setThingId($originalThing->getThingId());
         $newThing->setTypeId($originalThing->getTypeId());
         $newThing->setThingState($originalThing->getThingState());
         $newThing->setFlags($originalThing->getFlags());
@@ -41,6 +40,11 @@ class ThingConverter
         $newThing->setDataXml($originalThing->getDataXml());
         $newThing->setEffPermissions($originalThing->getEffPermissions());
         $newThing->getSignatureInfo()->setSignature($originalThing->getSignature());
+        
+        if ($originalThing->getThingId()->getValue())
+        {
+            $newThing->setThingId($originalThing->getThingId());
+        }
         
         if ($originalThing->getCreated()->getTimestamp())
         {
