@@ -21,6 +21,18 @@ class PutThingsMethod extends PlatformMethod
         } elseif ( ! $thing instanceof Thing2) {
             throw new \Exception('Unsupported thing type');
         }
+
+        $typeId = $thing->getTypeId();
+        $typeIdValue = $typeId->getValue(); 
+        if ( empty($typeIdValue))
+        {
+            $allData = $thing->getDataXml();
+            $firstData = array_shift($allData);
+            $firstDataContent = $firstData->getAny();
+            $firstThing = array_shift($firstDataContent);
+        
+            $typeId->setValue($firstThing::ID);
+        }
         
         $this->requestData->getInfo()->addThing($thing);
     }
