@@ -67,7 +67,7 @@ class Extension {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'any', 0));
 		}
 		foreach ($any as $entry) {
-			if ( ! is_AnyMixed($entry) && ! is_null($entry) ) {
+			if ( ! is_object($entry) && ! is_null($entry) ) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
 			}
 		}
@@ -80,7 +80,7 @@ class Extension {
 	}
 
 	protected function validateAnyType($any) {
-		if ( ! is_AnyMixed($any) && ! is_null($any) ) {
+		if ( ! is_object($any) && ! is_null($any) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
 		}
 	
