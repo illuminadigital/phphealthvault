@@ -38,8 +38,8 @@ class StudentParticipationList {
 	}
 
 	protected function validateStudentParticipationData($studentParticipationData) {
-		if ( ! $studentParticipationData instanceof \org\sifinfo\www\infrastructure\_2_x\StudentParticipationData ) {
-			$studentParticipationData = new \org\sifinfo\www\infrastructure\_2_x\StudentParticipationData ($studentParticipationData);
+		if ( ! is_array ($studentParticipationData) ) {
+			$studentParticipationData = array($studentParticipationData);
 		}
 		$count = count($studentParticipationData);
 		if ($count < 1) {

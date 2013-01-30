@@ -74,8 +74,8 @@ class Assessment {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \com\microsoft\wc\types\CodableValue ) {
-			$value = new \com\microsoft\wc\types\CodableValue ($value);
+		if ( ! is_array ($value) ) {
+			$value = array($value);
 		}
 		$count = count($value);
 		if ($count < 1) {

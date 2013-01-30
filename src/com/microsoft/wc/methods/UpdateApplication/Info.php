@@ -189,8 +189,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof \com\microsoft\wc\types\CultureSpecificString255  && ! is_null($name) ) {
-			$name = new \com\microsoft\wc\types\CultureSpecificString255 ($name);
+		if ( ! is_array ($name) && ! is_null($name) ) {
+			$name = array($name);
 		}
 		$count = count($name);
 		if ($count < 0) {
@@ -340,8 +340,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! $description instanceof \com\microsoft\wc\types\CultureSpecificStringnz  && ! is_null($description) ) {
-			$description = new \com\microsoft\wc\types\CultureSpecificStringnz ($description);
+		if ( ! is_array ($description) && ! is_null($description) ) {
+			$description = array($description);
 		}
 		$count = count($description);
 		if ($count < 0) {
@@ -376,8 +376,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAuthReason($authReason) {
-		if ( ! $authReason instanceof \com\microsoft\wc\types\CultureSpecificStringnz  && ! is_null($authReason) ) {
-			$authReason = new \com\microsoft\wc\types\CultureSpecificStringnz ($authReason);
+		if ( ! is_array ($authReason) && ! is_null($authReason) ) {
+			$authReason = array($authReason);
 		}
 		$count = count($authReason);
 		if ($count < 0) {

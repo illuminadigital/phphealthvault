@@ -39,8 +39,8 @@ class EmailListType {
 	}
 
 	protected function validateEmail($email) {
-		if ( ! $email instanceof \org\sifinfo\www\infrastructure\_2_x\Email ) {
-			$email = new \org\sifinfo\www\infrastructure\_2_x\Email ($email);
+		if ( ! is_array ($email) ) {
+			$email = array($email);
 		}
 		$count = count($email);
 		if ($count < 1) {

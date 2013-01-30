@@ -104,8 +104,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateXmlMethod($xmlMethod) {
-		if ( ! $xmlMethod instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethod ) {
-			$xmlMethod = new \com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethod ($xmlMethod);
+		if ( ! is_array ($xmlMethod) ) {
+			$xmlMethod = array($xmlMethod);
 		}
 		$count = count($xmlMethod);
 		if ($count < 1) {

@@ -38,8 +38,8 @@ class IdentificationInfoListType {
 	}
 
 	protected function validateIdentificationInfo($identificationInfo) {
-		if ( ! $identificationInfo instanceof \org\sifinfo\www\infrastructure\_2_x\IdentificationInfo ) {
-			$identificationInfo = new \org\sifinfo\www\infrastructure\_2_x\IdentificationInfo ($identificationInfo);
+		if ( ! is_array ($identificationInfo) ) {
+			$identificationInfo = array($identificationInfo);
 		}
 		$count = count($identificationInfo);
 		if ($count < 1) {

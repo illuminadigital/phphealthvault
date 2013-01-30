@@ -39,8 +39,8 @@ class MedicationRoutes {
 	}
 
 	protected function validateRoute($route) {
-		if ( ! $route instanceof \com\microsoft\wc\types\CodableValue ) {
-			$route = new \com\microsoft\wc\types\CodableValue ($route);
+		if ( ! is_array ($route) ) {
+			$route = array($route);
 		}
 		$count = count($route);
 		if ($count < 1) {

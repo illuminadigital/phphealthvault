@@ -38,8 +38,8 @@ class Columns {
 	}
 
 	protected function validateColumn($column) {
-		if ( ! $column instanceof \com\microsoft\wc\methods\response\GetThingType\Column  && ! is_null($column) ) {
-			$column = new \com\microsoft\wc\methods\response\GetThingType\Column ($column);
+		if ( ! is_array ($column) && ! is_null($column) ) {
+			$column = array($column);
 		}
 		$count = count($column);
 		if ($count < 0) {

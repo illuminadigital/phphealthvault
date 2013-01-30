@@ -104,8 +104,8 @@ class CD extends \ANY\ANY {
 	}
 
 	protected function validateQualifier($qualifier) {
-		if ( ! $qualifier instanceof \hl7_org\v3\CR  && ! is_null($qualifier) ) {
-			$qualifier = new \hl7_org\v3\CR ($qualifier);
+		if ( ! is_array ($qualifier) && ! is_null($qualifier) ) {
+			$qualifier = array($qualifier);
 		}
 		$count = count($qualifier);
 		if ($count < 0) {
@@ -140,8 +140,8 @@ class CD extends \ANY\ANY {
 	}
 
 	protected function validateTranslation($translation) {
-		if ( ! $translation instanceof \hl7_org\v3\CD  && ! is_null($translation) ) {
-			$translation = new \hl7_org\v3\CD ($translation);
+		if ( ! is_array ($translation) && ! is_null($translation) ) {
+			$translation = array($translation);
 		}
 		$count = count($translation);
 		if ($count < 0) {

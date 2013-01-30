@@ -40,8 +40,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateGroup($group) {
-		if ( ! $group instanceof \com\microsoft\wc\methods\GetThings\ThingRequestGroup ) {
-			$group = new \com\microsoft\wc\methods\GetThings\ThingRequestGroup ($group);
+		if ( ! is_array ($group) ) {
+			$group = array($group);
 		}
 		$count = count($group);
 		if ($count < 1) {

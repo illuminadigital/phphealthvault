@@ -38,8 +38,8 @@ class BlobPayload {
 	}
 
 	protected function validateBlob($blob) {
-		if ( ! $blob instanceof \com\microsoft\wc\thing\BlobPayloadItem ) {
-			$blob = new \com\microsoft\wc\thing\BlobPayloadItem ($blob);
+		if ( ! is_array ($blob) ) {
+			$blob = array($blob);
 		}
 		$count = count($blob);
 		if ($count < 1) {

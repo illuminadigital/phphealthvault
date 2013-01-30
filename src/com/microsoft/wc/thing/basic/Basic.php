@@ -246,8 +246,8 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof \com\microsoft\wc\thing\types\Language  && ! is_null($language) ) {
-			$language = new \com\microsoft\wc\thing\types\Language ($language);
+		if ( ! is_array ($language) && ! is_null($language) ) {
+			$language = array($language);
 		}
 		$count = count($language);
 		if ($count < 0) {

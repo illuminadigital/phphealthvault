@@ -86,8 +86,8 @@ class POCDMT000040.StructuredBody {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! $realmCode instanceof \hl7_org\v3\CS  && ! is_null($realmCode) ) {
-			$realmCode = new \hl7_org\v3\CS ($realmCode);
+		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
+			$realmCode = array($realmCode);
 		}
 		$count = count($realmCode);
 		if ($count < 0) {
@@ -145,8 +145,8 @@ class POCDMT000040.StructuredBody {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! $templateId instanceof \hl7_org\v3\II  && ! is_null($templateId) ) {
-			$templateId = new \hl7_org\v3\II ($templateId);
+		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
+			$templateId = array($templateId);
 		}
 		$count = count($templateId);
 		if ($count < 0) {
@@ -227,8 +227,8 @@ class POCDMT000040.StructuredBody {
 	}
 
 	protected function validateComponent($component) {
-		if ( ! $component instanceof \hl7_org\v3\POCDMT000040.Component3 ) {
-			$component = new \hl7_org\v3\POCDMT000040.Component3 ($component);
+		if ( ! is_array ($component) ) {
+			$component = array($component);
 		}
 		$count = count($component);
 		if ($count < 1) {

@@ -91,8 +91,8 @@ class StrucDoc.List {
 	}
 
 	protected function validateItem($item) {
-		if ( ! $item instanceof \hl7_org\v3\StrucDoc.Item ) {
-			$item = new \hl7_org\v3\StrucDoc.Item ($item);
+		if ( ! is_array ($item) ) {
+			$item = array($item);
 		}
 		$count = count($item);
 		if ($count < 1) {

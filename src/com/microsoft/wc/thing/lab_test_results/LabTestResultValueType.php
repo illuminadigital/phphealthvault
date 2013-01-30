@@ -75,8 +75,8 @@ class LabTestResultValueType {
 	}
 
 	protected function validateRanges($ranges) {
-		if ( ! $ranges instanceof \com\microsoft\wc\thing\lab_test_results\TestResultRange  && ! is_null($ranges) ) {
-			$ranges = new \com\microsoft\wc\thing\lab_test_results\TestResultRange ($ranges);
+		if ( ! is_array ($ranges) && ! is_null($ranges) ) {
+			$ranges = array($ranges);
 		}
 		$count = count($ranges);
 		if ($count < 0) {
@@ -111,8 +111,8 @@ class LabTestResultValueType {
 	}
 
 	protected function validateFlag($flag) {
-		if ( ! $flag instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($flag) ) {
-			$flag = new \com\microsoft\wc\types\CodableValue ($flag);
+		if ( ! is_array ($flag) && ! is_null($flag) ) {
+			$flag = array($flag);
 		}
 		$count = count($flag);
 		if ($count < 0) {

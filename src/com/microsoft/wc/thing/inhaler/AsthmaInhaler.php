@@ -359,8 +359,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAlert($alert) {
-		if ( ! $alert instanceof \com\microsoft\wc\thing\inhaler\Alert  && ! is_null($alert) ) {
-			$alert = new \com\microsoft\wc\thing\inhaler\Alert ($alert);
+		if ( ! is_array ($alert) && ! is_null($alert) ) {
+			$alert = array($alert);
 		}
 		$count = count($alert);
 		if ($count < 0) {

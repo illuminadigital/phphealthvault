@@ -58,8 +58,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof \com\microsoft\wc\types\Guid  && ! is_null($id) ) {
-			$id = new \com\microsoft\wc\types\Guid ($id);
+		if ( ! is_array ($id) && ! is_null($id) ) {
+			$id = array($id);
 		}
 		$count = count($id);
 		if ($count < 0) {

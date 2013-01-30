@@ -38,8 +38,8 @@ class BlobFilters {
 	}
 
 	protected function validateBlobFilter($blobFilter) {
-		if ( ! $blobFilter instanceof \com\microsoft\wc\methods\GetThings3\BlobFilterSpec ) {
-			$blobFilter = new \com\microsoft\wc\methods\GetThings3\BlobFilterSpec ($blobFilter);
+		if ( ! is_array ($blobFilter) ) {
+			$blobFilter = array($blobFilter);
 		}
 		$count = count($blobFilter);
 		if ($count < 1) {

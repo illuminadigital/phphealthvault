@@ -184,8 +184,8 @@ class Service {
 	}
 
 	protected function validateNotes($notes) {
-		if ( ! $notes instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($notes) ) {
-			$notes = new \com\microsoft\wc\types\Stringnznw ($notes);
+		if ( ! is_array ($notes) && ! is_null($notes) ) {
+			$notes = array($notes);
 		}
 		$count = count($notes);
 		if ($count < 0) {

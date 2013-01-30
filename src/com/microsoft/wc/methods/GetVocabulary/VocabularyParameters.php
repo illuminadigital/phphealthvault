@@ -45,8 +45,8 @@ class VocabularyParameters {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! $vocabularyKey instanceof \com\microsoft\wc\vocab\VocabularyKey ) {
-			$vocabularyKey = new \com\microsoft\wc\vocab\VocabularyKey ($vocabularyKey);
+		if ( ! is_array ($vocabularyKey) ) {
+			$vocabularyKey = array($vocabularyKey);
 		}
 		$count = count($vocabularyKey);
 		if ($count < 1) {

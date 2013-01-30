@@ -38,8 +38,8 @@ class MarkingPeriods {
 	}
 
 	protected function validateMarkingPeriod($markingPeriod) {
-		if ( ! $markingPeriod instanceof \org\sifinfo\www\infrastructure\_2_x\MarkingPeriod ) {
-			$markingPeriod = new \org\sifinfo\www\infrastructure\_2_x\MarkingPeriod ($markingPeriod);
+		if ( ! is_array ($markingPeriod) ) {
+			$markingPeriod = array($markingPeriod);
 		}
 		$count = count($markingPeriod);
 		if ($count < 1) {

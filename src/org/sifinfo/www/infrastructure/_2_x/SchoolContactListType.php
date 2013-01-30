@@ -39,8 +39,8 @@ class SchoolContactListType {
 	}
 
 	protected function validateSchoolContact($schoolContact) {
-		if ( ! $schoolContact instanceof \org\sifinfo\www\infrastructure\_2_x\SchoolContact ) {
-			$schoolContact = new \org\sifinfo\www\infrastructure\_2_x\SchoolContact ($schoolContact);
+		if ( ! is_array ($schoolContact) ) {
+			$schoolContact = array($schoolContact);
 		}
 		$count = count($schoolContact);
 		if ($count < 1) {

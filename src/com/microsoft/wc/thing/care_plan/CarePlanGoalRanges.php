@@ -39,8 +39,8 @@ class CarePlanGoalRanges {
 	}
 
 	protected function validateGoalRange($goalRange) {
-		if ( ! $goalRange instanceof \com\microsoft\wc\thing\care_plan\CarePlanGoalRange ) {
-			$goalRange = new \com\microsoft\wc\thing\care_plan\CarePlanGoalRange ($goalRange);
+		if ( ! is_array ($goalRange) ) {
+			$goalRange = array($goalRange);
 		}
 		$count = count($goalRange);
 		if ($count < 1) {

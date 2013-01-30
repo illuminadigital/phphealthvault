@@ -39,8 +39,8 @@ class SoftwareRequirementListType {
 	}
 
 	protected function validateSoftwareRequirement($softwareRequirement) {
-		if ( ! $softwareRequirement instanceof \org\sifinfo\www\infrastructure\_2_x\SoftwareRequirement  && ! is_null($softwareRequirement) ) {
-			$softwareRequirement = new \org\sifinfo\www\infrastructure\_2_x\SoftwareRequirement ($softwareRequirement);
+		if ( ! is_array ($softwareRequirement) && ! is_null($softwareRequirement) ) {
+			$softwareRequirement = array($softwareRequirement);
 		}
 		$count = count($softwareRequirement);
 		if ($count < 0) {

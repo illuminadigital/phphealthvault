@@ -39,8 +39,8 @@ class AddressListType {
 	}
 
 	protected function validateAddress($address) {
-		if ( ! $address instanceof \org\sifinfo\www\infrastructure\_2_x\Address ) {
-			$address = new \org\sifinfo\www\infrastructure\_2_x\Address ($address);
+		if ( ! is_array ($address) ) {
+			$address = array($address);
 		}
 		$count = count($address);
 		if ($count < 1) {

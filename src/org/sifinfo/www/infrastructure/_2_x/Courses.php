@@ -38,8 +38,8 @@ class Courses {
 	}
 
 	protected function validateCourse($course) {
-		if ( ! $course instanceof \org\sifinfo\www\infrastructure\_2_x\Course ) {
-			$course = new \org\sifinfo\www\infrastructure\_2_x\Course ($course);
+		if ( ! is_array ($course) ) {
+			$course = array($course);
 		}
 		$count = count($course);
 		if ($count < 1) {

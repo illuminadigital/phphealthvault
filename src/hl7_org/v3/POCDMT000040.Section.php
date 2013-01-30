@@ -140,8 +140,8 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! $realmCode instanceof \hl7_org\v3\CS  && ! is_null($realmCode) ) {
-			$realmCode = new \hl7_org\v3\CS ($realmCode);
+		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
+			$realmCode = array($realmCode);
 		}
 		$count = count($realmCode);
 		if ($count < 0) {
@@ -199,8 +199,8 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! $templateId instanceof \hl7_org\v3\II  && ! is_null($templateId) ) {
-			$templateId = new \hl7_org\v3\II ($templateId);
+		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
+			$templateId = array($templateId);
 		}
 		$count = count($templateId);
 		if ($count < 0) {
@@ -396,8 +396,8 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateAuthor($author) {
-		if ( ! $author instanceof \hl7_org\v3\POCDMT000040.Author  && ! is_null($author) ) {
-			$author = new \hl7_org\v3\POCDMT000040.Author ($author);
+		if ( ! is_array ($author) && ! is_null($author) ) {
+			$author = array($author);
 		}
 		$count = count($author);
 		if ($count < 0) {
@@ -432,8 +432,8 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateInformant($informant) {
-		if ( ! $informant instanceof \hl7_org\v3\POCDMT000040.Informant12  && ! is_null($informant) ) {
-			$informant = new \hl7_org\v3\POCDMT000040.Informant12 ($informant);
+		if ( ! is_array ($informant) && ! is_null($informant) ) {
+			$informant = array($informant);
 		}
 		$count = count($informant);
 		if ($count < 0) {
@@ -468,8 +468,8 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateEntry($entry) {
-		if ( ! $entry instanceof \hl7_org\v3\POCDMT000040.Entry  && ! is_null($entry) ) {
-			$entry = new \hl7_org\v3\POCDMT000040.Entry ($entry);
+		if ( ! is_array ($entry) && ! is_null($entry) ) {
+			$entry = array($entry);
 		}
 		$count = count($entry);
 		if ($count < 0) {
@@ -504,8 +504,8 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateComponent($component) {
-		if ( ! $component instanceof \hl7_org\v3\POCDMT000040.Component5  && ! is_null($component) ) {
-			$component = new \hl7_org\v3\POCDMT000040.Component5 ($component);
+		if ( ! is_array ($component) && ! is_null($component) ) {
+			$component = array($component);
 		}
 		$count = count($component);
 		if ($count < 0) {

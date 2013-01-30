@@ -84,8 +84,8 @@ class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVitalSignsResults($vitalSignsResults) {
-		if ( ! $vitalSignsResults instanceof \com\microsoft\wc\thing\vital_signs\VitalSignResultType  && ! is_null($vitalSignsResults) ) {
-			$vitalSignsResults = new \com\microsoft\wc\thing\vital_signs\VitalSignResultType ($vitalSignsResults);
+		if ( ! is_array ($vitalSignsResults) && ! is_null($vitalSignsResults) ) {
+			$vitalSignsResults = array($vitalSignsResults);
 		}
 		$count = count($vitalSignsResults);
 		if ($count < 0) {

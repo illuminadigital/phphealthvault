@@ -38,8 +38,8 @@ class AcademicFoci {
 	}
 
 	protected function validateAcademicFocus($academicFocus) {
-		if ( ! $academicFocus instanceof \org\sifinfo\www\infrastructure\_2_x\AcademicFocus  && ! is_null($academicFocus) ) {
-			$academicFocus = new \org\sifinfo\www\infrastructure\_2_x\AcademicFocus ($academicFocus);
+		if ( ! is_array ($academicFocus) && ! is_null($academicFocus) ) {
+			$academicFocus = array($academicFocus);
 		}
 		$count = count($academicFocus);
 		if ($count < 0) {

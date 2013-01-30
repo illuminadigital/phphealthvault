@@ -265,8 +265,8 @@ class Thing2 {
 	}
 
 	protected function validateDataXml($dataXml) {
-		if ( ! $dataXml instanceof \com\microsoft\wc\thing\DataXml  && ! is_null($dataXml) ) {
-			$dataXml = new \com\microsoft\wc\thing\DataXml ($dataXml);
+		if ( ! is_array ($dataXml) && ! is_null($dataXml) ) {
+			$dataXml = array($dataXml);
 		}
 		$count = count($dataXml);
 		if ($count < 0) {

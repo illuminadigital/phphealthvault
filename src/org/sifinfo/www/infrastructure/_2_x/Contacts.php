@@ -38,8 +38,8 @@ class Contacts {
 	}
 
 	protected function validateContact($contact) {
-		if ( ! $contact instanceof \org\sifinfo\www\infrastructure\_2_x\Contact  && ! is_null($contact) ) {
-			$contact = new \org\sifinfo\www\infrastructure\_2_x\Contact ($contact);
+		if ( ! is_array ($contact) && ! is_null($contact) ) {
+			$contact = array($contact);
 		}
 		$count = count($contact);
 		if ($count < 0) {

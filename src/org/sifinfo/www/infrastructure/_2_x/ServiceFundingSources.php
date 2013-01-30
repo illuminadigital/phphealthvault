@@ -38,8 +38,8 @@ class ServiceFundingSources {
 	}
 
 	protected function validateServiceFundingSource($serviceFundingSource) {
-		if ( ! $serviceFundingSource instanceof \org\sifinfo\www\infrastructure\_2_x\ServiceFundingSource ) {
-			$serviceFundingSource = new \org\sifinfo\www\infrastructure\_2_x\ServiceFundingSource ($serviceFundingSource);
+		if ( ! is_array ($serviceFundingSource) ) {
+			$serviceFundingSource = array($serviceFundingSource);
 		}
 		$count = count($serviceFundingSource);
 		if ($count < 1) {

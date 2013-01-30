@@ -186,8 +186,8 @@ class LabResultType {
 	}
 
 	protected function validateFlag($flag) {
-		if ( ! $flag instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($flag) ) {
-			$flag = new \com\microsoft\wc\types\CodableValue ($flag);
+		if ( ! is_array ($flag) && ! is_null($flag) ) {
+			$flag = array($flag);
 		}
 		$count = count($flag);
 		if ($count < 0) {

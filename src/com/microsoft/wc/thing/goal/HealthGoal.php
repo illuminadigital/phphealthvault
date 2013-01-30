@@ -223,8 +223,8 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateGoalAdditionalRanges($goalAdditionalRanges) {
-		if ( ! $goalAdditionalRanges instanceof \com\microsoft\wc\thing\goal\GoalRange  && ! is_null($goalAdditionalRanges) ) {
-			$goalAdditionalRanges = new \com\microsoft\wc\thing\goal\GoalRange ($goalAdditionalRanges);
+		if ( ! is_array ($goalAdditionalRanges) && ! is_null($goalAdditionalRanges) ) {
+			$goalAdditionalRanges = array($goalAdditionalRanges);
 		}
 		$count = count($goalAdditionalRanges);
 		if ($count < 0) {

@@ -156,8 +156,8 @@ class Delivery {
 	}
 
 	protected function validateComplications($complications) {
-		if ( ! $complications instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($complications) ) {
-			$complications = new \com\microsoft\wc\types\CodableValue ($complications);
+		if ( ! is_array ($complications) && ! is_null($complications) ) {
+			$complications = array($complications);
 		}
 		$count = count($complications);
 		if ($count < 0) {
@@ -192,8 +192,8 @@ class Delivery {
 	}
 
 	protected function validateAnesthesia($anesthesia) {
-		if ( ! $anesthesia instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($anesthesia) ) {
-			$anesthesia = new \com\microsoft\wc\types\CodableValue ($anesthesia);
+		if ( ! is_array ($anesthesia) && ! is_null($anesthesia) ) {
+			$anesthesia = array($anesthesia);
 		}
 		$count = count($anesthesia);
 		if ($count < 0) {

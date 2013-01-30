@@ -45,8 +45,8 @@ class TEL extends \URL\URL {
 	}
 
 	protected function validateUseablePeriod($useablePeriod) {
-		if ( ! $useablePeriod instanceof \hl7_org\v3\SXCMTS  && ! is_null($useablePeriod) ) {
-			$useablePeriod = new \hl7_org\v3\SXCMTS ($useablePeriod);
+		if ( ! is_array ($useablePeriod) && ! is_null($useablePeriod) ) {
+			$useablePeriod = array($useablePeriod);
 		}
 		$count = count($useablePeriod);
 		if ($count < 0) {

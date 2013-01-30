@@ -45,8 +45,8 @@ class Versions {
 	}
 
 	protected function validateVersionInfo($versionInfo) {
-		if ( ! $versionInfo instanceof \com\microsoft\wc\methods\response\GetThingType\VersionInfo ) {
-			$versionInfo = new \com\microsoft\wc\methods\response\GetThingType\VersionInfo ($versionInfo);
+		if ( ! is_array ($versionInfo) ) {
+			$versionInfo = array($versionInfo);
 		}
 		$count = count($versionInfo);
 		if ($count < 1) {

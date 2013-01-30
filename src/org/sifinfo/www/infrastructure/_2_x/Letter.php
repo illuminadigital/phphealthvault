@@ -38,8 +38,8 @@ class Letter {
 	}
 
 	protected function validateValidMark($validMark) {
-		if ( ! $validMark instanceof \org\sifinfo\www\infrastructure\_2_x\ValidMark ) {
-			$validMark = new \org\sifinfo\www\infrastructure\_2_x\ValidMark ($validMark);
+		if ( ! is_array ($validMark) ) {
+			$validMark = array($validMark);
 		}
 		$count = count($validMark);
 		if ($count < 1) {

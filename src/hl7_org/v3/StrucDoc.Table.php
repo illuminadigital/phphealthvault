@@ -151,8 +151,8 @@ class StrucDoc.Table {
 	}
 
 	protected function validateCol($col) {
-		if ( ! $col instanceof \hl7_org\v3\StrucDoc.Col  && ! is_null($col) ) {
-			$col = new \hl7_org\v3\StrucDoc.Col ($col);
+		if ( ! is_array ($col) && ! is_null($col) ) {
+			$col = array($col);
 		}
 		$count = count($col);
 		if ($count < 0) {
@@ -187,8 +187,8 @@ class StrucDoc.Table {
 	}
 
 	protected function validateColgroup($colgroup) {
-		if ( ! $colgroup instanceof \hl7_org\v3\StrucDoc.Colgroup  && ! is_null($colgroup) ) {
-			$colgroup = new \hl7_org\v3\StrucDoc.Colgroup ($colgroup);
+		if ( ! is_array ($colgroup) && ! is_null($colgroup) ) {
+			$colgroup = array($colgroup);
 		}
 		$count = count($colgroup);
 		if ($count < 0) {
@@ -269,8 +269,8 @@ class StrucDoc.Table {
 	}
 
 	protected function validateTbody($tbody) {
-		if ( ! $tbody instanceof \hl7_org\v3\StrucDoc.Tbody ) {
-			$tbody = new \hl7_org\v3\StrucDoc.Tbody ($tbody);
+		if ( ! is_array ($tbody) ) {
+			$tbody = array($tbody);
 		}
 		$count = count($tbody);
 		if ($count < 1) {

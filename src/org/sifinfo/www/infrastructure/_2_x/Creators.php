@@ -38,8 +38,8 @@ class Creators {
 	}
 
 	protected function validateCreator($creator) {
-		if ( ! $creator instanceof \org\sifinfo\www\infrastructure\_2_x\Creator ) {
-			$creator = new \org\sifinfo\www\infrastructure\_2_x\Creator ($creator);
+		if ( ! is_array ($creator) ) {
+			$creator = array($creator);
 		}
 		$count = count($creator);
 		if ($count < 1) {

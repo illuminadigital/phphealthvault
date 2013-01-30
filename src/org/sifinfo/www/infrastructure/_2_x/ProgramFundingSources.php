@@ -38,8 +38,8 @@ class ProgramFundingSources {
 	}
 
 	protected function validateProgramFundingSource($programFundingSource) {
-		if ( ! $programFundingSource instanceof \org\sifinfo\www\infrastructure\_2_x\ProgramFundingSource ) {
-			$programFundingSource = new \org\sifinfo\www\infrastructure\_2_x\ProgramFundingSource ($programFundingSource);
+		if ( ! is_array ($programFundingSource) ) {
+			$programFundingSource = array($programFundingSource);
 		}
 		$count = count($programFundingSource);
 		if ($count < 1) {

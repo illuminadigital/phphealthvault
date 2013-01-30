@@ -38,8 +38,8 @@ class SchoolAttendanceHistory {
 	}
 
 	protected function validateSchoolAttended($schoolAttended) {
-		if ( ! $schoolAttended instanceof \org\sifinfo\www\infrastructure\_2_x\SchoolAttended ) {
-			$schoolAttended = new \org\sifinfo\www\infrastructure\_2_x\SchoolAttended ($schoolAttended);
+		if ( ! is_array ($schoolAttended) ) {
+			$schoolAttended = array($schoolAttended);
 		}
 		$count = count($schoolAttended);
 		if ($count < 1) {

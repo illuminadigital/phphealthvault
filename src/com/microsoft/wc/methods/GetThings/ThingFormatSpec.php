@@ -52,8 +52,8 @@ class ThingFormatSpec {
 	}
 
 	protected function validateSection($section) {
-		if ( ! $section instanceof \com\microsoft\wc\methods\GetThings\ThingSectionSpec  && ! is_null($section) ) {
-			$section = new \com\microsoft\wc\methods\GetThings\ThingSectionSpec ($section);
+		if ( ! is_array ($section) && ! is_null($section) ) {
+			$section = array($section);
 		}
 		$count = count($section);
 		if ($count < 0) {
@@ -129,8 +129,8 @@ class ThingFormatSpec {
 	}
 
 	protected function validateTypeVersionFormat($typeVersionFormat) {
-		if ( ! $typeVersionFormat instanceof \com\microsoft\wc\types\Guid  && ! is_null($typeVersionFormat) ) {
-			$typeVersionFormat = new \com\microsoft\wc\types\Guid ($typeVersionFormat);
+		if ( ! is_array ($typeVersionFormat) && ! is_null($typeVersionFormat) ) {
+			$typeVersionFormat = array($typeVersionFormat);
 		}
 		$count = count($typeVersionFormat);
 		if ($count < 0) {

@@ -38,8 +38,8 @@ class InstructionalStrategies {
 	}
 
 	protected function validateInstructionalStrategy($instructionalStrategy) {
-		if ( ! $instructionalStrategy instanceof \org\sifinfo\www\infrastructure\_2_x\InstructionalStrategy  && ! is_null($instructionalStrategy) ) {
-			$instructionalStrategy = new \org\sifinfo\www\infrastructure\_2_x\InstructionalStrategy ($instructionalStrategy);
+		if ( ! is_array ($instructionalStrategy) && ! is_null($instructionalStrategy) ) {
+			$instructionalStrategy = array($instructionalStrategy);
 		}
 		$count = count($instructionalStrategy);
 		if ($count < 0) {

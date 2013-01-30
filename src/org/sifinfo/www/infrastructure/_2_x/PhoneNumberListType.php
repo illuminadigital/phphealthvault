@@ -39,8 +39,8 @@ class PhoneNumberListType {
 	}
 
 	protected function validatePhoneNumber($phoneNumber) {
-		if ( ! $phoneNumber instanceof \org\sifinfo\www\infrastructure\_2_x\PhoneNumber ) {
-			$phoneNumber = new \org\sifinfo\www\infrastructure\_2_x\PhoneNumber ($phoneNumber);
+		if ( ! is_array ($phoneNumber) ) {
+			$phoneNumber = array($phoneNumber);
 		}
 		$count = count($phoneNumber);
 		if ($count < 1) {

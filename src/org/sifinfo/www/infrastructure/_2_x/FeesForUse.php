@@ -38,8 +38,8 @@ class FeesForUse {
 	}
 
 	protected function validateFeeForUse($feeForUse) {
-		if ( ! $feeForUse instanceof \org\sifinfo\www\infrastructure\_2_x\FeeForUse  && ! is_null($feeForUse) ) {
-			$feeForUse = new \org\sifinfo\www\infrastructure\_2_x\FeeForUse ($feeForUse);
+		if ( ! is_array ($feeForUse) && ! is_null($feeForUse) ) {
+			$feeForUse = array($feeForUse);
 		}
 		$count = count($feeForUse);
 		if ($count < 0) {

@@ -88,8 +88,8 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof \com\microsoft\wc\types\Guid  && ! is_null($id) ) {
-			$id = new \com\microsoft\wc\types\Guid ($id);
+		if ( ! is_array ($id) && ! is_null($id) ) {
+			$id = array($id);
 		}
 		$count = count($id);
 		if ($count < 0) {
@@ -124,8 +124,8 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateKey($key) {
-		if ( ! $key instanceof \com\microsoft\wc\thing\ThingKey  && ! is_null($key) ) {
-			$key = new \com\microsoft\wc\thing\ThingKey ($key);
+		if ( ! is_array ($key) && ! is_null($key) ) {
+			$key = array($key);
 		}
 		$count = count($key);
 		if ($count < 0) {
@@ -160,8 +160,8 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateClientThingId($clientThingId) {
-		if ( ! $clientThingId instanceof \com\microsoft\wc\types\String255  && ! is_null($clientThingId) ) {
-			$clientThingId = new \com\microsoft\wc\types\String255 ($clientThingId);
+		if ( ! is_array ($clientThingId) && ! is_null($clientThingId) ) {
+			$clientThingId = array($clientThingId);
 		}
 		$count = count($clientThingId);
 		if ($count < 0) {
@@ -196,8 +196,8 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateFilter($filter) {
-		if ( ! $filter instanceof \com\microsoft\wc\methods\GetThings\ThingFilterSpec  && ! is_null($filter) ) {
-			$filter = new \com\microsoft\wc\methods\GetThings\ThingFilterSpec ($filter);
+		if ( ! is_array ($filter) && ! is_null($filter) ) {
+			$filter = array($filter);
 		}
 		$count = count($filter);
 		if ($count < 0) {

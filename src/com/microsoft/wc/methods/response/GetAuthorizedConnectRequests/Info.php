@@ -68,8 +68,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateConnectRequest($connectRequest) {
-		if ( ! $connectRequest instanceof \com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\ConnectRequest  && ! is_null($connectRequest) ) {
-			$connectRequest = new \com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\ConnectRequest ($connectRequest);
+		if ( ! is_array ($connectRequest) && ! is_null($connectRequest) ) {
+			$connectRequest = array($connectRequest);
 		}
 		$count = count($connectRequest);
 		if ($count < 0) {

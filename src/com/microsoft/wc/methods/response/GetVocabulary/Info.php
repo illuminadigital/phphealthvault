@@ -46,8 +46,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateVocabulary($vocabulary) {
-		if ( ! $vocabulary instanceof \com\microsoft\wc\vocab\VocabularyCodeSet ) {
-			$vocabulary = new \com\microsoft\wc\vocab\VocabularyCodeSet ($vocabulary);
+		if ( ! is_array ($vocabulary) ) {
+			$vocabulary = array($vocabulary);
 		}
 		$count = count($vocabulary);
 		if ($count < 1) {
@@ -82,8 +82,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! $vocabularyKey instanceof \com\microsoft\wc\vocab\VocabularyKeyInfo ) {
-			$vocabularyKey = new \com\microsoft\wc\vocab\VocabularyKeyInfo ($vocabularyKey);
+		if ( ! is_array ($vocabularyKey) ) {
+			$vocabularyKey = array($vocabularyKey);
 		}
 		$count = count($vocabularyKey);
 		if ($count < 1) {

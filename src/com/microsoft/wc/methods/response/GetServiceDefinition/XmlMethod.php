@@ -68,8 +68,8 @@ class XmlMethod {
 	}
 
 	protected function validateVersion($version) {
-		if ( ! $version instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\XmlMethodVersion  && ! is_null($version) ) {
-			$version = new \com\microsoft\wc\methods\response\GetServiceDefinition\XmlMethodVersion ($version);
+		if ( ! is_array ($version) && ! is_null($version) ) {
+			$version = array($version);
 		}
 		$count = count($version);
 		if ($count < 0) {

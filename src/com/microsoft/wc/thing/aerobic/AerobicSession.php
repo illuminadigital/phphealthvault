@@ -130,8 +130,8 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLapSession($lapSession) {
-		if ( ! $lapSession instanceof \com\microsoft\wc\thing\types\AerobicLapSession  && ! is_null($lapSession) ) {
-			$lapSession = new \com\microsoft\wc\thing\types\AerobicLapSession ($lapSession);
+		if ( ! is_array ($lapSession) && ! is_null($lapSession) ) {
+			$lapSession = array($lapSession);
 		}
 		$count = count($lapSession);
 		if ($count < 0) {

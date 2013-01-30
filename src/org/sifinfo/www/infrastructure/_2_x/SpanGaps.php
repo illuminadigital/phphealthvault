@@ -38,8 +38,8 @@ class SpanGaps {
 	}
 
 	protected function validateSpanGap($spanGap) {
-		if ( ! $spanGap instanceof \org\sifinfo\www\infrastructure\_2_x\SpanGap  && ! is_null($spanGap) ) {
-			$spanGap = new \org\sifinfo\www\infrastructure\_2_x\SpanGap ($spanGap);
+		if ( ! is_array ($spanGap) && ! is_null($spanGap) ) {
+			$spanGap = array($spanGap);
 		}
 		$count = count($spanGap);
 		if ($count < 0) {

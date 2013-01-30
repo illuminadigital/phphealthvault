@@ -39,8 +39,8 @@ class Groups {
 	}
 
 	protected function validateGroup($group) {
-		if ( ! $group instanceof \com\microsoft\wc\types\Group ) {
-			$group = new \com\microsoft\wc\types\Group ($group);
+		if ( ! is_array ($group) ) {
+			$group = array($group);
 		}
 		$count = count($group);
 		if ($count < 1) {

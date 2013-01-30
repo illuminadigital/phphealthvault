@@ -133,8 +133,8 @@ class MedicalImageStudySeries {
 	}
 
 	protected function validateImages($images) {
-		if ( ! $images instanceof \com\microsoft\wc\thing\medical_images\MedicalImageStudySeriesImage ) {
-			$images = new \com\microsoft\wc\thing\medical_images\MedicalImageStudySeriesImage ($images);
+		if ( ! is_array ($images) ) {
+			$images = array($images);
 		}
 		$count = count($images);
 		if ($count < 1) {

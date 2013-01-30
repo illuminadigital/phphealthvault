@@ -106,8 +106,8 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAnswerChoice($answerChoice) {
-		if ( ! $answerChoice instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($answerChoice) ) {
-			$answerChoice = new \com\microsoft\wc\types\CodableValue ($answerChoice);
+		if ( ! is_array ($answerChoice) && ! is_null($answerChoice) ) {
+			$answerChoice = array($answerChoice);
 		}
 		$count = count($answerChoice);
 		if ($count < 0) {
@@ -142,8 +142,8 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAnswer($answer) {
-		if ( ! $answer instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($answer) ) {
-			$answer = new \com\microsoft\wc\types\CodableValue ($answer);
+		if ( ! is_array ($answer) && ! is_null($answer) ) {
+			$answer = array($answer);
 		}
 		$count = count($answer);
 		if ($count < 0) {

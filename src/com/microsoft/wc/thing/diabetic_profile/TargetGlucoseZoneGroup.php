@@ -46,8 +46,8 @@ class TargetGlucoseZoneGroup {
 	}
 
 	protected function validateTargetGlucoseZone($targetGlucoseZone) {
-		if ( ! $targetGlucoseZone instanceof \com\microsoft\wc\thing\diabetic_profile\TargetGlucoseZone  && ! is_null($targetGlucoseZone) ) {
-			$targetGlucoseZone = new \com\microsoft\wc\thing\diabetic_profile\TargetGlucoseZone ($targetGlucoseZone);
+		if ( ! is_array ($targetGlucoseZone) && ! is_null($targetGlucoseZone) ) {
+			$targetGlucoseZone = array($targetGlucoseZone);
 		}
 		$count = count($targetGlucoseZone);
 		if ($count < 0) {

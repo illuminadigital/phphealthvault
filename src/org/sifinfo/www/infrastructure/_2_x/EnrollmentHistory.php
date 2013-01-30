@@ -38,8 +38,8 @@ class EnrollmentHistory {
 	}
 
 	protected function validateStudentSchoolEnrollmentData($studentSchoolEnrollmentData) {
-		if ( ! $studentSchoolEnrollmentData instanceof \org\sifinfo\www\infrastructure\_2_x\StudentSchoolEnrollmentData  && ! is_null($studentSchoolEnrollmentData) ) {
-			$studentSchoolEnrollmentData = new \org\sifinfo\www\infrastructure\_2_x\StudentSchoolEnrollmentData ($studentSchoolEnrollmentData);
+		if ( ! is_array ($studentSchoolEnrollmentData) && ! is_null($studentSchoolEnrollmentData) ) {
+			$studentSchoolEnrollmentData = array($studentSchoolEnrollmentData);
 		}
 		$count = count($studentSchoolEnrollmentData);
 		if ($count < 0) {

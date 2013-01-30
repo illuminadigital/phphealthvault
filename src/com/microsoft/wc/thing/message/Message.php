@@ -102,8 +102,8 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateHeaders($headers) {
-		if ( ! $headers instanceof \com\microsoft\wc\thing\message\MessageHeaderItem  && ! is_null($headers) ) {
-			$headers = new \com\microsoft\wc\thing\message\MessageHeaderItem ($headers);
+		if ( ! is_array ($headers) && ! is_null($headers) ) {
+			$headers = array($headers);
 		}
 		$count = count($headers);
 		if ($count < 0) {
@@ -230,8 +230,8 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAttachments($attachments) {
-		if ( ! $attachments instanceof \com\microsoft\wc\thing\message\MessageAttachment  && ! is_null($attachments) ) {
-			$attachments = new \com\microsoft\wc\thing\message\MessageAttachment ($attachments);
+		if ( ! is_array ($attachments) && ! is_null($attachments) ) {
+			$attachments = array($attachments);
 		}
 		$count = count($attachments);
 		if ($count < 0) {

@@ -108,8 +108,8 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLabTests($labTests) {
-		if ( ! $labTests instanceof \com\microsoft\wc\thing\types\LabTestType  && ! is_null($labTests) ) {
-			$labTests = new \com\microsoft\wc\thing\types\LabTestType ($labTests);
+		if ( ! is_array ($labTests) && ! is_null($labTests) ) {
+			$labTests = array($labTests);
 		}
 		$count = count($labTests);
 		if ($count < 0) {

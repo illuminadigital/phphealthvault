@@ -38,8 +38,8 @@ class Names {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof \org\sifinfo\www\infrastructure\_2_x\Name  && ! is_null($name) ) {
-			$name = new \org\sifinfo\www\infrastructure\_2_x\Name ($name);
+		if ( ! is_array ($name) && ! is_null($name) ) {
+			$name = array($name);
 		}
 		$count = count($name);
 		if ($count < 0) {

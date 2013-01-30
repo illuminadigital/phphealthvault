@@ -39,8 +39,8 @@ class SIFExtendedElementsType {
 	}
 
 	protected function validateSifExtendedElement($sifExtendedElement) {
-		if ( ! $sifExtendedElement instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElement  && ! is_null($sifExtendedElement) ) {
-			$sifExtendedElement = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElement ($sifExtendedElement);
+		if ( ! is_array ($sifExtendedElement) && ! is_null($sifExtendedElement) ) {
+			$sifExtendedElement = array($sifExtendedElement);
 		}
 		$count = count($sifExtendedElement);
 		if ($count < 0) {

@@ -77,8 +77,8 @@ class LabTestResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLabGroup($labGroup) {
-		if ( ! $labGroup instanceof \com\microsoft\wc\thing\lab_test_results\LabTestResultsGroupType ) {
-			$labGroup = new \com\microsoft\wc\thing\lab_test_results\LabTestResultsGroupType ($labGroup);
+		if ( ! is_array ($labGroup) ) {
+			$labGroup = array($labGroup);
 		}
 		$count = count($labGroup);
 		if ($count < 1) {

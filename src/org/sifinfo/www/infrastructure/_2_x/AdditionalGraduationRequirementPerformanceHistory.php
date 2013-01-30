@@ -38,8 +38,8 @@ class AdditionalGraduationRequirementPerformanceHistory {
 	}
 
 	protected function validateRequirement($requirement) {
-		if ( ! $requirement instanceof \org\sifinfo\www\infrastructure\_2_x\Requirement ) {
-			$requirement = new \org\sifinfo\www\infrastructure\_2_x\Requirement ($requirement);
+		if ( ! is_array ($requirement) ) {
+			$requirement = array($requirement);
 		}
 		$count = count($requirement);
 		if ($count < 1) {

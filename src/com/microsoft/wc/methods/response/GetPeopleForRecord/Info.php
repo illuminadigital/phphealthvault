@@ -46,8 +46,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateActivePersonAuthorization($activePersonAuthorization) {
-		if ( ! $activePersonAuthorization instanceof \com\microsoft\wc\record\ActivePersonAuthorizationNoIds ) {
-			$activePersonAuthorization = new \com\microsoft\wc\record\ActivePersonAuthorizationNoIds ($activePersonAuthorization);
+		if ( ! is_array ($activePersonAuthorization) ) {
+			$activePersonAuthorization = array($activePersonAuthorization);
 		}
 		$count = count($activePersonAuthorization);
 		if ($count < 1) {
@@ -82,8 +82,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateNonActiveAuthorization($nonActiveAuthorization) {
-		if ( ! $nonActiveAuthorization instanceof \com\microsoft\wc\record\NonActiveAuthorizationNoIds  && ! is_null($nonActiveAuthorization) ) {
-			$nonActiveAuthorization = new \com\microsoft\wc\record\NonActiveAuthorizationNoIds ($nonActiveAuthorization);
+		if ( ! is_array ($nonActiveAuthorization) && ! is_null($nonActiveAuthorization) ) {
+			$nonActiveAuthorization = array($nonActiveAuthorization);
 		}
 		$count = count($nonActiveAuthorization);
 		if ($count < 0) {

@@ -38,8 +38,8 @@ class AdditionalNutritionFacts {
 	}
 
 	protected function validateNutritionFact($nutritionFact) {
-		if ( ! $nutritionFact instanceof \com\microsoft\wc\thing\dietary_intake\NutritionFact ) {
-			$nutritionFact = new \com\microsoft\wc\thing\dietary_intake\NutritionFact ($nutritionFact);
+		if ( ! is_array ($nutritionFact) ) {
+			$nutritionFact = array($nutritionFact);
 		}
 		$count = count($nutritionFact);
 		if ($count < 1) {

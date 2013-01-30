@@ -44,8 +44,8 @@ class AppLargeLogoInfo {
 	}
 
 	protected function validateLogo($logo) {
-		if ( ! $logo instanceof \com\microsoft\wc\application\CultureSpecificAppLargeLogo ) {
-			$logo = new \com\microsoft\wc\application\CultureSpecificAppLargeLogo ($logo);
+		if ( ! is_array ($logo) ) {
+			$logo = array($logo);
 		}
 		$count = count($logo);
 		if ($count < 1) {

@@ -70,8 +70,8 @@ class CodableValue {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \com\microsoft\wc\types\CodedValue  && ! is_null($code) ) {
-			$code = new \com\microsoft\wc\types\CodedValue ($code);
+		if ( ! is_array ($code) && ! is_null($code) ) {
+			$code = array($code);
 		}
 		$count = count($code);
 		if ($count < 0) {

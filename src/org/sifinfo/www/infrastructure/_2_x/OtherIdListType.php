@@ -39,8 +39,8 @@ class OtherIdListType {
 	}
 
 	protected function validateOtherId($otherId) {
-		if ( ! $otherId instanceof \org\sifinfo\www\infrastructure\_2_x\OtherId ) {
-			$otherId = new \org\sifinfo\www\infrastructure\_2_x\OtherId ($otherId);
+		if ( ! is_array ($otherId) ) {
+			$otherId = array($otherId);
 		}
 		$count = count($otherId);
 		if ($count < 1) {

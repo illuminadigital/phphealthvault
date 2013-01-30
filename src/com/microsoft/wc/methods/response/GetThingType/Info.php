@@ -40,8 +40,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateThingType($thingType) {
-		if ( ! $thingType instanceof \com\microsoft\wc\methods\response\GetThingType\ThingTypeInfo  && ! is_null($thingType) ) {
-			$thingType = new \com\microsoft\wc\methods\response\GetThingType\ThingTypeInfo ($thingType);
+		if ( ! is_array ($thingType) && ! is_null($thingType) ) {
+			$thingType = array($thingType);
 		}
 		$count = count($thingType);
 		if ($count < 0) {

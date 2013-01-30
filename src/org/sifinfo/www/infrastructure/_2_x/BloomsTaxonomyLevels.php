@@ -38,8 +38,8 @@ class BloomsTaxonomyLevels {
 	}
 
 	protected function validateBloomsTaxonomyLevel($bloomsTaxonomyLevel) {
-		if ( ! $bloomsTaxonomyLevel instanceof \org\sifinfo\www\infrastructure\_2_x\BloomsTaxonomyLevel  && ! is_null($bloomsTaxonomyLevel) ) {
-			$bloomsTaxonomyLevel = new \org\sifinfo\www\infrastructure\_2_x\BloomsTaxonomyLevel ($bloomsTaxonomyLevel);
+		if ( ! is_array ($bloomsTaxonomyLevel) && ! is_null($bloomsTaxonomyLevel) ) {
+			$bloomsTaxonomyLevel = array($bloomsTaxonomyLevel);
 		}
 		$count = count($bloomsTaxonomyLevel);
 		if ($count < 0) {

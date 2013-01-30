@@ -38,8 +38,8 @@ class ResourceTypes {
 	}
 
 	protected function validateResourceType($resourceType) {
-		if ( ! $resourceType instanceof \org\sifinfo\www\infrastructure\_2_x\ResourceType ) {
-			$resourceType = new \org\sifinfo\www\infrastructure\_2_x\ResourceType ($resourceType);
+		if ( ! is_array ($resourceType) ) {
+			$resourceType = array($resourceType);
 		}
 		$count = count($resourceType);
 		if ($count < 1) {

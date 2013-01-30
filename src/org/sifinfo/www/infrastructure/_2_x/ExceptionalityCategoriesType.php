@@ -38,8 +38,8 @@ class ExceptionalityCategoriesType {
 	}
 
 	protected function validateExceptionalityCategory($exceptionalityCategory) {
-		if ( ! $exceptionalityCategory instanceof \org\sifinfo\www\infrastructure\_2_x\ExceptionalityCategory ) {
-			$exceptionalityCategory = new \org\sifinfo\www\infrastructure\_2_x\ExceptionalityCategory ($exceptionalityCategory);
+		if ( ! is_array ($exceptionalityCategory) ) {
+			$exceptionalityCategory = array($exceptionalityCategory);
 		}
 		$count = count($exceptionalityCategory);
 		if ($count < 1) {

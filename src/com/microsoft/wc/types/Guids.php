@@ -38,8 +38,8 @@ class Guids {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof \com\microsoft\wc\types\Guid ) {
-			$id = new \com\microsoft\wc\types\Guid ($id);
+		if ( ! is_array ($id) ) {
+			$id = array($id);
 		}
 		$count = count($id);
 		if ($count < 1) {

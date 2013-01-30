@@ -58,8 +58,8 @@ class ThingResponseGroup {
 	}
 
 	protected function validateThing($thing) {
-		if ( ! $thing instanceof \com\microsoft\wc\thing\Thing  && ! is_null($thing) ) {
-			$thing = new \com\microsoft\wc\thing\Thing ($thing);
+		if ( ! is_array ($thing) && ! is_null($thing) ) {
+			$thing = array($thing);
 		}
 		$count = count($thing);
 		if ($count < 0) {
@@ -94,8 +94,8 @@ class ThingResponseGroup {
 	}
 
 	protected function validateUnprocessedThingKeyInfo($unprocessedThingKeyInfo) {
-		if ( ! $unprocessedThingKeyInfo instanceof \com\microsoft\wc\thing\UnprocessedThingKeyInfo  && ! is_null($unprocessedThingKeyInfo) ) {
-			$unprocessedThingKeyInfo = new \com\microsoft\wc\thing\UnprocessedThingKeyInfo ($unprocessedThingKeyInfo);
+		if ( ! is_array ($unprocessedThingKeyInfo) && ! is_null($unprocessedThingKeyInfo) ) {
+			$unprocessedThingKeyInfo = array($unprocessedThingKeyInfo);
 		}
 		$count = count($unprocessedThingKeyInfo);
 		if ($count < 0) {

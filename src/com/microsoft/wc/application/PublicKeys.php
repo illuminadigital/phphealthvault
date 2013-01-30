@@ -38,8 +38,8 @@ class PublicKeys {
 	}
 
 	protected function validatePublicKey($publicKey) {
-		if ( ! $publicKey instanceof \com\microsoft\wc\application\PublicKey ) {
-			$publicKey = new \com\microsoft\wc\application\PublicKey ($publicKey);
+		if ( ! is_array ($publicKey) ) {
+			$publicKey = array($publicKey);
 		}
 		$count = count($publicKey);
 		if ($count < 1) {

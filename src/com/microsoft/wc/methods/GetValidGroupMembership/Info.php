@@ -40,8 +40,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateApplicationId($applicationId) {
-		if ( ! $applicationId instanceof \com\microsoft\wc\types\Guid  && ! is_null($applicationId) ) {
-			$applicationId = new \com\microsoft\wc\types\Guid ($applicationId);
+		if ( ! is_array ($applicationId) && ! is_null($applicationId) ) {
+			$applicationId = array($applicationId);
 		}
 		$count = count($applicationId);
 		if ($count < 0) {

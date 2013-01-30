@@ -38,8 +38,8 @@ class Rules {
 	}
 
 	protected function validateRule($rule) {
-		if ( ! $rule instanceof \com\microsoft\wc\auth\Rule  && ! is_null($rule) ) {
-			$rule = new \com\microsoft\wc\auth\Rule ($rule);
+		if ( ! is_array ($rule) && ! is_null($rule) ) {
+			$rule = array($rule);
 		}
 		$count = count($rule);
 		if ($count < 0) {

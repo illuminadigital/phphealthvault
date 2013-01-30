@@ -38,8 +38,8 @@ class MarkingSystems {
 	}
 
 	protected function validateMarkValueInfoData($markValueInfoData) {
-		if ( ! $markValueInfoData instanceof \org\sifinfo\www\infrastructure\_2_x\MarkValueInfoData ) {
-			$markValueInfoData = new \org\sifinfo\www\infrastructure\_2_x\MarkValueInfoData ($markValueInfoData);
+		if ( ! is_array ($markValueInfoData) ) {
+			$markValueInfoData = array($markValueInfoData);
 		}
 		$count = count($markValueInfoData);
 		if ($count < 1) {

@@ -38,8 +38,8 @@ class LanguageListType {
 	}
 
 	protected function validateLanguage($language) {
-		if ( ! $language instanceof \org\sifinfo\www\infrastructure\_2_x\Language ) {
-			$language = new \org\sifinfo\www\infrastructure\_2_x\Language ($language);
+		if ( ! is_array ($language) ) {
+			$language = array($language);
 		}
 		$count = count($language);
 		if ($count < 1) {

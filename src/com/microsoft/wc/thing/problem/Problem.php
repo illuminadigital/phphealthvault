@@ -84,8 +84,8 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDiagnosis($diagnosis) {
-		if ( ! $diagnosis instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($diagnosis) ) {
-			$diagnosis = new \com\microsoft\wc\types\CodableValue ($diagnosis);
+		if ( ! is_array ($diagnosis) && ! is_null($diagnosis) ) {
+			$diagnosis = array($diagnosis);
 		}
 		$count = count($diagnosis);
 		if ($count < 0) {
@@ -120,8 +120,8 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDuration($duration) {
-		if ( ! $duration instanceof \com\microsoft\wc\thing\types\DurationValue  && ! is_null($duration) ) {
-			$duration = new \com\microsoft\wc\thing\types\DurationValue ($duration);
+		if ( ! is_array ($duration) && ! is_null($duration) ) {
+			$duration = array($duration);
 		}
 		$count = count($duration);
 		if ($count < 0) {

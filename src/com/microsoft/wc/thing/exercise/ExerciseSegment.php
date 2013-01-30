@@ -185,8 +185,8 @@ class ExerciseSegment {
 	}
 
 	protected function validateDetail($detail) {
-		if ( ! $detail instanceof \com\microsoft\wc\thing\exercise\StructuredNameValue  && ! is_null($detail) ) {
-			$detail = new \com\microsoft\wc\thing\exercise\StructuredNameValue ($detail);
+		if ( ! is_array ($detail) && ! is_null($detail) ) {
+			$detail = array($detail);
 		}
 		$count = count($detail);
 		if ($count < 0) {

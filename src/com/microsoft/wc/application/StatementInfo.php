@@ -44,8 +44,8 @@ class StatementInfo {
 	}
 
 	protected function validateStatement($statement) {
-		if ( ! $statement instanceof \com\microsoft\wc\application\CultureSpecificStatement ) {
-			$statement = new \com\microsoft\wc\application\CultureSpecificStatement ($statement);
+		if ( ! is_array ($statement) ) {
+			$statement = array($statement);
 		}
 		$count = count($statement);
 		if ($count < 1) {

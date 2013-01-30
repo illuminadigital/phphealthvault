@@ -104,8 +104,8 @@ class POCDMT000040.Organization {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! $realmCode instanceof \hl7_org\v3\CS  && ! is_null($realmCode) ) {
-			$realmCode = new \hl7_org\v3\CS ($realmCode);
+		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
+			$realmCode = array($realmCode);
 		}
 		$count = count($realmCode);
 		if ($count < 0) {
@@ -163,8 +163,8 @@ class POCDMT000040.Organization {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! $templateId instanceof \hl7_org\v3\II  && ! is_null($templateId) ) {
-			$templateId = new \hl7_org\v3\II ($templateId);
+		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
+			$templateId = array($templateId);
 		}
 		$count = count($templateId);
 		if ($count < 0) {
@@ -199,8 +199,8 @@ class POCDMT000040.Organization {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof \hl7_org\v3\II  && ! is_null($id) ) {
-			$id = new \hl7_org\v3\II ($id);
+		if ( ! is_array ($id) && ! is_null($id) ) {
+			$id = array($id);
 		}
 		$count = count($id);
 		if ($count < 0) {
@@ -235,8 +235,8 @@ class POCDMT000040.Organization {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof \hl7_org\v3\ON  && ! is_null($name) ) {
-			$name = new \hl7_org\v3\ON ($name);
+		if ( ! is_array ($name) && ! is_null($name) ) {
+			$name = array($name);
 		}
 		$count = count($name);
 		if ($count < 0) {
@@ -271,8 +271,8 @@ class POCDMT000040.Organization {
 	}
 
 	protected function validateTelecom($telecom) {
-		if ( ! $telecom instanceof \hl7_org\v3\TEL  && ! is_null($telecom) ) {
-			$telecom = new \hl7_org\v3\TEL ($telecom);
+		if ( ! is_array ($telecom) && ! is_null($telecom) ) {
+			$telecom = array($telecom);
 		}
 		$count = count($telecom);
 		if ($count < 0) {
@@ -307,8 +307,8 @@ class POCDMT000040.Organization {
 	}
 
 	protected function validateAddr($addr) {
-		if ( ! $addr instanceof \hl7_org\v3\AD  && ! is_null($addr) ) {
-			$addr = new \hl7_org\v3\AD ($addr);
+		if ( ! is_array ($addr) && ! is_null($addr) ) {
+			$addr = array($addr);
 		}
 		$count = count($addr);
 		if ($count < 0) {

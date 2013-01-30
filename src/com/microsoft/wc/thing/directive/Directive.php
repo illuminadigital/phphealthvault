@@ -225,8 +225,8 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateProhibitedInterventions($prohibitedInterventions) {
-		if ( ! $prohibitedInterventions instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($prohibitedInterventions) ) {
-			$prohibitedInterventions = new \com\microsoft\wc\types\CodableValue ($prohibitedInterventions);
+		if ( ! is_array ($prohibitedInterventions) && ! is_null($prohibitedInterventions) ) {
+			$prohibitedInterventions = array($prohibitedInterventions);
 		}
 		$count = count($prohibitedInterventions);
 		if ($count < 0) {

@@ -40,8 +40,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateThingTypePermission($thingTypePermission) {
-		if ( ! $thingTypePermission instanceof \com\microsoft\wc\methods\response\QueryPermissions\ThingTypePermission  && ! is_null($thingTypePermission) ) {
-			$thingTypePermission = new \com\microsoft\wc\methods\response\QueryPermissions\ThingTypePermission ($thingTypePermission);
+		if ( ! is_array ($thingTypePermission) && ! is_null($thingTypePermission) ) {
+			$thingTypePermission = array($thingTypePermission);
 		}
 		$count = count($thingTypePermission);
 		if ($count < 0) {

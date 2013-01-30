@@ -39,8 +39,8 @@ class CarePlanGoalGroups {
 	}
 
 	protected function validateGoalGroup($goalGroup) {
-		if ( ! $goalGroup instanceof \com\microsoft\wc\thing\care_plan\CarePlanGoalGroup ) {
-			$goalGroup = new \com\microsoft\wc\thing\care_plan\CarePlanGoalGroup ($goalGroup);
+		if ( ! is_array ($goalGroup) ) {
+			$goalGroup = array($goalGroup);
 		}
 		$count = count($goalGroup);
 		if ($count < 1) {

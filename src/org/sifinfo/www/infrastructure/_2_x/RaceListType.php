@@ -38,8 +38,8 @@ class RaceListType {
 	}
 
 	protected function validateRace($race) {
-		if ( ! $race instanceof \org\sifinfo\www\infrastructure\_2_x\Race ) {
-			$race = new \org\sifinfo\www\infrastructure\_2_x\Race ($race);
+		if ( ! is_array ($race) ) {
+			$race = array($race);
 		}
 		$count = count($race);
 		if ($count < 1) {

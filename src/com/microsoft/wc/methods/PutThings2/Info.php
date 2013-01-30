@@ -40,8 +40,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateThing($thing) {
-		if ( ! $thing instanceof \com\microsoft\wc\thing\Thing2 ) {
-			$thing = new \com\microsoft\wc\thing\Thing2 ($thing);
+		if ( ! is_array ($thing) ) {
+			$thing = array($thing);
 		}
 		$count = count($thing);
 		if ($count < 1) {

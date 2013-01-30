@@ -134,8 +134,8 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateTypeVersionFormat($typeVersionFormat) {
-		if ( ! $typeVersionFormat instanceof \com\microsoft\wc\types\Guid  && ! is_null($typeVersionFormat) ) {
-			$typeVersionFormat = new \com\microsoft\wc\types\Guid ($typeVersionFormat);
+		if ( ! is_array ($typeVersionFormat) && ! is_null($typeVersionFormat) ) {
+			$typeVersionFormat = array($typeVersionFormat);
 		}
 		$count = count($typeVersionFormat);
 		if ($count < 0) {

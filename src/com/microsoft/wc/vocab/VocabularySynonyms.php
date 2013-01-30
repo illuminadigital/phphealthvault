@@ -39,8 +39,8 @@ class VocabularySynonyms {
 	}
 
 	protected function validateVocabularySynonym($vocabularySynonym) {
-		if ( ! $vocabularySynonym instanceof \com\microsoft\wc\vocab\VocabularySynonym  && ! is_null($vocabularySynonym) ) {
-			$vocabularySynonym = new \com\microsoft\wc\vocab\VocabularySynonym ($vocabularySynonym);
+		if ( ! is_array ($vocabularySynonym) && ! is_null($vocabularySynonym) ) {
+			$vocabularySynonym = array($vocabularySynonym);
 		}
 		$count = count($vocabularySynonym);
 		if ($count < 0) {

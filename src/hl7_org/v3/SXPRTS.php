@@ -38,8 +38,8 @@ class SXPRTS extends \SXCM_TS\SXCMTS {
 	}
 
 	protected function validateComp($comp) {
-		if ( ! $comp instanceof \hl7_org\v3\SXCMTS ) {
-			$comp = new \hl7_org\v3\SXCMTS ($comp);
+		if ( ! is_array ($comp) ) {
+			$comp = array($comp);
 		}
 		$count = count($comp);
 		if ($count < 2) {

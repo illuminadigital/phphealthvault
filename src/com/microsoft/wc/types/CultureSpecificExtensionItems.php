@@ -38,8 +38,8 @@ class CultureSpecificExtensionItems {
 	}
 
 	protected function validateExtensionItem($extensionItem) {
-		if ( ! $extensionItem instanceof \com\microsoft\wc\types\CultureSpecificExtensionItem ) {
-			$extensionItem = new \com\microsoft\wc\types\CultureSpecificExtensionItem ($extensionItem);
+		if ( ! is_array ($extensionItem) ) {
+			$extensionItem = array($extensionItem);
 		}
 		$count = count($extensionItem);
 		if ($count < 1) {

@@ -80,8 +80,8 @@ class Rule {
 	}
 
 	protected function validateReason($reason) {
-		if ( ! $reason instanceof \com\microsoft\wc\types\CultureSpecificString1024  && ! is_null($reason) ) {
-			$reason = new \com\microsoft\wc\types\CultureSpecificString1024 ($reason);
+		if ( ! is_array ($reason) && ! is_null($reason) ) {
+			$reason = array($reason);
 		}
 		$count = count($reason);
 		if ($count < 0) {
@@ -139,8 +139,8 @@ class Rule {
 	}
 
 	protected function validatePermission($permission) {
-		if ( ! $permission instanceof \com\microsoft\wc\types\Permission ) {
-			$permission = new \com\microsoft\wc\types\Permission ($permission);
+		if ( ! is_array ($permission) ) {
+			$permission = array($permission);
 		}
 		$count = count($permission);
 		if ($count < 1) {
@@ -178,8 +178,8 @@ class Rule {
 	}
 
 	protected function validateTargetSet($targetSet) {
-		if ( ! $targetSet instanceof \com\microsoft\wc\auth\Set  && ! is_null($targetSet) ) {
-			$targetSet = new \com\microsoft\wc\auth\Set ($targetSet);
+		if ( ! is_array ($targetSet) && ! is_null($targetSet) ) {
+			$targetSet = array($targetSet);
 		}
 		$count = count($targetSet);
 		if ($count < 0) {
@@ -214,8 +214,8 @@ class Rule {
 	}
 
 	protected function validateExceptionSet($exceptionSet) {
-		if ( ! $exceptionSet instanceof \com\microsoft\wc\auth\Set  && ! is_null($exceptionSet) ) {
-			$exceptionSet = new \com\microsoft\wc\auth\Set ($exceptionSet);
+		if ( ! is_array ($exceptionSet) && ! is_null($exceptionSet) ) {
+			$exceptionSet = array($exceptionSet);
 		}
 		$count = count($exceptionSet);
 		if ($count < 0) {

@@ -38,8 +38,8 @@ class AssessmentPerformanceHistory {
 	}
 
 	protected function validateAssessment($assessment) {
-		if ( ! $assessment instanceof \org\sifinfo\www\infrastructure\_2_x\Assessment ) {
-			$assessment = new \org\sifinfo\www\infrastructure\_2_x\Assessment ($assessment);
+		if ( ! is_array ($assessment) ) {
+			$assessment = array($assessment);
 		}
 		$count = count($assessment);
 		if ($count < 1) {

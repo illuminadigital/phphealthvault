@@ -38,8 +38,8 @@ class ModificationHistory {
 	}
 
 	protected function validateModified($modified) {
-		if ( ! $modified instanceof \org\sifinfo\www\infrastructure\_2_x\Modified  && ! is_null($modified) ) {
-			$modified = new \org\sifinfo\www\infrastructure\_2_x\Modified ($modified);
+		if ( ! is_array ($modified) && ! is_null($modified) ) {
+			$modified = array($modified);
 		}
 		$count = count($modified);
 		if ($count < 0) {

@@ -38,8 +38,8 @@ class MultipleIntelligences {
 	}
 
 	protected function validateMultipleIntelligence($multipleIntelligence) {
-		if ( ! $multipleIntelligence instanceof \org\sifinfo\www\infrastructure\_2_x\MultipleIntelligence  && ! is_null($multipleIntelligence) ) {
-			$multipleIntelligence = new \org\sifinfo\www\infrastructure\_2_x\MultipleIntelligence ($multipleIntelligence);
+		if ( ! is_array ($multipleIntelligence) && ! is_null($multipleIntelligence) ) {
+			$multipleIntelligence = array($multipleIntelligence);
 		}
 		$count = count($multipleIntelligence);
 		if ($count < 0) {

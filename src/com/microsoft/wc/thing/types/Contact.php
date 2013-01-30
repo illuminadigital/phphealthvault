@@ -53,8 +53,8 @@ class Contact {
 	}
 
 	protected function validateAddress($address) {
-		if ( ! $address instanceof \com\microsoft\wc\thing\types\Address  && ! is_null($address) ) {
-			$address = new \com\microsoft\wc\thing\types\Address ($address);
+		if ( ! is_array ($address) && ! is_null($address) ) {
+			$address = array($address);
 		}
 		$count = count($address);
 		if ($count < 0) {
@@ -89,8 +89,8 @@ class Contact {
 	}
 
 	protected function validatePhone($phone) {
-		if ( ! $phone instanceof \com\microsoft\wc\thing\types\Phone  && ! is_null($phone) ) {
-			$phone = new \com\microsoft\wc\thing\types\Phone ($phone);
+		if ( ! is_array ($phone) && ! is_null($phone) ) {
+			$phone = array($phone);
 		}
 		$count = count($phone);
 		if ($count < 0) {
@@ -125,8 +125,8 @@ class Contact {
 	}
 
 	protected function validateEmail($email) {
-		if ( ! $email instanceof \com\microsoft\wc\thing\types\Email  && ! is_null($email) ) {
-			$email = new \com\microsoft\wc\thing\types\Email ($email);
+		if ( ! is_array ($email) && ! is_null($email) ) {
+			$email = array($email);
 		}
 		$count = count($email);
 		if ($count < 0) {

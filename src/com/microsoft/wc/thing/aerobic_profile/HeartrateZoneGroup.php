@@ -46,8 +46,8 @@ class HeartrateZoneGroup {
 	}
 
 	protected function validateHeartrateZone($heartrateZone) {
-		if ( ! $heartrateZone instanceof \com\microsoft\wc\thing\aerobic_profile\HeartrateZone  && ! is_null($heartrateZone) ) {
-			$heartrateZone = new \com\microsoft\wc\thing\aerobic_profile\HeartrateZone ($heartrateZone);
+		if ( ! is_array ($heartrateZone) && ! is_null($heartrateZone) ) {
+			$heartrateZone = array($heartrateZone);
 		}
 		$count = count($heartrateZone);
 		if ($count < 0) {

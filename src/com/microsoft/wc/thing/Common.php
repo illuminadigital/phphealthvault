@@ -137,8 +137,8 @@ class Common {
 	}
 
 	protected function validateExtension($extension) {
-		if ( ! $extension instanceof \com\microsoft\wc\thing\Extension  && ! is_null($extension) ) {
-			$extension = new \com\microsoft\wc\thing\Extension ($extension);
+		if ( ! is_array ($extension) && ! is_null($extension) ) {
+			$extension = array($extension);
 		}
 		$count = count($extension);
 		if ($count < 0) {
@@ -173,8 +173,8 @@ class Common {
 	}
 
 	protected function validateRelatedThing($relatedThing) {
-		if ( ! $relatedThing instanceof \com\microsoft\wc\thing\RelatedThing  && ! is_null($relatedThing) ) {
-			$relatedThing = new \com\microsoft\wc\thing\RelatedThing ($relatedThing);
+		if ( ! is_array ($relatedThing) && ! is_null($relatedThing) ) {
+			$relatedThing = array($relatedThing);
 		}
 		$count = count($relatedThing);
 		if ($count < 0) {

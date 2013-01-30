@@ -38,8 +38,8 @@ class ActivityAwardHistory {
 	}
 
 	protected function validateActivityAward($activityAward) {
-		if ( ! $activityAward instanceof \org\sifinfo\www\infrastructure\_2_x\ActivityAward ) {
-			$activityAward = new \org\sifinfo\www\infrastructure\_2_x\ActivityAward ($activityAward);
+		if ( ! is_array ($activityAward) ) {
+			$activityAward = array($activityAward);
 		}
 		$count = count($activityAward);
 		if ($count < 1) {

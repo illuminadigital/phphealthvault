@@ -40,8 +40,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateRecord($record) {
-		if ( ! $record instanceof \com\microsoft\wc\types\Record  && ! is_null($record) ) {
-			$record = new \com\microsoft\wc\types\Record ($record);
+		if ( ! is_array ($record) && ! is_null($record) ) {
+			$record = array($record);
 		}
 		$count = count($record);
 		if ($count < 0) {

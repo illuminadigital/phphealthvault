@@ -138,8 +138,8 @@ class VocabularyCodeSet {
 	}
 
 	protected function validateCodeItem($codeItem) {
-		if ( ! $codeItem instanceof \com\microsoft\wc\vocab\VocabularyCodeItem  && ! is_null($codeItem) ) {
-			$codeItem = new \com\microsoft\wc\vocab\VocabularyCodeItem ($codeItem);
+		if ( ! is_array ($codeItem) && ! is_null($codeItem) ) {
+			$codeItem = array($codeItem);
 		}
 		$count = count($codeItem);
 		if ($count < 0) {

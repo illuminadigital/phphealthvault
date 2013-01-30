@@ -38,8 +38,8 @@ class Addresses {
 	}
 
 	protected function validateAddress($address) {
-		if ( ! $address instanceof \org\sifinfo\www\infrastructure\_2_x\Address  && ! is_null($address) ) {
-			$address = new \org\sifinfo\www\infrastructure\_2_x\Address ($address);
+		if ( ! is_array ($address) && ! is_null($address) ) {
+			$address = array($address);
 		}
 		$count = count($address);
 		if ($count < 0) {

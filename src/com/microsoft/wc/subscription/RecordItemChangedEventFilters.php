@@ -39,8 +39,8 @@ class RecordItemChangedEventFilters {
 	}
 
 	protected function validateFilter($filter) {
-		if ( ! $filter instanceof \com\microsoft\wc\subscription\RecordItemChangedEventFilter ) {
-			$filter = new \com\microsoft\wc\subscription\RecordItemChangedEventFilter ($filter);
+		if ( ! is_array ($filter) ) {
+			$filter = array($filter);
 		}
 		$count = count($filter);
 		if ($count < 1) {

@@ -38,8 +38,8 @@ class InterestLevels {
 	}
 
 	protected function validateInterestLevel($interestLevel) {
-		if ( ! $interestLevel instanceof \org\sifinfo\www\infrastructure\_2_x\GradeLevelType ) {
-			$interestLevel = new \org\sifinfo\www\infrastructure\_2_x\GradeLevelType ($interestLevel);
+		if ( ! is_array ($interestLevel) ) {
+			$interestLevel = array($interestLevel);
 		}
 		$count = count($interestLevel);
 		if ($count < 1) {

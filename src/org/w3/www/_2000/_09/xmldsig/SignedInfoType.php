@@ -102,8 +102,8 @@ class SignedInfoType {
 	}
 
 	protected function validateReference($reference) {
-		if ( ! $reference instanceof \org\w3\www\_2000\_09\xmldsig\Reference ) {
-			$reference = new \org\w3\www\_2000\_09\xmldsig\Reference ($reference);
+		if ( ! is_array ($reference) ) {
+			$reference = array($reference);
 		}
 		$count = count($reference);
 		if ($count < 1) {

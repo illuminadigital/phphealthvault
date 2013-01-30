@@ -438,8 +438,8 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAdditionalDiagnosis($additionalDiagnosis) {
-		if ( ! $additionalDiagnosis instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($additionalDiagnosis) ) {
-			$additionalDiagnosis = new \com\microsoft\wc\types\CodableValue ($additionalDiagnosis);
+		if ( ! is_array ($additionalDiagnosis) && ! is_null($additionalDiagnosis) ) {
+			$additionalDiagnosis = array($additionalDiagnosis);
 		}
 		$count = count($additionalDiagnosis);
 		if ($count < 0) {
@@ -520,8 +520,8 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAdditionalProcedure($additionalProcedure) {
-		if ( ! $additionalProcedure instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($additionalProcedure) ) {
-			$additionalProcedure = new \com\microsoft\wc\types\CodableValue ($additionalProcedure);
+		if ( ! is_array ($additionalProcedure) && ! is_null($additionalProcedure) ) {
+			$additionalProcedure = array($additionalProcedure);
 		}
 		$count = count($additionalProcedure);
 		if ($count < 0) {

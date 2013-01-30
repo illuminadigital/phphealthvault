@@ -154,8 +154,8 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSeries($series) {
-		if ( ! $series instanceof \com\microsoft\wc\thing\medical_images\MedicalImageStudySeries ) {
-			$series = new \com\microsoft\wc\thing\medical_images\MedicalImageStudySeries ($series);
+		if ( ! is_array ($series) ) {
+			$series = array($series);
 		}
 		$count = count($series);
 		if ($count < 1) {
@@ -236,8 +236,8 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateKeyImages($keyImages) {
-		if ( ! $keyImages instanceof \com\microsoft\wc\thing\medical_images\MedicalImageStudySeriesImage  && ! is_null($keyImages) ) {
-			$keyImages = new \com\microsoft\wc\thing\medical_images\MedicalImageStudySeriesImage ($keyImages);
+		if ( ! is_array ($keyImages) && ! is_null($keyImages) ) {
+			$keyImages = array($keyImages);
 		}
 		$count = count($keyImages);
 		if ($count < 0) {

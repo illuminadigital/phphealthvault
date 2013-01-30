@@ -51,8 +51,8 @@ class PQ extends \QTY\QTY {
 	}
 
 	protected function validateTranslation($translation) {
-		if ( ! $translation instanceof \hl7_org\v3\PQR  && ! is_null($translation) ) {
-			$translation = new \hl7_org\v3\PQR ($translation);
+		if ( ! is_array ($translation) && ! is_null($translation) ) {
+			$translation = array($translation);
 		}
 		$count = count($translation);
 		if ($count < 0) {

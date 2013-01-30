@@ -39,8 +39,8 @@ class GradeLevelsType {
 	}
 
 	protected function validateGradeLevel($gradeLevel) {
-		if ( ! $gradeLevel instanceof \org\sifinfo\www\infrastructure\_2_x\GradeLevel ) {
-			$gradeLevel = new \org\sifinfo\www\infrastructure\_2_x\GradeLevel ($gradeLevel);
+		if ( ! is_array ($gradeLevel) ) {
+			$gradeLevel = array($gradeLevel);
 		}
 		$count = count($gradeLevel);
 		if ($count < 1) {

@@ -159,8 +159,8 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMeasurementFlags($measurementFlags) {
-		if ( ! $measurementFlags instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($measurementFlags) ) {
-			$measurementFlags = new \com\microsoft\wc\types\CodableValue ($measurementFlags);
+		if ( ! is_array ($measurementFlags) && ! is_null($measurementFlags) ) {
+			$measurementFlags = array($measurementFlags);
 		}
 		$count = count($measurementFlags);
 		if ($count < 0) {

@@ -204,8 +204,8 @@ class Medication extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($code) ) {
-			$code = new \com\microsoft\wc\thing\types\NonNegativeInt ($code);
+		if ( ! is_array ($code) && ! is_null($code) ) {
+			$code = array($code);
 		}
 		$count = count($code);
 		if ($count < 0) {

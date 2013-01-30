@@ -38,8 +38,8 @@ class BlobSignatureInfo {
 	}
 
 	protected function validateItem($item) {
-		if ( ! $item instanceof \com\microsoft\wc\methods\CreateConnectPackage2\Item ) {
-			$item = new \com\microsoft\wc\methods\CreateConnectPackage2\Item ($item);
+		if ( ! is_array ($item) ) {
+			$item = array($item);
 		}
 		$count = count($item);
 		if ($count < 1) {

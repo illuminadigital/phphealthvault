@@ -200,8 +200,8 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAwakening($awakening) {
-		if ( ! $awakening instanceof \com\microsoft\wc\thing\sjam\Awakening  && ! is_null($awakening) ) {
-			$awakening = new \com\microsoft\wc\thing\sjam\Awakening ($awakening);
+		if ( ! is_array ($awakening) && ! is_null($awakening) ) {
+			$awakening = array($awakening);
 		}
 		$count = count($awakening);
 		if ($count < 0) {

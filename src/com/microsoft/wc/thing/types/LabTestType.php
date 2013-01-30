@@ -227,8 +227,8 @@ class LabTestType {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($code) ) {
-			$code = new \com\microsoft\wc\types\CodableValue ($code);
+		if ( ! is_array ($code) && ! is_null($code) ) {
+			$code = array($code);
 		}
 		$count = count($code);
 		if ($count < 0) {

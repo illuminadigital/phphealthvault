@@ -38,8 +38,8 @@ class ApplicationAttributes {
 	}
 
 	protected function validateAppAttribute($appAttribute) {
-		if ( ! $appAttribute instanceof \com\microsoft\wc\types\Stringnz ) {
-			$appAttribute = new \com\microsoft\wc\types\Stringnz ($appAttribute);
+		if ( ! is_array ($appAttribute) ) {
+			$appAttribute = array($appAttribute);
 		}
 		$count = count($appAttribute);
 		if ($count < 1) {

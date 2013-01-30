@@ -68,8 +68,8 @@ class CultureSpecificExtensionItem {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \com\microsoft\wc\types\CultureSpecificString ) {
-			$value = new \com\microsoft\wc\types\CultureSpecificString ($value);
+		if ( ! is_array ($value) ) {
+			$value = array($value);
 		}
 		$count = count($value);
 		if ($count < 1) {

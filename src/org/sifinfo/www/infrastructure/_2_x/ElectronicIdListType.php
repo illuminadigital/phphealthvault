@@ -39,8 +39,8 @@ class ElectronicIdListType {
 	}
 
 	protected function validateElectronicId($electronicId) {
-		if ( ! $electronicId instanceof \org\sifinfo\www\infrastructure\_2_x\ElectronicId ) {
-			$electronicId = new \org\sifinfo\www\infrastructure\_2_x\ElectronicId ($electronicId);
+		if ( ! is_array ($electronicId) ) {
+			$electronicId = array($electronicId);
 		}
 		$count = count($electronicId);
 		if ($count < 1) {

@@ -45,8 +45,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! $vocabularyKey instanceof \com\microsoft\wc\vocab\VocabularyKeyInfo  && ! is_null($vocabularyKey) ) {
-			$vocabularyKey = new \com\microsoft\wc\vocab\VocabularyKeyInfo ($vocabularyKey);
+		if ( ! is_array ($vocabularyKey) && ! is_null($vocabularyKey) ) {
+			$vocabularyKey = array($vocabularyKey);
 		}
 		$count = count($vocabularyKey);
 		if ($count < 0) {

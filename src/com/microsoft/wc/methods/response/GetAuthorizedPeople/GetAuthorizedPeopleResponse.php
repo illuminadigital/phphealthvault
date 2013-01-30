@@ -45,8 +45,8 @@ class GetAuthorizedPeopleResponse {
 	}
 
 	protected function validatePersonInfo($personInfo) {
-		if ( ! $personInfo instanceof \com\microsoft\wc\types\PersonInfo  && ! is_null($personInfo) ) {
-			$personInfo = new \com\microsoft\wc\types\PersonInfo ($personInfo);
+		if ( ! is_array ($personInfo) && ! is_null($personInfo) ) {
+			$personInfo = array($personInfo);
 		}
 		$count = count($personInfo);
 		if ($count < 0) {

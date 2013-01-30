@@ -38,8 +38,8 @@ class StudentPlacementList {
 	}
 
 	protected function validateStudentPlacementData($studentPlacementData) {
-		if ( ! $studentPlacementData instanceof \org\sifinfo\www\infrastructure\_2_x\StudentPlacementData ) {
-			$studentPlacementData = new \org\sifinfo\www\infrastructure\_2_x\StudentPlacementData ($studentPlacementData);
+		if ( ! is_array ($studentPlacementData) ) {
+			$studentPlacementData = array($studentPlacementData);
 		}
 		$count = count($studentPlacementData);
 		if ($count < 1) {

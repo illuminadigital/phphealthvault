@@ -131,8 +131,8 @@ class SignatureType {
 	}
 
 	protected function validateObject($object) {
-		if ( ! $object instanceof \org\w3\www\_2000\_09\xmldsig\Object  && ! is_null($object) ) {
-			$object = new \org\w3\www\_2000\_09\xmldsig\Object ($object);
+		if ( ! is_array ($object) && ! is_null($object) ) {
+			$object = array($object);
 		}
 		$count = count($object);
 		if ($count < 0) {

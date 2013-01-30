@@ -39,8 +39,8 @@ class CarePlanTasks {
 	}
 
 	protected function validateTask($task) {
-		if ( ! $task instanceof \com\microsoft\wc\thing\care_plan\CarePlanTask ) {
-			$task = new \com\microsoft\wc\thing\care_plan\CarePlanTask ($task);
+		if ( ! is_array ($task) ) {
+			$task = array($task);
 		}
 		$count = count($task);
 		if ($count < 1) {

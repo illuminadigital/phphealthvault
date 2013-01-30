@@ -38,8 +38,8 @@ class AlternateIds {
 	}
 
 	protected function validateAlternateId($alternateId) {
-		if ( ! $alternateId instanceof \com\microsoft\wc\types\String255nw  && ! is_null($alternateId) ) {
-			$alternateId = new \com\microsoft\wc\types\String255nw ($alternateId);
+		if ( ! is_array ($alternateId) && ! is_null($alternateId) ) {
+			$alternateId = array($alternateId);
 		}
 		$count = count($alternateId);
 		if ($count < 0) {

@@ -39,8 +39,8 @@ class Subscriptions {
 	}
 
 	protected function validateSubscription($subscription) {
-		if ( ! $subscription instanceof \com\microsoft\wc\subscription\Subscription  && ! is_null($subscription) ) {
-			$subscription = new \com\microsoft\wc\subscription\Subscription ($subscription);
+		if ( ! is_array ($subscription) && ! is_null($subscription) ) {
+			$subscription = array($subscription);
 		}
 		$count = count($subscription);
 		if ($count < 0) {

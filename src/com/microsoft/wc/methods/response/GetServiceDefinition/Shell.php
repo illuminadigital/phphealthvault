@@ -97,8 +97,8 @@ class Shell {
 	}
 
 	protected function validateRedirectToken($redirectToken) {
-		if ( ! $redirectToken instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\ShellRedirectToken  && ! is_null($redirectToken) ) {
-			$redirectToken = new \com\microsoft\wc\methods\response\GetServiceDefinition\ShellRedirectToken ($redirectToken);
+		if ( ! is_array ($redirectToken) && ! is_null($redirectToken) ) {
+			$redirectToken = array($redirectToken);
 		}
 		$count = count($redirectToken);
 		if ($count < 0) {

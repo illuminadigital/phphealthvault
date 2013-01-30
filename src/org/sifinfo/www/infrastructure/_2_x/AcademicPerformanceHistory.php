@@ -38,8 +38,8 @@ class AcademicPerformanceHistory {
 	}
 
 	protected function validateTermPerformance($termPerformance) {
-		if ( ! $termPerformance instanceof \org\sifinfo\www\infrastructure\_2_x\TermPerformance  && ! is_null($termPerformance) ) {
-			$termPerformance = new \org\sifinfo\www\infrastructure\_2_x\TermPerformance ($termPerformance);
+		if ( ! is_array ($termPerformance) && ! is_null($termPerformance) ) {
+			$termPerformance = array($termPerformance);
 		}
 		$count = count($termPerformance);
 		if ($count < 0) {

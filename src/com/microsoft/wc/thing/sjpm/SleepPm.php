@@ -96,8 +96,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCaffeine($caffeine) {
-		if ( ! $caffeine instanceof \com\microsoft\wc\dates\Time  && ! is_null($caffeine) ) {
-			$caffeine = new \com\microsoft\wc\dates\Time ($caffeine);
+		if ( ! is_array ($caffeine) && ! is_null($caffeine) ) {
+			$caffeine = array($caffeine);
 		}
 		$count = count($caffeine);
 		if ($count < 0) {
@@ -132,8 +132,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAlcohol($alcohol) {
-		if ( ! $alcohol instanceof \com\microsoft\wc\dates\Time  && ! is_null($alcohol) ) {
-			$alcohol = new \com\microsoft\wc\dates\Time ($alcohol);
+		if ( ! is_array ($alcohol) && ! is_null($alcohol) ) {
+			$alcohol = array($alcohol);
 		}
 		$count = count($alcohol);
 		if ($count < 0) {
@@ -168,8 +168,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateNap($nap) {
-		if ( ! $nap instanceof \com\microsoft\wc\thing\sjpm\Activity  && ! is_null($nap) ) {
-			$nap = new \com\microsoft\wc\thing\sjpm\Activity ($nap);
+		if ( ! is_array ($nap) && ! is_null($nap) ) {
+			$nap = array($nap);
 		}
 		$count = count($nap);
 		if ($count < 0) {
@@ -204,8 +204,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExercise($exercise) {
-		if ( ! $exercise instanceof \com\microsoft\wc\thing\sjpm\Activity  && ! is_null($exercise) ) {
-			$exercise = new \com\microsoft\wc\thing\sjpm\Activity ($exercise);
+		if ( ! is_array ($exercise) && ! is_null($exercise) ) {
+			$exercise = array($exercise);
 		}
 		$count = count($exercise);
 		if ($count < 0) {

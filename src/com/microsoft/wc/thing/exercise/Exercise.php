@@ -194,8 +194,8 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDetail($detail) {
-		if ( ! $detail instanceof \com\microsoft\wc\thing\exercise\StructuredNameValue  && ! is_null($detail) ) {
-			$detail = new \com\microsoft\wc\thing\exercise\StructuredNameValue ($detail);
+		if ( ! is_array ($detail) && ! is_null($detail) ) {
+			$detail = array($detail);
 		}
 		$count = count($detail);
 		if ($count < 0) {
@@ -230,8 +230,8 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSegment($segment) {
-		if ( ! $segment instanceof \com\microsoft\wc\thing\exercise\ExerciseSegment  && ! is_null($segment) ) {
-			$segment = new \com\microsoft\wc\thing\exercise\ExerciseSegment ($segment);
+		if ( ! is_array ($segment) && ! is_null($segment) ) {
+			$segment = array($segment);
 		}
 		$count = count($segment);
 		if ($count < 0) {

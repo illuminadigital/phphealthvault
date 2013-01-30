@@ -44,8 +44,8 @@ class SignaturePropertiesType {
 	}
 
 	protected function validateSignatureProperty($signatureProperty) {
-		if ( ! $signatureProperty instanceof \org\w3\www\_2000\_09\xmldsig\SignatureProperty ) {
-			$signatureProperty = new \org\w3\www\_2000\_09\xmldsig\SignatureProperty ($signatureProperty);
+		if ( ! is_array ($signatureProperty) ) {
+			$signatureProperty = array($signatureProperty);
 		}
 		$count = count($signatureProperty);
 		if ($count < 1) {

@@ -39,8 +39,8 @@ class ExtendedParametersType {
 	}
 
 	protected function validateExtendedParameter($extendedParameter) {
-		if ( ! $extendedParameter instanceof \org\sifinfo\www\infrastructure\_2_x\ExtendedParameter  && ! is_null($extendedParameter) ) {
-			$extendedParameter = new \org\sifinfo\www\infrastructure\_2_x\ExtendedParameter ($extendedParameter);
+		if ( ! is_array ($extendedParameter) && ! is_null($extendedParameter) ) {
+			$extendedParameter = array($extendedParameter);
 		}
 		$count = count($extendedParameter);
 		if ($count < 0) {

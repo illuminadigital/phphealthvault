@@ -390,8 +390,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateServices($services) {
-		if ( ! $services instanceof \com\microsoft\wc\thing\explanation_of_benefits\Service ) {
-			$services = new \com\microsoft\wc\thing\explanation_of_benefits\Service ($services);
+		if ( ! is_array ($services) ) {
+			$services = array($services);
 		}
 		$count = count($services);
 		if ($count < 1) {

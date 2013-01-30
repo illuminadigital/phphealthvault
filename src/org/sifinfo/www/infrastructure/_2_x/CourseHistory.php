@@ -38,8 +38,8 @@ class CourseHistory {
 	}
 
 	protected function validateTerm($term) {
-		if ( ! $term instanceof \org\sifinfo\www\infrastructure\_2_x\Term  && ! is_null($term) ) {
-			$term = new \org\sifinfo\www\infrastructure\_2_x\Term ($term);
+		if ( ! is_array ($term) && ! is_null($term) ) {
+			$term = array($term);
 		}
 		$count = count($term);
 		if ($count < 0) {

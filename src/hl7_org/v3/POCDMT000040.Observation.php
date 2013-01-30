@@ -212,8 +212,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! $realmCode instanceof \hl7_org\v3\CS  && ! is_null($realmCode) ) {
-			$realmCode = new \hl7_org\v3\CS ($realmCode);
+		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
+			$realmCode = array($realmCode);
 		}
 		$count = count($realmCode);
 		if ($count < 0) {
@@ -271,8 +271,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! $templateId instanceof \hl7_org\v3\II  && ! is_null($templateId) ) {
-			$templateId = new \hl7_org\v3\II ($templateId);
+		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
+			$templateId = array($templateId);
 		}
 		$count = count($templateId);
 		if ($count < 0) {
@@ -307,8 +307,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof \hl7_org\v3\II  && ! is_null($id) ) {
-			$id = new \hl7_org\v3\II ($id);
+		if ( ! is_array ($id) && ! is_null($id) ) {
+			$id = array($id);
 		}
 		$count = count($id);
 		if ($count < 0) {
@@ -527,8 +527,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \hl7_org\v3\ANY  && ! is_null($value) ) {
-			$value = new \hl7_org\v3\ANY ($value);
+		if ( ! is_array ($value) && ! is_null($value) ) {
+			$value = array($value);
 		}
 		$count = count($value);
 		if ($count < 0) {
@@ -563,8 +563,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateInterpretationCode($interpretationCode) {
-		if ( ! $interpretationCode instanceof \hl7_org\v3\CE  && ! is_null($interpretationCode) ) {
-			$interpretationCode = new \hl7_org\v3\CE ($interpretationCode);
+		if ( ! is_array ($interpretationCode) && ! is_null($interpretationCode) ) {
+			$interpretationCode = array($interpretationCode);
 		}
 		$count = count($interpretationCode);
 		if ($count < 0) {
@@ -599,8 +599,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateMethodCode($methodCode) {
-		if ( ! $methodCode instanceof \hl7_org\v3\CE  && ! is_null($methodCode) ) {
-			$methodCode = new \hl7_org\v3\CE ($methodCode);
+		if ( ! is_array ($methodCode) && ! is_null($methodCode) ) {
+			$methodCode = array($methodCode);
 		}
 		$count = count($methodCode);
 		if ($count < 0) {
@@ -635,8 +635,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateTargetSiteCode($targetSiteCode) {
-		if ( ! $targetSiteCode instanceof \hl7_org\v3\CD  && ! is_null($targetSiteCode) ) {
-			$targetSiteCode = new \hl7_org\v3\CD ($targetSiteCode);
+		if ( ! is_array ($targetSiteCode) && ! is_null($targetSiteCode) ) {
+			$targetSiteCode = array($targetSiteCode);
 		}
 		$count = count($targetSiteCode);
 		if ($count < 0) {
@@ -694,8 +694,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateSpecimen($specimen) {
-		if ( ! $specimen instanceof \hl7_org\v3\POCDMT000040.Specimen  && ! is_null($specimen) ) {
-			$specimen = new \hl7_org\v3\POCDMT000040.Specimen ($specimen);
+		if ( ! is_array ($specimen) && ! is_null($specimen) ) {
+			$specimen = array($specimen);
 		}
 		$count = count($specimen);
 		if ($count < 0) {
@@ -730,8 +730,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validatePerformer($performer) {
-		if ( ! $performer instanceof \hl7_org\v3\POCDMT000040.Performer2  && ! is_null($performer) ) {
-			$performer = new \hl7_org\v3\POCDMT000040.Performer2 ($performer);
+		if ( ! is_array ($performer) && ! is_null($performer) ) {
+			$performer = array($performer);
 		}
 		$count = count($performer);
 		if ($count < 0) {
@@ -766,8 +766,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateAuthor($author) {
-		if ( ! $author instanceof \hl7_org\v3\POCDMT000040.Author  && ! is_null($author) ) {
-			$author = new \hl7_org\v3\POCDMT000040.Author ($author);
+		if ( ! is_array ($author) && ! is_null($author) ) {
+			$author = array($author);
 		}
 		$count = count($author);
 		if ($count < 0) {
@@ -802,8 +802,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateInformant($informant) {
-		if ( ! $informant instanceof \hl7_org\v3\POCDMT000040.Informant12  && ! is_null($informant) ) {
-			$informant = new \hl7_org\v3\POCDMT000040.Informant12 ($informant);
+		if ( ! is_array ($informant) && ! is_null($informant) ) {
+			$informant = array($informant);
 		}
 		$count = count($informant);
 		if ($count < 0) {
@@ -838,8 +838,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateParticipant($participant) {
-		if ( ! $participant instanceof \hl7_org\v3\POCDMT000040.Participant2  && ! is_null($participant) ) {
-			$participant = new \hl7_org\v3\POCDMT000040.Participant2 ($participant);
+		if ( ! is_array ($participant) && ! is_null($participant) ) {
+			$participant = array($participant);
 		}
 		$count = count($participant);
 		if ($count < 0) {
@@ -874,8 +874,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateEntryRelationship($entryRelationship) {
-		if ( ! $entryRelationship instanceof \hl7_org\v3\POCDMT000040.EntryRelationship  && ! is_null($entryRelationship) ) {
-			$entryRelationship = new \hl7_org\v3\POCDMT000040.EntryRelationship ($entryRelationship);
+		if ( ! is_array ($entryRelationship) && ! is_null($entryRelationship) ) {
+			$entryRelationship = array($entryRelationship);
 		}
 		$count = count($entryRelationship);
 		if ($count < 0) {
@@ -910,8 +910,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateReference($reference) {
-		if ( ! $reference instanceof \hl7_org\v3\POCDMT000040.Reference  && ! is_null($reference) ) {
-			$reference = new \hl7_org\v3\POCDMT000040.Reference ($reference);
+		if ( ! is_array ($reference) && ! is_null($reference) ) {
+			$reference = array($reference);
 		}
 		$count = count($reference);
 		if ($count < 0) {
@@ -946,8 +946,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validatePrecondition($precondition) {
-		if ( ! $precondition instanceof \hl7_org\v3\POCDMT000040.Precondition  && ! is_null($precondition) ) {
-			$precondition = new \hl7_org\v3\POCDMT000040.Precondition ($precondition);
+		if ( ! is_array ($precondition) && ! is_null($precondition) ) {
+			$precondition = array($precondition);
 		}
 		$count = count($precondition);
 		if ($count < 0) {
@@ -982,8 +982,8 @@ class POCDMT000040.Observation {
 	}
 
 	protected function validateReferenceRange($referenceRange) {
-		if ( ! $referenceRange instanceof \hl7_org\v3\POCDMT000040.ReferenceRange  && ! is_null($referenceRange) ) {
-			$referenceRange = new \hl7_org\v3\POCDMT000040.ReferenceRange ($referenceRange);
+		if ( ! is_array ($referenceRange) && ! is_null($referenceRange) ) {
+			$referenceRange = array($referenceRange);
 		}
 		$count = count($referenceRange);
 		if ($count < 0) {

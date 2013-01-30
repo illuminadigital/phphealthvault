@@ -70,8 +70,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptAddress($rcptAddress) {
-		if ( ! $rcptAddress instanceof \com\microsoft\wc\types\RcptAddress  && ! is_null($rcptAddress) ) {
-			$rcptAddress = new \com\microsoft\wc\types\RcptAddress ($rcptAddress);
+		if ( ! is_array ($rcptAddress) && ! is_null($rcptAddress) ) {
+			$rcptAddress = array($rcptAddress);
 		}
 		$count = count($rcptAddress);
 		if ($count < 0) {
@@ -106,8 +106,8 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptPerson($rcptPerson) {
-		if ( ! $rcptPerson instanceof \com\microsoft\wc\types\RcptPerson  && ! is_null($rcptPerson) ) {
-			$rcptPerson = new \com\microsoft\wc\types\RcptPerson ($rcptPerson);
+		if ( ! is_array ($rcptPerson) && ! is_null($rcptPerson) ) {
+			$rcptPerson = array($rcptPerson);
 		}
 		$count = count($rcptPerson);
 		if ($count < 0) {

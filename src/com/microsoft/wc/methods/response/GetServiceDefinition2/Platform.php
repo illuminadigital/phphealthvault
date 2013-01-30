@@ -97,8 +97,8 @@ class Platform {
 	}
 
 	protected function validateConfiguration($configuration) {
-		if ( ! $configuration instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\ConfigurationEntry  && ! is_null($configuration) ) {
-			$configuration = new \com\microsoft\wc\methods\response\GetServiceDefinition2\ConfigurationEntry ($configuration);
+		if ( ! is_array ($configuration) && ! is_null($configuration) ) {
+			$configuration = array($configuration);
 		}
 		$count = count($configuration);
 		if ($count < 0) {

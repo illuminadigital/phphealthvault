@@ -38,8 +38,8 @@ class TimeElements {
 	}
 
 	protected function validateTimeElement($timeElement) {
-		if ( ! $timeElement instanceof \org\sifinfo\www\infrastructure\_2_x\TimeElement  && ! is_null($timeElement) ) {
-			$timeElement = new \org\sifinfo\www\infrastructure\_2_x\TimeElement ($timeElement);
+		if ( ! is_array ($timeElement) && ! is_null($timeElement) ) {
+			$timeElement = array($timeElement);
 		}
 		$count = count($timeElement);
 		if ($count < 0) {

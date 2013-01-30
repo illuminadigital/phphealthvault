@@ -111,8 +111,8 @@ class ThingFilterSpec {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \com\microsoft\wc\types\Guid  && ! is_null($typeId) ) {
-			$typeId = new \com\microsoft\wc\types\Guid ($typeId);
+		if ( ! is_array ($typeId) && ! is_null($typeId) ) {
+			$typeId = array($typeId);
 		}
 		$count = count($typeId);
 		if ($count < 0) {
@@ -147,8 +147,8 @@ class ThingFilterSpec {
 	}
 
 	protected function validateThingState($thingState) {
-		if ( ! $thingState instanceof \com\microsoft\wc\thing\ThingState  && ! is_null($thingState) ) {
-			$thingState = new \com\microsoft\wc\thing\ThingState ($thingState);
+		if ( ! is_array ($thingState) && ! is_null($thingState) ) {
+			$thingState = array($thingState);
 		}
 		$count = count($thingState);
 		if ($count < 0) {

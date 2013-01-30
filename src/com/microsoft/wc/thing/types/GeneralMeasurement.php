@@ -70,8 +70,8 @@ class GeneralMeasurement {
 	}
 
 	protected function validateStructured($structured) {
-		if ( ! $structured instanceof \com\microsoft\wc\thing\types\StructuredMeasurement  && ! is_null($structured) ) {
-			$structured = new \com\microsoft\wc\thing\types\StructuredMeasurement ($structured);
+		if ( ! is_array ($structured) && ! is_null($structured) ) {
+			$structured = array($structured);
 		}
 		$count = count($structured);
 		if ($count < 0) {

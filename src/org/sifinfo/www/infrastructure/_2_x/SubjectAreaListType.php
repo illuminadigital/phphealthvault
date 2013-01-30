@@ -39,8 +39,8 @@ class SubjectAreaListType {
 	}
 
 	protected function validateSubjectArea($subjectArea) {
-		if ( ! $subjectArea instanceof \org\sifinfo\www\infrastructure\_2_x\SubjectArea ) {
-			$subjectArea = new \org\sifinfo\www\infrastructure\_2_x\SubjectArea ($subjectArea);
+		if ( ! is_array ($subjectArea) ) {
+			$subjectArea = array($subjectArea);
 		}
 		$count = count($subjectArea);
 		if ($count < 1) {

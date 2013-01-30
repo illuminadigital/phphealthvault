@@ -39,8 +39,8 @@ class CareTeam {
 	}
 
 	protected function validatePerson($person) {
-		if ( ! $person instanceof \com\microsoft\wc\thing\types\Person ) {
-			$person = new \com\microsoft\wc\thing\types\Person ($person);
+		if ( ! is_array ($person) ) {
+			$person = array($person);
 		}
 		$count = count($person);
 		if ($count < 1) {

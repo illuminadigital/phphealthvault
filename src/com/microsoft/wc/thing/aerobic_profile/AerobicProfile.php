@@ -188,8 +188,8 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateHeartrateZoneGroup($heartrateZoneGroup) {
-		if ( ! $heartrateZoneGroup instanceof \com\microsoft\wc\thing\aerobic_profile\HeartrateZoneGroup  && ! is_null($heartrateZoneGroup) ) {
-			$heartrateZoneGroup = new \com\microsoft\wc\thing\aerobic_profile\HeartrateZoneGroup ($heartrateZoneGroup);
+		if ( ! is_array ($heartrateZoneGroup) && ! is_null($heartrateZoneGroup) ) {
+			$heartrateZoneGroup = array($heartrateZoneGroup);
 		}
 		$count = count($heartrateZoneGroup);
 		if ($count < 0) {

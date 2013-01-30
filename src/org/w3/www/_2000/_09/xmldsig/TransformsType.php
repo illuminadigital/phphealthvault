@@ -38,8 +38,8 @@ class TransformsType {
 	}
 
 	protected function validateTransform($transform) {
-		if ( ! $transform instanceof \org\w3\www\_2000\_09\xmldsig\Transform ) {
-			$transform = new \org\w3\www\_2000\_09\xmldsig\Transform ($transform);
+		if ( ! is_array ($transform) ) {
+			$transform = array($transform);
 		}
 		$count = count($transform);
 		if ($count < 1) {

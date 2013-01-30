@@ -130,8 +130,8 @@ class HealthAssessment extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateResult($result) {
-		if ( ! $result instanceof \com\microsoft\wc\thing\health_assessment\Assessment ) {
-			$result = new \com\microsoft\wc\thing\health_assessment\Assessment ($result);
+		if ( ! is_array ($result) ) {
+			$result = array($result);
 		}
 		$count = count($result);
 		if ($count < 1) {

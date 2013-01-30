@@ -40,8 +40,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateRecordId($recordId) {
-		if ( ! $recordId instanceof \com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication\RecordId  && ! is_null($recordId) ) {
-			$recordId = new \com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication\RecordId ($recordId);
+		if ( ! is_array ($recordId) && ! is_null($recordId) ) {
+			$recordId = array($recordId);
 		}
 		$count = count($recordId);
 		if ($count < 0) {

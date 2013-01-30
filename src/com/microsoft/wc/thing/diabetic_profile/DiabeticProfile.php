@@ -101,8 +101,8 @@ class DiabeticProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTargetGlucoseZoneGroup($targetGlucoseZoneGroup) {
-		if ( ! $targetGlucoseZoneGroup instanceof \com\microsoft\wc\thing\diabetic_profile\TargetGlucoseZoneGroup  && ! is_null($targetGlucoseZoneGroup) ) {
-			$targetGlucoseZoneGroup = new \com\microsoft\wc\thing\diabetic_profile\TargetGlucoseZoneGroup ($targetGlucoseZoneGroup);
+		if ( ! is_array ($targetGlucoseZoneGroup) && ! is_null($targetGlucoseZoneGroup) ) {
+			$targetGlucoseZoneGroup = array($targetGlucoseZoneGroup);
 		}
 		$count = count($targetGlucoseZoneGroup);
 		if ($count < 0) {

@@ -110,8 +110,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateSdkAssembly($sdkAssembly) {
-		if ( ! $sdkAssembly instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\SDKAssembly ) {
-			$sdkAssembly = new \com\microsoft\wc\methods\response\GetServiceDefinition\SDKAssembly ($sdkAssembly);
+		if ( ! is_array ($sdkAssembly) ) {
+			$sdkAssembly = array($sdkAssembly);
 		}
 		$count = count($sdkAssembly);
 		if ($count < 1) {
@@ -146,8 +146,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateXmlMethod($xmlMethod) {
-		if ( ! $xmlMethod instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\XmlMethod ) {
-			$xmlMethod = new \com\microsoft\wc\methods\response\GetServiceDefinition\XmlMethod ($xmlMethod);
+		if ( ! is_array ($xmlMethod) ) {
+			$xmlMethod = array($xmlMethod);
 		}
 		$count = count($xmlMethod);
 		if ($count < 1) {

@@ -39,8 +39,8 @@ class VocabularyAuthorizations {
 	}
 
 	protected function validateVocabularyAuthorization($vocabularyAuthorization) {
-		if ( ! $vocabularyAuthorization instanceof \com\microsoft\wc\vocab\VocabularyAuthorization ) {
-			$vocabularyAuthorization = new \com\microsoft\wc\vocab\VocabularyAuthorization ($vocabularyAuthorization);
+		if ( ! is_array ($vocabularyAuthorization) ) {
+			$vocabularyAuthorization = array($vocabularyAuthorization);
 		}
 		$count = count($vocabularyAuthorization);
 		if ($count < 1) {

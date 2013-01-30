@@ -39,8 +39,8 @@ class OtherNamesType {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof \org\sifinfo\www\infrastructure\_2_x\Name ) {
-			$name = new \org\sifinfo\www\infrastructure\_2_x\Name ($name);
+		if ( ! is_array ($name) ) {
+			$name = array($name);
 		}
 		$count = count($name);
 		if ($count < 1) {

@@ -127,8 +127,8 @@ class SampleSet {
 	}
 
 	protected function validateSample($sample) {
-		if ( ! $sample instanceof \com\microsoft\wc\thing\types\Sample  && ! is_null($sample) ) {
-			$sample = new \com\microsoft\wc\thing\types\Sample ($sample);
+		if ( ! is_array ($sample) && ! is_null($sample) ) {
+			$sample = array($sample);
 		}
 		$count = count($sample);
 		if ($count < 0) {

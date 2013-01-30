@@ -38,8 +38,8 @@ class RightsElements {
 	}
 
 	protected function validateRightsElement($rightsElement) {
-		if ( ! $rightsElement instanceof \org\sifinfo\www\infrastructure\_2_x\RightsElement  && ! is_null($rightsElement) ) {
-			$rightsElement = new \org\sifinfo\www\infrastructure\_2_x\RightsElement ($rightsElement);
+		if ( ! is_array ($rightsElement) && ! is_null($rightsElement) ) {
+			$rightsElement = array($rightsElement);
 		}
 		$count = count($rightsElement);
 		if ($count < 0) {

@@ -39,8 +39,8 @@ class OtherCodeListType {
 	}
 
 	protected function validateOtherCode($otherCode) {
-		if ( ! $otherCode instanceof \org\sifinfo\www\infrastructure\_2_x\OtherCode ) {
-			$otherCode = new \org\sifinfo\www\infrastructure\_2_x\OtherCode ($otherCode);
+		if ( ! is_array ($otherCode) ) {
+			$otherCode = array($otherCode);
 		}
 		$count = count($otherCode);
 		if ($count < 1) {

@@ -48,8 +48,8 @@ class GroupMembership extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMembership($membership) {
-		if ( ! $membership instanceof \com\microsoft\wc\thing\types\GroupMembershipType  && ! is_null($membership) ) {
-			$membership = new \com\microsoft\wc\thing\types\GroupMembershipType ($membership);
+		if ( ! is_array ($membership) && ! is_null($membership) ) {
+			$membership = array($membership);
 		}
 		$count = count($membership);
 		if ($count < 0) {

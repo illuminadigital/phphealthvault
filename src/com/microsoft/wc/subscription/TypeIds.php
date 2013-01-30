@@ -39,8 +39,8 @@ class TypeIds {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \com\microsoft\wc\types\Guid ) {
-			$typeId = new \com\microsoft\wc\types\Guid ($typeId);
+		if ( ! is_array ($typeId) ) {
+			$typeId = array($typeId);
 		}
 		$count = count($typeId);
 		if ($count < 1) {

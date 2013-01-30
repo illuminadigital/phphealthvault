@@ -187,8 +187,8 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDelivery($delivery) {
-		if ( ! $delivery instanceof \com\microsoft\wc\thing\pregnancy\Delivery  && ! is_null($delivery) ) {
-			$delivery = new \com\microsoft\wc\thing\pregnancy\Delivery ($delivery);
+		if ( ! is_array ($delivery) && ! is_null($delivery) ) {
+			$delivery = array($delivery);
 		}
 		$count = count($delivery);
 		if ($count < 0) {

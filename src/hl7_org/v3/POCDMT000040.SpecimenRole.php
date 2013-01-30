@@ -74,8 +74,8 @@ class POCDMT000040.SpecimenRole {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! $realmCode instanceof \hl7_org\v3\CS  && ! is_null($realmCode) ) {
-			$realmCode = new \hl7_org\v3\CS ($realmCode);
+		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
+			$realmCode = array($realmCode);
 		}
 		$count = count($realmCode);
 		if ($count < 0) {
@@ -133,8 +133,8 @@ class POCDMT000040.SpecimenRole {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! $templateId instanceof \hl7_org\v3\II  && ! is_null($templateId) ) {
-			$templateId = new \hl7_org\v3\II ($templateId);
+		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
+			$templateId = array($templateId);
 		}
 		$count = count($templateId);
 		if ($count < 0) {
@@ -169,8 +169,8 @@ class POCDMT000040.SpecimenRole {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof \hl7_org\v3\II  && ! is_null($id) ) {
-			$id = new \hl7_org\v3\II ($id);
+		if ( ! is_array ($id) && ! is_null($id) ) {
+			$id = array($id);
 		}
 		$count = count($id);
 		if ($count < 0) {

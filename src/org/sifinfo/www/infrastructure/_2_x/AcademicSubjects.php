@@ -38,8 +38,8 @@ class AcademicSubjects {
 	}
 
 	protected function validateAcademicSubject($academicSubject) {
-		if ( ! $academicSubject instanceof \org\sifinfo\www\infrastructure\_2_x\AcademicSubject  && ! is_null($academicSubject) ) {
-			$academicSubject = new \org\sifinfo\www\infrastructure\_2_x\AcademicSubject ($academicSubject);
+		if ( ! is_array ($academicSubject) && ! is_null($academicSubject) ) {
+			$academicSubject = array($academicSubject);
 		}
 		$count = count($academicSubject);
 		if ($count < 0) {

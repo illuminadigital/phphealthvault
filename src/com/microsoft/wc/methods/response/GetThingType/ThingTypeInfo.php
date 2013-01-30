@@ -289,8 +289,8 @@ class ThingTypeInfo {
 	}
 
 	protected function validateTransformSource($transformSource) {
-		if ( ! $transformSource instanceof \com\microsoft\wc\methods\response\GetThingType\TransformSource  && ! is_null($transformSource) ) {
-			$transformSource = new \com\microsoft\wc\methods\response\GetThingType\TransformSource ($transformSource);
+		if ( ! is_array ($transformSource) && ! is_null($transformSource) ) {
+			$transformSource = array($transformSource);
 		}
 		$count = count($transformSource);
 		if ($count < 0) {
@@ -325,8 +325,8 @@ class ThingTypeInfo {
 	}
 
 	protected function validateImage($image) {
-		if ( ! $image instanceof \com\microsoft\wc\methods\response\GetThingType\Image  && ! is_null($image) ) {
-			$image = new \com\microsoft\wc\methods\response\GetThingType\Image ($image);
+		if ( ! is_array ($image) && ! is_null($image) ) {
+			$image = array($image);
 		}
 		$count = count($image);
 		if ($count < 0) {

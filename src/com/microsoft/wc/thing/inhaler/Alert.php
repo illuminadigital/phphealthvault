@@ -46,8 +46,8 @@ class Alert {
 	}
 
 	protected function validateDow($dow) {
-		if ( ! $dow instanceof \com\microsoft\wc\thing\types\Dow ) {
-			$dow = new \com\microsoft\wc\thing\types\Dow ($dow);
+		if ( ! is_array ($dow) ) {
+			$dow = array($dow);
 		}
 		$count = count($dow);
 		if ($count < 1) {
@@ -85,8 +85,8 @@ class Alert {
 	}
 
 	protected function validateTime($time) {
-		if ( ! $time instanceof \com\microsoft\wc\dates\Time ) {
-			$time = new \com\microsoft\wc\dates\Time ($time);
+		if ( ! is_array ($time) ) {
+			$time = array($time);
 		}
 		$count = count($time);
 		if ($count < 1) {

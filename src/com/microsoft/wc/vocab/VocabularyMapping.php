@@ -39,8 +39,8 @@ class VocabularyMapping {
 	}
 
 	protected function validateVocabularyMappingItem($vocabularyMappingItem) {
-		if ( ! $vocabularyMappingItem instanceof \com\microsoft\wc\vocab\VocabularyMappingItem  && ! is_null($vocabularyMappingItem) ) {
-			$vocabularyMappingItem = new \com\microsoft\wc\vocab\VocabularyMappingItem ($vocabularyMappingItem);
+		if ( ! is_array ($vocabularyMappingItem) && ! is_null($vocabularyMappingItem) ) {
+			$vocabularyMappingItem = array($vocabularyMappingItem);
 		}
 		$count = count($vocabularyMappingItem);
 		if ($count < 0) {

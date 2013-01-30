@@ -86,8 +86,8 @@ class POCDMT000040.SubjectPerson {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! $realmCode instanceof \hl7_org\v3\CS  && ! is_null($realmCode) ) {
-			$realmCode = new \hl7_org\v3\CS ($realmCode);
+		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
+			$realmCode = array($realmCode);
 		}
 		$count = count($realmCode);
 		if ($count < 0) {
@@ -145,8 +145,8 @@ class POCDMT000040.SubjectPerson {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! $templateId instanceof \hl7_org\v3\II  && ! is_null($templateId) ) {
-			$templateId = new \hl7_org\v3\II ($templateId);
+		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
+			$templateId = array($templateId);
 		}
 		$count = count($templateId);
 		if ($count < 0) {
@@ -181,8 +181,8 @@ class POCDMT000040.SubjectPerson {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof \hl7_org\v3\PN  && ! is_null($name) ) {
-			$name = new \hl7_org\v3\PN ($name);
+		if ( ! is_array ($name) && ! is_null($name) ) {
+			$name = array($name);
 		}
 		$count = count($name);
 		if ($count < 0) {

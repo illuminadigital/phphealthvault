@@ -44,8 +44,8 @@ class DrugInfo {
 	}
 
 	protected function validateStrength($strength) {
-		if ( ! $strength instanceof \com\microsoft\wc\vocab\MedicationStrength  && ! is_null($strength) ) {
-			$strength = new \com\microsoft\wc\vocab\MedicationStrength ($strength);
+		if ( ! is_array ($strength) && ! is_null($strength) ) {
+			$strength = array($strength);
 		}
 		$count = count($strength);
 		if ($count < 0) {

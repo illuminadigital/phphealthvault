@@ -131,8 +131,8 @@ class LabTestResultsGroupType {
 	}
 
 	protected function validateSubGroups($subGroups) {
-		if ( ! $subGroups instanceof \com\microsoft\wc\thing\lab_test_results\LabTestResultsGroupType  && ! is_null($subGroups) ) {
-			$subGroups = new \com\microsoft\wc\thing\lab_test_results\LabTestResultsGroupType ($subGroups);
+		if ( ! is_array ($subGroups) && ! is_null($subGroups) ) {
+			$subGroups = array($subGroups);
 		}
 		$count = count($subGroups);
 		if ($count < 0) {
@@ -167,8 +167,8 @@ class LabTestResultsGroupType {
 	}
 
 	protected function validateResults($results) {
-		if ( ! $results instanceof \com\microsoft\wc\thing\lab_test_results\LabTestResultType  && ! is_null($results) ) {
-			$results = new \com\microsoft\wc\thing\lab_test_results\LabTestResultType ($results);
+		if ( ! is_array ($results) && ! is_null($results) ) {
+			$results = array($results);
 		}
 		$count = count($results);
 		if ($count < 0) {

@@ -38,8 +38,8 @@ class StudentRecordExchangeDataListType {
 	}
 
 	protected function validateStudentRecordExchangeData($studentRecordExchangeData) {
-		if ( ! $studentRecordExchangeData instanceof \org\sifinfo\www\infrastructure\_2_x\StudentRecordExchangeData ) {
-			$studentRecordExchangeData = new \org\sifinfo\www\infrastructure\_2_x\StudentRecordExchangeData ($studentRecordExchangeData);
+		if ( ! is_array ($studentRecordExchangeData) ) {
+			$studentRecordExchangeData = array($studentRecordExchangeData);
 		}
 		$count = count($studentRecordExchangeData);
 		if ($count < 1) {

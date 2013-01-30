@@ -212,8 +212,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! $realmCode instanceof \hl7_org\v3\CS  && ! is_null($realmCode) ) {
-			$realmCode = new \hl7_org\v3\CS ($realmCode);
+		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
+			$realmCode = array($realmCode);
 		}
 		$count = count($realmCode);
 		if ($count < 0) {
@@ -271,8 +271,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! $templateId instanceof \hl7_org\v3\II  && ! is_null($templateId) ) {
-			$templateId = new \hl7_org\v3\II ($templateId);
+		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
+			$templateId = array($templateId);
 		}
 		$count = count($templateId);
 		if ($count < 0) {
@@ -514,8 +514,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateRecordTarget($recordTarget) {
-		if ( ! $recordTarget instanceof \hl7_org\v3\POCDMT000040.RecordTarget ) {
-			$recordTarget = new \hl7_org\v3\POCDMT000040.RecordTarget ($recordTarget);
+		if ( ! is_array ($recordTarget) ) {
+			$recordTarget = array($recordTarget);
 		}
 		$count = count($recordTarget);
 		if ($count < 1) {
@@ -550,8 +550,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateAuthor($author) {
-		if ( ! $author instanceof \hl7_org\v3\POCDMT000040.Author ) {
-			$author = new \hl7_org\v3\POCDMT000040.Author ($author);
+		if ( ! is_array ($author) ) {
+			$author = array($author);
 		}
 		$count = count($author);
 		if ($count < 1) {
@@ -609,8 +609,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateInformant($informant) {
-		if ( ! $informant instanceof \hl7_org\v3\POCDMT000040.Informant12  && ! is_null($informant) ) {
-			$informant = new \hl7_org\v3\POCDMT000040.Informant12 ($informant);
+		if ( ! is_array ($informant) && ! is_null($informant) ) {
+			$informant = array($informant);
 		}
 		$count = count($informant);
 		if ($count < 0) {
@@ -668,8 +668,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateInformationRecipient($informationRecipient) {
-		if ( ! $informationRecipient instanceof \hl7_org\v3\POCDMT000040.InformationRecipient  && ! is_null($informationRecipient) ) {
-			$informationRecipient = new \hl7_org\v3\POCDMT000040.InformationRecipient ($informationRecipient);
+		if ( ! is_array ($informationRecipient) && ! is_null($informationRecipient) ) {
+			$informationRecipient = array($informationRecipient);
 		}
 		$count = count($informationRecipient);
 		if ($count < 0) {
@@ -727,8 +727,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateAuthenticator($authenticator) {
-		if ( ! $authenticator instanceof \hl7_org\v3\POCDMT000040.Authenticator  && ! is_null($authenticator) ) {
-			$authenticator = new \hl7_org\v3\POCDMT000040.Authenticator ($authenticator);
+		if ( ! is_array ($authenticator) && ! is_null($authenticator) ) {
+			$authenticator = array($authenticator);
 		}
 		$count = count($authenticator);
 		if ($count < 0) {
@@ -763,8 +763,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateParticipant($participant) {
-		if ( ! $participant instanceof \hl7_org\v3\POCDMT000040.Participant1  && ! is_null($participant) ) {
-			$participant = new \hl7_org\v3\POCDMT000040.Participant1 ($participant);
+		if ( ! is_array ($participant) && ! is_null($participant) ) {
+			$participant = array($participant);
 		}
 		$count = count($participant);
 		if ($count < 0) {
@@ -799,8 +799,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateInFulfillmentOf($inFulfillmentOf) {
-		if ( ! $inFulfillmentOf instanceof \hl7_org\v3\POCDMT000040.InFulfillmentOf  && ! is_null($inFulfillmentOf) ) {
-			$inFulfillmentOf = new \hl7_org\v3\POCDMT000040.InFulfillmentOf ($inFulfillmentOf);
+		if ( ! is_array ($inFulfillmentOf) && ! is_null($inFulfillmentOf) ) {
+			$inFulfillmentOf = array($inFulfillmentOf);
 		}
 		$count = count($inFulfillmentOf);
 		if ($count < 0) {
@@ -835,8 +835,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateDocumentationOf($documentationOf) {
-		if ( ! $documentationOf instanceof \hl7_org\v3\POCDMT000040.DocumentationOf  && ! is_null($documentationOf) ) {
-			$documentationOf = new \hl7_org\v3\POCDMT000040.DocumentationOf ($documentationOf);
+		if ( ! is_array ($documentationOf) && ! is_null($documentationOf) ) {
+			$documentationOf = array($documentationOf);
 		}
 		$count = count($documentationOf);
 		if ($count < 0) {
@@ -871,8 +871,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateRelatedDocument($relatedDocument) {
-		if ( ! $relatedDocument instanceof \hl7_org\v3\POCDMT000040.RelatedDocument  && ! is_null($relatedDocument) ) {
-			$relatedDocument = new \hl7_org\v3\POCDMT000040.RelatedDocument ($relatedDocument);
+		if ( ! is_array ($relatedDocument) && ! is_null($relatedDocument) ) {
+			$relatedDocument = array($relatedDocument);
 		}
 		$count = count($relatedDocument);
 		if ($count < 0) {
@@ -907,8 +907,8 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateAuthorization($authorization) {
-		if ( ! $authorization instanceof \hl7_org\v3\POCDMT000040.Authorization  && ! is_null($authorization) ) {
-			$authorization = new \hl7_org\v3\POCDMT000040.Authorization ($authorization);
+		if ( ! is_array ($authorization) && ! is_null($authorization) ) {
+			$authorization = array($authorization);
 		}
 		$count = count($authorization);
 		if ($count < 0) {

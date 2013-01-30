@@ -217,8 +217,8 @@ class AppWithLogos {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof \com\microsoft\wc\types\CultureSpecificString255 ) {
-			$name = new \com\microsoft\wc\types\CultureSpecificString255 ($name);
+		if ( ! is_array ($name) ) {
+			$name = array($name);
 		}
 		$count = count($name);
 		if ($count < 1) {
@@ -322,8 +322,8 @@ class AppWithLogos {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! $description instanceof \com\microsoft\wc\types\CultureSpecificString  && ! is_null($description) ) {
-			$description = new \com\microsoft\wc\types\CultureSpecificString ($description);
+		if ( ! is_array ($description) && ! is_null($description) ) {
+			$description = array($description);
 		}
 		$count = count($description);
 		if ($count < 0) {
@@ -358,8 +358,8 @@ class AppWithLogos {
 	}
 
 	protected function validateAuthReason($authReason) {
-		if ( ! $authReason instanceof \com\microsoft\wc\types\CultureSpecificString  && ! is_null($authReason) ) {
-			$authReason = new \com\microsoft\wc\types\CultureSpecificString ($authReason);
+		if ( ! is_array ($authReason) && ! is_null($authReason) ) {
+			$authReason = array($authReason);
 		}
 		$count = count($authReason);
 		if ($count < 0) {
