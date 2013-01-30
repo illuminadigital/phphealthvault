@@ -38,13 +38,29 @@ class ThingConverter
         $newThing->setThingState($originalThing->getThingState());
         $newThing->setFlags($originalThing->getFlags());
         $newThing->setEffDate($originalThing->getEffDate());
-        $newThing->setCreated(self::toAudit2($originalThing->getCreated())); // Thing2 only
-        $newThing->setUpdated(self::toAudit2($originalThing->getUpdated())); // Thing2 only
         $newThing->setDataXml($originalThing->getDataXml());
-        $newThing->setBlobPayload($originalThing->getDataOther()); // FIXME: should do more
         $newThing->setEffPermissions($originalThing->getEffPermissions());
-        $newThing->setTags($originalThing->getTags());
         $newThing->getSignatureInfo()->setSignature($originalThing->getSignature());
+        
+        if ($originalThing->getCreated()->getTimestamp())
+        {
+            $newThing->setCreated(self::toAudit2($originalThing->getCreated())); // Thing2 only
+        }
+        
+        if ($originalThing->getUpdated()->getTimestamp())
+        {
+            $newThing->setUpdated(self::toAudit2($originalThing->getUpdated())); // Thing2 only
+        }
+
+        if ($originalThing->getDataOther()->getContentType()->getValue())
+        {
+            $newThing->setBlobPayload($originalThing->getDataOther()); // FIXME: will break
+        }
+
+        if ($originalThing->getTags()->getValue())
+        {
+            $newThing->setTags($originalThing->getTags());
+        }
         
         return $newThing;
     }
