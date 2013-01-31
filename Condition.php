@@ -224,7 +224,7 @@ class Condition
     public function setVersion($version) {
         if ( ! empty($version) && $this->hvCondition )
         {
-            $this->hvCondition->getThingId()->getVersionStamp()->setValue($version);
+            $this->hvCondition->getThingId()->setVersionStamp($version);
         }
         
         return $this;
@@ -382,6 +382,10 @@ class Condition
             $hvStopDate = $this->getHealthvaultPayload()->getStopDate();
             
             $this->setHealthvaultDate($hvStopDate, $stopDate);
+        }
+        else
+        {
+            $this->getHealthvaultPayload()->setStopDate(NULL);
         }
     }
     
