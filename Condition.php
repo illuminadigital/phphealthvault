@@ -4,8 +4,13 @@ namespace Illumina\UnderstandingMyHealthBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
 
+use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
+
 use com\microsoft\wc\thing\condition\Condition as HealthvaultCondition;
 use com\microsoft\wc\thing\Thing;
+use com\microsoft\wc\thing\DataXml;
+use com\microsoft\wc\types\CodedValue;
+use com\microsoft\wc\types\CodableValue;
 
 class Condition
 {
@@ -15,13 +20,16 @@ class Condition
      */
     protected $name;
     
+    /* @Assert\Choice(callback="getPossibleCategories") */
     /**
-     * @Assert\Choice(callback="getPossibleCategories")
+     * @Assert\NotBlank()
+     * 
      * @var string
      */
     protected $category;
     
     /**
+     * @Assert\NotBlank()
      * @Validate\InHealthvaultVocabulary("condition-occurrence")
      * @var string
      */
@@ -54,10 +62,19 @@ class Condition
      */
     protected $hvCondition;
     
-    public function __construct(Thing $hvCondition = NULL)
+    /**
+     * @var \Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary
+     */
+    protected $healthvaultVocabulary;
+    
+    public function __construct(Thing $hvCondition = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL)
     {
         if ($hvCondition) {
             $this->setHealthvaultCondition($hvCondition);
+        }
+        
+        if ($healthvaultVocabulary) {
+            $this->setHealthvaultvocabulary($healthvaultVocabulary);
         }
     }
     
@@ -92,7 +109,7 @@ class Condition
         if ($this->hvCondition) {
             $this->setHealthvaultCategory($category);
         }
-        
+
         return $this;
     }
     
@@ -204,6 +221,15 @@ class Condition
         return $this->hvCondition->getThingId()->getVersionStamp();
     }
     
+    public function setVersion($version) {
+        if ( ! empty($version) && $this->hvCondition )
+        {
+            $this->hvCondition->getThingId()->getVersionStamp()->setValue($version);
+        }
+        
+        return $this;
+    }
+    
     public function getId()
     {
         if ( ! $this->hvCondition )
@@ -224,6 +250,7 @@ class Condition
         
         $this->hvCondition = $hvCondition;
         
+        $payloadArea = $this->getHealthvaultPayloadArea();
         $payload = $this->getHealthvaultPayload();
         
         $this->name = $payload->getName()->getText();
@@ -235,22 +262,26 @@ class Condition
         $code = array_shift($codes);
         
         $this->status = $code->getValue();
-        $dataXml = $this->hvCondition->getDataXml();
-        $payloadArea = array_shift($dataXml);
+        
         $this->notes = $payloadArea->getCommon()->getNote();
         // $this->category = ?
         
         return TRUE;
     }
     
-    public function getHealthvaultCondition(HealthvaultCondition $hvCondition = NULL)
+    public function getHealthvaultCondition(Thing $hvCondition = NULL)
     {
-        if ( ! $hvCondition && ! $this->hvCondition )
+        if ( empty($hvCondition) && empty($this->hvCondition) )
         {
-            $hvCondition = new HealthvaultCondition();
+            $hvCondition = new Thing();
+        }
+        
+        if ( ! empty($hvCondition) ) 
+        {
             $this->hvCondition = $hvCondition;
         }
         
+        $this->setHealthvaultName($this->name);
         $this->setHealthvaultCategory($this->category);
         $this->setHealthvaultStatus($this->status);
         $this->setHealthvaultOnsetDate($this->onsetDate);
@@ -258,23 +289,78 @@ class Condition
         $this->setHealthvaultStopReason($this->stopReason);
         $this->setHealthvaultNotes($this->notes);
         
-        return $hvCondition;
+        return $this->hvCondition;
     }
     
     protected function getHealthvaultPayload()
     {
-        $data = $this->hvCondition->getDataXml();
-        $payloadWrapper = array_shift($data);
+        $payloadWrapper = $this->getHealthvaultPayloadArea();
+        
         $payloadContentArr = $payloadWrapper->getAny();
         $payloadContent = array_shift($payloadContentArr);
         
         return $payloadContent;
     }
     
+    protected function getHealthvaultPayloadArea()
+    {
+        $data = $this->hvCondition->getDataXml();
+        
+        if ( ! empty($data) )
+        {
+            $payloadWrapper = array_shift($data);
+        }
+        else
+        {
+            $payloadWrapper = new DataXml();
+            $payloadWrapper->addAny(new HealthvaultCondition());
+
+            $this->hvCondition->addDataXml($payloadWrapper);
+        }
+        
+        return $payloadWrapper;
+    }
+    
     protected function setHealthvaultName($name)
     {
-        $hvName = $this->getHealthvaultPayload()->getName();
-        $hvName->setText($name);
+        // FIXME: Get Category list(!)
+        return $this->setHealthvaultCodableValue($this->getHealthvaultPayload()->getName(), $name, array());
+    }
+    
+    protected function setHealthvaultCodableValue(CodableValue $hvCodable, $value, $vocabularies = array())
+    {
+        $code = FALSE;
+        
+        if ($this->healthvaultVocabulary) {
+            // Try to lookup the code
+        
+            foreach (array() as $vocabulary) {
+                if (is_array($vocabulary)) {
+                    $vocabularyName = array_shift($vocabulary);
+                    $vocabularyFamily = (empty($vocabualry) ? 'wc' : array_shift($vocabulary));
+                } else {
+                    $vocabularyName = (string) $vocabulary;
+                    $vocabularyFamily = 'wc';
+                }
+        
+                $code = $this->healthvaultVocabulary($value, $vocabularyName, $vocabularyFamily);
+        
+                if ($code) {
+                    break;
+                }
+            }
+        }
+        
+        $hvCodable->setText($value);
+        
+        if ($code) {
+            $codedValue = $hvCodable->getCode();
+            $codedValue->setValue($code);
+            $codedValue->setFamily($vocabularyFamily);
+            $codedValue->setType($vocabularyName);
+        }
+        
+        return $code;
     }
     
     protected function setHealthvaultCategory($category)
@@ -291,9 +377,12 @@ class Condition
     
     protected function setHealthvaultStopDate($stopDate)
     {
-        $hvStopDate = $this->getHealthvaultPayload()->getStopDate();
-        
-        $this->setHealthvaultDate($hvStopDate, $stopDate);
+        if ( ! empty($stopDate) )
+        {
+            $hvStopDate = $this->getHealthvaultPayload()->getStopDate();
+            
+            $this->setHealthvaultDate($hvStopDate, $stopDate);
+        }
     }
     
     protected function setHealthvaultStopReason($stopReason)
@@ -304,30 +393,63 @@ class Condition
     protected function setHealthvaultStatus($status)
     {
         $hvStatus = $this->getHealthvaultPayload()->getStatus();
-        $hvStatus->setCode($status);
+        $hvCodes = $hvStatus->getCode();
+        
+        if ( ! empty($hvCodes) )
+        {
+            $hvCode = array_shift($hvCodes);
+        }
+        else
+        {
+            $hvCode = new CodedValue();
+            $hvCode->setFamily('wc');
+            $hvCode->setType('condition-occurrence');
+            $hvStatus->addCode($hvCode);
+        }
+        
+        $hvCode->setValue($status);
+        
+        if ($this->healthvaultVocabulary) {
+            $vocabulary = $this->healthvaultVocabulary->get('condition-occurrence');
+            
+            if ($vocabulary && array_key_exists($status, $vocabulary)) {
+                $hvStatus->setText($vocabulary[$status]);
+            }
+        }
     }
 
     protected function setHealthvaultNotes($notes)
     {
-        $hvCommon = $this->hvCondition->getDataXml()->getCommon();
+        $payloadArea = $this->getHealthvaultPayloadArea();
+        
+        $hvCommon = $payloadArea->getCommon();
         $hvCommon->setNote($notes);
     }
     
     protected function setHealthvaultDate(\com\microsoft\wc\dates\ApproxDateTime $hvDate, $date)
     {
-        if ( ! $date instanceof \DateTime) {
+        error_log('Setting date: ' . print_r($date, TRUE));
+        
+        if ( ! empty($date) && ! $date instanceof \DateTime) {
             try {
-                $dateObj = new \DateTime($date);
-                
-                $structuredDate = $hvDate->getStructured()->getDate();
-                $structuredDate->getY()->setValue($dateObj->format('Y'));
-                $structuredDate->setM()->setValue($dateObj->format('m'));
-                $structuredDate->setD()->setValue($dateObj->format('d'));
+                $date = new \DateTime($date);
             }
             catch (\Exception $e) {
                 error_log('Failed to convert date to DateTime: ' . print_r($date, TRUE));
             }
         }
+
+        if ( ! empty($date) ) {
+            $structuredDate = $hvDate->getStructured()->getDate();
+            $structuredDate->getY()->setValue((int) $date->format('Y'));
+            $structuredDate->getM()->setValue((int) $date->format('m'));
+            $structuredDate->getD()->setValue((int) $date->format('d'));
+        }
+        /*
+        else if ( empty($date) ) {
+            $hvDate->getStructured()->setDate(NULL); // Will be rebuilt on next request
+        }
+        */
     }
     
     protected function getHealthvaultDate(\com\microsoft\wc\dates\ApproxDateTime $hvDate)
@@ -345,5 +467,10 @@ class Condition
         }
         
         return NULL;
+    }
+    
+    public function setHealthvaultVocabulary(HealthvaultVocabulary $healthvaultVocabulary)
+    {
+        $this->healthvaultVocabulary = $healthvaultVocabulary;
     }
 }
