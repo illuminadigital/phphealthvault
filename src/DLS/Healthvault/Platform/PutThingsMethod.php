@@ -34,6 +34,13 @@ class PutThingsMethod extends PlatformMethod
             $typeId->setValue($firstThing::ID);
         }
         
+        $thingState = $thing->getThingState();
+        $thingStateValue = $thingState->getValue();
+        if (empty($thingStateValue)) 
+        {
+            $thingState->setValue('Active');
+        }
+        
         $this->requestData->getInfo()->addThing($thing);
     }
 }
