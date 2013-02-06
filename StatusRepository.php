@@ -21,7 +21,7 @@ class StatusRepository extends EntityRepository
                 $status->setStatustype($statustype);
             }
         
-            $statuses[] = $status;
+            $statuses[$status->getStatustype()->getShortname()] = $status;
         }
         
         return $statuses;

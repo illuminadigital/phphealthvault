@@ -20,6 +20,11 @@ class Statustype
     protected $id;
 
     /**
+     * @ORM\Column(type="string", length=32)
+     */
+    protected $shortname;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $name;
@@ -63,6 +68,18 @@ class Statustype
     public function setName($name)
     {
         $this->name = $name;
+        
+        return $this;
+    }
+
+    public function getShortname()
+    {
+        return $this->shortname;
+    }
+
+    public function setShortname($shortname)
+    {
+        $this->shortname = $shortname;
         
         return $this;
     }
