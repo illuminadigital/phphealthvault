@@ -11,19 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Statustypeoption
 {
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * @ORM\ManyToOne(targetEntity="\Illumina\UnderstandingMyHealthBundle\Entity\Statustype", inversedBy="options")
+     * @ORM\Id
      */
     protected $statustype;
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\Id
      */
     protected $value;
 
@@ -53,7 +48,7 @@ class Statustypeoption
      */
     public function getId()
     {
-        return $this->id;
+        return $this->value;
     }
 
     /**

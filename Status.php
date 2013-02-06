@@ -29,6 +29,10 @@ class Status
 
     /**
      * @ORM\ManyToOne(targetEntity="Illumina\UnderstandingMyHealthBundle\Entity\Statustypeoption")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="statustype_id", referencedColumnName="statustype_id"),
+     *     @ORM\JoinColumn(name="value_id", referencedColumnName="value")
+     * })
      */
     protected $value;
 
