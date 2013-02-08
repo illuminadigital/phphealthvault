@@ -14,7 +14,7 @@ class Dow {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\inhaler\Int", name="value")
+	 * @XmlValue	(type="integer", name="dow")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class Dow {
 	}
 
 	protected function validateValue($value) {
-		if (!is_int($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'int'));
+		if (!is_integer($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'integer'));
 		}
 
 		if ($value < 1) {

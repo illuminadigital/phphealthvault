@@ -15,7 +15,7 @@ class NCES1151AgencyTypeType {
 	static protected $enumValue = array('3491' => 'Federal school district', '9999' => 'Other', '3489' => 'Regional education service agency (RESA)', '3486' => 'Regular school district', '3487' => 'School district that is a component of a supervisory union', '3490' => 'State school district', '3488' => 'Supervisory Union');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES1151AgencyTypeType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES1151AgencyTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

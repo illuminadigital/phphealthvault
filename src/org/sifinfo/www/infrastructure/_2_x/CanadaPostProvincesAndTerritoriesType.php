@@ -15,7 +15,7 @@ class CanadaPostProvincesAndTerritoriesType {
 	static protected $enumValue = array('AB' => 'Alberta', 'BC' => 'British Columbia', 'MB' => 'Manitoba', 'NB' => 'New Brunswick', 'NL' => 'Newfoundland and Labrador', 'NS' => 'Nova Scotia', 'NT' => 'North West Territories', 'NU' => 'Nunavut', 'ON' => 'Ontario', 'PE' => 'Prince Edward Island', 'QC' => 'Quebec', 'SK' => 'Saskatchewan', 'YT' => 'Yukon');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="CanadaPostProvincesAndTerritoriesType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class CanadaPostProvincesAndTerritoriesType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

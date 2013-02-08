@@ -15,7 +15,7 @@ class NCES0792IdentificationProcedureType {
 	static protected $enumValue = array('2147' => 'Education assessment', '2148' => 'Health assessment/screening', '9999' => 'Other', '2149' => 'Parent/guardian referral', '2151' => 'Self-report/survey', '2152' => 'Special education assessment/evaluation', '2153' => 'Teacher referral');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0792IdentificationProcedureType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0792IdentificationProcedureType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

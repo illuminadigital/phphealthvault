@@ -15,7 +15,7 @@ class NCES0674HonorsTypeType {
 	static protected $enumValue = array('0737' => 'Athletic awards', '0738' => 'Awarding of units of value', '0742' => 'Certificate', '0740' => 'Citizenship award/recognition', '0741' => 'Completion of requirement, but no units of value awarded', '2047' => 'Honor award', '1985' => 'Honor roll', '1986' => 'Honor society', '1987' => 'Honorable mention', '1988' => 'Honors program', '0744' => 'Letter of student commendation', '0745' => 'Medals', '0746' => 'Monogram/letter', '9999' => 'Other', '0747' => 'Points', '1989' => 'Prize awards', '0748' => 'Promotion or advancement', '1990' => 'Ranks', '1991' => 'Scholarships');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0674HonorsTypeType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0674HonorsTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

@@ -14,7 +14,7 @@ class Bl {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Boolean", name="value")
+	 * @XmlValue	(type="boolean", name="bl")
 	 */
 	protected $value;
 

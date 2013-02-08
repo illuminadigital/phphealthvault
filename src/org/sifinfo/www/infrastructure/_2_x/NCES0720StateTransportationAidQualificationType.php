@@ -15,7 +15,7 @@ class NCES0720StateTransportationAidQualificationType {
 	static protected $enumValue = array('2067' => 'Does not qualify', '9999' => 'Other', '2065' => 'Qualifies for regular aid', '2066' => 'Qualifies for special education aid');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0720StateTransportationAidQualificationType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0720StateTransportationAidQualificationType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

@@ -15,7 +15,7 @@ class Purpose {
 	static protected $enumValue = array('Control' => 'To control the onset of attacks.', 'Rescue' => 'To rescue during an attack.', 'Combination' => 'A combination of control and rescue.');
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\inhaler\String", name="value")
+	 * @XmlValue	(type="string", name="purpose")
 	 */
 	protected $value;
 

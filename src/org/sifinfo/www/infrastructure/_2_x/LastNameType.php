@@ -14,7 +14,7 @@ class LastNameType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="value")
+	 * @XmlValue	(type="string", name="LastNameType")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class LastNameType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_normalizedString($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'normalizedString'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 	
 		return $value;

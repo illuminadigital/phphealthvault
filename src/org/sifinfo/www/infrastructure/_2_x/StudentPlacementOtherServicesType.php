@@ -15,7 +15,7 @@ class StudentPlacementOtherServicesType {
 	static protected $enumValue = array('S200' => 'Specialized instruction');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="StudentPlacementOtherServicesType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class StudentPlacementOtherServicesType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

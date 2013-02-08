@@ -14,7 +14,7 @@ class SchoolYearType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\GYear", name="value")
+	 * @XmlValue	(type="string", name="SchoolYearType")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class SchoolYearType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_gYear($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'gYear'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 	
 		return $value;

@@ -15,7 +15,7 @@ class BlobFormatSpec {
 	static protected $enumValue = array('information' => ' ', 'inline' => ' ', 'streamed' => ' ');
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\GetThings3\String", name="value")
+	 * @XmlValue	(type="string", name="BlobFormatSpec")
 	 */
 	protected $value;
 

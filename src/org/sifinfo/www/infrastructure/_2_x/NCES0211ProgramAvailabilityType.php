@@ -15,7 +15,7 @@ class NCES0211ProgramAvailabilityType {
 	static protected $enumValue = array('0236' => 'After school', '0235' => 'Before school', '0231' => 'During school', '0239' => 'Evenings', '0238' => 'In-school service day', '9999' => 'Other', '0237' => 'Summer', '0234' => 'Weekend');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0211ProgramAvailabilityType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0211ProgramAvailabilityType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

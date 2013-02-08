@@ -15,7 +15,7 @@ class NCES0394TeachingCredentialTypeType {
 	static protected $enumValue = array('1222' => 'Regular/standard', '1223' => 'Probationary/initial', '1224' => 'Provisional', '1225' => 'Professional', '1226' => 'Master', '1227' => 'Specialist', '1228' => 'Temporary', '1229' => 'Emergency', '1230' => 'Nonrenewable', '1231' => 'Retired', '1232' => 'Substitute', '1233' => 'Teacher assistant', '1234' => 'Intern', '9999' => 'Other');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0394TeachingCredentialTypeType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0394TeachingCredentialTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

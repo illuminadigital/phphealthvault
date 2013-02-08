@@ -15,7 +15,7 @@ class EDENHomelessEducationalSupportServicesAndActivitiesTypeOfServicesReceivedT
 	static protected $enumValue = array('TUT' => 'Tutoring or other instructional support', 'EE' => 'Expedited evaluations', 'PD' => 'Staff professional development and awareness', 'MEDREF' => 'Referrals for medical, dental, and other health services', 'TRANS' => 'Transportation', 'ECPGM' => 'Early Childhood Programs', 'ASST' => 'Assistance with participation in school programs', 'BASSUM' => 'Before-school, after-school, mentoring, summer programs', 'RECS' => 'Obtaining or transferring records necessary for enrollment', 'PARENT' => 'Parent education related to rights and resources for children', 'COORD' => 'Coordinator between schools and agencies', 'COUNS' => 'Counseling', 'DOMV' => 'Addressing needs related to domestic violence', 'CLOTH' => 'Clothing to meet a school requirement', 'SUPPLY' => 'School supplies', 'OTHREF' => 'Referral to other programs and services', 'EMER' => 'Emergency assistance related to school attendance', 'OTHER' => 'Other services or activities', 'MISSING' => 'MISSING', 'NOTCOLLECT' => 'Not Collected', 'NOTAPPLIC' => 'Not Applicable, when no McKinney Vento Program');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="EDENHomelessEducationalSupportServicesAndActivitiesTypeOfServicesReceivedType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class EDENHomelessEducationalSupportServicesAndActivitiesTypeOfServicesReceivedT
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

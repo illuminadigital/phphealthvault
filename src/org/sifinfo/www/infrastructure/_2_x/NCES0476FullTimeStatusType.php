@@ -15,7 +15,7 @@ class NCES0476FullTimeStatusType {
 	static protected $enumValue = array('0843' => 'Full-time', '0844' => 'Part-time');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0476FullTimeStatusType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0476FullTimeStatusType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

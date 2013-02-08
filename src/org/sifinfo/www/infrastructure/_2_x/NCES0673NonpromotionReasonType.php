@@ -15,7 +15,7 @@ class NCES0673NonpromotionReasonType {
 	static protected $enumValue = array('1979' => 'Failed to meet testing requirements', '1980' => 'Illness', '1981' => 'Immaturity', '1982' => 'Inadequate performance', '1983' => 'Insufficient credits', '9999' => 'Other', '1984' => 'Prolonged absence');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0673NonpromotionReasonType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0673NonpromotionReasonType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

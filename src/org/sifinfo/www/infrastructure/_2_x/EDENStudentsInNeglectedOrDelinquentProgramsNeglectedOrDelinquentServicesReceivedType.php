@@ -15,7 +15,7 @@ class EDENStudentsInNeglectedOrDelinquentProgramsNeglectedOrDelinquentServicesRe
 	static protected $enumValue = array('TS' => 'Transition Support', 'AS' => 'Academic Support', 'DP' => 'Dropout Prevention', 'ASC' => 'Accrued School Credits', 'JT' => 'Job Training', 'MISSING' => 'MISSING', 'NOTCOLLECT' => 'Not Collected');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="EDENStudentsInNeglectedOrDelinquentProgramsNeglectedOrDelinquentServicesReceivedType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class EDENStudentsInNeglectedOrDelinquentProgramsNeglectedOrDelinquentServicesRe
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

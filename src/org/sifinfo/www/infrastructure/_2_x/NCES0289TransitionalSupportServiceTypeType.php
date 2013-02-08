@@ -15,7 +15,7 @@ class NCES0289TransitionalSupportServiceTypeType {
 	static protected $enumValue = array('0878' => 'Case management services', '0881' => 'Communication services', '0882' => 'Community recreational services', '0883' => 'Independent living', '0884' => 'Mental health services', '9999' => 'Other', '0885' => 'Residential services', '0886' => 'Supported employment services', '0887' => 'Technological aids', '0888' => 'Transportation services', '0889' => 'Vocational rehabilitation training and job placement');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0289TransitionalSupportServiceTypeType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0289TransitionalSupportServiceTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

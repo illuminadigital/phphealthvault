@@ -14,7 +14,7 @@ class Url {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\AnyURI", name="value")
+	 * @XmlValue	(type="string", name="url")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class Url {
 	}
 
 	protected function validateValue($value) {
-		if (!is_anyURI($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'anyURI'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 	
 		return $value;

@@ -15,7 +15,7 @@ class NCES0721TransportationAtPublicExpenseEligibilityType {
 	static protected $enumValue = array('2069' => 'Eligible because of disability', '2070' => 'Eligible because of disability and distance', '2068' => 'Eligible because of distance', '2071' => 'Eligible because of hazardous conditions', '2072' => 'Eligible because of program for desegregation or integration', '2073' => 'Eligible because of special instruction', '2074' => 'Not eligible', '9999' => 'Other');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0721TransportationAtPublicExpenseEligibilityType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0721TransportationAtPublicExpenseEligibilityType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

@@ -14,7 +14,7 @@ class St {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\String", name="value")
+	 * @XmlValue	(type="string", name="st")
 	 */
 	protected $value;
 

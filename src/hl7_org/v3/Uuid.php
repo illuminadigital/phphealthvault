@@ -14,7 +14,7 @@ class Uuid {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\String", name="value")
+	 * @XmlValue	(type="string", name="uuid")
 	 */
 	protected $value;
 

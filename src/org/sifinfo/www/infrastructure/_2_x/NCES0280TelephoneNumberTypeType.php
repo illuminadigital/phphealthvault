@@ -15,7 +15,7 @@ class NCES0280TelephoneNumberTypeType {
 	static protected $enumValue = array('0350' => 'Alternate telephone number', '0359' => 'Answering service', '0400' => 'Appointment telephone number', '0370' => 'Beeper number', '2364' => 'Facsimile number', '0478' => 'Instant messaging number', '0096' => 'Main telephone number', '0486' => 'Media conferencing number', '0437' => 'Telemail', '0426' => 'Telex number', '0448' => 'Voice mail');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0280TelephoneNumberTypeType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0280TelephoneNumberTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

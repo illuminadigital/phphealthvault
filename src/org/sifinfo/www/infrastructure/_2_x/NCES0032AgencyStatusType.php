@@ -15,7 +15,7 @@ class NCES0032AgencyStatusType {
 	static protected $enumValue = array('0107' => 'Agency closed', '0106' => 'Agency open', '0109' => 'Changed boundary', '0111' => 'Future aAgency', '0110' => 'Inactive agency', '0108' => 'New agency');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0032AgencyStatusType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0032AgencyStatusType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

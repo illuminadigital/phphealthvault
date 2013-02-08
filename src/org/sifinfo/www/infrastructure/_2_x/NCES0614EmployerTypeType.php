@@ -15,7 +15,7 @@ class NCES0614EmployerTypeType {
 	static protected $enumValue = array('1808' => 'Agricultural/fishery seasonal employer', '1803' => 'Government', '1804' => 'Military', '1807' => 'Military/Department of Defense', '9999' => 'Other', '1805' => 'Private organization', '1806' => 'Self-employed');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0614EmployerTypeType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0614EmployerTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

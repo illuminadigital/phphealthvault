@@ -15,7 +15,7 @@ class NCES0768PrimaryDisabilityTypeType {
 	static protected $enumValue = array('2121' => 'Autistic/Autism', '2122' => 'Deaf-blindness', '2133' => 'Deafness', '2134' => 'Developmental delay', '2127' => 'Emotional Disturbance', '2123' => 'Hearing impairment', '2135' => 'Infants and Toddlers with Disabilities', '2124' => 'Mental retardation', '2125' => 'Multiple disabilities', '2126' => 'Orthopedic impairment', '2132' => 'Other health impairment', '2128' => 'Specific learning disability', '2129' => 'Speech or language impairment', '2130' => 'Traumatic brain injury', '2131' => 'Visual impairment');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0768PrimaryDisabilityTypeType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0768PrimaryDisabilityTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

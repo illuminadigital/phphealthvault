@@ -15,7 +15,7 @@ class NCES0468ContractualTermType {
 	static protected $enumValue = array('1439' => 'Short-term', '0410' => 'Annual year', '1440' => 'Continuing', '1441' => 'Renewable', '1442' => 'Multiyear', '9999' => 'Other');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0468ContractualTermType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0468ContractualTermType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

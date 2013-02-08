@@ -15,7 +15,7 @@ class ThingTypeSectionSpec {
 	static protected $enumValue = array('core' => 'The essential information about the thing type should be returned.', 'xsd' => 'The schema of the thing type should be returned.', 'columns' => 'Columns used by the thing type should be returned.', 'transforms' => 'The transforms supported by the thing type should be returned.', 'transformsource' => 'The transforms and their XSL source supported by the thing type should be returned.', 'versions' => 'The versions of the thing type should be returned.', 'effectivedatexpath' => 'The effective date XPath of the thing type should be returned. The effective date XPath allows obtaining the node which will contain the thing\'s effective date value, since this is different for each thing type.');
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\GetThingType\String", name="value")
+	 * @XmlValue	(type="string", name="ThingTypeSectionSpec")
 	 */
 	protected $value;
 

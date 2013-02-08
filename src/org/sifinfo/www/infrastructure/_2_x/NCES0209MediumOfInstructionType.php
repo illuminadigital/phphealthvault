@@ -15,7 +15,7 @@ class NCES0209MediumOfInstructionType {
 	static protected $enumValue = array('0609' => 'Center-based instruction', '0604' => 'Correspondence instruction', '0605' => 'Face-to-face instruction', '0610' => 'Independent study', '0611' => 'Internship', '9999' => 'Other', '0603' => 'Technology-based instruction in classroom', '0608' => 'Virtual/On-line Distance learning');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES0209MediumOfInstructionType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0209MediumOfInstructionType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

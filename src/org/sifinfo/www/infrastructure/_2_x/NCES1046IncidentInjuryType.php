@@ -15,7 +15,7 @@ class NCES1046IncidentInjuryType {
 	static protected $enumValue = array('3064' => 'Major injury', '3063' => 'Minor injury', '3065' => 'No injury', '3579' => 'Serious bodily injury');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES1046IncidentInjuryType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES1046IncidentInjuryType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

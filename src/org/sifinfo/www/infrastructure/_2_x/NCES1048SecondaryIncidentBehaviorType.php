@@ -15,7 +15,7 @@ class NCES1048SecondaryIncidentBehaviorType {
 	static protected $enumValue = array('3066' => 'Alcohol-related', '3067' => 'Drug-related', '3068' => 'Gang-related', '3069' => 'Hate-related', '3070' => 'Weapon-related', '04645' => 'Fighting');
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
+	 * @XmlValue	(type="string", name="NCES1048SecondaryIncidentBehaviorType")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES1048SecondaryIncidentBehaviorType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_token($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

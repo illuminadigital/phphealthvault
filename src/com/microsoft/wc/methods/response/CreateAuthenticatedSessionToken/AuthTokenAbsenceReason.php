@@ -15,7 +15,7 @@ class AuthTokenAbsenceReason {
 	static protected $enumValue = array('PersonNotAuthorizedForApp' => 'The person is not authorized to run the specified application.');
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\String", name="value")
+	 * @XmlValue	(type="string", name="AuthTokenAbsenceReason")
 	 */
 	protected $value;
 
