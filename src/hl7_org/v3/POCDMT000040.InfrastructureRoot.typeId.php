@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="POCD_MT000040.InfrastructureRoot.typeId")
  */
-class POCDMT000040.InfrastructureRoot.typeId extends II {
+class POCDMT000040.InfrastructureRoot.typeId extends \org\w3\www\_2001\XMLSchema\II {
 	/**
 	 */
 

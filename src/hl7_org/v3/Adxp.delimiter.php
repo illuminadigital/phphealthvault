@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.delimiter")
  */
-class Adxp.delimiter extends ADXP {
+class Adxp.delimiter extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

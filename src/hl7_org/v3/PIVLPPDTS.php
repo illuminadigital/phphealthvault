@@ -15,12 +15,12 @@ class PIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVLPPDTS", name="phase")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVLPPDTS", name="phase")
 	 */
 	protected $phase;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PPDPQ", name="period")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PPDPQ", name="period")
 	 */
 	protected $period;
 
@@ -49,7 +49,7 @@ class PIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createPhase() {
-		return new \hl7_org\v3\IVLPPDTS();
+		return NULL;
 	}
 
 	public function setPhase($phase) {
@@ -57,9 +57,6 @@ class PIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validatePhase($phase) {
-		if ( ! $phase instanceof \hl7_org\v3\IVLPPDTS  && ! is_null($phase) ) {
-			$phase = new \hl7_org\v3\IVLPPDTS ($phase);
-		}
 	
 		return $phase;
 	}
@@ -72,7 +69,7 @@ class PIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createPeriod() {
-		return new \hl7_org\v3\PPDPQ();
+		return NULL;
 	}
 
 	public function setPeriod($period) {
@@ -80,9 +77,6 @@ class PIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validatePeriod($period) {
-		if ( ! $period instanceof \hl7_org\v3\PPDPQ  && ! is_null($period) ) {
-			$period = new \hl7_org\v3\PPDPQ ($period);
-		}
 	
 		return $period;
 	}

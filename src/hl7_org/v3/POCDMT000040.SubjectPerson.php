@@ -14,32 +14,32 @@ class POCDMT000040.SubjectPerson {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PN", collection="true", name="name")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PN", collection="true", name="name")
 	 */
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="administrativeGenderCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="administrativeGenderCode")
 	 */
 	protected $administrativeGenderCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\TS", name="birthTime")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TS", name="birthTime")
 	 */
 	protected $birthTime;
 
@@ -86,24 +86,23 @@ class POCDMT000040.SubjectPerson {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -114,7 +113,7 @@ class POCDMT000040.SubjectPerson {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -122,9 +121,6 @@ class POCDMT000040.SubjectPerson {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -145,24 +141,23 @@ class POCDMT000040.SubjectPerson {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getName() {
@@ -181,24 +176,23 @@ class POCDMT000040.SubjectPerson {
 	}
 
 	protected function validateName($name) {
-		if ( ! is_array ($name) && ! is_null($name) ) {
-			$name = array($name);
-		}
 		$count = count($name);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 0));
 		}
 		foreach ($name as $entry) {
-			if (!($entry instanceof PN)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'PN'));
-			}
 		}
 	
 		return $name;
 	}
 
 	public function addName($name) {
-		$this->name[] = $name;
+		$this->name[] = $this->validateNameType($name);
+	}
+
+	protected function validateNameType($name) {
+	
+		return $name;
 	}
 
 	public function getAdministrativeGenderCode() {
@@ -209,7 +203,7 @@ class POCDMT000040.SubjectPerson {
 	}
 	
 	protected function createAdministrativeGenderCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setAdministrativeGenderCode($administrativeGenderCode) {
@@ -217,9 +211,6 @@ class POCDMT000040.SubjectPerson {
 	}
 
 	protected function validateAdministrativeGenderCode($administrativeGenderCode) {
-		if ( ! $administrativeGenderCode instanceof \hl7_org\v3\CE  && ! is_null($administrativeGenderCode) ) {
-			$administrativeGenderCode = new \hl7_org\v3\CE ($administrativeGenderCode);
-		}
 	
 		return $administrativeGenderCode;
 	}
@@ -232,7 +223,7 @@ class POCDMT000040.SubjectPerson {
 	}
 	
 	protected function createBirthTime() {
-		return new \hl7_org\v3\TS();
+		return NULL;
 	}
 
 	public function setBirthTime($birthTime) {
@@ -240,9 +231,6 @@ class POCDMT000040.SubjectPerson {
 	}
 
 	protected function validateBirthTime($birthTime) {
-		if ( ! $birthTime instanceof \hl7_org\v3\TS  && ! is_null($birthTime) ) {
-			$birthTime = new \hl7_org\v3\TS ($birthTime);
-		}
 	
 		return $birthTime;
 	}

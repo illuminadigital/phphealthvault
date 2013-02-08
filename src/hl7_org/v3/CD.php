@@ -15,17 +15,17 @@ class CD extends \ANY\ANY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\ED", name="originalText")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\ED", name="originalText")
 	 */
 	protected $originalText;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CR", collection="true", name="qualifier")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CR", collection="true", name="qualifier")
 	 */
 	protected $qualifier;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CD", collection="true", name="translation")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CD", collection="true", name="translation")
 	 */
 	protected $translation;
 
@@ -73,7 +73,7 @@ class CD extends \ANY\ANY {
 	}
 	
 	protected function createOriginalText() {
-		return new \hl7_org\v3\ED();
+		return NULL;
 	}
 
 	public function setOriginalText($originalText) {
@@ -81,9 +81,6 @@ class CD extends \ANY\ANY {
 	}
 
 	protected function validateOriginalText($originalText) {
-		if ( ! $originalText instanceof \hl7_org\v3\ED  && ! is_null($originalText) ) {
-			$originalText = new \hl7_org\v3\ED ($originalText);
-		}
 	
 		return $originalText;
 	}
@@ -104,24 +101,23 @@ class CD extends \ANY\ANY {
 	}
 
 	protected function validateQualifier($qualifier) {
-		if ( ! is_array ($qualifier) && ! is_null($qualifier) ) {
-			$qualifier = array($qualifier);
-		}
 		$count = count($qualifier);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'qualifier', 0));
 		}
 		foreach ($qualifier as $entry) {
-			if (!($entry instanceof CR)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'qualifier', 'CR'));
-			}
 		}
 	
 		return $qualifier;
 	}
 
 	public function addQualifier($qualifier) {
-		$this->qualifier[] = $qualifier;
+		$this->qualifier[] = $this->validateQualifierType($qualifier);
+	}
+
+	protected function validateQualifierType($qualifier) {
+	
+		return $qualifier;
 	}
 
 	public function getTranslation() {
@@ -140,24 +136,23 @@ class CD extends \ANY\ANY {
 	}
 
 	protected function validateTranslation($translation) {
-		if ( ! is_array ($translation) && ! is_null($translation) ) {
-			$translation = array($translation);
-		}
 		$count = count($translation);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'translation', 0));
 		}
 		foreach ($translation as $entry) {
-			if (!($entry instanceof CD)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'translation', 'CD'));
-			}
 		}
 	
 		return $translation;
 	}
 
 	public function addTranslation($translation) {
-		$this->translation[] = $translation;
+		$this->translation[] = $this->validateTranslationType($translation);
+	}
+
+	protected function validateTranslationType($translation) {
+	
+		return $translation;
 	}
 
 	public function getCode() {

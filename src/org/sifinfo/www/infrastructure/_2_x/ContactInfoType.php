@@ -20,12 +20,12 @@ class ContactInfoType {
 	protected $name;
 
 	/**
-	 * @XmlText	(type="string", name="PositionTitle")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="PositionTitle")
 	 */
 	protected $positionTitle;
 
 	/**
-	 * @XmlText	(type="string", name="Role")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Role")
 	 */
 	protected $role;
 
@@ -92,8 +92,8 @@ class ContactInfoType {
 	}
 
 	protected function validatePositionTitle($positionTitle) {
-		if ( ! is_string($positionTitle) && ! is_null($positionTitle) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'positionTitle', 'string'));
+		if ( ! is_normalizedString($positionTitle) && ! is_null($positionTitle) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'positionTitle', 'normalizedString'));
 		}
 	
 		return $positionTitle;
@@ -115,8 +115,8 @@ class ContactInfoType {
 	}
 
 	protected function validateRole($role) {
-		if ( ! is_string($role) && ! is_null($role) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'role', 'string'));
+		if ( ! is_normalizedString($role) && ! is_null($role) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'role', 'normalizedString'));
 		}
 	
 		return $role;

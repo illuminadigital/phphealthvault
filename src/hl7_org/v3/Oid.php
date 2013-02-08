@@ -14,7 +14,7 @@ class Oid {
 	 */
 
 	/**
-	 * @XmlValue	(type="string", name="oid")
+	 * @XmlElement	(type="\hl7_org\v3\String", name="value")
 	 */
 	protected $value;
 

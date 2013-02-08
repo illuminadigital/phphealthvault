@@ -29,7 +29,7 @@ class Language {
 	protected $languageType;
 
 	/**
-	 * @XmlText	(type="string", name="Dialect")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Dialect")
 	 */
 	protected $dialect;
 
@@ -119,8 +119,8 @@ class Language {
 	}
 
 	protected function validateDialect($dialect) {
-		if ( ! is_string($dialect) && ! is_null($dialect) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'dialect', 'string'));
+		if ( ! is_normalizedString($dialect) && ! is_null($dialect) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'dialect', 'normalizedString'));
 		}
 	
 		return $dialect;

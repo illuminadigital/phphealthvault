@@ -14,7 +14,7 @@ class VersionWithWildcardsType {
 	 */
 
 	/**
-	 * @XmlValue	(type="string", name="VersionWithWildcardsType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class VersionWithWildcardsType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 	
 		return $value;

@@ -14,7 +14,7 @@ class PPDTS extends \TS\TS {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQ", name="standardDeviation")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="standardDeviation")
 	 */
 	protected $standardDeviation;
 
@@ -36,7 +36,7 @@ class PPDTS extends \TS\TS {
 	}
 	
 	protected function createStandardDeviation() {
-		return new \hl7_org\v3\PQ();
+		return NULL;
 	}
 
 	public function setStandardDeviation($standardDeviation) {
@@ -44,9 +44,6 @@ class PPDTS extends \TS\TS {
 	}
 
 	protected function validateStandardDeviation($standardDeviation) {
-		if ( ! $standardDeviation instanceof \hl7_org\v3\PQ  && ! is_null($standardDeviation) ) {
-			$standardDeviation = new \hl7_org\v3\PQ ($standardDeviation);
-		}
 	
 		return $standardDeviation;
 	}

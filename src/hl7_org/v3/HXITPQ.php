@@ -14,7 +14,7 @@ class HXITPQ extends \PQ\PQ {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVLTS", name="validTime")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVLTS", name="validTime")
 	 */
 	protected $validTime;
 
@@ -30,7 +30,7 @@ class HXITPQ extends \PQ\PQ {
 	}
 	
 	protected function createValidTime() {
-		return new \hl7_org\v3\IVLTS();
+		return NULL;
 	}
 
 	public function setValidTime($validTime) {
@@ -38,9 +38,6 @@ class HXITPQ extends \PQ\PQ {
 	}
 
 	protected function validateValidTime($validTime) {
-		if ( ! $validTime instanceof \hl7_org\v3\IVLTS  && ! is_null($validTime) ) {
-			$validTime = new \hl7_org\v3\IVLTS ($validTime);
-		}
 	
 		return $validTime;
 	}

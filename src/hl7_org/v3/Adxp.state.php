@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.state")
  */
-class Adxp.state extends ADXP {
+class Adxp.state extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

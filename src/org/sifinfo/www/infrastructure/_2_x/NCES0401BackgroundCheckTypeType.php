@@ -15,7 +15,7 @@ class NCES0401BackgroundCheckTypeType {
 	static protected $enumValue = array('1420' => 'Criminal records', '1421' => 'Previous employment records', '1422' => 'Personal references', '1423' => 'Credentials', '9999' => 'Other');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0401BackgroundCheckTypeType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0401BackgroundCheckTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

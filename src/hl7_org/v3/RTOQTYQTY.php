@@ -14,12 +14,12 @@ class RTOQTYQTY extends \QTY\QTY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\QTY", name="numerator")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\QTY", name="numerator")
 	 */
 	protected $numerator;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\QTY", name="denominator")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\QTY", name="denominator")
 	 */
 	protected $denominator;
 
@@ -36,7 +36,7 @@ class RTOQTYQTY extends \QTY\QTY {
 	}
 	
 	protected function createNumerator() {
-		return new \hl7_org\v3\QTY();
+		return NULL;
 	}
 
 	public function setNumerator($numerator) {
@@ -44,9 +44,6 @@ class RTOQTYQTY extends \QTY\QTY {
 	}
 
 	protected function validateNumerator($numerator) {
-		if ( ! $numerator instanceof \hl7_org\v3\QTY ) {
-			$numerator = new \hl7_org\v3\QTY ($numerator);
-		}
 	
 		return $numerator;
 	}
@@ -59,7 +56,7 @@ class RTOQTYQTY extends \QTY\QTY {
 	}
 	
 	protected function createDenominator() {
-		return new \hl7_org\v3\QTY();
+		return NULL;
 	}
 
 	public function setDenominator($denominator) {
@@ -67,9 +64,6 @@ class RTOQTYQTY extends \QTY\QTY {
 	}
 
 	protected function validateDenominator($denominator) {
-		if ( ! $denominator instanceof \hl7_org\v3\QTY ) {
-			$denominator = new \hl7_org\v3\QTY ($denominator);
-		}
 	
 		return $denominator;
 	}

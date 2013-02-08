@@ -15,7 +15,7 @@ class NCES0025AddressTypeType {
 	static protected $enumValue = array('1074' => 'Employer\'s address', '1075' => 'Employment address', '0123' => 'Mailing address', '1073' => 'Other home address', '2382' => 'Other organization address', '0765' => 'Physical location address', '0124' => 'Shipping address');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0025AddressTypeType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0025AddressTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

@@ -18,7 +18,7 @@ class DietaryIntakeDaily extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Daily Dietary Intake';
 
 	/**
-	 * @XmlText	(type="string", name="when")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Date", name="when")
 	 */
 	protected $when;
 

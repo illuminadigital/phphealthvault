@@ -14,32 +14,32 @@ class POCDMT000040.Material {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="code")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="code")
 	 */
 	protected $code;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\EN", name="name")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\EN", name="name")
 	 */
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\ST", name="lotNumberText")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\ST", name="lotNumberText")
 	 */
 	protected $lotNumberText;
 
@@ -86,24 +86,23 @@ class POCDMT000040.Material {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -114,7 +113,7 @@ class POCDMT000040.Material {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -122,9 +121,6 @@ class POCDMT000040.Material {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -145,24 +141,23 @@ class POCDMT000040.Material {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getCode() {
@@ -173,7 +168,7 @@ class POCDMT000040.Material {
 	}
 	
 	protected function createCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -181,9 +176,6 @@ class POCDMT000040.Material {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \hl7_org\v3\CE  && ! is_null($code) ) {
-			$code = new \hl7_org\v3\CE ($code);
-		}
 	
 		return $code;
 	}
@@ -196,7 +188,7 @@ class POCDMT000040.Material {
 	}
 	
 	protected function createName() {
-		return new \hl7_org\v3\EN();
+		return NULL;
 	}
 
 	public function setName($name) {
@@ -204,9 +196,6 @@ class POCDMT000040.Material {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof \hl7_org\v3\EN  && ! is_null($name) ) {
-			$name = new \hl7_org\v3\EN ($name);
-		}
 	
 		return $name;
 	}
@@ -219,7 +208,7 @@ class POCDMT000040.Material {
 	}
 	
 	protected function createLotNumberText() {
-		return new \hl7_org\v3\ST();
+		return NULL;
 	}
 
 	public function setLotNumberText($lotNumberText) {
@@ -227,9 +216,6 @@ class POCDMT000040.Material {
 	}
 
 	protected function validateLotNumberText($lotNumberText) {
-		if ( ! $lotNumberText instanceof \hl7_org\v3\ST  && ! is_null($lotNumberText) ) {
-			$lotNumberText = new \hl7_org\v3\ST ($lotNumberText);
-		}
 	
 		return $lotNumberText;
 	}

@@ -15,7 +15,7 @@ class NCES0171ReceivingLocationOfInstructionServiceType {
 	static protected $enumValue = array('0997' => 'Business', '0752' => 'Community facility', '2192' => 'Home', '0754' => 'Hospital', '0340' => 'In school', '3018' => 'Library/media center', '3506' => 'Mobile', '9999' => 'Other', '0341' => 'Other K-12 educational institution', '0342' => 'Postsecondary facility');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0171ReceivingLocationOfInstructionServiceType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0171ReceivingLocationOfInstructionServiceType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

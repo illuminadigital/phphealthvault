@@ -14,42 +14,42 @@ class POCDMT000040.OrganizationPartOf {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="id")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="id")
 	 */
 	protected $id;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="code")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="code")
 	 */
 	protected $code;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", name="statusCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", name="statusCode")
 	 */
 	protected $statusCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVLTS", name="effectiveTime")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVLTS", name="effectiveTime")
 	 */
 	protected $effectiveTime;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Organization", name="wholeOrganization")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Organization", name="wholeOrganization")
 	 */
 	protected $wholeOrganization;
 
@@ -92,24 +92,23 @@ class POCDMT000040.OrganizationPartOf {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -120,7 +119,7 @@ class POCDMT000040.OrganizationPartOf {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -128,9 +127,6 @@ class POCDMT000040.OrganizationPartOf {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -151,24 +147,23 @@ class POCDMT000040.OrganizationPartOf {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getId() {
@@ -187,24 +182,23 @@ class POCDMT000040.OrganizationPartOf {
 	}
 
 	protected function validateId($id) {
-		if ( ! is_array ($id) && ! is_null($id) ) {
-			$id = array($id);
-		}
 		$count = count($id);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
 		}
 		foreach ($id as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'II'));
-			}
 		}
 	
 		return $id;
 	}
 
 	public function addId($id) {
-		$this->id[] = $id;
+		$this->id[] = $this->validateIdType($id);
+	}
+
+	protected function validateIdType($id) {
+	
+		return $id;
 	}
 
 	public function getCode() {
@@ -215,7 +209,7 @@ class POCDMT000040.OrganizationPartOf {
 	}
 	
 	protected function createCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -223,9 +217,6 @@ class POCDMT000040.OrganizationPartOf {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \hl7_org\v3\CE  && ! is_null($code) ) {
-			$code = new \hl7_org\v3\CE ($code);
-		}
 	
 		return $code;
 	}
@@ -238,7 +229,7 @@ class POCDMT000040.OrganizationPartOf {
 	}
 	
 	protected function createStatusCode() {
-		return new \hl7_org\v3\CS();
+		return NULL;
 	}
 
 	public function setStatusCode($statusCode) {
@@ -246,9 +237,6 @@ class POCDMT000040.OrganizationPartOf {
 	}
 
 	protected function validateStatusCode($statusCode) {
-		if ( ! $statusCode instanceof \hl7_org\v3\CS  && ! is_null($statusCode) ) {
-			$statusCode = new \hl7_org\v3\CS ($statusCode);
-		}
 	
 		return $statusCode;
 	}
@@ -261,7 +249,7 @@ class POCDMT000040.OrganizationPartOf {
 	}
 	
 	protected function createEffectiveTime() {
-		return new \hl7_org\v3\IVLTS();
+		return NULL;
 	}
 
 	public function setEffectiveTime($effectiveTime) {
@@ -269,9 +257,6 @@ class POCDMT000040.OrganizationPartOf {
 	}
 
 	protected function validateEffectiveTime($effectiveTime) {
-		if ( ! $effectiveTime instanceof \hl7_org\v3\IVLTS  && ! is_null($effectiveTime) ) {
-			$effectiveTime = new \hl7_org\v3\IVLTS ($effectiveTime);
-		}
 	
 		return $effectiveTime;
 	}
@@ -284,7 +269,7 @@ class POCDMT000040.OrganizationPartOf {
 	}
 	
 	protected function createWholeOrganization() {
-		return new \hl7_org\v3\POCDMT000040.Organization();
+		return NULL;
 	}
 
 	public function setWholeOrganization($wholeOrganization) {
@@ -292,9 +277,6 @@ class POCDMT000040.OrganizationPartOf {
 	}
 
 	protected function validateWholeOrganization($wholeOrganization) {
-		if ( ! $wholeOrganization instanceof \hl7_org\v3\POCDMT000040.Organization  && ! is_null($wholeOrganization) ) {
-			$wholeOrganization = new \hl7_org\v3\POCDMT000040.Organization ($wholeOrganization);
-		}
 	
 		return $wholeOrganization;
 	}

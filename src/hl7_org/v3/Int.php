@@ -14,7 +14,7 @@ class Int {
 	 */
 
 	/**
-	 * @XmlValue	(type="integer", name="int")
+	 * @XmlElement	(type="\hl7_org\v3\Integer", name="value")
 	 */
 	protected $value;
 

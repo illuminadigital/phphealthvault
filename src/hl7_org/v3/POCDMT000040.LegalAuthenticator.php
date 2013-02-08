@@ -14,32 +14,32 @@ class POCDMT000040.LegalAuthenticator {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\TS", name="time")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TS", name="time")
 	 */
 	protected $time;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", name="signatureCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", name="signatureCode")
 	 */
 	protected $signatureCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.AssignedEntity", name="assignedEntity")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.AssignedEntity", name="assignedEntity")
 	 */
 	protected $assignedEntity;
 
@@ -86,24 +86,23 @@ class POCDMT000040.LegalAuthenticator {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -114,7 +113,7 @@ class POCDMT000040.LegalAuthenticator {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -122,9 +121,6 @@ class POCDMT000040.LegalAuthenticator {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -145,24 +141,23 @@ class POCDMT000040.LegalAuthenticator {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getTime() {
@@ -173,7 +168,7 @@ class POCDMT000040.LegalAuthenticator {
 	}
 	
 	protected function createTime() {
-		return new \hl7_org\v3\TS();
+		return NULL;
 	}
 
 	public function setTime($time) {
@@ -181,9 +176,6 @@ class POCDMT000040.LegalAuthenticator {
 	}
 
 	protected function validateTime($time) {
-		if ( ! $time instanceof \hl7_org\v3\TS ) {
-			$time = new \hl7_org\v3\TS ($time);
-		}
 	
 		return $time;
 	}
@@ -196,7 +188,7 @@ class POCDMT000040.LegalAuthenticator {
 	}
 	
 	protected function createSignatureCode() {
-		return new \hl7_org\v3\CS();
+		return NULL;
 	}
 
 	public function setSignatureCode($signatureCode) {
@@ -204,9 +196,6 @@ class POCDMT000040.LegalAuthenticator {
 	}
 
 	protected function validateSignatureCode($signatureCode) {
-		if ( ! $signatureCode instanceof \hl7_org\v3\CS ) {
-			$signatureCode = new \hl7_org\v3\CS ($signatureCode);
-		}
 	
 		return $signatureCode;
 	}
@@ -219,7 +208,7 @@ class POCDMT000040.LegalAuthenticator {
 	}
 	
 	protected function createAssignedEntity() {
-		return new \hl7_org\v3\POCDMT000040.AssignedEntity();
+		return NULL;
 	}
 
 	public function setAssignedEntity($assignedEntity) {
@@ -227,9 +216,6 @@ class POCDMT000040.LegalAuthenticator {
 	}
 
 	protected function validateAssignedEntity($assignedEntity) {
-		if ( ! $assignedEntity instanceof \hl7_org\v3\POCDMT000040.AssignedEntity ) {
-			$assignedEntity = new \hl7_org\v3\POCDMT000040.AssignedEntity ($assignedEntity);
-		}
 	
 		return $assignedEntity;
 	}

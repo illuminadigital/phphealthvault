@@ -14,7 +14,7 @@ class StrucDoc.RenderMultiMedia {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Caption", name="caption")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Caption", name="caption")
 	 */
 	protected $caption;
 
@@ -54,7 +54,7 @@ class StrucDoc.RenderMultiMedia {
 	}
 	
 	protected function createCaption() {
-		return new \hl7_org\v3\StrucDoc.Caption();
+		return NULL;
 	}
 
 	public function setCaption($caption) {
@@ -62,9 +62,6 @@ class StrucDoc.RenderMultiMedia {
 	}
 
 	protected function validateCaption($caption) {
-		if ( ! $caption instanceof \hl7_org\v3\StrucDoc.Caption  && ! is_null($caption) ) {
-			$caption = new \hl7_org\v3\StrucDoc.Caption ($caption);
-		}
 	
 		return $caption;
 	}

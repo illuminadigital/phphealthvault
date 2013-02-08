@@ -14,12 +14,12 @@ class GLISTTS extends \ANY\ANY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\TS", name="head")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TS", name="head")
 	 */
 	protected $head;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQ", name="increment")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="increment")
 	 */
 	protected $increment;
 
@@ -48,7 +48,7 @@ class GLISTTS extends \ANY\ANY {
 	}
 	
 	protected function createHead() {
-		return new \hl7_org\v3\TS();
+		return NULL;
 	}
 
 	public function setHead($head) {
@@ -56,9 +56,6 @@ class GLISTTS extends \ANY\ANY {
 	}
 
 	protected function validateHead($head) {
-		if ( ! $head instanceof \hl7_org\v3\TS ) {
-			$head = new \hl7_org\v3\TS ($head);
-		}
 	
 		return $head;
 	}
@@ -71,7 +68,7 @@ class GLISTTS extends \ANY\ANY {
 	}
 	
 	protected function createIncrement() {
-		return new \hl7_org\v3\PQ();
+		return NULL;
 	}
 
 	public function setIncrement($increment) {
@@ -79,9 +76,6 @@ class GLISTTS extends \ANY\ANY {
 	}
 
 	protected function validateIncrement($increment) {
-		if ( ! $increment instanceof \hl7_org\v3\PQ ) {
-			$increment = new \hl7_org\v3\PQ ($increment);
-		}
 	
 		return $increment;
 	}

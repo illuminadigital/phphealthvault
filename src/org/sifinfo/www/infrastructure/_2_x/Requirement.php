@@ -14,12 +14,12 @@ class Requirement {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="Name")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Name")
 	 */
 	protected $name;
 
 	/**
-	 * @XmlText	(type="string", name="Method")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Method")
 	 */
 	protected $method;
 
@@ -62,8 +62,8 @@ class Requirement {
 	}
 
 	protected function validateName($name) {
-		if (!is_string($name)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
+		if (!is_normalizedString($name)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'normalizedString'));
 		}
 	
 		return $name;

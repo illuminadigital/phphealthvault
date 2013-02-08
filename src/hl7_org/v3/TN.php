@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="TN")
  */
-class TN extends EN {
+class TN extends \org\w3\www\_2001\XMLSchema\EN {
 	/**
 	 * A restriction of entity name that is effectively a simple string used for a simple name for things and places.
 	 */

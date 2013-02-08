@@ -14,42 +14,42 @@ class POCDMT000040.Reference {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\BL", name="seperatableInd")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\BL", name="seperatableInd")
 	 */
 	protected $seperatableInd;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.ExternalAct", name="externalAct")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.ExternalAct", name="externalAct")
 	 */
 	protected $externalAct;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.ExternalObservation", name="externalObservation")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.ExternalObservation", name="externalObservation")
 	 */
 	protected $externalObservation;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.ExternalProcedure", name="externalProcedure")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.ExternalProcedure", name="externalProcedure")
 	 */
 	protected $externalProcedure;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.ExternalDocument", name="externalDocument")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.ExternalDocument", name="externalDocument")
 	 */
 	protected $externalDocument;
 
@@ -92,24 +92,23 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -120,7 +119,7 @@ class POCDMT000040.Reference {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -128,9 +127,6 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -151,24 +147,23 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getSeperatableInd() {
@@ -179,7 +174,7 @@ class POCDMT000040.Reference {
 	}
 	
 	protected function createSeperatableInd() {
-		return new \hl7_org\v3\BL();
+		return NULL;
 	}
 
 	public function setSeperatableInd($seperatableInd) {
@@ -187,9 +182,6 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateSeperatableInd($seperatableInd) {
-		if ( ! $seperatableInd instanceof \hl7_org\v3\BL  && ! is_null($seperatableInd) ) {
-			$seperatableInd = new \hl7_org\v3\BL ($seperatableInd);
-		}
 	
 		return $seperatableInd;
 	}
@@ -202,7 +194,7 @@ class POCDMT000040.Reference {
 	}
 	
 	protected function createExternalAct() {
-		return new \hl7_org\v3\POCDMT000040.ExternalAct();
+		return NULL;
 	}
 
 	public function setExternalAct($externalAct) {
@@ -210,9 +202,6 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateExternalAct($externalAct) {
-		if ( ! $externalAct instanceof \hl7_org\v3\POCDMT000040.ExternalAct ) {
-			$externalAct = new \hl7_org\v3\POCDMT000040.ExternalAct ($externalAct);
-		}
 	
 		return $externalAct;
 	}
@@ -225,7 +214,7 @@ class POCDMT000040.Reference {
 	}
 	
 	protected function createExternalObservation() {
-		return new \hl7_org\v3\POCDMT000040.ExternalObservation();
+		return NULL;
 	}
 
 	public function setExternalObservation($externalObservation) {
@@ -233,9 +222,6 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateExternalObservation($externalObservation) {
-		if ( ! $externalObservation instanceof \hl7_org\v3\POCDMT000040.ExternalObservation ) {
-			$externalObservation = new \hl7_org\v3\POCDMT000040.ExternalObservation ($externalObservation);
-		}
 	
 		return $externalObservation;
 	}
@@ -248,7 +234,7 @@ class POCDMT000040.Reference {
 	}
 	
 	protected function createExternalProcedure() {
-		return new \hl7_org\v3\POCDMT000040.ExternalProcedure();
+		return NULL;
 	}
 
 	public function setExternalProcedure($externalProcedure) {
@@ -256,9 +242,6 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateExternalProcedure($externalProcedure) {
-		if ( ! $externalProcedure instanceof \hl7_org\v3\POCDMT000040.ExternalProcedure ) {
-			$externalProcedure = new \hl7_org\v3\POCDMT000040.ExternalProcedure ($externalProcedure);
-		}
 	
 		return $externalProcedure;
 	}
@@ -271,7 +254,7 @@ class POCDMT000040.Reference {
 	}
 	
 	protected function createExternalDocument() {
-		return new \hl7_org\v3\POCDMT000040.ExternalDocument();
+		return NULL;
 	}
 
 	public function setExternalDocument($externalDocument) {
@@ -279,9 +262,6 @@ class POCDMT000040.Reference {
 	}
 
 	protected function validateExternalDocument($externalDocument) {
-		if ( ! $externalDocument instanceof \hl7_org\v3\POCDMT000040.ExternalDocument ) {
-			$externalDocument = new \hl7_org\v3\POCDMT000040.ExternalDocument ($externalDocument);
-		}
 	
 		return $externalDocument;
 	}

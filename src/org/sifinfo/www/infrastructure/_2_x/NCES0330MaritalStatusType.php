@@ -15,7 +15,7 @@ class NCES0330MaritalStatusType {
 	static protected $enumValue = array('1040' => 'Legally separated', '1041' => 'Married', '1042' => 'Not married');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0330MaritalStatusType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0330MaritalStatusType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

@@ -14,22 +14,22 @@ class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBPPDTS", name="low")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBPPDTS", name="low")
 	 */
 	protected $low;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PPDPQ", name="width")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PPDPQ", name="width")
 	 */
 	protected $width;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBPPDTS", name="high")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBPPDTS", name="high")
 	 */
 	protected $high;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PPDTS", name="center")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PPDTS", name="center")
 	 */
 	protected $center;
 
@@ -48,7 +48,7 @@ class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createLow() {
-		return new \hl7_org\v3\IVXBPPDTS();
+		return NULL;
 	}
 
 	public function setLow($low) {
@@ -56,9 +56,6 @@ class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validateLow($low) {
-		if ( ! $low instanceof \hl7_org\v3\IVXBPPDTS ) {
-			$low = new \hl7_org\v3\IVXBPPDTS ($low);
-		}
 	
 		return $low;
 	}
@@ -71,7 +68,7 @@ class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createWidth() {
-		return new \hl7_org\v3\PPDPQ();
+		return NULL;
 	}
 
 	public function setWidth($width) {
@@ -79,9 +76,6 @@ class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validateWidth($width) {
-		if ( ! $width instanceof \hl7_org\v3\PPDPQ  && ! is_null($width) ) {
-			$width = new \hl7_org\v3\PPDPQ ($width);
-		}
 	
 		return $width;
 	}
@@ -94,7 +88,7 @@ class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createHigh() {
-		return new \hl7_org\v3\IVXBPPDTS();
+		return NULL;
 	}
 
 	public function setHigh($high) {
@@ -102,9 +96,6 @@ class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validateHigh($high) {
-		if ( ! $high instanceof \hl7_org\v3\IVXBPPDTS  && ! is_null($high) ) {
-			$high = new \hl7_org\v3\IVXBPPDTS ($high);
-		}
 	
 		return $high;
 	}
@@ -117,7 +108,7 @@ class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createCenter() {
-		return new \hl7_org\v3\PPDTS();
+		return NULL;
 	}
 
 	public function setCenter($center) {
@@ -125,9 +116,6 @@ class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validateCenter($center) {
-		if ( ! $center instanceof \hl7_org\v3\PPDTS ) {
-			$center = new \hl7_org\v3\PPDTS ($center);
-		}
 	
 		return $center;
 	}

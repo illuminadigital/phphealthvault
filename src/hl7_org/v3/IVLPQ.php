@@ -14,22 +14,22 @@ class IVLPQ extends \SXCM_PQ\SXCMPQ {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBPQ", name="low")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBPQ", name="low")
 	 */
 	protected $low;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQ", name="width")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="width")
 	 */
 	protected $width;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBPQ", name="high")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBPQ", name="high")
 	 */
 	protected $high;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQ", name="center")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="center")
 	 */
 	protected $center;
 
@@ -48,7 +48,7 @@ class IVLPQ extends \SXCM_PQ\SXCMPQ {
 	}
 	
 	protected function createLow() {
-		return new \hl7_org\v3\IVXBPQ();
+		return NULL;
 	}
 
 	public function setLow($low) {
@@ -56,9 +56,6 @@ class IVLPQ extends \SXCM_PQ\SXCMPQ {
 	}
 
 	protected function validateLow($low) {
-		if ( ! $low instanceof \hl7_org\v3\IVXBPQ ) {
-			$low = new \hl7_org\v3\IVXBPQ ($low);
-		}
 	
 		return $low;
 	}
@@ -71,7 +68,7 @@ class IVLPQ extends \SXCM_PQ\SXCMPQ {
 	}
 	
 	protected function createWidth() {
-		return new \hl7_org\v3\PQ();
+		return NULL;
 	}
 
 	public function setWidth($width) {
@@ -79,9 +76,6 @@ class IVLPQ extends \SXCM_PQ\SXCMPQ {
 	}
 
 	protected function validateWidth($width) {
-		if ( ! $width instanceof \hl7_org\v3\PQ  && ! is_null($width) ) {
-			$width = new \hl7_org\v3\PQ ($width);
-		}
 	
 		return $width;
 	}
@@ -94,7 +88,7 @@ class IVLPQ extends \SXCM_PQ\SXCMPQ {
 	}
 	
 	protected function createHigh() {
-		return new \hl7_org\v3\IVXBPQ();
+		return NULL;
 	}
 
 	public function setHigh($high) {
@@ -102,9 +96,6 @@ class IVLPQ extends \SXCM_PQ\SXCMPQ {
 	}
 
 	protected function validateHigh($high) {
-		if ( ! $high instanceof \hl7_org\v3\IVXBPQ  && ! is_null($high) ) {
-			$high = new \hl7_org\v3\IVXBPQ ($high);
-		}
 	
 		return $high;
 	}
@@ -117,7 +108,7 @@ class IVLPQ extends \SXCM_PQ\SXCMPQ {
 	}
 	
 	protected function createCenter() {
-		return new \hl7_org\v3\PQ();
+		return NULL;
 	}
 
 	public function setCenter($center) {
@@ -125,9 +116,6 @@ class IVLPQ extends \SXCM_PQ\SXCMPQ {
 	}
 
 	protected function validateCenter($center) {
-		if ( ! $center instanceof \hl7_org\v3\PQ ) {
-			$center = new \hl7_org\v3\PQ ($center);
-		}
 	
 		return $center;
 	}

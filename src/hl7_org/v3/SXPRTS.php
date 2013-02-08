@@ -14,7 +14,7 @@ class SXPRTS extends \SXCM_TS\SXCMTS {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\SXCMTS", collection="true", name="comp")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\SXCMTS", collection="true", name="comp")
 	 */
 	protected $comp;
 
@@ -38,23 +38,22 @@ class SXPRTS extends \SXCM_TS\SXCMTS {
 	}
 
 	protected function validateComp($comp) {
-		if ( ! is_array ($comp) ) {
-			$comp = array($comp);
-		}
 		$count = count($comp);
 		if ($count < 2) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'comp', 2));
 		}
 		foreach ($comp as $entry) {
-			if (!($entry instanceof SXCMTS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'comp', 'SXCM_TS'));
-			}
 		}
 	
 		return $comp;
 	}
 
 	public function addComp($comp) {
-		$this->comp[] = $comp;
+		$this->comp[] = $this->validateCompType($comp);
+	}
+
+	protected function validateCompType($comp) {
+	
+		return $comp;
 	}
 } // end class SXPRTS

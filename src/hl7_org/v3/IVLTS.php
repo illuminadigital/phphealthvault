@@ -14,22 +14,22 @@ class IVLTS extends \SXCM_TS\SXCMTS {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBTS", name="low")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBTS", name="low")
 	 */
 	protected $low;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQ", name="width")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="width")
 	 */
 	protected $width;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBTS", name="high")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBTS", name="high")
 	 */
 	protected $high;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\TS", name="center")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TS", name="center")
 	 */
 	protected $center;
 
@@ -48,7 +48,7 @@ class IVLTS extends \SXCM_TS\SXCMTS {
 	}
 	
 	protected function createLow() {
-		return new \hl7_org\v3\IVXBTS();
+		return NULL;
 	}
 
 	public function setLow($low) {
@@ -56,9 +56,6 @@ class IVLTS extends \SXCM_TS\SXCMTS {
 	}
 
 	protected function validateLow($low) {
-		if ( ! $low instanceof \hl7_org\v3\IVXBTS ) {
-			$low = new \hl7_org\v3\IVXBTS ($low);
-		}
 	
 		return $low;
 	}
@@ -71,7 +68,7 @@ class IVLTS extends \SXCM_TS\SXCMTS {
 	}
 	
 	protected function createWidth() {
-		return new \hl7_org\v3\PQ();
+		return NULL;
 	}
 
 	public function setWidth($width) {
@@ -79,9 +76,6 @@ class IVLTS extends \SXCM_TS\SXCMTS {
 	}
 
 	protected function validateWidth($width) {
-		if ( ! $width instanceof \hl7_org\v3\PQ  && ! is_null($width) ) {
-			$width = new \hl7_org\v3\PQ ($width);
-		}
 	
 		return $width;
 	}
@@ -94,7 +88,7 @@ class IVLTS extends \SXCM_TS\SXCMTS {
 	}
 	
 	protected function createHigh() {
-		return new \hl7_org\v3\IVXBTS();
+		return NULL;
 	}
 
 	public function setHigh($high) {
@@ -102,9 +96,6 @@ class IVLTS extends \SXCM_TS\SXCMTS {
 	}
 
 	protected function validateHigh($high) {
-		if ( ! $high instanceof \hl7_org\v3\IVXBTS  && ! is_null($high) ) {
-			$high = new \hl7_org\v3\IVXBTS ($high);
-		}
 	
 		return $high;
 	}
@@ -117,7 +108,7 @@ class IVLTS extends \SXCM_TS\SXCMTS {
 	}
 	
 	protected function createCenter() {
-		return new \hl7_org\v3\TS();
+		return NULL;
 	}
 
 	public function setCenter($center) {
@@ -125,9 +116,6 @@ class IVLTS extends \SXCM_TS\SXCMTS {
 	}
 
 	protected function validateCenter($center) {
-		if ( ! $center instanceof \hl7_org\v3\TS ) {
-			$center = new \hl7_org\v3\TS ($center);
-		}
 	
 		return $center;
 	}

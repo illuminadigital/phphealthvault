@@ -18,7 +18,7 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Daily Medication Usage';
 
 	/**
-	 * @XmlText	(type="string", name="when")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Date", name="when")
 	 */
 	protected $when;
 

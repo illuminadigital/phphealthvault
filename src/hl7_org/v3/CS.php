@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="CS")
  */
-class CS extends CV {
+class CS extends \org\w3\www\_2001\XMLSchema\CV {
 	/**
 	 * Coded data, consists of a code, display name, code system, and original text. Used when a single code value must be sent.
 	 */

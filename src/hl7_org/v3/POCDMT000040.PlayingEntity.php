@@ -14,37 +14,37 @@ class POCDMT000040.PlayingEntity {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="code")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="code")
 	 */
 	protected $code;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQ", collection="true", name="quantity")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", collection="true", name="quantity")
 	 */
 	protected $quantity;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PN", collection="true", name="name")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PN", collection="true", name="name")
 	 */
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\ED", name="desc")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\ED", name="desc")
 	 */
 	protected $desc;
 
@@ -92,24 +92,23 @@ class POCDMT000040.PlayingEntity {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -120,7 +119,7 @@ class POCDMT000040.PlayingEntity {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -128,9 +127,6 @@ class POCDMT000040.PlayingEntity {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -151,24 +147,23 @@ class POCDMT000040.PlayingEntity {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getCode() {
@@ -179,7 +174,7 @@ class POCDMT000040.PlayingEntity {
 	}
 	
 	protected function createCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -187,9 +182,6 @@ class POCDMT000040.PlayingEntity {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \hl7_org\v3\CE  && ! is_null($code) ) {
-			$code = new \hl7_org\v3\CE ($code);
-		}
 	
 		return $code;
 	}
@@ -210,24 +202,23 @@ class POCDMT000040.PlayingEntity {
 	}
 
 	protected function validateQuantity($quantity) {
-		if ( ! is_array ($quantity) && ! is_null($quantity) ) {
-			$quantity = array($quantity);
-		}
 		$count = count($quantity);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'quantity', 0));
 		}
 		foreach ($quantity as $entry) {
-			if (!($entry instanceof PQ)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'quantity', 'PQ'));
-			}
 		}
 	
 		return $quantity;
 	}
 
 	public function addQuantity($quantity) {
-		$this->quantity[] = $quantity;
+		$this->quantity[] = $this->validateQuantityType($quantity);
+	}
+
+	protected function validateQuantityType($quantity) {
+	
+		return $quantity;
 	}
 
 	public function getName() {
@@ -246,24 +237,23 @@ class POCDMT000040.PlayingEntity {
 	}
 
 	protected function validateName($name) {
-		if ( ! is_array ($name) && ! is_null($name) ) {
-			$name = array($name);
-		}
 		$count = count($name);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 0));
 		}
 		foreach ($name as $entry) {
-			if (!($entry instanceof PN)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'PN'));
-			}
 		}
 	
 		return $name;
 	}
 
 	public function addName($name) {
-		$this->name[] = $name;
+		$this->name[] = $this->validateNameType($name);
+	}
+
+	protected function validateNameType($name) {
+	
+		return $name;
 	}
 
 	public function getDesc() {
@@ -274,7 +264,7 @@ class POCDMT000040.PlayingEntity {
 	}
 	
 	protected function createDesc() {
-		return new \hl7_org\v3\ED();
+		return NULL;
 	}
 
 	public function setDesc($desc) {
@@ -282,9 +272,6 @@ class POCDMT000040.PlayingEntity {
 	}
 
 	protected function validateDesc($desc) {
-		if ( ! $desc instanceof \hl7_org\v3\ED  && ! is_null($desc) ) {
-			$desc = new \hl7_org\v3\ED ($desc);
-		}
 	
 		return $desc;
 	}

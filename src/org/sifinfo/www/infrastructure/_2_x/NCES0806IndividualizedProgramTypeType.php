@@ -15,7 +15,7 @@ class NCES0806IndividualizedProgramTypeType {
 	static protected $enumValue = array('2196' => 'Individualized education program (IEP)', '2198' => 'Individualized family service plan (IFSP)', '2197' => 'Individualized learning program (ILP)', '9999' => 'Other');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0806IndividualizedProgramTypeType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0806IndividualizedProgramTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

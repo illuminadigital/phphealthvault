@@ -15,7 +15,7 @@ class NCES0108CreditTypeEarnedType {
 	static protected $enumValue = array('0598' => 'Adult education credit', '0585' => 'Carnegie unit', '0601' => 'Converted occupational experience credit', '0600' => 'Correspondence credit', '0599' => 'Credit by examination', '0592' => 'Intersession hour credit', '0595' => 'Long session hour credit', '0590' => 'Mini-term hour credit', '9998' => 'None', '9999' => 'Other', '0588' => 'Quarter hour credit', '0589' => 'Quinmester hour credit', '0586' => 'Semester hour credit', '0591' => 'Summer term hour credit', '0587' => 'Trimester hour credit', '0596' => 'Twelve month hour credit', '0597' => 'Vocational credit');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0108CreditTypeEarnedType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0108CreditTypeEarnedType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

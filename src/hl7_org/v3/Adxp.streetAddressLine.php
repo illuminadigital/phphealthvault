@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.streetAddressLine")
  */
-class Adxp.streetAddressLine extends ADXP {
+class Adxp.streetAddressLine extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.deliveryInstallationArea")
  */
-class Adxp.deliveryInstallationArea extends ADXP {
+class Adxp.deliveryInstallationArea extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

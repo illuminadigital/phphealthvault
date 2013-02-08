@@ -14,22 +14,22 @@ class IVLMO extends \SXCM_MO\SXCMMO {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBMO", name="low")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBMO", name="low")
 	 */
 	protected $low;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\MO", name="width")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\MO", name="width")
 	 */
 	protected $width;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBMO", name="high")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBMO", name="high")
 	 */
 	protected $high;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\MO", name="center")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\MO", name="center")
 	 */
 	protected $center;
 
@@ -48,7 +48,7 @@ class IVLMO extends \SXCM_MO\SXCMMO {
 	}
 	
 	protected function createLow() {
-		return new \hl7_org\v3\IVXBMO();
+		return NULL;
 	}
 
 	public function setLow($low) {
@@ -56,9 +56,6 @@ class IVLMO extends \SXCM_MO\SXCMMO {
 	}
 
 	protected function validateLow($low) {
-		if ( ! $low instanceof \hl7_org\v3\IVXBMO ) {
-			$low = new \hl7_org\v3\IVXBMO ($low);
-		}
 	
 		return $low;
 	}
@@ -71,7 +68,7 @@ class IVLMO extends \SXCM_MO\SXCMMO {
 	}
 	
 	protected function createWidth() {
-		return new \hl7_org\v3\MO();
+		return NULL;
 	}
 
 	public function setWidth($width) {
@@ -79,9 +76,6 @@ class IVLMO extends \SXCM_MO\SXCMMO {
 	}
 
 	protected function validateWidth($width) {
-		if ( ! $width instanceof \hl7_org\v3\MO  && ! is_null($width) ) {
-			$width = new \hl7_org\v3\MO ($width);
-		}
 	
 		return $width;
 	}
@@ -94,7 +88,7 @@ class IVLMO extends \SXCM_MO\SXCMMO {
 	}
 	
 	protected function createHigh() {
-		return new \hl7_org\v3\IVXBMO();
+		return NULL;
 	}
 
 	public function setHigh($high) {
@@ -102,9 +96,6 @@ class IVLMO extends \SXCM_MO\SXCMMO {
 	}
 
 	protected function validateHigh($high) {
-		if ( ! $high instanceof \hl7_org\v3\IVXBMO  && ! is_null($high) ) {
-			$high = new \hl7_org\v3\IVXBMO ($high);
-		}
 	
 		return $high;
 	}
@@ -117,7 +108,7 @@ class IVLMO extends \SXCM_MO\SXCMMO {
 	}
 	
 	protected function createCenter() {
-		return new \hl7_org\v3\MO();
+		return NULL;
 	}
 
 	public function setCenter($center) {
@@ -125,9 +116,6 @@ class IVLMO extends \SXCM_MO\SXCMMO {
 	}
 
 	protected function validateCenter($center) {
-		if ( ! $center instanceof \hl7_org\v3\MO ) {
-			$center = new \hl7_org\v3\MO ($center);
-		}
 	
 		return $center;
 	}

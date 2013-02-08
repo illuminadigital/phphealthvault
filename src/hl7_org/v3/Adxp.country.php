@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.country")
  */
-class Adxp.country extends ADXP {
+class Adxp.country extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

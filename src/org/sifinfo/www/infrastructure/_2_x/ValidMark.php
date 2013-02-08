@@ -14,17 +14,17 @@ class ValidMark {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="Code")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="Code")
 	 */
 	protected $code;
 
 	/**
-	 * @XmlText	(type="float", name="NumericEquivalent")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="NumericEquivalent")
 	 */
 	protected $numericEquivalent;
 
 	/**
-	 * @XmlText	(type="string", name="Description")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Description")
 	 */
 	protected $description;
 
@@ -50,8 +50,8 @@ class ValidMark {
 	}
 
 	protected function validateCode($code) {
-		if (!is_string($code)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'string'));
+		if (!is_token($code)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'token'));
 		}
 	
 		return $code;
@@ -73,8 +73,8 @@ class ValidMark {
 	}
 
 	protected function validateNumericEquivalent($numericEquivalent) {
-		if ( ! is_float($numericEquivalent) && ! is_null($numericEquivalent) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'numericEquivalent', 'float'));
+		if ( ! is_decimal($numericEquivalent) && ! is_null($numericEquivalent) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'numericEquivalent', 'decimal'));
 		}
 	
 		return $numericEquivalent;

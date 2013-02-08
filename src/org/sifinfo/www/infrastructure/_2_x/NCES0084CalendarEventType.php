@@ -15,7 +15,7 @@ class NCES0084CalendarEventType {
 	static protected $enumValue = array('0849' => 'Emergency day', '0846' => 'Holiday', '9999' => 'Other', '3421' => 'Strike', '0848' => 'Student late arrival/early dismissal', '0845' => 'Teacher only day');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0084CalendarEventType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0084CalendarEventType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

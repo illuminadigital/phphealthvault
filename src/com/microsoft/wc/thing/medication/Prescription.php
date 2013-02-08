@@ -45,7 +45,7 @@ class Prescription {
 	protected $daysSupply;
 
 	/**
-	 * @XmlText	(type="string", name="prescription-expiration")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Date", name="prescription-expiration")
 	 */
 	protected $prescriptionExpiration;
 

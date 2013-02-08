@@ -15,7 +15,7 @@ class StudentPlacementType {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="StudentPlacementAsOfDate")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="StudentPlacementAsOfDate")
 	 */
 	protected $studentPlacementAsOfDate;
 
@@ -55,12 +55,12 @@ class StudentPlacementType {
 	protected $serviceProviderType;
 
 	/**
-	 * @XmlText	(type="string", name="AgencyType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="AgencyType")
 	 */
 	protected $agencyType;
 
 	/**
-	 * @XmlText	(type="string", name="ServiceProviderName")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="ServiceProviderName")
 	 */
 	protected $serviceProviderName;
 
@@ -75,17 +75,17 @@ class StudentPlacementType {
 	protected $whenServiceProvided;
 
 	/**
-	 * @XmlText	(type="string", name="LatestStartDate")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="LatestStartDate")
 	 */
 	protected $latestStartDate;
 
 	/**
-	 * @XmlText	(type="string", name="StartDate")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="StartDate")
 	 */
 	protected $startDate;
 
 	/**
-	 * @XmlText	(type="string", name="EndDate")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="EndDate")
 	 */
 	protected $endDate;
 
@@ -110,22 +110,22 @@ class StudentPlacementType {
 	protected $totalServiceDuration;
 
 	/**
-	 * @XmlText	(type="boolean", name="IncludedInSpecialEducationFTE")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Boolean", name="IncludedInSpecialEducationFTE")
 	 */
 	protected $includedInSpecialEducationFTE;
 
 	/**
-	 * @XmlText	(type="boolean", name="SpecialNeedsTransportation")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Boolean", name="SpecialNeedsTransportation")
 	 */
 	protected $specialNeedsTransportation;
 
 	/**
-	 * @XmlText	(type="boolean", name="AssistiveTechnology")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Boolean", name="AssistiveTechnology")
 	 */
 	protected $assistiveTechnology;
 
 	/**
-	 * @XmlText	(type="string", name="EntryPerson")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="EntryPerson")
 	 */
 	protected $entryPerson;
 
@@ -201,8 +201,8 @@ class StudentPlacementType {
 	}
 
 	protected function validateStudentPlacementAsOfDate($studentPlacementAsOfDate) {
-		if (!is_string($studentPlacementAsOfDate)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'studentPlacementAsOfDate', 'string'));
+		if (!is_date($studentPlacementAsOfDate)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'studentPlacementAsOfDate', 'date'));
 		}
 	
 		return $studentPlacementAsOfDate;
@@ -385,8 +385,8 @@ class StudentPlacementType {
 	}
 
 	protected function validateAgencyType($agencyType) {
-		if ( ! is_string($agencyType) && ! is_null($agencyType) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'agencyType', 'string'));
+		if ( ! is_normalizedString($agencyType) && ! is_null($agencyType) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'agencyType', 'normalizedString'));
 		}
 	
 		return $agencyType;
@@ -408,8 +408,8 @@ class StudentPlacementType {
 	}
 
 	protected function validateServiceProviderName($serviceProviderName) {
-		if ( ! is_string($serviceProviderName) && ! is_null($serviceProviderName) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'serviceProviderName', 'string'));
+		if ( ! is_normalizedString($serviceProviderName) && ! is_null($serviceProviderName) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'serviceProviderName', 'normalizedString'));
 		}
 	
 		return $serviceProviderName;
@@ -477,8 +477,8 @@ class StudentPlacementType {
 	}
 
 	protected function validateLatestStartDate($latestStartDate) {
-		if ( ! is_string($latestStartDate) && ! is_null($latestStartDate) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'latestStartDate', 'string'));
+		if ( ! is_date($latestStartDate) && ! is_null($latestStartDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'latestStartDate', 'date'));
 		}
 	
 		return $latestStartDate;
@@ -500,8 +500,8 @@ class StudentPlacementType {
 	}
 
 	protected function validateStartDate($startDate) {
-		if ( ! is_string($startDate) && ! is_null($startDate) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'startDate', 'string'));
+		if ( ! is_date($startDate) && ! is_null($startDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'startDate', 'date'));
 		}
 	
 		return $startDate;
@@ -523,8 +523,8 @@ class StudentPlacementType {
 	}
 
 	protected function validateEndDate($endDate) {
-		if ( ! is_string($endDate) && ! is_null($endDate) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'endDate', 'string'));
+		if ( ! is_date($endDate) && ! is_null($endDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'endDate', 'date'));
 		}
 	
 		return $endDate;
@@ -707,8 +707,8 @@ class StudentPlacementType {
 	}
 
 	protected function validateEntryPerson($entryPerson) {
-		if ( ! is_string($entryPerson) && ! is_null($entryPerson) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'entryPerson', 'string'));
+		if ( ! is_normalizedString($entryPerson) && ! is_null($entryPerson) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'entryPerson', 'normalizedString'));
 		}
 	
 		return $entryPerson;

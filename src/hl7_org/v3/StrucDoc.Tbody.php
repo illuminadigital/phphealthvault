@@ -14,7 +14,7 @@ class StrucDoc.Tbody {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Tr", name="tr")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Tr", name="tr")
 	 */
 	protected $tr;
 
@@ -72,7 +72,7 @@ class StrucDoc.Tbody {
 	}
 	
 	protected function createTr() {
-		return new \hl7_org\v3\StrucDoc.Tr();
+		return NULL;
 	}
 
 	public function setTr($tr) {
@@ -80,9 +80,6 @@ class StrucDoc.Tbody {
 	}
 
 	protected function validateTr($tr) {
-		if ( ! $tr instanceof \hl7_org\v3\StrucDoc.Tr ) {
-			$tr = new \hl7_org\v3\StrucDoc.Tr ($tr);
-		}
 	
 		return $tr;
 	}

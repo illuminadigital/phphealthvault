@@ -15,7 +15,7 @@ class NCES0598PublicSchoolResidenceStatusType {
 	static protected $enumValue = array('1652' => 'Resident of administrative unit and usual school attendance area', '1653' => 'Resident of administrative unit, but of other school attendance area', '1655' => 'Resident of an administrative unit that crosses state boundaries', '1656' => 'Resident of another state', '1654' => 'Resident of this state, but not of this administrative unit');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0598PublicSchoolResidenceStatusType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0598PublicSchoolResidenceStatusType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

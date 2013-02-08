@@ -14,72 +14,72 @@ class POCDMT000040.Patient {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", name="id")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", name="id")
 	 */
 	protected $id;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PN", collection="true", name="name")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PN", collection="true", name="name")
 	 */
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="administrativeGenderCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="administrativeGenderCode")
 	 */
 	protected $administrativeGenderCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\TS", name="birthTime")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TS", name="birthTime")
 	 */
 	protected $birthTime;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="maritalStatusCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="maritalStatusCode")
 	 */
 	protected $maritalStatusCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="religiousAffiliationCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="religiousAffiliationCode")
 	 */
 	protected $religiousAffiliationCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="raceCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="raceCode")
 	 */
 	protected $raceCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="ethnicGroupCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="ethnicGroupCode")
 	 */
 	protected $ethnicGroupCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Guardian", collection="true", name="guardian")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Guardian", collection="true", name="guardian")
 	 */
 	protected $guardian;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Birthplace", name="birthplace")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Birthplace", name="birthplace")
 	 */
 	protected $birthplace;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.LanguageCommunication", collection="true", name="languageCommunication")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.LanguageCommunication", collection="true", name="languageCommunication")
 	 */
 	protected $languageCommunication;
 
@@ -134,24 +134,23 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -162,7 +161,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -170,9 +169,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -193,24 +189,23 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getId() {
@@ -221,7 +216,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createId() {
-		return new \hl7_org\v3\II();
+		return NULL;
 	}
 
 	public function setId($id) {
@@ -229,9 +224,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof \hl7_org\v3\II  && ! is_null($id) ) {
-			$id = new \hl7_org\v3\II ($id);
-		}
 	
 		return $id;
 	}
@@ -252,24 +244,23 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateName($name) {
-		if ( ! is_array ($name) && ! is_null($name) ) {
-			$name = array($name);
-		}
 		$count = count($name);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 0));
 		}
 		foreach ($name as $entry) {
-			if (!($entry instanceof PN)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'PN'));
-			}
 		}
 	
 		return $name;
 	}
 
 	public function addName($name) {
-		$this->name[] = $name;
+		$this->name[] = $this->validateNameType($name);
+	}
+
+	protected function validateNameType($name) {
+	
+		return $name;
 	}
 
 	public function getAdministrativeGenderCode() {
@@ -280,7 +271,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createAdministrativeGenderCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setAdministrativeGenderCode($administrativeGenderCode) {
@@ -288,9 +279,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateAdministrativeGenderCode($administrativeGenderCode) {
-		if ( ! $administrativeGenderCode instanceof \hl7_org\v3\CE  && ! is_null($administrativeGenderCode) ) {
-			$administrativeGenderCode = new \hl7_org\v3\CE ($administrativeGenderCode);
-		}
 	
 		return $administrativeGenderCode;
 	}
@@ -303,7 +291,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createBirthTime() {
-		return new \hl7_org\v3\TS();
+		return NULL;
 	}
 
 	public function setBirthTime($birthTime) {
@@ -311,9 +299,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateBirthTime($birthTime) {
-		if ( ! $birthTime instanceof \hl7_org\v3\TS  && ! is_null($birthTime) ) {
-			$birthTime = new \hl7_org\v3\TS ($birthTime);
-		}
 	
 		return $birthTime;
 	}
@@ -326,7 +311,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createMaritalStatusCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setMaritalStatusCode($maritalStatusCode) {
@@ -334,9 +319,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateMaritalStatusCode($maritalStatusCode) {
-		if ( ! $maritalStatusCode instanceof \hl7_org\v3\CE  && ! is_null($maritalStatusCode) ) {
-			$maritalStatusCode = new \hl7_org\v3\CE ($maritalStatusCode);
-		}
 	
 		return $maritalStatusCode;
 	}
@@ -349,7 +331,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createReligiousAffiliationCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setReligiousAffiliationCode($religiousAffiliationCode) {
@@ -357,9 +339,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateReligiousAffiliationCode($religiousAffiliationCode) {
-		if ( ! $religiousAffiliationCode instanceof \hl7_org\v3\CE  && ! is_null($religiousAffiliationCode) ) {
-			$religiousAffiliationCode = new \hl7_org\v3\CE ($religiousAffiliationCode);
-		}
 	
 		return $religiousAffiliationCode;
 	}
@@ -372,7 +351,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createRaceCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setRaceCode($raceCode) {
@@ -380,9 +359,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateRaceCode($raceCode) {
-		if ( ! $raceCode instanceof \hl7_org\v3\CE  && ! is_null($raceCode) ) {
-			$raceCode = new \hl7_org\v3\CE ($raceCode);
-		}
 	
 		return $raceCode;
 	}
@@ -395,7 +371,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createEthnicGroupCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setEthnicGroupCode($ethnicGroupCode) {
@@ -403,9 +379,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateEthnicGroupCode($ethnicGroupCode) {
-		if ( ! $ethnicGroupCode instanceof \hl7_org\v3\CE  && ! is_null($ethnicGroupCode) ) {
-			$ethnicGroupCode = new \hl7_org\v3\CE ($ethnicGroupCode);
-		}
 	
 		return $ethnicGroupCode;
 	}
@@ -426,24 +399,23 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateGuardian($guardian) {
-		if ( ! is_array ($guardian) && ! is_null($guardian) ) {
-			$guardian = array($guardian);
-		}
 		$count = count($guardian);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'guardian', 0));
 		}
 		foreach ($guardian as $entry) {
-			if (!($entry instanceof POCDMT000040.Guardian)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'guardian', 'POCD_MT000040.Guardian'));
-			}
 		}
 	
 		return $guardian;
 	}
 
 	public function addGuardian($guardian) {
-		$this->guardian[] = $guardian;
+		$this->guardian[] = $this->validateGuardianType($guardian);
+	}
+
+	protected function validateGuardianType($guardian) {
+	
+		return $guardian;
 	}
 
 	public function getBirthplace() {
@@ -454,7 +426,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createBirthplace() {
-		return new \hl7_org\v3\POCDMT000040.Birthplace();
+		return NULL;
 	}
 
 	public function setBirthplace($birthplace) {
@@ -462,9 +434,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateBirthplace($birthplace) {
-		if ( ! $birthplace instanceof \hl7_org\v3\POCDMT000040.Birthplace  && ! is_null($birthplace) ) {
-			$birthplace = new \hl7_org\v3\POCDMT000040.Birthplace ($birthplace);
-		}
 	
 		return $birthplace;
 	}
@@ -485,24 +454,23 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateLanguageCommunication($languageCommunication) {
-		if ( ! is_array ($languageCommunication) && ! is_null($languageCommunication) ) {
-			$languageCommunication = array($languageCommunication);
-		}
 		$count = count($languageCommunication);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'languageCommunication', 0));
 		}
 		foreach ($languageCommunication as $entry) {
-			if (!($entry instanceof POCDMT000040.LanguageCommunication)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'languageCommunication', 'POCD_MT000040.LanguageCommunication'));
-			}
 		}
 	
 		return $languageCommunication;
 	}
 
 	public function addLanguageCommunication($languageCommunication) {
-		$this->languageCommunication[] = $languageCommunication;
+		$this->languageCommunication[] = $this->validateLanguageCommunicationType($languageCommunication);
+	}
+
+	protected function validateLanguageCommunicationType($languageCommunication) {
+	
+		return $languageCommunication;
 	}
 
 	public function getNullFlavor() {

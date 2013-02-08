@@ -14,17 +14,17 @@ class Reference {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="URL")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\AnyURI", name="URL")
 	 */
 	protected $uRL;
 
 	/**
-	 * @XmlAttribute	(type="string", name="MIMEType")
+	 * @XmlAttribute	(type="token", name="MIMEType")
 	 */
 	protected $mIMEType;
 
 	/**
-	 * @XmlAttribute	(type="string", name="Description")
+	 * @XmlAttribute	(type="token", name="Description")
 	 */
 	protected $description;
 
@@ -50,8 +50,8 @@ class Reference {
 	}
 
 	protected function validateURL($uRL) {
-		if (!is_string($uRL)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'uRL', 'string'));
+		if (!is_anyURI($uRL)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'uRL', 'anyURI'));
 		}
 	
 		return $uRL;
@@ -73,8 +73,8 @@ class Reference {
 	}
 
 	protected function validateMIMEType($mIMEType) {
-		if (!is_string($mIMEType)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'mIMEType', 'string'));
+		if (!is_token($mIMEType)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'mIMEType', 'token'));
 		}
 	
 		return $mIMEType;
@@ -96,8 +96,8 @@ class Reference {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! is_string($description) && ! is_null($description) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'string'));
+		if ( ! is_token($description) && ! is_null($description) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'token'));
 		}
 	
 		return $description;

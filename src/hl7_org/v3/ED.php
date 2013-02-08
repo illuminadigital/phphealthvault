@@ -15,12 +15,12 @@ class ED extends \BIN\BIN {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\TEL", name="reference")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TEL", name="reference")
 	 */
 	protected $reference;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Thumbnail", name="thumbnail")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Thumbnail", name="thumbnail")
 	 */
 	protected $thumbnail;
 
@@ -67,7 +67,7 @@ class ED extends \BIN\BIN {
 	}
 	
 	protected function createReference() {
-		return new \hl7_org\v3\TEL();
+		return NULL;
 	}
 
 	public function setReference($reference) {
@@ -75,9 +75,6 @@ class ED extends \BIN\BIN {
 	}
 
 	protected function validateReference($reference) {
-		if ( ! $reference instanceof \hl7_org\v3\TEL  && ! is_null($reference) ) {
-			$reference = new \hl7_org\v3\TEL ($reference);
-		}
 	
 		return $reference;
 	}
@@ -90,7 +87,7 @@ class ED extends \BIN\BIN {
 	}
 	
 	protected function createThumbnail() {
-		return new \hl7_org\v3\Thumbnail();
+		return NULL;
 	}
 
 	public function setThumbnail($thumbnail) {
@@ -98,9 +95,6 @@ class ED extends \BIN\BIN {
 	}
 
 	protected function validateThumbnail($thumbnail) {
-		if ( ! $thumbnail instanceof \hl7_org\v3\Thumbnail  && ! is_null($thumbnail) ) {
-			$thumbnail = new \hl7_org\v3\Thumbnail ($thumbnail);
-		}
 	
 		return $thumbnail;
 	}

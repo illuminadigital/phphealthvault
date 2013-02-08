@@ -19,7 +19,7 @@ class StructuredApproxDate {
 	protected $date;
 
 	/**
-	 * @XmlText	(type="string", name="time")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Time", name="time")
 	 */
 	protected $time;
 

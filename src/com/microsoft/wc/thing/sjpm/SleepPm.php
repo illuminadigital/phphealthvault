@@ -24,12 +24,12 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	protected $when;
 
 	/**
-	 * @XmlText	(type="string", collection="true", name="caffeine")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Time", collection="true", name="caffeine")
 	 */
 	protected $caffeine;
 
 	/**
-	 * @XmlText	(type="string", collection="true", name="alcohol")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Time", collection="true", name="alcohol")
 	 */
 	protected $alcohol;
 
@@ -105,7 +105,7 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		foreach ($caffeine as $entry) {
 			if (!($entry instanceof Time)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'caffeine', 'string'));
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'caffeine', 'time'));
 			}
 		}
 	
@@ -141,7 +141,7 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		foreach ($alcohol as $entry) {
 			if (!($entry instanceof Time)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'alcohol', 'string'));
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'alcohol', 'time'));
 			}
 		}
 	

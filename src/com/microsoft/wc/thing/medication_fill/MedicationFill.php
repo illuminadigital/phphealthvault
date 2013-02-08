@@ -34,7 +34,7 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 	protected $daysSupply;
 
 	/**
-	 * @XmlText	(type="string", name="next-refill-date")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Date", name="next-refill-date")
 	 */
 	protected $nextRefillDate;
 

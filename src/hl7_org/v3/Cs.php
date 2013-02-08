@@ -14,7 +14,7 @@ class Cs {
 	 */
 
 	/**
-	 * @XmlValue	(type="string", name="cs")
+	 * @XmlElement	(type="\hl7_org\v3\Token", name="value")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class Cs {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (!preg_match('/^[^\s]+$/', $value)) {

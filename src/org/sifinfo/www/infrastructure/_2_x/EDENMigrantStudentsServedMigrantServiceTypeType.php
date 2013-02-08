@@ -15,7 +15,7 @@ class EDENMigrantStudentsServedMigrantServiceTypeType {
 	static protected $enumValue = array('COS' => 'Continuation of Service', 'AIS' => 'Any Instructional Service', 'RI' => 'Reading Instruction', 'MI' => 'Mathematics Instruction', 'HSCA' => 'High School Credit Accrual (Grades 9-12 only)', 'ANYSS' => 'Any Support Service', 'CS' => 'Counseling Service', 'ARS' => 'Any Referred Service', 'MISSING' => 'MISSING', 'NOTCOLLECT' => 'Not Collected');
 
 	/**
-	 * @XmlValue	(type="string", name="EDENMigrantStudentsServedMigrantServiceTypeType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class EDENMigrantStudentsServedMigrantServiceTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

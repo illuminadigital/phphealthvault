@@ -15,7 +15,7 @@ class NCES0849RaceType {
 	static protected $enumValue = array('0998' => 'American Indian or Alaska Native', '0999' => 'Asian', '1000' => 'Black or African American', '1001' => 'Native Hawaiian or Other Pacific Islander', '1002' => 'White');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0849RaceType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0849RaceType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

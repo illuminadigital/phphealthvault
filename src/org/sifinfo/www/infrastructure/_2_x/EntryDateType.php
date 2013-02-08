@@ -14,7 +14,7 @@ class EntryDateType {
 	 */
 
 	/**
-	 * @XmlValue	(type="string", name="EntryDateType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="value")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class EntryDateType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_date($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'date'));
 		}
 	
 		return $value;

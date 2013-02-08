@@ -19,7 +19,7 @@ class StaffPersonalData {
 	protected $name;
 
 	/**
-	 * @XmlText	(type="string", name="Title")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Title")
 	 */
 	protected $title;
 
@@ -85,8 +85,8 @@ class StaffPersonalData {
 	}
 
 	protected function validateTitle($title) {
-		if ( ! is_string($title) && ! is_null($title) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'title', 'string'));
+		if ( ! is_normalizedString($title) && ! is_null($title) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'title', 'normalizedString'));
 		}
 	
 		return $title;

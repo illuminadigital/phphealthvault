@@ -14,72 +14,72 @@ class POCDMT000040.Section {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", name="id")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", name="id")
 	 */
 	protected $id;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="code")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="code")
 	 */
 	protected $code;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\ST", name="title")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\ST", name="title")
 	 */
 	protected $title;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Text", name="text")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Text", name="text")
 	 */
 	protected $text;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="confidentialityCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="confidentialityCode")
 	 */
 	protected $confidentialityCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", name="languageCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", name="languageCode")
 	 */
 	protected $languageCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Subject", name="subject")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Subject", name="subject")
 	 */
 	protected $subject;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Author", collection="true", name="author")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Author", collection="true", name="author")
 	 */
 	protected $author;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Informant12", collection="true", name="informant")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Informant12", collection="true", name="informant")
 	 */
 	protected $informant;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Entry", collection="true", name="entry")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Entry", collection="true", name="entry")
 	 */
 	protected $entry;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Component5", collection="true", name="component")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Component5", collection="true", name="component")
 	 */
 	protected $component;
 
@@ -140,24 +140,23 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -168,7 +167,7 @@ class POCDMT000040.Section {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -176,9 +175,6 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -199,24 +195,23 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getId() {
@@ -227,7 +222,7 @@ class POCDMT000040.Section {
 	}
 	
 	protected function createId() {
-		return new \hl7_org\v3\II();
+		return NULL;
 	}
 
 	public function setId($id) {
@@ -235,9 +230,6 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof \hl7_org\v3\II  && ! is_null($id) ) {
-			$id = new \hl7_org\v3\II ($id);
-		}
 	
 		return $id;
 	}
@@ -250,7 +242,7 @@ class POCDMT000040.Section {
 	}
 	
 	protected function createCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -258,9 +250,6 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \hl7_org\v3\CE  && ! is_null($code) ) {
-			$code = new \hl7_org\v3\CE ($code);
-		}
 	
 		return $code;
 	}
@@ -273,7 +262,7 @@ class POCDMT000040.Section {
 	}
 	
 	protected function createTitle() {
-		return new \hl7_org\v3\ST();
+		return NULL;
 	}
 
 	public function setTitle($title) {
@@ -281,9 +270,6 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateTitle($title) {
-		if ( ! $title instanceof \hl7_org\v3\ST  && ! is_null($title) ) {
-			$title = new \hl7_org\v3\ST ($title);
-		}
 	
 		return $title;
 	}
@@ -296,7 +282,7 @@ class POCDMT000040.Section {
 	}
 	
 	protected function createText() {
-		return new \hl7_org\v3\StrucDoc.Text();
+		return NULL;
 	}
 
 	public function setText($text) {
@@ -304,9 +290,6 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateText($text) {
-		if ( ! $text instanceof \hl7_org\v3\StrucDoc.Text  && ! is_null($text) ) {
-			$text = new \hl7_org\v3\StrucDoc.Text ($text);
-		}
 	
 		return $text;
 	}
@@ -319,7 +302,7 @@ class POCDMT000040.Section {
 	}
 	
 	protected function createConfidentialityCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setConfidentialityCode($confidentialityCode) {
@@ -327,9 +310,6 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateConfidentialityCode($confidentialityCode) {
-		if ( ! $confidentialityCode instanceof \hl7_org\v3\CE  && ! is_null($confidentialityCode) ) {
-			$confidentialityCode = new \hl7_org\v3\CE ($confidentialityCode);
-		}
 	
 		return $confidentialityCode;
 	}
@@ -342,7 +322,7 @@ class POCDMT000040.Section {
 	}
 	
 	protected function createLanguageCode() {
-		return new \hl7_org\v3\CS();
+		return NULL;
 	}
 
 	public function setLanguageCode($languageCode) {
@@ -350,9 +330,6 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateLanguageCode($languageCode) {
-		if ( ! $languageCode instanceof \hl7_org\v3\CS  && ! is_null($languageCode) ) {
-			$languageCode = new \hl7_org\v3\CS ($languageCode);
-		}
 	
 		return $languageCode;
 	}
@@ -365,7 +342,7 @@ class POCDMT000040.Section {
 	}
 	
 	protected function createSubject() {
-		return new \hl7_org\v3\POCDMT000040.Subject();
+		return NULL;
 	}
 
 	public function setSubject($subject) {
@@ -373,9 +350,6 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateSubject($subject) {
-		if ( ! $subject instanceof \hl7_org\v3\POCDMT000040.Subject  && ! is_null($subject) ) {
-			$subject = new \hl7_org\v3\POCDMT000040.Subject ($subject);
-		}
 	
 		return $subject;
 	}
@@ -396,24 +370,23 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateAuthor($author) {
-		if ( ! is_array ($author) && ! is_null($author) ) {
-			$author = array($author);
-		}
 		$count = count($author);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'author', 0));
 		}
 		foreach ($author as $entry) {
-			if (!($entry instanceof POCDMT000040.Author)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'author', 'POCD_MT000040.Author'));
-			}
 		}
 	
 		return $author;
 	}
 
 	public function addAuthor($author) {
-		$this->author[] = $author;
+		$this->author[] = $this->validateAuthorType($author);
+	}
+
+	protected function validateAuthorType($author) {
+	
+		return $author;
 	}
 
 	public function getInformant() {
@@ -432,24 +405,23 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateInformant($informant) {
-		if ( ! is_array ($informant) && ! is_null($informant) ) {
-			$informant = array($informant);
-		}
 		$count = count($informant);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'informant', 0));
 		}
 		foreach ($informant as $entry) {
-			if (!($entry instanceof POCDMT000040.Informant12)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'informant', 'POCD_MT000040.Informant12'));
-			}
 		}
 	
 		return $informant;
 	}
 
 	public function addInformant($informant) {
-		$this->informant[] = $informant;
+		$this->informant[] = $this->validateInformantType($informant);
+	}
+
+	protected function validateInformantType($informant) {
+	
+		return $informant;
 	}
 
 	public function getEntry() {
@@ -468,24 +440,23 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateEntry($entry) {
-		if ( ! is_array ($entry) && ! is_null($entry) ) {
-			$entry = array($entry);
-		}
 		$count = count($entry);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'entry', 0));
 		}
 		foreach ($entry as $entry) {
-			if (!($entry instanceof POCDMT000040.Entry)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'entry', 'POCD_MT000040.Entry'));
-			}
 		}
 	
 		return $entry;
 	}
 
 	public function addEntry($entry) {
-		$this->entry[] = $entry;
+		$this->entry[] = $this->validateEntryType($entry);
+	}
+
+	protected function validateEntryType($entry) {
+	
+		return $entry;
 	}
 
 	public function getComponent() {
@@ -504,24 +475,23 @@ class POCDMT000040.Section {
 	}
 
 	protected function validateComponent($component) {
-		if ( ! is_array ($component) && ! is_null($component) ) {
-			$component = array($component);
-		}
 		$count = count($component);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'component', 0));
 		}
 		foreach ($component as $entry) {
-			if (!($entry instanceof POCDMT000040.Component5)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'component', 'POCD_MT000040.Component5'));
-			}
 		}
 	
 		return $component;
 	}
 
 	public function addComponent($component) {
-		$this->component[] = $component;
+		$this->component[] = $this->validateComponentType($component);
+	}
+
+	protected function validateComponentType($component) {
+	
+		return $component;
 	}
 
 	public function getID() {

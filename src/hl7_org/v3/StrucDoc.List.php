@@ -14,12 +14,12 @@ class StrucDoc.List {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Caption", name="caption")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Caption", name="caption")
 	 */
 	protected $caption;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Item", collection="true", name="item")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Item", collection="true", name="item")
 	 */
 	protected $item;
 
@@ -60,7 +60,7 @@ class StrucDoc.List {
 	}
 	
 	protected function createCaption() {
-		return new \hl7_org\v3\StrucDoc.Caption();
+		return NULL;
 	}
 
 	public function setCaption($caption) {
@@ -68,9 +68,6 @@ class StrucDoc.List {
 	}
 
 	protected function validateCaption($caption) {
-		if ( ! $caption instanceof \hl7_org\v3\StrucDoc.Caption  && ! is_null($caption) ) {
-			$caption = new \hl7_org\v3\StrucDoc.Caption ($caption);
-		}
 	
 		return $caption;
 	}
@@ -91,24 +88,23 @@ class StrucDoc.List {
 	}
 
 	protected function validateItem($item) {
-		if ( ! is_array ($item) ) {
-			$item = array($item);
-		}
 		$count = count($item);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'item', 1));
 		}
 		foreach ($item as $entry) {
-			if (!($entry instanceof StrucDoc.Item)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'item', 'StrucDoc.Item'));
-			}
 		}
 	
 		return $item;
 	}
 
 	public function addItem($item) {
-		$this->item[] = $item;
+		$this->item[] = $this->validateItemType($item);
+	}
+
+	protected function validateItemType($item) {
+	
+		return $item;
 	}
 
 	public function getID() {

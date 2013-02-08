@@ -40,7 +40,7 @@ class FSCountType {
 	protected $tax;
 
 	/**
-	 * @XmlText	(type="float", name="Value")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="Value")
 	 */
 	protected $value;
 
@@ -181,8 +181,8 @@ class FSCountType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_float($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'float'));
+		if (!is_decimal($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'decimal'));
 		}
 	
 		return $value;

@@ -14,7 +14,7 @@ class SchoolURLType {
 	 */
 
 	/**
-	 * @XmlValue	(type="string", name="SchoolURLType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\AnyURI", name="value")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class SchoolURLType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_anyURI($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'anyURI'));
 		}
 	
 		return $value;

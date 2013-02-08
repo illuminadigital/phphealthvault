@@ -24,12 +24,12 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 	protected $when;
 
 	/**
-	 * @XmlText	(type="string", name="bed-time")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Time", name="bed-time")
 	 */
 	protected $bedTime;
 
 	/**
-	 * @XmlText	(type="string", name="wake-time")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Time", name="wake-time")
 	 */
 	protected $wakeTime;
 

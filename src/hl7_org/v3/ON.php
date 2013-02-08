@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="ON")
  */
-class ON extends EN {
+class ON extends \org\w3\www\_2001\XMLSchema\EN {
 	/**
 	 * A name for an organization. A sequence of name parts.
 	 */

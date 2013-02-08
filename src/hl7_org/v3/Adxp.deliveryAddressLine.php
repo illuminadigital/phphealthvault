@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.deliveryAddressLine")
  */
-class Adxp.deliveryAddressLine extends ADXP {
+class Adxp.deliveryAddressLine extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

@@ -14,62 +14,62 @@ class StrucDoc.Item {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Caption", name="caption")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Caption", name="caption")
 	 */
 	protected $caption;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Content", name="content")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Content", name="content")
 	 */
 	protected $content;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.LinkHtml", name="linkHtml")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.LinkHtml", name="linkHtml")
 	 */
 	protected $linkHtml;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Sub", name="sub")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sub", name="sub")
 	 */
 	protected $sub;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Sup", name="sup")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sup", name="sup")
 	 */
 	protected $sup;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Br", name="br")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Br", name="br")
 	 */
 	protected $br;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Footnote", name="footnote")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Footnote", name="footnote")
 	 */
 	protected $footnote;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.FootnoteRef", name="footnoteRef")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.FootnoteRef", name="footnoteRef")
 	 */
 	protected $footnoteRef;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.RenderMultiMedia", name="renderMultiMedia")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.RenderMultiMedia", name="renderMultiMedia")
 	 */
 	protected $renderMultiMedia;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Paragraph", name="paragraph")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Paragraph", name="paragraph")
 	 */
 	protected $paragraph;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.List", name="list")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.List", name="list")
 	 */
 	protected $list;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Table", name="table")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Table", name="table")
 	 */
 	protected $table;
 
@@ -114,7 +114,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createCaption() {
-		return new \hl7_org\v3\StrucDoc.Caption();
+		return NULL;
 	}
 
 	public function setCaption($caption) {
@@ -122,9 +122,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateCaption($caption) {
-		if ( ! $caption instanceof \hl7_org\v3\StrucDoc.Caption  && ! is_null($caption) ) {
-			$caption = new \hl7_org\v3\StrucDoc.Caption ($caption);
-		}
 	
 		return $caption;
 	}
@@ -137,7 +134,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createContent() {
-		return new \hl7_org\v3\StrucDoc.Content();
+		return NULL;
 	}
 
 	public function setContent($content) {
@@ -145,9 +142,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateContent($content) {
-		if ( ! $content instanceof \hl7_org\v3\StrucDoc.Content ) {
-			$content = new \hl7_org\v3\StrucDoc.Content ($content);
-		}
 	
 		return $content;
 	}
@@ -160,7 +154,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createLinkHtml() {
-		return new \hl7_org\v3\StrucDoc.LinkHtml();
+		return NULL;
 	}
 
 	public function setLinkHtml($linkHtml) {
@@ -168,9 +162,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateLinkHtml($linkHtml) {
-		if ( ! $linkHtml instanceof \hl7_org\v3\StrucDoc.LinkHtml ) {
-			$linkHtml = new \hl7_org\v3\StrucDoc.LinkHtml ($linkHtml);
-		}
 	
 		return $linkHtml;
 	}
@@ -183,7 +174,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createSub() {
-		return new \hl7_org\v3\StrucDoc.Sub();
+		return NULL;
 	}
 
 	public function setSub($sub) {
@@ -191,9 +182,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateSub($sub) {
-		if ( ! $sub instanceof \hl7_org\v3\StrucDoc.Sub ) {
-			$sub = new \hl7_org\v3\StrucDoc.Sub ($sub);
-		}
 	
 		return $sub;
 	}
@@ -206,7 +194,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createSup() {
-		return new \hl7_org\v3\StrucDoc.Sup();
+		return NULL;
 	}
 
 	public function setSup($sup) {
@@ -214,9 +202,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateSup($sup) {
-		if ( ! $sup instanceof \hl7_org\v3\StrucDoc.Sup ) {
-			$sup = new \hl7_org\v3\StrucDoc.Sup ($sup);
-		}
 	
 		return $sup;
 	}
@@ -229,7 +214,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createBr() {
-		return new \hl7_org\v3\StrucDoc.Br();
+		return NULL;
 	}
 
 	public function setBr($br) {
@@ -237,9 +222,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateBr($br) {
-		if ( ! $br instanceof \hl7_org\v3\StrucDoc.Br ) {
-			$br = new \hl7_org\v3\StrucDoc.Br ($br);
-		}
 	
 		return $br;
 	}
@@ -252,7 +234,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createFootnote() {
-		return new \hl7_org\v3\StrucDoc.Footnote();
+		return NULL;
 	}
 
 	public function setFootnote($footnote) {
@@ -260,9 +242,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateFootnote($footnote) {
-		if ( ! $footnote instanceof \hl7_org\v3\StrucDoc.Footnote ) {
-			$footnote = new \hl7_org\v3\StrucDoc.Footnote ($footnote);
-		}
 	
 		return $footnote;
 	}
@@ -275,7 +254,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createFootnoteRef() {
-		return new \hl7_org\v3\StrucDoc.FootnoteRef();
+		return NULL;
 	}
 
 	public function setFootnoteRef($footnoteRef) {
@@ -283,9 +262,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateFootnoteRef($footnoteRef) {
-		if ( ! $footnoteRef instanceof \hl7_org\v3\StrucDoc.FootnoteRef ) {
-			$footnoteRef = new \hl7_org\v3\StrucDoc.FootnoteRef ($footnoteRef);
-		}
 	
 		return $footnoteRef;
 	}
@@ -298,7 +274,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createRenderMultiMedia() {
-		return new \hl7_org\v3\StrucDoc.RenderMultiMedia();
+		return NULL;
 	}
 
 	public function setRenderMultiMedia($renderMultiMedia) {
@@ -306,9 +282,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateRenderMultiMedia($renderMultiMedia) {
-		if ( ! $renderMultiMedia instanceof \hl7_org\v3\StrucDoc.RenderMultiMedia ) {
-			$renderMultiMedia = new \hl7_org\v3\StrucDoc.RenderMultiMedia ($renderMultiMedia);
-		}
 	
 		return $renderMultiMedia;
 	}
@@ -321,7 +294,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createParagraph() {
-		return new \hl7_org\v3\StrucDoc.Paragraph();
+		return NULL;
 	}
 
 	public function setParagraph($paragraph) {
@@ -329,9 +302,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateParagraph($paragraph) {
-		if ( ! $paragraph instanceof \hl7_org\v3\StrucDoc.Paragraph ) {
-			$paragraph = new \hl7_org\v3\StrucDoc.Paragraph ($paragraph);
-		}
 	
 		return $paragraph;
 	}
@@ -344,7 +314,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createList() {
-		return new \hl7_org\v3\StrucDoc.List();
+		return NULL;
 	}
 
 	public function setList($list) {
@@ -352,9 +322,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateList($list) {
-		if ( ! $list instanceof \hl7_org\v3\StrucDoc.List ) {
-			$list = new \hl7_org\v3\StrucDoc.List ($list);
-		}
 	
 		return $list;
 	}
@@ -367,7 +334,7 @@ class StrucDoc.Item {
 	}
 	
 	protected function createTable() {
-		return new \hl7_org\v3\StrucDoc.Table();
+		return NULL;
 	}
 
 	public function setTable($table) {
@@ -375,9 +342,6 @@ class StrucDoc.Item {
 	}
 
 	protected function validateTable($table) {
-		if ( ! $table instanceof \hl7_org\v3\StrucDoc.Table ) {
-			$table = new \hl7_org\v3\StrucDoc.Table ($table);
-		}
 	
 		return $table;
 	}

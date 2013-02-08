@@ -15,7 +15,7 @@ class NCES0643ExitWithdrawalStatusType {
 	static protected $enumValue = array('1905' => 'Permanent exit/withdrawal', '1906' => 'Temporary exit/withdrawal');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0643ExitWithdrawalStatusType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0643ExitWithdrawalStatusType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

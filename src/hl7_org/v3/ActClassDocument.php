@@ -14,7 +14,7 @@ class ActClassDocument {
 	 */
 
 	/**
-	 * @XmlValue	(type="string", name="ActClassDocument")
+	 * @XmlElement	(type="\hl7_org\v3\AnyType", name="value")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class ActClassDocument {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_anyType($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'anyType'));
 		}
 	
 		return $value;

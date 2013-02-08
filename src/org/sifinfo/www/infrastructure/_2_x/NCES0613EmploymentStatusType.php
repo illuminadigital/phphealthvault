@@ -15,7 +15,7 @@ class NCES0613EmploymentStatusType {
 	static protected $enumValue = array('1384' => 'Contingent upon funding', '1379' => 'Contractual', '1383' => 'Employed or affiliated with outside organization', '1385' => 'Non-contractual', '9999' => 'Other', '1378' => 'Probationary', '1380' => 'Substitute/temporary', '1381' => 'Tenured or permanent', '1382' => 'Volunteer');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0613EmploymentStatusType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0613EmploymentStatusType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

@@ -15,12 +15,12 @@ class CR extends \ANY\ANY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CV", name="name")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CV", name="name")
 	 */
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CD", name="value")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CD", name="value")
 	 */
 	protected $value;
 
@@ -43,7 +43,7 @@ class CR extends \ANY\ANY {
 	}
 	
 	protected function createName() {
-		return new \hl7_org\v3\CV();
+		return NULL;
 	}
 
 	public function setName($name) {
@@ -51,9 +51,6 @@ class CR extends \ANY\ANY {
 	}
 
 	protected function validateName($name) {
-		if ( ! $name instanceof \hl7_org\v3\CV  && ! is_null($name) ) {
-			$name = new \hl7_org\v3\CV ($name);
-		}
 	
 		return $name;
 	}
@@ -66,7 +63,7 @@ class CR extends \ANY\ANY {
 	}
 	
 	protected function createValue() {
-		return new \hl7_org\v3\CD();
+		return NULL;
 	}
 
 	public function setValue($value) {
@@ -74,9 +71,6 @@ class CR extends \ANY\ANY {
 	}
 
 	protected function validateValue($value) {
-		if ( ! $value instanceof \hl7_org\v3\CD  && ! is_null($value) ) {
-			$value = new \hl7_org\v3\CD ($value);
-		}
 	
 		return $value;
 	}

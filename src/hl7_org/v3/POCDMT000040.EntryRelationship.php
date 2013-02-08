@@ -14,72 +14,72 @@ class POCDMT000040.EntryRelationship {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\INT", name="sequenceNumber")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\INT", name="sequenceNumber")
 	 */
 	protected $sequenceNumber;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\BL", name="seperatableInd")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\BL", name="seperatableInd")
 	 */
 	protected $seperatableInd;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Act", name="act")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Act", name="act")
 	 */
 	protected $act;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Encounter", name="encounter")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Encounter", name="encounter")
 	 */
 	protected $encounter;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Observation", name="observation")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Observation", name="observation")
 	 */
 	protected $observation;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.ObservationMedia", name="observationMedia")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.ObservationMedia", name="observationMedia")
 	 */
 	protected $observationMedia;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Organizer", name="organizer")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Organizer", name="organizer")
 	 */
 	protected $organizer;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Procedure", name="procedure")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Procedure", name="procedure")
 	 */
 	protected $procedure;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.RegionOfInterest", name="regionOfInterest")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.RegionOfInterest", name="regionOfInterest")
 	 */
 	protected $regionOfInterest;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.SubstanceAdministration", name="substanceAdministration")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.SubstanceAdministration", name="substanceAdministration")
 	 */
 	protected $substanceAdministration;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Supply", name="supply")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Supply", name="supply")
 	 */
 	protected $supply;
 
@@ -146,24 +146,23 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -174,7 +173,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -182,9 +181,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -205,24 +201,23 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getSequenceNumber() {
@@ -233,7 +228,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createSequenceNumber() {
-		return new \hl7_org\v3\INT();
+		return NULL;
 	}
 
 	public function setSequenceNumber($sequenceNumber) {
@@ -241,9 +236,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateSequenceNumber($sequenceNumber) {
-		if ( ! $sequenceNumber instanceof \hl7_org\v3\INT  && ! is_null($sequenceNumber) ) {
-			$sequenceNumber = new \hl7_org\v3\INT ($sequenceNumber);
-		}
 	
 		return $sequenceNumber;
 	}
@@ -256,7 +248,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createSeperatableInd() {
-		return new \hl7_org\v3\BL();
+		return NULL;
 	}
 
 	public function setSeperatableInd($seperatableInd) {
@@ -264,9 +256,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateSeperatableInd($seperatableInd) {
-		if ( ! $seperatableInd instanceof \hl7_org\v3\BL  && ! is_null($seperatableInd) ) {
-			$seperatableInd = new \hl7_org\v3\BL ($seperatableInd);
-		}
 	
 		return $seperatableInd;
 	}
@@ -279,7 +268,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createAct() {
-		return new \hl7_org\v3\POCDMT000040.Act();
+		return NULL;
 	}
 
 	public function setAct($act) {
@@ -287,9 +276,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateAct($act) {
-		if ( ! $act instanceof \hl7_org\v3\POCDMT000040.Act ) {
-			$act = new \hl7_org\v3\POCDMT000040.Act ($act);
-		}
 	
 		return $act;
 	}
@@ -302,7 +288,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createEncounter() {
-		return new \hl7_org\v3\POCDMT000040.Encounter();
+		return NULL;
 	}
 
 	public function setEncounter($encounter) {
@@ -310,9 +296,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateEncounter($encounter) {
-		if ( ! $encounter instanceof \hl7_org\v3\POCDMT000040.Encounter ) {
-			$encounter = new \hl7_org\v3\POCDMT000040.Encounter ($encounter);
-		}
 	
 		return $encounter;
 	}
@@ -325,7 +308,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createObservation() {
-		return new \hl7_org\v3\POCDMT000040.Observation();
+		return NULL;
 	}
 
 	public function setObservation($observation) {
@@ -333,9 +316,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateObservation($observation) {
-		if ( ! $observation instanceof \hl7_org\v3\POCDMT000040.Observation ) {
-			$observation = new \hl7_org\v3\POCDMT000040.Observation ($observation);
-		}
 	
 		return $observation;
 	}
@@ -348,7 +328,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createObservationMedia() {
-		return new \hl7_org\v3\POCDMT000040.ObservationMedia();
+		return NULL;
 	}
 
 	public function setObservationMedia($observationMedia) {
@@ -356,9 +336,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateObservationMedia($observationMedia) {
-		if ( ! $observationMedia instanceof \hl7_org\v3\POCDMT000040.ObservationMedia ) {
-			$observationMedia = new \hl7_org\v3\POCDMT000040.ObservationMedia ($observationMedia);
-		}
 	
 		return $observationMedia;
 	}
@@ -371,7 +348,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createOrganizer() {
-		return new \hl7_org\v3\POCDMT000040.Organizer();
+		return NULL;
 	}
 
 	public function setOrganizer($organizer) {
@@ -379,9 +356,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateOrganizer($organizer) {
-		if ( ! $organizer instanceof \hl7_org\v3\POCDMT000040.Organizer ) {
-			$organizer = new \hl7_org\v3\POCDMT000040.Organizer ($organizer);
-		}
 	
 		return $organizer;
 	}
@@ -394,7 +368,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createProcedure() {
-		return new \hl7_org\v3\POCDMT000040.Procedure();
+		return NULL;
 	}
 
 	public function setProcedure($procedure) {
@@ -402,9 +376,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateProcedure($procedure) {
-		if ( ! $procedure instanceof \hl7_org\v3\POCDMT000040.Procedure ) {
-			$procedure = new \hl7_org\v3\POCDMT000040.Procedure ($procedure);
-		}
 	
 		return $procedure;
 	}
@@ -417,7 +388,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createRegionOfInterest() {
-		return new \hl7_org\v3\POCDMT000040.RegionOfInterest();
+		return NULL;
 	}
 
 	public function setRegionOfInterest($regionOfInterest) {
@@ -425,9 +396,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateRegionOfInterest($regionOfInterest) {
-		if ( ! $regionOfInterest instanceof \hl7_org\v3\POCDMT000040.RegionOfInterest ) {
-			$regionOfInterest = new \hl7_org\v3\POCDMT000040.RegionOfInterest ($regionOfInterest);
-		}
 	
 		return $regionOfInterest;
 	}
@@ -440,7 +408,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createSubstanceAdministration() {
-		return new \hl7_org\v3\POCDMT000040.SubstanceAdministration();
+		return NULL;
 	}
 
 	public function setSubstanceAdministration($substanceAdministration) {
@@ -448,9 +416,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateSubstanceAdministration($substanceAdministration) {
-		if ( ! $substanceAdministration instanceof \hl7_org\v3\POCDMT000040.SubstanceAdministration ) {
-			$substanceAdministration = new \hl7_org\v3\POCDMT000040.SubstanceAdministration ($substanceAdministration);
-		}
 	
 		return $substanceAdministration;
 	}
@@ -463,7 +428,7 @@ class POCDMT000040.EntryRelationship {
 	}
 	
 	protected function createSupply() {
-		return new \hl7_org\v3\POCDMT000040.Supply();
+		return NULL;
 	}
 
 	public function setSupply($supply) {
@@ -471,9 +436,6 @@ class POCDMT000040.EntryRelationship {
 	}
 
 	protected function validateSupply($supply) {
-		if ( ! $supply instanceof \hl7_org\v3\POCDMT000040.Supply ) {
-			$supply = new \hl7_org\v3\POCDMT000040.Supply ($supply);
-		}
 	
 		return $supply;
 	}

@@ -14,52 +14,52 @@ class POCDMT000040.EncompassingEncounter {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="id")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="id")
 	 */
 	protected $id;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="code")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="code")
 	 */
 	protected $code;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVLTS", name="effectiveTime")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVLTS", name="effectiveTime")
 	 */
 	protected $effectiveTime;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="dischargeDispositionCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="dischargeDispositionCode")
 	 */
 	protected $dischargeDispositionCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.ResponsibleParty", name="responsibleParty")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.ResponsibleParty", name="responsibleParty")
 	 */
 	protected $responsibleParty;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.EncounterParticipant", collection="true", name="encounterParticipant")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.EncounterParticipant", collection="true", name="encounterParticipant")
 	 */
 	protected $encounterParticipant;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Location", name="location")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Location", name="location")
 	 */
 	protected $location;
 
@@ -110,24 +110,23 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -138,7 +137,7 @@ class POCDMT000040.EncompassingEncounter {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -146,9 +145,6 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -169,24 +165,23 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getId() {
@@ -205,24 +200,23 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateId($id) {
-		if ( ! is_array ($id) && ! is_null($id) ) {
-			$id = array($id);
-		}
 		$count = count($id);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
 		}
 		foreach ($id as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'II'));
-			}
 		}
 	
 		return $id;
 	}
 
 	public function addId($id) {
-		$this->id[] = $id;
+		$this->id[] = $this->validateIdType($id);
+	}
+
+	protected function validateIdType($id) {
+	
+		return $id;
 	}
 
 	public function getCode() {
@@ -233,7 +227,7 @@ class POCDMT000040.EncompassingEncounter {
 	}
 	
 	protected function createCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -241,9 +235,6 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \hl7_org\v3\CE  && ! is_null($code) ) {
-			$code = new \hl7_org\v3\CE ($code);
-		}
 	
 		return $code;
 	}
@@ -256,7 +247,7 @@ class POCDMT000040.EncompassingEncounter {
 	}
 	
 	protected function createEffectiveTime() {
-		return new \hl7_org\v3\IVLTS();
+		return NULL;
 	}
 
 	public function setEffectiveTime($effectiveTime) {
@@ -264,9 +255,6 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateEffectiveTime($effectiveTime) {
-		if ( ! $effectiveTime instanceof \hl7_org\v3\IVLTS ) {
-			$effectiveTime = new \hl7_org\v3\IVLTS ($effectiveTime);
-		}
 	
 		return $effectiveTime;
 	}
@@ -279,7 +267,7 @@ class POCDMT000040.EncompassingEncounter {
 	}
 	
 	protected function createDischargeDispositionCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setDischargeDispositionCode($dischargeDispositionCode) {
@@ -287,9 +275,6 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateDischargeDispositionCode($dischargeDispositionCode) {
-		if ( ! $dischargeDispositionCode instanceof \hl7_org\v3\CE  && ! is_null($dischargeDispositionCode) ) {
-			$dischargeDispositionCode = new \hl7_org\v3\CE ($dischargeDispositionCode);
-		}
 	
 		return $dischargeDispositionCode;
 	}
@@ -302,7 +287,7 @@ class POCDMT000040.EncompassingEncounter {
 	}
 	
 	protected function createResponsibleParty() {
-		return new \hl7_org\v3\POCDMT000040.ResponsibleParty();
+		return NULL;
 	}
 
 	public function setResponsibleParty($responsibleParty) {
@@ -310,9 +295,6 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateResponsibleParty($responsibleParty) {
-		if ( ! $responsibleParty instanceof \hl7_org\v3\POCDMT000040.ResponsibleParty  && ! is_null($responsibleParty) ) {
-			$responsibleParty = new \hl7_org\v3\POCDMT000040.ResponsibleParty ($responsibleParty);
-		}
 	
 		return $responsibleParty;
 	}
@@ -333,24 +315,23 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateEncounterParticipant($encounterParticipant) {
-		if ( ! is_array ($encounterParticipant) && ! is_null($encounterParticipant) ) {
-			$encounterParticipant = array($encounterParticipant);
-		}
 		$count = count($encounterParticipant);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'encounterParticipant', 0));
 		}
 		foreach ($encounterParticipant as $entry) {
-			if (!($entry instanceof POCDMT000040.EncounterParticipant)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'encounterParticipant', 'POCD_MT000040.EncounterParticipant'));
-			}
 		}
 	
 		return $encounterParticipant;
 	}
 
 	public function addEncounterParticipant($encounterParticipant) {
-		$this->encounterParticipant[] = $encounterParticipant;
+		$this->encounterParticipant[] = $this->validateEncounterParticipantType($encounterParticipant);
+	}
+
+	protected function validateEncounterParticipantType($encounterParticipant) {
+	
+		return $encounterParticipant;
 	}
 
 	public function getLocation() {
@@ -361,7 +342,7 @@ class POCDMT000040.EncompassingEncounter {
 	}
 	
 	protected function createLocation() {
-		return new \hl7_org\v3\POCDMT000040.Location();
+		return NULL;
 	}
 
 	public function setLocation($location) {
@@ -369,9 +350,6 @@ class POCDMT000040.EncompassingEncounter {
 	}
 
 	protected function validateLocation($location) {
-		if ( ! $location instanceof \hl7_org\v3\POCDMT000040.Location  && ! is_null($location) ) {
-			$location = new \hl7_org\v3\POCDMT000040.Location ($location);
-		}
 	
 		return $location;
 	}

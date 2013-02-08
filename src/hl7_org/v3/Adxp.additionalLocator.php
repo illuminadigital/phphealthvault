@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.additionalLocator")
  */
-class Adxp.additionalLocator extends ADXP {
+class Adxp.additionalLocator extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

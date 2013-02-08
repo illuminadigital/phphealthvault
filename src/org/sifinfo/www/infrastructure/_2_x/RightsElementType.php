@@ -15,7 +15,7 @@ class RightsElementType {
 	 */
 
 	/**
-	 * @XmlText	(type="boolean", name="Cost")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Boolean", name="Cost")
 	 */
 	protected $cost;
 
@@ -25,12 +25,12 @@ class RightsElementType {
 	protected $feesForUse;
 
 	/**
-	 * @XmlText	(type="string", name="CopyrightStatement")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="CopyrightStatement")
 	 */
 	protected $copyrightStatement;
 
 	/**
-	 * @XmlText	(type="string", name="TermsOfUse")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="TermsOfUse")
 	 */
 	protected $termsOfUse;
 

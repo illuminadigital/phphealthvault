@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="en.given")
  */
-class En.given extends ENXP {
+class En.given extends \org\w3\www\_2001\XMLSchema\ENXP {
 	/**
 	 */
 

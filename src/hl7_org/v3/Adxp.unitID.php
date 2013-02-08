@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.unitID")
  */
-class Adxp.unitID extends ADXP {
+class Adxp.unitID extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

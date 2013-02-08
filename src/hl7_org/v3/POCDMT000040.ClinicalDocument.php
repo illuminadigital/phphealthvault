@@ -14,137 +14,137 @@ class POCDMT000040.ClinicalDocument {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", name="id")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", name="id")
 	 */
 	protected $id;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="code")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="code")
 	 */
 	protected $code;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\ST", name="title")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\ST", name="title")
 	 */
 	protected $title;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\TS", name="effectiveTime")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TS", name="effectiveTime")
 	 */
 	protected $effectiveTime;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CE", name="confidentialityCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="confidentialityCode")
 	 */
 	protected $confidentialityCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", name="languageCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", name="languageCode")
 	 */
 	protected $languageCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", name="setId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", name="setId")
 	 */
 	protected $setId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\INT", name="versionNumber")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\INT", name="versionNumber")
 	 */
 	protected $versionNumber;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\TS", name="copyTime")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TS", name="copyTime")
 	 */
 	protected $copyTime;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.RecordTarget", collection="true", name="recordTarget")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.RecordTarget", collection="true", name="recordTarget")
 	 */
 	protected $recordTarget;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Author", collection="true", name="author")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Author", collection="true", name="author")
 	 */
 	protected $author;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.DataEnterer", name="dataEnterer")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.DataEnterer", name="dataEnterer")
 	 */
 	protected $dataEnterer;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Informant12", collection="true", name="informant")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Informant12", collection="true", name="informant")
 	 */
 	protected $informant;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Custodian", name="custodian")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Custodian", name="custodian")
 	 */
 	protected $custodian;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InformationRecipient", collection="true", name="informationRecipient")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InformationRecipient", collection="true", name="informationRecipient")
 	 */
 	protected $informationRecipient;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.LegalAuthenticator", name="legalAuthenticator")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.LegalAuthenticator", name="legalAuthenticator")
 	 */
 	protected $legalAuthenticator;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Authenticator", collection="true", name="authenticator")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Authenticator", collection="true", name="authenticator")
 	 */
 	protected $authenticator;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Participant1", collection="true", name="participant")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Participant1", collection="true", name="participant")
 	 */
 	protected $participant;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InFulfillmentOf", collection="true", name="inFulfillmentOf")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InFulfillmentOf", collection="true", name="inFulfillmentOf")
 	 */
 	protected $inFulfillmentOf;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.DocumentationOf", collection="true", name="documentationOf")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.DocumentationOf", collection="true", name="documentationOf")
 	 */
 	protected $documentationOf;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.RelatedDocument", collection="true", name="relatedDocument")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.RelatedDocument", collection="true", name="relatedDocument")
 	 */
 	protected $relatedDocument;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Authorization", collection="true", name="authorization")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Authorization", collection="true", name="authorization")
 	 */
 	protected $authorization;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Component1", name="componentOf")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Component1", name="componentOf")
 	 */
 	protected $componentOf;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.Component2", name="component")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.Component2", name="component")
 	 */
 	protected $component;
 
@@ -212,24 +212,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -240,7 +239,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -248,9 +247,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -271,24 +267,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getId() {
@@ -299,7 +294,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createId() {
-		return new \hl7_org\v3\II();
+		return NULL;
 	}
 
 	public function setId($id) {
@@ -307,9 +302,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateId($id) {
-		if ( ! $id instanceof \hl7_org\v3\II ) {
-			$id = new \hl7_org\v3\II ($id);
-		}
 	
 		return $id;
 	}
@@ -322,7 +314,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -330,9 +322,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \hl7_org\v3\CE ) {
-			$code = new \hl7_org\v3\CE ($code);
-		}
 	
 		return $code;
 	}
@@ -345,7 +334,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createTitle() {
-		return new \hl7_org\v3\ST();
+		return NULL;
 	}
 
 	public function setTitle($title) {
@@ -353,9 +342,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateTitle($title) {
-		if ( ! $title instanceof \hl7_org\v3\ST  && ! is_null($title) ) {
-			$title = new \hl7_org\v3\ST ($title);
-		}
 	
 		return $title;
 	}
@@ -368,7 +354,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createEffectiveTime() {
-		return new \hl7_org\v3\TS();
+		return NULL;
 	}
 
 	public function setEffectiveTime($effectiveTime) {
@@ -376,9 +362,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateEffectiveTime($effectiveTime) {
-		if ( ! $effectiveTime instanceof \hl7_org\v3\TS ) {
-			$effectiveTime = new \hl7_org\v3\TS ($effectiveTime);
-		}
 	
 		return $effectiveTime;
 	}
@@ -391,7 +374,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createConfidentialityCode() {
-		return new \hl7_org\v3\CE();
+		return NULL;
 	}
 
 	public function setConfidentialityCode($confidentialityCode) {
@@ -399,9 +382,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateConfidentialityCode($confidentialityCode) {
-		if ( ! $confidentialityCode instanceof \hl7_org\v3\CE ) {
-			$confidentialityCode = new \hl7_org\v3\CE ($confidentialityCode);
-		}
 	
 		return $confidentialityCode;
 	}
@@ -414,7 +394,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createLanguageCode() {
-		return new \hl7_org\v3\CS();
+		return NULL;
 	}
 
 	public function setLanguageCode($languageCode) {
@@ -422,9 +402,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateLanguageCode($languageCode) {
-		if ( ! $languageCode instanceof \hl7_org\v3\CS  && ! is_null($languageCode) ) {
-			$languageCode = new \hl7_org\v3\CS ($languageCode);
-		}
 	
 		return $languageCode;
 	}
@@ -437,7 +414,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createSetId() {
-		return new \hl7_org\v3\II();
+		return NULL;
 	}
 
 	public function setSetId($setId) {
@@ -445,9 +422,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateSetId($setId) {
-		if ( ! $setId instanceof \hl7_org\v3\II  && ! is_null($setId) ) {
-			$setId = new \hl7_org\v3\II ($setId);
-		}
 	
 		return $setId;
 	}
@@ -460,7 +434,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createVersionNumber() {
-		return new \hl7_org\v3\INT();
+		return NULL;
 	}
 
 	public function setVersionNumber($versionNumber) {
@@ -468,9 +442,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateVersionNumber($versionNumber) {
-		if ( ! $versionNumber instanceof \hl7_org\v3\INT  && ! is_null($versionNumber) ) {
-			$versionNumber = new \hl7_org\v3\INT ($versionNumber);
-		}
 	
 		return $versionNumber;
 	}
@@ -483,7 +454,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createCopyTime() {
-		return new \hl7_org\v3\TS();
+		return NULL;
 	}
 
 	public function setCopyTime($copyTime) {
@@ -491,9 +462,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateCopyTime($copyTime) {
-		if ( ! $copyTime instanceof \hl7_org\v3\TS  && ! is_null($copyTime) ) {
-			$copyTime = new \hl7_org\v3\TS ($copyTime);
-		}
 	
 		return $copyTime;
 	}
@@ -514,24 +482,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateRecordTarget($recordTarget) {
-		if ( ! is_array ($recordTarget) ) {
-			$recordTarget = array($recordTarget);
-		}
 		$count = count($recordTarget);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'recordTarget', 1));
 		}
 		foreach ($recordTarget as $entry) {
-			if (!($entry instanceof POCDMT000040.RecordTarget)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'recordTarget', 'POCD_MT000040.RecordTarget'));
-			}
 		}
 	
 		return $recordTarget;
 	}
 
 	public function addRecordTarget($recordTarget) {
-		$this->recordTarget[] = $recordTarget;
+		$this->recordTarget[] = $this->validateRecordTargetType($recordTarget);
+	}
+
+	protected function validateRecordTargetType($recordTarget) {
+	
+		return $recordTarget;
 	}
 
 	public function getAuthor() {
@@ -550,24 +517,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateAuthor($author) {
-		if ( ! is_array ($author) ) {
-			$author = array($author);
-		}
 		$count = count($author);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'author', 1));
 		}
 		foreach ($author as $entry) {
-			if (!($entry instanceof POCDMT000040.Author)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'author', 'POCD_MT000040.Author'));
-			}
 		}
 	
 		return $author;
 	}
 
 	public function addAuthor($author) {
-		$this->author[] = $author;
+		$this->author[] = $this->validateAuthorType($author);
+	}
+
+	protected function validateAuthorType($author) {
+	
+		return $author;
 	}
 
 	public function getDataEnterer() {
@@ -578,7 +544,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createDataEnterer() {
-		return new \hl7_org\v3\POCDMT000040.DataEnterer();
+		return NULL;
 	}
 
 	public function setDataEnterer($dataEnterer) {
@@ -586,9 +552,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateDataEnterer($dataEnterer) {
-		if ( ! $dataEnterer instanceof \hl7_org\v3\POCDMT000040.DataEnterer  && ! is_null($dataEnterer) ) {
-			$dataEnterer = new \hl7_org\v3\POCDMT000040.DataEnterer ($dataEnterer);
-		}
 	
 		return $dataEnterer;
 	}
@@ -609,24 +572,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateInformant($informant) {
-		if ( ! is_array ($informant) && ! is_null($informant) ) {
-			$informant = array($informant);
-		}
 		$count = count($informant);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'informant', 0));
 		}
 		foreach ($informant as $entry) {
-			if (!($entry instanceof POCDMT000040.Informant12)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'informant', 'POCD_MT000040.Informant12'));
-			}
 		}
 	
 		return $informant;
 	}
 
 	public function addInformant($informant) {
-		$this->informant[] = $informant;
+		$this->informant[] = $this->validateInformantType($informant);
+	}
+
+	protected function validateInformantType($informant) {
+	
+		return $informant;
 	}
 
 	public function getCustodian() {
@@ -637,7 +599,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createCustodian() {
-		return new \hl7_org\v3\POCDMT000040.Custodian();
+		return NULL;
 	}
 
 	public function setCustodian($custodian) {
@@ -645,9 +607,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateCustodian($custodian) {
-		if ( ! $custodian instanceof \hl7_org\v3\POCDMT000040.Custodian ) {
-			$custodian = new \hl7_org\v3\POCDMT000040.Custodian ($custodian);
-		}
 	
 		return $custodian;
 	}
@@ -668,24 +627,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateInformationRecipient($informationRecipient) {
-		if ( ! is_array ($informationRecipient) && ! is_null($informationRecipient) ) {
-			$informationRecipient = array($informationRecipient);
-		}
 		$count = count($informationRecipient);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'informationRecipient', 0));
 		}
 		foreach ($informationRecipient as $entry) {
-			if (!($entry instanceof POCDMT000040.InformationRecipient)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'informationRecipient', 'POCD_MT000040.InformationRecipient'));
-			}
 		}
 	
 		return $informationRecipient;
 	}
 
 	public function addInformationRecipient($informationRecipient) {
-		$this->informationRecipient[] = $informationRecipient;
+		$this->informationRecipient[] = $this->validateInformationRecipientType($informationRecipient);
+	}
+
+	protected function validateInformationRecipientType($informationRecipient) {
+	
+		return $informationRecipient;
 	}
 
 	public function getLegalAuthenticator() {
@@ -696,7 +654,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createLegalAuthenticator() {
-		return new \hl7_org\v3\POCDMT000040.LegalAuthenticator();
+		return NULL;
 	}
 
 	public function setLegalAuthenticator($legalAuthenticator) {
@@ -704,9 +662,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateLegalAuthenticator($legalAuthenticator) {
-		if ( ! $legalAuthenticator instanceof \hl7_org\v3\POCDMT000040.LegalAuthenticator  && ! is_null($legalAuthenticator) ) {
-			$legalAuthenticator = new \hl7_org\v3\POCDMT000040.LegalAuthenticator ($legalAuthenticator);
-		}
 	
 		return $legalAuthenticator;
 	}
@@ -727,24 +682,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateAuthenticator($authenticator) {
-		if ( ! is_array ($authenticator) && ! is_null($authenticator) ) {
-			$authenticator = array($authenticator);
-		}
 		$count = count($authenticator);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'authenticator', 0));
 		}
 		foreach ($authenticator as $entry) {
-			if (!($entry instanceof POCDMT000040.Authenticator)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'authenticator', 'POCD_MT000040.Authenticator'));
-			}
 		}
 	
 		return $authenticator;
 	}
 
 	public function addAuthenticator($authenticator) {
-		$this->authenticator[] = $authenticator;
+		$this->authenticator[] = $this->validateAuthenticatorType($authenticator);
+	}
+
+	protected function validateAuthenticatorType($authenticator) {
+	
+		return $authenticator;
 	}
 
 	public function getParticipant() {
@@ -763,24 +717,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateParticipant($participant) {
-		if ( ! is_array ($participant) && ! is_null($participant) ) {
-			$participant = array($participant);
-		}
 		$count = count($participant);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'participant', 0));
 		}
 		foreach ($participant as $entry) {
-			if (!($entry instanceof POCDMT000040.Participant1)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'participant', 'POCD_MT000040.Participant1'));
-			}
 		}
 	
 		return $participant;
 	}
 
 	public function addParticipant($participant) {
-		$this->participant[] = $participant;
+		$this->participant[] = $this->validateParticipantType($participant);
+	}
+
+	protected function validateParticipantType($participant) {
+	
+		return $participant;
 	}
 
 	public function getInFulfillmentOf() {
@@ -799,24 +752,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateInFulfillmentOf($inFulfillmentOf) {
-		if ( ! is_array ($inFulfillmentOf) && ! is_null($inFulfillmentOf) ) {
-			$inFulfillmentOf = array($inFulfillmentOf);
-		}
 		$count = count($inFulfillmentOf);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'inFulfillmentOf', 0));
 		}
 		foreach ($inFulfillmentOf as $entry) {
-			if (!($entry instanceof POCDMT000040.InFulfillmentOf)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'inFulfillmentOf', 'POCD_MT000040.InFulfillmentOf'));
-			}
 		}
 	
 		return $inFulfillmentOf;
 	}
 
 	public function addInFulfillmentOf($inFulfillmentOf) {
-		$this->inFulfillmentOf[] = $inFulfillmentOf;
+		$this->inFulfillmentOf[] = $this->validateInFulfillmentOfType($inFulfillmentOf);
+	}
+
+	protected function validateInFulfillmentOfType($inFulfillmentOf) {
+	
+		return $inFulfillmentOf;
 	}
 
 	public function getDocumentationOf() {
@@ -835,24 +787,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateDocumentationOf($documentationOf) {
-		if ( ! is_array ($documentationOf) && ! is_null($documentationOf) ) {
-			$documentationOf = array($documentationOf);
-		}
 		$count = count($documentationOf);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'documentationOf', 0));
 		}
 		foreach ($documentationOf as $entry) {
-			if (!($entry instanceof POCDMT000040.DocumentationOf)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'documentationOf', 'POCD_MT000040.DocumentationOf'));
-			}
 		}
 	
 		return $documentationOf;
 	}
 
 	public function addDocumentationOf($documentationOf) {
-		$this->documentationOf[] = $documentationOf;
+		$this->documentationOf[] = $this->validateDocumentationOfType($documentationOf);
+	}
+
+	protected function validateDocumentationOfType($documentationOf) {
+	
+		return $documentationOf;
 	}
 
 	public function getRelatedDocument() {
@@ -871,24 +822,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateRelatedDocument($relatedDocument) {
-		if ( ! is_array ($relatedDocument) && ! is_null($relatedDocument) ) {
-			$relatedDocument = array($relatedDocument);
-		}
 		$count = count($relatedDocument);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'relatedDocument', 0));
 		}
 		foreach ($relatedDocument as $entry) {
-			if (!($entry instanceof POCDMT000040.RelatedDocument)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'relatedDocument', 'POCD_MT000040.RelatedDocument'));
-			}
 		}
 	
 		return $relatedDocument;
 	}
 
 	public function addRelatedDocument($relatedDocument) {
-		$this->relatedDocument[] = $relatedDocument;
+		$this->relatedDocument[] = $this->validateRelatedDocumentType($relatedDocument);
+	}
+
+	protected function validateRelatedDocumentType($relatedDocument) {
+	
+		return $relatedDocument;
 	}
 
 	public function getAuthorization() {
@@ -907,24 +857,23 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateAuthorization($authorization) {
-		if ( ! is_array ($authorization) && ! is_null($authorization) ) {
-			$authorization = array($authorization);
-		}
 		$count = count($authorization);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'authorization', 0));
 		}
 		foreach ($authorization as $entry) {
-			if (!($entry instanceof POCDMT000040.Authorization)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'authorization', 'POCD_MT000040.Authorization'));
-			}
 		}
 	
 		return $authorization;
 	}
 
 	public function addAuthorization($authorization) {
-		$this->authorization[] = $authorization;
+		$this->authorization[] = $this->validateAuthorizationType($authorization);
+	}
+
+	protected function validateAuthorizationType($authorization) {
+	
+		return $authorization;
 	}
 
 	public function getComponentOf() {
@@ -935,7 +884,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createComponentOf() {
-		return new \hl7_org\v3\POCDMT000040.Component1();
+		return NULL;
 	}
 
 	public function setComponentOf($componentOf) {
@@ -943,9 +892,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateComponentOf($componentOf) {
-		if ( ! $componentOf instanceof \hl7_org\v3\POCDMT000040.Component1  && ! is_null($componentOf) ) {
-			$componentOf = new \hl7_org\v3\POCDMT000040.Component1 ($componentOf);
-		}
 	
 		return $componentOf;
 	}
@@ -958,7 +904,7 @@ class POCDMT000040.ClinicalDocument {
 	}
 	
 	protected function createComponent() {
-		return new \hl7_org\v3\POCDMT000040.Component2();
+		return NULL;
 	}
 
 	public function setComponent($component) {
@@ -966,9 +912,6 @@ class POCDMT000040.ClinicalDocument {
 	}
 
 	protected function validateComponent($component) {
-		if ( ! $component instanceof \hl7_org\v3\POCDMT000040.Component2 ) {
-			$component = new \hl7_org\v3\POCDMT000040.Component2 ($component);
-		}
 	
 		return $component;
 	}

@@ -15,32 +15,32 @@ class EN extends \ANY\ANY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\En.delimiter", name="delimiter")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.delimiter", name="delimiter")
 	 */
 	protected $delimiter;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\En.family", name="family")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.family", name="family")
 	 */
 	protected $family;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\En.given", name="given")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.given", name="given")
 	 */
 	protected $given;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\En.prefix", name="prefix")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.prefix", name="prefix")
 	 */
 	protected $prefix;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\En.suffix", name="suffix")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.suffix", name="suffix")
 	 */
 	protected $suffix;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVLTS", name="validTime")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVLTS", name="validTime")
 	 */
 	protected $validTime;
 
@@ -67,7 +67,7 @@ class EN extends \ANY\ANY {
 	}
 	
 	protected function createDelimiter() {
-		return new \hl7_org\v3\En.delimiter();
+		return NULL;
 	}
 
 	public function setDelimiter($delimiter) {
@@ -75,9 +75,6 @@ class EN extends \ANY\ANY {
 	}
 
 	protected function validateDelimiter($delimiter) {
-		if ( ! $delimiter instanceof \hl7_org\v3\En.delimiter ) {
-			$delimiter = new \hl7_org\v3\En.delimiter ($delimiter);
-		}
 	
 		return $delimiter;
 	}
@@ -90,7 +87,7 @@ class EN extends \ANY\ANY {
 	}
 	
 	protected function createFamily() {
-		return new \hl7_org\v3\En.family();
+		return NULL;
 	}
 
 	public function setFamily($family) {
@@ -98,9 +95,6 @@ class EN extends \ANY\ANY {
 	}
 
 	protected function validateFamily($family) {
-		if ( ! $family instanceof \hl7_org\v3\En.family ) {
-			$family = new \hl7_org\v3\En.family ($family);
-		}
 	
 		return $family;
 	}
@@ -113,7 +107,7 @@ class EN extends \ANY\ANY {
 	}
 	
 	protected function createGiven() {
-		return new \hl7_org\v3\En.given();
+		return NULL;
 	}
 
 	public function setGiven($given) {
@@ -121,9 +115,6 @@ class EN extends \ANY\ANY {
 	}
 
 	protected function validateGiven($given) {
-		if ( ! $given instanceof \hl7_org\v3\En.given ) {
-			$given = new \hl7_org\v3\En.given ($given);
-		}
 	
 		return $given;
 	}
@@ -136,7 +127,7 @@ class EN extends \ANY\ANY {
 	}
 	
 	protected function createPrefix() {
-		return new \hl7_org\v3\En.prefix();
+		return NULL;
 	}
 
 	public function setPrefix($prefix) {
@@ -144,9 +135,6 @@ class EN extends \ANY\ANY {
 	}
 
 	protected function validatePrefix($prefix) {
-		if ( ! $prefix instanceof \hl7_org\v3\En.prefix ) {
-			$prefix = new \hl7_org\v3\En.prefix ($prefix);
-		}
 	
 		return $prefix;
 	}
@@ -159,7 +147,7 @@ class EN extends \ANY\ANY {
 	}
 	
 	protected function createSuffix() {
-		return new \hl7_org\v3\En.suffix();
+		return NULL;
 	}
 
 	public function setSuffix($suffix) {
@@ -167,9 +155,6 @@ class EN extends \ANY\ANY {
 	}
 
 	protected function validateSuffix($suffix) {
-		if ( ! $suffix instanceof \hl7_org\v3\En.suffix ) {
-			$suffix = new \hl7_org\v3\En.suffix ($suffix);
-		}
 	
 		return $suffix;
 	}
@@ -182,7 +167,7 @@ class EN extends \ANY\ANY {
 	}
 	
 	protected function createValidTime() {
-		return new \hl7_org\v3\IVLTS();
+		return NULL;
 	}
 
 	public function setValidTime($validTime) {
@@ -190,9 +175,6 @@ class EN extends \ANY\ANY {
 	}
 
 	protected function validateValidTime($validTime) {
-		if ( ! $validTime instanceof \hl7_org\v3\IVLTS  && ! is_null($validTime) ) {
-			$validTime = new \hl7_org\v3\IVLTS ($validTime);
-		}
 	
 		return $validTime;
 	}

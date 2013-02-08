@@ -15,7 +15,7 @@ class NCES0327LanguageTypeType {
 	static protected $enumValue = array('1035' => 'Correspondence language', '1036' => 'Dominant language', '1037' => 'Home language', '1038' => 'Native language', '9999' => 'Other', '1039' => 'Other language proficiency');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0327LanguageTypeType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0327LanguageTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

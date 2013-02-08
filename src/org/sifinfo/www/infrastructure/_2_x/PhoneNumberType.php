@@ -15,12 +15,12 @@ class PhoneNumberType {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="Number")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Number")
 	 */
 	protected $number;
 
 	/**
-	 * @XmlText	(type="string", name="Extension")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Extension")
 	 */
 	protected $extension;
 
@@ -57,8 +57,8 @@ class PhoneNumberType {
 	}
 
 	protected function validateNumber($number) {
-		if (!is_string($number)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'number', 'string'));
+		if (!is_normalizedString($number)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'number', 'normalizedString'));
 		}
 	
 		return $number;
@@ -80,8 +80,8 @@ class PhoneNumberType {
 	}
 
 	protected function validateExtension($extension) {
-		if ( ! is_string($extension) && ! is_null($extension) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'extension', 'string'));
+		if ( ! is_normalizedString($extension) && ! is_null($extension) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'extension', 'normalizedString'));
 		}
 	
 		return $extension;

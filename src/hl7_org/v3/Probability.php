@@ -14,7 +14,7 @@ class Probability {
 	 */
 
 	/**
-	 * @XmlValue	(type="float", name="probability")
+	 * @XmlElement	(type="\hl7_org\v3\Double", name="value")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class Probability {
 	}
 
 	protected function validateValue($value) {
-		if (!is_float($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'float'));
+		if (!is_double($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'double'));
 		}
 
 		if ($value < 0.0) {

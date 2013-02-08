@@ -14,12 +14,12 @@ class StrucDoc.Tr {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Th", name="th")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Th", name="th")
 	 */
 	protected $th;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Td", name="td")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Td", name="td")
 	 */
 	protected $td;
 
@@ -78,7 +78,7 @@ class StrucDoc.Tr {
 	}
 	
 	protected function createTh() {
-		return new \hl7_org\v3\StrucDoc.Th();
+		return NULL;
 	}
 
 	public function setTh($th) {
@@ -86,9 +86,6 @@ class StrucDoc.Tr {
 	}
 
 	protected function validateTh($th) {
-		if ( ! $th instanceof \hl7_org\v3\StrucDoc.Th ) {
-			$th = new \hl7_org\v3\StrucDoc.Th ($th);
-		}
 	
 		return $th;
 	}
@@ -101,7 +98,7 @@ class StrucDoc.Tr {
 	}
 	
 	protected function createTd() {
-		return new \hl7_org\v3\StrucDoc.Td();
+		return NULL;
 	}
 
 	public function setTd($td) {
@@ -109,9 +106,6 @@ class StrucDoc.Tr {
 	}
 
 	protected function validateTd($td) {
-		if ( ! $td instanceof \hl7_org\v3\StrucDoc.Td ) {
-			$td = new \hl7_org\v3\StrucDoc.Td ($td);
-		}
 	
 		return $td;
 	}

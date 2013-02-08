@@ -14,42 +14,42 @@ class AcademicPerformanceSummary {
 	 */
 
 	/**
-	 * @XmlText	(type="float", name="TotalCreditsAttempted")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="TotalCreditsAttempted")
 	 */
 	protected $totalCreditsAttempted;
 
 	/**
-	 * @XmlText	(type="float", name="TotalCreditsEarned")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="TotalCreditsEarned")
 	 */
 	protected $totalCreditsEarned;
 
 	/**
-	 * @XmlText	(type="float", name="CumulativeGPACreditsEarned")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="CumulativeGPACreditsEarned")
 	 */
 	protected $cumulativeGPACreditsEarned;
 
 	/**
-	 * @XmlText	(type="float", name="CumulativeGradePoints")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="CumulativeGradePoints")
 	 */
 	protected $cumulativeGradePoints;
 
 	/**
-	 * @XmlText	(type="float", name="CumulativeGPA")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="CumulativeGPA")
 	 */
 	protected $cumulativeGPA;
 
 	/**
-	 * @XmlText	(type="string", name="GPAType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="GPAType")
 	 */
 	protected $gPAType;
 
 	/**
-	 * @XmlText	(type="integer", name="ClassRank")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\UnsignedInt", name="ClassRank")
 	 */
 	protected $classRank;
 
 	/**
-	 * @XmlText	(type="integer", name="ClassTotalNumber")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\UnsignedInt", name="ClassTotalNumber")
 	 */
 	protected $classTotalNumber;
 
@@ -69,7 +69,7 @@ class AcademicPerformanceSummary {
 	protected $graduationDate;
 
 	/**
-	 * @XmlText	(type="string", name="GraduationDiplomaType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="GraduationDiplomaType")
 	 */
 	protected $graduationDiplomaType;
 
@@ -128,8 +128,8 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateTotalCreditsAttempted($totalCreditsAttempted) {
-		if ( ! is_float($totalCreditsAttempted) && ! is_null($totalCreditsAttempted) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'totalCreditsAttempted', 'float'));
+		if ( ! is_decimal($totalCreditsAttempted) && ! is_null($totalCreditsAttempted) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'totalCreditsAttempted', 'decimal'));
 		}
 	
 		return $totalCreditsAttempted;
@@ -151,8 +151,8 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateTotalCreditsEarned($totalCreditsEarned) {
-		if ( ! is_float($totalCreditsEarned) && ! is_null($totalCreditsEarned) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'totalCreditsEarned', 'float'));
+		if ( ! is_decimal($totalCreditsEarned) && ! is_null($totalCreditsEarned) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'totalCreditsEarned', 'decimal'));
 		}
 	
 		return $totalCreditsEarned;
@@ -174,8 +174,8 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateCumulativeGPACreditsEarned($cumulativeGPACreditsEarned) {
-		if ( ! is_float($cumulativeGPACreditsEarned) && ! is_null($cumulativeGPACreditsEarned) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'cumulativeGPACreditsEarned', 'float'));
+		if ( ! is_decimal($cumulativeGPACreditsEarned) && ! is_null($cumulativeGPACreditsEarned) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'cumulativeGPACreditsEarned', 'decimal'));
 		}
 	
 		return $cumulativeGPACreditsEarned;
@@ -197,8 +197,8 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateCumulativeGradePoints($cumulativeGradePoints) {
-		if ( ! is_float($cumulativeGradePoints) && ! is_null($cumulativeGradePoints) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'cumulativeGradePoints', 'float'));
+		if ( ! is_decimal($cumulativeGradePoints) && ! is_null($cumulativeGradePoints) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'cumulativeGradePoints', 'decimal'));
 		}
 	
 		return $cumulativeGradePoints;
@@ -220,8 +220,8 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateCumulativeGPA($cumulativeGPA) {
-		if ( ! is_float($cumulativeGPA) && ! is_null($cumulativeGPA) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'cumulativeGPA', 'float'));
+		if ( ! is_decimal($cumulativeGPA) && ! is_null($cumulativeGPA) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'cumulativeGPA', 'decimal'));
 		}
 	
 		return $cumulativeGPA;
@@ -243,8 +243,8 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateGPAType($gPAType) {
-		if ( ! is_string($gPAType) && ! is_null($gPAType) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPAType', 'string'));
+		if ( ! is_normalizedString($gPAType) && ! is_null($gPAType) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPAType', 'normalizedString'));
 		}
 	
 		return $gPAType;
@@ -266,8 +266,8 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateClassRank($classRank) {
-		if ( ! is_integer($classRank) && ! is_null($classRank) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'classRank', 'integer'));
+		if ( ! is_unsignedInt($classRank) && ! is_null($classRank) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'classRank', 'unsignedInt'));
 		}
 	
 		return $classRank;
@@ -289,8 +289,8 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateClassTotalNumber($classTotalNumber) {
-		if ( ! is_integer($classTotalNumber) && ! is_null($classTotalNumber) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'classTotalNumber', 'integer'));
+		if ( ! is_unsignedInt($classTotalNumber) && ! is_null($classTotalNumber) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'classTotalNumber', 'unsignedInt'));
 		}
 	
 		return $classTotalNumber;
@@ -372,8 +372,8 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateGraduationDiplomaType($graduationDiplomaType) {
-		if ( ! is_string($graduationDiplomaType) && ! is_null($graduationDiplomaType) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'graduationDiplomaType', 'string'));
+		if ( ! is_normalizedString($graduationDiplomaType) && ! is_null($graduationDiplomaType) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'graduationDiplomaType', 'normalizedString'));
 		}
 	
 		return $graduationDiplomaType;

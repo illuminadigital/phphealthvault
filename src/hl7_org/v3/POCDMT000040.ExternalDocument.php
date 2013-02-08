@@ -14,42 +14,42 @@ class POCDMT000040.ExternalDocument {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="id")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="id")
 	 */
 	protected $id;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CD", name="code")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CD", name="code")
 	 */
 	protected $code;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\ED", name="text")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\ED", name="text")
 	 */
 	protected $text;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", name="setId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", name="setId")
 	 */
 	protected $setId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\INT", name="versionNumber")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\INT", name="versionNumber")
 	 */
 	protected $versionNumber;
 
@@ -98,24 +98,23 @@ class POCDMT000040.ExternalDocument {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -126,7 +125,7 @@ class POCDMT000040.ExternalDocument {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -134,9 +133,6 @@ class POCDMT000040.ExternalDocument {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -157,24 +153,23 @@ class POCDMT000040.ExternalDocument {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getId() {
@@ -193,24 +188,23 @@ class POCDMT000040.ExternalDocument {
 	}
 
 	protected function validateId($id) {
-		if ( ! is_array ($id) && ! is_null($id) ) {
-			$id = array($id);
-		}
 		$count = count($id);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
 		}
 		foreach ($id as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'II'));
-			}
 		}
 	
 		return $id;
 	}
 
 	public function addId($id) {
-		$this->id[] = $id;
+		$this->id[] = $this->validateIdType($id);
+	}
+
+	protected function validateIdType($id) {
+	
+		return $id;
 	}
 
 	public function getCode() {
@@ -221,7 +215,7 @@ class POCDMT000040.ExternalDocument {
 	}
 	
 	protected function createCode() {
-		return new \hl7_org\v3\CD();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -229,9 +223,6 @@ class POCDMT000040.ExternalDocument {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \hl7_org\v3\CD  && ! is_null($code) ) {
-			$code = new \hl7_org\v3\CD ($code);
-		}
 	
 		return $code;
 	}
@@ -244,7 +235,7 @@ class POCDMT000040.ExternalDocument {
 	}
 	
 	protected function createText() {
-		return new \hl7_org\v3\ED();
+		return NULL;
 	}
 
 	public function setText($text) {
@@ -252,9 +243,6 @@ class POCDMT000040.ExternalDocument {
 	}
 
 	protected function validateText($text) {
-		if ( ! $text instanceof \hl7_org\v3\ED  && ! is_null($text) ) {
-			$text = new \hl7_org\v3\ED ($text);
-		}
 	
 		return $text;
 	}
@@ -267,7 +255,7 @@ class POCDMT000040.ExternalDocument {
 	}
 	
 	protected function createSetId() {
-		return new \hl7_org\v3\II();
+		return NULL;
 	}
 
 	public function setSetId($setId) {
@@ -275,9 +263,6 @@ class POCDMT000040.ExternalDocument {
 	}
 
 	protected function validateSetId($setId) {
-		if ( ! $setId instanceof \hl7_org\v3\II  && ! is_null($setId) ) {
-			$setId = new \hl7_org\v3\II ($setId);
-		}
 	
 		return $setId;
 	}
@@ -290,7 +275,7 @@ class POCDMT000040.ExternalDocument {
 	}
 	
 	protected function createVersionNumber() {
-		return new \hl7_org\v3\INT();
+		return NULL;
 	}
 
 	public function setVersionNumber($versionNumber) {
@@ -298,9 +283,6 @@ class POCDMT000040.ExternalDocument {
 	}
 
 	protected function validateVersionNumber($versionNumber) {
-		if ( ! $versionNumber instanceof \hl7_org\v3\INT  && ! is_null($versionNumber) ) {
-			$versionNumber = new \hl7_org\v3\INT ($versionNumber);
-		}
 	
 		return $versionNumber;
 	}

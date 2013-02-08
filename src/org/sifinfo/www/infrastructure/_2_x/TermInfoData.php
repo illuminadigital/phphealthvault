@@ -29,17 +29,17 @@ class TermInfoData {
 	protected $endDate;
 
 	/**
-	 * @XmlText	(type="string", name="Description")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Description")
 	 */
 	protected $description;
 
 	/**
-	 * @XmlText	(type="string", name="TermCode")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="TermCode")
 	 */
 	protected $termCode;
 
 	/**
-	 * @XmlText	(type="string", name="Track")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Track")
 	 */
 	protected $track;
 
@@ -169,8 +169,8 @@ class TermInfoData {
 	}
 
 	protected function validateTermCode($termCode) {
-		if ( ! is_string($termCode) && ! is_null($termCode) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'termCode', 'string'));
+		if ( ! is_normalizedString($termCode) && ! is_null($termCode) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'termCode', 'normalizedString'));
 		}
 	
 		return $termCode;
@@ -192,8 +192,8 @@ class TermInfoData {
 	}
 
 	protected function validateTrack($track) {
-		if ( ! is_string($track) && ! is_null($track) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'track', 'string'));
+		if ( ! is_normalizedString($track) && ! is_null($track) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'track', 'normalizedString'));
 		}
 	
 		return $track;

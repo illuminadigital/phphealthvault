@@ -15,12 +15,12 @@ class MeetingTimeType {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="TimetableDay")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="TimetableDay")
 	 */
 	protected $timetableDay;
 
 	/**
-	 * @XmlText	(type="string", name="TimetablePeriod")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="TimetablePeriod")
 	 */
 	protected $timetablePeriod;
 
@@ -45,8 +45,8 @@ class MeetingTimeType {
 	}
 
 	protected function validateTimetableDay($timetableDay) {
-		if ( ! is_string($timetableDay) && ! is_null($timetableDay) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'timetableDay', 'string'));
+		if ( ! is_normalizedString($timetableDay) && ! is_null($timetableDay) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'timetableDay', 'normalizedString'));
 		}
 	
 		return $timetableDay;
@@ -68,8 +68,8 @@ class MeetingTimeType {
 	}
 
 	protected function validateTimetablePeriod($timetablePeriod) {
-		if ( ! is_string($timetablePeriod) && ! is_null($timetablePeriod) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'timetablePeriod', 'string'));
+		if ( ! is_normalizedString($timetablePeriod) && ! is_null($timetablePeriod) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'timetablePeriod', 'normalizedString'));
 		}
 	
 		return $timetablePeriod;

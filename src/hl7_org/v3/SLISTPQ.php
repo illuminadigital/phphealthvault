@@ -14,17 +14,17 @@ class SLISTPQ extends \ANY\ANY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQ", name="origin")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="origin")
 	 */
 	protected $origin;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQ", name="scale")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="scale")
 	 */
 	protected $scale;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\ListInt", name="digits")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\ListInt", name="digits")
 	 */
 	protected $digits;
 
@@ -42,7 +42,7 @@ class SLISTPQ extends \ANY\ANY {
 	}
 	
 	protected function createOrigin() {
-		return new \hl7_org\v3\PQ();
+		return NULL;
 	}
 
 	public function setOrigin($origin) {
@@ -50,9 +50,6 @@ class SLISTPQ extends \ANY\ANY {
 	}
 
 	protected function validateOrigin($origin) {
-		if ( ! $origin instanceof \hl7_org\v3\PQ ) {
-			$origin = new \hl7_org\v3\PQ ($origin);
-		}
 	
 		return $origin;
 	}
@@ -65,7 +62,7 @@ class SLISTPQ extends \ANY\ANY {
 	}
 	
 	protected function createScale() {
-		return new \hl7_org\v3\PQ();
+		return NULL;
 	}
 
 	public function setScale($scale) {
@@ -73,9 +70,6 @@ class SLISTPQ extends \ANY\ANY {
 	}
 
 	protected function validateScale($scale) {
-		if ( ! $scale instanceof \hl7_org\v3\PQ ) {
-			$scale = new \hl7_org\v3\PQ ($scale);
-		}
 	
 		return $scale;
 	}

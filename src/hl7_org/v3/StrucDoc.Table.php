@@ -14,32 +14,32 @@ class StrucDoc.Table {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Caption", name="caption")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Caption", name="caption")
 	 */
 	protected $caption;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Col", collection="true", name="col")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Col", collection="true", name="col")
 	 */
 	protected $col;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Colgroup", collection="true", name="colgroup")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Colgroup", collection="true", name="colgroup")
 	 */
 	protected $colgroup;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Thead", name="thead")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Thead", name="thead")
 	 */
 	protected $thead;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Tfoot", name="tfoot")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Tfoot", name="tfoot")
 	 */
 	protected $tfoot;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Tbody", collection="true", name="tbody")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Tbody", collection="true", name="tbody")
 	 */
 	protected $tbody;
 
@@ -120,7 +120,7 @@ class StrucDoc.Table {
 	}
 	
 	protected function createCaption() {
-		return new \hl7_org\v3\StrucDoc.Caption();
+		return NULL;
 	}
 
 	public function setCaption($caption) {
@@ -128,9 +128,6 @@ class StrucDoc.Table {
 	}
 
 	protected function validateCaption($caption) {
-		if ( ! $caption instanceof \hl7_org\v3\StrucDoc.Caption  && ! is_null($caption) ) {
-			$caption = new \hl7_org\v3\StrucDoc.Caption ($caption);
-		}
 	
 		return $caption;
 	}
@@ -151,24 +148,23 @@ class StrucDoc.Table {
 	}
 
 	protected function validateCol($col) {
-		if ( ! is_array ($col) && ! is_null($col) ) {
-			$col = array($col);
-		}
 		$count = count($col);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'col', 0));
 		}
 		foreach ($col as $entry) {
-			if (!($entry instanceof StrucDoc.Col)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'col', 'StrucDoc.Col'));
-			}
 		}
 	
 		return $col;
 	}
 
 	public function addCol($col) {
-		$this->col[] = $col;
+		$this->col[] = $this->validateColType($col);
+	}
+
+	protected function validateColType($col) {
+	
+		return $col;
 	}
 
 	public function getColgroup() {
@@ -187,24 +183,23 @@ class StrucDoc.Table {
 	}
 
 	protected function validateColgroup($colgroup) {
-		if ( ! is_array ($colgroup) && ! is_null($colgroup) ) {
-			$colgroup = array($colgroup);
-		}
 		$count = count($colgroup);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'colgroup', 0));
 		}
 		foreach ($colgroup as $entry) {
-			if (!($entry instanceof StrucDoc.Colgroup)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'colgroup', 'StrucDoc.Colgroup'));
-			}
 		}
 	
 		return $colgroup;
 	}
 
 	public function addColgroup($colgroup) {
-		$this->colgroup[] = $colgroup;
+		$this->colgroup[] = $this->validateColgroupType($colgroup);
+	}
+
+	protected function validateColgroupType($colgroup) {
+	
+		return $colgroup;
 	}
 
 	public function getThead() {
@@ -215,7 +210,7 @@ class StrucDoc.Table {
 	}
 	
 	protected function createThead() {
-		return new \hl7_org\v3\StrucDoc.Thead();
+		return NULL;
 	}
 
 	public function setThead($thead) {
@@ -223,9 +218,6 @@ class StrucDoc.Table {
 	}
 
 	protected function validateThead($thead) {
-		if ( ! $thead instanceof \hl7_org\v3\StrucDoc.Thead  && ! is_null($thead) ) {
-			$thead = new \hl7_org\v3\StrucDoc.Thead ($thead);
-		}
 	
 		return $thead;
 	}
@@ -238,7 +230,7 @@ class StrucDoc.Table {
 	}
 	
 	protected function createTfoot() {
-		return new \hl7_org\v3\StrucDoc.Tfoot();
+		return NULL;
 	}
 
 	public function setTfoot($tfoot) {
@@ -246,9 +238,6 @@ class StrucDoc.Table {
 	}
 
 	protected function validateTfoot($tfoot) {
-		if ( ! $tfoot instanceof \hl7_org\v3\StrucDoc.Tfoot  && ! is_null($tfoot) ) {
-			$tfoot = new \hl7_org\v3\StrucDoc.Tfoot ($tfoot);
-		}
 	
 		return $tfoot;
 	}
@@ -269,24 +258,23 @@ class StrucDoc.Table {
 	}
 
 	protected function validateTbody($tbody) {
-		if ( ! is_array ($tbody) ) {
-			$tbody = array($tbody);
-		}
 		$count = count($tbody);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'tbody', 1));
 		}
 		foreach ($tbody as $entry) {
-			if (!($entry instanceof StrucDoc.Tbody)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'tbody', 'StrucDoc.Tbody'));
-			}
 		}
 	
 		return $tbody;
 	}
 
 	public function addTbody($tbody) {
-		$this->tbody[] = $tbody;
+		$this->tbody[] = $this->validateTbodyType($tbody);
+	}
+
+	protected function validateTbodyType($tbody) {
+	
+		return $tbody;
 	}
 
 	public function getID() {

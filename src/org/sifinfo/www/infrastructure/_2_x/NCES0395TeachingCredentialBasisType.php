@@ -15,7 +15,7 @@ class NCES0395TeachingCredentialBasisType {
 	static protected $enumValue = array('1235' => '4-year bachelor\'s degree', '1236' => '5-year bachelor\'s degree', '1242' => 'Credentials based on reciprocation with another state', '1238' => 'Doctoral degree', '1237' => 'Master\'s degree', '1239' => 'Met state testing requirement', '1241' => 'Relevant experience', '1240' => 'Special/alternative program completion');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0395TeachingCredentialBasisType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0395TeachingCredentialBasisType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

@@ -23,7 +23,7 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	protected $dueDate;
 
 	/**
-	 * @XmlText	(type="string", name="last-menstrual-period")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Date", name="last-menstrual-period")
 	 */
 	protected $lastMenstrualPeriod;
 

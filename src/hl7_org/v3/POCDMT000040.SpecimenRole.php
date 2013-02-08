@@ -14,27 +14,27 @@ class POCDMT000040.SpecimenRole {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\CS", collection="true", name="realmCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.InfrastructureRoot.typeId", name="typeId")
 	 */
 	protected $typeId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="templateId")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="templateId")
 	 */
 	protected $templateId;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\II", collection="true", name="id")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\II", collection="true", name="id")
 	 */
 	protected $id;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\POCDMT000040.PlayingEntity", name="specimenPlayingEntity")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\POCDMT000040.PlayingEntity", name="specimenPlayingEntity")
 	 */
 	protected $specimenPlayingEntity;
 
@@ -74,24 +74,23 @@ class POCDMT000040.SpecimenRole {
 	}
 
 	protected function validateRealmCode($realmCode) {
-		if ( ! is_array ($realmCode) && ! is_null($realmCode) ) {
-			$realmCode = array($realmCode);
-		}
 		$count = count($realmCode);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
 		foreach ($realmCode as $entry) {
-			if (!($entry instanceof CS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'realmCode', 'CS'));
-			}
 		}
 	
 		return $realmCode;
 	}
 
 	public function addRealmCode($realmCode) {
-		$this->realmCode[] = $realmCode;
+		$this->realmCode[] = $this->validateRealmCodeType($realmCode);
+	}
+
+	protected function validateRealmCodeType($realmCode) {
+	
+		return $realmCode;
 	}
 
 	public function getTypeId() {
@@ -102,7 +101,7 @@ class POCDMT000040.SpecimenRole {
 	}
 	
 	protected function createTypeId() {
-		return new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId();
+		return NULL;
 	}
 
 	public function setTypeId($typeId) {
@@ -110,9 +109,6 @@ class POCDMT000040.SpecimenRole {
 	}
 
 	protected function validateTypeId($typeId) {
-		if ( ! $typeId instanceof \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId  && ! is_null($typeId) ) {
-			$typeId = new \hl7_org\v3\POCDMT000040.InfrastructureRoot.typeId ($typeId);
-		}
 	
 		return $typeId;
 	}
@@ -133,24 +129,23 @@ class POCDMT000040.SpecimenRole {
 	}
 
 	protected function validateTemplateId($templateId) {
-		if ( ! is_array ($templateId) && ! is_null($templateId) ) {
-			$templateId = array($templateId);
-		}
 		$count = count($templateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
 		foreach ($templateId as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'templateId', 'II'));
-			}
 		}
 	
 		return $templateId;
 	}
 
 	public function addTemplateId($templateId) {
-		$this->templateId[] = $templateId;
+		$this->templateId[] = $this->validateTemplateIdType($templateId);
+	}
+
+	protected function validateTemplateIdType($templateId) {
+	
+		return $templateId;
 	}
 
 	public function getId() {
@@ -169,24 +164,23 @@ class POCDMT000040.SpecimenRole {
 	}
 
 	protected function validateId($id) {
-		if ( ! is_array ($id) && ! is_null($id) ) {
-			$id = array($id);
-		}
 		$count = count($id);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
 		}
 		foreach ($id as $entry) {
-			if (!($entry instanceof II)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'II'));
-			}
 		}
 	
 		return $id;
 	}
 
 	public function addId($id) {
-		$this->id[] = $id;
+		$this->id[] = $this->validateIdType($id);
+	}
+
+	protected function validateIdType($id) {
+	
+		return $id;
 	}
 
 	public function getSpecimenPlayingEntity() {
@@ -197,7 +191,7 @@ class POCDMT000040.SpecimenRole {
 	}
 	
 	protected function createSpecimenPlayingEntity() {
-		return new \hl7_org\v3\POCDMT000040.PlayingEntity();
+		return NULL;
 	}
 
 	public function setSpecimenPlayingEntity($specimenPlayingEntity) {
@@ -205,9 +199,6 @@ class POCDMT000040.SpecimenRole {
 	}
 
 	protected function validateSpecimenPlayingEntity($specimenPlayingEntity) {
-		if ( ! $specimenPlayingEntity instanceof \hl7_org\v3\POCDMT000040.PlayingEntity  && ! is_null($specimenPlayingEntity) ) {
-			$specimenPlayingEntity = new \hl7_org\v3\POCDMT000040.PlayingEntity ($specimenPlayingEntity);
-		}
 	
 		return $specimenPlayingEntity;
 	}

@@ -15,12 +15,12 @@ class PIVLTS extends \SXCM_TS\SXCMTS {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVLTS", name="phase")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVLTS", name="phase")
 	 */
 	protected $phase;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQ", name="period")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="period")
 	 */
 	protected $period;
 
@@ -49,7 +49,7 @@ class PIVLTS extends \SXCM_TS\SXCMTS {
 	}
 	
 	protected function createPhase() {
-		return new \hl7_org\v3\IVLTS();
+		return NULL;
 	}
 
 	public function setPhase($phase) {
@@ -57,9 +57,6 @@ class PIVLTS extends \SXCM_TS\SXCMTS {
 	}
 
 	protected function validatePhase($phase) {
-		if ( ! $phase instanceof \hl7_org\v3\IVLTS  && ! is_null($phase) ) {
-			$phase = new \hl7_org\v3\IVLTS ($phase);
-		}
 	
 		return $phase;
 	}
@@ -72,7 +69,7 @@ class PIVLTS extends \SXCM_TS\SXCMTS {
 	}
 	
 	protected function createPeriod() {
-		return new \hl7_org\v3\PQ();
+		return NULL;
 	}
 
 	public function setPeriod($period) {
@@ -80,9 +77,6 @@ class PIVLTS extends \SXCM_TS\SXCMTS {
 	}
 
 	protected function validatePeriod($period) {
-		if ( ! $period instanceof \hl7_org\v3\PQ  && ! is_null($period) ) {
-			$period = new \hl7_org\v3\PQ ($period);
-		}
 	
 		return $period;
 	}

@@ -14,7 +14,7 @@ class URIOrBinaryType {
 	 */
 
 	/**
-	 * @XmlValue	(type="string", name="URIOrBinaryType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\AnyType", name="value")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class URIOrBinaryType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_anyType($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'anyType'));
 		}
 	
 		return $value;

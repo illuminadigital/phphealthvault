@@ -15,7 +15,7 @@ class PQ extends \QTY\QTY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PQR", collection="true", name="translation")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQR", collection="true", name="translation")
 	 */
 	protected $translation;
 
@@ -51,24 +51,23 @@ class PQ extends \QTY\QTY {
 	}
 
 	protected function validateTranslation($translation) {
-		if ( ! is_array ($translation) && ! is_null($translation) ) {
-			$translation = array($translation);
-		}
 		$count = count($translation);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'translation', 0));
 		}
 		foreach ($translation as $entry) {
-			if (!($entry instanceof PQR)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'translation', 'PQR'));
-			}
 		}
 	
 		return $translation;
 	}
 
 	public function addTranslation($translation) {
-		$this->translation[] = $translation;
+		$this->translation[] = $this->validateTranslationType($translation);
+	}
+
+	protected function validateTranslationType($translation) {
+	
+		return $translation;
 	}
 
 	public function getValue() {

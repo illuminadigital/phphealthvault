@@ -15,7 +15,7 @@ class EDENLEPProgramTypeOfServicesReceivedType {
 	static protected $enumValue = array('BILING' => 'Bilingual (including native language support)', 'DUALLANG' => 'Dual language', 'TWOIMM' => 'Two-way bilingual immersion', 'TRANSBIL' => 'Transitional bilingual', 'DEVBIL' => 'Developmental bilingual', 'HERITAGE' => 'Heritage language preservation programs', 'SHELENGL' => 'Sheltered English Instruction', 'STRUCIMM' => 'Structured English Immersion', 'SDAIE' => 'Specially designed academic instruction delivered in English', 'CONTENTESL' => 'Content-based ESL', 'PULLESL' => 'Pull-out ESL', 'OTHER' => 'Other', 'MISSING' => 'MISSING', 'NOTCOLLECT' => 'Not Collected');
 
 	/**
-	 * @XmlValue	(type="string", name="EDENLEPProgramTypeOfServicesReceivedType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class EDENLEPProgramTypeOfServicesReceivedType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

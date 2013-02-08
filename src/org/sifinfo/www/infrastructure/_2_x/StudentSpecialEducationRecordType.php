@@ -15,7 +15,7 @@ class StudentSpecialEducationRecordType {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="ReportingDate")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="ReportingDate")
 	 */
 	protected $reportingDate;
 
@@ -99,8 +99,8 @@ class StudentSpecialEducationRecordType {
 	}
 
 	protected function validateReportingDate($reportingDate) {
-		if (!is_string($reportingDate)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'reportingDate', 'string'));
+		if (!is_date($reportingDate)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'reportingDate', 'date'));
 		}
 	
 		return $reportingDate;

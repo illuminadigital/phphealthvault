@@ -15,7 +15,7 @@ class Activity {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="when")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Time", name="when")
 	 */
 	protected $when;
 

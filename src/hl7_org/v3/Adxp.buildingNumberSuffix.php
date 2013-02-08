@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.buildingNumberSuffix")
  */
-class Adxp.buildingNumberSuffix extends ADXP {
+class Adxp.buildingNumberSuffix extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

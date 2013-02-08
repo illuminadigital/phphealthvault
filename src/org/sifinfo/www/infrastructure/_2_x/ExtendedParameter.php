@@ -14,12 +14,12 @@ class ExtendedParameter {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="SIF_Name")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="SIF_Name")
 	 */
 	protected $sifName;
 
 	/**
-	 * @XmlText	(type="string", name="SIF_Value")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="SIF_Value")
 	 */
 	protected $sifValue;
 
@@ -44,8 +44,8 @@ class ExtendedParameter {
 	}
 
 	protected function validateSifName($sifName) {
-		if (!is_string($sifName)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'sifName', 'string'));
+		if (!is_normalizedString($sifName)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'sifName', 'normalizedString'));
 		}
 	
 		return $sifName;
@@ -67,8 +67,8 @@ class ExtendedParameter {
 	}
 
 	protected function validateSifValue($sifValue) {
-		if (!is_string($sifValue)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'sifValue', 'string'));
+		if (!is_normalizedString($sifValue)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'sifValue', 'normalizedString'));
 		}
 	
 		return $sifValue;

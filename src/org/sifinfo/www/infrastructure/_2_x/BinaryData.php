@@ -15,17 +15,17 @@ class BinaryData {
 	 */
 
 	/**
-	 * @XmlAttribute	(type="string", name="MIMEType")
+	 * @XmlAttribute	(type="token", name="MIMEType")
 	 */
 	protected $mIMEType;
 
 	/**
-	 * @XmlAttribute	(type="string", name="FileName")
+	 * @XmlAttribute	(type="token", name="FileName")
 	 */
 	protected $fileName;
 
 	/**
-	 * @XmlAttribute	(type="string", name="Description")
+	 * @XmlAttribute	(type="token", name="Description")
 	 */
 	protected $description;
 
@@ -51,8 +51,8 @@ class BinaryData {
 	}
 
 	protected function validateMIMEType($mIMEType) {
-		if (!is_string($mIMEType)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'mIMEType', 'string'));
+		if (!is_token($mIMEType)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'mIMEType', 'token'));
 		}
 	
 		return $mIMEType;
@@ -74,8 +74,8 @@ class BinaryData {
 	}
 
 	protected function validateFileName($fileName) {
-		if ( ! is_string($fileName) && ! is_null($fileName) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'fileName', 'string'));
+		if ( ! is_token($fileName) && ! is_null($fileName) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'fileName', 'token'));
 		}
 	
 		return $fileName;
@@ -97,8 +97,8 @@ class BinaryData {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! is_string($description) && ! is_null($description) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'string'));
+		if ( ! is_token($description) && ! is_null($description) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'token'));
 		}
 	
 		return $description;

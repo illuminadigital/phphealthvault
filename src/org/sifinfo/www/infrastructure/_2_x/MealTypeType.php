@@ -15,7 +15,7 @@ class MealTypeType {
 	static protected $enumValue = array('FirstMeal' => 'FirstMeal', 'SecondMeal' => 'SecondMeal', 'StaffMeal' => 'StaffMeal', 'AdultMeal' => 'AdultMeal', 'AlaCarte' => 'AlaCarte');
 
 	/**
-	 * @XmlValue	(type="string", name="MealTypeType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class MealTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

@@ -24,7 +24,7 @@ class SchoolAttended {
 	protected $schoolInfoData;
 
 	/**
-	 * @XmlText	(type="string", name="AccreditingBody")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="AccreditingBody")
 	 */
 	protected $accreditingBody;
 
@@ -108,8 +108,8 @@ class SchoolAttended {
 	}
 
 	protected function validateAccreditingBody($accreditingBody) {
-		if ( ! is_string($accreditingBody) && ! is_null($accreditingBody) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'accreditingBody', 'string'));
+		if ( ! is_normalizedString($accreditingBody) && ! is_null($accreditingBody) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'accreditingBody', 'normalizedString'));
 		}
 	
 		return $accreditingBody;

@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="ST")
  */
-class ST extends ED {
+class ST extends \org\w3\www\_2001\XMLSchema\ED {
 	/**
 	 * The character string data type stands for text data, primarily intended for machine processing (e.g., sorting, querying, indexing, etc.) Used for names, symbols, and formal expressions.
 	 */

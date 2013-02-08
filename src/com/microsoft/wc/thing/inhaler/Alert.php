@@ -21,7 +21,7 @@ class Alert {
 	protected $dow;
 
 	/**
-	 * @XmlText	(type="string", collection="true", name="time")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\Time", collection="true", name="time")
 	 */
 	protected $time;
 
@@ -94,7 +94,7 @@ class Alert {
 		}
 		foreach ($time as $entry) {
 			if (!($entry instanceof Time)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'time', 'string'));
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'time', 'time'));
 			}
 		}
 	

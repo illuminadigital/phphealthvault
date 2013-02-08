@@ -15,7 +15,7 @@ class NCES0266SessionTypeType {
 	static protected $enumValue = array('0827' => 'Full school year', '0834' => 'Intersession', '0835' => 'Long session', '0832' => 'Mini-term', '9999' => 'Other', '0830' => 'Quarter', '0831' => 'Quinmester', '0828' => 'Semester', '0833' => 'Summer term', '0829' => 'Trimester', '0837' => 'Twelve month');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0266SessionTypeType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0266SessionTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

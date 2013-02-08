@@ -15,7 +15,7 @@ class NCES0672PromotionTypeType {
 	static protected $enumValue = array('1974' => 'Accelerated promotion', '1975' => 'Continuous promotion', '9999' => 'Other', '1976' => 'Probationary promotion', '1973' => 'Regular promotion', '1977' => 'Social promotion', '1978' => 'Variable progress');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0672PromotionTypeType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0672PromotionTypeType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

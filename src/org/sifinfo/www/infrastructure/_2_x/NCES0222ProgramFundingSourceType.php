@@ -15,7 +15,7 @@ class NCES0222ProgramFundingSourceType {
 	static protected $enumValue = array('0997' => 'Business', '0654' => 'College/University', '0698' => 'Community', '0797' => 'Federal government', '0749' => 'Foundations and other charitable organizations', '0219' => 'Fraternal organization', '0739' => 'Individuals (endowments)', '0786' => 'Insurance', '0622' => 'Local/community government', '9999' => 'Other', '0720' => 'Parent/guardian in tuition and/or fees', '1899' => 'Parent/guardian\'s employer', '0731' => 'Parent/teacher organizations', '0218' => 'Religious organization', '0675' => 'School', '0709' => 'Self in tuition and/or fees', '0617' => 'State government', '0772' => 'Unions');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0222ProgramFundingSourceType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0222ProgramFundingSourceType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

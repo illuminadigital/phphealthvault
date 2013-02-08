@@ -54,7 +54,7 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	protected $firstdow;
 
 	/**
-	 * @XmlText	(type="string", collection="true", name="language")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Language", collection="true", name="language")
 	 */
 	protected $language;
 
@@ -255,7 +255,7 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		foreach ($language as $entry) {
 			if (!($entry instanceof Language)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'language', 'string'));
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'language', 'language'));
 			}
 		}
 	

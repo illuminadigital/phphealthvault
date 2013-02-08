@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="EIVL.event")
  */
-class EIVL.event extends CE {
+class EIVL.event extends \org\w3\www\_2001\XMLSchema\CE {
 	/**
 	 * A code for a common (periodical) activity of daily living based on which the event related periodic interval is specified.
 	 */

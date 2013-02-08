@@ -29,7 +29,7 @@ class MarkingPeriod {
 	protected $markData;
 
 	/**
-	 * @XmlText	(type="float", name="CourseCreditsAttempted")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="CourseCreditsAttempted")
 	 */
 	protected $courseCreditsAttempted;
 
@@ -131,8 +131,8 @@ class MarkingPeriod {
 	}
 
 	protected function validateCourseCreditsAttempted($courseCreditsAttempted) {
-		if ( ! is_float($courseCreditsAttempted) && ! is_null($courseCreditsAttempted) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'courseCreditsAttempted', 'float'));
+		if ( ! is_decimal($courseCreditsAttempted) && ! is_null($courseCreditsAttempted) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'courseCreditsAttempted', 'decimal'));
 		}
 	
 		return $courseCreditsAttempted;

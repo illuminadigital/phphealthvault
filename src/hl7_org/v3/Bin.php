@@ -14,7 +14,7 @@ class Bin {
 	 */
 
 	/**
-	 * @XmlValue	(type="string", name="bin")
+	 * @XmlElement	(type="\hl7_org\v3\Base64Binary", name="value")
 	 */
 	protected $value;
 
@@ -38,8 +38,8 @@ class Bin {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_base64Binary($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'base64Binary'));
 		}
 	
 		return $value;

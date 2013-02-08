@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="adxp.county")
  */
-class Adxp.county extends ADXP {
+class Adxp.county extends \org\w3\www\_2001\XMLSchema\ADXP {
 	/**
 	 */
 

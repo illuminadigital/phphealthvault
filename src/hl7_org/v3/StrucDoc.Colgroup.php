@@ -14,7 +14,7 @@ class StrucDoc.Colgroup {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\StrucDoc.Col", name="col")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Col", name="col")
 	 */
 	protected $col;
 
@@ -84,7 +84,7 @@ class StrucDoc.Colgroup {
 	}
 	
 	protected function createCol() {
-		return new \hl7_org\v3\StrucDoc.Col();
+		return NULL;
 	}
 
 	public function setCol($col) {
@@ -92,9 +92,6 @@ class StrucDoc.Colgroup {
 	}
 
 	protected function validateCol($col) {
-		if ( ! $col instanceof \hl7_org\v3\StrucDoc.Col ) {
-			$col = new \hl7_org\v3\StrucDoc.Col ($col);
-		}
 	
 		return $col;
 	}

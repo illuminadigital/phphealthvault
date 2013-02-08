@@ -15,7 +15,7 @@ class NCES1043ReporterDescriptionType {
 	static protected $enumValue = array('3168' => 'Former student', '3054' => 'Law enforcement officer', '3059' => 'Nonschool personnel', '3061' => 'Other adult', '3062' => 'Other nonstudent youth', '0850' => 'Parent/guardian', '3060' => 'Representative of visiting school', '3422' => 'Staff member', '0126' => 'Student', '9997' => 'Unknown');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES1043ReporterDescriptionType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES1043ReporterDescriptionType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

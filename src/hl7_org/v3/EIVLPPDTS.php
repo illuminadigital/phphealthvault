@@ -15,12 +15,12 @@ class EIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\EIVL.event", name="event")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\EIVL.event", name="event")
 	 */
 	protected $event;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVLPPDPQ", name="offset")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVLPPDPQ", name="offset")
 	 */
 	protected $offset;
 
@@ -37,7 +37,7 @@ class EIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createEvent() {
-		return new \hl7_org\v3\EIVL.event();
+		return NULL;
 	}
 
 	public function setEvent($event) {
@@ -45,9 +45,6 @@ class EIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validateEvent($event) {
-		if ( ! $event instanceof \hl7_org\v3\EIVL.event  && ! is_null($event) ) {
-			$event = new \hl7_org\v3\EIVL.event ($event);
-		}
 	
 		return $event;
 	}
@@ -60,7 +57,7 @@ class EIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 	
 	protected function createOffset() {
-		return new \hl7_org\v3\IVLPPDPQ();
+		return NULL;
 	}
 
 	public function setOffset($offset) {
@@ -68,9 +65,6 @@ class EIVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
 	}
 
 	protected function validateOffset($offset) {
-		if ( ! $offset instanceof \hl7_org\v3\IVLPPDPQ  && ! is_null($offset) ) {
-			$offset = new \hl7_org\v3\IVLPPDPQ ($offset);
-		}
 	
 		return $offset;
 	}

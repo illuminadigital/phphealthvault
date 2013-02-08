@@ -15,7 +15,7 @@ class NCES0256SchoolStatusType {
 	static protected $enumValue = array('2383' => 'Added school', '0118' => 'Changed agency', '0105' => 'Future school', '0104' => 'New school', '0821' => 'School closed', '0822' => 'School inactive', '0820' => 'School open');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0256SchoolStatusType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0256SchoolStatusType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

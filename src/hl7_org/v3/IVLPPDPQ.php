@@ -14,22 +14,22 @@ class IVLPPDPQ extends \SXCM_PPD_PQ\SXCMPPDPQ {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBPPDPQ", name="low")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBPPDPQ", name="low")
 	 */
 	protected $low;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PPDPQ", name="width")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PPDPQ", name="width")
 	 */
 	protected $width;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBPPDPQ", name="high")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBPPDPQ", name="high")
 	 */
 	protected $high;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\PPDPQ", name="center")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PPDPQ", name="center")
 	 */
 	protected $center;
 
@@ -48,7 +48,7 @@ class IVLPPDPQ extends \SXCM_PPD_PQ\SXCMPPDPQ {
 	}
 	
 	protected function createLow() {
-		return new \hl7_org\v3\IVXBPPDPQ();
+		return NULL;
 	}
 
 	public function setLow($low) {
@@ -56,9 +56,6 @@ class IVLPPDPQ extends \SXCM_PPD_PQ\SXCMPPDPQ {
 	}
 
 	protected function validateLow($low) {
-		if ( ! $low instanceof \hl7_org\v3\IVXBPPDPQ ) {
-			$low = new \hl7_org\v3\IVXBPPDPQ ($low);
-		}
 	
 		return $low;
 	}
@@ -71,7 +68,7 @@ class IVLPPDPQ extends \SXCM_PPD_PQ\SXCMPPDPQ {
 	}
 	
 	protected function createWidth() {
-		return new \hl7_org\v3\PPDPQ();
+		return NULL;
 	}
 
 	public function setWidth($width) {
@@ -79,9 +76,6 @@ class IVLPPDPQ extends \SXCM_PPD_PQ\SXCMPPDPQ {
 	}
 
 	protected function validateWidth($width) {
-		if ( ! $width instanceof \hl7_org\v3\PPDPQ  && ! is_null($width) ) {
-			$width = new \hl7_org\v3\PPDPQ ($width);
-		}
 	
 		return $width;
 	}
@@ -94,7 +88,7 @@ class IVLPPDPQ extends \SXCM_PPD_PQ\SXCMPPDPQ {
 	}
 	
 	protected function createHigh() {
-		return new \hl7_org\v3\IVXBPPDPQ();
+		return NULL;
 	}
 
 	public function setHigh($high) {
@@ -102,9 +96,6 @@ class IVLPPDPQ extends \SXCM_PPD_PQ\SXCMPPDPQ {
 	}
 
 	protected function validateHigh($high) {
-		if ( ! $high instanceof \hl7_org\v3\IVXBPPDPQ  && ! is_null($high) ) {
-			$high = new \hl7_org\v3\IVXBPPDPQ ($high);
-		}
 	
 		return $high;
 	}
@@ -117,7 +108,7 @@ class IVLPPDPQ extends \SXCM_PPD_PQ\SXCMPPDPQ {
 	}
 	
 	protected function createCenter() {
-		return new \hl7_org\v3\PPDPQ();
+		return NULL;
 	}
 
 	public function setCenter($center) {
@@ -125,9 +116,6 @@ class IVLPPDPQ extends \SXCM_PPD_PQ\SXCMPPDPQ {
 	}
 
 	protected function validateCenter($center) {
-		if ( ! $center instanceof \hl7_org\v3\PPDPQ ) {
-			$center = new \hl7_org\v3\PPDPQ ($center);
-		}
 	
 		return $center;
 	}

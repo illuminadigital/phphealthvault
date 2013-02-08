@@ -15,7 +15,7 @@ class BaseNameType {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="Prefix")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Prefix")
 	 */
 	protected $prefix;
 
@@ -35,22 +35,22 @@ class BaseNameType {
 	protected $middleName;
 
 	/**
-	 * @XmlText	(type="string", name="Suffix")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Suffix")
 	 */
 	protected $suffix;
 
 	/**
-	 * @XmlText	(type="string", name="PreferredName")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="PreferredName")
 	 */
 	protected $preferredName;
 
 	/**
-	 * @XmlText	(type="string", name="SortName")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="SortName")
 	 */
 	protected $sortName;
 
 	/**
-	 * @XmlText	(type="string", name="FullName")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="FullName")
 	 */
 	protected $fullName;
 
@@ -81,8 +81,8 @@ class BaseNameType {
 	}
 
 	protected function validatePrefix($prefix) {
-		if ( ! is_string($prefix) && ! is_null($prefix) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'prefix', 'string'));
+		if ( ! is_normalizedString($prefix) && ! is_null($prefix) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'prefix', 'normalizedString'));
 		}
 	
 		return $prefix;
@@ -170,8 +170,8 @@ class BaseNameType {
 	}
 
 	protected function validateSuffix($suffix) {
-		if ( ! is_string($suffix) && ! is_null($suffix) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'suffix', 'string'));
+		if ( ! is_normalizedString($suffix) && ! is_null($suffix) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'suffix', 'normalizedString'));
 		}
 	
 		return $suffix;
@@ -193,8 +193,8 @@ class BaseNameType {
 	}
 
 	protected function validatePreferredName($preferredName) {
-		if ( ! is_string($preferredName) && ! is_null($preferredName) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'preferredName', 'string'));
+		if ( ! is_normalizedString($preferredName) && ! is_null($preferredName) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'preferredName', 'normalizedString'));
 		}
 	
 		return $preferredName;
@@ -216,8 +216,8 @@ class BaseNameType {
 	}
 
 	protected function validateSortName($sortName) {
-		if ( ! is_string($sortName) && ! is_null($sortName) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'sortName', 'string'));
+		if ( ! is_normalizedString($sortName) && ! is_null($sortName) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'sortName', 'normalizedString'));
 		}
 	
 		return $sortName;
@@ -239,8 +239,8 @@ class BaseNameType {
 	}
 
 	protected function validateFullName($fullName) {
-		if ( ! is_string($fullName) && ! is_null($fullName) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'fullName', 'string'));
+		if ( ! is_normalizedString($fullName) && ! is_null($fullName) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'fullName', 'normalizedString'));
 		}
 	
 		return $fullName;

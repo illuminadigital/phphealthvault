@@ -15,7 +15,7 @@ class TEL extends \URL\URL {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\SXCMTS", collection="true", name="useablePeriod")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\SXCMTS", collection="true", name="useablePeriod")
 	 */
 	protected $useablePeriod;
 
@@ -45,24 +45,23 @@ class TEL extends \URL\URL {
 	}
 
 	protected function validateUseablePeriod($useablePeriod) {
-		if ( ! is_array ($useablePeriod) && ! is_null($useablePeriod) ) {
-			$useablePeriod = array($useablePeriod);
-		}
 		$count = count($useablePeriod);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'useablePeriod', 0));
 		}
 		foreach ($useablePeriod as $entry) {
-			if (!($entry instanceof SXCMTS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'useablePeriod', 'SXCM_TS'));
-			}
 		}
 	
 		return $useablePeriod;
 	}
 
 	public function addUseablePeriod($useablePeriod) {
-		$this->useablePeriod[] = $useablePeriod;
+		$this->useablePeriod[] = $this->validateUseablePeriodType($useablePeriod);
+	}
+
+	protected function validateUseablePeriodType($useablePeriod) {
+	
+		return $useablePeriod;
 	}
 
 	public function getUse() {

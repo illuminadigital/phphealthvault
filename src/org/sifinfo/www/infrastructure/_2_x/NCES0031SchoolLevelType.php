@@ -15,7 +15,7 @@ class NCES0031SchoolLevelType {
 	static protected $enumValue = array('0013' => 'Adult', '1302' => 'All levels', '1304' => 'Elementary', '2402' => 'High school', '0787' => 'Infant/toddler', '2399' => 'Intermediate', '2602' => 'Junior high school', '2400' => 'Middle', '0789' => 'Pre-kindergarten', '1981' => 'Preschool/early childhood', '2397' => 'Primary', '2403' => 'Secondary');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0031SchoolLevelType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0031SchoolLevelType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

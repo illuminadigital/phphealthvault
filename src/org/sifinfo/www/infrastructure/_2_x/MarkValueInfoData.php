@@ -14,7 +14,7 @@ class MarkValueInfoData {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="Name")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Name")
 	 */
 	protected $name;
 

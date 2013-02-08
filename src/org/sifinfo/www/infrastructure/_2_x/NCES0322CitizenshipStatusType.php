@@ -15,7 +15,7 @@ class NCES0322CitizenshipStatusType {
 	static protected $enumValue = array('1014' => 'Dual national', '1015' => 'Non-resident alien', '9999' => 'Other', '1016' => 'Resident alien', '1017' => 'United States Citizen');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0322CitizenshipStatusType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0322CitizenshipStatusType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

@@ -15,7 +15,7 @@ class NCES0585EnglishProficiencyType {
 	static protected $enumValue = array('1634' => 'Fluent English speaker', '2349' => 'Limited English proficient/English language learner', '1633' => 'Native English speaker', '1635' => 'Non-English speaking', '1636' => 'Redesignated as fluent English proficient', '9997' => 'Unknown');
 
 	/**
-	 * @XmlValue	(type="string", name="NCES0585EnglishProficiencyType")
+	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="value")
 	 */
 	protected $value;
 
@@ -39,8 +39,8 @@ class NCES0585EnglishProficiencyType {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		if (!is_token($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'token'));
 		}
 
 		if (empty(static::$enumValue[$value])) {

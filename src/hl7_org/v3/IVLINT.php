@@ -14,22 +14,22 @@ class IVLINT extends \SXCM_INT\SXCMINT {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBINT", name="low")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBINT", name="low")
 	 */
 	protected $low;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\INT", name="width")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\INT", name="width")
 	 */
 	protected $width;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\IVXBINT", name="high")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBINT", name="high")
 	 */
 	protected $high;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\INT", name="center")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\INT", name="center")
 	 */
 	protected $center;
 
@@ -48,7 +48,7 @@ class IVLINT extends \SXCM_INT\SXCMINT {
 	}
 	
 	protected function createLow() {
-		return new \hl7_org\v3\IVXBINT();
+		return NULL;
 	}
 
 	public function setLow($low) {
@@ -56,9 +56,6 @@ class IVLINT extends \SXCM_INT\SXCMINT {
 	}
 
 	protected function validateLow($low) {
-		if ( ! $low instanceof \hl7_org\v3\IVXBINT ) {
-			$low = new \hl7_org\v3\IVXBINT ($low);
-		}
 	
 		return $low;
 	}
@@ -71,7 +68,7 @@ class IVLINT extends \SXCM_INT\SXCMINT {
 	}
 	
 	protected function createWidth() {
-		return new \hl7_org\v3\INT();
+		return NULL;
 	}
 
 	public function setWidth($width) {
@@ -79,9 +76,6 @@ class IVLINT extends \SXCM_INT\SXCMINT {
 	}
 
 	protected function validateWidth($width) {
-		if ( ! $width instanceof \hl7_org\v3\INT  && ! is_null($width) ) {
-			$width = new \hl7_org\v3\INT ($width);
-		}
 	
 		return $width;
 	}
@@ -94,7 +88,7 @@ class IVLINT extends \SXCM_INT\SXCMINT {
 	}
 	
 	protected function createHigh() {
-		return new \hl7_org\v3\IVXBINT();
+		return NULL;
 	}
 
 	public function setHigh($high) {
@@ -102,9 +96,6 @@ class IVLINT extends \SXCM_INT\SXCMINT {
 	}
 
 	protected function validateHigh($high) {
-		if ( ! $high instanceof \hl7_org\v3\IVXBINT  && ! is_null($high) ) {
-			$high = new \hl7_org\v3\IVXBINT ($high);
-		}
 	
 		return $high;
 	}
@@ -117,7 +108,7 @@ class IVLINT extends \SXCM_INT\SXCMINT {
 	}
 	
 	protected function createCenter() {
-		return new \hl7_org\v3\INT();
+		return NULL;
 	}
 
 	public function setCenter($center) {
@@ -125,9 +116,6 @@ class IVLINT extends \SXCM_INT\SXCMINT {
 	}
 
 	protected function validateCenter($center) {
-		if ( ! $center instanceof \hl7_org\v3\INT ) {
-			$center = new \hl7_org\v3\INT ($center);
-		}
 	
 		return $center;
 	}

@@ -15,142 +15,142 @@ class AD extends \ANY\ANY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.delimiter", name="delimiter")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.delimiter", name="delimiter")
 	 */
 	protected $delimiter;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.country", name="country")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.country", name="country")
 	 */
 	protected $country;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.state", name="state")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.state", name="state")
 	 */
 	protected $state;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.county", name="county")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.county", name="county")
 	 */
 	protected $county;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.city", name="city")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.city", name="city")
 	 */
 	protected $city;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.postalCode", name="postalCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.postalCode", name="postalCode")
 	 */
 	protected $postalCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.streetAddressLine", name="streetAddressLine")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetAddressLine", name="streetAddressLine")
 	 */
 	protected $streetAddressLine;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.houseNumber", name="houseNumber")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.houseNumber", name="houseNumber")
 	 */
 	protected $houseNumber;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.houseNumberNumeric", name="houseNumberNumeric")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.houseNumberNumeric", name="houseNumberNumeric")
 	 */
 	protected $houseNumberNumeric;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.direction", name="direction")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.direction", name="direction")
 	 */
 	protected $direction;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.streetName", name="streetName")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetName", name="streetName")
 	 */
 	protected $streetName;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.streetNameBase", name="streetNameBase")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetNameBase", name="streetNameBase")
 	 */
 	protected $streetNameBase;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.streetNameType", name="streetNameType")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetNameType", name="streetNameType")
 	 */
 	protected $streetNameType;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.additionalLocator", name="additionalLocator")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.additionalLocator", name="additionalLocator")
 	 */
 	protected $additionalLocator;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.unitID", name="unitID")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.unitID", name="unitID")
 	 */
 	protected $unitID;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.unitType", name="unitType")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.unitType", name="unitType")
 	 */
 	protected $unitType;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.careOf", name="careOf")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.careOf", name="careOf")
 	 */
 	protected $careOf;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.censusTract", name="censusTract")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.censusTract", name="censusTract")
 	 */
 	protected $censusTract;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.deliveryAddressLine", name="deliveryAddressLine")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryAddressLine", name="deliveryAddressLine")
 	 */
 	protected $deliveryAddressLine;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.deliveryInstallationType", name="deliveryInstallationType")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryInstallationType", name="deliveryInstallationType")
 	 */
 	protected $deliveryInstallationType;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.deliveryInstallationArea", name="deliveryInstallationArea")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryInstallationArea", name="deliveryInstallationArea")
 	 */
 	protected $deliveryInstallationArea;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.deliveryInstallationQualifier", name="deliveryInstallationQualifier")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryInstallationQualifier", name="deliveryInstallationQualifier")
 	 */
 	protected $deliveryInstallationQualifier;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.deliveryMode", name="deliveryMode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryMode", name="deliveryMode")
 	 */
 	protected $deliveryMode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.deliveryModeIdentifier", name="deliveryModeIdentifier")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryModeIdentifier", name="deliveryModeIdentifier")
 	 */
 	protected $deliveryModeIdentifier;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.buildingNumberSuffix", name="buildingNumberSuffix")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.buildingNumberSuffix", name="buildingNumberSuffix")
 	 */
 	protected $buildingNumberSuffix;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.postBox", name="postBox")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.postBox", name="postBox")
 	 */
 	protected $postBox;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\Adxp.precinct", name="precinct")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.precinct", name="precinct")
 	 */
 	protected $precinct;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\SXCMTS", collection="true", name="useablePeriod")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\SXCMTS", collection="true", name="useablePeriod")
 	 */
 	protected $useablePeriod;
 
@@ -205,7 +205,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createDelimiter() {
-		return new \hl7_org\v3\Adxp.delimiter();
+		return NULL;
 	}
 
 	public function setDelimiter($delimiter) {
@@ -213,9 +213,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateDelimiter($delimiter) {
-		if ( ! $delimiter instanceof \hl7_org\v3\Adxp.delimiter ) {
-			$delimiter = new \hl7_org\v3\Adxp.delimiter ($delimiter);
-		}
 	
 		return $delimiter;
 	}
@@ -228,7 +225,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createCountry() {
-		return new \hl7_org\v3\Adxp.country();
+		return NULL;
 	}
 
 	public function setCountry($country) {
@@ -236,9 +233,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateCountry($country) {
-		if ( ! $country instanceof \hl7_org\v3\Adxp.country ) {
-			$country = new \hl7_org\v3\Adxp.country ($country);
-		}
 	
 		return $country;
 	}
@@ -251,7 +245,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createState() {
-		return new \hl7_org\v3\Adxp.state();
+		return NULL;
 	}
 
 	public function setState($state) {
@@ -259,9 +253,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateState($state) {
-		if ( ! $state instanceof \hl7_org\v3\Adxp.state ) {
-			$state = new \hl7_org\v3\Adxp.state ($state);
-		}
 	
 		return $state;
 	}
@@ -274,7 +265,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createCounty() {
-		return new \hl7_org\v3\Adxp.county();
+		return NULL;
 	}
 
 	public function setCounty($county) {
@@ -282,9 +273,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateCounty($county) {
-		if ( ! $county instanceof \hl7_org\v3\Adxp.county ) {
-			$county = new \hl7_org\v3\Adxp.county ($county);
-		}
 	
 		return $county;
 	}
@@ -297,7 +285,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createCity() {
-		return new \hl7_org\v3\Adxp.city();
+		return NULL;
 	}
 
 	public function setCity($city) {
@@ -305,9 +293,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateCity($city) {
-		if ( ! $city instanceof \hl7_org\v3\Adxp.city ) {
-			$city = new \hl7_org\v3\Adxp.city ($city);
-		}
 	
 		return $city;
 	}
@@ -320,7 +305,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createPostalCode() {
-		return new \hl7_org\v3\Adxp.postalCode();
+		return NULL;
 	}
 
 	public function setPostalCode($postalCode) {
@@ -328,9 +313,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validatePostalCode($postalCode) {
-		if ( ! $postalCode instanceof \hl7_org\v3\Adxp.postalCode ) {
-			$postalCode = new \hl7_org\v3\Adxp.postalCode ($postalCode);
-		}
 	
 		return $postalCode;
 	}
@@ -343,7 +325,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createStreetAddressLine() {
-		return new \hl7_org\v3\Adxp.streetAddressLine();
+		return NULL;
 	}
 
 	public function setStreetAddressLine($streetAddressLine) {
@@ -351,9 +333,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateStreetAddressLine($streetAddressLine) {
-		if ( ! $streetAddressLine instanceof \hl7_org\v3\Adxp.streetAddressLine ) {
-			$streetAddressLine = new \hl7_org\v3\Adxp.streetAddressLine ($streetAddressLine);
-		}
 	
 		return $streetAddressLine;
 	}
@@ -366,7 +345,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createHouseNumber() {
-		return new \hl7_org\v3\Adxp.houseNumber();
+		return NULL;
 	}
 
 	public function setHouseNumber($houseNumber) {
@@ -374,9 +353,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateHouseNumber($houseNumber) {
-		if ( ! $houseNumber instanceof \hl7_org\v3\Adxp.houseNumber ) {
-			$houseNumber = new \hl7_org\v3\Adxp.houseNumber ($houseNumber);
-		}
 	
 		return $houseNumber;
 	}
@@ -389,7 +365,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createHouseNumberNumeric() {
-		return new \hl7_org\v3\Adxp.houseNumberNumeric();
+		return NULL;
 	}
 
 	public function setHouseNumberNumeric($houseNumberNumeric) {
@@ -397,9 +373,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateHouseNumberNumeric($houseNumberNumeric) {
-		if ( ! $houseNumberNumeric instanceof \hl7_org\v3\Adxp.houseNumberNumeric ) {
-			$houseNumberNumeric = new \hl7_org\v3\Adxp.houseNumberNumeric ($houseNumberNumeric);
-		}
 	
 		return $houseNumberNumeric;
 	}
@@ -412,7 +385,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createDirection() {
-		return new \hl7_org\v3\Adxp.direction();
+		return NULL;
 	}
 
 	public function setDirection($direction) {
@@ -420,9 +393,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateDirection($direction) {
-		if ( ! $direction instanceof \hl7_org\v3\Adxp.direction ) {
-			$direction = new \hl7_org\v3\Adxp.direction ($direction);
-		}
 	
 		return $direction;
 	}
@@ -435,7 +405,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createStreetName() {
-		return new \hl7_org\v3\Adxp.streetName();
+		return NULL;
 	}
 
 	public function setStreetName($streetName) {
@@ -443,9 +413,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateStreetName($streetName) {
-		if ( ! $streetName instanceof \hl7_org\v3\Adxp.streetName ) {
-			$streetName = new \hl7_org\v3\Adxp.streetName ($streetName);
-		}
 	
 		return $streetName;
 	}
@@ -458,7 +425,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createStreetNameBase() {
-		return new \hl7_org\v3\Adxp.streetNameBase();
+		return NULL;
 	}
 
 	public function setStreetNameBase($streetNameBase) {
@@ -466,9 +433,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateStreetNameBase($streetNameBase) {
-		if ( ! $streetNameBase instanceof \hl7_org\v3\Adxp.streetNameBase ) {
-			$streetNameBase = new \hl7_org\v3\Adxp.streetNameBase ($streetNameBase);
-		}
 	
 		return $streetNameBase;
 	}
@@ -481,7 +445,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createStreetNameType() {
-		return new \hl7_org\v3\Adxp.streetNameType();
+		return NULL;
 	}
 
 	public function setStreetNameType($streetNameType) {
@@ -489,9 +453,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateStreetNameType($streetNameType) {
-		if ( ! $streetNameType instanceof \hl7_org\v3\Adxp.streetNameType ) {
-			$streetNameType = new \hl7_org\v3\Adxp.streetNameType ($streetNameType);
-		}
 	
 		return $streetNameType;
 	}
@@ -504,7 +465,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createAdditionalLocator() {
-		return new \hl7_org\v3\Adxp.additionalLocator();
+		return NULL;
 	}
 
 	public function setAdditionalLocator($additionalLocator) {
@@ -512,9 +473,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateAdditionalLocator($additionalLocator) {
-		if ( ! $additionalLocator instanceof \hl7_org\v3\Adxp.additionalLocator ) {
-			$additionalLocator = new \hl7_org\v3\Adxp.additionalLocator ($additionalLocator);
-		}
 	
 		return $additionalLocator;
 	}
@@ -527,7 +485,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createUnitID() {
-		return new \hl7_org\v3\Adxp.unitID();
+		return NULL;
 	}
 
 	public function setUnitID($unitID) {
@@ -535,9 +493,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateUnitID($unitID) {
-		if ( ! $unitID instanceof \hl7_org\v3\Adxp.unitID ) {
-			$unitID = new \hl7_org\v3\Adxp.unitID ($unitID);
-		}
 	
 		return $unitID;
 	}
@@ -550,7 +505,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createUnitType() {
-		return new \hl7_org\v3\Adxp.unitType();
+		return NULL;
 	}
 
 	public function setUnitType($unitType) {
@@ -558,9 +513,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateUnitType($unitType) {
-		if ( ! $unitType instanceof \hl7_org\v3\Adxp.unitType ) {
-			$unitType = new \hl7_org\v3\Adxp.unitType ($unitType);
-		}
 	
 		return $unitType;
 	}
@@ -573,7 +525,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createCareOf() {
-		return new \hl7_org\v3\Adxp.careOf();
+		return NULL;
 	}
 
 	public function setCareOf($careOf) {
@@ -581,9 +533,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateCareOf($careOf) {
-		if ( ! $careOf instanceof \hl7_org\v3\Adxp.careOf ) {
-			$careOf = new \hl7_org\v3\Adxp.careOf ($careOf);
-		}
 	
 		return $careOf;
 	}
@@ -596,7 +545,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createCensusTract() {
-		return new \hl7_org\v3\Adxp.censusTract();
+		return NULL;
 	}
 
 	public function setCensusTract($censusTract) {
@@ -604,9 +553,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateCensusTract($censusTract) {
-		if ( ! $censusTract instanceof \hl7_org\v3\Adxp.censusTract ) {
-			$censusTract = new \hl7_org\v3\Adxp.censusTract ($censusTract);
-		}
 	
 		return $censusTract;
 	}
@@ -619,7 +565,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createDeliveryAddressLine() {
-		return new \hl7_org\v3\Adxp.deliveryAddressLine();
+		return NULL;
 	}
 
 	public function setDeliveryAddressLine($deliveryAddressLine) {
@@ -627,9 +573,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateDeliveryAddressLine($deliveryAddressLine) {
-		if ( ! $deliveryAddressLine instanceof \hl7_org\v3\Adxp.deliveryAddressLine ) {
-			$deliveryAddressLine = new \hl7_org\v3\Adxp.deliveryAddressLine ($deliveryAddressLine);
-		}
 	
 		return $deliveryAddressLine;
 	}
@@ -642,7 +585,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createDeliveryInstallationType() {
-		return new \hl7_org\v3\Adxp.deliveryInstallationType();
+		return NULL;
 	}
 
 	public function setDeliveryInstallationType($deliveryInstallationType) {
@@ -650,9 +593,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateDeliveryInstallationType($deliveryInstallationType) {
-		if ( ! $deliveryInstallationType instanceof \hl7_org\v3\Adxp.deliveryInstallationType ) {
-			$deliveryInstallationType = new \hl7_org\v3\Adxp.deliveryInstallationType ($deliveryInstallationType);
-		}
 	
 		return $deliveryInstallationType;
 	}
@@ -665,7 +605,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createDeliveryInstallationArea() {
-		return new \hl7_org\v3\Adxp.deliveryInstallationArea();
+		return NULL;
 	}
 
 	public function setDeliveryInstallationArea($deliveryInstallationArea) {
@@ -673,9 +613,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateDeliveryInstallationArea($deliveryInstallationArea) {
-		if ( ! $deliveryInstallationArea instanceof \hl7_org\v3\Adxp.deliveryInstallationArea ) {
-			$deliveryInstallationArea = new \hl7_org\v3\Adxp.deliveryInstallationArea ($deliveryInstallationArea);
-		}
 	
 		return $deliveryInstallationArea;
 	}
@@ -688,7 +625,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createDeliveryInstallationQualifier() {
-		return new \hl7_org\v3\Adxp.deliveryInstallationQualifier();
+		return NULL;
 	}
 
 	public function setDeliveryInstallationQualifier($deliveryInstallationQualifier) {
@@ -696,9 +633,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateDeliveryInstallationQualifier($deliveryInstallationQualifier) {
-		if ( ! $deliveryInstallationQualifier instanceof \hl7_org\v3\Adxp.deliveryInstallationQualifier ) {
-			$deliveryInstallationQualifier = new \hl7_org\v3\Adxp.deliveryInstallationQualifier ($deliveryInstallationQualifier);
-		}
 	
 		return $deliveryInstallationQualifier;
 	}
@@ -711,7 +645,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createDeliveryMode() {
-		return new \hl7_org\v3\Adxp.deliveryMode();
+		return NULL;
 	}
 
 	public function setDeliveryMode($deliveryMode) {
@@ -719,9 +653,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateDeliveryMode($deliveryMode) {
-		if ( ! $deliveryMode instanceof \hl7_org\v3\Adxp.deliveryMode ) {
-			$deliveryMode = new \hl7_org\v3\Adxp.deliveryMode ($deliveryMode);
-		}
 	
 		return $deliveryMode;
 	}
@@ -734,7 +665,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createDeliveryModeIdentifier() {
-		return new \hl7_org\v3\Adxp.deliveryModeIdentifier();
+		return NULL;
 	}
 
 	public function setDeliveryModeIdentifier($deliveryModeIdentifier) {
@@ -742,9 +673,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateDeliveryModeIdentifier($deliveryModeIdentifier) {
-		if ( ! $deliveryModeIdentifier instanceof \hl7_org\v3\Adxp.deliveryModeIdentifier ) {
-			$deliveryModeIdentifier = new \hl7_org\v3\Adxp.deliveryModeIdentifier ($deliveryModeIdentifier);
-		}
 	
 		return $deliveryModeIdentifier;
 	}
@@ -757,7 +685,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createBuildingNumberSuffix() {
-		return new \hl7_org\v3\Adxp.buildingNumberSuffix();
+		return NULL;
 	}
 
 	public function setBuildingNumberSuffix($buildingNumberSuffix) {
@@ -765,9 +693,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateBuildingNumberSuffix($buildingNumberSuffix) {
-		if ( ! $buildingNumberSuffix instanceof \hl7_org\v3\Adxp.buildingNumberSuffix ) {
-			$buildingNumberSuffix = new \hl7_org\v3\Adxp.buildingNumberSuffix ($buildingNumberSuffix);
-		}
 	
 		return $buildingNumberSuffix;
 	}
@@ -780,7 +705,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createPostBox() {
-		return new \hl7_org\v3\Adxp.postBox();
+		return NULL;
 	}
 
 	public function setPostBox($postBox) {
@@ -788,9 +713,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validatePostBox($postBox) {
-		if ( ! $postBox instanceof \hl7_org\v3\Adxp.postBox ) {
-			$postBox = new \hl7_org\v3\Adxp.postBox ($postBox);
-		}
 	
 		return $postBox;
 	}
@@ -803,7 +725,7 @@ class AD extends \ANY\ANY {
 	}
 	
 	protected function createPrecinct() {
-		return new \hl7_org\v3\Adxp.precinct();
+		return NULL;
 	}
 
 	public function setPrecinct($precinct) {
@@ -811,9 +733,6 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validatePrecinct($precinct) {
-		if ( ! $precinct instanceof \hl7_org\v3\Adxp.precinct ) {
-			$precinct = new \hl7_org\v3\Adxp.precinct ($precinct);
-		}
 	
 		return $precinct;
 	}
@@ -834,24 +753,23 @@ class AD extends \ANY\ANY {
 	}
 
 	protected function validateUseablePeriod($useablePeriod) {
-		if ( ! is_array ($useablePeriod) && ! is_null($useablePeriod) ) {
-			$useablePeriod = array($useablePeriod);
-		}
 		$count = count($useablePeriod);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'useablePeriod', 0));
 		}
 		foreach ($useablePeriod as $entry) {
-			if (!($entry instanceof SXCMTS)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'useablePeriod', 'SXCM_TS'));
-			}
 		}
 	
 		return $useablePeriod;
 	}
 
 	public function addUseablePeriod($useablePeriod) {
-		$this->useablePeriod[] = $useablePeriod;
+		$this->useablePeriod[] = $this->validateUseablePeriodType($useablePeriod);
+	}
+
+	protected function validateUseablePeriodType($useablePeriod) {
+	
+		return $useablePeriod;
 	}
 
 	public function getUse() {
