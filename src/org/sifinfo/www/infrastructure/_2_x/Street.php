@@ -14,67 +14,67 @@ class Street {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Line1")
+	 * @XmlText	(type="string", name="Line1")
 	 */
 	protected $line1;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Line2")
+	 * @XmlText	(type="string", name="Line2")
 	 */
 	protected $line2;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Line3")
+	 * @XmlText	(type="string", name="Line3")
 	 */
 	protected $line3;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Complex")
+	 * @XmlText	(type="string", name="Complex")
 	 */
 	protected $complex;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="StreetNumber")
+	 * @XmlText	(type="string", name="StreetNumber")
 	 */
 	protected $streetNumber;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="StreetPrefix")
+	 * @XmlText	(type="string", name="StreetPrefix")
 	 */
 	protected $streetPrefix;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="StreetName")
+	 * @XmlText	(type="string", name="StreetName")
 	 */
 	protected $streetName;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="StreetType")
+	 * @XmlText	(type="string", name="StreetType")
 	 */
 	protected $streetType;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="StreetSuffix")
+	 * @XmlText	(type="string", name="StreetSuffix")
 	 */
 	protected $streetSuffix;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="ApartmentType")
+	 * @XmlText	(type="string", name="ApartmentType")
 	 */
 	protected $apartmentType;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="ApartmentNumberPrefix")
+	 * @XmlText	(type="string", name="ApartmentNumberPrefix")
 	 */
 	protected $apartmentNumberPrefix;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="ApartmentNumber")
+	 * @XmlText	(type="string", name="ApartmentNumber")
 	 */
 	protected $apartmentNumber;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="ApartmentNumberSuffix")
+	 * @XmlText	(type="string", name="ApartmentNumberSuffix")
 	 */
 	protected $apartmentNumberSuffix;
 
@@ -110,8 +110,8 @@ class Street {
 	}
 
 	protected function validateLine1($line1) {
-		if (!is_normalizedString($line1)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'line1', 'normalizedString'));
+		if (!is_string($line1)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'line1', 'string'));
 		}
 	
 		return $line1;
@@ -133,8 +133,8 @@ class Street {
 	}
 
 	protected function validateLine2($line2) {
-		if ( ! is_normalizedString($line2) && ! is_null($line2) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'line2', 'normalizedString'));
+		if ( ! is_string($line2) && ! is_null($line2) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'line2', 'string'));
 		}
 	
 		return $line2;
@@ -156,8 +156,8 @@ class Street {
 	}
 
 	protected function validateLine3($line3) {
-		if ( ! is_normalizedString($line3) && ! is_null($line3) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'line3', 'normalizedString'));
+		if ( ! is_string($line3) && ! is_null($line3) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'line3', 'string'));
 		}
 	
 		return $line3;
@@ -179,8 +179,8 @@ class Street {
 	}
 
 	protected function validateComplex($complex) {
-		if ( ! is_normalizedString($complex) && ! is_null($complex) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'complex', 'normalizedString'));
+		if ( ! is_string($complex) && ! is_null($complex) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'complex', 'string'));
 		}
 	
 		return $complex;
@@ -202,8 +202,8 @@ class Street {
 	}
 
 	protected function validateStreetNumber($streetNumber) {
-		if ( ! is_normalizedString($streetNumber) && ! is_null($streetNumber) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetNumber', 'normalizedString'));
+		if ( ! is_string($streetNumber) && ! is_null($streetNumber) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetNumber', 'string'));
 		}
 	
 		return $streetNumber;
@@ -225,8 +225,8 @@ class Street {
 	}
 
 	protected function validateStreetPrefix($streetPrefix) {
-		if ( ! is_normalizedString($streetPrefix) && ! is_null($streetPrefix) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetPrefix', 'normalizedString'));
+		if ( ! is_string($streetPrefix) && ! is_null($streetPrefix) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetPrefix', 'string'));
 		}
 	
 		return $streetPrefix;
@@ -248,8 +248,8 @@ class Street {
 	}
 
 	protected function validateStreetName($streetName) {
-		if ( ! is_normalizedString($streetName) && ! is_null($streetName) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetName', 'normalizedString'));
+		if ( ! is_string($streetName) && ! is_null($streetName) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetName', 'string'));
 		}
 	
 		return $streetName;
@@ -271,8 +271,8 @@ class Street {
 	}
 
 	protected function validateStreetType($streetType) {
-		if ( ! is_normalizedString($streetType) && ! is_null($streetType) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetType', 'normalizedString'));
+		if ( ! is_string($streetType) && ! is_null($streetType) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetType', 'string'));
 		}
 	
 		return $streetType;
@@ -294,8 +294,8 @@ class Street {
 	}
 
 	protected function validateStreetSuffix($streetSuffix) {
-		if ( ! is_normalizedString($streetSuffix) && ! is_null($streetSuffix) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetSuffix', 'normalizedString'));
+		if ( ! is_string($streetSuffix) && ! is_null($streetSuffix) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'streetSuffix', 'string'));
 		}
 	
 		return $streetSuffix;
@@ -317,8 +317,8 @@ class Street {
 	}
 
 	protected function validateApartmentType($apartmentType) {
-		if ( ! is_normalizedString($apartmentType) && ! is_null($apartmentType) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'apartmentType', 'normalizedString'));
+		if ( ! is_string($apartmentType) && ! is_null($apartmentType) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'apartmentType', 'string'));
 		}
 	
 		return $apartmentType;
@@ -340,8 +340,8 @@ class Street {
 	}
 
 	protected function validateApartmentNumberPrefix($apartmentNumberPrefix) {
-		if ( ! is_normalizedString($apartmentNumberPrefix) && ! is_null($apartmentNumberPrefix) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'apartmentNumberPrefix', 'normalizedString'));
+		if ( ! is_string($apartmentNumberPrefix) && ! is_null($apartmentNumberPrefix) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'apartmentNumberPrefix', 'string'));
 		}
 	
 		return $apartmentNumberPrefix;
@@ -363,8 +363,8 @@ class Street {
 	}
 
 	protected function validateApartmentNumber($apartmentNumber) {
-		if ( ! is_normalizedString($apartmentNumber) && ! is_null($apartmentNumber) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'apartmentNumber', 'normalizedString'));
+		if ( ! is_string($apartmentNumber) && ! is_null($apartmentNumber) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'apartmentNumber', 'string'));
 		}
 	
 		return $apartmentNumber;
@@ -386,8 +386,8 @@ class Street {
 	}
 
 	protected function validateApartmentNumberSuffix($apartmentNumberSuffix) {
-		if ( ! is_normalizedString($apartmentNumberSuffix) && ! is_null($apartmentNumberSuffix) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'apartmentNumberSuffix', 'normalizedString'));
+		if ( ! is_string($apartmentNumberSuffix) && ! is_null($apartmentNumberSuffix) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'apartmentNumberSuffix', 'string'));
 		}
 	
 		return $apartmentNumberSuffix;

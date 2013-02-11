@@ -15,12 +15,12 @@ class EarnedStatusType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="StartDate")
+	 * @XmlText	(type="string", name="StartDate")
 	 */
 	protected $startDate;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="EndDate")
+	 * @XmlText	(type="string", name="EndDate")
 	 */
 	protected $endDate;
 
@@ -51,8 +51,8 @@ class EarnedStatusType {
 	}
 
 	protected function validateStartDate($startDate) {
-		if ( ! is_date($startDate) && ! is_null($startDate) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'startDate', 'date'));
+		if ( ! is_string($startDate) && ! is_null($startDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'startDate', 'string'));
 		}
 	
 		return $startDate;
@@ -74,8 +74,8 @@ class EarnedStatusType {
 	}
 
 	protected function validateEndDate($endDate) {
-		if ( ! is_date($endDate) && ! is_null($endDate) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'endDate', 'date'));
+		if ( ! is_string($endDate) && ! is_null($endDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'endDate', 'string'));
 		}
 	
 		return $endDate;

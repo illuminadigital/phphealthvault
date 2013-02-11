@@ -20,17 +20,17 @@ class OrganizationRelationshipType {
 	protected $residencyStatus;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Boolean", name="ProvidingInstruction")
+	 * @XmlText	(type="boolean", name="ProvidingInstruction")
 	 */
 	protected $providingInstruction;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Boolean", name="ProvidingServices")
+	 * @XmlText	(type="boolean", name="ProvidingServices")
 	 */
 	protected $providingServices;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Boolean", name="FinanciallyResponsible")
+	 * @XmlText	(type="boolean", name="FinanciallyResponsible")
 	 */
 	protected $financiallyResponsible;
 

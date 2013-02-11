@@ -14,7 +14,7 @@ class ActivityAward {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Name")
+	 * @XmlText	(type="string", name="Name")
 	 */
 	protected $name;
 
@@ -34,7 +34,7 @@ class ActivityAward {
 	protected $involvementEndingDate;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="InvolvementAmount")
+	 * @XmlText	(type="string", name="InvolvementAmount")
 	 */
 	protected $involvementAmount;
 
@@ -44,7 +44,7 @@ class ActivityAward {
 	protected $honorsInformationCode;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="HonorsDescription")
+	 * @XmlText	(type="string", name="HonorsDescription")
 	 */
 	protected $honorsDescription;
 
@@ -54,7 +54,7 @@ class ActivityAward {
 	protected $diplomaCredentialHonorsCode;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="DiplomaCredentialHonorsDescription")
+	 * @XmlText	(type="string", name="DiplomaCredentialHonorsDescription")
 	 */
 	protected $diplomaCredentialHonorsDescription;
 
@@ -92,8 +92,8 @@ class ActivityAward {
 	}
 
 	protected function validateName($name) {
-		if (!is_normalizedString($name)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'normalizedString'));
+		if (!is_string($name)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
 		}
 	
 		return $name;
@@ -175,8 +175,8 @@ class ActivityAward {
 	}
 
 	protected function validateInvolvementAmount($involvementAmount) {
-		if ( ! is_normalizedString($involvementAmount) && ! is_null($involvementAmount) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'involvementAmount', 'normalizedString'));
+		if ( ! is_string($involvementAmount) && ! is_null($involvementAmount) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'involvementAmount', 'string'));
 		}
 	
 		return $involvementAmount;
@@ -218,8 +218,8 @@ class ActivityAward {
 	}
 
 	protected function validateHonorsDescription($honorsDescription) {
-		if ( ! is_normalizedString($honorsDescription) && ! is_null($honorsDescription) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'honorsDescription', 'normalizedString'));
+		if ( ! is_string($honorsDescription) && ! is_null($honorsDescription) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'honorsDescription', 'string'));
 		}
 	
 		return $honorsDescription;
@@ -261,8 +261,8 @@ class ActivityAward {
 	}
 
 	protected function validateDiplomaCredentialHonorsDescription($diplomaCredentialHonorsDescription) {
-		if ( ! is_normalizedString($diplomaCredentialHonorsDescription) && ! is_null($diplomaCredentialHonorsDescription) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'diplomaCredentialHonorsDescription', 'normalizedString'));
+		if ( ! is_string($diplomaCredentialHonorsDescription) && ! is_null($diplomaCredentialHonorsDescription) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'diplomaCredentialHonorsDescription', 'string'));
 		}
 	
 		return $diplomaCredentialHonorsDescription;

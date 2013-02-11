@@ -29,7 +29,7 @@ class SchoolCourseInfoData {
 	protected $districtCourseCode;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="NationalCourseCode")
+	 * @XmlText	(type="string", name="NationalCourseCode")
 	 */
 	protected $nationalCourseCode;
 
@@ -44,7 +44,7 @@ class SchoolCourseInfoData {
 	protected $courseTitle;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Description")
+	 * @XmlText	(type="string", name="Description")
 	 */
 	protected $description;
 
@@ -54,7 +54,7 @@ class SchoolCourseInfoData {
 	protected $instructionalLevel;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Boolean", name="CoreAcademicCourse")
+	 * @XmlText	(type="boolean", name="CoreAcademicCourse")
 	 */
 	protected $coreAcademicCourse;
 
@@ -64,7 +64,7 @@ class SchoolCourseInfoData {
 	protected $graduationRequirement;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Department")
+	 * @XmlText	(type="string", name="Department")
 	 */
 	protected $department;
 
@@ -164,8 +164,8 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateNationalCourseCode($nationalCourseCode) {
-		if ( ! is_normalizedString($nationalCourseCode) && ! is_null($nationalCourseCode) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'nationalCourseCode', 'normalizedString'));
+		if ( ! is_string($nationalCourseCode) && ! is_null($nationalCourseCode) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'nationalCourseCode', 'string'));
 		}
 	
 		return $nationalCourseCode;
@@ -319,8 +319,8 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateDepartment($department) {
-		if ( ! is_normalizedString($department) && ! is_null($department) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'department', 'normalizedString'));
+		if ( ! is_string($department) && ! is_null($department) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'department', 'string'));
 		}
 	
 		return $department;

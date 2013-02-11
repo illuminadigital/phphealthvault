@@ -14,32 +14,32 @@ class SpanGap {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Type")
+	 * @XmlText	(type="string", name="Type")
 	 */
 	protected $type;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="Code")
+	 * @XmlText	(type="string", name="Code")
 	 */
 	protected $code;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Name")
+	 * @XmlText	(type="string", name="Name")
 	 */
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Value")
+	 * @XmlText	(type="string", name="Value")
 	 */
 	protected $value;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\DateTime", name="StartDateTime")
+	 * @XmlText	(type="string", name="StartDateTime")
 	 */
 	protected $startDateTime;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\DateTime", name="EndDateTime")
+	 * @XmlText	(type="string", name="EndDateTime")
 	 */
 	protected $endDateTime;
 
@@ -68,8 +68,8 @@ class SpanGap {
 	}
 
 	protected function validateType($type) {
-		if (!is_normalizedString($type)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'type', 'normalizedString'));
+		if (!is_string($type)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'type', 'string'));
 		}
 	
 		return $type;
@@ -91,8 +91,8 @@ class SpanGap {
 	}
 
 	protected function validateCode($code) {
-		if (!is_token($code)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'token'));
+		if (!is_string($code)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'string'));
 		}
 	
 		return $code;
@@ -114,8 +114,8 @@ class SpanGap {
 	}
 
 	protected function validateName($name) {
-		if (!is_normalizedString($name)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'normalizedString'));
+		if (!is_string($name)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
 		}
 	
 		return $name;
@@ -137,8 +137,8 @@ class SpanGap {
 	}
 
 	protected function validateValue($value) {
-		if (!is_normalizedString($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'normalizedString'));
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
 		}
 	
 		return $value;
@@ -160,8 +160,8 @@ class SpanGap {
 	}
 
 	protected function validateStartDateTime($startDateTime) {
-		if ( ! is_dateTime($startDateTime) && ! is_null($startDateTime) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'startDateTime', 'dateTime'));
+		if ( ! is_string($startDateTime) && ! is_null($startDateTime) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'startDateTime', 'string'));
 		}
 	
 		return $startDateTime;
@@ -183,8 +183,8 @@ class SpanGap {
 	}
 
 	protected function validateEndDateTime($endDateTime) {
-		if ( ! is_dateTime($endDateTime) && ! is_null($endDateTime) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'endDateTime', 'dateTime'));
+		if ( ! is_string($endDateTime) && ! is_null($endDateTime) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'endDateTime', 'string'));
 		}
 	
 		return $endDateTime;

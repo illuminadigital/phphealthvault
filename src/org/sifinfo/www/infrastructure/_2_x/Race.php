@@ -24,7 +24,7 @@ class Race {
 	protected $otherCodeList;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="Proportion")
+	 * @XmlText	(type="float", name="Proportion")
 	 */
 	protected $proportion;
 
@@ -96,8 +96,8 @@ class Race {
 	}
 
 	protected function validateProportion($proportion) {
-		if ( ! is_decimal($proportion) && ! is_null($proportion) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'proportion', 'decimal'));
+		if ( ! is_float($proportion) && ! is_null($proportion) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'proportion', 'float'));
 		}
 	
 		return $proportion;

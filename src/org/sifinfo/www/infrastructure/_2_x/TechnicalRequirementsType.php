@@ -15,7 +15,7 @@ class TechnicalRequirementsType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", collection="true", name="TechnicalRequirement")
+	 * @XmlText	(type="string", collection="true", name="TechnicalRequirement")
 	 */
 	protected $technicalRequirement;
 

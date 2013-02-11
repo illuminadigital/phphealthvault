@@ -14,7 +14,7 @@ class Assessment {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Name")
+	 * @XmlText	(type="string", name="Name")
 	 */
 	protected $name;
 
@@ -24,12 +24,12 @@ class Assessment {
 	protected $administrationDate;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Form")
+	 * @XmlText	(type="string", name="Form")
 	 */
 	protected $form;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Level")
+	 * @XmlText	(type="string", name="Level")
 	 */
 	protected $level;
 
@@ -39,7 +39,7 @@ class Assessment {
 	protected $studentGradeLevelWhenAssessed;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="SubtestCategory")
+	 * @XmlText	(type="string", name="SubtestCategory")
 	 */
 	protected $subtestCategory;
 
@@ -49,7 +49,7 @@ class Assessment {
 	protected $testScoreType;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="TestScore")
+	 * @XmlText	(type="string", name="TestScore")
 	 */
 	protected $testScore;
 
@@ -86,8 +86,8 @@ class Assessment {
 	}
 
 	protected function validateName($name) {
-		if (!is_normalizedString($name)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'normalizedString'));
+		if (!is_string($name)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
 		}
 	
 		return $name;
@@ -129,8 +129,8 @@ class Assessment {
 	}
 
 	protected function validateForm($form) {
-		if ( ! is_normalizedString($form) && ! is_null($form) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'form', 'normalizedString'));
+		if ( ! is_string($form) && ! is_null($form) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'form', 'string'));
 		}
 	
 		return $form;
@@ -198,8 +198,8 @@ class Assessment {
 	}
 
 	protected function validateSubtestCategory($subtestCategory) {
-		if ( ! is_normalizedString($subtestCategory) && ! is_null($subtestCategory) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'subtestCategory', 'normalizedString'));
+		if ( ! is_string($subtestCategory) && ! is_null($subtestCategory) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'subtestCategory', 'string'));
 		}
 	
 		return $subtestCategory;
@@ -241,8 +241,8 @@ class Assessment {
 	}
 
 	protected function validateTestScore($testScore) {
-		if ( ! is_normalizedString($testScore) && ! is_null($testScore) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'testScore', 'normalizedString'));
+		if ( ! is_string($testScore) && ! is_null($testScore) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'testScore', 'string'));
 		}
 	
 		return $testScore;

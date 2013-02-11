@@ -14,7 +14,7 @@ class Reference {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\AnyURI", name="URL")
+	 * @XmlText	(type="string", name="URL")
 	 */
 	protected $uRL;
 
@@ -50,8 +50,8 @@ class Reference {
 	}
 
 	protected function validateURL($uRL) {
-		if (!is_anyURI($uRL)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'uRL', 'anyURI'));
+		if (!is_string($uRL)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'uRL', 'string'));
 		}
 	
 		return $uRL;

@@ -40,12 +40,12 @@ class DemographicsType {
 	protected $birthDateVerification;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="PlaceOfBirth")
+	 * @XmlText	(type="string", name="PlaceOfBirth")
 	 */
 	protected $placeOfBirth;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="CountyOfBirth")
+	 * @XmlText	(type="string", name="CountyOfBirth")
 	 */
 	protected $countyOfBirth;
 
@@ -70,7 +70,7 @@ class DemographicsType {
 	protected $countriesOfResidency;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="CountryArrivalDate")
+	 * @XmlText	(type="string", name="CountryArrivalDate")
 	 */
 	protected $countryArrivalDate;
 
@@ -238,8 +238,8 @@ class DemographicsType {
 	}
 
 	protected function validatePlaceOfBirth($placeOfBirth) {
-		if ( ! is_normalizedString($placeOfBirth) && ! is_null($placeOfBirth) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'placeOfBirth', 'normalizedString'));
+		if ( ! is_string($placeOfBirth) && ! is_null($placeOfBirth) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'placeOfBirth', 'string'));
 		}
 	
 		return $placeOfBirth;
@@ -261,8 +261,8 @@ class DemographicsType {
 	}
 
 	protected function validateCountyOfBirth($countyOfBirth) {
-		if ( ! is_normalizedString($countyOfBirth) && ! is_null($countyOfBirth) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'countyOfBirth', 'normalizedString'));
+		if ( ! is_string($countyOfBirth) && ! is_null($countyOfBirth) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'countyOfBirth', 'string'));
 		}
 	
 		return $countyOfBirth;
@@ -370,8 +370,8 @@ class DemographicsType {
 	}
 
 	protected function validateCountryArrivalDate($countryArrivalDate) {
-		if ( ! is_date($countryArrivalDate) && ! is_null($countryArrivalDate) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'countryArrivalDate', 'date'));
+		if ( ! is_string($countryArrivalDate) && ! is_null($countryArrivalDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'countryArrivalDate', 'string'));
 		}
 	
 		return $countryArrivalDate;

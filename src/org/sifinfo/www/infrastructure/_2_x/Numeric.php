@@ -14,22 +14,22 @@ class Numeric {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\UnsignedInt", name="Precision")
+	 * @XmlText	(type="integer", name="Precision")
 	 */
 	protected $precision;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\UnsignedInt", name="Scale")
+	 * @XmlText	(type="integer", name="Scale")
 	 */
 	protected $scale;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="Low")
+	 * @XmlText	(type="float", name="Low")
 	 */
 	protected $low;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="High")
+	 * @XmlText	(type="float", name="High")
 	 */
 	protected $high;
 
@@ -56,8 +56,8 @@ class Numeric {
 	}
 
 	protected function validatePrecision($precision) {
-		if ( ! is_unsignedInt($precision) && ! is_null($precision) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'precision', 'unsignedInt'));
+		if ( ! is_integer($precision) && ! is_null($precision) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'precision', 'integer'));
 		}
 	
 		return $precision;
@@ -79,8 +79,8 @@ class Numeric {
 	}
 
 	protected function validateScale($scale) {
-		if ( ! is_unsignedInt($scale) && ! is_null($scale) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'scale', 'unsignedInt'));
+		if ( ! is_integer($scale) && ! is_null($scale) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'scale', 'integer'));
 		}
 	
 		return $scale;
@@ -102,8 +102,8 @@ class Numeric {
 	}
 
 	protected function validateLow($low) {
-		if ( ! is_decimal($low) && ! is_null($low) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'low', 'decimal'));
+		if ( ! is_float($low) && ! is_null($low) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'low', 'float'));
 		}
 	
 		return $low;
@@ -125,8 +125,8 @@ class Numeric {
 	}
 
 	protected function validateHigh($high) {
-		if ( ! is_decimal($high) && ! is_null($high) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'high', 'decimal'));
+		if ( ! is_float($high) && ! is_null($high) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'high', 'float'));
 		}
 	
 		return $high;

@@ -54,12 +54,12 @@ class EducationFilterType {
 	protected $instructionalStrategies;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Title")
+	 * @XmlText	(type="string", name="Title")
 	 */
 	protected $title;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Summary")
+	 * @XmlText	(type="string", name="Summary")
 	 */
 	protected $summary;
 
@@ -288,8 +288,8 @@ class EducationFilterType {
 	}
 
 	protected function validateTitle($title) {
-		if ( ! is_normalizedString($title) && ! is_null($title) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'title', 'normalizedString'));
+		if ( ! is_string($title) && ! is_null($title) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'title', 'string'));
 		}
 	
 		return $title;

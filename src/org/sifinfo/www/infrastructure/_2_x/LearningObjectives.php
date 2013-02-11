@@ -14,7 +14,7 @@ class LearningObjectives {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", collection="true", name="LearningObjective")
+	 * @XmlText	(type="string", collection="true", name="LearningObjective")
 	 */
 	protected $learningObjective;
 

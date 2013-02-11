@@ -24,47 +24,47 @@ class TermPerformance {
 	protected $gradeLevelWhenTaken;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="CreditsAttempted")
+	 * @XmlText	(type="float", name="CreditsAttempted")
 	 */
 	protected $creditsAttempted;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="CreditsEarned")
+	 * @XmlText	(type="float", name="CreditsEarned")
 	 */
 	protected $creditsEarned;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="GPACreditsAttempted")
+	 * @XmlText	(type="float", name="GPACreditsAttempted")
 	 */
 	protected $gPACreditsAttempted;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="GPACreditsEarned")
+	 * @XmlText	(type="float", name="GPACreditsEarned")
 	 */
 	protected $gPACreditsEarned;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="GPAGradePoints")
+	 * @XmlText	(type="float", name="GPAGradePoints")
 	 */
 	protected $gPAGradePoints;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="GPA")
+	 * @XmlText	(type="float", name="GPA")
 	 */
 	protected $gPA;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="WeightedGPA")
+	 * @XmlText	(type="float", name="WeightedGPA")
 	 */
 	protected $weightedGPA;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="DaysAbsent")
+	 * @XmlText	(type="float", name="DaysAbsent")
 	 */
 	protected $daysAbsent;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="DaysPresent")
+	 * @XmlText	(type="float", name="DaysPresent")
 	 */
 	protected $daysPresent;
 
@@ -150,8 +150,8 @@ class TermPerformance {
 	}
 
 	protected function validateCreditsAttempted($creditsAttempted) {
-		if ( ! is_decimal($creditsAttempted) && ! is_null($creditsAttempted) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'creditsAttempted', 'decimal'));
+		if ( ! is_float($creditsAttempted) && ! is_null($creditsAttempted) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'creditsAttempted', 'float'));
 		}
 	
 		return $creditsAttempted;
@@ -173,8 +173,8 @@ class TermPerformance {
 	}
 
 	protected function validateCreditsEarned($creditsEarned) {
-		if ( ! is_decimal($creditsEarned) && ! is_null($creditsEarned) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'creditsEarned', 'decimal'));
+		if ( ! is_float($creditsEarned) && ! is_null($creditsEarned) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'creditsEarned', 'float'));
 		}
 	
 		return $creditsEarned;
@@ -196,8 +196,8 @@ class TermPerformance {
 	}
 
 	protected function validateGPACreditsAttempted($gPACreditsAttempted) {
-		if ( ! is_decimal($gPACreditsAttempted) && ! is_null($gPACreditsAttempted) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPACreditsAttempted', 'decimal'));
+		if ( ! is_float($gPACreditsAttempted) && ! is_null($gPACreditsAttempted) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPACreditsAttempted', 'float'));
 		}
 	
 		return $gPACreditsAttempted;
@@ -219,8 +219,8 @@ class TermPerformance {
 	}
 
 	protected function validateGPACreditsEarned($gPACreditsEarned) {
-		if ( ! is_decimal($gPACreditsEarned) && ! is_null($gPACreditsEarned) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPACreditsEarned', 'decimal'));
+		if ( ! is_float($gPACreditsEarned) && ! is_null($gPACreditsEarned) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPACreditsEarned', 'float'));
 		}
 	
 		return $gPACreditsEarned;
@@ -242,8 +242,8 @@ class TermPerformance {
 	}
 
 	protected function validateGPAGradePoints($gPAGradePoints) {
-		if ( ! is_decimal($gPAGradePoints) && ! is_null($gPAGradePoints) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPAGradePoints', 'decimal'));
+		if ( ! is_float($gPAGradePoints) && ! is_null($gPAGradePoints) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPAGradePoints', 'float'));
 		}
 	
 		return $gPAGradePoints;
@@ -265,8 +265,8 @@ class TermPerformance {
 	}
 
 	protected function validateGPA($gPA) {
-		if ( ! is_decimal($gPA) && ! is_null($gPA) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPA', 'decimal'));
+		if ( ! is_float($gPA) && ! is_null($gPA) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPA', 'float'));
 		}
 	
 		return $gPA;
@@ -288,8 +288,8 @@ class TermPerformance {
 	}
 
 	protected function validateWeightedGPA($weightedGPA) {
-		if ( ! is_decimal($weightedGPA) && ! is_null($weightedGPA) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'weightedGPA', 'decimal'));
+		if ( ! is_float($weightedGPA) && ! is_null($weightedGPA) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'weightedGPA', 'float'));
 		}
 	
 		return $weightedGPA;
@@ -311,8 +311,8 @@ class TermPerformance {
 	}
 
 	protected function validateDaysAbsent($daysAbsent) {
-		if ( ! is_decimal($daysAbsent) && ! is_null($daysAbsent) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'daysAbsent', 'decimal'));
+		if ( ! is_float($daysAbsent) && ! is_null($daysAbsent) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'daysAbsent', 'float'));
 		}
 	
 		return $daysAbsent;
@@ -334,8 +334,8 @@ class TermPerformance {
 	}
 
 	protected function validateDaysPresent($daysPresent) {
-		if ( ! is_decimal($daysPresent) && ! is_null($daysPresent) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'daysPresent', 'decimal'));
+		if ( ! is_float($daysPresent) && ! is_null($daysPresent) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'daysPresent', 'float'));
 		}
 	
 		return $daysPresent;

@@ -14,7 +14,7 @@ class LocationType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="LocationName")
+	 * @XmlText	(type="string", name="LocationName")
 	 */
 	protected $locationName;
 
@@ -50,8 +50,8 @@ class LocationType {
 	}
 
 	protected function validateLocationName($locationName) {
-		if ( ! is_token($locationName) && ! is_null($locationName) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'locationName', 'token'));
+		if ( ! is_string($locationName) && ! is_null($locationName) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'locationName', 'string'));
 		}
 	
 		return $locationName;

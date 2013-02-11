@@ -14,22 +14,22 @@ class SoftwareRequirement {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="SoftwareTitle")
+	 * @XmlText	(type="string", name="SoftwareTitle")
 	 */
 	protected $softwareTitle;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Version")
+	 * @XmlText	(type="string", name="Version")
 	 */
 	protected $version;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Vendor")
+	 * @XmlText	(type="string", name="Vendor")
 	 */
 	protected $vendor;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="OS")
+	 * @XmlText	(type="string", name="OS")
 	 */
 	protected $oS;
 

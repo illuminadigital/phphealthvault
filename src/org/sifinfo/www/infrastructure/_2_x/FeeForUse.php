@@ -14,17 +14,17 @@ class FeeForUse {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="UseType")
+	 * @XmlText	(type="string", name="UseType")
 	 */
 	protected $useType;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", name="MeteringType")
+	 * @XmlText	(type="string", name="MeteringType")
 	 */
 	protected $meteringType;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\AnyURI", name="MeteringURL")
+	 * @XmlText	(type="string", name="MeteringURL")
 	 */
 	protected $meteringURL;
 
@@ -79,8 +79,8 @@ class FeeForUse {
 	}
 
 	protected function validateMeteringType($meteringType) {
-		if (!is_token($meteringType)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'meteringType', 'token'));
+		if (!is_string($meteringType)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'meteringType', 'string'));
 		}
 	
 		return $meteringType;
@@ -102,8 +102,8 @@ class FeeForUse {
 	}
 
 	protected function validateMeteringURL($meteringURL) {
-		if ( ! is_anyURI($meteringURL) && ! is_null($meteringURL) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'meteringURL', 'anyURI'));
+		if ( ! is_string($meteringURL) && ! is_null($meteringURL) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'meteringURL', 'string'));
 		}
 	
 		return $meteringURL;

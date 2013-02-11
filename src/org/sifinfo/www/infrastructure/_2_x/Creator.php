@@ -14,12 +14,12 @@ class Creator {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Name")
+	 * @XmlText	(type="string", name="Name")
 	 */
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="ID")
+	 * @XmlText	(type="string", name="ID")
 	 */
 	protected $iD;
 
@@ -44,8 +44,8 @@ class Creator {
 	}
 
 	protected function validateName($name) {
-		if (!is_normalizedString($name)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'normalizedString'));
+		if (!is_string($name)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
 		}
 	
 		return $name;
@@ -67,8 +67,8 @@ class Creator {
 	}
 
 	protected function validateID($iD) {
-		if (!is_normalizedString($iD)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'iD', 'normalizedString'));
+		if (!is_string($iD)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'iD', 'string'));
 		}
 	
 		return $iD;

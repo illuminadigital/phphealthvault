@@ -14,27 +14,27 @@ class MarkData {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="Percentage")
+	 * @XmlText	(type="float", name="Percentage")
 	 */
 	protected $percentage;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\UnsignedInt", name="Numeric")
+	 * @XmlText	(type="integer", name="Numeric")
 	 */
 	protected $numeric;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="NumericAsDecimal")
+	 * @XmlText	(type="float", name="NumericAsDecimal")
 	 */
 	protected $numericAsDecimal;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="Letter")
+	 * @XmlText	(type="string", name="Letter")
 	 */
 	protected $letter;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Narrative")
+	 * @XmlText	(type="string", name="Narrative")
 	 */
 	protected $narrative;
 
@@ -74,8 +74,8 @@ class MarkData {
 	}
 
 	protected function validatePercentage($percentage) {
-		if ( ! is_decimal($percentage) && ! is_null($percentage) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'percentage', 'decimal'));
+		if ( ! is_float($percentage) && ! is_null($percentage) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'percentage', 'float'));
 		}
 	
 		return $percentage;
@@ -97,8 +97,8 @@ class MarkData {
 	}
 
 	protected function validateNumeric($numeric) {
-		if ( ! is_unsignedInt($numeric) && ! is_null($numeric) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'numeric', 'unsignedInt'));
+		if ( ! is_integer($numeric) && ! is_null($numeric) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'numeric', 'integer'));
 		}
 	
 		return $numeric;
@@ -120,8 +120,8 @@ class MarkData {
 	}
 
 	protected function validateNumericAsDecimal($numericAsDecimal) {
-		if ( ! is_decimal($numericAsDecimal) && ! is_null($numericAsDecimal) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'numericAsDecimal', 'decimal'));
+		if ( ! is_float($numericAsDecimal) && ! is_null($numericAsDecimal) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'numericAsDecimal', 'float'));
 		}
 	
 		return $numericAsDecimal;
@@ -143,8 +143,8 @@ class MarkData {
 	}
 
 	protected function validateLetter($letter) {
-		if ( ! is_normalizedString($letter) && ! is_null($letter) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'letter', 'normalizedString'));
+		if ( ! is_string($letter) && ! is_null($letter) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'letter', 'string'));
 		}
 	
 		return $letter;

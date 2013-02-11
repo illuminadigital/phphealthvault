@@ -14,17 +14,17 @@ class Modified {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="By")
+	 * @XmlText	(type="string", name="By")
 	 */
 	protected $by;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\DateTime", name="DateTime")
+	 * @XmlText	(type="string", name="DateTime")
 	 */
 	protected $dateTime;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\String", name="Description")
+	 * @XmlText	(type="string", name="Description")
 	 */
 	protected $description;
 
@@ -50,8 +50,8 @@ class Modified {
 	}
 
 	protected function validateBy($by) {
-		if (!is_normalizedString($by)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'by', 'normalizedString'));
+		if (!is_string($by)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'by', 'string'));
 		}
 	
 		return $by;
@@ -73,8 +73,8 @@ class Modified {
 	}
 
 	protected function validateDateTime($dateTime) {
-		if (!is_dateTime($dateTime)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateTime', 'dateTime'));
+		if (!is_string($dateTime)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateTime', 'string'));
 		}
 	
 		return $dateTime;

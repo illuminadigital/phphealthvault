@@ -14,7 +14,7 @@ class Narrative {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\UnsignedInt", name="MaximumSize")
+	 * @XmlText	(type="integer", name="MaximumSize")
 	 */
 	protected $maximumSize;
 
@@ -38,8 +38,8 @@ class Narrative {
 	}
 
 	protected function validateMaximumSize($maximumSize) {
-		if ( ! is_unsignedInt($maximumSize) && ! is_null($maximumSize) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'maximumSize', 'unsignedInt'));
+		if ( ! is_integer($maximumSize) && ! is_null($maximumSize) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'maximumSize', 'integer'));
 		}
 	
 		return $maximumSize;

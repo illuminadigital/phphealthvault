@@ -49,7 +49,7 @@ class StudentPlacementData {
 	protected $serviceProviderType;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="AgencyType")
+	 * @XmlText	(type="string", name="AgencyType")
 	 */
 	protected $agencyType;
 
@@ -247,8 +247,8 @@ class StudentPlacementData {
 	}
 
 	protected function validateAgencyType($agencyType) {
-		if ( ! is_normalizedString($agencyType) && ! is_null($agencyType) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'agencyType', 'normalizedString'));
+		if ( ! is_string($agencyType) && ! is_null($agencyType) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'agencyType', 'string'));
 		}
 	
 		return $agencyType;

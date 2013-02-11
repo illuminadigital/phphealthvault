@@ -60,17 +60,17 @@ class StudentParametersType {
 	protected $contacts;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="EffectiveDate")
+	 * @XmlText	(type="string", name="EffectiveDate")
 	 */
 	protected $effectiveDate;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="StartDate")
+	 * @XmlText	(type="string", name="StartDate")
 	 */
 	protected $startDate;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Date", name="EndDate")
+	 * @XmlText	(type="string", name="EndDate")
 	 */
 	protected $endDate;
 
@@ -80,12 +80,12 @@ class StudentParametersType {
 	protected $graduationDate;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="SchoolAttendedName")
+	 * @XmlText	(type="string", name="SchoolAttendedName")
 	 */
 	protected $schoolAttendedName;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="SchoolAttendedLocation")
+	 * @XmlText	(type="string", name="SchoolAttendedLocation")
 	 */
 	protected $schoolAttendedLocation;
 
@@ -330,8 +330,8 @@ class StudentParametersType {
 	}
 
 	protected function validateEffectiveDate($effectiveDate) {
-		if ( ! is_date($effectiveDate) && ! is_null($effectiveDate) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'effectiveDate', 'date'));
+		if ( ! is_string($effectiveDate) && ! is_null($effectiveDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'effectiveDate', 'string'));
 		}
 	
 		return $effectiveDate;
@@ -353,8 +353,8 @@ class StudentParametersType {
 	}
 
 	protected function validateStartDate($startDate) {
-		if ( ! is_date($startDate) && ! is_null($startDate) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'startDate', 'date'));
+		if ( ! is_string($startDate) && ! is_null($startDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'startDate', 'string'));
 		}
 	
 		return $startDate;
@@ -376,8 +376,8 @@ class StudentParametersType {
 	}
 
 	protected function validateEndDate($endDate) {
-		if ( ! is_date($endDate) && ! is_null($endDate) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'endDate', 'date'));
+		if ( ! is_string($endDate) && ! is_null($endDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'endDate', 'string'));
 		}
 	
 		return $endDate;
@@ -419,8 +419,8 @@ class StudentParametersType {
 	}
 
 	protected function validateSchoolAttendedName($schoolAttendedName) {
-		if ( ! is_normalizedString($schoolAttendedName) && ! is_null($schoolAttendedName) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'schoolAttendedName', 'normalizedString'));
+		if ( ! is_string($schoolAttendedName) && ! is_null($schoolAttendedName) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'schoolAttendedName', 'string'));
 		}
 	
 		return $schoolAttendedName;
@@ -442,8 +442,8 @@ class StudentParametersType {
 	}
 
 	protected function validateSchoolAttendedLocation($schoolAttendedLocation) {
-		if ( ! is_normalizedString($schoolAttendedLocation) && ! is_null($schoolAttendedLocation) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'schoolAttendedLocation', 'normalizedString'));
+		if ( ! is_string($schoolAttendedLocation) && ! is_null($schoolAttendedLocation) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'schoolAttendedLocation', 'string'));
 		}
 	
 		return $schoolAttendedLocation;

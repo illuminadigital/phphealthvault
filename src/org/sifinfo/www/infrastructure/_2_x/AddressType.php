@@ -20,12 +20,12 @@ class AddressType {
 	protected $street;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="City")
+	 * @XmlText	(type="string", name="City")
 	 */
 	protected $city;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="County")
+	 * @XmlText	(type="string", name="County")
 	 */
 	protected $county;
 
@@ -40,7 +40,7 @@ class AddressType {
 	protected $country;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NormalizedString", name="PostalCode")
+	 * @XmlText	(type="string", name="PostalCode")
 	 */
 	protected $postalCode;
 
@@ -104,8 +104,8 @@ class AddressType {
 	}
 
 	protected function validateCity($city) {
-		if (!is_normalizedString($city)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'city', 'normalizedString'));
+		if (!is_string($city)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'city', 'string'));
 		}
 	
 		return $city;
@@ -127,8 +127,8 @@ class AddressType {
 	}
 
 	protected function validateCounty($county) {
-		if ( ! is_normalizedString($county) && ! is_null($county) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'county', 'normalizedString'));
+		if ( ! is_string($county) && ! is_null($county) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'county', 'string'));
 		}
 	
 		return $county;
@@ -196,8 +196,8 @@ class AddressType {
 	}
 
 	protected function validatePostalCode($postalCode) {
-		if (!is_normalizedString($postalCode)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'postalCode', 'normalizedString'));
+		if (!is_string($postalCode)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'postalCode', 'string'));
 		}
 	
 		return $postalCode;

@@ -14,7 +14,7 @@ class MediaTypes {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Token", collection="true", name="MediaType")
+	 * @XmlText	(type="string", collection="true", name="MediaType")
 	 */
 	protected $mediaType;
 
@@ -43,8 +43,8 @@ class MediaTypes {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'mediaType', 1));
 		}
 		foreach ($mediaType as $entry) {
-			if (!is_token($entry)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'mediaType', 'token'));
+			if (!is_string($entry)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'mediaType', 'string'));
 			}
 		}
 	
@@ -56,8 +56,8 @@ class MediaTypes {
 	}
 
 	protected function validateMediaTypeType($mediaType) {
-		if (!is_token($mediaType)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'mediaType', 'token'));
+		if (!is_string($mediaType)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'mediaType', 'string'));
 		}
 	
 		return $mediaType;

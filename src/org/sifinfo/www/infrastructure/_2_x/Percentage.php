@@ -14,12 +14,12 @@ class Percentage {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="Minimum")
+	 * @XmlText	(type="float", name="Minimum")
 	 */
 	protected $minimum;
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Decimal", name="Maximum")
+	 * @XmlText	(type="float", name="Maximum")
 	 */
 	protected $maximum;
 
@@ -44,8 +44,8 @@ class Percentage {
 	}
 
 	protected function validateMinimum($minimum) {
-		if ( ! is_decimal($minimum) && ! is_null($minimum) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'minimum', 'decimal'));
+		if ( ! is_float($minimum) && ! is_null($minimum) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'minimum', 'float'));
 		}
 	
 		return $minimum;
@@ -67,8 +67,8 @@ class Percentage {
 	}
 
 	protected function validateMaximum($maximum) {
-		if ( ! is_decimal($maximum) && ! is_null($maximum) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'maximum', 'decimal'));
+		if ( ! is_float($maximum) && ! is_null($maximum) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'maximum', 'float'));
 		}
 	
 		return $maximum;

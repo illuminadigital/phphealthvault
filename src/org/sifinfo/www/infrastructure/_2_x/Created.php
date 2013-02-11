@@ -14,7 +14,7 @@ class Created {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\DateTime", name="DateTime")
+	 * @XmlText	(type="string", name="DateTime")
 	 */
 	protected $dateTime;
 
@@ -44,8 +44,8 @@ class Created {
 	}
 
 	protected function validateDateTime($dateTime) {
-		if (!is_dateTime($dateTime)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateTime', 'dateTime'));
+		if (!is_string($dateTime)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'dateTime', 'string'));
 		}
 	
 		return $dateTime;
