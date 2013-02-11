@@ -334,10 +334,10 @@ class Condition
         if ($this->healthvaultVocabulary) {
             // Try to lookup the code
         
-            foreach (array() as $vocabulary) {
+            foreach ($vocabularies as $vocabulary) {
                 if (is_array($vocabulary)) {
                     $vocabularyName = array_shift($vocabulary);
-                    $vocabularyFamily = (empty($vocabualry) ? 'wc' : array_shift($vocabulary));
+                    $vocabularyFamily = (empty($vocabulary) ? 'wc' : array_shift($vocabulary));
                 } else {
                     $vocabularyName = (string) $vocabulary;
                     $vocabularyFamily = 'wc';
