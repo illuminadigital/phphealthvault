@@ -15,7 +15,7 @@ class SIFExtendedElement {
 	 */
 
 	/**
-	 * @XmlAttribute	(type="normalizedString", name="Name")
+	 * @XmlAttribute	(type="string", name="Name")
 	 */
 	protected $name;
 
@@ -45,8 +45,8 @@ class SIFExtendedElement {
 	}
 
 	protected function validateName($name) {
-		if (!is_normalizedString($name)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'normalizedString'));
+		if (!is_string($name)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
 		}
 	
 		return $name;

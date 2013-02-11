@@ -19,7 +19,7 @@ class XMLData {
 	protected $any;
 
 	/**
-	 * @XmlAttribute	(type="token", name="Description")
+	 * @XmlAttribute	(type="string", name="Description")
 	 */
 	protected $description;
 
@@ -85,8 +85,8 @@ class XMLData {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! is_token($description) && ! is_null($description) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'token'));
+		if ( ! is_string($description) && ! is_null($description) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'string'));
 		}
 	
 		return $description;

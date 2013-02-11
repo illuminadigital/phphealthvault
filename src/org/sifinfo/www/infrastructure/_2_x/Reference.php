@@ -19,12 +19,12 @@ class Reference {
 	protected $uRL;
 
 	/**
-	 * @XmlAttribute	(type="token", name="MIMEType")
+	 * @XmlAttribute	(type="string", name="MIMEType")
 	 */
 	protected $mIMEType;
 
 	/**
-	 * @XmlAttribute	(type="token", name="Description")
+	 * @XmlAttribute	(type="string", name="Description")
 	 */
 	protected $description;
 
@@ -73,8 +73,8 @@ class Reference {
 	}
 
 	protected function validateMIMEType($mIMEType) {
-		if (!is_token($mIMEType)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'mIMEType', 'token'));
+		if (!is_string($mIMEType)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'mIMEType', 'string'));
 		}
 	
 		return $mIMEType;
@@ -96,8 +96,8 @@ class Reference {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! is_token($description) && ! is_null($description) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'token'));
+		if ( ! is_string($description) && ! is_null($description) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'string'));
 		}
 	
 		return $description;

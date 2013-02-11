@@ -19,7 +19,7 @@ class FSAmountType extends MonetaryAmountType {
 	protected $type;
 
 	/**
-	 * @XmlAttribute	(type="decimal", name="Credits")
+	 * @XmlAttribute	(type="float", name="Credits")
 	 */
 	protected $credits;
 
@@ -67,8 +67,8 @@ class FSAmountType extends MonetaryAmountType {
 	}
 
 	protected function validateCredits($credits) {
-		if (!is_decimal($credits)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'credits', 'decimal'));
+		if (!is_float($credits)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'credits', 'float'));
 		}
 	
 		return $credits;
