@@ -34,7 +34,7 @@ cd $DEFDIR
 rm -rf /tmp/$$
 
 echo "Creating missing Any classes"
-for i in `find $DESTBASE/src -type f -print0 | xargs -0 grep -h 'type="[^"]*AnyMixed"' | perl -ne '/type="([^"]*AnyMixed)"/ && do { $class = $1; $class =~ s#\\\\#\\/#g; print "$class\n"; }' | sort -u` 
+for i in `find $DESTBASE/src -type f -print0 | xargs -0 egrep -h 'type="[^"]*Any(Mixed|Type)"' | perl -ne '/type="([^"]*Any(Mixed|Type))"/ && do { $class = $1; $class =~ s#\\\\#\\/#g; print "$class\n"; }' | sort -u` 
 do
 	echo $i
 	FNAME=$DESTBASE/src$i.php
