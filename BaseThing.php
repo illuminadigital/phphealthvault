@@ -87,7 +87,7 @@ abstract class BaseThing
         
         $this->thing = $thing;
         
-        $thing->setThingNotes($this->notes);
+        $this->notes = $this->getThingNotes();
     
         return $this;
     }
@@ -96,9 +96,7 @@ abstract class BaseThing
     {
         $payloadArea = $this->getThingPayloadArea();
         
-        $this->notes = $payloadArea->getCommon()->getNote();
-        
-        return $this;
+        return $payloadArea->getCommon()->getNote();
     }
 
     protected function setThingNotes($notes)
@@ -130,8 +128,11 @@ abstract class BaseThing
     }
     
     public static function supports(Thing $thing) {
-        // return ($thing->getTypeId()->getValue() == BloodGlucose::ID);
-        return FALSE;
+        $calledClass = get_called_class();
+        
+        if (is_callable(array($calledClass, 'reallySupports'))) {
+            return call_user_func(array($calledClass, 'reallySupports'), $thing);
+        }
     }
     
     public function getVersion() {
@@ -239,7 +240,13 @@ abstract class BaseThing
     
     protected function getThingDatetime(\com\microsoft\wc\dates\DateTime $hvDatetime)
     {
-        return $hvDatetime->getDate() . ' ' . $hvDatetime->getTime();
+        $date = $hvDatetime->getDate();
+        $time = $hvDatetime->getTime();
+        
+        return sprintf('%d-%02d-%02d %d:%02d:%02d', 
+                $date->getY()->getValue(), $date->getM()->getValue(), $date->getD()->getValue(),
+                $time->getH()->getValue(), $time->getM()->getValue(), $time->getS()->getValue()
+        );
     }
     
     protected function setThingDatetime(DateTime $hvDatetime, $datetime)
@@ -306,4 +313,14 @@ abstract class BaseThing
         return NULL;
     }
     
+    /**
+     * Gets a list of fields to display
+     * 
+     * @return array of keys (field names) and values (field headings)
+     */
+    public static function getDisplayFields()
+    {
+        return array(
+        );
+    }
 }

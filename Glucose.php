@@ -169,7 +169,7 @@ class Glucose extends BaseThing
         return $this;
     }
     
-    public static function supports(Thing $thing)
+    public static function reallySupports(Thing $thing)
     {
         return ($thing->getTypeId()->getValue() == BloodGlucose::ID);
     }
@@ -178,17 +178,23 @@ class Glucose extends BaseThing
     {
         $result = parent::setThing($thing);
         
-        if ( ! $result) {
+        if ( $result === FALSE ) {
             return $result;
         }
         
         $payload = $this->getThingPayload();
         
         $this->value = $payload->getValue()->getMmolPerL()->getValue();
-        $this->when = $payload->getThingDatetime($payload->getWhen());
-        $this->glucoseMeasurementType = $payload->getGlucoseMeasurementType()->getCode()->getValue();
+        $this->when = $this->getThingDatetime($payload->getWhen());
+        $type = $payload->getGlucoseMeasurementType();
+        if ($type && $type->getCode()) {
+            $this->glucoseMeasurementType = $type->getCode()->getValue();
+        }
         $this->normalcy = $payload->getNormalcy()->getValue();
-        $this->measurementContext = $payload->getMeasurementContext()->getCode()->getValue();
+        $context = $payload->getMeasurementContext();
+        if ($context && $context->getCode()) {
+            $this->measurementContext = $context->getCode()->getValue();
+        }
         
         return $this;
     }
@@ -250,5 +256,14 @@ class Glucose extends BaseThing
     
     protected function getNewDataXmlContent() {
         return new BloodGlucose();
+    }
+    
+    public static function getDisplayFields() {
+        return array(
+            'when' => 'Date',
+            'value' => 'Blood Glucose (mmol/L)',
+            'measurementContext' => 'Measurement Context',
+            'glucoseMeasurementType' => 'Type',
+        );
     }
 }

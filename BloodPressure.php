@@ -5,6 +5,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use com\microsoft\wc\thing\Thing;
 use com\microsoft\wc\thing\BloodPressure\BloodPressure as hvBloodPressure;
 
+use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
+
 class BloodPressure extends BaseThing
 {
     protected $name = 'Blood Pressure';
@@ -72,7 +74,7 @@ class BloodPressure extends BaseThing
         $this->when = $when;
 
         if ($this->thing) {
-            $this->setHealthvaultWhen($when);
+            $this->setThingWhen($when);
         }
 
         return $this;
@@ -102,7 +104,7 @@ class BloodPressure extends BaseThing
         $this->systolic = $systolic;
 
         if ($this->thing) {
-            $this->setHealthvaultSystolic($systolic);
+            $this->setThingSystolic($systolic);
         }
 
         return $this;
@@ -124,7 +126,7 @@ class BloodPressure extends BaseThing
         $this->diastolic = $diastolic;
 
         if ($this->thing) {
-            $this->setHealthvaultDiastolic($diastolic);
+            $this->setThingDiastolic($diastolic);
         }
 
         return $this;
@@ -146,7 +148,7 @@ class BloodPressure extends BaseThing
         $this->pulse = $pulse;
 
         if ($this->thing) {
-            $this->setHealthvaultPulse($pulse);
+            $this->setThingPulse($pulse);
         }
 
         return $this;
@@ -168,13 +170,13 @@ class BloodPressure extends BaseThing
         $this->irregularHeartbeat = $irregularHeartbeat;
 
         if ($this->thing) {
-            $this->setHealthvaultIrregularHeartbeat($irregularHeartbeat);
+            $this->setThingIrregularHeartbeat($irregularHeartbeat);
         }
 
         return $this;
     }
 
-    public static function supports(Thing $thing)
+    public static function reallySupports(Thing $thing)
     {
         return ($thing->getTypeId()->getValue() == hvBloodPressure::ID);
     }
@@ -193,7 +195,7 @@ class BloodPressure extends BaseThing
         $this->diastolic = $payload->getDiastolic()->getValue();
         $this->systolic = $payload->getSystolic()->getValue();
         $pulse = $payload->getPulse();
-        if ($pulse) {
+        if ($pulse && $pulse->getValue()) {
             $this->pulse = $pulse->getValue();
         }
         $this->irregularHeartbeat = $payload->getIrregularHeartbeat();
@@ -264,5 +266,15 @@ class BloodPressure extends BaseThing
     protected function getNewDataXmlContent()
     {
         return new hvBloodPressure();
+    }
+    
+    public static function getDisplayFields() {
+        return array(
+            'when' => 'Date',
+            'diastolic' => 'Diastolic',
+            'systolic' => 'Systolic',
+            'pulse' => 'Pulse',
+            'irregularHeartbeat' => 'Irregular?',
+        );
     }
 }
