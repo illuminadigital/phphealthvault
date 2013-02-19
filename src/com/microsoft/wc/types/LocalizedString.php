@@ -14,7 +14,7 @@ class LocalizedString {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="LocalizedString")
 	 */
 	protected $value;
 

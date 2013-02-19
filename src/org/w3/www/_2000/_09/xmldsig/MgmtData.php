@@ -14,7 +14,7 @@ class MgmtData {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="MgmtData")
 	 */
 	protected $value;
 

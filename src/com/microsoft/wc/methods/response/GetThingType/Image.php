@@ -16,7 +16,7 @@ class Image {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="Image")
 	 */
 	protected $value;
 

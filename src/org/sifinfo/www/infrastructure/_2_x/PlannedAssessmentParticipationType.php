@@ -15,7 +15,7 @@ class PlannedAssessmentParticipationType {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="PlannedAssessmentParticipationType")
 	 */
 	protected $value;
 

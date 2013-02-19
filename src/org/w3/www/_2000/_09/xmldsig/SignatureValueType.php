@@ -14,7 +14,7 @@ class SignatureValueType {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="SignatureValueType")
 	 */
 	protected $value;
 

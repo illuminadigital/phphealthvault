@@ -16,7 +16,7 @@ class ConfigurationEntry {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="ConfigurationEntry")
 	 */
 	protected $value;
 

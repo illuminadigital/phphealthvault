@@ -14,7 +14,7 @@ class KeyName {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="KeyName")
 	 */
 	protected $value;
 

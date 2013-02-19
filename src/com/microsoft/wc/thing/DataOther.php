@@ -14,7 +14,7 @@ class DataOther {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="DataOther")
 	 */
 	protected $value;
 

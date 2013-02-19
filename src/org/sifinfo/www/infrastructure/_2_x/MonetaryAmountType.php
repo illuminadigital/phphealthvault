@@ -15,7 +15,7 @@ class MonetaryAmountType {
 	 */
 
 	/**
-	 * @XmlText	(type="float", name="value")
+	 * @XmlValue	(type="float", name="MonetaryAmountType")
 	 */
 	protected $value;
 

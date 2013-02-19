@@ -14,7 +14,7 @@ class Xsl {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="Xsl")
 	 */
 	protected $value;
 

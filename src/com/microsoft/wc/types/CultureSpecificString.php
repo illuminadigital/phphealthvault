@@ -16,7 +16,7 @@ class CultureSpecificString {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="CultureSpecificString")
 	 */
 	protected $value;
 

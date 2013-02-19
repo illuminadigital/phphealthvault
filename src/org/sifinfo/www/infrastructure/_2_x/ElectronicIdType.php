@@ -15,7 +15,7 @@ class ElectronicIdType {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="ElectronicIdType")
 	 */
 	protected $value;
 

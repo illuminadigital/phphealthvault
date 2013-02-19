@@ -15,7 +15,7 @@ class CourseCreditsType {
 	 */
 
 	/**
-	 * @XmlText	(type="float", name="value")
+	 * @XmlValue	(type="float", name="CourseCreditsType")
 	 */
 	protected $value;
 

@@ -16,7 +16,7 @@ class TransformSource {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="TransformSource")
 	 */
 	protected $value;
 

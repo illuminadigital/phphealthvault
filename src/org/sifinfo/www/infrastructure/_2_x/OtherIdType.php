@@ -15,7 +15,7 @@ class OtherIdType {
 	 */
 
 	/**
-	 * @XmlText	(type="string", name="value")
+	 * @XmlValue	(type="string", name="OtherIdType")
 	 */
 	protected $value;
 

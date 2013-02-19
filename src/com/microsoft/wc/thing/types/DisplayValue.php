@@ -17,7 +17,7 @@ class DisplayValue {
 	 */
 
 	/**
-	 * @XmlText	(type="float", name="value")
+	 * @XmlValue	(type="float", name="display-value")
 	 */
 	protected $value;
 
