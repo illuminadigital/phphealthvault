@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="BIN")
  */
-class BIN extends \ANY\ANY {
+class BIN extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
 	 * Binary data is a raw block of bits. Binary data is a protected type that MUST not be used outside the data type specification.
 	 */

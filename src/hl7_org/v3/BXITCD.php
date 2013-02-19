@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="BXIT_CD")
  */
-class BXITCD extends \CD\CD {
+class BXITCD extends \org\w3\www\_2001\XMLSchema\CD {
 	/**
 	 */
 

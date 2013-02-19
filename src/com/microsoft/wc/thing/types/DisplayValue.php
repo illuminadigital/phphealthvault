@@ -17,6 +17,11 @@ class DisplayValue {
 	 */
 
 	/**
+	 * @XmlText	(type="float", name="value")
+	 */
+	protected $value;
+
+	/**
 	 * @XmlAttribute	(type="string", name="units")
 	 */
 	protected $units;
@@ -31,10 +36,34 @@ class DisplayValue {
 	 */
 	protected $text;
 
-	public function __construct($units = NULL, $unitsCode = NULL, $text = NULL) {
+	public function __construct($value = NULL, $units = NULL, $unitsCode = NULL, $text = NULL) {
+		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 		$this->units = ($units===NULL) ? NULL : $this->validateUnits($units);
 		$this->unitsCode = ($unitsCode===NULL) ? NULL : $this->validateUnitsCode($unitsCode);
 		$this->text = ($text===NULL) ? NULL : $this->validateText($text);
+	}
+
+	public function getValue() {
+		if ($this->value===NULL) {
+			$this->value = $this->createValue();
+		}
+		return $this->value;
+	}
+	
+	protected function createValue() {
+		return 0.0;
+	}
+
+	public function setValue($value) {
+		$this->value = $this->validateValue($value);
+	}
+
+	protected function validateValue($value) {
+		if (!is_float($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'float'));
+		}
+	
+		return $value;
 	}
 
 	public function getUnits() {

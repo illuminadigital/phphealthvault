@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="SLIST_TS")
  */
-class SLISTTS extends \ANY\ANY {
+class SLISTTS extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
 	 */
 

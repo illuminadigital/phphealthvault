@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="RTO_PQ_PQ")
  */
-class RTOPQPQ extends \QTY\QTY {
+class RTOPQPQ extends \org\w3\www\_2001\XMLSchema\QTY {
 	/**
 	 */
 

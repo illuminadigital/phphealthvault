@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="SXCM_CD")
  */
-class SXCMCD extends \CD\CD {
+class SXCMCD extends \org\w3\www\_2001\XMLSchema\CD {
 	/**
 	 */
 

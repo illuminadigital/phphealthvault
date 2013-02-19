@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="IVL_MO")
  */
-class IVLMO extends \SXCM_MO\SXCMMO {
+class IVLMO extends \org\w3\www\_2001\XMLSchema\SXCMMO {
 	/**
 	 */
 

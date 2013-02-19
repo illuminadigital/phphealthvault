@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="BN")
  */
-class BN extends \ANYNonNull\ANYNonNull {
+class BN extends \org\w3\www\_2001\XMLSchema\ANYNonNull {
 	/**
 	 * The BooleanNonNull type is used where a Boolean cannot have a null value. A Boolean value can be either true or false.
 	 */

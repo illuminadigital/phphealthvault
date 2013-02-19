@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="TS")
  */
-class TS extends \QTY\QTY {
+class TS extends \org\w3\www\_2001\XMLSchema\QTY {
 	/**
 	 * A quantity specifying a point on the axis of natural time. A point in time is most often represented as a calendar expression.
 	 */

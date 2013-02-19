@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="SXCM_PPD_TS")
  */
-class SXCMPPDTS extends \PPD_TS\PPDTS {
+class SXCMPPDTS extends \org\w3\www\_2001\XMLSchema\PPDTS {
 	/**
 	 */
 

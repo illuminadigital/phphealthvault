@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="PN")
  */
-class PN extends \EN\EN {
+class PN extends \org\w3\www\_2001\XMLSchema\EN {
 	/**
 	 * A name for a person. A sequence of name parts, such as given name or family name, prefix, suffix, etc. PN differs from EN because the qualifier type cannot include LS (Legal Status).
 	 */

@@ -15,12 +15,41 @@ class MonetaryAmountType {
 	 */
 
 	/**
+	 * @XmlText	(type="float", name="value")
+	 */
+	protected $value;
+
+	/**
 	 * @XmlAttribute	(type="string", name="Currency")
 	 */
 	protected $currency;
 
-	public function __construct($currency = NULL) {
+	public function __construct($value = NULL, $currency = NULL) {
+		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 		$this->currency = ($currency===NULL) ? NULL : $this->validateCurrency($currency);
+	}
+
+	public function getValue() {
+		if ($this->value===NULL) {
+			$this->value = $this->createValue();
+		}
+		return $this->value;
+	}
+	
+	protected function createValue() {
+		return NULL;
+	}
+
+	public function setValue($value) {
+		$this->value = $this->validateValue($value);
+	}
+
+	protected function validateValue($value) {
+		if (!is_float($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'float'));
+		}
+	
+		return $value;
 	}
 
 	public function getCurrency() {

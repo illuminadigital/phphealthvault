@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="IVXB_INT")
  */
-class IVXBINT extends \INT\INT {
+class IVXBINT extends \org\w3\www\_2001\XMLSchema\INT {
 	/**
 	 */
 

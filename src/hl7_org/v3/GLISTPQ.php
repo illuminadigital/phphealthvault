@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="GLIST_PQ")
  */
-class GLISTPQ extends \ANY\ANY {
+class GLISTPQ extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
 	 */
 

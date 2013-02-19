@@ -16,12 +16,41 @@ class CultureSpecificString {
 	 */
 
 	/**
+	 * @XmlText	(type="string", name="value")
+	 */
+	protected $value;
+
+	/**
 	 * @XmlAttribute	(type="string", name="xml:lang")
 	 */
 	protected $xmlLang;
 
-	public function __construct($xmlLang = NULL) {
+	public function __construct($value = NULL, $xmlLang = NULL) {
+		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 		$this->xmlLang = ($xmlLang===NULL) ? NULL : $this->validateXmlLang($xmlLang);
+	}
+
+	public function getValue() {
+		if ($this->value===NULL) {
+			$this->value = $this->createValue();
+		}
+		return $this->value;
+	}
+	
+	protected function createValue() {
+		return '';
+	}
+
+	public function setValue($value) {
+		$this->value = $this->validateValue($value);
+	}
+
+	protected function validateValue($value) {
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		}
+	
+		return $value;
 	}
 
 	public function getXmlLang() {

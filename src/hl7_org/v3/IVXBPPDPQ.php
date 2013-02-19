@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="IVXB_PPD_PQ")
  */
-class IVXBPPDPQ extends \PPD_PQ\PPDPQ {
+class IVXBPPDPQ extends \org\w3\www\_2001\XMLSchema\PPDPQ {
 	/**
 	 */
 

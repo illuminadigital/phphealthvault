@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="SXCM_INT")
  */
-class SXCMINT extends \INT\INT {
+class SXCMINT extends \org\w3\www\_2001\XMLSchema\INT {
 	/**
 	 */
 

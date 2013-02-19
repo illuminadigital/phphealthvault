@@ -14,12 +14,41 @@ class SignatureValueType {
 	 */
 
 	/**
+	 * @XmlText	(type="string", name="value")
+	 */
+	protected $value;
+
+	/**
 	 * @XmlAttribute	(type="string", name="Id")
 	 */
 	protected $id;
 
-	public function __construct($id = NULL) {
+	public function __construct($value = NULL, $id = NULL) {
+		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
+	}
+
+	public function getValue() {
+		if ($this->value===NULL) {
+			$this->value = $this->createValue();
+		}
+		return $this->value;
+	}
+	
+	protected function createValue() {
+		return NULL;
+	}
+
+	public function setValue($value) {
+		$this->value = $this->validateValue($value);
+	}
+
+	protected function validateValue($value) {
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		}
+	
+		return $value;
 	}
 
 	public function getId() {

@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="POCD_MT000040.RegionOfInterest.value")
  */
-class POCDMT000040.RegionOfInterest.value extends \INT\INT {
+class POCDMT000040.RegionOfInterest.value extends \org\w3\www\_2001\XMLSchema\INT {
 	/**
 	 */
 

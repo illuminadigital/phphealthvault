@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="EIVL_TS")
  */
-class EIVLTS extends \SXCM_TS\SXCMTS {
+class EIVLTS extends \org\w3\www\_2001\XMLSchema\SXCMTS {
 	/**
 	 * Note: because this type is defined as an extension of SXCM_T, all of the attributes and elements accepted for T are also accepted by this definition. However, they are NOT allowed by the normative description of this type. Unfortunately, we cannot write a general purpose schematron contraints to provide that extra validation, thus applications must be aware that instance (fragments) that pass validation with this might might still not be legal.
 	 */

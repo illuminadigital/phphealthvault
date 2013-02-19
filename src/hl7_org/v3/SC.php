@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="SC")
  */
-class SC extends \ST\ST {
+class SC extends \org\w3\www\_2001\XMLSchema\ST {
 	/**
 	 * A ST that optionally may have a code attached. The text must always be present if a code is present. The code is often a local code.
 	 */

@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="BL")
  */
-class BL extends \ANY\ANY {
+class BL extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
 	 * The Boolean type stands for the values of two-valued logic. A Boolean value can be either true or false, or, as any other value may be NULL.
 	 */

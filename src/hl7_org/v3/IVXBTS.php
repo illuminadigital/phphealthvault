@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="IVXB_TS")
  */
-class IVXBTS extends \TS\TS {
+class IVXBTS extends \org\w3\www\_2001\XMLSchema\TS {
 	/**
 	 */
 

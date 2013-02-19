@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="ENXP")
  */
-class ENXP extends \ST\ST {
+class ENXP extends \org\w3\www\_2001\XMLSchema\ST {
 	/**
 	 * A character string token representing a part of a name. May have a type code signifying the role of the part in the whole entity name, and a qualifier code for more detail about the name part type. Typical name parts for person names are given names, and family names, titles, etc.
 	 */

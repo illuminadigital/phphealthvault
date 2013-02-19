@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="SXPR_TS")
  */
-class SXPRTS extends \SXCM_TS\SXCMTS {
+class SXPRTS extends \org\w3\www\_2001\XMLSchema\SXCMTS {
 	/**
 	 */
 

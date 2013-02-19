@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="BXIT_IVL_PQ")
  */
-class BXITIVLPQ extends \IVL_PQ\IVLPQ {
+class BXITIVLPQ extends \org\w3\www\_2001\XMLSchema\IVLPQ {
 	/**
 	 */
 

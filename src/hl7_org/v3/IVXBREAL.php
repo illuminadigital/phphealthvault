@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="IVXB_REAL")
  */
-class IVXBREAL extends \REAL\REAL {
+class IVXBREAL extends \org\w3\www\_2001\XMLSchema\REAL {
 	/**
 	 */
 

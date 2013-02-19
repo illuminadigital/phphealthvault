@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="SXCM_REAL")
  */
-class SXCMREAL extends \REAL\REAL {
+class SXCMREAL extends \org\w3\www\_2001\XMLSchema\REAL {
 	/**
 	 */
 

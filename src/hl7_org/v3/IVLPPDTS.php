@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="IVL_PPD_TS")
  */
-class IVLPPDTS extends \SXCM_PPD_TS\SXCMPPDTS {
+class IVLPPDTS extends \org\w3\www\_2001\XMLSchema\SXCMPPDTS {
 	/**
 	 */
 

@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="AD")
  */
-class AD extends \ANY\ANY {
+class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
 	 * Mailing and home or office addresses. A sequence of address parts, such as street or post office Box, city, postal code, country, etc.
 	 */

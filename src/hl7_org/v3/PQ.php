@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="PQ")
  */
-class PQ extends \QTY\QTY {
+class PQ extends \org\w3\www\_2001\XMLSchema\QTY {
 	/**
 	 * A dimensioned quantity expressing the result of a measurement act.
 	 */

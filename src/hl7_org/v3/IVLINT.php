@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="IVL_INT")
  */
-class IVLINT extends \SXCM_INT\SXCMINT {
+class IVLINT extends \org\w3\www\_2001\XMLSchema\SXCMINT {
 	/**
 	 */
 

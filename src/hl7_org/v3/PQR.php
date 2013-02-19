@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="PQR")
  */
-class PQR extends \CV\CV {
+class PQR extends \org\w3\www\_2001\XMLSchema\CV {
 	/**
 	 * A representation of a physical quantity in a unit from any code system. Used to show alternative representation for a physical quantity.
 	 */

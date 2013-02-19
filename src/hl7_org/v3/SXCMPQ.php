@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="SXCM_PQ")
  */
-class SXCMPQ extends \PQ\PQ {
+class SXCMPQ extends \org\w3\www\_2001\XMLSchema\PQ {
 	/**
 	 */
 

@@ -9,7 +9,7 @@ namespace hl7_org\v3;
  * })
  * @XmlEntity	(xml="IVL_TS")
  */
-class IVLTS extends \SXCM_TS\SXCMTS {
+class IVLTS extends \org\w3\www\_2001\XMLSchema\SXCMTS {
 	/**
 	 */
 
