@@ -28,9 +28,9 @@ class Height extends MeasurementThing
      */
     protected $minorLength;
 
-    /*
+    /**
      * @Assert\NotBlank()
-     * @Assert\Choice(callback="getLengthOptions")
+     * @Assert\Choice(callback="getLengthOptionChoices")
      * 
      * @var string
      */
@@ -45,7 +45,7 @@ class Height extends MeasurementThing
                 'ft' => array(
                     'name' => 'Feet',
                     'major' => 'feet',
-                    'minor' => 'inche(s)', 
+                    'minor' => 'inch(es)', 
                     'minor_scale' => 1 / 12,
                     'major_scale' => 12 * 0.0254 // (Inches in a foot) * (length of inch in metres)
                 ),
@@ -76,6 +76,11 @@ class Height extends MeasurementThing
         return $options;
     }
 
+    public static function getLengthOptionChoices()
+    {
+        return array_keys(self::getLengthOptions());
+    }
+    
     /**
      * @return the integer
      */
@@ -143,26 +148,34 @@ class Height extends MeasurementThing
             return $result;
         }
         
-        $payload = $thing->getThingPayload();
+        $payload = $this->getThingPayload();
         
         $value = $payload->getValue();
         $display = $value->getDisplay();
         
         $lengthTypes = $this->getLengthTypes();
         
-        $units = (double) $display->getUnits();
+        $units = (double) $display->getValue();
             
         if (isset($lengthTypes[$display->getUnitsCode()]))
         {
             $thisType = $lengthTypes[$display->getUnitsCode()];
             
-            $minor_scale = $thisType['minor_scale'];
-            $major_scale = (isset($thisType['major_scale']) ? $thisType['major_scale'] : 1);
-            
-            $minorThreshold = 1 / $minor_scale;
-            
-            $majorUnits = (int) $units;
-            $minorUnits = round(($units - $majorUnits) / $minor_scale);
+            if ($units > 0) {
+                $majorUnits = (int) $units;
+                $minorUnits = ($units - $majorUnits) / $thisType['minor_scale'];
+                                 
+            } else {
+                $minor_scale = $thisType['minor_scale'];
+                $major_scale = (isset($thisType['major_scale']) ? $thisType['major_scale'] : 1);
+                
+                $units = $value / $major_scale;
+                
+                $minorThreshold = 1 / $minor_scale;
+                
+                $majorUnits = (int) $units;
+                $minorUnits = round(($units - $majorUnits) / $minor_scale);
+            }
         }
         else
         {
