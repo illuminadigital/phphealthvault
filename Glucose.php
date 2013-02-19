@@ -4,22 +4,13 @@ namespace Illumina\HealthTrackingBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
 
-use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
-
 use com\microsoft\wc\thing\Thing;
 use com\microsoft\wc\thing\BloodGlucose\BloodGlucose;
 
-class Glucose extends BaseThing
+class Glucose extends MeasurementThing
 {
     protected $name = 'Glucose Measurement';
     
-    /**
-     * @Assert\NotBlank()
-     * @Assert\DateTime
-     * @var date
-     */
-    protected $when;
-
     /**
      * @Assert\NotBlank()
      * @Assert\Type(type="double")
@@ -49,37 +40,6 @@ class Glucose extends BaseThing
      * @var string
      */
     protected $measurementContext;
-
-    public function __construct(Thing $thing = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL)
-    {
-        parent::__construct($thing, $healthvaultVocabulary);
-        
-        if ( empty($this->when) ) {
-            $this->setWhen(date('Y-m-d H:i:s'));
-        }
-    }
-    
-    /**
-     * @return the date
-     */
-    public function getWhen()
-    {
-        return $this->when;
-    }
-
-    /**
-     * @param  $when
-     */
-    public function setWhen($when)
-    {
-        $this->when = $when;
-
-        if ($this->thing) {
-            $this->setHealthvaultWhen($when);
-        }
-        
-        return $this;
-    }
 
     /**
      * @return the double;
@@ -185,7 +145,6 @@ class Glucose extends BaseThing
         $payload = $this->getThingPayload();
         
         $this->value = $payload->getValue()->getMmolPerL()->getValue();
-        $this->when = $this->getThingDatetime($payload->getWhen());
         $type = $payload->getGlucoseMeasurementType();
         if ($type && $type->getCode()) {
             $this->glucoseMeasurementType = $type->getCode()->getValue();
@@ -204,7 +163,6 @@ class Glucose extends BaseThing
         $thing = parent::getThing($thing);
         
         $this->setThingValue($this->value);
-        $this->setThingWhen($this->when);
         $this->setThingGlucoseMeasurementType($this->glucoseMeasurementType);
         $this->setThingNormalcy($this->normalcy);
         $this->setThingMeasurementContext($this->measurementContext);
@@ -215,13 +173,6 @@ class Glucose extends BaseThing
     protected function setThingValue($value) {
         $payload = $this->getThingPayload();
         $payload->getValue()->getMmolPerL()->setValue($value);
-        
-        return $this;
-    }
-    
-    protected function setThingWhen($when) {
-        $payload = $this->getThingPayload();
-        $this->setThingDatetime($payload->getWhen(), $when);
         
         return $this;
     }

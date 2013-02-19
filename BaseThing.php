@@ -57,7 +57,15 @@ abstract class BaseThing
         
         return $this;
     }
-       
+    
+    /**
+     * @return the name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
     /**
      * @return the Thing
      */
@@ -161,10 +169,6 @@ abstract class BaseThing
         }
     
         return $this->thing->getThingId()->getValue();
-    }
-    
-    public function getName() {
-        return $this->name;
     }
     
     protected function getThingPayload()

@@ -5,18 +5,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use com\microsoft\wc\thing\Thing;
 use com\microsoft\wc\thing\BloodPressure\BloodPressure as hvBloodPressure;
 
-use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
-
-class BloodPressure extends BaseThing
+class BloodPressure extends MeasurementThing
 {
     protected $name = 'Blood Pressure';
-
-    /**
-     * @Assert\NotBlank()
-     * @Assert\DateTime
-     * @var date
-     */
-    protected $when;
 
     /**
      * @Assert\NotBlank()
@@ -47,46 +38,6 @@ class BloodPressure extends BaseThing
      * @var boolean
      */
     protected $irregularHeartbeat;
-
-    public function __construct(Thing $thing = NULL,
-            HealthvaultVocabulary $healthvaultVocabulary = NULL)
-    {
-        parent::__construct($thing, $healthvaultVocabulary);
-
-        if (empty($this->when)) {
-            $this->setWhen(date('Y-m-d H:i:s'));
-        }
-    }
-
-    /**
-     * @return the date
-     */
-    public function getWhen()
-    {
-        return $this->when;
-    }
-
-    /**
-     * @param  $when
-     */
-    public function setWhen($when)
-    {
-        $this->when = $when;
-
-        if ($this->thing) {
-            $this->setThingWhen($when);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return the unknown_type
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * @return the integer
@@ -207,21 +158,12 @@ class BloodPressure extends BaseThing
     {
         $thing = parent::getThing($thing);
         
-        $this->setThingWhen($this->when);
         $this->setThingDiastolic((int)$this->diastolic);
         $this->setThingSystolic((int)$this->systolic);
         $this->setThingPulse($this->pulse ? (int) $this->pulse : NULL);
         $this->setThingIrregularHeartbeat((bool) $this->irregularHeartbeat);
         
         return $thing;
-    }
-    
-    protected function setThingWhen($when)
-    {
-        $payload = $this->getThingPayload();
-        $this->setThingDateTime($payload->getWhen(), $when);
-        
-        return $this;
     }
     
     protected function setThingDiastolic($diastolic)
