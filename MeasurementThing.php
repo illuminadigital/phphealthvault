@@ -3,6 +3,8 @@ namespace Illumina\HealthTrackingBundle\Entity;
 
 use com\microsoft\wc\thing\Thing;
 
+use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class MeasurementThing extends BaseThing
@@ -55,7 +57,13 @@ abstract class MeasurementThing extends BaseThing
             return $result;
         }
         
-        $this->when = $this->getThingWhen();
+        $when = $this->getThingWhen();
+        
+        if ($when instanceof \DateTime) {
+            $this->when = $when->format('Y-m-d H:I:s');
+        } else {
+            $this->when = $when;
+        }
     
         return $this;
     }
@@ -80,8 +88,8 @@ abstract class MeasurementThing extends BaseThing
     protected function getThingWhen()
     {
         $payload = $this->getThingPayload();
-        $this->getThingDateTime($payload->getWhen());
+        $when = $this->getThingDateTime($payload->getWhen());
         
-        return $this;
+        return $when;
     }
 }

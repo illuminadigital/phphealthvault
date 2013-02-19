@@ -317,6 +317,60 @@ abstract class BaseThing
         return NULL;
     }
     
+    protected function setThingApproxDateTime(ApproxDateTime $hvDate, $date)
+    {
+        if ( ! empty($date) && ! $date instanceof \DateTime) {
+            try {
+                $date = new \DateTime($date);
+            }
+            catch (\Exception $e) {
+                error_log('Failed to convert date to DateTime: ' . print_r($date, TRUE));
+            }
+        }
+    
+        if ( ! empty($date) ) {
+            $structuredDate = $hvDate->getStructured()->getDate();
+            $structuredDate->getY()->setValue((int) $date->format('Y'));
+            $structuredDate->getM()->setValue((int) $date->format('m'));
+            $structuredDate->getD()->setValue((int) $date->format('d'));
+
+        
+            $time = $hvDate->getStructured()->getTime();
+            $time->getH()->setValue( (int) $date->format('H'));
+            $time->getM()->setValue( (int) $date->format('i'));
+            $time->getS()->setValue( (int) $date->format('s'));
+        }
+        
+        /*
+         else if ( empty($date) ) {
+        $hvDate->getStructured()->setDate(NULL); // Will be rebuilt on next request
+        }
+        */
+    }
+    
+    protected function getThingApproxDateTime(ApproxDateTime $hvDate)
+    {
+        $structuredDate = $hvDate->getStructured()->getDate();
+        $structuredTime = $hvDate->getStructured()->getTime();
+        
+        $y = $structuredDate->getY()->getValue();
+        $m = $structuredDate->getM()->getValue();
+        $d = $structuredDate->getD()->getValue();
+        
+        $h = $structuredTime->getH()->getValue();
+        $i = $structuredTime->getM()->getValue();
+        $s = $structuredTime->getS()->getValue();
+        
+        if ( ! empty($y) && ! empty($m) && ! empty($d)) {
+            $dateObj = new \DateTime();
+            $dateObj->setDate($y, $m, $d);
+            $dateObj->setTime($h, $i, $s);
+            return $dateObj;
+        }
+    
+        return NULL;
+    }
+    
     /**
      * Gets a list of fields to display
      * 
