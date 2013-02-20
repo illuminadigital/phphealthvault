@@ -6,6 +6,7 @@ use com\microsoft\wc\thing\ThingKey;
 class RemoveThingsMethod extends PlatformMethod
 {
     protected $methodName = 'RemoveThings';
+    protected $mustIncludeRecord = TRUE;
     
     // This reads better
     public function includeThing($thingId, $versionId) {
