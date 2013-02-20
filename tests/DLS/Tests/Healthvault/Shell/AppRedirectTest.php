@@ -43,7 +43,7 @@ class AppRedirectTest extends HealthvaultTestCase {
 			// Detected missing parameters
 		}
 
-		$targetConfig = new HealthvaultROWConfiguration($this->destinationApplicationId, __DIR__ . '/../../../../../samples/app.pem');
+		$targetConfig = new HealthvaultROWConfiguration($this->destinationApplicationId, __DIR__ . '/../../../../../samples/app.pem', $this->thumbprint);
 		$targetDriver = new Driver($targetConfig);
 		$targetMethod = $targetDriver->getShellMethod('AppAuth'); // Arbitrary
 		$targetMethod->setMultiRecordApplication(); // To Create QS

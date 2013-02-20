@@ -9,10 +9,11 @@ class ConfigurationsTest extends HealthvaultTestCase {
 	 */
 	public function theConfigurationShouldBeSetByParameters()
 	{
-		$configuration = new \DLS\Healthvault\BaseHealthvaultConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem', 'foo.bar.baz');
+		$configuration = new \DLS\Healthvault\BaseHealthvaultConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem', $this->thumbprint, 'foo.bar.baz');
 		
 		$this->assertEquals($this->applicationId, $configuration->getApplicationId());
 		$this->assertEquals('https://platform.foo.bar.baz', $configuration->getBasePlatformUrl());
+		$this->assertEquals($this->thumbprint, $configuration->getThumbprint());
 	}
 	
 	/**
@@ -23,6 +24,7 @@ class ConfigurationsTest extends HealthvaultTestCase {
 		$confArray = array(
 			'applicationId' => $this->applicationId, 
 			'baseUrl' => 'foo.bar.baz',
+		    'thumbprint' => $this->thumbprint,
 			'privateKey' =>__DIR__ . '/../../../../../samples/app.pem', 
 		);
 		
@@ -30,6 +32,7 @@ class ConfigurationsTest extends HealthvaultTestCase {
 		
 		$this->assertEquals($this->applicationId, $configuration->getApplicationId());
 		$this->assertEquals('https://platform.foo.bar.baz', $configuration->getBasePlatformUrl());
+		$this->assertEquals($this->thumbprint, $configuration->getThumbprint());
 	}
 	
 	/**
@@ -37,7 +40,7 @@ class ConfigurationsTest extends HealthvaultTestCase {
 	 */
 	public function theRowConfigurationShouldHaveValidUrls()
 	{
-		$configuration = new \DLS\Healthvault\Configurations\HealthvaultROWConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem');
+		$configuration = new \DLS\Healthvault\Configurations\HealthvaultROWConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem', $this->thumbprint);
 		
 		$this->assertEquals('https://account.healthvault.co.uk', $configuration->getBaseShellUrl());
 		$this->assertEquals('https://platform.healthvault.co.uk', $configuration->getBasePlatformUrl());
@@ -48,11 +51,11 @@ class ConfigurationsTest extends HealthvaultTestCase {
 	 */
 	public function theMockConfigurationReturnsDifferentTargets()
 	{
-		$configuration = new \DLS\Healthvault\Configurations\HealthvaultROWConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem');
+		$configuration = new \DLS\Healthvault\Configurations\HealthvaultROWConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem', $this->thumbprint);
 		
 		$this->assertNull($configuration->getReturnUrl('Auth'));
 		
-		$configuration = new \DLS\Tests\Mocks\TargetOverrideConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem', 'bar.baz');
+		$configuration = new \DLS\Tests\Mocks\TargetOverrideConfiguration($this->applicationId, __DIR__ . '/../../../../../samples/app.pem', $this->thumbprint, 'bar.baz');
 		
 		$this->assertEquals('https://account.bar.baz', $configuration->getBaseShellUrl());
 		$this->assertEquals('http://foo.bar.baz/Auth', $configuration->getReturnUrl('Auth'));

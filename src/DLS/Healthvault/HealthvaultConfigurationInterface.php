@@ -38,6 +38,11 @@ interface HealthvaultConfigurationInterface {
     public function getPrivateKey();
     
     /**
+     * Returns the thumbprint for the application
+     */
+    public function getThumbprint();
+    
+    /**
      * Returns the service that marshals and unmarshals the XML
      * 
      * @return XMLMarshallingService

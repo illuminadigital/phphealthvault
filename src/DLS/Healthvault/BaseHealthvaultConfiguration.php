@@ -16,8 +16,9 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     protected $secretDigest;
     protected $token;
     protected $record;
+    protected $thumbprint;
     
-    public function __construct($application, $privateKey = NULL, $baseUrl = NULL, $marshallingService = NULL)
+    public function __construct($application, $privateKey = NULL, $thumbprint = NULL, $baseUrl = NULL, $marshallingService = NULL)
     {
         if (is_array($application) || $application instanceof ArrayAccess) 
         {
@@ -32,6 +33,11 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         if ( ! empty($privateKey) )
         {
             $this->setPrivateKey($privateKey); // Use the functionality this offers
+        }
+        
+        if ( ! empty($thumbprint) )
+        {
+            $this->thumbprint = $thumbprint;
         }
         
         if ( ! empty($baseUrl) )
@@ -72,6 +78,11 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
             $this->setPrivateKey($data['privateKey']); // Use the functionality
         }
         
+        if (isset($data['thumbprint']))
+        {
+            $this->thumbprint = $data['thumbprint'];
+        }
+        
         if (isset($data['baseUrl']))
         {
             $this->baseUrl = $data['baseUrl'];
@@ -98,6 +109,11 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         if ( empty ($this->privateKey) )
         {
             throw new InvalidConfigurationException('You must specify the private key for the application');
+        }
+        
+        if ( empty ($this->thumbprint) )
+        {
+            throw new InvalidConfigurationException('You must specify the application thumbprint');
         }
         
         if ( empty ($this->marshallingService) )
@@ -254,8 +270,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     
     public function getThumbprint()
     {
-    	// FIXME: This is not correct(!)
-    	return '50054D4FAEE16F69AAF66B7596ED30F9922B949E';
+    	return $this->thumbprint;
     }
     
     public function setToken($token)
