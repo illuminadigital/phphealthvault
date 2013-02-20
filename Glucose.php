@@ -146,12 +146,12 @@ class Glucose extends MeasurementThing
         
         $this->value = $payload->getValue()->getMmolPerL()->getValue();
         $type = $payload->getGlucoseMeasurementType();
-        if ($type && $type->getCode()) {
+        if ($type && is_object($type->getCode())) {
             $this->glucoseMeasurementType = $type->getCode()->getValue();
         }
         $this->normalcy = $payload->getNormalcy()->getValue();
         $context = $payload->getMeasurementContext();
-        if ($context && $context->getCode()) {
+        if ($context && is_object($context->getCode())) {
             $this->measurementContext = $context->getCode()->getValue();
         }
         
