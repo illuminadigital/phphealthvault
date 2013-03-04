@@ -117,31 +117,39 @@ class PlatformMethod
     {
         $request = $this->getRequestXML();
         
-        file_put_contents(tempnam(sys_get_temp_dir(), 'rq'), $request);
+        //file_put_contents(tempnam(sys_get_temp_dir(), 'rq'), $request);
         
         // echo '<h3>Request</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $request) . "\n";
         
         $response = $this->sendRequest($request);
+        $this->configuration->stopStopwatch('sendingRequest' . $this->methodName);
+        
+        //file_put_contents(tempnam(sys_get_temp_dir(), 'rs'), $response);
         
         if ( ! empty($response) )
         {
-        	$unmarshaller = $this->configuration->getMarshallingService();
-        
+            $unmarshaller = $this->configuration->getMarshallingService();
+            
         // echo '<h3>Response</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $response). "\n";
         
-        	$responseObject = $unmarshaller->unmarshalFromString($response);
+            $responseObject = $unmarshaller->unmarshalFromString($response);
         }
         else
         {
         	$responseObject = NULL;
         }
-
+        
+        
         if ($responseObject && $responseObject->getStatus()->getCode() == 0) {
-	        return $responseObject->getInfo();
+            $info = $responseObject->getInfo();
+            
+            return $info;
         }
         // else 
         // FIXME: Should thrown an exception
         error_log('Error executing method');
+        error_log(print_r($request, TRUE));
+        error_log(print_r($response, TRUE));
         error_log(print_r($responseObject, TRUE));
         
         return NULL;
@@ -164,11 +172,15 @@ class PlatformMethod
 	    	
 	    	$authSession = $header->getAuthSession();
 	    	$authSession->setAuthToken($this->getAuthToken());
-	    	$authSession->setUserAuthToken($this->configuration->getToken());
+	    	//$authSession->setUserAuthToken($this->configuration->getToken());
 	    	
 	    	$token = $this->configuration->getToken();
-	    	
 	    	$authSession->setUserAuthToken($token);
+	    	
+	    	error_log('mustBeAuthorised');
+	    	error_log($this->configuration->getToken());
+	    	error_log($this->configuration->getAppAuthToken());
+	    	error_log($this->configuration->getSeed());
 	    	
 	    	$headerXml = $marshaller->marshalToString($header);
 	    	$headerText = $this->extractRootElement($headerXml, 'header');
@@ -303,21 +315,25 @@ class PlatformMethod
     
     protected function sendRequest($requestXml)
     {
-    	$conn = curl_init($this->getUrl());
+        static $conn /*= NULL*/;
+        
+        if ( ! $conn ) {
+        	$conn = curl_init($this->getUrl());
     	
-    	curl_setopt($conn, CURLOPT_RETURNTRANSFER, TRUE); // We want the content returned to us
-    	curl_setopt($conn, CURLOPT_POST, TRUE);
-    	curl_setopt($conn, CURLOPT_HEADER, FALSE);
-    	
-    	curl_setopt($conn, CURLOPT_HTTPHEADER, array(
-    		'Content-Type' => 'text/xml'
-    	));
+        	curl_setopt($conn, CURLOPT_RETURNTRANSFER, TRUE); // We want the content returned to us
+        	curl_setopt($conn, CURLOPT_POST, TRUE);
+        	curl_setopt($conn, CURLOPT_HEADER, FALSE);
+        	
+        	curl_setopt($conn, CURLOPT_HTTPHEADER, array(
+        		'Content-Type' => 'text/xml'
+        	));
+        }
     	
     	curl_setopt($conn, CURLOPT_POSTFIELDS, $requestXml);
     	
     	$response = curl_exec($conn);
     	
-    	curl_close($conn);
+    	// curl_close($conn);
     	
     	if ($response === FALSE)
     	{
@@ -332,7 +348,9 @@ class PlatformMethod
     
     protected function getAuthToken()
     {
-    	if (empty(self::$appAuthToken)) {
+        $appAuthToken = $this->configuration->getAppAuthToken();
+        
+    	if (empty($appAuthToken)) {
 	    	$driver = new \DLS\Healthvault\Driver($this->configuration);
 	    	
 	    	$authTokenMethod = $driver->getPlatformMethod('CreateAuthenticatedSessionToken');
@@ -340,10 +358,12 @@ class PlatformMethod
 	    	$authTokenResponse = $authTokenMethod->execute();
 	    	
 	    	if ($authTokenResponse) {
-		    	self::$appAuthToken = $authTokenResponse->getToken()->getValue();
+		    	$appAuthToken = $authTokenResponse->getToken()->getValue();
+		    	
+		    	$this->configuration->setAppAuthToken($appAuthToken);
 	    	} 
     	}
     	
-    	return self::$appAuthToken;
+    	return $appAuthToken;
     }
 }

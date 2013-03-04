@@ -17,8 +17,10 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     protected $token;
     protected $record;
     protected $thumbprint;
+    protected $seed;
+    protected $appAuthToken;
     
-    public function __construct($application, $privateKey = NULL, $thumbprint = NULL, $baseUrl = NULL, $marshallingService = NULL)
+    public function __construct($application, $privateKey = NULL, $thumbprint = NULL, $baseUrl = NULL, $marshallingService = NULL, $seed = NULL, $appAuthtoken = NULL)
     {
         if (is_array($application) || $application instanceof ArrayAccess) 
         {
@@ -55,15 +57,46 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
             $this->marshallingService = $this->getDefaultMarshallingService();
         }
 
-        $this->sharedSecret = hash($this->getSharedSecretHash(), $this->getSeed());
-        $this->secretDigest = hash_hmac($this->getSecretDigestHash(), $this->sharedSecret, $this->sharedSecret);
+        if ( ! empty($seed) ) {
+            $this->setSeed($seed);
+        } else  {
+            $this->getSeed(); // Sets a default seed if not set
+        }
+        
+        if ( ! empty($appAuthtoken) ) {
+            $this->appAuthToken = $appAuthtoken;
+        }
         
         $this->checkConfiguration();
     }
     
-    protected function getSeed() {
-    	return '050f526f2ccdfc6.57002582';
-    	return uniqid(rand(0,1), TRUE);
+    protected function updateSecrets() {
+        $this->sharedSecret = hash($this->getSharedSecretHash(), $this->seed);
+        $this->secretDigest = hash_hmac($this->getSecretDigestHash(), $this->sharedSecret, $this->sharedSecret);
+    }
+    
+    public function getSeed() {
+        error_log('getSeed');
+        error_log('appAuthToken: ' . $this->appAuthToken);
+        error_log('seed: ' . $this->seed);
+        
+        if ( empty ($this->seed) ) {
+            $this->setSeed(uniqid(rand(0,1), TRUE)); 
+        }
+    	
+        return $this->seed;
+    }
+    
+    public function setSeed($seed) {
+        error_log('getSeed');
+        error_log('appAuthToken: ' . $this->appAuthToken);
+        error_log('seed: ' . $seed);
+        
+        $this->seed = $seed;
+        
+        $this->updateSecrets($seed);
+        
+        return $this;
     }
     
     protected function setFromArray($data)
@@ -91,6 +124,16 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         if ( ! empty($data['marshallingService']) && ($data['marshallingService'] instanceof XMLMarshallingService || $data['marshallingService'] instanceof Marshaller))
         {
             $this->marshallingService = $data['marshallingService'];
+        }
+        
+        if (isset($data['seed']))
+        {
+            $this->setSeed($data['seed']);
+        }
+        
+        if (isset($data['appAuthToken']))
+        {
+            $this->appAuthToken = $data['appAuthToken'];
         }
     }
     
@@ -166,8 +209,11 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     
     public function getMarshallingService()
     {
-        //return $this->marshallingService;
-        return $this->getDefaultMarshallingService();
+        if ( empty ($this->marshallingService)) {
+            $this->marshallingService = $this->getDefaultMarshallingService();;
+        }
+
+        return $this->marshallingService;
     }
     
     protected function getDefaultMarshallingService()
@@ -189,7 +235,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	
     	$OXMConfiguration->setMetadataDriverImpl($annotationDriver);
 
-    	$OXMConfiguration->setMetadataCacheImpl(new \Doctrine\Common\Cache\ArrayCache);
+    	$OXMConfiguration->setMetadataCacheImpl(/*new \Doctrine\Common\Cache\ArrayCache*/ new \Doctrine\Common\Cache\ApcCache());
     	
     	$metadataFactoryName = $OXMConfiguration->getClassMetadataFactoryName();
     	$metadataFactory = new $metadataFactoryName($OXMConfiguration);
@@ -300,5 +346,16 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     public function getRecord()
     {
        return $this->record;
+    }
+    
+    public function getAppAuthToken() {
+        return NULL;
+        return $this->appAuthToken;
+    }
+    
+    public function setAppAuthToken($appAuthToken) {
+        $this->appAuthToken = $appAuthToken;
+        
+        return $this;
     }
 }
