@@ -122,7 +122,6 @@ class PlatformMethod
         // echo '<h3>Request</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $request) . "\n";
         
         $response = $this->sendRequest($request);
-        $this->configuration->stopStopwatch('sendingRequest' . $this->methodName);
         
         //file_put_contents(tempnam(sys_get_temp_dir(), 'rs'), $response);
         
@@ -176,11 +175,6 @@ class PlatformMethod
 	    	
 	    	$token = $this->configuration->getToken();
 	    	$authSession->setUserAuthToken($token);
-	    	
-	    	error_log('mustBeAuthorised');
-	    	error_log($this->configuration->getToken());
-	    	error_log($this->configuration->getAppAuthToken());
-	    	error_log($this->configuration->getSeed());
 	    	
 	    	$headerXml = $marshaller->marshalToString($header);
 	    	$headerText = $this->extractRootElement($headerXml, 'header');

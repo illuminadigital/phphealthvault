@@ -30,41 +30,41 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         else
         {
             $this->applicationId = $application;
-        }
         
-        if ( ! empty($privateKey) )
-        {
-            $this->setPrivateKey($privateKey); // Use the functionality this offers
-        }
-        
-        if ( ! empty($thumbprint) )
-        {
-            $this->thumbprint = $thumbprint;
-        }
-        
-        if ( ! empty($baseUrl) )
-        {
-            $this->baseUrl = $baseUrl;
-        }
-        
-        if ( ! empty($marshallingService) && ($marshallingService instanceof XMLMarshallingService || $marshallingService instanceof Marshaller))
-        {
-            $this->marshallingService = $marshallingService;
-        } 
-        else if (empty($this->marshallingService) )
-        {
-            // Set up the default marshalling
-            $this->marshallingService = $this->getDefaultMarshallingService();
-        }
-
-        if ( ! empty($seed) ) {
-            $this->setSeed($seed);
-        } else  {
-            $this->getSeed(); // Sets a default seed if not set
-        }
-        
-        if ( ! empty($appAuthtoken) ) {
-            $this->appAuthToken = $appAuthtoken;
+            if ( ! empty($privateKey) )
+            {
+                $this->setPrivateKey($privateKey); // Use the functionality this offers
+            }
+            
+            if ( ! empty($thumbprint) )
+            {
+                $this->thumbprint = $thumbprint;
+            }
+            
+            if ( ! empty($baseUrl) )
+            {
+                $this->baseUrl = $baseUrl;
+            }
+            
+            if ( ! empty($marshallingService) && ($marshallingService instanceof XMLMarshallingService || $marshallingService instanceof Marshaller))
+            {
+                $this->marshallingService = $marshallingService;
+            } 
+            else if (empty($this->marshallingService) )
+            {
+                // Set up the default marshalling
+                $this->marshallingService = $this->getDefaultMarshallingService();
+            }
+    
+            if ( ! empty($seed) ) {
+                $this->setSeed($seed);
+            } else  {
+                $this->getSeed(); // Sets a default seed if not set
+            }
+            
+            if ( ! empty($appAuthtoken) ) {
+                $this->appAuthToken = $appAuthtoken;
+            }
         }
         
         $this->checkConfiguration();
@@ -76,10 +76,6 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     }
     
     public function getSeed() {
-        error_log('getSeed');
-        error_log('appAuthToken: ' . $this->appAuthToken);
-        error_log('seed: ' . $this->seed);
-        
         if ( empty ($this->seed) ) {
             $this->setSeed(uniqid(rand(0,1), TRUE)); 
         }
@@ -88,10 +84,6 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     }
     
     public function setSeed($seed) {
-        error_log('getSeed');
-        error_log('appAuthToken: ' . $this->appAuthToken);
-        error_log('seed: ' . $seed);
-        
         $this->seed = $seed;
         
         $this->updateSecrets($seed);
@@ -349,7 +341,6 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     }
     
     public function getAppAuthToken() {
-        return NULL;
         return $this->appAuthToken;
     }
     
