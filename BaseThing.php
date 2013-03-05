@@ -31,6 +31,16 @@ abstract class BaseThing
      */
     protected $name;
     
+    /**
+     * @var string
+     */
+    protected $id;
+    
+    /**
+     * @var string
+     */
+    protected $version;
+    
     public function __construct(Thing $thing = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL)
     {
         if ($thing) {
@@ -81,6 +91,10 @@ abstract class BaseThing
             $this->thing = $thing;
         }
         
+        $this->setThingId($this->id);
+        $this->setThingVersion($this->version);
+        $this->setThingNotes($this->notes);
+        
         return $this->thing;
     }
     
@@ -96,6 +110,8 @@ abstract class BaseThing
         $this->thing = $thing;
         
         $this->notes = $this->getThingNotes();
+        $this->version = $this->getThingVersion();
+        $this->id = $this->getThingId();
     
         return $this;
     }
@@ -113,6 +129,34 @@ abstract class BaseThing
         
         $hvCommon = $payloadArea->getCommon();
         $hvCommon->setNote($notes);
+        
+        return $this;
+    }
+    
+    protected function getThingVersion()
+    {
+        $thingKey = $this->thing->getThingId(); 
+        return $thingKey->getVersionStamp()->getValue();
+    }
+    
+    protected function setThingVersion($version)
+    {
+        $thingKey = $this->thing->getThingId(); 
+        $thingKey->setVersionStamp($version);
+        
+        return $this;
+    }
+
+    protected function getThingId()
+    {
+        $thingKey = $this->thing->getThingId(); 
+        return $thingKey->getgetValue();
+    }
+    
+    protected function setThingId($id)
+    {
+        $thingKey = $this->thing->getThingId(); 
+        $thingKey->setValue($id);
         
         return $this;
     }
@@ -146,16 +190,13 @@ abstract class BaseThing
     }
     
     public function getVersion() {
-        if ( ! $this->thing )
-        {
-            return FALSE;
-        }
-    
-        return $this->thing->getThingId()->getVersionStamp();
+        return $this->version;
     }
     
     public function setVersion($version) {
-        if ( ! empty($version) && $this->thing )
+        $this->version = $version;
+        
+        if ( $this->thing )
         {
             $this->thing->getThingId()->setVersionStamp($version);
         }
@@ -165,13 +206,10 @@ abstract class BaseThing
     
     public function getId()
     {
-        if ( ! $this->thing )
-        {
-            return FALSE;
-        }
-    
-        return $this->thing->getThingId()->getValue();
+        return $this->id;
     }
+
+    // No setId() by default
     
     protected function getThingPayload()
     {
