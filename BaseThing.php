@@ -150,7 +150,7 @@ abstract class BaseThing
     protected function getThingId()
     {
         $thingKey = $this->thing->getThingId(); 
-        return $thingKey->getgetValue();
+        return $thingKey->getValue();
     }
     
     protected function setThingId($id)
