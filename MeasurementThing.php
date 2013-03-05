@@ -5,6 +5,8 @@ use com\microsoft\wc\thing\Thing;
 
 use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
 
+use Illumina\PhphealthvaultBundle\Entity\BaseThing;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class MeasurementThing extends BaseThing
