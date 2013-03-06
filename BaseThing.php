@@ -135,8 +135,15 @@ abstract class BaseThing
     
     protected function getThingVersion()
     {
-        $thingKey = $this->thing->getThingId(); 
-        return $thingKey->getVersionStamp()->getValue();
+        $thingKey = $this->thing->getThingId();
+
+        $stamp = $thingKey->getVersionStamp();
+        
+        if (is_object($stamp)) {
+            return $stamp->getValue();
+        } else {
+            return $stamp;
+        }
     }
     
     protected function setThingVersion($version)
