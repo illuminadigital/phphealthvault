@@ -3,6 +3,7 @@ namespace DLS\Healthvault;
 
 use DLS\Healthvault\Shell\ShellMethodFactory;
 use DLS\Healthvault\Platform\PlatformMethodFactory;
+use DLS\Healthvault\Blob\BlobStore;
 
 use Doctrine\OXM\Types\Type;
 
@@ -17,6 +18,7 @@ class Driver {
     
     private $shellMethodFactory;
     private $platformMethodFactory;
+    private $blobStore;
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
@@ -64,4 +66,22 @@ class Driver {
     {
     	return $this->configuration;
     }
+    
+    public function getBlobStore(Thing $thing)
+    {
+        $blobStoreFactory = $this->getBlobStoreFactory();
+        
+        return $blobStoreFactory->getBlobStore($thing);
+    }
+    
+    protected function getBlobStoreFactory() 
+    {
+        if ( ! isset($this->blobStoreFactory) )
+        {
+            $this->blobStoreFactory = new BlobStoreFactory($this->getPlatformMethodFactory());
+        }
+        
+        return $this->blobStoreFactory;
+    }
+    
 }
