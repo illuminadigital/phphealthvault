@@ -2,7 +2,7 @@
 namespace DLS\Healthvault\Blob;
 
 use DLS\Healthvault\Platform\PlatformMethodFactory;
-use com\microsoft\wc\thing\Thing;
+use com\microsoft\wc\thing\Thing2;
 
 use com\microsoft\wc\thing\BlobPayloadItem;
 

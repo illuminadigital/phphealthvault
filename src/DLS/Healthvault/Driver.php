@@ -5,6 +5,8 @@ use DLS\Healthvault\Shell\ShellMethodFactory;
 use DLS\Healthvault\Platform\PlatformMethodFactory;
 use DLS\Healthvault\Blob\BlobStore;
 
+use com\microsoft\wc\thing\Thing2;
+
 use Doctrine\OXM\Types\Type;
 
 class Driver {
@@ -67,7 +69,7 @@ class Driver {
     	return $this->configuration;
     }
     
-    public function getBlobStore(Thing $thing)
+    public function getBlobStore(Thing2 $thing)
     {
         $blobStoreFactory = $this->getBlobStoreFactory();
         

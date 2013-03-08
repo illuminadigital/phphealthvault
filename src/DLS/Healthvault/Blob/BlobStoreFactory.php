@@ -2,7 +2,7 @@
 namespace DLS\Healthvault\Blob;
 
 use DLS\Healthvault\Platform\PlatformMethodFactory;
-use com\microsoft\wc\thing\Thing;
+use com\microsoft\wc\thing\Thing2;
 
 class BlobStoreFactory
 {
@@ -23,7 +23,7 @@ class BlobStoreFactory
         $this->platformMethodFactory = $factory;
     }
     
-    public function getBlobStore(Thing $thing) 
+    public function getBlobStore(Thing2 $thing) 
     {
         $key = spl_object_hash($thing);
        
