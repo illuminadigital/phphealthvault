@@ -76,7 +76,7 @@ class Driver {
         return $blobStoreFactory->getBlobStore($thing);
     }
     
-    protected function getBlobStoreFactory() 
+    public function getBlobStoreFactory() 
     {
         if ( ! isset($this->blobStoreFactory) )
         {
