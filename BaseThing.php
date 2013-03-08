@@ -9,6 +9,8 @@ use com\microsoft\wc\dates\DateTime;
 use com\microsoft\wc\dates\ApproxDateTime;
 use com\microsoft\wc\types\CodableValue;
 
+use DLS\Healthvault\Blob\BlobStoreFactory;
+
 abstract class BaseThing
 {
     /**
@@ -20,6 +22,11 @@ abstract class BaseThing
      * @var \Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary
      */
     protected $healthvaultVocabulary;
+    
+    /**
+     * @var \DLS\Healthvault\Blob\BlobStoreFactory 
+     */
+    protected $blobStoreFactory;
     
     /**
      * @var string
@@ -41,7 +48,7 @@ abstract class BaseThing
      */
     protected $version;
     
-    public function __construct(Thing2 $thing = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL)
+    public function __construct(Thing2 $thing = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL, BlobStoreFactory $factory)
     {
         if ($thing) {
             $this->setThing($thing);
@@ -49,6 +56,10 @@ abstract class BaseThing
     
         if ($healthvaultVocabulary) {
             $this->setHealthvaultVocabulary($healthvaultVocabulary);
+        }
+        
+        if ($factory) {
+            $this->blobStoreFactory = $factory;
         }
     }
     
@@ -174,6 +185,24 @@ abstract class BaseThing
     public function getHealthvaultVocabulary()
     {
         return $this->healthvaultVocabulary;
+    }
+    
+    /**
+     * @param  $healthvaultVocabulary
+     */
+    public function setBlobStoreFactory(BlobStoreFactory $factory)
+    {
+        $this->blobStoreFactory = $factory;
+    
+        return $this;
+    }
+    
+    /**
+     * @return the HealthvaultVocabulary
+     */
+    public function getBlobStoreFactory()
+    {
+        return $this->blobStoreFactory;
     }
     
     /**
@@ -427,5 +456,45 @@ abstract class BaseThing
     {
         return array(
         );
+    }
+    
+    /**
+     * Returns a BlobStore for the thing.
+     * 
+     * If no thing already exists then one will be created. If the intention is to use a real
+     * Thing object then this should be set before calling this method.
+     * 
+     * @return BlobStore
+     */
+    public function getBlobStore() {
+        $thing = $this->getThing();
+        
+        if ( ! isset($this->blobStoreFactory) )
+        {
+            return NULL;
+        }
+        
+        return $this->blobStoreFactory->getBlobStore($thing);
+    }
+    
+    public function getCreated() {
+        if ( ! $this->thing )
+        {
+            return FALSE;
+        }
+        
+        $created = $this->thing->getCreated();
+        if ( ! empty($created) ) {
+            $created = $created->getTimestamp();
+        } else {
+            $created = $this->thing->getEffDate()->getValue();
+        } 
+        
+        if ( ! empty($created) )
+        {
+            return strtotime($created);
+        }
+        // else 
+        return NULL;
     }
 }
