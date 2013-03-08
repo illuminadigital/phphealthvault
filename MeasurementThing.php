@@ -1,7 +1,7 @@
 <?php
 namespace Illumina\HealthTrackingBundle\Entity;
 
-use com\microsoft\wc\thing\Thing;
+use com\microsoft\wc\thing\Thing2;
 
 use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
 
@@ -18,7 +18,7 @@ abstract class MeasurementThing extends BaseThing
      */
     protected $when;
     
-    public function __construct(Thing $thing = NULL,
+    public function __construct(Thing2 $thing = NULL,
             HealthvaultVocabulary $healthvaultVocabulary = NULL)
     {
         parent::__construct($thing, $healthvaultVocabulary);
@@ -50,7 +50,7 @@ abstract class MeasurementThing extends BaseThing
         return $this;
     }
     
-    public function setThing(Thing $thing)
+    public function setThing(Thing2 $thing)
     {
         $result = parent::setThing($thing);
     
@@ -70,7 +70,7 @@ abstract class MeasurementThing extends BaseThing
         return $this;
     }
     
-    public function getThing(Thing $thing = NULL)
+    public function getThing(Thing2 $thing = NULL)
     {
         $thing = parent::getThing($thing);
     

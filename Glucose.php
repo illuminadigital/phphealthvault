@@ -4,7 +4,7 @@ namespace Illumina\HealthTrackingBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
 
-use com\microsoft\wc\thing\Thing;
+use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\BloodGlucose\BloodGlucose;
 
 class Glucose extends MeasurementThing
@@ -129,12 +129,12 @@ class Glucose extends MeasurementThing
         return $this;
     }
     
-    public static function reallySupports(Thing $thing)
+    public static function reallySupports(Thing2 $thing)
     {
         return ($thing->getTypeId()->getValue() == BloodGlucose::ID);
     }
     
-    public function setThing(Thing $thing)
+    public function setThing(Thing2 $thing)
     {
         $result = parent::setThing($thing);
         
@@ -158,7 +158,7 @@ class Glucose extends MeasurementThing
         return $this;
     }
     
-    public function getThing(Thing $thing = NULL)
+    public function getThing(Thing2 $thing = NULL)
     {
         $thing = parent::getThing($thing);
         

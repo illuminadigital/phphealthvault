@@ -4,7 +4,7 @@ namespace Illumina\HealthTrackingBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 #use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
 
-use com\microsoft\wc\thing\Thing;
+use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\peak_flow\PeakFlow as hvPeakFlow;
 
 /**
@@ -66,12 +66,12 @@ class PeakFlow extends MeasurementThing
         $this->fev1 = $fev1;
     }
     
-    public static function reallySupports(Thing $thing)
+    public static function reallySupports(Thing2 $thing)
     {
         return ($thing->getTypeId()->getValue() == hvPeakFlow::ID);
     }
 
-    public function setThing(Thing $thing)
+    public function setThing(Thing2 $thing)
     {
         $result = parent::setThing($thing);
         
@@ -88,7 +88,7 @@ class PeakFlow extends MeasurementThing
         return $this;
     }
     
-    public function getThing(Thing $thing = NULL)
+    public function getThing(Thing2 $thing = NULL)
     {
         $thing = parent::getThing($thing);
         

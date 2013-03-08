@@ -3,7 +3,7 @@ namespace Illumina\HealthTrackingBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use com\microsoft\wc\thing\Thing;
+use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\height\Height as hvHeight;
 
 class Height extends MeasurementThing
@@ -134,12 +134,12 @@ class Height extends MeasurementThing
         return new hvHeight();
     }
     
-    public static function reallySupports(Thing $thing)
+    public static function reallySupports(Thing2 $thing)
     {
         return ($thing->getTypeId()->getValue() == hvHeight::ID);
     }
     
-    public function setThing(Thing $thing)
+    public function setThing(Thing2 $thing)
     {
         $result = parent::setThing($thing);
         
@@ -190,7 +190,7 @@ class Height extends MeasurementThing
         return $result;
     }
     
-    public function getThing(Thing $thing = NULL)
+    public function getThing(Thing2 $thing = NULL)
     {
         $thing = parent::getThing($thing);
         
