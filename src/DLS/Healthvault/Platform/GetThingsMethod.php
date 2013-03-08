@@ -6,7 +6,7 @@ use DLS\Healthvault\HealthvaultConfigurationInterface;
 class GetThingsMethod extends PlatformMethod
 {
     protected $methodName = 'GetThings';
-    protected $methodVersion = 2;
+    protected $methodVersion = 3;
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
@@ -14,6 +14,11 @@ class GetThingsMethod extends PlatformMethod
         parent::__construct($configuration);
     }
 
+    protected function getInfoClassName()
+    {
+        return sprintf('\com\microsoft\wc\methods\GetThings3\Info', $this->methodName);
+    }
+    
     public function addBasicFilter($id) {
         $lastGroup = $this->getLastGroup();
     	
@@ -88,5 +93,20 @@ class GetThingsMethod extends PlatformMethod
         $format = $lastGroup->getFormat();
         
         return $this->addSectionToFormat($format, $sectionName);
+    }
+    
+    public function includeStreamedBlobs($group = NULL) {
+        if ($group == NULL) {
+            $group = $this->getLastGroup();
+        }
+        
+        $format = $group->getFormat();
+        
+        $this->addSectionToFormat($format, 'blobpayload');
+        
+        $blobPayloadFormat = $format->getBlobPayloadFormat();
+        $blobFormat = $blobPayloadFormat->getBlobFormat();
+        $blobFormatSpec = $blobFormat->getBlobFormatSpec();
+        $blobFormatSpec->setValue('streamed');
     }
 }
