@@ -3,7 +3,7 @@ namespace DLS\Healthvault;
 
 use DLS\Healthvault\Shell\ShellMethodFactory;
 use DLS\Healthvault\Platform\PlatformMethodFactory;
-use DLS\Healthvault\Blob\BlobStore;
+use DLS\Healthvault\Blob\BlobStoreFactory;
 
 use com\microsoft\wc\thing\Thing2;
 
