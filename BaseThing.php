@@ -1,7 +1,7 @@
 <?php
 namespace Illumina\PhphealthvaultBundle\Entity;
 
-use com\microsoft\wc\thing\Thing;
+use com\microsoft\wc\thing\Thing2;
 use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
 use com\microsoft\wc\thing\DataXml;
 
@@ -12,7 +12,7 @@ use com\microsoft\wc\types\CodableValue;
 abstract class BaseThing
 {
     /**
-     * @var \com\microsoft\wc\thing\thing\Thing
+     * @var \com\microsoft\wc\thing\thing\Thing2
      */
     protected $thing;
     
@@ -41,7 +41,7 @@ abstract class BaseThing
      */
     protected $version;
     
-    public function __construct(Thing $thing = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL)
+    public function __construct(Thing2 $thing = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL)
     {
         if ($thing) {
             $this->setThing($thing);
@@ -79,7 +79,7 @@ abstract class BaseThing
     /**
      * @return the Thing
      */
-    public function getThing(Thing $thing = NULL)
+    public function getThing(Thing2 $thing = NULL)
     {
         if (empty($thing) && empty($this->thing))
         {
@@ -101,7 +101,7 @@ abstract class BaseThing
     /**
      * @param  $thing
      */
-    public function setThing(Thing $thing)
+    public function setThing(Thing2 $thing)
     {
         if ( ! self::supports($thing) ) {
             return FALSE;
@@ -186,7 +186,7 @@ abstract class BaseThing
         return $this;
     }
     
-    public static function supports(Thing $thing) {
+    public static function supports(Thing2 $thing) {
         $calledClass = get_called_class();
         
         if (is_callable(array($calledClass, 'reallySupports'))) {
