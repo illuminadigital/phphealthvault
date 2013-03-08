@@ -101,6 +101,18 @@ class Blob
         return (!is_empty($this->data));
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+        
+        return $this;
+    }
+
     public function getContentType()
     {
         return $this->contentType;
@@ -131,7 +143,7 @@ class Blob
     public function setHashAlgorithm($hashAlgorithm)
     {
         $this->hashAlgorithm = $hashAlgorithm;
-        
+
         return $this;
     }
 
@@ -143,7 +155,7 @@ class Blob
     public function setHashParams($hashParams)
     {
         $this->hashParams = $hashParams;
-        
+
         return $this;
     }
 
@@ -155,7 +167,7 @@ class Blob
     public function setHash($hash)
     {
         $this->hash = $hash;
-        
+
         return $this;
     }
 

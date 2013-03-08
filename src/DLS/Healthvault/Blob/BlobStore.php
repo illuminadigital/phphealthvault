@@ -6,7 +6,7 @@ use com\microsoft\wc\thing\Thing2;
 
 use com\microsoft\wc\thing\BlobPayloadItem;
 
-class BlobStore
+class BlobStore implements \Iterator, \Countable
 {
     /**
      * @var PlatformMethodFactory
@@ -19,6 +19,8 @@ class BlobStore
     protected $thing;
     
     protected $blobs = array();
+    
+    protected $iterator;
     
     public function __construct(PlatformMethodFactory $factory, Thing2 $thing) {
         $this->platformMethodFactory = $factory;
@@ -251,7 +253,7 @@ class BlobStore
         
         $thisBlobHashInfo
             ->setAlgorithm($storedBlob->getHashAlgorithm())
-            ->setParams($storedBlob->getHashParams())
+            ->getParams()->setBlockSize($storedBlob->getHashParams())
             ->setHash($storedBlob->getHash())
         ;
     }
@@ -264,7 +266,7 @@ class BlobStore
         foreach ($blobPayload->getBlob() as $thisBlob) {
             $blobInfo = $thisBlob->getBlobInfo();
         
-            $thisBlobName = $blobInfo->getName();
+            $thisBlobName = $blobInfo->getName()->getValue();
         
             if (isset($this->blobs[$thisBlobName])) {
                 // Resync existing
@@ -284,10 +286,10 @@ class BlobStore
                     $blob->setData($data);
                 }
             } else {
-                $blob = new Blob($thisBlobName, $thisBlob->getContentLength(), $thisBlobInfo->getContentType()->getValue());
+                $blob = new Blob($thisBlobName, $thisBlob->getContentLength(), $blobInfo->getContentType()->getValue());
                 $this->blobs[$thisBlobName] = $blob;
                 
-                $data = $thisBlob->getData();
+                $data = $thisBlob->getBase64data();
                 if ( ! empty($data) ) {
                     $data = base64_decode($data);
                 }
@@ -295,13 +297,13 @@ class BlobStore
                 $blob->setData($data);
             }
             
-            $hashInfo = $thisBlobInfo->getHashInfo();
+            $hashInfo = $blobInfo->getHashInfo();
             
             $blob
                 ->setHashAlgorithm($hashInfo->getAlgorithm()->getValue())
-                ->setHashParams($hashInfo->getParams()->getValue())
+                ->setHashParams($hashInfo->getParams()->getBlockSize())
                 ->setHash($hashInfo->getHash()->getValue())
-                ->setBlobRefUrl($thisBlob->getBlobRefUrl())
+                ->setReference($thisBlob->getBlobRefUrl())
             ;
         }
         
@@ -312,5 +314,47 @@ class BlobStore
                 }
             }
         }
+    }
+    
+    public function getIterator() {
+        if ( empty($this->iterator) ) {
+            $this->iterator = new \ArrayIterator($this->blobs);
+        }
+        
+        return $this->iterator;
+    }
+
+    public function current() {
+        $iterator = $this->getIterator();
+        
+        return $iterator->current();
+    }
+
+    public function key() {
+        $iterator = $this->getIterator();
+        
+        return $iterator->key();
+    }
+
+    public function next() {
+        $iterator = $this->getIterator();
+        
+        return $iterator->next();
+    }
+
+    public function rewind() {
+        $iterator = $this->getIterator();
+        
+        return $iterator->rewind();
+    }
+
+    public function valid() {
+        $iterator = $this->getIterator();
+        
+        return $iterator->valid();
+    }
+
+    public function count() {
+        return count($this->blobs);
     }
 }
