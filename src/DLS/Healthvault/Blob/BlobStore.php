@@ -6,7 +6,7 @@ use com\microsoft\wc\thing\Thing2;
 
 use com\microsoft\wc\thing\BlobPayloadItem;
 
-class BlobStore implements \Iterator, \Countable
+class BlobStore implements \Iterator, \Countable, \ArrayAccess
 {
     /**
      * @var PlatformMethodFactory
@@ -356,5 +356,32 @@ class BlobStore implements \Iterator, \Countable
 
     public function count() {
         return count($this->blobs);
+    }
+    
+    /*
+     * The following methods use the iterator for consistency 
+     */
+    public function offsetExists ( mixed $offset ) {
+        $iterator = $this->getIterator();
+        
+        return $iterator->offsetExists($offset);
+    }
+    
+    public function offsetGet ( mixed $offset ) {
+        $iterator = $this->getIterator();
+        
+        return $iterator->offsetGet($offset);
+    }
+    
+    public function offsetSet ( mixed $offset , mixed $value ) {
+        $iterator = $this->getIterator();
+        
+        $iterator->offsetSet($offset, $value);
+    }
+    
+    public function offsetUnset ( mixed $offset ) {
+        $iterator = $this->getIterator();
+        
+        $iterator->offsetUnset($offset);
     }
 }
