@@ -55,14 +55,14 @@ class GetThingsMethod extends PlatformMethod
     		$format = $this->getDefaultFormat();
     	}
     	
-    	$group = new \com\microsoft\wc\methods\GetThings\ThingRequestGroup();
+    	$group = new \com\microsoft\wc\methods\GetThings3\ThingRequestGroup2();
     	$group->setFormat($format);
     	
     	return $group;
     }
     
     public function getDefaultFormat() {
-    	$format = new \com\microsoft\wc\methods\GetThings\ThingFormatSpec();
+    	$format = new \com\microsoft\wc\methods\GetThings3\ThingFormatSpec2();
     	
     	foreach (array('core') as $sectionName) {
     	    $this->addSectionToFormat($format, $sectionName);
@@ -81,7 +81,7 @@ class GetThingsMethod extends PlatformMethod
             }
         }
         
-        $section = new \com\microsoft\wc\methods\GetThings\ThingSectionSpec($sectionName);
+        $section = new \com\microsoft\wc\methods\GetThings3\ThingSectionSpec2($sectionName);
         $format->addSection($section);
         
         return $format;
@@ -104,9 +104,11 @@ class GetThingsMethod extends PlatformMethod
         
         $this->addSectionToFormat($format, 'blobpayload');
         
-        $blobPayloadFormat = $format->getBlobPayloadFormat();
-        $blobFormat = $blobPayloadFormat->getBlobFormat();
-        $blobFormatSpec = $blobFormat->getBlobFormatSpec();
-        $blobFormatSpec->setValue('streamed');
+        $blobPayloadRequest = $format->getBlobPayloadRequest();
+        $blobFormat = $blobPayloadRequest->getBlobFormat();
+        //$blobFormatSpec = $blobFormat->getBlobFormatSpec();
+        //$blobFormatSpec->setValue('streamed');
+        $blobFormatSpec = new \com\microsoft\wc\methods\GetThings3\BlobFormatSpec('streamed');
+        $blobFormat->setBlobFormatSpec($blobFormatSpec);
     }
 }
