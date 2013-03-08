@@ -3,11 +3,11 @@ namespace Illumina\AbpBundle\Entity;
 
 use Illumina\PhphealthvaultBundle\Entity\BaseThing;
 
-use com\microsoft\wc\thing\Thing;
+use com\microsoft\wc\thing\Thing2;
 
 class AnyThing extends BaseThing
 {
-    public static function reallySupports(Thing $thing)
+    public static function reallySupports(Thing2 $thing)
     {
         return TRUE;
     }
