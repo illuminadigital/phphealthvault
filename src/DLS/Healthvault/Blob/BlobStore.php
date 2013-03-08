@@ -20,7 +20,7 @@ class BlobStore
     
     protected $blobs = array();
     
-    public function __construct(PlatformMethodFactory $factory, Thing $thing) {
+    public function __construct(PlatformMethodFactory $factory, Thing2 $thing) {
         $this->platformMethodFactory = $factory;
         $this->thing = $thing;
         
