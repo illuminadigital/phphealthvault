@@ -36,7 +36,9 @@ class PlatformMethod
         
         try {
         	$className = $this->getInfoClassName();
-        	$this->requestData->setInfo(new $className());
+        	if ( ! empty($className) ) {
+            	$this->requestData->setInfo(new $className());
+        	}
         } 
         catch (Exception $e)
         {
