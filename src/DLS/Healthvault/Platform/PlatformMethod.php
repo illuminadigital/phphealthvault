@@ -165,11 +165,13 @@ class PlatformMethod
 	    	$infoXml = $marshaller->marshalToString($info);
 	    	$infoText = $this->extractRootElement($infoXml);    	
 	    	
-	    	$infoHash = $this->getHashDigest($infoText);
-	    	$header = $this->getHeader();
-	    	$hash = $header->getInfoHash()->getHashData();
-	    	$hash->setAlgName('SHA1');
-	    	$hash->setValue($infoHash);
+	    	if ($this->getInfoClassName()) {
+    	    	$infoHash = $this->getHashDigest($infoText);
+    	    	$header = $this->getHeader();
+    	    	$hash = $header->getInfoHash()->getHashData();
+    	    	$hash->setAlgName('SHA1');
+    	    	$hash->setValue($infoHash);
+	    	}
 	    	
 	    	$authSession = $header->getAuthSession();
 	    	$authSession->setAuthToken($this->getAuthToken());
