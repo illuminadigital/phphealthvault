@@ -28,7 +28,7 @@ class Blob
 
     protected $hash;
 
-    public function __construct($name, $size = NULL, $contentType = NULL)
+    public function __construct($name = NULL, $size = NULL, $contentType = NULL)
     {
         $this->name = $name;
         $this->size = $size;
