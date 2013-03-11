@@ -35,14 +35,10 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $data = $this->uploadFile($handle);
         
-        if ( empty($contentType) ) {
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-            $contentType = finfo_file($finfo, $file);
-            finfo_close($finfo);
-        }
+        fclose($handle);
         
         if ( empty($contentType) ) {
-            $contentType = 'application/data'; // Fallback
+            $contentType = $this->determineContentType($file);
         }
         
         $blob = new Blob($name, $data['size'], $contentType);
@@ -53,6 +49,49 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         if ( ! $skipResync ) {
             $this->syncToThing($name);
         }
+    }
+    
+    protected function determineContentType($file)
+    {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $contentType = finfo_file($finfo, $file);
+        finfo_close($finfo);
+        
+        if ( empty($contentType) ) {
+            $contentType = 'application/data'; // Fallback
+        }
+        
+        return $contentType;
+    }
+    
+    public function addBlob(Blob $blob, $skipResync = FALSE)
+    {
+        $fileUrl = 'data://text/plain;base64,' . base64_encode($blob->getData());
+        
+        $handle = fopen($fileUrl, "r");
+        $uploadData = $this->uploadFile($handle);
+        fclose($handle);
+
+        $blob->setSize($uploadData['size']);
+        $blob->setReference($uploadData['ref']);
+        
+        $contentType = $blob->getContentType();
+        
+        if (empty($contentType)) {
+            $contentType = $this->determineContentType($fileUrl);
+        }
+        
+        $blob->setContentType($contentType);
+        
+        $name = $blob->getName();
+        
+        $this->blobs[$name] = $blob;
+        
+        if ( ! $skipResync ) {
+            $this->synctoThing($name);
+        }
+        
+        return TRUE;
     }
     
     public function addMultiple(array $files)
