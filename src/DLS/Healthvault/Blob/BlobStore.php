@@ -400,25 +400,25 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
     /*
      * The following methods use the iterator for consistency 
      */
-    public function offsetExists ( mixed $offset ) {
+    public function offsetExists ( $offset ) {
         $iterator = $this->getIterator();
         
         return $iterator->offsetExists($offset);
     }
     
-    public function offsetGet ( mixed $offset ) {
+    public function offsetGet ( $offset ) {
         $iterator = $this->getIterator();
         
         return $iterator->offsetGet($offset);
     }
     
-    public function offsetSet ( mixed $offset , mixed $value ) {
+    public function offsetSet ( $offset, $value ) {
         $iterator = $this->getIterator();
         
         $iterator->offsetSet($offset, $value);
     }
     
-    public function offsetUnset ( mixed $offset ) {
+    public function offsetUnset ( $offset ) {
         $iterator = $this->getIterator();
         
         $iterator->offsetUnset($offset);
