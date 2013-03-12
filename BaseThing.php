@@ -48,7 +48,7 @@ abstract class BaseThing
      */
     protected $version;
     
-    public function __construct(Thing2 $thing = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL, BlobStoreFactory $factory)
+    public function __construct(Thing2 $thing = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL, BlobStoreFactory $factory = NULL)
     {
         if ($thing) {
             $this->setThing($thing);
