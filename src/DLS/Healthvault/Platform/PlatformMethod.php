@@ -3,14 +3,10 @@ namespace DLS\Healthvault\Platform;
 
 use org\w3\www\_2001\XMLSchema\NonNegativeInteger;
 
-//use DLS\Healthvault\Entity\Type\HMACFinalized;
 use com\microsoft\wc\types\HMACFinalized;
 use com\microsoft\wc\types\Stringnz;
 
 use DLS\Healthvault\HealthvaultConfigurationInterface;
-
-//use DLS\Healthvault\Entity\Request\MethodRequest;
-//use DLS\Healthvault\Entity\Type\Header;
 
 use com\microsoft\wc\request\Request;
 use com\microsoft\wc\request\Header;
