@@ -1,5 +1,5 @@
 <?php
-namespace Illumina\AbpBundle\Entity;
+namespace DLS\Healthvault\Proxy\Thing;
 
 use Illumina\PhphealthvaultBundle\Entity\BaseThing;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Illumina\UnderstandingMyHealthBundle\Entity;
+namespace DLS\Healthvault\Proxy\Thing;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;

@@ -1,14 +1,14 @@
 <?php
-namespace Illumina\PhphealthvaultBundle\Entity;
+namespace DLS\Healthvault\Proxy\Thing;
 
 use com\microsoft\wc\thing\Thing2;
-use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
 use com\microsoft\wc\thing\DataXml;
 
 use com\microsoft\wc\dates\DateTime;
 use com\microsoft\wc\dates\ApproxDateTime;
 use com\microsoft\wc\types\CodableValue;
 
+use DLS\Healthvault\Utilities\VocabularyInterface;
 use DLS\Healthvault\Blob\BlobStoreFactory;
 
 abstract class BaseThing
@@ -19,7 +19,7 @@ abstract class BaseThing
     protected $thing;
     
     /**
-     * @var \Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary
+     * @var \DLS\Healthvault\Utilities\VocabularyInterface
      */
     protected $healthvaultVocabulary;
     
@@ -48,7 +48,7 @@ abstract class BaseThing
      */
     protected $version;
     
-    public function __construct(Thing2 $thing = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL, BlobStoreFactory $factory = NULL)
+    public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL, BlobStoreFactory $factory = NULL)
     {
         if ($thing) {
             $this->setThing($thing);
@@ -208,7 +208,7 @@ abstract class BaseThing
     /**
      * @param  $healthvaultVocabulary
      */
-    public function setHealthvaultVocabulary($healthvaultVocabulary)
+    public function setHealthvaultVocabulary(VocabularyInterface $healthvaultVocabulary)
     {
         $this->healthvaultVocabulary = $healthvaultVocabulary;
     
