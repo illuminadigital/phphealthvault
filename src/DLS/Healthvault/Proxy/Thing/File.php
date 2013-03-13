@@ -1,7 +1,7 @@
 <?php
 namespace DLS\Healthvault\Proxy\Thing;
 
-use Illumina\PhphealthvaultBundle\Entity\BaseThing;
+use DLS\Healthvault\Proxy\Thing\BaseThing;
 
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\file\File as hvFile;
