@@ -4,7 +4,7 @@ namespace DLS\Healthvault\Proxy\Thing;
 use Symfony\Component\Validator\Constraints as Assert;
 use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
 
-use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
+use DLS\Healthvault\Utilities\VocabularyInterface;
 
 use com\microsoft\wc\thing\condition\Condition as HealthvaultCondition;
 use com\microsoft\wc\thing\Thing;
@@ -63,11 +63,11 @@ class Condition
     protected $hvCondition;
     
     /**
-     * @var \Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary
+     * @var \DLS\Healthvault\Utilities\VocabularyInterface;
      */
     protected $healthvaultVocabulary;
     
-    public function __construct(Thing $hvCondition = NULL, HealthvaultVocabulary $healthvaultVocabulary = NULL)
+    public function __construct(Thing $hvCondition = NULL, VocabularyInterface $healthvaultVocabulary = NULL)
     {
         if ($hvCondition) {
             $this->setHealthvaultCondition($hvCondition);
@@ -473,7 +473,7 @@ class Condition
         return NULL;
     }
     
-    public function setHealthvaultVocabulary(HealthvaultVocabulary $healthvaultVocabulary)
+    public function setHealthvaultVocabulary(VocabularyInterface $healthvaultVocabulary)
     {
         $this->healthvaultVocabulary = $healthvaultVocabulary;
     }

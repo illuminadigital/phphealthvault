@@ -3,9 +3,9 @@ namespace DLS\Healthvault\Proxy\Thing;
 
 use com\microsoft\wc\thing\Thing2;
 
-use Illumina\PhphealthvaultBundle\DependencyInjection\HealthvaultVocabulary;
+use DLS\Healthvault\Utilities\VocabularyInterface;
 
-use Illumina\PhphealthvaultBundle\Entity\BaseThing;
+use DLS\Healthvault\Proxy\Thing\BaseThing;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -19,7 +19,7 @@ abstract class MeasurementThing extends BaseThing
     protected $when;
     
     public function __construct(Thing2 $thing = NULL,
-            HealthvaultVocabulary $healthvaultVocabulary = NULL)
+            VocabularyInterface $healthvaultVocabulary = NULL)
     {
         parent::__construct($thing, $healthvaultVocabulary);
     
