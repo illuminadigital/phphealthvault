@@ -11,7 +11,7 @@ use com\microsoft\wc\thing\peak_flow\PeakFlow as hvPeakFlow;
  * @author Alistair MacDonald <alistair.macdonald@illumina.co.uk>
  *
  */
-class PeakFlow extends MeasurementThing
+class PeakFlow extends ApproxWhenThing
 {
     protected $name = 'Peak Flow Measurement';
 
@@ -135,21 +135,4 @@ class PeakFlow extends MeasurementThing
             'fev1' => 'Forced Expiratory Flow in 1s (l)',
         );
     }
-    
-    protected function setThingWhen($when)
-    {
-        $payload = $this->getThingPayload();
-        $this->setThingApproxDateTime($payload->getWhen(), $when);
-    
-        return $this;
-    }
-    
-    protected function getThingWhen()
-    {
-        $payload = $this->getThingPayload();
-        $when = $this->getThingApproxDateTime($payload->getWhen());
-    
-        return $when;
-    }
-    
 }

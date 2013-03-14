@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\weight\Weight as hvWeight;
 
-class Weight extends MeasurementThing
+class Weight extends WhenThing
 {
     protected $name = 'Weight';
     

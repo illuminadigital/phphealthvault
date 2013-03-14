@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\BloodPressure\BloodPressure as hvBloodPressure;
 
-class BloodPressure extends MeasurementThing
+class BloodPressure extends WhenThing
 {
     protected $name = 'Blood Pressure';
 

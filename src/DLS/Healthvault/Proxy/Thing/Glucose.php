@@ -7,7 +7,7 @@ use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\BloodGlucose\BloodGlucose;
 
-class Glucose extends MeasurementThing
+class Glucose extends WhenThing
 {
     protected $name = 'Glucose Measurement';
     

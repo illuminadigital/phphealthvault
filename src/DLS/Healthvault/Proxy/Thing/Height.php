@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\height\Height as hvHeight;
 
-class Height extends MeasurementThing
+class Height extends WhenThing
 {
     protected $name = 'Height';
     
