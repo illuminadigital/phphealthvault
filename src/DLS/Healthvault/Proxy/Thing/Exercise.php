@@ -48,8 +48,12 @@ class Exercise extends ApproxWhenThing {
 	protected $duration;
 
 	
-	public function __construct() {
+	public function __construct(Thing2 $thing = NULL,
+            VocabularyInterface $healthvaultVocabulary = NULL)
+    {
 		$this->distance = new \DLS\Healthvault\Proxy\Type\LongLengthValue();
+        
+		parent::__construct($thing, $healthvaultVocabulary);
 	}
 
 	/* Public getters/setters */
