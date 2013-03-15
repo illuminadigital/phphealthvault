@@ -1,7 +1,7 @@
 <?php
 namespace DLS\Healthvault\Proxy\Type;
 
-class DisplayValueInterface
+interface DisplayValueInterface
 {
     public static function getTypeOptions();
 
