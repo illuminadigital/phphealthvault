@@ -28,7 +28,7 @@ abstract class DisplayValue {
 	
 	abstract public static function reallyGetTypeOptions();
 	
-	abstract public static function getTypeOptions() {
+	public static function getTypeOptions() {
         $calledClass = get_called_class();
     
         if (is_callable(array($calledClass, 'reallyGetTypeOptions'))) {
