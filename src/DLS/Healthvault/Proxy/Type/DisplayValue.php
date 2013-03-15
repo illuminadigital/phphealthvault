@@ -26,7 +26,17 @@ abstract class DisplayValue {
 	 */
 	protected $unitsCode;
 	
-	abstract public static function getTypeOptions(); 
+	abstract public static function reallyGetTypeOptions();
+	
+	abstract public static function getTypeOptions() {
+        $calledClass = get_called_class();
+    
+        if (is_callable(array($calledClass, 'reallyGetTypeOptions'))) {
+            return call_user_func(array($calledClass, 'reallyGetTypeOptions'));
+        }
+    
+        return array();
+	}
 
 	public static function getTypeOptionChoices() {
 		return array_keys(self::getTypeOptions());
