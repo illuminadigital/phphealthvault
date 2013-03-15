@@ -9,7 +9,7 @@ use DLS\Healthvault\Proxy\Thing\BaseThing;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-abstract class MeasurementThing extends BaseThing
+abstract class WhenThing extends BaseThing
 {
     /**
      * @Assert\NotBlank()
