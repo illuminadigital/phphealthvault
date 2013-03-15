@@ -7,6 +7,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 use com\microsoft\wc\thing\exercise\Exercise as hvExercise;
 
+use com\microsoft\wc\thing\Thing2;
+
 class Exercise extends ApproxWhenThing {
 	protected $name = 'Exercise';
 
