@@ -19,7 +19,7 @@ interface DisplayValueInterface
     
     public function setNormalisedValue($normalisedValue);
     
-    protected function getSelectedTypeData($typeCode = NULL);
+    public function getSelectedTypeData($typeCode = NULL);
     
     public function getUnits();
     
