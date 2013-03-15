@@ -55,11 +55,15 @@ abstract class DisplayValue implements DisplayValueInterface {
 		$this->normalisedValue = $normalisedValue;
 	}
 
-	protected function getSelectedTypeData() {
+	public function getSelectedTypeData($unitsCode = NULL) {
 		$typeOptions = self::getTypeOptions();
 		
-		if (isset($typeOptions[$this->unitsCode])) {
-			return $typeOptions[$this->unitsCode];
+		if ( empty($unitsCode) ) {
+		    $unitsCode = $this->unitsCode;
+		}
+		
+		if (isset($typeOptions[$unitsCode])) {
+			return $typeOptions[$unitsCode];
 		}
 		// else
 		return NULL;
