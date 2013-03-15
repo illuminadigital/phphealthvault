@@ -1,7 +1,7 @@
 <?php
 namespace DLS\Healthvault\Proxy\Type;
 
-abstract class DisplayValue {
+abstract class DisplayValue implements DisplayValueInterface {
 
 	/**
 	 * @var double
@@ -26,18 +26,6 @@ abstract class DisplayValue {
 	 */
 	protected $unitsCode;
 	
-	abstract public static function reallyGetTypeOptions();
-	
-	public static function getTypeOptions() {
-        $calledClass = get_called_class();
-    
-        if (is_callable(array($calledClass, 'reallyGetTypeOptions'))) {
-            return call_user_func(array($calledClass, 'reallyGetTypeOptions'));
-        }
-    
-        return array();
-	}
-
 	public static function getTypeOptionChoices() {
 		return array_keys(self::getTypeOptions());
 	}
