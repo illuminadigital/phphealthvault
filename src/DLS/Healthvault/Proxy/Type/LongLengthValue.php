@@ -15,6 +15,6 @@ class LongLengthValue extends LengthValue {
 	}
 	
 	public static function getTypeOptions() {
-		return self::lengthTypes;
+		return self::$lengthTypes;
 	}
 }
