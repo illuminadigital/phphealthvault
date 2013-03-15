@@ -16,9 +16,11 @@ class Exercise extends ApproxWhenThing {
 	 * The type of activity
 	 * 
 	 * @Assert\NotBlank()
-	 * @Validate\InHealthvaultVocabulary("exercise-activities", "aerobic-activities")
 	 * 
 	 * @var string
+	 */
+	/*
+	 * @Validate\InHealthvaultVocabulary("exercise-activities", "aerobic-activities")
 	 */
 	protected $activity;
 
