@@ -5,8 +5,6 @@ class LongLengthValue extends LengthValue {
 	protected static $lengthTypes;
 	
 	public function __construct() {
-		parent::__construct();
-		
 		if ( ! isset(self::$lengthTypes) ) {
 			self::$lengthTypes = self::getPossibleTypes();
 			
