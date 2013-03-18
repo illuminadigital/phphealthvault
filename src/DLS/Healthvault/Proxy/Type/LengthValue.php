@@ -61,7 +61,7 @@ abstract class LengthValue extends DisplayValue {
 			return $thingElement;
 		}
 		
-		$units = $thingElement->getM();
+		$units = $thingElement->getM()->getValue();
 		
 		if ( empty($this->majorUnits) ) {
 			$this->setFromNormalisedUnits($units);
