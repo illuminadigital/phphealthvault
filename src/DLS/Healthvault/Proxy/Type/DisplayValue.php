@@ -28,7 +28,7 @@ abstract class DisplayValue implements DisplayValueInterface
 
     public static function getTypeOptionChoices()
     {
-        return array_keys(self::getTypeOptions());
+        return array_keys(self::getSpecificTypeOptions());
     }
 
     public function getMajorValue()
@@ -79,7 +79,7 @@ abstract class DisplayValue implements DisplayValueInterface
 
     public function getSelectedTypeData($unitsCode = NULL)
     {
-        $typeOptions = self::getTypeOptions();
+        $typeOptions = self::getSpecificTypeOptions();
 
         if (empty($unitsCode)) {
             $unitsCode = $this->unitsCode;
@@ -114,7 +114,7 @@ abstract class DisplayValue implements DisplayValueInterface
         $thisType = $this->getSelectedTypeData();
 
         if (!$thisType) {
-            return $this->majorValue;
+            return (string) $this->majorValue;
         } else {
             return self::getValueString($this->majorValue, $this->minorValue,
                     $thisType);
@@ -189,7 +189,7 @@ abstract class DisplayValue implements DisplayValueInterface
         $units = $display->getUnits();
 
         if (isset($units)) {
-            $this->setFromUnits($value);
+            $this->setFromUnits($units);
         } else {
             $this->setFromUnits($display->getValue());
         }
@@ -210,7 +210,7 @@ abstract class DisplayValue implements DisplayValueInterface
 
     public function getSelectedUnitData($unitCode = NULL)
     {
-        $data = self::getTypeOptions();
+        $data = self::getSpecificTypeOptions();
 
         if (isset($data[$unitCode])) {
             return $data[$unitCode];
@@ -221,7 +221,7 @@ abstract class DisplayValue implements DisplayValueInterface
 
     public function getCodeForTypeName($name)
     {
-        $data = self::getTypeOptions();
+        $data = self::getSpecificTypeOptions();
 
         foreach ($data as $code => $datum) {
             if (isset($datum['name']) && $datum['name'] == $name) {
@@ -230,5 +230,16 @@ abstract class DisplayValue implements DisplayValueInterface
         }
 
         return NULL;
+    }
+    
+    protected static function getSpecificTypeOptions() {
+        $calledClass = get_called_class();
+        
+        // The method must exist at some level because it is part of the interface
+        return call_user_func(array($calledClass, 'getTypeOptions'));
+    }
+    
+    public function __toString() {
+        return $this->getDisplayValue();
     }
 }
