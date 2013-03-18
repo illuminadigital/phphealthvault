@@ -2,6 +2,8 @@
 namespace DLS\Healthvault\Proxy\Thing;
 
 use DLS\Healthvault\Proxy\Type\LongLengthValue;
+use DLS\Healthvault\Proxy\Type\CodableValue;
+
 use DLS\Healthvault\Utilities\VocabularyInterface;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -19,7 +21,7 @@ class Exercise extends ApproxWhenThing {
 	 * 
 	 * @Assert\NotBlank()
 	 * 
-	 * @var string
+	 * @var \DLS\Healthvault\Proxy\Type\CodableValue
 	 */
 	/*
 	 * @Validate\InHealthvaultVocabulary("exercise-activities", "aerobic-activities")
@@ -53,10 +55,11 @@ class Exercise extends ApproxWhenThing {
 	public function __construct(Thing2 $thing = NULL,
             VocabularyInterface $healthvaultVocabulary = NULL)
     {
-		$this->distance = new \DLS\Healthvault\Proxy\Type\LongLengthValue();
+		$this->distance = new LongLengthValue();
+        $this->activity = new CodableValue($healthvaultVocabulary, array('exercise-activities', 'aerobic-activities'));
         
 		parent::__construct($thing, $healthvaultVocabulary);
-	}
+    }
 
 	/* Public getters/setters */
 	
@@ -112,6 +115,7 @@ class Exercise extends ApproxWhenThing {
 		$this->title = $payload->getTitle();
 		$this->duration = $payload->getDuration()->getValue();
 		$this->distance->setFromThingElement($payload->getDistance());
+		$this->activity->setFromThingElement($payload->getActivity());
 	}
 	
 	public function getThing(Thing2 $thing = NULL) {
@@ -120,6 +124,7 @@ class Exercise extends ApproxWhenThing {
 		$this->setThingTitle($this->title);
 		$this->setThingDuration($this->duration);
 		$this->distance->updateToThingElement($payload->getDistance());
+		$this->activity->updateToThingElement($payload->getActivity());
 	}
 	
 	public function setThingTitle($title) {
