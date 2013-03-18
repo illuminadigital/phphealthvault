@@ -1,6 +1,8 @@
 <?php
 namespace DLS\Healthvault\Proxy\Thing;
+
 use DLS\Healthvault\Proxy\Type\LongLengthValue;
+use DLS\Healthvault\Utilities\VocabularyInterface;
 
 use Symfony\Component\Validator\Constraints as Assert;
 #use Illumina\Phphealthvaultbundle\Validator\Constraints as Validate;
