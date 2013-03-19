@@ -126,8 +126,13 @@ class Exercise extends ApproxWhenThing {
 		
 		$payload = $this->getThingPayload();
 		
-		$this->distance->updateToThingElement($payload->getDistance());
-		$this->activity->updateToThingElement($payload->getActivity());
+		$distance = $payload->getDistance();
+		$this->distance->updateToThingElement($distance);
+		$payload->setDistance($distance);
+		
+		$activity = $payload->getActivity();
+		$this->activity->updateToThingElement($activity);
+		$payload->setActivity($activity);
 		
 		return $thing;
 	}
