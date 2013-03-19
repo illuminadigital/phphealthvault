@@ -177,22 +177,21 @@ abstract class DisplayValue implements DisplayValueInterface
         $unitsCode = $display->getUnitsCode();
         $units = $display->getUnits();
 
-        if (!empty($unitsCode) && $this > getSelectedTypeData($unitsCode)) {
-            $this->unitsCode = $unitsCode;
-        } else if (!empty($units)
-                && ($unitsCode = $this->getCodeForTypeName($units))) {
-            $this->unitsCode = $unitsCode;
-        } else {
-            $this->unitsCode = NULL;
+        $codeValue = NULL;
+        
+        if ( ! empty($unitsCode) ) {
+            if ( $this->getSelectedTypeData($unitsCode) ) {
+                $codeValue = $unitsCode;
+            }
         }
 
-        $units = $display->getUnits();
-
-        if (isset($units)) {
-            $this->setFromUnits($units);
-        } else {
-            $this->setFromUnits($display->getValue());
+        if ( ! $codeValue && ! empty($units) ) {
+            $codeValue = $this->getCodeForTypeName($units);
         }
+
+        $this->unitsCode = $codeValue;
+
+        $this->setFromUnits($display->getValue());
 
         // We can't set the normalised value. The outer code needs to
 
@@ -223,8 +222,10 @@ abstract class DisplayValue implements DisplayValueInterface
     {
         $data = self::getSpecificTypeOptions();
 
+        $name = strtolower($name);
+        
         foreach ($data as $code => $datum) {
-            if (isset($datum['name']) && $datum['name'] == $name) {
+            if (isset($datum['name']) && strtolower($datum['name']) == $name) {
                 return $code;
             }
         }
