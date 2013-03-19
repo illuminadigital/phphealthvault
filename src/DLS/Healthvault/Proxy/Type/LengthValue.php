@@ -84,7 +84,10 @@ abstract class LengthValue extends DisplayValue {
 			return $thingElement;
 		}
 		
-		$thingElement->getM()->setValue($this->getNormalisedValue());
+		$normalisedValue = $this->getNormalisedValue();
+		if ( isset($normalisedValue) ) {
+		    $thingElement->getM()->setValue($normalisedValue);
+		}
 		
 		return $thingElement;
 	}

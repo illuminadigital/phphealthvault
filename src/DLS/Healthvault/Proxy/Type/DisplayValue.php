@@ -40,6 +40,8 @@ abstract class DisplayValue implements DisplayValueInterface
     {
         $this->majorValue = $majorValue;
         
+        $this->updateNormalisedValue();
+        
         return $this;
     }
 
@@ -51,6 +53,8 @@ abstract class DisplayValue implements DisplayValueInterface
     public function setMinorValue($minorValue)
     {
         $this->minorValue = $minorValue;
+        
+        $this->updateNormalisedValue();
         
         return $this;
     }
@@ -149,6 +153,8 @@ abstract class DisplayValue implements DisplayValueInterface
             $this->minorValue = ($convertedUnits - $this->majorValue)
                     / $thisType['minor_scale'];
         }
+        
+        $this->normalisedValue = $units;
     }
 
     public function setFromUnits($units)
@@ -164,7 +170,27 @@ abstract class DisplayValue implements DisplayValueInterface
             $this->minorValue = ($units - $this->majorValue)
                     / $thisType['minor_scale'];
         }
+        
+        $this->updateNormalisedValue();
     }
+    
+    protected function updateNormalisedValue() {
+        $thisType = $this->getSelectedTypeData();
+        
+        if (!$thisType) {
+            $normalisedValue = $this->majorValue;
+        } else {
+            $minorScaleFactor = isset($thisType['minor_scale']) ? $thisType['minor_scale'] : 0;
+            $majorScaleFactor = isset($thisType['major_scale']) ? $thisType['major_scale'] : 1;
+            
+            $normalisedValue = $this->majorValue + ($this->minorValue * $minorScaleFactor);
+            $normalisedValue = $normalisedValue * $majorScaleFactor;
+        }
+        
+        $this->normalisedValue = $normalisedValue;
+        
+        return $normalisedValue;
+    } 
 
     public function setFromThingElement($thingElement)
     {
@@ -205,6 +231,17 @@ abstract class DisplayValue implements DisplayValueInterface
         if (empty($display)) {
             return FALSE;
         }
+        
+        $thisType = $this->getSelectedTypeData();
+        
+        $display->setUnitsCode($this->unitsCode);
+        $display->setUnits($thisType['name']);
+        $display->setValue($this->getUnits());
+        $display->setText($this->getDisplayValue());
+        
+        $thingElement->setDisplay($display);
+        
+        return $thingElement;
     }
 
     public function getSelectedUnitData($unitCode = NULL)
