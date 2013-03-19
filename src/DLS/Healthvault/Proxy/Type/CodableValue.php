@@ -72,7 +72,7 @@ class CodableValue
 
     public function getVocabularies()
     {
-        return array_keys($this->vocabularies);
+        return implode(',', array_keys($this->vocabularies));
     }
 
     public function getText()
@@ -143,7 +143,7 @@ class CodableValue
 
     public function updateToThingElement($thingElement)
     {
-        $thingelement->setText($this->text);
+        $thingElement->setText($this->text);
 
         if (empty($this->codedValue)) {
             $type = $family = $value = NULL;
