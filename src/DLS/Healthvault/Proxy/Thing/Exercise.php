@@ -123,8 +123,13 @@ class Exercise extends ApproxWhenThing {
 		
 		$this->setThingTitle($this->title);
 		$this->setThingDuration($this->duration);
+		
+		$payload = $this->getThingPayload();
+		
 		$this->distance->updateToThingElement($payload->getDistance());
 		$this->activity->updateToThingElement($payload->getActivity());
+		
+		return $thing;
 	}
 	
 	public function setThingTitle($title) {
