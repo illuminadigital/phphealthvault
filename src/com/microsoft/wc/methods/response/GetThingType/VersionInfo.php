@@ -97,7 +97,15 @@ class VersionInfo {
 	}
 
 	protected function validateVersionSequence($versionSequence) {
-		if (!is_integer($versionSequence)) {
+		$isValid = FALSE;
+		if ( is_integer($versionSequence) ) {
+			$isValid = TRUE;
+		}
+		else if ( $versionSequence == ($castVar = (integer) $versionSequence) ) {
+			$isValid = TRUE;
+			$versionSequence = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'versionSequence', 'integer'));
 		}
 	

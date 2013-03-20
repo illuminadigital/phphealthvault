@@ -67,7 +67,18 @@ class AppPersistentTokens {
 	}
 
 	protected function validateTokenTtlSeconds($tokenTtlSeconds) {
-		if ( ! is_integer($tokenTtlSeconds) && ! is_null($tokenTtlSeconds) ) {
+		$isValid = FALSE;
+		if ( is_integer($tokenTtlSeconds) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($tokenTtlSeconds) ) {
+			$isValid = TRUE;
+		}
+		else if ( $tokenTtlSeconds == ($castVar = (integer) $tokenTtlSeconds) ) {
+			$isValid = TRUE;
+			$tokenTtlSeconds = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'tokenTtlSeconds', 'integer'));
 		}
 	

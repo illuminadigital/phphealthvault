@@ -47,7 +47,15 @@ class AltitudeValue {
 	}
 
 	protected function validateM($m) {
-		if (!is_float($m)) {
+		$isValid = FALSE;
+		if ( is_float($m) ) {
+			$isValid = TRUE;
+		}
+		else if ( $m == ($castVar = (float) $m) ) {
+			$isValid = TRUE;
+			$m = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'm', 'float'));
 		}
 	

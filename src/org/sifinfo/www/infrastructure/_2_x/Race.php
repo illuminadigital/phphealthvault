@@ -96,7 +96,18 @@ class Race {
 	}
 
 	protected function validateProportion($proportion) {
-		if ( ! is_float($proportion) && ! is_null($proportion) ) {
+		$isValid = FALSE;
+		if ( is_float($proportion) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($proportion) ) {
+			$isValid = TRUE;
+		}
+		else if ( $proportion == ($castVar = (float) $proportion) ) {
+			$isValid = TRUE;
+			$proportion = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'proportion', 'float'));
 		}
 	

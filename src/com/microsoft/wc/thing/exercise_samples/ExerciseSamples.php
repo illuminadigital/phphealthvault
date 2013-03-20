@@ -130,7 +130,15 @@ class ExerciseSamples extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSamplingInterval($samplingInterval) {
-		if (!is_float($samplingInterval)) {
+		$isValid = FALSE;
+		if ( is_float($samplingInterval) ) {
+			$isValid = TRUE;
+		}
+		else if ( $samplingInterval == ($castVar = (float) $samplingInterval) ) {
+			$isValid = TRUE;
+			$samplingInterval = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'samplingInterval', 'float'));
 		}
 	

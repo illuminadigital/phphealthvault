@@ -46,7 +46,18 @@ class TestResultRangeValue {
 	}
 
 	protected function validateMinimumRange($minimumRange) {
-		if ( ! is_float($minimumRange) && ! is_null($minimumRange) ) {
+		$isValid = FALSE;
+		if ( is_float($minimumRange) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($minimumRange) ) {
+			$isValid = TRUE;
+		}
+		else if ( $minimumRange == ($castVar = (float) $minimumRange) ) {
+			$isValid = TRUE;
+			$minimumRange = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'minimumRange', 'float'));
 		}
 	
@@ -69,7 +80,18 @@ class TestResultRangeValue {
 	}
 
 	protected function validateMaximumRange($maximumRange) {
-		if ( ! is_float($maximumRange) && ! is_null($maximumRange) ) {
+		$isValid = FALSE;
+		if ( is_float($maximumRange) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($maximumRange) ) {
+			$isValid = TRUE;
+		}
+		else if ( $maximumRange == ($castVar = (float) $maximumRange) ) {
+			$isValid = TRUE;
+			$maximumRange = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maximumRange', 'float'));
 		}
 	

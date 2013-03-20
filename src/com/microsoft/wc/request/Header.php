@@ -133,7 +133,15 @@ class Header {
 	}
 
 	protected function validateMethodVersion($methodVersion) {
-		if (!is_integer($methodVersion)) {
+		$isValid = FALSE;
+		if ( is_integer($methodVersion) ) {
+			$isValid = TRUE;
+		}
+		else if ( $methodVersion == ($castVar = (integer) $methodVersion) ) {
+			$isValid = TRUE;
+			$methodVersion = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'methodVersion', 'integer'));
 		}
 	
@@ -340,7 +348,15 @@ class Header {
 	}
 
 	protected function validateMsgTtl($msgTtl) {
-		if (!is_integer($msgTtl)) {
+		$isValid = FALSE;
+		if ( is_integer($msgTtl) ) {
+			$isValid = TRUE;
+		}
+		else if ( $msgTtl == ($castVar = (integer) $msgTtl) ) {
+			$isValid = TRUE;
+			$msgTtl = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'msgTtl', 'integer'));
 		}
 	

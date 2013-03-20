@@ -73,7 +73,15 @@ class PbeParametersType {
 	}
 
 	protected function validateIterationCount($iterationCount) {
-		if (!is_integer($iterationCount)) {
+		$isValid = FALSE;
+		if ( is_integer($iterationCount) ) {
+			$isValid = TRUE;
+		}
+		else if ( $iterationCount == ($castVar = (integer) $iterationCount) ) {
+			$isValid = TRUE;
+			$iterationCount = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'iterationCount', 'integer'));
 		}
 	
@@ -96,7 +104,15 @@ class PbeParametersType {
 	}
 
 	protected function validateKeyLength($keyLength) {
-		if (!is_integer($keyLength)) {
+		$isValid = FALSE;
+		if ( is_integer($keyLength) ) {
+			$isValid = TRUE;
+		}
+		else if ( $keyLength == ($castVar = (integer) $keyLength) ) {
+			$isValid = TRUE;
+			$keyLength = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'keyLength', 'integer'));
 		}
 	

@@ -94,7 +94,18 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateExpires($expires) {
-		if ( ! is_integer($expires) && ! is_null($expires) ) {
+		$isValid = FALSE;
+		if ( is_integer($expires) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($expires) ) {
+			$isValid = TRUE;
+		}
+		else if ( $expires == ($castVar = (integer) $expires) ) {
+			$isValid = TRUE;
+			$expires = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'expires', 'integer'));
 		}
 	
@@ -186,7 +197,15 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateMethodVersion($methodVersion) {
-		if (!is_integer($methodVersion)) {
+		$isValid = FALSE;
+		if ( is_integer($methodVersion) ) {
+			$isValid = TRUE;
+		}
+		else if ( $methodVersion == ($castVar = (integer) $methodVersion) ) {
+			$isValid = TRUE;
+			$methodVersion = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'methodVersion', 'integer'));
 		}
 	

@@ -91,7 +91,18 @@ class BlobPayloadItem {
 	}
 
 	protected function validateContentLength($contentLength) {
-		if ( ! is_integer($contentLength) && ! is_null($contentLength) ) {
+		$isValid = FALSE;
+		if ( is_integer($contentLength) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($contentLength) ) {
+			$isValid = TRUE;
+		}
+		else if ( $contentLength == ($castVar = (integer) $contentLength) ) {
+			$isValid = TRUE;
+			$contentLength = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'contentLength', 'integer'));
 		}
 	

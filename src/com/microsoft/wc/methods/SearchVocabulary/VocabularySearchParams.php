@@ -69,7 +69,18 @@ class VocabularySearchParams {
 	}
 
 	protected function validateMaxResults($maxResults) {
-		if ( ! is_integer($maxResults) && ! is_null($maxResults) ) {
+		$isValid = FALSE;
+		if ( is_integer($maxResults) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($maxResults) ) {
+			$isValid = TRUE;
+		}
+		else if ( $maxResults == ($castVar = (integer) $maxResults) ) {
+			$isValid = TRUE;
+			$maxResults = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maxResults', 'integer'));
 		}
 	

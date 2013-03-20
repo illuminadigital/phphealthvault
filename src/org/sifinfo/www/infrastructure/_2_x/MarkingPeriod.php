@@ -131,7 +131,18 @@ class MarkingPeriod {
 	}
 
 	protected function validateCourseCreditsAttempted($courseCreditsAttempted) {
-		if ( ! is_float($courseCreditsAttempted) && ! is_null($courseCreditsAttempted) ) {
+		$isValid = FALSE;
+		if ( is_float($courseCreditsAttempted) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($courseCreditsAttempted) ) {
+			$isValid = TRUE;
+		}
+		else if ( $courseCreditsAttempted == ($castVar = (float) $courseCreditsAttempted) ) {
+			$isValid = TRUE;
+			$courseCreditsAttempted = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'courseCreditsAttempted', 'float'));
 		}
 	

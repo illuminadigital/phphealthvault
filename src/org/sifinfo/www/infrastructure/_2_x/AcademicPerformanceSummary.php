@@ -128,7 +128,18 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateTotalCreditsAttempted($totalCreditsAttempted) {
-		if ( ! is_float($totalCreditsAttempted) && ! is_null($totalCreditsAttempted) ) {
+		$isValid = FALSE;
+		if ( is_float($totalCreditsAttempted) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($totalCreditsAttempted) ) {
+			$isValid = TRUE;
+		}
+		else if ( $totalCreditsAttempted == ($castVar = (float) $totalCreditsAttempted) ) {
+			$isValid = TRUE;
+			$totalCreditsAttempted = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'totalCreditsAttempted', 'float'));
 		}
 	
@@ -151,7 +162,18 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateTotalCreditsEarned($totalCreditsEarned) {
-		if ( ! is_float($totalCreditsEarned) && ! is_null($totalCreditsEarned) ) {
+		$isValid = FALSE;
+		if ( is_float($totalCreditsEarned) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($totalCreditsEarned) ) {
+			$isValid = TRUE;
+		}
+		else if ( $totalCreditsEarned == ($castVar = (float) $totalCreditsEarned) ) {
+			$isValid = TRUE;
+			$totalCreditsEarned = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'totalCreditsEarned', 'float'));
 		}
 	
@@ -174,7 +196,18 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateCumulativeGPACreditsEarned($cumulativeGPACreditsEarned) {
-		if ( ! is_float($cumulativeGPACreditsEarned) && ! is_null($cumulativeGPACreditsEarned) ) {
+		$isValid = FALSE;
+		if ( is_float($cumulativeGPACreditsEarned) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($cumulativeGPACreditsEarned) ) {
+			$isValid = TRUE;
+		}
+		else if ( $cumulativeGPACreditsEarned == ($castVar = (float) $cumulativeGPACreditsEarned) ) {
+			$isValid = TRUE;
+			$cumulativeGPACreditsEarned = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'cumulativeGPACreditsEarned', 'float'));
 		}
 	
@@ -197,7 +230,18 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateCumulativeGradePoints($cumulativeGradePoints) {
-		if ( ! is_float($cumulativeGradePoints) && ! is_null($cumulativeGradePoints) ) {
+		$isValid = FALSE;
+		if ( is_float($cumulativeGradePoints) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($cumulativeGradePoints) ) {
+			$isValid = TRUE;
+		}
+		else if ( $cumulativeGradePoints == ($castVar = (float) $cumulativeGradePoints) ) {
+			$isValid = TRUE;
+			$cumulativeGradePoints = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'cumulativeGradePoints', 'float'));
 		}
 	
@@ -220,7 +264,18 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateCumulativeGPA($cumulativeGPA) {
-		if ( ! is_float($cumulativeGPA) && ! is_null($cumulativeGPA) ) {
+		$isValid = FALSE;
+		if ( is_float($cumulativeGPA) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($cumulativeGPA) ) {
+			$isValid = TRUE;
+		}
+		else if ( $cumulativeGPA == ($castVar = (float) $cumulativeGPA) ) {
+			$isValid = TRUE;
+			$cumulativeGPA = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'cumulativeGPA', 'float'));
 		}
 	
@@ -266,7 +321,18 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateClassRank($classRank) {
-		if ( ! is_integer($classRank) && ! is_null($classRank) ) {
+		$isValid = FALSE;
+		if ( is_integer($classRank) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($classRank) ) {
+			$isValid = TRUE;
+		}
+		else if ( $classRank == ($castVar = (integer) $classRank) ) {
+			$isValid = TRUE;
+			$classRank = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'classRank', 'integer'));
 		}
 	
@@ -289,7 +355,18 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateClassTotalNumber($classTotalNumber) {
-		if ( ! is_integer($classTotalNumber) && ! is_null($classTotalNumber) ) {
+		$isValid = FALSE;
+		if ( is_integer($classTotalNumber) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($classTotalNumber) ) {
+			$isValid = TRUE;
+		}
+		else if ( $classTotalNumber == ($castVar = (integer) $classTotalNumber) ) {
+			$isValid = TRUE;
+			$classTotalNumber = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'classTotalNumber', 'integer'));
 		}
 	

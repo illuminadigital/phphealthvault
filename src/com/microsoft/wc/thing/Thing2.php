@@ -173,7 +173,18 @@ class Thing2 {
 	}
 
 	protected function validateFlags($flags) {
-		if ( ! is_integer($flags) && ! is_null($flags) ) {
+		$isValid = FALSE;
+		if ( is_integer($flags) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($flags) ) {
+			$isValid = TRUE;
+		}
+		else if ( $flags == ($castVar = (integer) $flags) ) {
+			$isValid = TRUE;
+			$flags = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'flags', 'integer'));
 		}
 	

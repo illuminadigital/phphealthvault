@@ -44,7 +44,18 @@ class Percentage {
 	}
 
 	protected function validateMinimum($minimum) {
-		if ( ! is_float($minimum) && ! is_null($minimum) ) {
+		$isValid = FALSE;
+		if ( is_float($minimum) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($minimum) ) {
+			$isValid = TRUE;
+		}
+		else if ( $minimum == ($castVar = (float) $minimum) ) {
+			$isValid = TRUE;
+			$minimum = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'minimum', 'float'));
 		}
 	
@@ -67,7 +78,18 @@ class Percentage {
 	}
 
 	protected function validateMaximum($maximum) {
-		if ( ! is_float($maximum) && ! is_null($maximum) ) {
+		$isValid = FALSE;
+		if ( is_float($maximum) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($maximum) ) {
+			$isValid = TRUE;
+		}
+		else if ( $maximum == ($castVar = (float) $maximum) ) {
+			$isValid = TRUE;
+			$maximum = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maximum', 'float'));
 		}
 	

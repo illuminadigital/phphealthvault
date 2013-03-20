@@ -47,7 +47,15 @@ class TemperatureValue {
 	}
 
 	protected function validateCelsius($celsius) {
-		if (!is_float($celsius)) {
+		$isValid = FALSE;
+		if ( is_float($celsius) ) {
+			$isValid = TRUE;
+		}
+		else if ( $celsius == ($castVar = (float) $celsius) ) {
+			$isValid = TRUE;
+			$celsius = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'celsius', 'float'));
 		}
 	

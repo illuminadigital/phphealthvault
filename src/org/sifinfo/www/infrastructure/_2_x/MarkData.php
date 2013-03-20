@@ -74,7 +74,18 @@ class MarkData {
 	}
 
 	protected function validatePercentage($percentage) {
-		if ( ! is_float($percentage) && ! is_null($percentage) ) {
+		$isValid = FALSE;
+		if ( is_float($percentage) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($percentage) ) {
+			$isValid = TRUE;
+		}
+		else if ( $percentage == ($castVar = (float) $percentage) ) {
+			$isValid = TRUE;
+			$percentage = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'percentage', 'float'));
 		}
 	
@@ -97,7 +108,18 @@ class MarkData {
 	}
 
 	protected function validateNumeric($numeric) {
-		if ( ! is_integer($numeric) && ! is_null($numeric) ) {
+		$isValid = FALSE;
+		if ( is_integer($numeric) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($numeric) ) {
+			$isValid = TRUE;
+		}
+		else if ( $numeric == ($castVar = (integer) $numeric) ) {
+			$isValid = TRUE;
+			$numeric = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'numeric', 'integer'));
 		}
 	
@@ -120,7 +142,18 @@ class MarkData {
 	}
 
 	protected function validateNumericAsDecimal($numericAsDecimal) {
-		if ( ! is_float($numericAsDecimal) && ! is_null($numericAsDecimal) ) {
+		$isValid = FALSE;
+		if ( is_float($numericAsDecimal) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($numericAsDecimal) ) {
+			$isValid = TRUE;
+		}
+		else if ( $numericAsDecimal == ($castVar = (float) $numericAsDecimal) ) {
+			$isValid = TRUE;
+			$numericAsDecimal = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'numericAsDecimal', 'float'));
 		}
 	

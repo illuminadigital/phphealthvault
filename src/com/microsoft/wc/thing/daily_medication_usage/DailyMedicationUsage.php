@@ -136,7 +136,15 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateNumberDosesConsumedInDay($numberDosesConsumedInDay) {
-		if (!is_integer($numberDosesConsumedInDay)) {
+		$isValid = FALSE;
+		if ( is_integer($numberDosesConsumedInDay) ) {
+			$isValid = TRUE;
+		}
+		else if ( $numberDosesConsumedInDay == ($castVar = (integer) $numberDosesConsumedInDay) ) {
+			$isValid = TRUE;
+			$numberDosesConsumedInDay = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'numberDosesConsumedInDay', 'integer'));
 		}
 	
@@ -182,7 +190,18 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateNumberDosesIntendedInDay($numberDosesIntendedInDay) {
-		if ( ! is_integer($numberDosesIntendedInDay) && ! is_null($numberDosesIntendedInDay) ) {
+		$isValid = FALSE;
+		if ( is_integer($numberDosesIntendedInDay) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($numberDosesIntendedInDay) ) {
+			$isValid = TRUE;
+		}
+		else if ( $numberDosesIntendedInDay == ($castVar = (integer) $numberDosesIntendedInDay) ) {
+			$isValid = TRUE;
+			$numberDosesIntendedInDay = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'numberDosesIntendedInDay', 'integer'));
 		}
 	

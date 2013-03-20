@@ -71,7 +71,18 @@ class LabResultType {
 	}
 
 	protected function validateValue($value) {
-		if ( ! is_float($value) && ! is_null($value) ) {
+		$isValid = FALSE;
+		if ( is_float($value) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($value) ) {
+			$isValid = TRUE;
+		}
+		else if ( $value == ($castVar = (float) $value) ) {
+			$isValid = TRUE;
+			$value = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'float'));
 		}
 	

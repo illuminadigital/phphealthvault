@@ -38,7 +38,15 @@ class Hour {
 	}
 
 	protected function validateValue($value) {
-		if (!is_integer($value)) {
+		$isValid = FALSE;
+		if ( is_integer($value) ) {
+			$isValid = TRUE;
+		}
+		else if ( $value == ($castVar = (integer) $value) ) {
+			$isValid = TRUE;
+			$value = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'integer'));
 		}
 

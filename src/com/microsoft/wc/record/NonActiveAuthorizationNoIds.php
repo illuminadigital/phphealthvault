@@ -260,7 +260,15 @@ class NonActiveAuthorizationNoIds {
 	}
 
 	protected function validateRelType($relType) {
-		if (!is_integer($relType)) {
+		$isValid = FALSE;
+		if ( is_integer($relType) ) {
+			$isValid = TRUE;
+		}
+		else if ( $relType == ($castVar = (integer) $relType) ) {
+			$isValid = TRUE;
+			$relType = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'relType', 'integer'));
 		}
 	

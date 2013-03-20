@@ -38,7 +38,18 @@ class BlobHashAlgorithmParameters {
 	}
 
 	protected function validateBlockSize($blockSize) {
-		if ( ! is_integer($blockSize) && ! is_null($blockSize) ) {
+		$isValid = FALSE;
+		if ( is_integer($blockSize) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($blockSize) ) {
+			$isValid = TRUE;
+		}
+		else if ( $blockSize == ($castVar = (integer) $blockSize) ) {
+			$isValid = TRUE;
+			$blockSize = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'blockSize', 'integer'));
 		}
 	

@@ -87,7 +87,15 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateBlobChunkSize($blobChunkSize) {
-		if (!is_integer($blobChunkSize)) {
+		$isValid = FALSE;
+		if ( is_integer($blobChunkSize) ) {
+			$isValid = TRUE;
+		}
+		else if ( $blobChunkSize == ($castVar = (integer) $blobChunkSize) ) {
+			$isValid = TRUE;
+			$blobChunkSize = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'blobChunkSize', 'integer'));
 		}
 	
@@ -110,7 +118,15 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateMaxBlobSize($maxBlobSize) {
-		if (!is_integer($maxBlobSize)) {
+		$isValid = FALSE;
+		if ( is_integer($maxBlobSize) ) {
+			$isValid = TRUE;
+		}
+		else if ( $maxBlobSize == ($castVar = (integer) $maxBlobSize) ) {
+			$isValid = TRUE;
+			$maxBlobSize = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maxBlobSize', 'integer'));
 		}
 	

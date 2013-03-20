@@ -74,7 +74,18 @@ class CarePlanGoalRange {
 	}
 
 	protected function validateMinimumValue($minimumValue) {
-		if ( ! is_float($minimumValue) && ! is_null($minimumValue) ) {
+		$isValid = FALSE;
+		if ( is_float($minimumValue) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($minimumValue) ) {
+			$isValid = TRUE;
+		}
+		else if ( $minimumValue == ($castVar = (float) $minimumValue) ) {
+			$isValid = TRUE;
+			$minimumValue = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'minimumValue', 'float'));
 		}
 	
@@ -97,7 +108,18 @@ class CarePlanGoalRange {
 	}
 
 	protected function validateMaximumValue($maximumValue) {
-		if ( ! is_float($maximumValue) && ! is_null($maximumValue) ) {
+		$isValid = FALSE;
+		if ( is_float($maximumValue) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($maximumValue) ) {
+			$isValid = TRUE;
+		}
+		else if ( $maximumValue == ($castVar = (float) $maximumValue) ) {
+			$isValid = TRUE;
+			$maximumValue = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maximumValue', 'float'));
 		}
 	

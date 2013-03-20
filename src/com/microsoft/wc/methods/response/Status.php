@@ -45,7 +45,15 @@ class Status {
 	}
 
 	protected function validateCode($code) {
-		if (!is_integer($code)) {
+		$isValid = FALSE;
+		if ( is_integer($code) ) {
+			$isValid = TRUE;
+		}
+		else if ( $code == ($castVar = (integer) $code) ) {
+			$isValid = TRUE;
+			$code = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'integer'));
 		}
 	

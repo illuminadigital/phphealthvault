@@ -67,7 +67,15 @@ class X509IssuerSerialType {
 	}
 
 	protected function validateX509SerialNumber($x509SerialNumber) {
-		if (!is_integer($x509SerialNumber)) {
+		$isValid = FALSE;
+		if ( is_integer($x509SerialNumber) ) {
+			$isValid = TRUE;
+		}
+		else if ( $x509SerialNumber == ($castVar = (integer) $x509SerialNumber) ) {
+			$isValid = TRUE;
+			$x509SerialNumber = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'x509SerialNumber', 'integer'));
 		}
 	

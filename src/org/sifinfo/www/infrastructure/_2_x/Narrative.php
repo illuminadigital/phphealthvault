@@ -38,7 +38,18 @@ class Narrative {
 	}
 
 	protected function validateMaximumSize($maximumSize) {
-		if ( ! is_integer($maximumSize) && ! is_null($maximumSize) ) {
+		$isValid = FALSE;
+		if ( is_integer($maximumSize) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($maximumSize) ) {
+			$isValid = TRUE;
+		}
+		else if ( $maximumSize == ($castVar = (integer) $maximumSize) ) {
+			$isValid = TRUE;
+			$maximumSize = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maximumSize', 'integer'));
 		}
 	

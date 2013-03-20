@@ -73,7 +73,18 @@ class ValidMark {
 	}
 
 	protected function validateNumericEquivalent($numericEquivalent) {
-		if ( ! is_float($numericEquivalent) && ! is_null($numericEquivalent) ) {
+		$isValid = FALSE;
+		if ( is_float($numericEquivalent) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($numericEquivalent) ) {
+			$isValid = TRUE;
+		}
+		else if ( $numericEquivalent == ($castVar = (float) $numericEquivalent) ) {
+			$isValid = TRUE;
+			$numericEquivalent = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'numericEquivalent', 'float'));
 		}
 	

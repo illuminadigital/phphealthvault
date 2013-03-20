@@ -99,7 +99,15 @@ class ClaimAmounts {
 	}
 
 	protected function validateChargedAmount($chargedAmount) {
-		if (!is_float($chargedAmount)) {
+		$isValid = FALSE;
+		if ( is_float($chargedAmount) ) {
+			$isValid = TRUE;
+		}
+		else if ( $chargedAmount == ($castVar = (float) $chargedAmount) ) {
+			$isValid = TRUE;
+			$chargedAmount = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'chargedAmount', 'float'));
 		}
 	
@@ -122,7 +130,15 @@ class ClaimAmounts {
 	}
 
 	protected function validateNegotiatedAmount($negotiatedAmount) {
-		if (!is_float($negotiatedAmount)) {
+		$isValid = FALSE;
+		if ( is_float($negotiatedAmount) ) {
+			$isValid = TRUE;
+		}
+		else if ( $negotiatedAmount == ($castVar = (float) $negotiatedAmount) ) {
+			$isValid = TRUE;
+			$negotiatedAmount = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'negotiatedAmount', 'float'));
 		}
 	
@@ -145,7 +161,15 @@ class ClaimAmounts {
 	}
 
 	protected function validateCopay($copay) {
-		if (!is_float($copay)) {
+		$isValid = FALSE;
+		if ( is_float($copay) ) {
+			$isValid = TRUE;
+		}
+		else if ( $copay == ($castVar = (float) $copay) ) {
+			$isValid = TRUE;
+			$copay = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'copay', 'float'));
 		}
 	
@@ -168,7 +192,15 @@ class ClaimAmounts {
 	}
 
 	protected function validateDeductible($deductible) {
-		if (!is_float($deductible)) {
+		$isValid = FALSE;
+		if ( is_float($deductible) ) {
+			$isValid = TRUE;
+		}
+		else if ( $deductible == ($castVar = (float) $deductible) ) {
+			$isValid = TRUE;
+			$deductible = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'deductible', 'float'));
 		}
 	
@@ -191,7 +223,15 @@ class ClaimAmounts {
 	}
 
 	protected function validateAmountNotCovered($amountNotCovered) {
-		if (!is_float($amountNotCovered)) {
+		$isValid = FALSE;
+		if ( is_float($amountNotCovered) ) {
+			$isValid = TRUE;
+		}
+		else if ( $amountNotCovered == ($castVar = (float) $amountNotCovered) ) {
+			$isValid = TRUE;
+			$amountNotCovered = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'amountNotCovered', 'float'));
 		}
 	
@@ -214,7 +254,15 @@ class ClaimAmounts {
 	}
 
 	protected function validateEligibleForBenefits($eligibleForBenefits) {
-		if (!is_float($eligibleForBenefits)) {
+		$isValid = FALSE;
+		if ( is_float($eligibleForBenefits) ) {
+			$isValid = TRUE;
+		}
+		else if ( $eligibleForBenefits == ($castVar = (float) $eligibleForBenefits) ) {
+			$isValid = TRUE;
+			$eligibleForBenefits = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'eligibleForBenefits', 'float'));
 		}
 	
@@ -260,7 +308,15 @@ class ClaimAmounts {
 	}
 
 	protected function validateCoinsurance($coinsurance) {
-		if (!is_float($coinsurance)) {
+		$isValid = FALSE;
+		if ( is_float($coinsurance) ) {
+			$isValid = TRUE;
+		}
+		else if ( $coinsurance == ($castVar = (float) $coinsurance) ) {
+			$isValid = TRUE;
+			$coinsurance = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'coinsurance', 'float'));
 		}
 	
@@ -283,7 +339,15 @@ class ClaimAmounts {
 	}
 
 	protected function validateMiscellaneousAdjustments($miscellaneousAdjustments) {
-		if (!is_float($miscellaneousAdjustments)) {
+		$isValid = FALSE;
+		if ( is_float($miscellaneousAdjustments) ) {
+			$isValid = TRUE;
+		}
+		else if ( $miscellaneousAdjustments == ($castVar = (float) $miscellaneousAdjustments) ) {
+			$isValid = TRUE;
+			$miscellaneousAdjustments = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'miscellaneousAdjustments', 'float'));
 		}
 	
@@ -306,7 +370,15 @@ class ClaimAmounts {
 	}
 
 	protected function validateBenefitsPaid($benefitsPaid) {
-		if (!is_float($benefitsPaid)) {
+		$isValid = FALSE;
+		if ( is_float($benefitsPaid) ) {
+			$isValid = TRUE;
+		}
+		else if ( $benefitsPaid == ($castVar = (float) $benefitsPaid) ) {
+			$isValid = TRUE;
+			$benefitsPaid = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'benefitsPaid', 'float'));
 		}
 	
@@ -329,7 +401,15 @@ class ClaimAmounts {
 	}
 
 	protected function validatePatientResponsibility($patientResponsibility) {
-		if (!is_float($patientResponsibility)) {
+		$isValid = FALSE;
+		if ( is_float($patientResponsibility) ) {
+			$isValid = TRUE;
+		}
+		else if ( $patientResponsibility == ($castVar = (float) $patientResponsibility) ) {
+			$isValid = TRUE;
+			$patientResponsibility = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'patientResponsibility', 'float'));
 		}
 	

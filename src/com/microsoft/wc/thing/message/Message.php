@@ -138,7 +138,15 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSize($size) {
-		if (!is_integer($size)) {
+		$isValid = FALSE;
+		if ( is_integer($size) ) {
+			$isValid = TRUE;
+		}
+		else if ( $size == ($castVar = (integer) $size) ) {
+			$isValid = TRUE;
+			$size = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'size', 'integer'));
 		}
 	

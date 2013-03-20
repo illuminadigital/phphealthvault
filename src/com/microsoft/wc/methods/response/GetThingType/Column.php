@@ -131,7 +131,15 @@ class Column {
 	}
 
 	protected function validateWidth($width) {
-		if (!is_integer($width)) {
+		$isValid = FALSE;
+		if ( is_integer($width) ) {
+			$isValid = TRUE;
+		}
+		else if ( $width == ($castVar = (integer) $width) ) {
+			$isValid = TRUE;
+			$width = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'width', 'integer'));
 		}
 	

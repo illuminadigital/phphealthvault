@@ -45,7 +45,18 @@ class UnitConversion {
 	}
 
 	protected function validateMultiplier($multiplier) {
-		if ( ! is_float($multiplier) && ! is_null($multiplier) ) {
+		$isValid = FALSE;
+		if ( is_float($multiplier) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($multiplier) ) {
+			$isValid = TRUE;
+		}
+		else if ( $multiplier == ($castVar = (float) $multiplier) ) {
+			$isValid = TRUE;
+			$multiplier = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'multiplier', 'float'));
 		}
 	
@@ -68,7 +79,18 @@ class UnitConversion {
 	}
 
 	protected function validateOffset($offset) {
-		if ( ! is_float($offset) && ! is_null($offset) ) {
+		$isValid = FALSE;
+		if ( is_float($offset) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($offset) ) {
+			$isValid = TRUE;
+		}
+		else if ( $offset == ($castVar = (float) $offset) ) {
+			$isValid = TRUE;
+			$offset = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'offset', 'float'));
 		}
 	

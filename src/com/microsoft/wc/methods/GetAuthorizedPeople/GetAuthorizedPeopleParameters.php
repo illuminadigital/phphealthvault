@@ -97,7 +97,18 @@ class GetAuthorizedPeopleParameters {
 	}
 
 	protected function validateNumResults($numResults) {
-		if ( ! is_integer($numResults) && ! is_null($numResults) ) {
+		$isValid = FALSE;
+		if ( is_integer($numResults) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($numResults) ) {
+			$isValid = TRUE;
+		}
+		else if ( $numResults == ($castVar = (integer) $numResults) ) {
+			$isValid = TRUE;
+			$numResults = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'numResults', 'integer'));
 		}
 	

@@ -267,7 +267,18 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateInitialDoses($initialDoses) {
-		if ( ! is_integer($initialDoses) && ! is_null($initialDoses) ) {
+		$isValid = FALSE;
+		if ( is_integer($initialDoses) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($initialDoses) ) {
+			$isValid = TRUE;
+		}
+		else if ( $initialDoses == ($castVar = (integer) $initialDoses) ) {
+			$isValid = TRUE;
+			$initialDoses = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'initialDoses', 'integer'));
 		}
 	
@@ -290,7 +301,18 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMinDailyDoses($minDailyDoses) {
-		if ( ! is_integer($minDailyDoses) && ! is_null($minDailyDoses) ) {
+		$isValid = FALSE;
+		if ( is_integer($minDailyDoses) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($minDailyDoses) ) {
+			$isValid = TRUE;
+		}
+		else if ( $minDailyDoses == ($castVar = (integer) $minDailyDoses) ) {
+			$isValid = TRUE;
+			$minDailyDoses = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'minDailyDoses', 'integer'));
 		}
 	
@@ -313,7 +335,18 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMaxDailyDoses($maxDailyDoses) {
-		if ( ! is_integer($maxDailyDoses) && ! is_null($maxDailyDoses) ) {
+		$isValid = FALSE;
+		if ( is_integer($maxDailyDoses) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($maxDailyDoses) ) {
+			$isValid = TRUE;
+		}
+		else if ( $maxDailyDoses == ($castVar = (integer) $maxDailyDoses) ) {
+			$isValid = TRUE;
+			$maxDailyDoses = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maxDailyDoses', 'integer'));
 		}
 	

@@ -97,7 +97,18 @@ class VitalSignResultType {
 	}
 
 	protected function validateValue($value) {
-		if ( ! is_float($value) && ! is_null($value) ) {
+		$isValid = FALSE;
+		if ( is_float($value) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($value) ) {
+			$isValid = TRUE;
+		}
+		else if ( $value == ($castVar = (float) $value) ) {
+			$isValid = TRUE;
+			$value = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'float'));
 		}
 	
@@ -143,7 +154,18 @@ class VitalSignResultType {
 	}
 
 	protected function validateReferenceMinimum($referenceMinimum) {
-		if ( ! is_float($referenceMinimum) && ! is_null($referenceMinimum) ) {
+		$isValid = FALSE;
+		if ( is_float($referenceMinimum) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($referenceMinimum) ) {
+			$isValid = TRUE;
+		}
+		else if ( $referenceMinimum == ($castVar = (float) $referenceMinimum) ) {
+			$isValid = TRUE;
+			$referenceMinimum = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'referenceMinimum', 'float'));
 		}
 	
@@ -166,7 +188,18 @@ class VitalSignResultType {
 	}
 
 	protected function validateReferenceMaximum($referenceMaximum) {
-		if ( ! is_float($referenceMaximum) && ! is_null($referenceMaximum) ) {
+		$isValid = FALSE;
+		if ( is_float($referenceMaximum) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($referenceMaximum) ) {
+			$isValid = TRUE;
+		}
+		else if ( $referenceMaximum == ($castVar = (float) $referenceMaximum) ) {
+			$isValid = TRUE;
+			$referenceMaximum = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'referenceMaximum', 'float'));
 		}
 	

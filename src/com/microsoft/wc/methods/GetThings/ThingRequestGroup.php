@@ -301,7 +301,18 @@ class ThingRequestGroup {
 	}
 
 	protected function validateMax($max) {
-		if ( ! is_integer($max) && ! is_null($max) ) {
+		$isValid = FALSE;
+		if ( is_integer($max) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($max) ) {
+			$isValid = TRUE;
+		}
+		else if ( $max == ($castVar = (integer) $max) ) {
+			$isValid = TRUE;
+			$max = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'max', 'integer'));
 		}
 	
@@ -324,7 +335,18 @@ class ThingRequestGroup {
 	}
 
 	protected function validateMaxFull($maxFull) {
-		if ( ! is_integer($maxFull) && ! is_null($maxFull) ) {
+		$isValid = FALSE;
+		if ( is_integer($maxFull) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($maxFull) ) {
+			$isValid = TRUE;
+		}
+		else if ( $maxFull == ($castVar = (integer) $maxFull) ) {
+			$isValid = TRUE;
+			$maxFull = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'maxFull', 'integer'));
 		}
 	

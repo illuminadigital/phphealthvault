@@ -67,7 +67,15 @@ class FSAmountType extends MonetaryAmountType {
 	}
 
 	protected function validateCredits($credits) {
-		if (!is_float($credits)) {
+		$isValid = FALSE;
+		if ( is_float($credits) ) {
+			$isValid = TRUE;
+		}
+		else if ( $credits == ($castVar = (float) $credits) ) {
+			$isValid = TRUE;
+			$credits = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'credits', 'float'));
 		}
 	

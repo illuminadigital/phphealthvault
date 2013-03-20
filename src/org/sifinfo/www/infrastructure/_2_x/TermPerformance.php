@@ -150,7 +150,18 @@ class TermPerformance {
 	}
 
 	protected function validateCreditsAttempted($creditsAttempted) {
-		if ( ! is_float($creditsAttempted) && ! is_null($creditsAttempted) ) {
+		$isValid = FALSE;
+		if ( is_float($creditsAttempted) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($creditsAttempted) ) {
+			$isValid = TRUE;
+		}
+		else if ( $creditsAttempted == ($castVar = (float) $creditsAttempted) ) {
+			$isValid = TRUE;
+			$creditsAttempted = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'creditsAttempted', 'float'));
 		}
 	
@@ -173,7 +184,18 @@ class TermPerformance {
 	}
 
 	protected function validateCreditsEarned($creditsEarned) {
-		if ( ! is_float($creditsEarned) && ! is_null($creditsEarned) ) {
+		$isValid = FALSE;
+		if ( is_float($creditsEarned) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($creditsEarned) ) {
+			$isValid = TRUE;
+		}
+		else if ( $creditsEarned == ($castVar = (float) $creditsEarned) ) {
+			$isValid = TRUE;
+			$creditsEarned = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'creditsEarned', 'float'));
 		}
 	
@@ -196,7 +218,18 @@ class TermPerformance {
 	}
 
 	protected function validateGPACreditsAttempted($gPACreditsAttempted) {
-		if ( ! is_float($gPACreditsAttempted) && ! is_null($gPACreditsAttempted) ) {
+		$isValid = FALSE;
+		if ( is_float($gPACreditsAttempted) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($gPACreditsAttempted) ) {
+			$isValid = TRUE;
+		}
+		else if ( $gPACreditsAttempted == ($castVar = (float) $gPACreditsAttempted) ) {
+			$isValid = TRUE;
+			$gPACreditsAttempted = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPACreditsAttempted', 'float'));
 		}
 	
@@ -219,7 +252,18 @@ class TermPerformance {
 	}
 
 	protected function validateGPACreditsEarned($gPACreditsEarned) {
-		if ( ! is_float($gPACreditsEarned) && ! is_null($gPACreditsEarned) ) {
+		$isValid = FALSE;
+		if ( is_float($gPACreditsEarned) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($gPACreditsEarned) ) {
+			$isValid = TRUE;
+		}
+		else if ( $gPACreditsEarned == ($castVar = (float) $gPACreditsEarned) ) {
+			$isValid = TRUE;
+			$gPACreditsEarned = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPACreditsEarned', 'float'));
 		}
 	
@@ -242,7 +286,18 @@ class TermPerformance {
 	}
 
 	protected function validateGPAGradePoints($gPAGradePoints) {
-		if ( ! is_float($gPAGradePoints) && ! is_null($gPAGradePoints) ) {
+		$isValid = FALSE;
+		if ( is_float($gPAGradePoints) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($gPAGradePoints) ) {
+			$isValid = TRUE;
+		}
+		else if ( $gPAGradePoints == ($castVar = (float) $gPAGradePoints) ) {
+			$isValid = TRUE;
+			$gPAGradePoints = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPAGradePoints', 'float'));
 		}
 	
@@ -265,7 +320,18 @@ class TermPerformance {
 	}
 
 	protected function validateGPA($gPA) {
-		if ( ! is_float($gPA) && ! is_null($gPA) ) {
+		$isValid = FALSE;
+		if ( is_float($gPA) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($gPA) ) {
+			$isValid = TRUE;
+		}
+		else if ( $gPA == ($castVar = (float) $gPA) ) {
+			$isValid = TRUE;
+			$gPA = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'gPA', 'float'));
 		}
 	
@@ -288,7 +354,18 @@ class TermPerformance {
 	}
 
 	protected function validateWeightedGPA($weightedGPA) {
-		if ( ! is_float($weightedGPA) && ! is_null($weightedGPA) ) {
+		$isValid = FALSE;
+		if ( is_float($weightedGPA) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($weightedGPA) ) {
+			$isValid = TRUE;
+		}
+		else if ( $weightedGPA == ($castVar = (float) $weightedGPA) ) {
+			$isValid = TRUE;
+			$weightedGPA = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'weightedGPA', 'float'));
 		}
 	
@@ -311,7 +388,18 @@ class TermPerformance {
 	}
 
 	protected function validateDaysAbsent($daysAbsent) {
-		if ( ! is_float($daysAbsent) && ! is_null($daysAbsent) ) {
+		$isValid = FALSE;
+		if ( is_float($daysAbsent) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($daysAbsent) ) {
+			$isValid = TRUE;
+		}
+		else if ( $daysAbsent == ($castVar = (float) $daysAbsent) ) {
+			$isValid = TRUE;
+			$daysAbsent = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'daysAbsent', 'float'));
 		}
 	
@@ -334,7 +422,18 @@ class TermPerformance {
 	}
 
 	protected function validateDaysPresent($daysPresent) {
-		if ( ! is_float($daysPresent) && ! is_null($daysPresent) ) {
+		$isValid = FALSE;
+		if ( is_float($daysPresent) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($daysPresent) ) {
+			$isValid = TRUE;
+		}
+		else if ( $daysPresent == ($castVar = (float) $daysPresent) ) {
+			$isValid = TRUE;
+			$daysPresent = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'daysPresent', 'float'));
 		}
 	

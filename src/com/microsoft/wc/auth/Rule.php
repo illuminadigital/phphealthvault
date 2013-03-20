@@ -116,7 +116,18 @@ class Rule {
 	}
 
 	protected function validateDisplayFlags($displayFlags) {
-		if ( ! is_integer($displayFlags) && ! is_null($displayFlags) ) {
+		$isValid = FALSE;
+		if ( is_integer($displayFlags) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($displayFlags) ) {
+			$isValid = TRUE;
+		}
+		else if ( $displayFlags == ($castVar = (integer) $displayFlags) ) {
+			$isValid = TRUE;
+			$displayFlags = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'displayFlags', 'integer'));
 		}
 	

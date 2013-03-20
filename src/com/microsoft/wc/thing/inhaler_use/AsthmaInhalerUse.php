@@ -142,7 +142,18 @@ class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDoseCount($doseCount) {
-		if ( ! is_integer($doseCount) && ! is_null($doseCount) ) {
+		$isValid = FALSE;
+		if ( is_integer($doseCount) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($doseCount) ) {
+			$isValid = TRUE;
+		}
+		else if ( $doseCount == ($castVar = (integer) $doseCount) ) {
+			$isValid = TRUE;
+			$doseCount = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'doseCount', 'integer'));
 		}
 	

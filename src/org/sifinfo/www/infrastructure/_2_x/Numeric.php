@@ -56,7 +56,18 @@ class Numeric {
 	}
 
 	protected function validatePrecision($precision) {
-		if ( ! is_integer($precision) && ! is_null($precision) ) {
+		$isValid = FALSE;
+		if ( is_integer($precision) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($precision) ) {
+			$isValid = TRUE;
+		}
+		else if ( $precision == ($castVar = (integer) $precision) ) {
+			$isValid = TRUE;
+			$precision = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'precision', 'integer'));
 		}
 	
@@ -79,7 +90,18 @@ class Numeric {
 	}
 
 	protected function validateScale($scale) {
-		if ( ! is_integer($scale) && ! is_null($scale) ) {
+		$isValid = FALSE;
+		if ( is_integer($scale) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($scale) ) {
+			$isValid = TRUE;
+		}
+		else if ( $scale == ($castVar = (integer) $scale) ) {
+			$isValid = TRUE;
+			$scale = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'scale', 'integer'));
 		}
 	
@@ -102,7 +124,18 @@ class Numeric {
 	}
 
 	protected function validateLow($low) {
-		if ( ! is_float($low) && ! is_null($low) ) {
+		$isValid = FALSE;
+		if ( is_float($low) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($low) ) {
+			$isValid = TRUE;
+		}
+		else if ( $low == ($castVar = (float) $low) ) {
+			$isValid = TRUE;
+			$low = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'low', 'float'));
 		}
 	
@@ -125,7 +158,18 @@ class Numeric {
 	}
 
 	protected function validateHigh($high) {
-		if ( ! is_float($high) && ! is_null($high) ) {
+		$isValid = FALSE;
+		if ( is_float($high) ) {
+			$isValid = TRUE;
+		}
+		else if ( is_null($high) ) {
+			$isValid = TRUE;
+		}
+		else if ( $high == ($castVar = (float) $high) ) {
+			$isValid = TRUE;
+			$high = $castVar;
+		}
+		if ( ! $isValid ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'high', 'float'));
 		}
 	
