@@ -9,8 +9,16 @@ class LightWeightValue extends WeightValue
         if ( ! isset(self::$weightTypes) ) {
             self::$weightTypes = self::getPossibleTypes();
             	
-            foreach (array('stlb', 'kg') as $type) {
+            // Remove
+            foreach (array('stlb') as $type) {
                 unset (self::$weightTypes[$type]);
+            }
+
+            // Move to end
+            foreach (array('kg') as $type) {
+                $current = self::$weightTypes[$type]; 
+                unset (self::$weightTypes[$type]);
+                self::$weightTypes[$type] = $current;
             }
         }
     }
