@@ -61,11 +61,7 @@ abstract class WhenThing extends BaseThing
         
         $when = $this->getThingWhen();
         
-        if ($when instanceof \DateTime) {
-            $this->when = $when->format('Y-m-d H:I:s');
-        } else {
-            $this->when = $when;
-        }
+        $this->when = $when;
     
         return $this;
     }
