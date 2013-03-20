@@ -6,6 +6,7 @@ use com\microsoft\wc\thing\DataXml;
 
 use com\microsoft\wc\dates\DateTime;
 use com\microsoft\wc\dates\ApproxDateTime;
+use com\microsoft\wc\dates\Date;
 use com\microsoft\wc\types\CodableValue;
 
 use DLS\Healthvault\Utilities\VocabularyInterface;
@@ -318,13 +319,52 @@ abstract class BaseThing
         return $code;
     }
     
-    protected function getThingDatetime(\com\microsoft\wc\dates\DateTime $hvDatetime)
+    protected function getThingDateStr(Date $hvDate)
+    {
+        return sprintf('%d-%02d-%02d',
+                $hvDate->getY()->getValue(), $hvDate->getM()->getValue(), $hvDate->getD()->getValue()
+        );
+    }
+    
+    protected function getThingDate(Date $hvDate)
+    {
+        $y = $hvDate->getY()->getValue();
+        $m = $hvDate->getM()->getValue();
+        $d = $hvDate->getD()->getValue();
+    
+        if ( ! empty($y) && ! empty($m) && ! empty($d)) {
+            $dateObj = new \DateTime();
+            $dateObj->setDate($y, $m, $d);
+            return $dateObj;
+        }
+    
+        return NULL;
+    }
+    
+    
+    protected function setThingDate(Date $hvDate, $date) {
+        if ( ! $date instanceof \DateTime ) {
+            $date = new \DateTime($date);
+        }
+        
+        if ( ! $date instanceof \DateTime ) {
+            return FALSE;
+        }
+        
+        $hvDate->getY()->setValue((int)$date->format('Y'));
+        $hvDate->getM()->setValue((int)$date->format('m'));
+        $hvDate->getD()->setValue((int)$date->format('d'));
+        
+        return $this;
+    }
+    
+    protected function getThingDatetime(DateTime $hvDatetime)
     {
         $date = $hvDatetime->getDate();
         $time = $hvDatetime->getTime();
         
-        return sprintf('%d-%02d-%02d %d:%02d:%02d', 
-                $date->getY()->getValue(), $date->getM()->getValue(), $date->getD()->getValue(),
+        return sprintf('%s %d:%02d:%02d', 
+                $this->getThingDateStr($date),
                 $time->getH()->getValue(), $time->getM()->getValue(), $time->getS()->getValue()
         );
     }
