@@ -167,8 +167,13 @@ abstract class DisplayValue implements DisplayValueInterface
             $this->minorValue = 0;
         } else {
             $this->majorValue = (int) $units;
-            $this->minorValue = ($units - $this->majorValue)
-                    / $thisType['minor_scale'];
+            
+            if (isset($thisType['minor_scale'])) {
+                $this->minorValue = ($units - $this->majorValue)
+                        / $thisType['minor_scale'];
+            } else {
+                $this->minorValue = 0;
+            }
         }
         
         $this->updateNormalisedValue();
@@ -213,6 +218,11 @@ abstract class DisplayValue implements DisplayValueInterface
 
         if ( ! $codeValue && ! empty($units) ) {
             $codeValue = $this->getCodeForTypeName($units);
+
+            // Only sometimes this is a code, not a name ....
+            if ( ! $codeValue && $this->getSelectedTypeData($units) ) {
+                $codeValue = $units;
+            }
         }
 
         $this->unitsCode = $codeValue;
