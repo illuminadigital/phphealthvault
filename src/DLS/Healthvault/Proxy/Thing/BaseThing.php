@@ -95,7 +95,7 @@ abstract class BaseThing
     {
         if (empty($thing) && empty($this->thing))
         {
-            $thing = new Thing();
+            $thing = new Thing2();
         }
         
         if ( ! empty($thing) )
@@ -103,8 +103,14 @@ abstract class BaseThing
             $this->thing = $thing;
         }
         
-        $this->setThingId($this->id);
-        $this->setThingVersion($this->version);
+        if ( ! empty($this->id) ) {
+            $this->setThingId($this->id);
+        }
+        
+        if ( ! empty ($this->version) ) {
+            $this->setThingVersion($this->version);
+        }
+        
         $this->setThingNotes($this->notes);
         
         return $this->thing;
