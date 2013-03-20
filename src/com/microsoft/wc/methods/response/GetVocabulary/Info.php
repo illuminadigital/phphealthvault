@@ -16,12 +16,12 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyCodeSet", collection="true", name="vocabulary")
+	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyCodeSet", name="vocabulary")
 	 */
 	protected $vocabulary;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyKeyInfo", collection="true", name="vocabulary-key")
+	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyKeyInfo", name="vocabulary-key")
 	 */
 	protected $vocabularyKey;
 
@@ -38,7 +38,7 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 	
 	protected function createVocabulary() {
-		return array();
+		return new \com\microsoft\wc\vocab\VocabularyCodeSet();
 	}
 
 	public function setVocabulary($vocabulary) {
@@ -46,24 +46,11 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateVocabulary($vocabulary) {
-		if ( ! is_array ($vocabulary) ) {
-			$vocabulary = array($vocabulary);
-		}
-		$count = count($vocabulary);
-		if ($count < 1) {
-			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabulary', 1));
-		}
-		foreach ($vocabulary as $entry) {
-			if (!($entry instanceof VocabularyCodeSet)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabulary', 'VocabularyCodeSet'));
-			}
+		if ( ! $vocabulary instanceof \com\microsoft\wc\vocab\VocabularyCodeSet ) {
+			$vocabulary = new \com\microsoft\wc\vocab\VocabularyCodeSet ($vocabulary);
 		}
 	
 		return $vocabulary;
-	}
-
-	public function addVocabulary($vocabulary) {
-		$this->vocabulary[] = $vocabulary;
 	}
 
 	public function getVocabularyKey() {
@@ -74,7 +61,7 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 	
 	protected function createVocabularyKey() {
-		return array();
+		return new \com\microsoft\wc\vocab\VocabularyKeyInfo();
 	}
 
 	public function setVocabularyKey($vocabularyKey) {
@@ -82,23 +69,10 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
-		if ( ! is_array ($vocabularyKey) ) {
-			$vocabularyKey = array($vocabularyKey);
-		}
-		$count = count($vocabularyKey);
-		if ($count < 1) {
-			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularyKey', 1));
-		}
-		foreach ($vocabularyKey as $entry) {
-			if (!($entry instanceof VocabularyKeyInfo)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyKey', 'VocabularyKeyInfo'));
-			}
+		if ( ! $vocabularyKey instanceof \com\microsoft\wc\vocab\VocabularyKeyInfo ) {
+			$vocabularyKey = new \com\microsoft\wc\vocab\VocabularyKeyInfo ($vocabularyKey);
 		}
 	
 		return $vocabularyKey;
-	}
-
-	public function addVocabularyKey($vocabularyKey) {
-		$this->vocabularyKey[] = $vocabularyKey;
 	}
 } // end class Info

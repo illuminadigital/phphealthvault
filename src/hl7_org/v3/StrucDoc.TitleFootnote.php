@@ -14,22 +14,22 @@ class StrucDoc.TitleFootnote {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.TitleContent", name="content")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.TitleContent", collection="true", name="content")
 	 */
 	protected $content;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sub", name="sub")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sub", collection="true", name="sub")
 	 */
 	protected $sub;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sup", name="sup")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sup", collection="true", name="sup")
 	 */
 	protected $sup;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Br", name="br")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Br", collection="true", name="br")
 	 */
 	protected $br;
 
@@ -66,7 +66,7 @@ class StrucDoc.TitleFootnote {
 	}
 	
 	protected function createContent() {
-		return NULL;
+		return array();
 	}
 
 	public function setContent($content) {
@@ -74,6 +74,21 @@ class StrucDoc.TitleFootnote {
 	}
 
 	protected function validateContent($content) {
+		$count = count($content);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'content', 0));
+		}
+		foreach ($content as $entry) {
+		}
+	
+		return $content;
+	}
+
+	public function addContent($content) {
+		$this->content[] = $this->validateContentType($content);
+	}
+
+	protected function validateContentType($content) {
 	
 		return $content;
 	}
@@ -86,7 +101,7 @@ class StrucDoc.TitleFootnote {
 	}
 	
 	protected function createSub() {
-		return NULL;
+		return array();
 	}
 
 	public function setSub($sub) {
@@ -94,6 +109,21 @@ class StrucDoc.TitleFootnote {
 	}
 
 	protected function validateSub($sub) {
+		$count = count($sub);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sub', 0));
+		}
+		foreach ($sub as $entry) {
+		}
+	
+		return $sub;
+	}
+
+	public function addSub($sub) {
+		$this->sub[] = $this->validateSubType($sub);
+	}
+
+	protected function validateSubType($sub) {
 	
 		return $sub;
 	}
@@ -106,7 +136,7 @@ class StrucDoc.TitleFootnote {
 	}
 	
 	protected function createSup() {
-		return NULL;
+		return array();
 	}
 
 	public function setSup($sup) {
@@ -114,6 +144,21 @@ class StrucDoc.TitleFootnote {
 	}
 
 	protected function validateSup($sup) {
+		$count = count($sup);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sup', 0));
+		}
+		foreach ($sup as $entry) {
+		}
+	
+		return $sup;
+	}
+
+	public function addSup($sup) {
+		$this->sup[] = $this->validateSupType($sup);
+	}
+
+	protected function validateSupType($sup) {
 	
 		return $sup;
 	}
@@ -126,7 +171,7 @@ class StrucDoc.TitleFootnote {
 	}
 	
 	protected function createBr() {
-		return NULL;
+		return array();
 	}
 
 	public function setBr($br) {
@@ -134,6 +179,21 @@ class StrucDoc.TitleFootnote {
 	}
 
 	protected function validateBr($br) {
+		$count = count($br);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'br', 0));
+		}
+		foreach ($br as $entry) {
+		}
+	
+		return $br;
+	}
+
+	public function addBr($br) {
+		$this->br[] = $this->validateBrType($br);
+	}
+
+	protected function validateBrType($br) {
 	
 		return $br;
 	}

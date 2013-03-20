@@ -16,12 +16,12 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\auth\Token", name="token")
+	 * @XmlElement	(type="\com\microsoft\wc\auth\Token", collection="true", name="token")
 	 */
 	protected $token;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason", name="token-absence-reason")
+	 * @XmlElement	(type="\com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason", collection="true", name="token-absence-reason")
 	 */
 	protected $tokenAbsenceReason;
 
@@ -38,7 +38,7 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 	
 	protected function createToken() {
-		return new \com\microsoft\wc\auth\Token();
+		return array();
 	}
 
 	public function setToken($token) {
@@ -46,11 +46,24 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateToken($token) {
-		if ( ! $token instanceof \com\microsoft\wc\auth\Token ) {
-			$token = new \com\microsoft\wc\auth\Token ($token);
+		if ( ! is_array ($token) ) {
+			$token = array($token);
+		}
+		$count = count($token);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'token', 1));
+		}
+		foreach ($token as $entry) {
+			if (!($entry instanceof Token)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'token', 'Token'));
+			}
 		}
 	
 		return $token;
+	}
+
+	public function addToken($token) {
+		$this->token[] = $token;
 	}
 
 	public function getTokenAbsenceReason() {
@@ -61,7 +74,7 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 	
 	protected function createTokenAbsenceReason() {
-		return new \com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason();
+		return array();
 	}
 
 	public function setTokenAbsenceReason($tokenAbsenceReason) {
@@ -69,10 +82,23 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateTokenAbsenceReason($tokenAbsenceReason) {
-		if ( ! $tokenAbsenceReason instanceof \com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason ) {
-			$tokenAbsenceReason = new \com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason ($tokenAbsenceReason);
+		if ( ! is_array ($tokenAbsenceReason) ) {
+			$tokenAbsenceReason = array($tokenAbsenceReason);
+		}
+		$count = count($tokenAbsenceReason);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'tokenAbsenceReason', 1));
+		}
+		foreach ($tokenAbsenceReason as $entry) {
+			if (!($entry instanceof AppAuthTokenAbsenceReason)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'tokenAbsenceReason', 'AppAuthTokenAbsenceReason'));
+			}
 		}
 	
 		return $tokenAbsenceReason;
+	}
+
+	public function addTokenAbsenceReason($tokenAbsenceReason) {
+		$this->tokenAbsenceReason[] = $tokenAbsenceReason;
 	}
 } // end class Info

@@ -14,27 +14,27 @@ class StrucDoc.Caption {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.LinkHtml", name="linkHtml")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.LinkHtml", collection="true", name="linkHtml")
 	 */
 	protected $linkHtml;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sub", name="sub")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sub", collection="true", name="sub")
 	 */
 	protected $sub;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sup", name="sup")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sup", collection="true", name="sup")
 	 */
 	protected $sup;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Footnote", name="footnote")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Footnote", collection="true", name="footnote")
 	 */
 	protected $footnote;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.FootnoteRef", name="footnoteRef")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.FootnoteRef", collection="true", name="footnoteRef")
 	 */
 	protected $footnoteRef;
 
@@ -72,7 +72,7 @@ class StrucDoc.Caption {
 	}
 	
 	protected function createLinkHtml() {
-		return NULL;
+		return array();
 	}
 
 	public function setLinkHtml($linkHtml) {
@@ -80,6 +80,21 @@ class StrucDoc.Caption {
 	}
 
 	protected function validateLinkHtml($linkHtml) {
+		$count = count($linkHtml);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'linkHtml', 0));
+		}
+		foreach ($linkHtml as $entry) {
+		}
+	
+		return $linkHtml;
+	}
+
+	public function addLinkHtml($linkHtml) {
+		$this->linkHtml[] = $this->validateLinkHtmlType($linkHtml);
+	}
+
+	protected function validateLinkHtmlType($linkHtml) {
 	
 		return $linkHtml;
 	}
@@ -92,7 +107,7 @@ class StrucDoc.Caption {
 	}
 	
 	protected function createSub() {
-		return NULL;
+		return array();
 	}
 
 	public function setSub($sub) {
@@ -100,6 +115,21 @@ class StrucDoc.Caption {
 	}
 
 	protected function validateSub($sub) {
+		$count = count($sub);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sub', 0));
+		}
+		foreach ($sub as $entry) {
+		}
+	
+		return $sub;
+	}
+
+	public function addSub($sub) {
+		$this->sub[] = $this->validateSubType($sub);
+	}
+
+	protected function validateSubType($sub) {
 	
 		return $sub;
 	}
@@ -112,7 +142,7 @@ class StrucDoc.Caption {
 	}
 	
 	protected function createSup() {
-		return NULL;
+		return array();
 	}
 
 	public function setSup($sup) {
@@ -120,6 +150,21 @@ class StrucDoc.Caption {
 	}
 
 	protected function validateSup($sup) {
+		$count = count($sup);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sup', 0));
+		}
+		foreach ($sup as $entry) {
+		}
+	
+		return $sup;
+	}
+
+	public function addSup($sup) {
+		$this->sup[] = $this->validateSupType($sup);
+	}
+
+	protected function validateSupType($sup) {
 	
 		return $sup;
 	}
@@ -132,7 +177,7 @@ class StrucDoc.Caption {
 	}
 	
 	protected function createFootnote() {
-		return NULL;
+		return array();
 	}
 
 	public function setFootnote($footnote) {
@@ -140,6 +185,21 @@ class StrucDoc.Caption {
 	}
 
 	protected function validateFootnote($footnote) {
+		$count = count($footnote);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnote', 0));
+		}
+		foreach ($footnote as $entry) {
+		}
+	
+		return $footnote;
+	}
+
+	public function addFootnote($footnote) {
+		$this->footnote[] = $this->validateFootnoteType($footnote);
+	}
+
+	protected function validateFootnoteType($footnote) {
 	
 		return $footnote;
 	}
@@ -152,7 +212,7 @@ class StrucDoc.Caption {
 	}
 	
 	protected function createFootnoteRef() {
-		return NULL;
+		return array();
 	}
 
 	public function setFootnoteRef($footnoteRef) {
@@ -160,6 +220,21 @@ class StrucDoc.Caption {
 	}
 
 	protected function validateFootnoteRef($footnoteRef) {
+		$count = count($footnoteRef);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnoteRef', 0));
+		}
+		foreach ($footnoteRef as $entry) {
+		}
+	
+		return $footnoteRef;
+	}
+
+	public function addFootnoteRef($footnoteRef) {
+		$this->footnoteRef[] = $this->validateFootnoteRefType($footnoteRef);
+	}
+
+	protected function validateFootnoteRefType($footnoteRef) {
 	
 		return $footnoteRef;
 	}

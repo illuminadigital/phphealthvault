@@ -14,12 +14,12 @@ class StrucDoc.LinkHtml {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Footnote", name="footnote")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Footnote", collection="true", name="footnote")
 	 */
 	protected $footnote;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.FootnoteRef", name="footnoteRef")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.FootnoteRef", collection="true", name="footnoteRef")
 	 */
 	protected $footnoteRef;
 
@@ -84,7 +84,7 @@ class StrucDoc.LinkHtml {
 	}
 	
 	protected function createFootnote() {
-		return NULL;
+		return array();
 	}
 
 	public function setFootnote($footnote) {
@@ -92,6 +92,21 @@ class StrucDoc.LinkHtml {
 	}
 
 	protected function validateFootnote($footnote) {
+		$count = count($footnote);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnote', 0));
+		}
+		foreach ($footnote as $entry) {
+		}
+	
+		return $footnote;
+	}
+
+	public function addFootnote($footnote) {
+		$this->footnote[] = $this->validateFootnoteType($footnote);
+	}
+
+	protected function validateFootnoteType($footnote) {
 	
 		return $footnote;
 	}
@@ -104,7 +119,7 @@ class StrucDoc.LinkHtml {
 	}
 	
 	protected function createFootnoteRef() {
-		return NULL;
+		return array();
 	}
 
 	public function setFootnoteRef($footnoteRef) {
@@ -112,6 +127,21 @@ class StrucDoc.LinkHtml {
 	}
 
 	protected function validateFootnoteRef($footnoteRef) {
+		$count = count($footnoteRef);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnoteRef', 0));
+		}
+		foreach ($footnoteRef as $entry) {
+		}
+	
+		return $footnoteRef;
+	}
+
+	public function addFootnoteRef($footnoteRef) {
+		$this->footnoteRef[] = $this->validateFootnoteRefType($footnoteRef);
+	}
+
+	protected function validateFootnoteRefType($footnoteRef) {
 	
 		return $footnoteRef;
 	}

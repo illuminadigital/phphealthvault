@@ -104,7 +104,7 @@ class RelatedThing {
 	}
 
 	protected function validateClientThingId($clientThingId) {
-		if ( ! $clientThingId instanceof \com\microsoft\wc\types\String255  && ! is_null($clientThingId) ) {
+		if ( ! $clientThingId instanceof \com\microsoft\wc\types\String255 ) {
 			$clientThingId = new \com\microsoft\wc\types\String255 ($clientThingId);
 		}
 	

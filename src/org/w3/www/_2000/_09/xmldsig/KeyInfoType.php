@@ -14,37 +14,37 @@ class KeyInfoType {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\KeyName", name="KeyName")
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\KeyName", collection="true", name="KeyName")
 	 */
 	protected $keyName;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\KeyValue", name="KeyValue")
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\KeyValue", collection="true", name="KeyValue")
 	 */
 	protected $keyValue;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\RetrievalMethod", name="RetrievalMethod")
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\RetrievalMethod", collection="true", name="RetrievalMethod")
 	 */
 	protected $retrievalMethod;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\X509Data", name="X509Data")
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\X509Data", collection="true", name="X509Data")
 	 */
 	protected $x509Data;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\PGPData", name="PGPData")
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\PGPData", collection="true", name="PGPData")
 	 */
 	protected $pGPData;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\SPKIData", name="SPKIData")
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\SPKIData", collection="true", name="SPKIData")
 	 */
 	protected $sPKIData;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\MgmtData", name="MgmtData")
+	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\MgmtData", collection="true", name="MgmtData")
 	 */
 	protected $mgmtData;
 
@@ -78,7 +78,7 @@ class KeyInfoType {
 	}
 	
 	protected function createKeyName() {
-		return new \org\w3\www\_2000\_09\xmldsig\KeyName();
+		return array();
 	}
 
 	public function setKeyName($keyName) {
@@ -86,11 +86,24 @@ class KeyInfoType {
 	}
 
 	protected function validateKeyName($keyName) {
-		if ( ! $keyName instanceof \org\w3\www\_2000\_09\xmldsig\KeyName ) {
-			$keyName = new \org\w3\www\_2000\_09\xmldsig\KeyName ($keyName);
+		if ( ! is_array ($keyName) ) {
+			$keyName = array($keyName);
+		}
+		$count = count($keyName);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'keyName', 1));
+		}
+		foreach ($keyName as $entry) {
+			if (!($entry instanceof KeyName)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'keyName', 'KeyName'));
+			}
 		}
 	
 		return $keyName;
+	}
+
+	public function addKeyName($keyName) {
+		$this->keyName[] = $keyName;
 	}
 
 	public function getKeyValue() {
@@ -101,7 +114,7 @@ class KeyInfoType {
 	}
 	
 	protected function createKeyValue() {
-		return new \org\w3\www\_2000\_09\xmldsig\KeyValue();
+		return array();
 	}
 
 	public function setKeyValue($keyValue) {
@@ -109,11 +122,24 @@ class KeyInfoType {
 	}
 
 	protected function validateKeyValue($keyValue) {
-		if ( ! $keyValue instanceof \org\w3\www\_2000\_09\xmldsig\KeyValue ) {
-			$keyValue = new \org\w3\www\_2000\_09\xmldsig\KeyValue ($keyValue);
+		if ( ! is_array ($keyValue) ) {
+			$keyValue = array($keyValue);
+		}
+		$count = count($keyValue);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'keyValue', 1));
+		}
+		foreach ($keyValue as $entry) {
+			if (!($entry instanceof KeyValue)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'keyValue', 'KeyValue'));
+			}
 		}
 	
 		return $keyValue;
+	}
+
+	public function addKeyValue($keyValue) {
+		$this->keyValue[] = $keyValue;
 	}
 
 	public function getRetrievalMethod() {
@@ -124,7 +150,7 @@ class KeyInfoType {
 	}
 	
 	protected function createRetrievalMethod() {
-		return new \org\w3\www\_2000\_09\xmldsig\RetrievalMethod();
+		return array();
 	}
 
 	public function setRetrievalMethod($retrievalMethod) {
@@ -132,11 +158,24 @@ class KeyInfoType {
 	}
 
 	protected function validateRetrievalMethod($retrievalMethod) {
-		if ( ! $retrievalMethod instanceof \org\w3\www\_2000\_09\xmldsig\RetrievalMethod ) {
-			$retrievalMethod = new \org\w3\www\_2000\_09\xmldsig\RetrievalMethod ($retrievalMethod);
+		if ( ! is_array ($retrievalMethod) ) {
+			$retrievalMethod = array($retrievalMethod);
+		}
+		$count = count($retrievalMethod);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'retrievalMethod', 1));
+		}
+		foreach ($retrievalMethod as $entry) {
+			if (!($entry instanceof RetrievalMethod)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'retrievalMethod', 'RetrievalMethod'));
+			}
 		}
 	
 		return $retrievalMethod;
+	}
+
+	public function addRetrievalMethod($retrievalMethod) {
+		$this->retrievalMethod[] = $retrievalMethod;
 	}
 
 	public function getX509Data() {
@@ -147,7 +186,7 @@ class KeyInfoType {
 	}
 	
 	protected function createX509Data() {
-		return new \org\w3\www\_2000\_09\xmldsig\X509Data();
+		return array();
 	}
 
 	public function setX509Data($x509Data) {
@@ -155,11 +194,24 @@ class KeyInfoType {
 	}
 
 	protected function validateX509Data($x509Data) {
-		if ( ! $x509Data instanceof \org\w3\www\_2000\_09\xmldsig\X509Data ) {
-			$x509Data = new \org\w3\www\_2000\_09\xmldsig\X509Data ($x509Data);
+		if ( ! is_array ($x509Data) ) {
+			$x509Data = array($x509Data);
+		}
+		$count = count($x509Data);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'x509Data', 1));
+		}
+		foreach ($x509Data as $entry) {
+			if (!($entry instanceof X509Data)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'x509Data', 'X509Data'));
+			}
 		}
 	
 		return $x509Data;
+	}
+
+	public function addX509Data($x509Data) {
+		$this->x509Data[] = $x509Data;
 	}
 
 	public function getPGPData() {
@@ -170,7 +222,7 @@ class KeyInfoType {
 	}
 	
 	protected function createPGPData() {
-		return new \org\w3\www\_2000\_09\xmldsig\PGPData();
+		return array();
 	}
 
 	public function setPGPData($pGPData) {
@@ -178,11 +230,24 @@ class KeyInfoType {
 	}
 
 	protected function validatePGPData($pGPData) {
-		if ( ! $pGPData instanceof \org\w3\www\_2000\_09\xmldsig\PGPData ) {
-			$pGPData = new \org\w3\www\_2000\_09\xmldsig\PGPData ($pGPData);
+		if ( ! is_array ($pGPData) ) {
+			$pGPData = array($pGPData);
+		}
+		$count = count($pGPData);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'pGPData', 1));
+		}
+		foreach ($pGPData as $entry) {
+			if (!($entry instanceof PGPData)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'pGPData', 'PGPData'));
+			}
 		}
 	
 		return $pGPData;
+	}
+
+	public function addPGPData($pGPData) {
+		$this->pGPData[] = $pGPData;
 	}
 
 	public function getSPKIData() {
@@ -193,7 +258,7 @@ class KeyInfoType {
 	}
 	
 	protected function createSPKIData() {
-		return new \org\w3\www\_2000\_09\xmldsig\SPKIData();
+		return array();
 	}
 
 	public function setSPKIData($sPKIData) {
@@ -201,11 +266,24 @@ class KeyInfoType {
 	}
 
 	protected function validateSPKIData($sPKIData) {
-		if ( ! $sPKIData instanceof \org\w3\www\_2000\_09\xmldsig\SPKIData ) {
-			$sPKIData = new \org\w3\www\_2000\_09\xmldsig\SPKIData ($sPKIData);
+		if ( ! is_array ($sPKIData) ) {
+			$sPKIData = array($sPKIData);
+		}
+		$count = count($sPKIData);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sPKIData', 1));
+		}
+		foreach ($sPKIData as $entry) {
+			if (!($entry instanceof SPKIData)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'sPKIData', 'SPKIData'));
+			}
 		}
 	
 		return $sPKIData;
+	}
+
+	public function addSPKIData($sPKIData) {
+		$this->sPKIData[] = $sPKIData;
 	}
 
 	public function getMgmtData() {
@@ -216,7 +294,7 @@ class KeyInfoType {
 	}
 	
 	protected function createMgmtData() {
-		return new \org\w3\www\_2000\_09\xmldsig\MgmtData();
+		return array();
 	}
 
 	public function setMgmtData($mgmtData) {
@@ -224,11 +302,24 @@ class KeyInfoType {
 	}
 
 	protected function validateMgmtData($mgmtData) {
-		if ( ! $mgmtData instanceof \org\w3\www\_2000\_09\xmldsig\MgmtData ) {
-			$mgmtData = new \org\w3\www\_2000\_09\xmldsig\MgmtData ($mgmtData);
+		if ( ! is_array ($mgmtData) ) {
+			$mgmtData = array($mgmtData);
+		}
+		$count = count($mgmtData);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'mgmtData', 1));
+		}
+		foreach ($mgmtData as $entry) {
+			if (!($entry instanceof MgmtData)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'mgmtData', 'MgmtData'));
+			}
 		}
 	
 		return $mgmtData;
+	}
+
+	public function addMgmtData($mgmtData) {
+		$this->mgmtData[] = $mgmtData;
 	}
 
 	public function getAny() {

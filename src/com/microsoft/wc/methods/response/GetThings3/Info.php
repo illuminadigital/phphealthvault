@@ -15,7 +15,7 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetThings3\ThingResponseGroup2", name="group")
+	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetThings3\ThingResponseGroup2", collection="true", name="group")
 	 */
 	protected $group;
 
@@ -31,7 +31,7 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 	
 	protected function createGroup() {
-		return new \com\microsoft\wc\methods\response\GetThings3\ThingResponseGroup2();
+		return array();
 	}
 
 	public function setGroup($group) {
@@ -39,10 +39,23 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateGroup($group) {
-		if ( ! $group instanceof \com\microsoft\wc\methods\response\GetThings3\ThingResponseGroup2 ) {
-			$group = new \com\microsoft\wc\methods\response\GetThings3\ThingResponseGroup2 ($group);
+		if ( ! is_array ($group) ) {
+			$group = array($group);
+		}
+		$count = count($group);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'group', 1));
+		}
+		foreach ($group as $entry) {
+			if (!($entry instanceof ThingResponseGroup2)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'group', 'ThingResponseGroup2'));
+			}
 		}
 	
 		return $group;
+	}
+
+	public function addGroup($group) {
+		$this->group[] = $group;
 	}
 } // end class Info

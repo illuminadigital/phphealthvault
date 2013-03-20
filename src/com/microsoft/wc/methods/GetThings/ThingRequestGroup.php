@@ -16,17 +16,17 @@ class ThingRequestGroup {
 	 */
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", collection="true", name="id")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="id")
 	 */
 	protected $id;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\ThingKey", collection="true", name="key")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\ThingKey", name="key")
 	 */
 	protected $key;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\String255", collection="true", name="client-thing-id")
+	 * @XmlElement	(type="\com\microsoft\wc\types\String255", name="client-thing-id")
 	 */
 	protected $clientThingId;
 
@@ -80,7 +80,7 @@ class ThingRequestGroup {
 	}
 	
 	protected function createId() {
-		return array();
+		return new \com\microsoft\wc\types\Guid();
 	}
 
 	public function setId($id) {
@@ -88,24 +88,11 @@ class ThingRequestGroup {
 	}
 
 	protected function validateId($id) {
-		if ( ! is_array ($id) && ! is_null($id) ) {
-			$id = array($id);
-		}
-		$count = count($id);
-		if ($count < 0) {
-			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
-		}
-		foreach ($id as $entry) {
-			if (!($entry instanceof Guid)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'guid'));
-			}
+		if ( ! $id instanceof \com\microsoft\wc\types\Guid ) {
+			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
 	
 		return $id;
-	}
-
-	public function addId($id) {
-		$this->id[] = $id;
 	}
 
 	public function getKey() {
@@ -116,7 +103,7 @@ class ThingRequestGroup {
 	}
 	
 	protected function createKey() {
-		return array();
+		return new \com\microsoft\wc\thing\ThingKey();
 	}
 
 	public function setKey($key) {
@@ -124,24 +111,11 @@ class ThingRequestGroup {
 	}
 
 	protected function validateKey($key) {
-		if ( ! is_array ($key) && ! is_null($key) ) {
-			$key = array($key);
-		}
-		$count = count($key);
-		if ($count < 0) {
-			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'key', 0));
-		}
-		foreach ($key as $entry) {
-			if (!($entry instanceof ThingKey)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'key', 'ThingKey'));
-			}
+		if ( ! $key instanceof \com\microsoft\wc\thing\ThingKey ) {
+			$key = new \com\microsoft\wc\thing\ThingKey ($key);
 		}
 	
 		return $key;
-	}
-
-	public function addKey($key) {
-		$this->key[] = $key;
 	}
 
 	public function getClientThingId() {
@@ -152,7 +126,7 @@ class ThingRequestGroup {
 	}
 	
 	protected function createClientThingId() {
-		return array();
+		return new \com\microsoft\wc\types\String255();
 	}
 
 	public function setClientThingId($clientThingId) {
@@ -160,24 +134,11 @@ class ThingRequestGroup {
 	}
 
 	protected function validateClientThingId($clientThingId) {
-		if ( ! is_array ($clientThingId) && ! is_null($clientThingId) ) {
-			$clientThingId = array($clientThingId);
-		}
-		$count = count($clientThingId);
-		if ($count < 0) {
-			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'clientThingId', 0));
-		}
-		foreach ($clientThingId as $entry) {
-			if (!($entry instanceof String255)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'clientThingId', 'string255'));
-			}
+		if ( ! $clientThingId instanceof \com\microsoft\wc\types\String255 ) {
+			$clientThingId = new \com\microsoft\wc\types\String255 ($clientThingId);
 		}
 	
 		return $clientThingId;
-	}
-
-	public function addClientThingId($clientThingId) {
-		$this->clientThingId[] = $clientThingId;
 	}
 
 	public function getFilter() {

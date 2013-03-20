@@ -14,42 +14,42 @@ class StrucDoc.Content {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Content", name="content")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Content", collection="true", name="content")
 	 */
 	protected $content;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.LinkHtml", name="linkHtml")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.LinkHtml", collection="true", name="linkHtml")
 	 */
 	protected $linkHtml;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sub", name="sub")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sub", collection="true", name="sub")
 	 */
 	protected $sub;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sup", name="sup")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Sup", collection="true", name="sup")
 	 */
 	protected $sup;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Br", name="br")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Br", collection="true", name="br")
 	 */
 	protected $br;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Footnote", name="footnote")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Footnote", collection="true", name="footnote")
 	 */
 	protected $footnote;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.FootnoteRef", name="footnoteRef")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.FootnoteRef", collection="true", name="footnoteRef")
 	 */
 	protected $footnoteRef;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.RenderMultiMedia", name="renderMultiMedia")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.RenderMultiMedia", collection="true", name="renderMultiMedia")
 	 */
 	protected $renderMultiMedia;
 
@@ -96,7 +96,7 @@ class StrucDoc.Content {
 	}
 	
 	protected function createContent() {
-		return NULL;
+		return array();
 	}
 
 	public function setContent($content) {
@@ -104,6 +104,21 @@ class StrucDoc.Content {
 	}
 
 	protected function validateContent($content) {
+		$count = count($content);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'content', 0));
+		}
+		foreach ($content as $entry) {
+		}
+	
+		return $content;
+	}
+
+	public function addContent($content) {
+		$this->content[] = $this->validateContentType($content);
+	}
+
+	protected function validateContentType($content) {
 	
 		return $content;
 	}
@@ -116,7 +131,7 @@ class StrucDoc.Content {
 	}
 	
 	protected function createLinkHtml() {
-		return NULL;
+		return array();
 	}
 
 	public function setLinkHtml($linkHtml) {
@@ -124,6 +139,21 @@ class StrucDoc.Content {
 	}
 
 	protected function validateLinkHtml($linkHtml) {
+		$count = count($linkHtml);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'linkHtml', 0));
+		}
+		foreach ($linkHtml as $entry) {
+		}
+	
+		return $linkHtml;
+	}
+
+	public function addLinkHtml($linkHtml) {
+		$this->linkHtml[] = $this->validateLinkHtmlType($linkHtml);
+	}
+
+	protected function validateLinkHtmlType($linkHtml) {
 	
 		return $linkHtml;
 	}
@@ -136,7 +166,7 @@ class StrucDoc.Content {
 	}
 	
 	protected function createSub() {
-		return NULL;
+		return array();
 	}
 
 	public function setSub($sub) {
@@ -144,6 +174,21 @@ class StrucDoc.Content {
 	}
 
 	protected function validateSub($sub) {
+		$count = count($sub);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sub', 0));
+		}
+		foreach ($sub as $entry) {
+		}
+	
+		return $sub;
+	}
+
+	public function addSub($sub) {
+		$this->sub[] = $this->validateSubType($sub);
+	}
+
+	protected function validateSubType($sub) {
 	
 		return $sub;
 	}
@@ -156,7 +201,7 @@ class StrucDoc.Content {
 	}
 	
 	protected function createSup() {
-		return NULL;
+		return array();
 	}
 
 	public function setSup($sup) {
@@ -164,6 +209,21 @@ class StrucDoc.Content {
 	}
 
 	protected function validateSup($sup) {
+		$count = count($sup);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sup', 0));
+		}
+		foreach ($sup as $entry) {
+		}
+	
+		return $sup;
+	}
+
+	public function addSup($sup) {
+		$this->sup[] = $this->validateSupType($sup);
+	}
+
+	protected function validateSupType($sup) {
 	
 		return $sup;
 	}
@@ -176,7 +236,7 @@ class StrucDoc.Content {
 	}
 	
 	protected function createBr() {
-		return NULL;
+		return array();
 	}
 
 	public function setBr($br) {
@@ -184,6 +244,21 @@ class StrucDoc.Content {
 	}
 
 	protected function validateBr($br) {
+		$count = count($br);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'br', 0));
+		}
+		foreach ($br as $entry) {
+		}
+	
+		return $br;
+	}
+
+	public function addBr($br) {
+		$this->br[] = $this->validateBrType($br);
+	}
+
+	protected function validateBrType($br) {
 	
 		return $br;
 	}
@@ -196,7 +271,7 @@ class StrucDoc.Content {
 	}
 	
 	protected function createFootnote() {
-		return NULL;
+		return array();
 	}
 
 	public function setFootnote($footnote) {
@@ -204,6 +279,21 @@ class StrucDoc.Content {
 	}
 
 	protected function validateFootnote($footnote) {
+		$count = count($footnote);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnote', 0));
+		}
+		foreach ($footnote as $entry) {
+		}
+	
+		return $footnote;
+	}
+
+	public function addFootnote($footnote) {
+		$this->footnote[] = $this->validateFootnoteType($footnote);
+	}
+
+	protected function validateFootnoteType($footnote) {
 	
 		return $footnote;
 	}
@@ -216,7 +306,7 @@ class StrucDoc.Content {
 	}
 	
 	protected function createFootnoteRef() {
-		return NULL;
+		return array();
 	}
 
 	public function setFootnoteRef($footnoteRef) {
@@ -224,6 +314,21 @@ class StrucDoc.Content {
 	}
 
 	protected function validateFootnoteRef($footnoteRef) {
+		$count = count($footnoteRef);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnoteRef', 0));
+		}
+		foreach ($footnoteRef as $entry) {
+		}
+	
+		return $footnoteRef;
+	}
+
+	public function addFootnoteRef($footnoteRef) {
+		$this->footnoteRef[] = $this->validateFootnoteRefType($footnoteRef);
+	}
+
+	protected function validateFootnoteRefType($footnoteRef) {
 	
 		return $footnoteRef;
 	}
@@ -236,7 +341,7 @@ class StrucDoc.Content {
 	}
 	
 	protected function createRenderMultiMedia() {
-		return NULL;
+		return array();
 	}
 
 	public function setRenderMultiMedia($renderMultiMedia) {
@@ -244,6 +349,21 @@ class StrucDoc.Content {
 	}
 
 	protected function validateRenderMultiMedia($renderMultiMedia) {
+		$count = count($renderMultiMedia);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'renderMultiMedia', 0));
+		}
+		foreach ($renderMultiMedia as $entry) {
+		}
+	
+		return $renderMultiMedia;
+	}
+
+	public function addRenderMultiMedia($renderMultiMedia) {
+		$this->renderMultiMedia[] = $this->validateRenderMultiMediaType($renderMultiMedia);
+	}
+
+	protected function validateRenderMultiMediaType($renderMultiMedia) {
 	
 		return $renderMultiMedia;
 	}

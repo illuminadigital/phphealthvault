@@ -19,7 +19,7 @@ class TransformType {
 	protected $any;
 
 	/**
-	 * @XmlText	(type="string", name="XPath")
+	 * @XmlText	(type="string", collection="true", name="XPath")
 	 */
 	protected $xPath;
 
@@ -83,7 +83,7 @@ class TransformType {
 	}
 	
 	protected function createXPath() {
-		return '';
+		return array();
 	}
 
 	public function setXPath($xPath) {
@@ -91,7 +91,25 @@ class TransformType {
 	}
 
 	protected function validateXPath($xPath) {
-		if (!is_string($xPath)) {
+		$count = count($xPath);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'xPath', 0));
+		}
+		foreach ($xPath as $entry) {
+			if ( ! is_string($entry) && ! is_null($entry) ) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'xPath', 'string'));
+			}
+		}
+	
+		return $xPath;
+	}
+
+	public function addXPath($xPath) {
+		$this->xPath[] = $this->validateXPathType($xPath);
+	}
+
+	protected function validateXPathType($xPath) {
+		if ( ! is_string($xPath) && ! is_null($xPath) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'xPath', 'string'));
 		}
 	

@@ -125,7 +125,7 @@ class BlobPayloadItem {
 	}
 
 	protected function validateBase64data($base64data) {
-		if ( ! $base64data instanceof \com\microsoft\wc\types\Stringnz ) {
+		if ( ! $base64data instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($base64data) ) {
 			$base64data = new \com\microsoft\wc\types\Stringnz ($base64data);
 		}
 	
@@ -148,7 +148,7 @@ class BlobPayloadItem {
 	}
 
 	protected function validateBlobRefUrl($blobRefUrl) {
-		if (!is_string($blobRefUrl)) {
+		if ( ! is_string($blobRefUrl) && ! is_null($blobRefUrl) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'blobRefUrl', 'string'));
 		}
 	

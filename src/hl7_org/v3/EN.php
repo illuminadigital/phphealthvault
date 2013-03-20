@@ -15,27 +15,27 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.delimiter", name="delimiter")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.delimiter", collection="true", name="delimiter")
 	 */
 	protected $delimiter;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.family", name="family")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.family", collection="true", name="family")
 	 */
 	protected $family;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.given", name="given")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.given", collection="true", name="given")
 	 */
 	protected $given;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.prefix", name="prefix")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.prefix", collection="true", name="prefix")
 	 */
 	protected $prefix;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.suffix", name="suffix")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.suffix", collection="true", name="suffix")
 	 */
 	protected $suffix;
 
@@ -67,7 +67,7 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createDelimiter() {
-		return NULL;
+		return array();
 	}
 
 	public function setDelimiter($delimiter) {
@@ -75,6 +75,21 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateDelimiter($delimiter) {
+		$count = count($delimiter);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'delimiter', 0));
+		}
+		foreach ($delimiter as $entry) {
+		}
+	
+		return $delimiter;
+	}
+
+	public function addDelimiter($delimiter) {
+		$this->delimiter[] = $this->validateDelimiterType($delimiter);
+	}
+
+	protected function validateDelimiterType($delimiter) {
 	
 		return $delimiter;
 	}
@@ -87,7 +102,7 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createFamily() {
-		return NULL;
+		return array();
 	}
 
 	public function setFamily($family) {
@@ -95,6 +110,21 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateFamily($family) {
+		$count = count($family);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'family', 0));
+		}
+		foreach ($family as $entry) {
+		}
+	
+		return $family;
+	}
+
+	public function addFamily($family) {
+		$this->family[] = $this->validateFamilyType($family);
+	}
+
+	protected function validateFamilyType($family) {
 	
 		return $family;
 	}
@@ -107,7 +137,7 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createGiven() {
-		return NULL;
+		return array();
 	}
 
 	public function setGiven($given) {
@@ -115,6 +145,21 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateGiven($given) {
+		$count = count($given);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'given', 0));
+		}
+		foreach ($given as $entry) {
+		}
+	
+		return $given;
+	}
+
+	public function addGiven($given) {
+		$this->given[] = $this->validateGivenType($given);
+	}
+
+	protected function validateGivenType($given) {
 	
 		return $given;
 	}
@@ -127,7 +172,7 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createPrefix() {
-		return NULL;
+		return array();
 	}
 
 	public function setPrefix($prefix) {
@@ -135,6 +180,21 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validatePrefix($prefix) {
+		$count = count($prefix);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'prefix', 0));
+		}
+		foreach ($prefix as $entry) {
+		}
+	
+		return $prefix;
+	}
+
+	public function addPrefix($prefix) {
+		$this->prefix[] = $this->validatePrefixType($prefix);
+	}
+
+	protected function validatePrefixType($prefix) {
 	
 		return $prefix;
 	}
@@ -147,7 +207,7 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createSuffix() {
-		return NULL;
+		return array();
 	}
 
 	public function setSuffix($suffix) {
@@ -155,6 +215,21 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateSuffix($suffix) {
+		$count = count($suffix);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'suffix', 0));
+		}
+		foreach ($suffix as $entry) {
+		}
+	
+		return $suffix;
+	}
+
+	public function addSuffix($suffix) {
+		$this->suffix[] = $this->validateSuffixType($suffix);
+	}
+
+	protected function validateSuffixType($suffix) {
 	
 		return $suffix;
 	}

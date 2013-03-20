@@ -75,7 +75,7 @@ class AuthenticatedSessionInfo {
 	}
 
 	protected function validateUserAuthToken($userAuthToken) {
-		if (!is_string($userAuthToken)) {
+		if ( ! is_string($userAuthToken) && ! is_null($userAuthToken) ) {
 			throw new \Exception(sprintf('Supplied %s value was not %s', 'userAuthToken', 'string'));
 		}
 	
@@ -98,7 +98,7 @@ class AuthenticatedSessionInfo {
 	}
 
 	protected function validateOfflinePersonInfo($offlinePersonInfo) {
-		if ( ! $offlinePersonInfo instanceof \com\microsoft\wc\request\OfflinePersonInfo ) {
+		if ( ! $offlinePersonInfo instanceof \com\microsoft\wc\request\OfflinePersonInfo  && ! is_null($offlinePersonInfo) ) {
 			$offlinePersonInfo = new \com\microsoft\wc\request\OfflinePersonInfo ($offlinePersonInfo);
 		}
 	

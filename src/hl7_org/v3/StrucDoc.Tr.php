@@ -14,12 +14,12 @@ class StrucDoc.Tr {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Th", name="th")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Th", collection="true", name="th")
 	 */
 	protected $th;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Td", name="td")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Td", collection="true", name="td")
 	 */
 	protected $td;
 
@@ -78,7 +78,7 @@ class StrucDoc.Tr {
 	}
 	
 	protected function createTh() {
-		return NULL;
+		return array();
 	}
 
 	public function setTh($th) {
@@ -86,6 +86,21 @@ class StrucDoc.Tr {
 	}
 
 	protected function validateTh($th) {
+		$count = count($th);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'th', 1));
+		}
+		foreach ($th as $entry) {
+		}
+	
+		return $th;
+	}
+
+	public function addTh($th) {
+		$this->th[] = $this->validateThType($th);
+	}
+
+	protected function validateThType($th) {
 	
 		return $th;
 	}
@@ -98,7 +113,7 @@ class StrucDoc.Tr {
 	}
 	
 	protected function createTd() {
-		return NULL;
+		return array();
 	}
 
 	public function setTd($td) {
@@ -106,6 +121,21 @@ class StrucDoc.Tr {
 	}
 
 	protected function validateTd($td) {
+		$count = count($td);
+		if ($count < 1) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'td', 1));
+		}
+		foreach ($td as $entry) {
+		}
+	
+		return $td;
+	}
+
+	public function addTd($td) {
+		$this->td[] = $this->validateTdType($td);
+	}
+
+	protected function validateTdType($td) {
 	
 		return $td;
 	}

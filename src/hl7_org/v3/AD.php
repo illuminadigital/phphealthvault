@@ -15,137 +15,137 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.delimiter", name="delimiter")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.delimiter", collection="true", name="delimiter")
 	 */
 	protected $delimiter;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.country", name="country")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.country", collection="true", name="country")
 	 */
 	protected $country;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.state", name="state")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.state", collection="true", name="state")
 	 */
 	protected $state;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.county", name="county")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.county", collection="true", name="county")
 	 */
 	protected $county;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.city", name="city")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.city", collection="true", name="city")
 	 */
 	protected $city;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.postalCode", name="postalCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.postalCode", collection="true", name="postalCode")
 	 */
 	protected $postalCode;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetAddressLine", name="streetAddressLine")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetAddressLine", collection="true", name="streetAddressLine")
 	 */
 	protected $streetAddressLine;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.houseNumber", name="houseNumber")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.houseNumber", collection="true", name="houseNumber")
 	 */
 	protected $houseNumber;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.houseNumberNumeric", name="houseNumberNumeric")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.houseNumberNumeric", collection="true", name="houseNumberNumeric")
 	 */
 	protected $houseNumberNumeric;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.direction", name="direction")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.direction", collection="true", name="direction")
 	 */
 	protected $direction;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetName", name="streetName")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetName", collection="true", name="streetName")
 	 */
 	protected $streetName;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetNameBase", name="streetNameBase")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetNameBase", collection="true", name="streetNameBase")
 	 */
 	protected $streetNameBase;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetNameType", name="streetNameType")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.streetNameType", collection="true", name="streetNameType")
 	 */
 	protected $streetNameType;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.additionalLocator", name="additionalLocator")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.additionalLocator", collection="true", name="additionalLocator")
 	 */
 	protected $additionalLocator;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.unitID", name="unitID")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.unitID", collection="true", name="unitID")
 	 */
 	protected $unitID;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.unitType", name="unitType")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.unitType", collection="true", name="unitType")
 	 */
 	protected $unitType;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.careOf", name="careOf")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.careOf", collection="true", name="careOf")
 	 */
 	protected $careOf;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.censusTract", name="censusTract")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.censusTract", collection="true", name="censusTract")
 	 */
 	protected $censusTract;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryAddressLine", name="deliveryAddressLine")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryAddressLine", collection="true", name="deliveryAddressLine")
 	 */
 	protected $deliveryAddressLine;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryInstallationType", name="deliveryInstallationType")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryInstallationType", collection="true", name="deliveryInstallationType")
 	 */
 	protected $deliveryInstallationType;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryInstallationArea", name="deliveryInstallationArea")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryInstallationArea", collection="true", name="deliveryInstallationArea")
 	 */
 	protected $deliveryInstallationArea;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryInstallationQualifier", name="deliveryInstallationQualifier")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryInstallationQualifier", collection="true", name="deliveryInstallationQualifier")
 	 */
 	protected $deliveryInstallationQualifier;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryMode", name="deliveryMode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryMode", collection="true", name="deliveryMode")
 	 */
 	protected $deliveryMode;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryModeIdentifier", name="deliveryModeIdentifier")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.deliveryModeIdentifier", collection="true", name="deliveryModeIdentifier")
 	 */
 	protected $deliveryModeIdentifier;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.buildingNumberSuffix", name="buildingNumberSuffix")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.buildingNumberSuffix", collection="true", name="buildingNumberSuffix")
 	 */
 	protected $buildingNumberSuffix;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.postBox", name="postBox")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.postBox", collection="true", name="postBox")
 	 */
 	protected $postBox;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.precinct", name="precinct")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.precinct", collection="true", name="precinct")
 	 */
 	protected $precinct;
 
@@ -205,7 +205,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createDelimiter() {
-		return NULL;
+		return array();
 	}
 
 	public function setDelimiter($delimiter) {
@@ -213,6 +213,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateDelimiter($delimiter) {
+		$count = count($delimiter);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'delimiter', 0));
+		}
+		foreach ($delimiter as $entry) {
+		}
+	
+		return $delimiter;
+	}
+
+	public function addDelimiter($delimiter) {
+		$this->delimiter[] = $this->validateDelimiterType($delimiter);
+	}
+
+	protected function validateDelimiterType($delimiter) {
 	
 		return $delimiter;
 	}
@@ -225,7 +240,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createCountry() {
-		return NULL;
+		return array();
 	}
 
 	public function setCountry($country) {
@@ -233,6 +248,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateCountry($country) {
+		$count = count($country);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'country', 0));
+		}
+		foreach ($country as $entry) {
+		}
+	
+		return $country;
+	}
+
+	public function addCountry($country) {
+		$this->country[] = $this->validateCountryType($country);
+	}
+
+	protected function validateCountryType($country) {
 	
 		return $country;
 	}
@@ -245,7 +275,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createState() {
-		return NULL;
+		return array();
 	}
 
 	public function setState($state) {
@@ -253,6 +283,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateState($state) {
+		$count = count($state);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'state', 0));
+		}
+		foreach ($state as $entry) {
+		}
+	
+		return $state;
+	}
+
+	public function addState($state) {
+		$this->state[] = $this->validateStateType($state);
+	}
+
+	protected function validateStateType($state) {
 	
 		return $state;
 	}
@@ -265,7 +310,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createCounty() {
-		return NULL;
+		return array();
 	}
 
 	public function setCounty($county) {
@@ -273,6 +318,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateCounty($county) {
+		$count = count($county);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'county', 0));
+		}
+		foreach ($county as $entry) {
+		}
+	
+		return $county;
+	}
+
+	public function addCounty($county) {
+		$this->county[] = $this->validateCountyType($county);
+	}
+
+	protected function validateCountyType($county) {
 	
 		return $county;
 	}
@@ -285,7 +345,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createCity() {
-		return NULL;
+		return array();
 	}
 
 	public function setCity($city) {
@@ -293,6 +353,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateCity($city) {
+		$count = count($city);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'city', 0));
+		}
+		foreach ($city as $entry) {
+		}
+	
+		return $city;
+	}
+
+	public function addCity($city) {
+		$this->city[] = $this->validateCityType($city);
+	}
+
+	protected function validateCityType($city) {
 	
 		return $city;
 	}
@@ -305,7 +380,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createPostalCode() {
-		return NULL;
+		return array();
 	}
 
 	public function setPostalCode($postalCode) {
@@ -313,6 +388,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validatePostalCode($postalCode) {
+		$count = count($postalCode);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'postalCode', 0));
+		}
+		foreach ($postalCode as $entry) {
+		}
+	
+		return $postalCode;
+	}
+
+	public function addPostalCode($postalCode) {
+		$this->postalCode[] = $this->validatePostalCodeType($postalCode);
+	}
+
+	protected function validatePostalCodeType($postalCode) {
 	
 		return $postalCode;
 	}
@@ -325,7 +415,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createStreetAddressLine() {
-		return NULL;
+		return array();
 	}
 
 	public function setStreetAddressLine($streetAddressLine) {
@@ -333,6 +423,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateStreetAddressLine($streetAddressLine) {
+		$count = count($streetAddressLine);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'streetAddressLine', 0));
+		}
+		foreach ($streetAddressLine as $entry) {
+		}
+	
+		return $streetAddressLine;
+	}
+
+	public function addStreetAddressLine($streetAddressLine) {
+		$this->streetAddressLine[] = $this->validateStreetAddressLineType($streetAddressLine);
+	}
+
+	protected function validateStreetAddressLineType($streetAddressLine) {
 	
 		return $streetAddressLine;
 	}
@@ -345,7 +450,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createHouseNumber() {
-		return NULL;
+		return array();
 	}
 
 	public function setHouseNumber($houseNumber) {
@@ -353,6 +458,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateHouseNumber($houseNumber) {
+		$count = count($houseNumber);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'houseNumber', 0));
+		}
+		foreach ($houseNumber as $entry) {
+		}
+	
+		return $houseNumber;
+	}
+
+	public function addHouseNumber($houseNumber) {
+		$this->houseNumber[] = $this->validateHouseNumberType($houseNumber);
+	}
+
+	protected function validateHouseNumberType($houseNumber) {
 	
 		return $houseNumber;
 	}
@@ -365,7 +485,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createHouseNumberNumeric() {
-		return NULL;
+		return array();
 	}
 
 	public function setHouseNumberNumeric($houseNumberNumeric) {
@@ -373,6 +493,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateHouseNumberNumeric($houseNumberNumeric) {
+		$count = count($houseNumberNumeric);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'houseNumberNumeric', 0));
+		}
+		foreach ($houseNumberNumeric as $entry) {
+		}
+	
+		return $houseNumberNumeric;
+	}
+
+	public function addHouseNumberNumeric($houseNumberNumeric) {
+		$this->houseNumberNumeric[] = $this->validateHouseNumberNumericType($houseNumberNumeric);
+	}
+
+	protected function validateHouseNumberNumericType($houseNumberNumeric) {
 	
 		return $houseNumberNumeric;
 	}
@@ -385,7 +520,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createDirection() {
-		return NULL;
+		return array();
 	}
 
 	public function setDirection($direction) {
@@ -393,6 +528,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateDirection($direction) {
+		$count = count($direction);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'direction', 0));
+		}
+		foreach ($direction as $entry) {
+		}
+	
+		return $direction;
+	}
+
+	public function addDirection($direction) {
+		$this->direction[] = $this->validateDirectionType($direction);
+	}
+
+	protected function validateDirectionType($direction) {
 	
 		return $direction;
 	}
@@ -405,7 +555,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createStreetName() {
-		return NULL;
+		return array();
 	}
 
 	public function setStreetName($streetName) {
@@ -413,6 +563,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateStreetName($streetName) {
+		$count = count($streetName);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'streetName', 0));
+		}
+		foreach ($streetName as $entry) {
+		}
+	
+		return $streetName;
+	}
+
+	public function addStreetName($streetName) {
+		$this->streetName[] = $this->validateStreetNameType($streetName);
+	}
+
+	protected function validateStreetNameType($streetName) {
 	
 		return $streetName;
 	}
@@ -425,7 +590,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createStreetNameBase() {
-		return NULL;
+		return array();
 	}
 
 	public function setStreetNameBase($streetNameBase) {
@@ -433,6 +598,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateStreetNameBase($streetNameBase) {
+		$count = count($streetNameBase);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'streetNameBase', 0));
+		}
+		foreach ($streetNameBase as $entry) {
+		}
+	
+		return $streetNameBase;
+	}
+
+	public function addStreetNameBase($streetNameBase) {
+		$this->streetNameBase[] = $this->validateStreetNameBaseType($streetNameBase);
+	}
+
+	protected function validateStreetNameBaseType($streetNameBase) {
 	
 		return $streetNameBase;
 	}
@@ -445,7 +625,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createStreetNameType() {
-		return NULL;
+		return array();
 	}
 
 	public function setStreetNameType($streetNameType) {
@@ -453,6 +633,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateStreetNameType($streetNameType) {
+		$count = count($streetNameType);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'streetNameType', 0));
+		}
+		foreach ($streetNameType as $entry) {
+		}
+	
+		return $streetNameType;
+	}
+
+	public function addStreetNameType($streetNameType) {
+		$this->streetNameType[] = $this->validateStreetNameTypeType($streetNameType);
+	}
+
+	protected function validateStreetNameTypeType($streetNameType) {
 	
 		return $streetNameType;
 	}
@@ -465,7 +660,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createAdditionalLocator() {
-		return NULL;
+		return array();
 	}
 
 	public function setAdditionalLocator($additionalLocator) {
@@ -473,6 +668,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateAdditionalLocator($additionalLocator) {
+		$count = count($additionalLocator);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'additionalLocator', 0));
+		}
+		foreach ($additionalLocator as $entry) {
+		}
+	
+		return $additionalLocator;
+	}
+
+	public function addAdditionalLocator($additionalLocator) {
+		$this->additionalLocator[] = $this->validateAdditionalLocatorType($additionalLocator);
+	}
+
+	protected function validateAdditionalLocatorType($additionalLocator) {
 	
 		return $additionalLocator;
 	}
@@ -485,7 +695,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createUnitID() {
-		return NULL;
+		return array();
 	}
 
 	public function setUnitID($unitID) {
@@ -493,6 +703,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateUnitID($unitID) {
+		$count = count($unitID);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'unitID', 0));
+		}
+		foreach ($unitID as $entry) {
+		}
+	
+		return $unitID;
+	}
+
+	public function addUnitID($unitID) {
+		$this->unitID[] = $this->validateUnitIDType($unitID);
+	}
+
+	protected function validateUnitIDType($unitID) {
 	
 		return $unitID;
 	}
@@ -505,7 +730,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createUnitType() {
-		return NULL;
+		return array();
 	}
 
 	public function setUnitType($unitType) {
@@ -513,6 +738,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateUnitType($unitType) {
+		$count = count($unitType);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'unitType', 0));
+		}
+		foreach ($unitType as $entry) {
+		}
+	
+		return $unitType;
+	}
+
+	public function addUnitType($unitType) {
+		$this->unitType[] = $this->validateUnitTypeType($unitType);
+	}
+
+	protected function validateUnitTypeType($unitType) {
 	
 		return $unitType;
 	}
@@ -525,7 +765,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createCareOf() {
-		return NULL;
+		return array();
 	}
 
 	public function setCareOf($careOf) {
@@ -533,6 +773,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateCareOf($careOf) {
+		$count = count($careOf);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'careOf', 0));
+		}
+		foreach ($careOf as $entry) {
+		}
+	
+		return $careOf;
+	}
+
+	public function addCareOf($careOf) {
+		$this->careOf[] = $this->validateCareOfType($careOf);
+	}
+
+	protected function validateCareOfType($careOf) {
 	
 		return $careOf;
 	}
@@ -545,7 +800,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createCensusTract() {
-		return NULL;
+		return array();
 	}
 
 	public function setCensusTract($censusTract) {
@@ -553,6 +808,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateCensusTract($censusTract) {
+		$count = count($censusTract);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'censusTract', 0));
+		}
+		foreach ($censusTract as $entry) {
+		}
+	
+		return $censusTract;
+	}
+
+	public function addCensusTract($censusTract) {
+		$this->censusTract[] = $this->validateCensusTractType($censusTract);
+	}
+
+	protected function validateCensusTractType($censusTract) {
 	
 		return $censusTract;
 	}
@@ -565,7 +835,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createDeliveryAddressLine() {
-		return NULL;
+		return array();
 	}
 
 	public function setDeliveryAddressLine($deliveryAddressLine) {
@@ -573,6 +843,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateDeliveryAddressLine($deliveryAddressLine) {
+		$count = count($deliveryAddressLine);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryAddressLine', 0));
+		}
+		foreach ($deliveryAddressLine as $entry) {
+		}
+	
+		return $deliveryAddressLine;
+	}
+
+	public function addDeliveryAddressLine($deliveryAddressLine) {
+		$this->deliveryAddressLine[] = $this->validateDeliveryAddressLineType($deliveryAddressLine);
+	}
+
+	protected function validateDeliveryAddressLineType($deliveryAddressLine) {
 	
 		return $deliveryAddressLine;
 	}
@@ -585,7 +870,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createDeliveryInstallationType() {
-		return NULL;
+		return array();
 	}
 
 	public function setDeliveryInstallationType($deliveryInstallationType) {
@@ -593,6 +878,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateDeliveryInstallationType($deliveryInstallationType) {
+		$count = count($deliveryInstallationType);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryInstallationType', 0));
+		}
+		foreach ($deliveryInstallationType as $entry) {
+		}
+	
+		return $deliveryInstallationType;
+	}
+
+	public function addDeliveryInstallationType($deliveryInstallationType) {
+		$this->deliveryInstallationType[] = $this->validateDeliveryInstallationTypeType($deliveryInstallationType);
+	}
+
+	protected function validateDeliveryInstallationTypeType($deliveryInstallationType) {
 	
 		return $deliveryInstallationType;
 	}
@@ -605,7 +905,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createDeliveryInstallationArea() {
-		return NULL;
+		return array();
 	}
 
 	public function setDeliveryInstallationArea($deliveryInstallationArea) {
@@ -613,6 +913,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateDeliveryInstallationArea($deliveryInstallationArea) {
+		$count = count($deliveryInstallationArea);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryInstallationArea', 0));
+		}
+		foreach ($deliveryInstallationArea as $entry) {
+		}
+	
+		return $deliveryInstallationArea;
+	}
+
+	public function addDeliveryInstallationArea($deliveryInstallationArea) {
+		$this->deliveryInstallationArea[] = $this->validateDeliveryInstallationAreaType($deliveryInstallationArea);
+	}
+
+	protected function validateDeliveryInstallationAreaType($deliveryInstallationArea) {
 	
 		return $deliveryInstallationArea;
 	}
@@ -625,7 +940,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createDeliveryInstallationQualifier() {
-		return NULL;
+		return array();
 	}
 
 	public function setDeliveryInstallationQualifier($deliveryInstallationQualifier) {
@@ -633,6 +948,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateDeliveryInstallationQualifier($deliveryInstallationQualifier) {
+		$count = count($deliveryInstallationQualifier);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryInstallationQualifier', 0));
+		}
+		foreach ($deliveryInstallationQualifier as $entry) {
+		}
+	
+		return $deliveryInstallationQualifier;
+	}
+
+	public function addDeliveryInstallationQualifier($deliveryInstallationQualifier) {
+		$this->deliveryInstallationQualifier[] = $this->validateDeliveryInstallationQualifierType($deliveryInstallationQualifier);
+	}
+
+	protected function validateDeliveryInstallationQualifierType($deliveryInstallationQualifier) {
 	
 		return $deliveryInstallationQualifier;
 	}
@@ -645,7 +975,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createDeliveryMode() {
-		return NULL;
+		return array();
 	}
 
 	public function setDeliveryMode($deliveryMode) {
@@ -653,6 +983,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateDeliveryMode($deliveryMode) {
+		$count = count($deliveryMode);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryMode', 0));
+		}
+		foreach ($deliveryMode as $entry) {
+		}
+	
+		return $deliveryMode;
+	}
+
+	public function addDeliveryMode($deliveryMode) {
+		$this->deliveryMode[] = $this->validateDeliveryModeType($deliveryMode);
+	}
+
+	protected function validateDeliveryModeType($deliveryMode) {
 	
 		return $deliveryMode;
 	}
@@ -665,7 +1010,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createDeliveryModeIdentifier() {
-		return NULL;
+		return array();
 	}
 
 	public function setDeliveryModeIdentifier($deliveryModeIdentifier) {
@@ -673,6 +1018,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateDeliveryModeIdentifier($deliveryModeIdentifier) {
+		$count = count($deliveryModeIdentifier);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryModeIdentifier', 0));
+		}
+		foreach ($deliveryModeIdentifier as $entry) {
+		}
+	
+		return $deliveryModeIdentifier;
+	}
+
+	public function addDeliveryModeIdentifier($deliveryModeIdentifier) {
+		$this->deliveryModeIdentifier[] = $this->validateDeliveryModeIdentifierType($deliveryModeIdentifier);
+	}
+
+	protected function validateDeliveryModeIdentifierType($deliveryModeIdentifier) {
 	
 		return $deliveryModeIdentifier;
 	}
@@ -685,7 +1045,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createBuildingNumberSuffix() {
-		return NULL;
+		return array();
 	}
 
 	public function setBuildingNumberSuffix($buildingNumberSuffix) {
@@ -693,6 +1053,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateBuildingNumberSuffix($buildingNumberSuffix) {
+		$count = count($buildingNumberSuffix);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'buildingNumberSuffix', 0));
+		}
+		foreach ($buildingNumberSuffix as $entry) {
+		}
+	
+		return $buildingNumberSuffix;
+	}
+
+	public function addBuildingNumberSuffix($buildingNumberSuffix) {
+		$this->buildingNumberSuffix[] = $this->validateBuildingNumberSuffixType($buildingNumberSuffix);
+	}
+
+	protected function validateBuildingNumberSuffixType($buildingNumberSuffix) {
 	
 		return $buildingNumberSuffix;
 	}
@@ -705,7 +1080,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createPostBox() {
-		return NULL;
+		return array();
 	}
 
 	public function setPostBox($postBox) {
@@ -713,6 +1088,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validatePostBox($postBox) {
+		$count = count($postBox);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'postBox', 0));
+		}
+		foreach ($postBox as $entry) {
+		}
+	
+		return $postBox;
+	}
+
+	public function addPostBox($postBox) {
+		$this->postBox[] = $this->validatePostBoxType($postBox);
+	}
+
+	protected function validatePostBoxType($postBox) {
 	
 		return $postBox;
 	}
@@ -725,7 +1115,7 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createPrecinct() {
-		return NULL;
+		return array();
 	}
 
 	public function setPrecinct($precinct) {
@@ -733,6 +1123,21 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validatePrecinct($precinct) {
+		$count = count($precinct);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'precinct', 0));
+		}
+		foreach ($precinct as $entry) {
+		}
+	
+		return $precinct;
+	}
+
+	public function addPrecinct($precinct) {
+		$this->precinct[] = $this->validatePrecinctType($precinct);
+	}
+
+	protected function validatePrecinctType($precinct) {
 	
 		return $precinct;
 	}
