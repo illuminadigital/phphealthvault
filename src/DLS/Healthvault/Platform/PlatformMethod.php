@@ -159,15 +159,13 @@ class PlatformMethod
     	if ($this->mustBeAuthorised) {
 	    	$info = $this->requestData->getInfo();
 	    	$infoXml = $marshaller->marshalToString($info);
-	    	$infoText = $this->extractRootElement($infoXml);    	
+	    	$infoText = $this->extractRootElement($infoXml, 'info');    	
 	    	
-	    	if ($this->getInfoClassName()) {
-    	    	$infoHash = $this->getHashDigest($infoText);
-    	    	$header = $this->getHeader();
-    	    	$hash = $header->getInfoHash()->getHashData();
-    	    	$hash->setAlgName('SHA1');
-    	    	$hash->setValue($infoHash);
-	    	}
+	    	$infoHash = $this->getHashDigest($infoText);
+	    	$header = $this->getHeader();
+	    	$hash = $header->getInfoHash()->getHashData();
+	    	$hash->setAlgName('SHA1');
+	    	$hash->setValue($infoHash);
 	    	
 	    	$authSession = $header->getAuthSession();
 	    	$authSession->setAuthToken($this->getAuthToken());
@@ -267,7 +265,7 @@ class PlatformMethod
 
     	if ($count !== 1) {
     	    if (! empty($forceName)) {
-	    		$replacement = '<' . $forceName .' />';
+	    		$replacement = '<' . $forceName .'/>';
 	    	} else {
 	    		$replacement = '$1';
 	    	}
