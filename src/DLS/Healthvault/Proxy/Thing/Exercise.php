@@ -116,6 +116,8 @@ class Exercise extends ApproxWhenThing {
 		$this->duration = $payload->getDuration()->getValue();
 		$this->distance->setFromThingElement($payload->getDistance());
 		$this->activity->setFromThingElement($payload->getActivity());
+		
+		return $result;
 	}
 	
 	public function getThing(Thing2 $thing = NULL) {
