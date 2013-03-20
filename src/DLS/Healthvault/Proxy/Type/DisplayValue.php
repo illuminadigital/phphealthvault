@@ -117,7 +117,7 @@ abstract class DisplayValue implements DisplayValueInterface
     {
         $thisType = $this->getSelectedTypeData();
 
-        if (!$thisType) {
+        if ( ! $thisType) {
             return (string) $this->majorValue;
         } else {
             return self::getValueString($this->majorValue, $this->minorValue,
@@ -128,11 +128,21 @@ abstract class DisplayValue implements DisplayValueInterface
     public static function getValueString($majorValue, $minorValue, $typeData)
     {
         $majorName = $typeData['major'];
-        $minorName = $typeData['minor'];
 
-        $text = sprintf('%d %s', $majorValue, $majorName);
-        if ($minorValue != 0) {
-            $text .= sprintf(' %d %s', $minorValue, $minorName);
+        if ($majorValue != 0) {
+            $text = sprintf('%d %s', $majorValue, $majorName);
+        } else {
+            $text = '';
+        }
+        
+        if (0 != $minorValue) {
+            if (isset($typeData['minor'])) {
+                $minorName = $typeData['minor'];
+                
+                $text .= sprintf(' %0.2f %s', $minorValue, $minorName);
+            } else {
+                $text .= sprintf(' %0.2f', $minorValue);
+            }
         }
 
         return $text;
