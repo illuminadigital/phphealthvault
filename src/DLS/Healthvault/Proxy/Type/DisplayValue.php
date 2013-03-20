@@ -105,8 +105,12 @@ abstract class DisplayValue implements DisplayValueInterface
             return $this->getMajorValue();
         }
         // else
-        $units = ($this->minorValue * $thisType['minor_scale'])
-                + $this->majorValue;
+        if (isset($thisType['minor_scale'])) {
+            $units = ($this->minorValue * $thisType['minor_scale'])
+                    + $this->majorValue;
+        } else {
+            $units = $this->majorValue;
+        }
         if (isset($thisType['major_scale']) && $thisType['major_scale'] != 1) {
             $units = $units * $thisType['major_scale'];
         }
@@ -160,8 +164,12 @@ abstract class DisplayValue implements DisplayValueInterface
             $convertedUnits = (isset($thisType['major_scale']) ? $units
                             / $thisType['major_scale'] : $units);
             $this->majorValue = (int) $convertedUnits;
-            $this->minorValue = ($convertedUnits - $this->majorValue)
-                    / $thisType['minor_scale'];
+            if (isset($thisType['minor_scale'])) {
+                $this->minorValue = ($convertedUnits - $this->majorValue)
+                        / $thisType['minor_scale'];
+            } else {
+                $this->minorValue = ($convertedUnits - $this->majorValue);
+            }
         }
         
         $this->normalisedValue = $units;
