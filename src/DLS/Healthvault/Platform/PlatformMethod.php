@@ -350,7 +350,10 @@ class PlatformMethod
 	    	$authTokenResponse = $authTokenMethod->execute();
 	    	
 	    	if ($authTokenResponse) {
-		    	$appAuthToken = $authTokenResponse->getToken()->getValue();
+	    	    $tokens = $authTokenResponse->getToken();
+	    	    $token = array_shift($tokens);
+	    	    
+		    	$appAuthToken = $token->getValue();
 		    	
 		    	$this->configuration->setAppAuthToken($appAuthToken);
 	    	} 

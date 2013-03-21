@@ -1,5 +1,6 @@
 <?php
-namespace DLs\Healthvault\Blob;
+namespace DLS\Healthvault\Blob;
+
 class Blob
 {
     protected $name;
@@ -48,6 +49,13 @@ class Blob
     public function isUploaded()
     {
         return $this->isUploaded;
+    }
+    
+    public function setUploaded()
+    {
+        $this->isUploaded = TRUE;
+        
+        return $this;
     }
 
     public function getReference()
@@ -121,6 +129,8 @@ class Blob
     public function setContentType($contentType)
     {
         $this->contentType = $contentType;
+
+        return $this;
     }
 
     public function getSize()
@@ -189,9 +199,9 @@ class Blob
         $has_mb_shadow = (int) ini_get('mbstring.func_overload');
 
         if ($has_mbstring && ($has_mb_shadow & 2)) {
-            return mb_strlen($this->output_data, 'latin1');
+            return mb_strlen($data, 'latin1');
         } else {
-            return strlen($this->output_data);
+            return strlen($data);
         }
     }
 }

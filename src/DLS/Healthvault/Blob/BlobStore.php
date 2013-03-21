@@ -43,6 +43,11 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $blob = new Blob($name, $data['size'], $contentType);
         $blob->setReference($data['ref']);
+        $blob->setHashParams($data['hashParameters']);
+        $blob->setHashAlgorithm($data['hashAlgorithm']);
+        $blob->setUploaded();
+
+        $this->updateBlobHashData($blob);
         
         $this->blobs[$name] = $blob;
         
@@ -51,10 +56,16 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
     }
     
-    protected function determineContentType($file)
+    protected function determineContentType($file, $isString = FALSE)
     {
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $contentType = finfo_file($finfo, $file);
+
+        if ( ! $isString ) {
+            $contentType = finfo_file($finfo, $file);
+        } else {
+            $contentType = finfo_buffer($finfo, $file);
+        }
+        
         finfo_close($finfo);
         
         if ( empty($contentType) ) {
@@ -74,14 +85,19 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
 
         $blob->setSize($uploadData['size']);
         $blob->setReference($uploadData['ref']);
+        $blob->setHashParams($data['hashParameters']);
+        $blob->setHashAlgorithm($data['hashAlgorithm']);
+        $blob->setUploaded();
         
         $contentType = $blob->getContentType();
         
         if (empty($contentType)) {
-            $contentType = $this->determineContentType($fileUrl);
+            $contentType = $this->determineContentType($blob->getData(), TRUE);
         }
         
         $blob->setContentType($contentType);
+        
+        $this->updateBlobHashData($blob);
         
         $name = $blob->getName();
         
@@ -151,11 +167,11 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $method = $this->platformMethodFactory->getPlatformMethod('BeginPutBlob');
         $result = $method->execute();
         
-        $blobRefUrl = $result->getBlobRefUrl()->getValue();
-        $chunkSize = $result->getBlockChunksize()->getValue();
-        $maxBlobSize = $result->getMaxBlobSize()->getValue();
+        $blobRefUrl = $result->getBlobRefUrl();
+        $chunkSize = $result->getBlobChunkSize();
+        $maxBlobSize = $result->getMaxBlobSize();
         $hashAlgorithm = $result->getBlobHashAlgorithm()->getValue();
-        $hashParameters = $result->getBlobHashParameters()->getValue();
+        $hashParameters = $result->getBlobHashParameters();
         
         $conn = curl_init($blobRefUrl);
         
@@ -170,17 +186,18 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $fileData = fstat($file);
         
         if ( ! $fileData || ! isset($fileData['size']) ) {
-            $totalLength = '*';
+            $totalLength = '*'; // Not documented, but in .NET code
         } else {
             $totalLength = $fileData['size'];
         }
         
-        while (($nextChunk = fread($file, $chunkSize)) !== FALSE) {
+        while (($nextChunk = fread($file, $chunkSize)) !== FALSE && ! $completed) {
+            error_log('sentBytes: ' . $sentBytes .' of ' . $totalLength);
             if (feof($file)) {
                 $completed = TRUE;
             }
 
-            $this->sendData($conn, $nextChunk, $sentBytes, $completed);
+            $this->sendData($conn, $nextChunk, $sentBytes, $completed, $totalLength);
         }
         
         if ( ! $completed ) {
@@ -190,11 +207,14 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         return array(
             'size' => $sentBytes,
-            'ref' => $blobRefUrl
+            'ref' => $blobRefUrl,
+            'hashAlgorithm' => $hashAlgorithm,
+            'hashParameters' => $hashParameters,
+            'chunkSize' => $chunkSize,
         );
     }
     
-    protected function sendData($conn, $data, &$sentBytes, $isComplete = FALSE) {
+    protected function sendData($conn, $data, &$sentBytes, $isComplete = FALSE, $totalLength = '*') {
         $chunkLength = Blob::safeStrlen($data);
 
         $extraHeaders = array(
@@ -234,7 +254,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         foreach ($blobPayload->getBlob() as $thisBlob) {
             $blobInfo = $thisBlob->getBlobInfo();
             
-            $thisBlobName = $blobInfo->getName();
+            $thisBlobName = $blobInfo->getName()->getValue();
             
             if ( isset($names[$thisBlobName]) ) {
                 // Process this entry
@@ -242,8 +262,8 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 if ($this->blobs[$thisBlobName]->isDeleted()) {
                     $thisBlob
                         ->setContentLength(0)
-                        ->setBase64data(NULL)
-                        ->setBlobRefUrl(NULL)
+                        ->setBase64data(FALSE)
+                        ->setBlobRefUrl(FALSE)
                     ;
                 } else if ($this->blobs[$thisBlobName]->isNew()) {
                     $this->updateThingBlob($thisBlob, $thisBlobName);
@@ -272,29 +292,21 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $thisBlobHashInfo = $thisBlobInfo->getHashInfo();
         
         if ($storedBlob->isUploaded()) {
-            $thisBlob
-                ->setContentLength($storedBlob->getSize())
-                ->setBase64data(NULL)
-                ->setBlobRefUrl($storedBlob->getReference())
-            ;
+            $thisBlob->setContentLength($storedBlob->getSize());
+            $thisBlob->setBlobRefUrl($storedBlob->getReference());
+            $thisBlob->setBase64data(FALSE);
         } else {
-            $thisBlob
-                ->setContentLength($storedBlob->getSize())
-                ->setBase64data(base64_encode($storedData->getData()))
-                ->setBlobRefUrl(NULL)
-            ;
+            $thisBlob->setContentLength($storedBlob->getSize());
+            $thisBlob->setBase64data(base64_encode($storedBlob->getData()));
+            $thisBlob->setBlobRefUrl(FALSE);
         }
         
-        $thisBlobInfo
-            ->setName($storedBlob->getName())
-            ->setContentType($storedBlob->getContentType())
-        ;
+        $thisBlobInfo->setName($storedBlob->getName());
+        $thisBlobInfo->setContentType($storedBlob->getContentType());
         
-        $thisBlobHashInfo
-            ->setAlgorithm($storedBlob->getHashAlgorithm())
-            ->getParams()->setBlockSize($storedBlob->getHashParams())
-            ->setHash($storedBlob->getHash())
-        ;
+        $thisBlobHashInfo->setAlgorithm($storedBlob->getHashAlgorithm());
+        $thisBlobHashInfo->getParams()->setBlockSize($storedBlob->getHashParams());
+        $thisBlobHashInfo->setHash($storedBlob->getHash());
     }
     
     protected function syncFromThing($removeNewItems = FALSE) {
@@ -328,11 +340,14 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 $blob = new Blob($thisBlobName, $thisBlob->getContentLength(), $blobInfo->getContentType()->getValue());
                 $this->blobs[$thisBlobName] = $blob;
                 
-                $data = $thisBlob->getBase64data();
-                if ( ! empty($data) ) {
-                    $data = base64_decode($data);
+                $data = $thisBlob->getBase64data(FALSE);
+                if ( is_object($data) ) {
+                    $data = $data->getValue();
+                    
+                    if ( ! empty($data) ) {
+                        $data = base64_decode($data);
+                    }
                 }
-                
                 $blob->setData($data);
             }
             
@@ -342,7 +357,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 ->setHashAlgorithm($hashInfo->getAlgorithm()->getValue())
                 ->setHashParams($hashInfo->getParams()->getBlockSize())
                 ->setHash($hashInfo->getHash()->getValue())
-                ->setReference($thisBlob->getBlobRefUrl())
+                ->setReference($thisBlob->getBlobRefUrl(FALSE))
             ;
         }
         
@@ -353,6 +368,59 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 }
             }
         }
+    }
+    
+    protected function updateBlobHashData(Blob $blob) {
+        /*
+        $blob
+        ->setHashAlgorithm($hashInfo->getAlgorithm()->getValue())
+        ->setHashParams($hashInfo->getParams()->getBlockSize())
+        ->setHash($hashInfo->getHash()->getValue())
+        */
+        
+        $hashAlgorithm = $blob->getHashAlgorithm();
+        if ( empty($hashAlgorithm) ) {
+            $hashAlgorithm = $this->getHashAlgorithm();
+            $blob->setHashAlgorithm($hashAlgorithm);
+        }
+
+        $hashParameters = $blob->getHashParameters();
+        if ( is_object($hashParameters) ) {
+            $chunkSize = $hashParameters->getBlockSize();
+        }
+        if ( empty($chunkSize) ) {
+            $chunkSize = 102400;
+            $blob->getHashParameters()->setBlockSize($chunkSize);
+        }
+        
+        /*
+         * The procedure appears to be:
+         * - Chunk the data into blocks of maximum length "block size"
+         * - Foreach chunk, hash the data with the hashing algorithm.
+         * - Concatenate all the hashes and then hash this with the hashing algorithm.
+         * - return this final hash
+         */
+        
+        $data = $blob->getData();
+        $blobLength = Blob::safeStrlen($data);
+        
+        $hashData = '';
+        
+        for ($offset = 0; $offset < $blobLength; $offset += $chunkSize) {
+            $chunk = substr($data, $offset, $chunkSize);
+            
+            $hashData .= hash($hashAlgorithm, $chunk);
+        }
+        
+        $hash = hash($hashAlgorithm, $hashData);
+        
+        $this->hash = $hash;
+        
+        return $this;
+    }
+    
+    protected function getHashAlgorithm() {
+        return 'SHA256';
     }
     
     public function getIterator() {
