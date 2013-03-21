@@ -16,6 +16,13 @@ class ThingFormatSpec2 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\GetThings3\ThingSectionSpec2", collection="true", name="section")
 	 */
 	protected $section;
@@ -42,8 +49,8 @@ class ThingFormatSpec2 {
 		$this->blobPayloadRequest = ($blobPayloadRequest===NULL) ? NULL : $this->validateBlobPayloadRequest($blobPayloadRequest);
 	}
 
-	public function getSection() {
-		if ($this->section===NULL) {
+	public function getSection($autoCreate = TRUE) {
+		if ($this->section===NULL && $autoCreate && ! isset($this->_overrides['section']) ) {
 			$this->section = $this->createSection();
 		}
 		return $this->section;
@@ -77,8 +84,8 @@ class ThingFormatSpec2 {
 		return $section;
 	}
 
-	public function getXml() {
-		if ($this->xml===NULL) {
+	public function getXml($autoCreate = TRUE) {
+		if ($this->xml===NULL && $autoCreate && ! isset($this->_overrides['xml']) ) {
 			$this->xml = $this->createXml();
 		}
 		return $this->xml;
@@ -118,8 +125,8 @@ class ThingFormatSpec2 {
 		return $xml;
 	}
 
-	public function getTypeVersionFormat() {
-		if ($this->typeVersionFormat===NULL) {
+	public function getTypeVersionFormat($autoCreate = TRUE) {
+		if ($this->typeVersionFormat===NULL && $autoCreate && ! isset($this->_overrides['typeVersionFormat']) ) {
 			$this->typeVersionFormat = $this->createTypeVersionFormat();
 		}
 		return $this->typeVersionFormat;
@@ -134,9 +141,16 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateTypeVersionFormat($typeVersionFormat) {
+		if ( $typeVersionFormat === FALSE ) {
+			$this->_overrides['typeVersionFormat'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($typeVersionFormat) && ! is_null($typeVersionFormat) ) {
 			$typeVersionFormat = array($typeVersionFormat);
 		}
+
+		unset ($this->_overrides['typeVersionFormat']);
 		$count = count($typeVersionFormat);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'typeVersionFormat', 0));
@@ -154,8 +168,8 @@ class ThingFormatSpec2 {
 		$this->typeVersionFormat[] = $typeVersionFormat;
 	}
 
-	public function getBlobPayloadRequest() {
-		if ($this->blobPayloadRequest===NULL) {
+	public function getBlobPayloadRequest($autoCreate = TRUE) {
+		if ($this->blobPayloadRequest===NULL && $autoCreate && ! isset($this->_overrides['blobPayloadRequest']) ) {
 			$this->blobPayloadRequest = $this->createBlobPayloadRequest();
 		}
 		return $this->blobPayloadRequest;
@@ -170,9 +184,16 @@ class ThingFormatSpec2 {
 	}
 
 	protected function validateBlobPayloadRequest($blobPayloadRequest) {
+		if ( $blobPayloadRequest === FALSE ) {
+			$this->_overrides['blobPayloadRequest'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $blobPayloadRequest instanceof \com\microsoft\wc\methods\GetThings3\BlobPayloadRequest  && ! is_null($blobPayloadRequest) ) {
 			$blobPayloadRequest = new \com\microsoft\wc\methods\GetThings3\BlobPayloadRequest ($blobPayloadRequest);
 		}
+
+		unset ($this->_overrides['blobPayloadRequest']);
 	
 		return $blobPayloadRequest;
 	}

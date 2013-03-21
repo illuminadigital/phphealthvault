@@ -14,6 +14,13 @@ class StatementInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\application\CultureSpecificStatement", collection="true", name="statement")
 	 */
 	protected $statement;
@@ -28,8 +35,8 @@ class StatementInfo {
 		$this->contentType = ($contentType===NULL) ? NULL : $this->validateContentType($contentType);
 	}
 
-	public function getStatement() {
-		if ($this->statement===NULL) {
+	public function getStatement($autoCreate = TRUE) {
+		if ($this->statement===NULL && $autoCreate && ! isset($this->_overrides['statement']) ) {
 			$this->statement = $this->createStatement();
 		}
 		return $this->statement;
@@ -64,8 +71,8 @@ class StatementInfo {
 		$this->statement[] = $statement;
 	}
 
-	public function getContentType() {
-		if ($this->contentType===NULL) {
+	public function getContentType($autoCreate = TRUE) {
+		if ($this->contentType===NULL && $autoCreate && ! isset($this->_overrides['contentType']) ) {
 			$this->contentType = $this->createContentType();
 		}
 		return $this->contentType;

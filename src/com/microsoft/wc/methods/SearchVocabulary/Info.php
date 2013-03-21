@@ -15,6 +15,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyKey", name="vocabulary-key")
 	 */
 	protected $vocabularyKey;
@@ -29,8 +36,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->textSearchParameters = ($textSearchParameters===NULL) ? NULL : $this->validateTextSearchParameters($textSearchParameters);
 	}
 
-	public function getVocabularyKey() {
-		if ($this->vocabularyKey===NULL) {
+	public function getVocabularyKey($autoCreate = TRUE) {
+		if ($this->vocabularyKey===NULL && $autoCreate && ! isset($this->_overrides['vocabularyKey']) ) {
 			$this->vocabularyKey = $this->createVocabularyKey();
 		}
 		return $this->vocabularyKey;
@@ -45,15 +52,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
+		if ( $vocabularyKey === FALSE ) {
+			$this->_overrides['vocabularyKey'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vocabularyKey instanceof \com\microsoft\wc\vocab\VocabularyKey  && ! is_null($vocabularyKey) ) {
 			$vocabularyKey = new \com\microsoft\wc\vocab\VocabularyKey ($vocabularyKey);
 		}
+
+		unset ($this->_overrides['vocabularyKey']);
 	
 		return $vocabularyKey;
 	}
 
-	public function getTextSearchParameters() {
-		if ($this->textSearchParameters===NULL) {
+	public function getTextSearchParameters($autoCreate = TRUE) {
+		if ($this->textSearchParameters===NULL && $autoCreate && ! isset($this->_overrides['textSearchParameters']) ) {
 			$this->textSearchParameters = $this->createTextSearchParameters();
 		}
 		return $this->textSearchParameters;

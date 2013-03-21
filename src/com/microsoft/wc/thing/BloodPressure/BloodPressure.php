@@ -18,6 +18,13 @@ class BloodPressure extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Blood Pressure Measurement';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -50,8 +57,8 @@ class BloodPressure extends \com\microsoft\wc\thing\AnyMixed {
 		$this->irregularHeartbeat = ($irregularHeartbeat===NULL) ? NULL : $this->validateIrregularHeartbeat($irregularHeartbeat);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -73,8 +80,8 @@ class BloodPressure extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getSystolic() {
-		if ($this->systolic===NULL) {
+	public function getSystolic($autoCreate = TRUE) {
+		if ($this->systolic===NULL && $autoCreate && ! isset($this->_overrides['systolic']) ) {
 			$this->systolic = $this->createSystolic();
 		}
 		return $this->systolic;
@@ -96,8 +103,8 @@ class BloodPressure extends \com\microsoft\wc\thing\AnyMixed {
 		return $systolic;
 	}
 
-	public function getDiastolic() {
-		if ($this->diastolic===NULL) {
+	public function getDiastolic($autoCreate = TRUE) {
+		if ($this->diastolic===NULL && $autoCreate && ! isset($this->_overrides['diastolic']) ) {
 			$this->diastolic = $this->createDiastolic();
 		}
 		return $this->diastolic;
@@ -119,8 +126,8 @@ class BloodPressure extends \com\microsoft\wc\thing\AnyMixed {
 		return $diastolic;
 	}
 
-	public function getPulse() {
-		if ($this->pulse===NULL) {
+	public function getPulse($autoCreate = TRUE) {
+		if ($this->pulse===NULL && $autoCreate && ! isset($this->_overrides['pulse']) ) {
 			$this->pulse = $this->createPulse();
 		}
 		return $this->pulse;
@@ -135,15 +142,22 @@ class BloodPressure extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePulse($pulse) {
+		if ( $pulse === FALSE ) {
+			$this->_overrides['pulse'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $pulse instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($pulse) ) {
 			$pulse = new \com\microsoft\wc\thing\types\NonNegativeInt ($pulse);
 		}
+
+		unset ($this->_overrides['pulse']);
 	
 		return $pulse;
 	}
 
-	public function getIrregularHeartbeat() {
-		if ($this->irregularHeartbeat===NULL) {
+	public function getIrregularHeartbeat($autoCreate = TRUE) {
+		if ($this->irregularHeartbeat===NULL && $autoCreate && ! isset($this->_overrides['irregularHeartbeat']) ) {
 			$this->irregularHeartbeat = $this->createIrregularHeartbeat();
 		}
 		return $this->irregularHeartbeat;

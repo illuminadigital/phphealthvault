@@ -14,6 +14,13 @@ class Rule {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CultureSpecificString1024", collection="true", name="reason")
 	 */
 	protected $reason;
@@ -64,8 +71,8 @@ class Rule {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 	}
 
-	public function getReason() {
-		if ($this->reason===NULL) {
+	public function getReason($autoCreate = TRUE) {
+		if ($this->reason===NULL && $autoCreate && ! isset($this->_overrides['reason']) ) {
 			$this->reason = $this->createReason();
 		}
 		return $this->reason;
@@ -80,9 +87,16 @@ class Rule {
 	}
 
 	protected function validateReason($reason) {
+		if ( $reason === FALSE ) {
+			$this->_overrides['reason'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($reason) && ! is_null($reason) ) {
 			$reason = array($reason);
 		}
+
+		unset ($this->_overrides['reason']);
 		$count = count($reason);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'reason', 0));
@@ -100,8 +114,8 @@ class Rule {
 		$this->reason[] = $reason;
 	}
 
-	public function getDisplayFlags() {
-		if ($this->displayFlags===NULL) {
+	public function getDisplayFlags($autoCreate = TRUE) {
+		if ($this->displayFlags===NULL && $autoCreate && ! isset($this->_overrides['displayFlags']) ) {
 			$this->displayFlags = $this->createDisplayFlags();
 		}
 		return $this->displayFlags;
@@ -134,8 +148,8 @@ class Rule {
 		return $displayFlags;
 	}
 
-	public function getPermission() {
-		if ($this->permission===NULL) {
+	public function getPermission($autoCreate = TRUE) {
+		if ($this->permission===NULL && $autoCreate && ! isset($this->_overrides['permission']) ) {
 			$this->permission = $this->createPermission();
 		}
 		return $this->permission;
@@ -173,8 +187,8 @@ class Rule {
 		$this->permission[] = $permission;
 	}
 
-	public function getTargetSet() {
-		if ($this->targetSet===NULL) {
+	public function getTargetSet($autoCreate = TRUE) {
+		if ($this->targetSet===NULL && $autoCreate && ! isset($this->_overrides['targetSet']) ) {
 			$this->targetSet = $this->createTargetSet();
 		}
 		return $this->targetSet;
@@ -189,9 +203,16 @@ class Rule {
 	}
 
 	protected function validateTargetSet($targetSet) {
+		if ( $targetSet === FALSE ) {
+			$this->_overrides['targetSet'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($targetSet) && ! is_null($targetSet) ) {
 			$targetSet = array($targetSet);
 		}
+
+		unset ($this->_overrides['targetSet']);
 		$count = count($targetSet);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'targetSet', 0));
@@ -209,8 +230,8 @@ class Rule {
 		$this->targetSet[] = $targetSet;
 	}
 
-	public function getExceptionSet() {
-		if ($this->exceptionSet===NULL) {
+	public function getExceptionSet($autoCreate = TRUE) {
+		if ($this->exceptionSet===NULL && $autoCreate && ! isset($this->_overrides['exceptionSet']) ) {
 			$this->exceptionSet = $this->createExceptionSet();
 		}
 		return $this->exceptionSet;
@@ -225,9 +246,16 @@ class Rule {
 	}
 
 	protected function validateExceptionSet($exceptionSet) {
+		if ( $exceptionSet === FALSE ) {
+			$this->_overrides['exceptionSet'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($exceptionSet) && ! is_null($exceptionSet) ) {
 			$exceptionSet = array($exceptionSet);
 		}
+
+		unset ($this->_overrides['exceptionSet']);
 		$count = count($exceptionSet);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'exceptionSet', 0));
@@ -245,8 +273,8 @@ class Rule {
 		$this->exceptionSet[] = $exceptionSet;
 	}
 
-	public function getIsIncr() {
-		if ($this->isIncr===NULL) {
+	public function getIsIncr($autoCreate = TRUE) {
+		if ($this->isIncr===NULL && $autoCreate && ! isset($this->_overrides['isIncr']) ) {
 			$this->isIncr = $this->createIsIncr();
 		}
 		return $this->isIncr;
@@ -268,8 +296,8 @@ class Rule {
 		return $isIncr;
 	}
 
-	public function getIsOptional() {
-		if ($this->isOptional===NULL) {
+	public function getIsOptional($autoCreate = TRUE) {
+		if ($this->isOptional===NULL && $autoCreate && ! isset($this->_overrides['isOptional']) ) {
 			$this->isOptional = $this->createIsOptional();
 		}
 		return $this->isOptional;
@@ -291,8 +319,8 @@ class Rule {
 		return $isOptional;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -307,9 +335,16 @@ class Rule {
 	}
 
 	protected function validateName($name) {
+		if ( $name === FALSE ) {
+			$this->_overrides['name'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $name instanceof \com\microsoft\wc\types\String16  && ! is_null($name) ) {
 			$name = new \com\microsoft\wc\types\String16 ($name);
 		}
+
+		unset ($this->_overrides['name']);
 	
 		return $name;
 	}

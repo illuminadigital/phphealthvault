@@ -15,6 +15,13 @@ class StaffParametersType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType", name="StateProvinceId")
 	 */
 	protected $stateProvinceId;
@@ -95,8 +102,8 @@ class StaffParametersType {
 		$this->timeElement = ($timeElement===NULL) ? NULL : $this->validateTimeElement($timeElement);
 	}
 
-	public function getStateProvinceId() {
-		if ($this->stateProvinceId===NULL) {
+	public function getStateProvinceId($autoCreate = TRUE) {
+		if ($this->stateProvinceId===NULL && $autoCreate && ! isset($this->_overrides['stateProvinceId']) ) {
 			$this->stateProvinceId = $this->createStateProvinceId();
 		}
 		return $this->stateProvinceId;
@@ -115,8 +122,8 @@ class StaffParametersType {
 		return $stateProvinceId;
 	}
 
-	public function getLocalId() {
-		if ($this->localId===NULL) {
+	public function getLocalId($autoCreate = TRUE) {
+		if ($this->localId===NULL && $autoCreate && ! isset($this->_overrides['localId']) ) {
 			$this->localId = $this->createLocalId();
 		}
 		return $this->localId;
@@ -135,8 +142,8 @@ class StaffParametersType {
 		return $localId;
 	}
 
-	public function getSifRefId() {
-		if ($this->sifRefId===NULL) {
+	public function getSifRefId($autoCreate = TRUE) {
+		if ($this->sifRefId===NULL && $autoCreate && ! isset($this->_overrides['sifRefId']) ) {
 			$this->sifRefId = $this->createSifRefId();
 		}
 		return $this->sifRefId;
@@ -155,8 +162,8 @@ class StaffParametersType {
 		return $sifRefId;
 	}
 
-	public function getSSN() {
-		if ($this->sSN===NULL) {
+	public function getSSN($autoCreate = TRUE) {
+		if ($this->sSN===NULL && $autoCreate && ! isset($this->_overrides['sSN']) ) {
 			$this->sSN = $this->createSSN();
 		}
 		return $this->sSN;
@@ -175,8 +182,8 @@ class StaffParametersType {
 		return $sSN;
 	}
 
-	public function getNames() {
-		if ($this->names===NULL) {
+	public function getNames($autoCreate = TRUE) {
+		if ($this->names===NULL && $autoCreate && ! isset($this->_overrides['names']) ) {
 			$this->names = $this->createNames();
 		}
 		return $this->names;
@@ -191,15 +198,22 @@ class StaffParametersType {
 	}
 
 	protected function validateNames($names) {
+		if ( $names === FALSE ) {
+			$this->_overrides['names'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $names instanceof \org\sifinfo\www\infrastructure\_2_x\Names  && ! is_null($names) ) {
 			$names = new \org\sifinfo\www\infrastructure\_2_x\Names ($names);
 		}
+
+		unset ($this->_overrides['names']);
 	
 		return $names;
 	}
 
-	public function getAddresses() {
-		if ($this->addresses===NULL) {
+	public function getAddresses($autoCreate = TRUE) {
+		if ($this->addresses===NULL && $autoCreate && ! isset($this->_overrides['addresses']) ) {
 			$this->addresses = $this->createAddresses();
 		}
 		return $this->addresses;
@@ -214,15 +228,22 @@ class StaffParametersType {
 	}
 
 	protected function validateAddresses($addresses) {
+		if ( $addresses === FALSE ) {
+			$this->_overrides['addresses'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $addresses instanceof \org\sifinfo\www\infrastructure\_2_x\Addresses  && ! is_null($addresses) ) {
 			$addresses = new \org\sifinfo\www\infrastructure\_2_x\Addresses ($addresses);
 		}
+
+		unset ($this->_overrides['addresses']);
 	
 		return $addresses;
 	}
 
-	public function getDemographics() {
-		if ($this->demographics===NULL) {
+	public function getDemographics($autoCreate = TRUE) {
+		if ($this->demographics===NULL && $autoCreate && ! isset($this->_overrides['demographics']) ) {
 			$this->demographics = $this->createDemographics();
 		}
 		return $this->demographics;
@@ -237,15 +258,22 @@ class StaffParametersType {
 	}
 
 	protected function validateDemographics($demographics) {
+		if ( $demographics === FALSE ) {
+			$this->_overrides['demographics'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $demographics instanceof \org\sifinfo\www\infrastructure\_2_x\DemographicsType  && ! is_null($demographics) ) {
 			$demographics = new \org\sifinfo\www\infrastructure\_2_x\DemographicsType ($demographics);
 		}
+
+		unset ($this->_overrides['demographics']);
 	
 		return $demographics;
 	}
 
-	public function getContacts() {
-		if ($this->contacts===NULL) {
+	public function getContacts($autoCreate = TRUE) {
+		if ($this->contacts===NULL && $autoCreate && ! isset($this->_overrides['contacts']) ) {
 			$this->contacts = $this->createContacts();
 		}
 		return $this->contacts;
@@ -260,15 +288,22 @@ class StaffParametersType {
 	}
 
 	protected function validateContacts($contacts) {
+		if ( $contacts === FALSE ) {
+			$this->_overrides['contacts'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $contacts instanceof \org\sifinfo\www\infrastructure\_2_x\Contacts  && ! is_null($contacts) ) {
 			$contacts = new \org\sifinfo\www\infrastructure\_2_x\Contacts ($contacts);
 		}
+
+		unset ($this->_overrides['contacts']);
 	
 		return $contacts;
 	}
 
-	public function getEffectiveDate() {
-		if ($this->effectiveDate===NULL) {
+	public function getEffectiveDate($autoCreate = TRUE) {
+		if ($this->effectiveDate===NULL && $autoCreate && ! isset($this->_overrides['effectiveDate']) ) {
 			$this->effectiveDate = $this->createEffectiveDate();
 		}
 		return $this->effectiveDate;
@@ -290,8 +325,8 @@ class StaffParametersType {
 		return $effectiveDate;
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -313,8 +348,8 @@ class StaffParametersType {
 		return $startDate;
 	}
 
-	public function getEndDate() {
-		if ($this->endDate===NULL) {
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
 			$this->endDate = $this->createEndDate();
 		}
 		return $this->endDate;
@@ -336,8 +371,8 @@ class StaffParametersType {
 		return $endDate;
 	}
 
-	public function getOtherIdList() {
-		if ($this->otherIdList===NULL) {
+	public function getOtherIdList($autoCreate = TRUE) {
+		if ($this->otherIdList===NULL && $autoCreate && ! isset($this->_overrides['otherIdList']) ) {
 			$this->otherIdList = $this->createOtherIdList();
 		}
 		return $this->otherIdList;
@@ -352,15 +387,22 @@ class StaffParametersType {
 	}
 
 	protected function validateOtherIdList($otherIdList) {
+		if ( $otherIdList === FALSE ) {
+			$this->_overrides['otherIdList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $otherIdList instanceof \org\sifinfo\www\infrastructure\_2_x\OtherIdListType  && ! is_null($otherIdList) ) {
 			$otherIdList = new \org\sifinfo\www\infrastructure\_2_x\OtherIdListType ($otherIdList);
 		}
+
+		unset ($this->_overrides['otherIdList']);
 	
 		return $otherIdList;
 	}
 
-	public function getTimeElement() {
-		if ($this->timeElement===NULL) {
+	public function getTimeElement($autoCreate = TRUE) {
+		if ($this->timeElement===NULL && $autoCreate && ! isset($this->_overrides['timeElement']) ) {
 			$this->timeElement = $this->createTimeElement();
 		}
 		return $this->timeElement;
@@ -375,9 +417,16 @@ class StaffParametersType {
 	}
 
 	protected function validateTimeElement($timeElement) {
+		if ( $timeElement === FALSE ) {
+			$this->_overrides['timeElement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $timeElement instanceof \org\sifinfo\www\infrastructure\_2_x\TimeElementType  && ! is_null($timeElement) ) {
 			$timeElement = new \org\sifinfo\www\infrastructure\_2_x\TimeElementType ($timeElement);
 		}
+
+		unset ($this->_overrides['timeElement']);
 	
 		return $timeElement;
 	}

@@ -17,6 +17,13 @@ class RespiratoryRateValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeDouble", name="breaths-per-minute")
 	 */
 	protected $breathsPerMinute;
@@ -31,8 +38,8 @@ class RespiratoryRateValue {
 		$this->display = ($display===NULL) ? NULL : $this->validateDisplay($display);
 	}
 
-	public function getBreathsPerMinute() {
-		if ($this->breathsPerMinute===NULL) {
+	public function getBreathsPerMinute($autoCreate = TRUE) {
+		if ($this->breathsPerMinute===NULL && $autoCreate && ! isset($this->_overrides['breathsPerMinute']) ) {
 			$this->breathsPerMinute = $this->createBreathsPerMinute();
 		}
 		return $this->breathsPerMinute;
@@ -54,8 +61,8 @@ class RespiratoryRateValue {
 		return $breathsPerMinute;
 	}
 
-	public function getDisplay() {
-		if ($this->display===NULL) {
+	public function getDisplay($autoCreate = TRUE) {
+		if ($this->display===NULL && $autoCreate && ! isset($this->_overrides['display']) ) {
 			$this->display = $this->createDisplay();
 		}
 		return $this->display;
@@ -70,9 +77,16 @@ class RespiratoryRateValue {
 	}
 
 	protected function validateDisplay($display) {
+		if ( $display === FALSE ) {
+			$this->_overrides['display'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $display instanceof \com\microsoft\wc\thing\types\DisplayValue  && ! is_null($display) ) {
 			$display = new \com\microsoft\wc\thing\types\DisplayValue ($display);
 		}
+
+		unset ($this->_overrides['display']);
 	
 		return $display;
 	}

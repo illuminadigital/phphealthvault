@@ -14,6 +14,13 @@ class SubjectAreas {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SubjectArea", collection="true", name="SubjectArea")
 	 */
 	protected $subjectArea;
@@ -22,8 +29,8 @@ class SubjectAreas {
 		$this->subjectArea = ($subjectArea===NULL) ? NULL : $this->validateSubjectArea($subjectArea);
 	}
 
-	public function getSubjectArea() {
-		if ($this->subjectArea===NULL) {
+	public function getSubjectArea($autoCreate = TRUE) {
+		if ($this->subjectArea===NULL && $autoCreate && ! isset($this->_overrides['subjectArea']) ) {
 			$this->subjectArea = $this->createSubjectArea();
 		}
 		return $this->subjectArea;

@@ -14,6 +14,13 @@ class Records {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\IdRefType", name="StudentDemographicRecordRefId")
 	 */
 	protected $studentDemographicRecordRefId;
@@ -40,8 +47,8 @@ class Records {
 		$this->otherRecords = ($otherRecords===NULL) ? NULL : $this->validateOtherRecords($otherRecords);
 	}
 
-	public function getStudentDemographicRecordRefId() {
-		if ($this->studentDemographicRecordRefId===NULL) {
+	public function getStudentDemographicRecordRefId($autoCreate = TRUE) {
+		if ($this->studentDemographicRecordRefId===NULL && $autoCreate && ! isset($this->_overrides['studentDemographicRecordRefId']) ) {
 			$this->studentDemographicRecordRefId = $this->createStudentDemographicRecordRefId();
 		}
 		return $this->studentDemographicRecordRefId;
@@ -60,8 +67,8 @@ class Records {
 		return $studentDemographicRecordRefId;
 	}
 
-	public function getStudentAcademicRecordRefId() {
-		if ($this->studentAcademicRecordRefId===NULL) {
+	public function getStudentAcademicRecordRefId($autoCreate = TRUE) {
+		if ($this->studentAcademicRecordRefId===NULL && $autoCreate && ! isset($this->_overrides['studentAcademicRecordRefId']) ) {
 			$this->studentAcademicRecordRefId = $this->createStudentAcademicRecordRefId();
 		}
 		return $this->studentAcademicRecordRefId;
@@ -80,8 +87,8 @@ class Records {
 		return $studentAcademicRecordRefId;
 	}
 
-	public function getStudentSpecialEducationRecordRefId() {
-		if ($this->studentSpecialEducationRecordRefId===NULL) {
+	public function getStudentSpecialEducationRecordRefId($autoCreate = TRUE) {
+		if ($this->studentSpecialEducationRecordRefId===NULL && $autoCreate && ! isset($this->_overrides['studentSpecialEducationRecordRefId']) ) {
 			$this->studentSpecialEducationRecordRefId = $this->createStudentSpecialEducationRecordRefId();
 		}
 		return $this->studentSpecialEducationRecordRefId;
@@ -100,8 +107,8 @@ class Records {
 		return $studentSpecialEducationRecordRefId;
 	}
 
-	public function getOtherRecords() {
-		if ($this->otherRecords===NULL) {
+	public function getOtherRecords($autoCreate = TRUE) {
+		if ($this->otherRecords===NULL && $autoCreate && ! isset($this->_overrides['otherRecords']) ) {
 			$this->otherRecords = $this->createOtherRecords();
 		}
 		return $this->otherRecords;
@@ -116,9 +123,16 @@ class Records {
 	}
 
 	protected function validateOtherRecords($otherRecords) {
+		if ( $otherRecords === FALSE ) {
+			$this->_overrides['otherRecords'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $otherRecords instanceof \org\sifinfo\www\infrastructure\_2_x\OtherRecords  && ! is_null($otherRecords) ) {
 			$otherRecords = new \org\sifinfo\www\infrastructure\_2_x\OtherRecords ($otherRecords);
 		}
+
+		unset ($this->_overrides['otherRecords']);
 	
 		return $otherRecords;
 	}

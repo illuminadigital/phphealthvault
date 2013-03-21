@@ -16,6 +16,13 @@ class RcptRecord {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="boolean", name="validated")
 	 */
 	protected $validated;
@@ -24,8 +31,8 @@ class RcptRecord {
 		$this->validated = ($validated===NULL) ? NULL : $this->validateValidated($validated);
 	}
 
-	public function getValidated() {
-		if ($this->validated===NULL) {
+	public function getValidated($autoCreate = TRUE) {
+		if ($this->validated===NULL && $autoCreate && ! isset($this->_overrides['validated']) ) {
 			$this->validated = $this->createValidated();
 		}
 		return $this->validated;

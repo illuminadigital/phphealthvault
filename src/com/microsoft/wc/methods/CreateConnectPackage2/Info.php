@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="identity-code")
 	 */
 	protected $identityCode;
@@ -54,8 +61,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->streamedPackageBlobs = ($streamedPackageBlobs===NULL) ? NULL : $this->validateStreamedPackageBlobs($streamedPackageBlobs);
 	}
 
-	public function getIdentityCode() {
-		if ($this->identityCode===NULL) {
+	public function getIdentityCode($autoCreate = TRUE) {
+		if ($this->identityCode===NULL && $autoCreate && ! isset($this->_overrides['identityCode']) ) {
 			$this->identityCode = $this->createIdentityCode();
 		}
 		return $this->identityCode;
@@ -77,8 +84,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $identityCode;
 	}
 
-	public function getFriendlyName() {
-		if ($this->friendlyName===NULL) {
+	public function getFriendlyName($autoCreate = TRUE) {
+		if ($this->friendlyName===NULL && $autoCreate && ! isset($this->_overrides['friendlyName']) ) {
 			$this->friendlyName = $this->createFriendlyName();
 		}
 		return $this->friendlyName;
@@ -100,8 +107,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $friendlyName;
 	}
 
-	public function getQuestion() {
-		if ($this->question===NULL) {
+	public function getQuestion($autoCreate = TRUE) {
+		if ($this->question===NULL && $autoCreate && ! isset($this->_overrides['question']) ) {
 			$this->question = $this->createQuestion();
 		}
 		return $this->question;
@@ -123,8 +130,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $question;
 	}
 
-	public function getExternalId() {
-		if ($this->externalId===NULL) {
+	public function getExternalId($autoCreate = TRUE) {
+		if ($this->externalId===NULL && $autoCreate && ! isset($this->_overrides['externalId']) ) {
 			$this->externalId = $this->createExternalId();
 		}
 		return $this->externalId;
@@ -146,8 +153,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $externalId;
 	}
 
-	public function getPackage() {
-		if ($this->package===NULL) {
+	public function getPackage($autoCreate = TRUE) {
+		if ($this->package===NULL && $autoCreate && ! isset($this->_overrides['package']) ) {
 			$this->package = $this->createPackage();
 		}
 		return $this->package;
@@ -169,8 +176,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $package;
 	}
 
-	public function getStreamedPackageBlobs() {
-		if ($this->streamedPackageBlobs===NULL) {
+	public function getStreamedPackageBlobs($autoCreate = TRUE) {
+		if ($this->streamedPackageBlobs===NULL && $autoCreate && ! isset($this->_overrides['streamedPackageBlobs']) ) {
 			$this->streamedPackageBlobs = $this->createStreamedPackageBlobs();
 		}
 		return $this->streamedPackageBlobs;
@@ -185,9 +192,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateStreamedPackageBlobs($streamedPackageBlobs) {
+		if ( $streamedPackageBlobs === FALSE ) {
+			$this->_overrides['streamedPackageBlobs'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $streamedPackageBlobs instanceof \com\microsoft\wc\methods\CreateConnectPackage2\StreamedPackageBlobs  && ! is_null($streamedPackageBlobs) ) {
 			$streamedPackageBlobs = new \com\microsoft\wc\methods\CreateConnectPackage2\StreamedPackageBlobs ($streamedPackageBlobs);
 		}
+
+		unset ($this->_overrides['streamedPackageBlobs']);
 	
 		return $streamedPackageBlobs;
 	}

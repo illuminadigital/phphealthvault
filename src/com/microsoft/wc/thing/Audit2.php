@@ -16,6 +16,13 @@ class Audit2 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="timestamp")
 	 */
 	protected $timestamp;
@@ -60,8 +67,8 @@ class Audit2 {
 		$this->masterAppId = ($masterAppId===NULL) ? NULL : $this->validateMasterAppId($masterAppId);
 	}
 
-	public function getTimestamp() {
-		if ($this->timestamp===NULL) {
+	public function getTimestamp($autoCreate = TRUE) {
+		if ($this->timestamp===NULL && $autoCreate && ! isset($this->_overrides['timestamp']) ) {
 			$this->timestamp = $this->createTimestamp();
 		}
 		return $this->timestamp;
@@ -83,8 +90,8 @@ class Audit2 {
 		return $timestamp;
 	}
 
-	public function getAppId() {
-		if ($this->appId===NULL) {
+	public function getAppId($autoCreate = TRUE) {
+		if ($this->appId===NULL && $autoCreate && ! isset($this->_overrides['appId']) ) {
 			$this->appId = $this->createAppId();
 		}
 		return $this->appId;
@@ -106,8 +113,8 @@ class Audit2 {
 		return $appId;
 	}
 
-	public function getPersonId() {
-		if ($this->personId===NULL) {
+	public function getPersonId($autoCreate = TRUE) {
+		if ($this->personId===NULL && $autoCreate && ! isset($this->_overrides['personId']) ) {
 			$this->personId = $this->createPersonId();
 		}
 		return $this->personId;
@@ -129,8 +136,8 @@ class Audit2 {
 		return $personId;
 	}
 
-	public function getImpersonatorId() {
-		if ($this->impersonatorId===NULL) {
+	public function getImpersonatorId($autoCreate = TRUE) {
+		if ($this->impersonatorId===NULL && $autoCreate && ! isset($this->_overrides['impersonatorId']) ) {
 			$this->impersonatorId = $this->createImpersonatorId();
 		}
 		return $this->impersonatorId;
@@ -145,15 +152,22 @@ class Audit2 {
 	}
 
 	protected function validateImpersonatorId($impersonatorId) {
+		if ( $impersonatorId === FALSE ) {
+			$this->_overrides['impersonatorId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $impersonatorId instanceof \com\microsoft\wc\thing\GuidAndName  && ! is_null($impersonatorId) ) {
 			$impersonatorId = new \com\microsoft\wc\thing\GuidAndName ($impersonatorId);
 		}
+
+		unset ($this->_overrides['impersonatorId']);
 	
 		return $impersonatorId;
 	}
 
-	public function getAccessAvenue() {
-		if ($this->accessAvenue===NULL) {
+	public function getAccessAvenue($autoCreate = TRUE) {
+		if ($this->accessAvenue===NULL && $autoCreate && ! isset($this->_overrides['accessAvenue']) ) {
 			$this->accessAvenue = $this->createAccessAvenue();
 		}
 		return $this->accessAvenue;
@@ -168,15 +182,22 @@ class Audit2 {
 	}
 
 	protected function validateAccessAvenue($accessAvenue) {
+		if ( $accessAvenue === FALSE ) {
+			$this->_overrides['accessAvenue'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $accessAvenue instanceof \com\microsoft\wc\thing\AccessAvenue  && ! is_null($accessAvenue) ) {
 			$accessAvenue = new \com\microsoft\wc\thing\AccessAvenue ($accessAvenue);
 		}
+
+		unset ($this->_overrides['accessAvenue']);
 	
 		return $accessAvenue;
 	}
 
-	public function getAuditAction() {
-		if ($this->auditAction===NULL) {
+	public function getAuditAction($autoCreate = TRUE) {
+		if ($this->auditAction===NULL && $autoCreate && ! isset($this->_overrides['auditAction']) ) {
 			$this->auditAction = $this->createAuditAction();
 		}
 		return $this->auditAction;
@@ -198,8 +219,8 @@ class Audit2 {
 		return $auditAction;
 	}
 
-	public function getMasterAppId() {
-		if ($this->masterAppId===NULL) {
+	public function getMasterAppId($autoCreate = TRUE) {
+		if ($this->masterAppId===NULL && $autoCreate && ! isset($this->_overrides['masterAppId']) ) {
 			$this->masterAppId = $this->createMasterAppId();
 		}
 		return $this->masterAppId;
@@ -214,9 +235,16 @@ class Audit2 {
 	}
 
 	protected function validateMasterAppId($masterAppId) {
+		if ( $masterAppId === FALSE ) {
+			$this->_overrides['masterAppId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $masterAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($masterAppId) ) {
 			$masterAppId = new \com\microsoft\wc\types\Guid ($masterAppId);
 		}
+
+		unset ($this->_overrides['masterAppId']);
 	
 		return $masterAppId;
 	}

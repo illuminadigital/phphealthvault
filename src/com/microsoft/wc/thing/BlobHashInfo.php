@@ -14,6 +14,13 @@ class BlobHashInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringz255", name="algorithm")
 	 */
 	protected $algorithm;
@@ -34,8 +41,8 @@ class BlobHashInfo {
 		$this->hash = ($hash===NULL) ? NULL : $this->validateHash($hash);
 	}
 
-	public function getAlgorithm() {
-		if ($this->algorithm===NULL) {
+	public function getAlgorithm($autoCreate = TRUE) {
+		if ($this->algorithm===NULL && $autoCreate && ! isset($this->_overrides['algorithm']) ) {
 			$this->algorithm = $this->createAlgorithm();
 		}
 		return $this->algorithm;
@@ -57,8 +64,8 @@ class BlobHashInfo {
 		return $algorithm;
 	}
 
-	public function getParams() {
-		if ($this->params===NULL) {
+	public function getParams($autoCreate = TRUE) {
+		if ($this->params===NULL && $autoCreate && ! isset($this->_overrides['params']) ) {
 			$this->params = $this->createParams();
 		}
 		return $this->params;
@@ -73,15 +80,22 @@ class BlobHashInfo {
 	}
 
 	protected function validateParams($params) {
+		if ( $params === FALSE ) {
+			$this->_overrides['params'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $params instanceof \com\microsoft\wc\types\BlobHashAlgorithmParameters  && ! is_null($params) ) {
 			$params = new \com\microsoft\wc\types\BlobHashAlgorithmParameters ($params);
 		}
+
+		unset ($this->_overrides['params']);
 	
 		return $params;
 	}
 
-	public function getHash() {
-		if ($this->hash===NULL) {
+	public function getHash($autoCreate = TRUE) {
+		if ($this->hash===NULL && $autoCreate && ! isset($this->_overrides['hash']) ) {
 			$this->hash = $this->createHash();
 		}
 		return $this->hash;

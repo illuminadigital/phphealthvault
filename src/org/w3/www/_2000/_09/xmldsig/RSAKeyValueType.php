@@ -14,6 +14,13 @@ class RSAKeyValueType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\CryptoBinary", name="Modulus")
 	 */
 	protected $modulus;
@@ -28,8 +35,8 @@ class RSAKeyValueType {
 		$this->exponent = ($exponent===NULL) ? NULL : $this->validateExponent($exponent);
 	}
 
-	public function getModulus() {
-		if ($this->modulus===NULL) {
+	public function getModulus($autoCreate = TRUE) {
+		if ($this->modulus===NULL && $autoCreate && ! isset($this->_overrides['modulus']) ) {
 			$this->modulus = $this->createModulus();
 		}
 		return $this->modulus;
@@ -51,8 +58,8 @@ class RSAKeyValueType {
 		return $modulus;
 	}
 
-	public function getExponent() {
-		if ($this->exponent===NULL) {
+	public function getExponent($autoCreate = TRUE) {
+		if ($this->exponent===NULL && $autoCreate && ! isset($this->_overrides['exponent']) ) {
 			$this->exponent = $this->createExponent();
 		}
 		return $this->exponent;

@@ -14,6 +14,13 @@ class DigestMethodType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\AnyMixed", collection="true", name="*")
 	 */
 	protected $any;
@@ -28,8 +35,8 @@ class DigestMethodType {
 		$this->algorithm = ($algorithm===NULL) ? NULL : $this->validateAlgorithm($algorithm);
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;
@@ -69,8 +76,8 @@ class DigestMethodType {
 		return $any;
 	}
 
-	public function getAlgorithm() {
-		if ($this->algorithm===NULL) {
+	public function getAlgorithm($autoCreate = TRUE) {
+		if ($this->algorithm===NULL && $autoCreate && ! isset($this->_overrides['algorithm']) ) {
 			$this->algorithm = $this->createAlgorithm();
 		}
 		return $this->algorithm;

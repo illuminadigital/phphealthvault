@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="identity-code")
 	 */
 	protected $identityCode;
@@ -30,8 +37,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->externalId = ($externalId===NULL) ? NULL : $this->validateExternalId($externalId);
 	}
 
-	public function getIdentityCode() {
-		if ($this->identityCode===NULL) {
+	public function getIdentityCode($autoCreate = TRUE) {
+		if ($this->identityCode===NULL && $autoCreate && ! isset($this->_overrides['identityCode']) ) {
 			$this->identityCode = $this->createIdentityCode();
 		}
 		return $this->identityCode;
@@ -53,8 +60,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $identityCode;
 	}
 
-	public function getExternalId() {
-		if ($this->externalId===NULL) {
+	public function getExternalId($autoCreate = TRUE) {
+		if ($this->externalId===NULL && $autoCreate && ! isset($this->_overrides['externalId']) ) {
 			$this->externalId = $this->createExternalId();
 		}
 		return $this->externalId;

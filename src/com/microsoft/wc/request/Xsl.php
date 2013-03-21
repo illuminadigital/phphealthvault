@@ -14,6 +14,13 @@ class Xsl {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="Xsl")
 	 */
 	protected $value;
@@ -28,8 +35,8 @@ class Xsl {
 		$this->contentType = ($contentType===NULL) ? NULL : $this->validateContentType($contentType);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -51,8 +58,8 @@ class Xsl {
 		return $value;
 	}
 
-	public function getContentType() {
-		if ($this->contentType===NULL) {
+	public function getContentType($autoCreate = TRUE) {
+		if ($this->contentType===NULL && $autoCreate && ! isset($this->_overrides['contentType']) ) {
 			$this->contentType = $this->createContentType();
 		}
 		return $this->contentType;
@@ -67,9 +74,16 @@ class Xsl {
 	}
 
 	protected function validateContentType($contentType) {
+		if ( $contentType === FALSE ) {
+			$this->_overrides['contentType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $contentType instanceof \com\microsoft\wc\types\String128  && ! is_null($contentType) ) {
 			$contentType = new \com\microsoft\wc\types\String128 ($contentType);
 		}
+
+		unset ($this->_overrides['contentType']);
 	
 		return $contentType;
 	}

@@ -19,6 +19,13 @@ class AerobicWeekly extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Weekly Aerobic Exercise Goal';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\AerobicSession", name="session")
 	 */
 	protected $session;
@@ -33,8 +40,8 @@ class AerobicWeekly extends \com\microsoft\wc\thing\AnyMixed {
 		$this->recurrence = ($recurrence===NULL) ? NULL : $this->validateRecurrence($recurrence);
 	}
 
-	public function getSession() {
-		if ($this->session===NULL) {
+	public function getSession($autoCreate = TRUE) {
+		if ($this->session===NULL && $autoCreate && ! isset($this->_overrides['session']) ) {
 			$this->session = $this->createSession();
 		}
 		return $this->session;
@@ -56,8 +63,8 @@ class AerobicWeekly extends \com\microsoft\wc\thing\AnyMixed {
 		return $session;
 	}
 
-	public function getRecurrence() {
-		if ($this->recurrence===NULL) {
+	public function getRecurrence($autoCreate = TRUE) {
+		if ($this->recurrence===NULL && $autoCreate && ! isset($this->_overrides['recurrence']) ) {
 			$this->recurrence = $this->createRecurrence();
 		}
 		return $this->recurrence;

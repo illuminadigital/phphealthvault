@@ -14,6 +14,13 @@ class Item {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\BlobInfo", name="blob-info")
 	 */
 	protected $blobInfo;
@@ -22,8 +29,8 @@ class Item {
 		$this->blobInfo = ($blobInfo===NULL) ? NULL : $this->validateBlobInfo($blobInfo);
 	}
 
-	public function getBlobInfo() {
-		if ($this->blobInfo===NULL) {
+	public function getBlobInfo($autoCreate = TRUE) {
+		if ($this->blobInfo===NULL && $autoCreate && ! isset($this->_overrides['blobInfo']) ) {
 			$this->blobInfo = $this->createBlobInfo();
 		}
 		return $this->blobInfo;

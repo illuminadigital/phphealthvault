@@ -15,6 +15,13 @@ class ExtendedParametersType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ExtendedParameter", collection="true", name="ExtendedParameter")
 	 */
 	protected $extendedParameter;
@@ -23,8 +30,8 @@ class ExtendedParametersType {
 		$this->extendedParameter = ($extendedParameter===NULL) ? NULL : $this->validateExtendedParameter($extendedParameter);
 	}
 
-	public function getExtendedParameter() {
-		if ($this->extendedParameter===NULL) {
+	public function getExtendedParameter($autoCreate = TRUE) {
+		if ($this->extendedParameter===NULL && $autoCreate && ! isset($this->_overrides['extendedParameter']) ) {
 			$this->extendedParameter = $this->createExtendedParameter();
 		}
 		return $this->extendedParameter;
@@ -39,9 +46,16 @@ class ExtendedParametersType {
 	}
 
 	protected function validateExtendedParameter($extendedParameter) {
+		if ( $extendedParameter === FALSE ) {
+			$this->_overrides['extendedParameter'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($extendedParameter) && ! is_null($extendedParameter) ) {
 			$extendedParameter = array($extendedParameter);
 		}
+
+		unset ($this->_overrides['extendedParameter']);
 		$count = count($extendedParameter);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'extendedParameter', 0));

@@ -14,6 +14,13 @@ class POCDMT000040.LanguageCommunication {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -64,8 +71,8 @@ class POCDMT000040.LanguageCommunication {
 		$this->nullFlavor = ($nullFlavor===NULL) ? NULL : $this->validateNullFlavor($nullFlavor);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -99,8 +106,8 @@ class POCDMT000040.LanguageCommunication {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -119,8 +126,8 @@ class POCDMT000040.LanguageCommunication {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -154,8 +161,8 @@ class POCDMT000040.LanguageCommunication {
 		return $templateId;
 	}
 
-	public function getLanguageCode() {
-		if ($this->languageCode===NULL) {
+	public function getLanguageCode($autoCreate = TRUE) {
+		if ($this->languageCode===NULL && $autoCreate && ! isset($this->_overrides['languageCode']) ) {
 			$this->languageCode = $this->createLanguageCode();
 		}
 		return $this->languageCode;
@@ -174,8 +181,8 @@ class POCDMT000040.LanguageCommunication {
 		return $languageCode;
 	}
 
-	public function getModeCode() {
-		if ($this->modeCode===NULL) {
+	public function getModeCode($autoCreate = TRUE) {
+		if ($this->modeCode===NULL && $autoCreate && ! isset($this->_overrides['modeCode']) ) {
 			$this->modeCode = $this->createModeCode();
 		}
 		return $this->modeCode;
@@ -194,8 +201,8 @@ class POCDMT000040.LanguageCommunication {
 		return $modeCode;
 	}
 
-	public function getProficiencyLevelCode() {
-		if ($this->proficiencyLevelCode===NULL) {
+	public function getProficiencyLevelCode($autoCreate = TRUE) {
+		if ($this->proficiencyLevelCode===NULL && $autoCreate && ! isset($this->_overrides['proficiencyLevelCode']) ) {
 			$this->proficiencyLevelCode = $this->createProficiencyLevelCode();
 		}
 		return $this->proficiencyLevelCode;
@@ -214,8 +221,8 @@ class POCDMT000040.LanguageCommunication {
 		return $proficiencyLevelCode;
 	}
 
-	public function getPreferenceInd() {
-		if ($this->preferenceInd===NULL) {
+	public function getPreferenceInd($autoCreate = TRUE) {
+		if ($this->preferenceInd===NULL && $autoCreate && ! isset($this->_overrides['preferenceInd']) ) {
 			$this->preferenceInd = $this->createPreferenceInd();
 		}
 		return $this->preferenceInd;
@@ -234,8 +241,8 @@ class POCDMT000040.LanguageCommunication {
 		return $preferenceInd;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;

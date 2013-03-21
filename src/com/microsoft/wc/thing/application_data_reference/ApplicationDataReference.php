@@ -18,6 +18,13 @@ class ApplicationDataReference extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Application Data Reference';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="name")
 	 */
 	protected $name;
@@ -56,8 +63,8 @@ class ApplicationDataReference extends \com\microsoft\wc\thing\AnyMixed {
 		$this->applicationDataUrl = ($applicationDataUrl===NULL) ? NULL : $this->validateApplicationDataUrl($applicationDataUrl);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -79,8 +86,8 @@ class ApplicationDataReference extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getRenderFilename() {
-		if ($this->renderFilename===NULL) {
+	public function getRenderFilename($autoCreate = TRUE) {
+		if ($this->renderFilename===NULL && $autoCreate && ! isset($this->_overrides['renderFilename']) ) {
 			$this->renderFilename = $this->createRenderFilename();
 		}
 		return $this->renderFilename;
@@ -95,15 +102,22 @@ class ApplicationDataReference extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateRenderFilename($renderFilename) {
+		if ( $renderFilename === FALSE ) {
+			$this->_overrides['renderFilename'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $renderFilename instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($renderFilename) ) {
 			$renderFilename = new \com\microsoft\wc\types\Stringnz ($renderFilename);
 		}
+
+		unset ($this->_overrides['renderFilename']);
 	
 		return $renderFilename;
 	}
 
-	public function getPublicUrl() {
-		if ($this->publicUrl===NULL) {
+	public function getPublicUrl($autoCreate = TRUE) {
+		if ($this->publicUrl===NULL && $autoCreate && ! isset($this->_overrides['publicUrl']) ) {
 			$this->publicUrl = $this->createPublicUrl();
 		}
 		return $this->publicUrl;
@@ -118,15 +132,22 @@ class ApplicationDataReference extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePublicUrl($publicUrl) {
+		if ( $publicUrl === FALSE ) {
+			$this->_overrides['publicUrl'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $publicUrl instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($publicUrl) ) {
 			$publicUrl = new \com\microsoft\wc\types\Stringnz ($publicUrl);
 		}
+
+		unset ($this->_overrides['publicUrl']);
 	
 		return $publicUrl;
 	}
 
-	public function getConfigurationUrl() {
-		if ($this->configurationUrl===NULL) {
+	public function getConfigurationUrl($autoCreate = TRUE) {
+		if ($this->configurationUrl===NULL && $autoCreate && ! isset($this->_overrides['configurationUrl']) ) {
 			$this->configurationUrl = $this->createConfigurationUrl();
 		}
 		return $this->configurationUrl;
@@ -141,15 +162,22 @@ class ApplicationDataReference extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateConfigurationUrl($configurationUrl) {
+		if ( $configurationUrl === FALSE ) {
+			$this->_overrides['configurationUrl'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $configurationUrl instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($configurationUrl) ) {
 			$configurationUrl = new \com\microsoft\wc\types\Stringnz ($configurationUrl);
 		}
+
+		unset ($this->_overrides['configurationUrl']);
 	
 		return $configurationUrl;
 	}
 
-	public function getOpenQueryId() {
-		if ($this->openQueryId===NULL) {
+	public function getOpenQueryId($autoCreate = TRUE) {
+		if ($this->openQueryId===NULL && $autoCreate && ! isset($this->_overrides['openQueryId']) ) {
 			$this->openQueryId = $this->createOpenQueryId();
 		}
 		return $this->openQueryId;
@@ -164,15 +192,22 @@ class ApplicationDataReference extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateOpenQueryId($openQueryId) {
+		if ( $openQueryId === FALSE ) {
+			$this->_overrides['openQueryId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $openQueryId instanceof \com\microsoft\wc\types\Guid  && ! is_null($openQueryId) ) {
 			$openQueryId = new \com\microsoft\wc\types\Guid ($openQueryId);
 		}
+
+		unset ($this->_overrides['openQueryId']);
 	
 		return $openQueryId;
 	}
 
-	public function getApplicationDataUrl() {
-		if ($this->applicationDataUrl===NULL) {
+	public function getApplicationDataUrl($autoCreate = TRUE) {
+		if ($this->applicationDataUrl===NULL && $autoCreate && ! isset($this->_overrides['applicationDataUrl']) ) {
 			$this->applicationDataUrl = $this->createApplicationDataUrl();
 		}
 		return $this->applicationDataUrl;
@@ -187,9 +222,16 @@ class ApplicationDataReference extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateApplicationDataUrl($applicationDataUrl) {
+		if ( $applicationDataUrl === FALSE ) {
+			$this->_overrides['applicationDataUrl'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $applicationDataUrl instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($applicationDataUrl) ) {
 			$applicationDataUrl = new \com\microsoft\wc\types\Stringnz ($applicationDataUrl);
 		}
+
+		unset ($this->_overrides['applicationDataUrl']);
 	
 		return $applicationDataUrl;
 	}

@@ -16,6 +16,13 @@ class ZoneBoundary {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\BloodGlucoseValue", name="absolute-glucose")
 	 */
 	protected $absoluteGlucose;
@@ -30,8 +37,8 @@ class ZoneBoundary {
 		$this->percentMaxGlucose = ($percentMaxGlucose===NULL) ? NULL : $this->validatePercentMaxGlucose($percentMaxGlucose);
 	}
 
-	public function getAbsoluteGlucose() {
-		if ($this->absoluteGlucose===NULL) {
+	public function getAbsoluteGlucose($autoCreate = TRUE) {
+		if ($this->absoluteGlucose===NULL && $autoCreate && ! isset($this->_overrides['absoluteGlucose']) ) {
 			$this->absoluteGlucose = $this->createAbsoluteGlucose();
 		}
 		return $this->absoluteGlucose;
@@ -53,8 +60,8 @@ class ZoneBoundary {
 		return $absoluteGlucose;
 	}
 
-	public function getPercentMaxGlucose() {
-		if ($this->percentMaxGlucose===NULL) {
+	public function getPercentMaxGlucose($autoCreate = TRUE) {
+		if ($this->percentMaxGlucose===NULL && $autoCreate && ! isset($this->_overrides['percentMaxGlucose']) ) {
 			$this->percentMaxGlucose = $this->createPercentMaxGlucose();
 		}
 		return $this->percentMaxGlucose;

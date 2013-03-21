@@ -15,6 +15,13 @@ class NCES0613EmploymentStatusType {
 	static protected $enumValue = array('1384' => 'Contingent upon funding', '1379' => 'Contractual', '1383' => 'Employed or affiliated with outside organization', '1385' => 'Non-contractual', '9999' => 'Other', '1378' => 'Probationary', '1380' => 'Substitute/temporary', '1381' => 'Tenured or permanent', '1382' => 'Volunteer');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0613EmploymentStatusType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0613EmploymentStatusType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

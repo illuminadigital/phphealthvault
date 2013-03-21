@@ -19,6 +19,13 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Microbiology Lab Test Result';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -69,8 +76,8 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		$this->organismComment = ($organismComment===NULL) ? NULL : $this->validateOrganismComment($organismComment);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -92,8 +99,8 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getLabTests() {
-		if ($this->labTests===NULL) {
+	public function getLabTests($autoCreate = TRUE) {
+		if ($this->labTests===NULL && $autoCreate && ! isset($this->_overrides['labTests']) ) {
 			$this->labTests = $this->createLabTests();
 		}
 		return $this->labTests;
@@ -108,9 +115,16 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLabTests($labTests) {
+		if ( $labTests === FALSE ) {
+			$this->_overrides['labTests'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($labTests) && ! is_null($labTests) ) {
 			$labTests = array($labTests);
 		}
+
+		unset ($this->_overrides['labTests']);
 		$count = count($labTests);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'labTests', 0));
@@ -128,8 +142,8 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		$this->labTests[] = $labTests;
 	}
 
-	public function getSensitivityAgent() {
-		if ($this->sensitivityAgent===NULL) {
+	public function getSensitivityAgent($autoCreate = TRUE) {
+		if ($this->sensitivityAgent===NULL && $autoCreate && ! isset($this->_overrides['sensitivityAgent']) ) {
 			$this->sensitivityAgent = $this->createSensitivityAgent();
 		}
 		return $this->sensitivityAgent;
@@ -144,15 +158,22 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSensitivityAgent($sensitivityAgent) {
+		if ( $sensitivityAgent === FALSE ) {
+			$this->_overrides['sensitivityAgent'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sensitivityAgent instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($sensitivityAgent) ) {
 			$sensitivityAgent = new \com\microsoft\wc\types\CodableValue ($sensitivityAgent);
 		}
+
+		unset ($this->_overrides['sensitivityAgent']);
 	
 		return $sensitivityAgent;
 	}
 
-	public function getSensitivityValue() {
-		if ($this->sensitivityValue===NULL) {
+	public function getSensitivityValue($autoCreate = TRUE) {
+		if ($this->sensitivityValue===NULL && $autoCreate && ! isset($this->_overrides['sensitivityValue']) ) {
 			$this->sensitivityValue = $this->createSensitivityValue();
 		}
 		return $this->sensitivityValue;
@@ -167,15 +188,22 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSensitivityValue($sensitivityValue) {
+		if ( $sensitivityValue === FALSE ) {
+			$this->_overrides['sensitivityValue'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sensitivityValue instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($sensitivityValue) ) {
 			$sensitivityValue = new \com\microsoft\wc\types\CodableValue ($sensitivityValue);
 		}
+
+		unset ($this->_overrides['sensitivityValue']);
 	
 		return $sensitivityValue;
 	}
 
-	public function getSensitivityInterpretation() {
-		if ($this->sensitivityInterpretation===NULL) {
+	public function getSensitivityInterpretation($autoCreate = TRUE) {
+		if ($this->sensitivityInterpretation===NULL && $autoCreate && ! isset($this->_overrides['sensitivityInterpretation']) ) {
 			$this->sensitivityInterpretation = $this->createSensitivityInterpretation();
 		}
 		return $this->sensitivityInterpretation;
@@ -197,8 +225,8 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $sensitivityInterpretation;
 	}
 
-	public function getSpecimenType() {
-		if ($this->specimenType===NULL) {
+	public function getSpecimenType($autoCreate = TRUE) {
+		if ($this->specimenType===NULL && $autoCreate && ! isset($this->_overrides['specimenType']) ) {
 			$this->specimenType = $this->createSpecimenType();
 		}
 		return $this->specimenType;
@@ -213,15 +241,22 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSpecimenType($specimenType) {
+		if ( $specimenType === FALSE ) {
+			$this->_overrides['specimenType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $specimenType instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($specimenType) ) {
 			$specimenType = new \com\microsoft\wc\types\CodableValue ($specimenType);
 		}
+
+		unset ($this->_overrides['specimenType']);
 	
 		return $specimenType;
 	}
 
-	public function getOrganismName() {
-		if ($this->organismName===NULL) {
+	public function getOrganismName($autoCreate = TRUE) {
+		if ($this->organismName===NULL && $autoCreate && ! isset($this->_overrides['organismName']) ) {
 			$this->organismName = $this->createOrganismName();
 		}
 		return $this->organismName;
@@ -236,15 +271,22 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateOrganismName($organismName) {
+		if ( $organismName === FALSE ) {
+			$this->_overrides['organismName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $organismName instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($organismName) ) {
 			$organismName = new \com\microsoft\wc\types\CodableValue ($organismName);
 		}
+
+		unset ($this->_overrides['organismName']);
 	
 		return $organismName;
 	}
 
-	public function getOrganismComment() {
-		if ($this->organismComment===NULL) {
+	public function getOrganismComment($autoCreate = TRUE) {
+		if ($this->organismComment===NULL && $autoCreate && ! isset($this->_overrides['organismComment']) ) {
 			$this->organismComment = $this->createOrganismComment();
 		}
 		return $this->organismComment;

@@ -15,6 +15,13 @@ class ContactInfoType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Name", name="Name")
 	 */
 	protected $name;
@@ -53,8 +60,8 @@ class ContactInfoType {
 		$this->phoneNumberList = ($phoneNumberList===NULL) ? NULL : $this->validatePhoneNumberList($phoneNumberList);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -76,8 +83,8 @@ class ContactInfoType {
 		return $name;
 	}
 
-	public function getPositionTitle() {
-		if ($this->positionTitle===NULL) {
+	public function getPositionTitle($autoCreate = TRUE) {
+		if ($this->positionTitle===NULL && $autoCreate && ! isset($this->_overrides['positionTitle']) ) {
 			$this->positionTitle = $this->createPositionTitle();
 		}
 		return $this->positionTitle;
@@ -99,8 +106,8 @@ class ContactInfoType {
 		return $positionTitle;
 	}
 
-	public function getRole() {
-		if ($this->role===NULL) {
+	public function getRole($autoCreate = TRUE) {
+		if ($this->role===NULL && $autoCreate && ! isset($this->_overrides['role']) ) {
 			$this->role = $this->createRole();
 		}
 		return $this->role;
@@ -122,8 +129,8 @@ class ContactInfoType {
 		return $role;
 	}
 
-	public function getAddress() {
-		if ($this->address===NULL) {
+	public function getAddress($autoCreate = TRUE) {
+		if ($this->address===NULL && $autoCreate && ! isset($this->_overrides['address']) ) {
 			$this->address = $this->createAddress();
 		}
 		return $this->address;
@@ -138,15 +145,22 @@ class ContactInfoType {
 	}
 
 	protected function validateAddress($address) {
+		if ( $address === FALSE ) {
+			$this->_overrides['address'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $address instanceof \org\sifinfo\www\infrastructure\_2_x\AddressType  && ! is_null($address) ) {
 			$address = new \org\sifinfo\www\infrastructure\_2_x\AddressType ($address);
 		}
+
+		unset ($this->_overrides['address']);
 	
 		return $address;
 	}
 
-	public function getEmailList() {
-		if ($this->emailList===NULL) {
+	public function getEmailList($autoCreate = TRUE) {
+		if ($this->emailList===NULL && $autoCreate && ! isset($this->_overrides['emailList']) ) {
 			$this->emailList = $this->createEmailList();
 		}
 		return $this->emailList;
@@ -161,15 +175,22 @@ class ContactInfoType {
 	}
 
 	protected function validateEmailList($emailList) {
+		if ( $emailList === FALSE ) {
+			$this->_overrides['emailList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $emailList instanceof \org\sifinfo\www\infrastructure\_2_x\EmailListType  && ! is_null($emailList) ) {
 			$emailList = new \org\sifinfo\www\infrastructure\_2_x\EmailListType ($emailList);
 		}
+
+		unset ($this->_overrides['emailList']);
 	
 		return $emailList;
 	}
 
-	public function getPhoneNumberList() {
-		if ($this->phoneNumberList===NULL) {
+	public function getPhoneNumberList($autoCreate = TRUE) {
+		if ($this->phoneNumberList===NULL && $autoCreate && ! isset($this->_overrides['phoneNumberList']) ) {
 			$this->phoneNumberList = $this->createPhoneNumberList();
 		}
 		return $this->phoneNumberList;
@@ -184,9 +205,16 @@ class ContactInfoType {
 	}
 
 	protected function validatePhoneNumberList($phoneNumberList) {
+		if ( $phoneNumberList === FALSE ) {
+			$this->_overrides['phoneNumberList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $phoneNumberList instanceof \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType  && ! is_null($phoneNumberList) ) {
 			$phoneNumberList = new \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType ($phoneNumberList);
 		}
+
+		unset ($this->_overrides['phoneNumberList']);
 	
 		return $phoneNumberList;
 	}

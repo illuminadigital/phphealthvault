@@ -14,6 +14,13 @@ class TermPerformance {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\TermInfoData", name="TermInfoData")
 	 */
 	protected $termInfoData;
@@ -88,8 +95,8 @@ class TermPerformance {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getTermInfoData() {
-		if ($this->termInfoData===NULL) {
+	public function getTermInfoData($autoCreate = TRUE) {
+		if ($this->termInfoData===NULL && $autoCreate && ! isset($this->_overrides['termInfoData']) ) {
 			$this->termInfoData = $this->createTermInfoData();
 		}
 		return $this->termInfoData;
@@ -104,15 +111,22 @@ class TermPerformance {
 	}
 
 	protected function validateTermInfoData($termInfoData) {
+		if ( $termInfoData === FALSE ) {
+			$this->_overrides['termInfoData'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $termInfoData instanceof \org\sifinfo\www\infrastructure\_2_x\TermInfoData  && ! is_null($termInfoData) ) {
 			$termInfoData = new \org\sifinfo\www\infrastructure\_2_x\TermInfoData ($termInfoData);
 		}
+
+		unset ($this->_overrides['termInfoData']);
 	
 		return $termInfoData;
 	}
 
-	public function getGradeLevelWhenTaken() {
-		if ($this->gradeLevelWhenTaken===NULL) {
+	public function getGradeLevelWhenTaken($autoCreate = TRUE) {
+		if ($this->gradeLevelWhenTaken===NULL && $autoCreate && ! isset($this->_overrides['gradeLevelWhenTaken']) ) {
 			$this->gradeLevelWhenTaken = $this->createGradeLevelWhenTaken();
 		}
 		return $this->gradeLevelWhenTaken;
@@ -127,15 +141,22 @@ class TermPerformance {
 	}
 
 	protected function validateGradeLevelWhenTaken($gradeLevelWhenTaken) {
+		if ( $gradeLevelWhenTaken === FALSE ) {
+			$this->_overrides['gradeLevelWhenTaken'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $gradeLevelWhenTaken instanceof \org\sifinfo\www\infrastructure\_2_x\GradeLevelType  && ! is_null($gradeLevelWhenTaken) ) {
 			$gradeLevelWhenTaken = new \org\sifinfo\www\infrastructure\_2_x\GradeLevelType ($gradeLevelWhenTaken);
 		}
+
+		unset ($this->_overrides['gradeLevelWhenTaken']);
 	
 		return $gradeLevelWhenTaken;
 	}
 
-	public function getCreditsAttempted() {
-		if ($this->creditsAttempted===NULL) {
+	public function getCreditsAttempted($autoCreate = TRUE) {
+		if ($this->creditsAttempted===NULL && $autoCreate && ! isset($this->_overrides['creditsAttempted']) ) {
 			$this->creditsAttempted = $this->createCreditsAttempted();
 		}
 		return $this->creditsAttempted;
@@ -168,8 +189,8 @@ class TermPerformance {
 		return $creditsAttempted;
 	}
 
-	public function getCreditsEarned() {
-		if ($this->creditsEarned===NULL) {
+	public function getCreditsEarned($autoCreate = TRUE) {
+		if ($this->creditsEarned===NULL && $autoCreate && ! isset($this->_overrides['creditsEarned']) ) {
 			$this->creditsEarned = $this->createCreditsEarned();
 		}
 		return $this->creditsEarned;
@@ -202,8 +223,8 @@ class TermPerformance {
 		return $creditsEarned;
 	}
 
-	public function getGPACreditsAttempted() {
-		if ($this->gPACreditsAttempted===NULL) {
+	public function getGPACreditsAttempted($autoCreate = TRUE) {
+		if ($this->gPACreditsAttempted===NULL && $autoCreate && ! isset($this->_overrides['gPACreditsAttempted']) ) {
 			$this->gPACreditsAttempted = $this->createGPACreditsAttempted();
 		}
 		return $this->gPACreditsAttempted;
@@ -236,8 +257,8 @@ class TermPerformance {
 		return $gPACreditsAttempted;
 	}
 
-	public function getGPACreditsEarned() {
-		if ($this->gPACreditsEarned===NULL) {
+	public function getGPACreditsEarned($autoCreate = TRUE) {
+		if ($this->gPACreditsEarned===NULL && $autoCreate && ! isset($this->_overrides['gPACreditsEarned']) ) {
 			$this->gPACreditsEarned = $this->createGPACreditsEarned();
 		}
 		return $this->gPACreditsEarned;
@@ -270,8 +291,8 @@ class TermPerformance {
 		return $gPACreditsEarned;
 	}
 
-	public function getGPAGradePoints() {
-		if ($this->gPAGradePoints===NULL) {
+	public function getGPAGradePoints($autoCreate = TRUE) {
+		if ($this->gPAGradePoints===NULL && $autoCreate && ! isset($this->_overrides['gPAGradePoints']) ) {
 			$this->gPAGradePoints = $this->createGPAGradePoints();
 		}
 		return $this->gPAGradePoints;
@@ -304,8 +325,8 @@ class TermPerformance {
 		return $gPAGradePoints;
 	}
 
-	public function getGPA() {
-		if ($this->gPA===NULL) {
+	public function getGPA($autoCreate = TRUE) {
+		if ($this->gPA===NULL && $autoCreate && ! isset($this->_overrides['gPA']) ) {
 			$this->gPA = $this->createGPA();
 		}
 		return $this->gPA;
@@ -338,8 +359,8 @@ class TermPerformance {
 		return $gPA;
 	}
 
-	public function getWeightedGPA() {
-		if ($this->weightedGPA===NULL) {
+	public function getWeightedGPA($autoCreate = TRUE) {
+		if ($this->weightedGPA===NULL && $autoCreate && ! isset($this->_overrides['weightedGPA']) ) {
 			$this->weightedGPA = $this->createWeightedGPA();
 		}
 		return $this->weightedGPA;
@@ -372,8 +393,8 @@ class TermPerformance {
 		return $weightedGPA;
 	}
 
-	public function getDaysAbsent() {
-		if ($this->daysAbsent===NULL) {
+	public function getDaysAbsent($autoCreate = TRUE) {
+		if ($this->daysAbsent===NULL && $autoCreate && ! isset($this->_overrides['daysAbsent']) ) {
 			$this->daysAbsent = $this->createDaysAbsent();
 		}
 		return $this->daysAbsent;
@@ -406,8 +427,8 @@ class TermPerformance {
 		return $daysAbsent;
 	}
 
-	public function getDaysPresent() {
-		if ($this->daysPresent===NULL) {
+	public function getDaysPresent($autoCreate = TRUE) {
+		if ($this->daysPresent===NULL && $autoCreate && ! isset($this->_overrides['daysPresent']) ) {
 			$this->daysPresent = $this->createDaysPresent();
 		}
 		return $this->daysPresent;
@@ -440,8 +461,8 @@ class TermPerformance {
 		return $daysPresent;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -456,9 +477,16 @@ class TermPerformance {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

@@ -16,6 +16,13 @@ class BodyCompositionValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\WeightValue", name="mass-value")
 	 */
 	protected $massValue;
@@ -30,8 +37,8 @@ class BodyCompositionValue {
 		$this->percentValue = ($percentValue===NULL) ? NULL : $this->validatePercentValue($percentValue);
 	}
 
-	public function getMassValue() {
-		if ($this->massValue===NULL) {
+	public function getMassValue($autoCreate = TRUE) {
+		if ($this->massValue===NULL && $autoCreate && ! isset($this->_overrides['massValue']) ) {
 			$this->massValue = $this->createMassValue();
 		}
 		return $this->massValue;
@@ -46,15 +53,22 @@ class BodyCompositionValue {
 	}
 
 	protected function validateMassValue($massValue) {
+		if ( $massValue === FALSE ) {
+			$this->_overrides['massValue'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $massValue instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($massValue) ) {
 			$massValue = new \com\microsoft\wc\thing\types\WeightValue ($massValue);
 		}
+
+		unset ($this->_overrides['massValue']);
 	
 		return $massValue;
 	}
 
-	public function getPercentValue() {
-		if ($this->percentValue===NULL) {
+	public function getPercentValue($autoCreate = TRUE) {
+		if ($this->percentValue===NULL && $autoCreate && ! isset($this->_overrides['percentValue']) ) {
 			$this->percentValue = $this->createPercentValue();
 		}
 		return $this->percentValue;
@@ -69,9 +83,16 @@ class BodyCompositionValue {
 	}
 
 	protected function validatePercentValue($percentValue) {
+		if ( $percentValue === FALSE ) {
+			$this->_overrides['percentValue'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $percentValue instanceof \com\microsoft\wc\thing\types\Percentage  && ! is_null($percentValue) ) {
 			$percentValue = new \com\microsoft\wc\thing\types\Percentage ($percentValue);
 		}
+
+		unset ($this->_overrides['percentValue']);
 	
 		return $percentValue;
 	}

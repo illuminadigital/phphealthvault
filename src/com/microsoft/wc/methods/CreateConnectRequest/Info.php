@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="friendly-name")
 	 */
 	protected $friendlyName;
@@ -48,8 +55,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->callBackUrl = ($callBackUrl===NULL) ? NULL : $this->validateCallBackUrl($callBackUrl);
 	}
 
-	public function getFriendlyName() {
-		if ($this->friendlyName===NULL) {
+	public function getFriendlyName($autoCreate = TRUE) {
+		if ($this->friendlyName===NULL && $autoCreate && ! isset($this->_overrides['friendlyName']) ) {
 			$this->friendlyName = $this->createFriendlyName();
 		}
 		return $this->friendlyName;
@@ -71,8 +78,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $friendlyName;
 	}
 
-	public function getQuestion() {
-		if ($this->question===NULL) {
+	public function getQuestion($autoCreate = TRUE) {
+		if ($this->question===NULL && $autoCreate && ! isset($this->_overrides['question']) ) {
 			$this->question = $this->createQuestion();
 		}
 		return $this->question;
@@ -94,8 +101,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $question;
 	}
 
-	public function getAnswer() {
-		if ($this->answer===NULL) {
+	public function getAnswer($autoCreate = TRUE) {
+		if ($this->answer===NULL && $autoCreate && ! isset($this->_overrides['answer']) ) {
 			$this->answer = $this->createAnswer();
 		}
 		return $this->answer;
@@ -117,8 +124,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $answer;
 	}
 
-	public function getExternalId() {
-		if ($this->externalId===NULL) {
+	public function getExternalId($autoCreate = TRUE) {
+		if ($this->externalId===NULL && $autoCreate && ! isset($this->_overrides['externalId']) ) {
 			$this->externalId = $this->createExternalId();
 		}
 		return $this->externalId;
@@ -140,8 +147,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $externalId;
 	}
 
-	public function getCallBackUrl() {
-		if ($this->callBackUrl===NULL) {
+	public function getCallBackUrl($autoCreate = TRUE) {
+		if ($this->callBackUrl===NULL && $autoCreate && ! isset($this->_overrides['callBackUrl']) ) {
 			$this->callBackUrl = $this->createCallBackUrl();
 		}
 		return $this->callBackUrl;
@@ -156,9 +163,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateCallBackUrl($callBackUrl) {
+		if ( $callBackUrl === FALSE ) {
+			$this->_overrides['callBackUrl'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $callBackUrl instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($callBackUrl) ) {
 			$callBackUrl = new \com\microsoft\wc\types\Stringnz ($callBackUrl);
 		}
+
+		unset ($this->_overrides['callBackUrl']);
 	
 		return $callBackUrl;
 	}

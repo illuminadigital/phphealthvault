@@ -14,6 +14,13 @@ class BlobFilters {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\GetThings3\BlobFilterSpec", collection="true", name="blob-filter")
 	 */
 	protected $blobFilter;
@@ -22,8 +29,8 @@ class BlobFilters {
 		$this->blobFilter = ($blobFilter===NULL) ? NULL : $this->validateBlobFilter($blobFilter);
 	}
 
-	public function getBlobFilter() {
-		if ($this->blobFilter===NULL) {
+	public function getBlobFilter($autoCreate = TRUE) {
+		if ($this->blobFilter===NULL && $autoCreate && ! isset($this->_overrides['blobFilter']) ) {
 			$this->blobFilter = $this->createBlobFilter();
 		}
 		return $this->blobFilter;

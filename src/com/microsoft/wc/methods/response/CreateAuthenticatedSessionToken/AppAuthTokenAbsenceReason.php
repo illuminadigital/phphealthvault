@@ -16,6 +16,13 @@ class AppAuthTokenAbsenceReason extends AuthTokenAbsenceReason {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="app-id")
 	 */
 	protected $appId;
@@ -24,8 +31,8 @@ class AppAuthTokenAbsenceReason extends AuthTokenAbsenceReason {
 		$this->appId = ($appId===NULL) ? NULL : $this->validateAppId($appId);
 	}
 
-	public function getAppId() {
-		if ($this->appId===NULL) {
+	public function getAppId($autoCreate = TRUE) {
+		if ($this->appId===NULL && $autoCreate && ! isset($this->_overrides['appId']) ) {
 			$this->appId = $this->createAppId();
 		}
 		return $this->appId;

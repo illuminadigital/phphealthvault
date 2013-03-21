@@ -15,6 +15,13 @@ class MonetaryAmountType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="float", name="MonetaryAmountType")
 	 */
 	protected $value;
@@ -29,8 +36,8 @@ class MonetaryAmountType {
 		$this->currency = ($currency===NULL) ? NULL : $this->validateCurrency($currency);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -60,8 +67,8 @@ class MonetaryAmountType {
 		return $value;
 	}
 
-	public function getCurrency() {
-		if ($this->currency===NULL) {
+	public function getCurrency($autoCreate = TRUE) {
+		if ($this->currency===NULL && $autoCreate && ! isset($this->_overrides['currency']) ) {
 			$this->currency = $this->createCurrency();
 		}
 		return $this->currency;

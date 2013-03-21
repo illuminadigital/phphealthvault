@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CultureSpecificString255", collection="true", name="name")
 	 */
 	protected $name;
@@ -144,8 +151,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->vocabularyAuthorizations = ($vocabularyAuthorizations===NULL) ? NULL : $this->validateVocabularyAuthorizations($vocabularyAuthorizations);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -180,8 +187,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->name[] = $name;
 	}
 
-	public function getPublicKeys() {
-		if ($this->publicKeys===NULL) {
+	public function getPublicKeys($autoCreate = TRUE) {
+		if ($this->publicKeys===NULL && $autoCreate && ! isset($this->_overrides['publicKeys']) ) {
 			$this->publicKeys = $this->createPublicKeys();
 		}
 		return $this->publicKeys;
@@ -203,8 +210,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $publicKeys;
 	}
 
-	public function getPersonOnlineBaseAuth() {
-		if ($this->personOnlineBaseAuth===NULL) {
+	public function getPersonOnlineBaseAuth($autoCreate = TRUE) {
+		if ($this->personOnlineBaseAuth===NULL && $autoCreate && ! isset($this->_overrides['personOnlineBaseAuth']) ) {
 			$this->personOnlineBaseAuth = $this->createPersonOnlineBaseAuth();
 		}
 		return $this->personOnlineBaseAuth;
@@ -219,15 +226,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePersonOnlineBaseAuth($personOnlineBaseAuth) {
+		if ( $personOnlineBaseAuth === FALSE ) {
+			$this->_overrides['personOnlineBaseAuth'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $personOnlineBaseAuth instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($personOnlineBaseAuth) ) {
 			$personOnlineBaseAuth = new \com\microsoft\wc\auth\AuthXml ($personOnlineBaseAuth);
 		}
+
+		unset ($this->_overrides['personOnlineBaseAuth']);
 	
 		return $personOnlineBaseAuth;
 	}
 
-	public function getPersonOfflineBaseAuth() {
-		if ($this->personOfflineBaseAuth===NULL) {
+	public function getPersonOfflineBaseAuth($autoCreate = TRUE) {
+		if ($this->personOfflineBaseAuth===NULL && $autoCreate && ! isset($this->_overrides['personOfflineBaseAuth']) ) {
 			$this->personOfflineBaseAuth = $this->createPersonOfflineBaseAuth();
 		}
 		return $this->personOfflineBaseAuth;
@@ -249,8 +263,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $personOfflineBaseAuth;
 	}
 
-	public function getMethods() {
-		if ($this->methods===NULL) {
+	public function getMethods($autoCreate = TRUE) {
+		if ($this->methods===NULL && $autoCreate && ! isset($this->_overrides['methods']) ) {
 			$this->methods = $this->createMethods();
 		}
 		return $this->methods;
@@ -265,15 +279,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateMethods($methods) {
+		if ( $methods === FALSE ) {
+			$this->_overrides['methods'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $methods instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($methods) ) {
 			$methods = new \com\microsoft\wc\types\Stringnz ($methods);
 		}
+
+		unset ($this->_overrides['methods']);
 	
 		return $methods;
 	}
 
-	public function getActionUrl() {
-		if ($this->actionUrl===NULL) {
+	public function getActionUrl($autoCreate = TRUE) {
+		if ($this->actionUrl===NULL && $autoCreate && ! isset($this->_overrides['actionUrl']) ) {
 			$this->actionUrl = $this->createActionUrl();
 		}
 		return $this->actionUrl;
@@ -288,15 +309,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateActionUrl($actionUrl) {
+		if ( $actionUrl === FALSE ) {
+			$this->_overrides['actionUrl'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $actionUrl instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($actionUrl) ) {
 			$actionUrl = new \com\microsoft\wc\types\Stringnz ($actionUrl);
 		}
+
+		unset ($this->_overrides['actionUrl']);
 	
 		return $actionUrl;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -331,8 +359,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->description[] = $description;
 	}
 
-	public function getAuthReason() {
-		if ($this->authReason===NULL) {
+	public function getAuthReason($autoCreate = TRUE) {
+		if ($this->authReason===NULL && $autoCreate && ! isset($this->_overrides['authReason']) ) {
 			$this->authReason = $this->createAuthReason();
 		}
 		return $this->authReason;
@@ -367,8 +395,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->authReason[] = $authReason;
 	}
 
-	public function getDomainName() {
-		if ($this->domainName===NULL) {
+	public function getDomainName($autoCreate = TRUE) {
+		if ($this->domainName===NULL && $autoCreate && ! isset($this->_overrides['domainName']) ) {
 			$this->domainName = $this->createDomainName();
 		}
 		return $this->domainName;
@@ -383,15 +411,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateDomainName($domainName) {
+		if ( $domainName === FALSE ) {
+			$this->_overrides['domainName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $domainName instanceof \com\microsoft\wc\types\String255  && ! is_null($domainName) ) {
 			$domainName = new \com\microsoft\wc\types\String255 ($domainName);
 		}
+
+		unset ($this->_overrides['domainName']);
 	
 		return $domainName;
 	}
 
-	public function getLargeLogo() {
-		if ($this->largeLogo===NULL) {
+	public function getLargeLogo($autoCreate = TRUE) {
+		if ($this->largeLogo===NULL && $autoCreate && ! isset($this->_overrides['largeLogo']) ) {
 			$this->largeLogo = $this->createLargeLogo();
 		}
 		return $this->largeLogo;
@@ -413,8 +448,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $largeLogo;
 	}
 
-	public function getSmallLogo() {
-		if ($this->smallLogo===NULL) {
+	public function getSmallLogo($autoCreate = TRUE) {
+		if ($this->smallLogo===NULL && $autoCreate && ! isset($this->_overrides['smallLogo']) ) {
 			$this->smallLogo = $this->createSmallLogo();
 		}
 		return $this->smallLogo;
@@ -429,15 +464,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateSmallLogo($smallLogo) {
+		if ( $smallLogo === FALSE ) {
+			$this->_overrides['smallLogo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $smallLogo instanceof \com\microsoft\wc\application\AppSmallLogoInfo  && ! is_null($smallLogo) ) {
 			$smallLogo = new \com\microsoft\wc\application\AppSmallLogoInfo ($smallLogo);
 		}
+
+		unset ($this->_overrides['smallLogo']);
 	
 		return $smallLogo;
 	}
 
-	public function getPersistentTokens() {
-		if ($this->persistentTokens===NULL) {
+	public function getPersistentTokens($autoCreate = TRUE) {
+		if ($this->persistentTokens===NULL && $autoCreate && ! isset($this->_overrides['persistentTokens']) ) {
 			$this->persistentTokens = $this->createPersistentTokens();
 		}
 		return $this->persistentTokens;
@@ -452,15 +494,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePersistentTokens($persistentTokens) {
+		if ( $persistentTokens === FALSE ) {
+			$this->_overrides['persistentTokens'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $persistentTokens instanceof \com\microsoft\wc\application\AppPersistentTokens  && ! is_null($persistentTokens) ) {
 			$persistentTokens = new \com\microsoft\wc\application\AppPersistentTokens ($persistentTokens);
 		}
+
+		unset ($this->_overrides['persistentTokens']);
 	
 		return $persistentTokens;
 	}
 
-	public function getAppType() {
-		if ($this->appType===NULL) {
+	public function getAppType($autoCreate = TRUE) {
+		if ($this->appType===NULL && $autoCreate && ! isset($this->_overrides['appType']) ) {
 			$this->appType = $this->createAppType();
 		}
 		return $this->appType;
@@ -475,15 +524,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppType($appType) {
+		if ( $appType === FALSE ) {
+			$this->_overrides['appType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $appType instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($appType) ) {
 			$appType = new \com\microsoft\wc\types\Stringnz ($appType);
 		}
+
+		unset ($this->_overrides['appType']);
 	
 		return $appType;
 	}
 
-	public function getPrivacyStatement() {
-		if ($this->privacyStatement===NULL) {
+	public function getPrivacyStatement($autoCreate = TRUE) {
+		if ($this->privacyStatement===NULL && $autoCreate && ! isset($this->_overrides['privacyStatement']) ) {
 			$this->privacyStatement = $this->createPrivacyStatement();
 		}
 		return $this->privacyStatement;
@@ -498,15 +554,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePrivacyStatement($privacyStatement) {
+		if ( $privacyStatement === FALSE ) {
+			$this->_overrides['privacyStatement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $privacyStatement instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($privacyStatement) ) {
 			$privacyStatement = new \com\microsoft\wc\application\StatementInfo ($privacyStatement);
 		}
+
+		unset ($this->_overrides['privacyStatement']);
 	
 		return $privacyStatement;
 	}
 
-	public function getTermsOfUse() {
-		if ($this->termsOfUse===NULL) {
+	public function getTermsOfUse($autoCreate = TRUE) {
+		if ($this->termsOfUse===NULL && $autoCreate && ! isset($this->_overrides['termsOfUse']) ) {
 			$this->termsOfUse = $this->createTermsOfUse();
 		}
 		return $this->termsOfUse;
@@ -521,15 +584,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateTermsOfUse($termsOfUse) {
+		if ( $termsOfUse === FALSE ) {
+			$this->_overrides['termsOfUse'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $termsOfUse instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($termsOfUse) ) {
 			$termsOfUse = new \com\microsoft\wc\application\StatementInfo ($termsOfUse);
 		}
+
+		unset ($this->_overrides['termsOfUse']);
 	
 		return $termsOfUse;
 	}
 
-	public function getAppAuthRequired() {
-		if ($this->appAuthRequired===NULL) {
+	public function getAppAuthRequired($autoCreate = TRUE) {
+		if ($this->appAuthRequired===NULL && $autoCreate && ! isset($this->_overrides['appAuthRequired']) ) {
 			$this->appAuthRequired = $this->createAppAuthRequired();
 		}
 		return $this->appAuthRequired;
@@ -551,8 +621,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $appAuthRequired;
 	}
 
-	public function getIsPublished() {
-		if ($this->isPublished===NULL) {
+	public function getIsPublished($autoCreate = TRUE) {
+		if ($this->isPublished===NULL && $autoCreate && ! isset($this->_overrides['isPublished']) ) {
 			$this->isPublished = $this->createIsPublished();
 		}
 		return $this->isPublished;
@@ -574,8 +644,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $isPublished;
 	}
 
-	public function getDtcSuccessMessage() {
-		if ($this->dtcSuccessMessage===NULL) {
+	public function getDtcSuccessMessage($autoCreate = TRUE) {
+		if ($this->dtcSuccessMessage===NULL && $autoCreate && ! isset($this->_overrides['dtcSuccessMessage']) ) {
 			$this->dtcSuccessMessage = $this->createDtcSuccessMessage();
 		}
 		return $this->dtcSuccessMessage;
@@ -590,15 +660,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateDtcSuccessMessage($dtcSuccessMessage) {
+		if ( $dtcSuccessMessage === FALSE ) {
+			$this->_overrides['dtcSuccessMessage'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dtcSuccessMessage instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($dtcSuccessMessage) ) {
 			$dtcSuccessMessage = new \com\microsoft\wc\application\StatementInfo ($dtcSuccessMessage);
 		}
+
+		unset ($this->_overrides['dtcSuccessMessage']);
 	
 		return $dtcSuccessMessage;
 	}
 
-	public function getAppAttributes() {
-		if ($this->appAttributes===NULL) {
+	public function getAppAttributes($autoCreate = TRUE) {
+		if ($this->appAttributes===NULL && $autoCreate && ! isset($this->_overrides['appAttributes']) ) {
 			$this->appAttributes = $this->createAppAttributes();
 		}
 		return $this->appAttributes;
@@ -613,15 +690,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppAttributes($appAttributes) {
+		if ( $appAttributes === FALSE ) {
+			$this->_overrides['appAttributes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $appAttributes instanceof \com\microsoft\wc\application\ApplicationAttributes  && ! is_null($appAttributes) ) {
 			$appAttributes = new \com\microsoft\wc\application\ApplicationAttributes ($appAttributes);
 		}
+
+		unset ($this->_overrides['appAttributes']);
 	
 		return $appAttributes;
 	}
 
-	public function getValidIpPrefixes() {
-		if ($this->validIpPrefixes===NULL) {
+	public function getValidIpPrefixes($autoCreate = TRUE) {
+		if ($this->validIpPrefixes===NULL && $autoCreate && ! isset($this->_overrides['validIpPrefixes']) ) {
 			$this->validIpPrefixes = $this->createValidIpPrefixes();
 		}
 		return $this->validIpPrefixes;
@@ -636,15 +720,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateValidIpPrefixes($validIpPrefixes) {
+		if ( $validIpPrefixes === FALSE ) {
+			$this->_overrides['validIpPrefixes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $validIpPrefixes instanceof \com\microsoft\wc\types\String255nw  && ! is_null($validIpPrefixes) ) {
 			$validIpPrefixes = new \com\microsoft\wc\types\String255nw ($validIpPrefixes);
 		}
+
+		unset ($this->_overrides['validIpPrefixes']);
 	
 		return $validIpPrefixes;
 	}
 
-	public function getVocabularyAuthorizations() {
-		if ($this->vocabularyAuthorizations===NULL) {
+	public function getVocabularyAuthorizations($autoCreate = TRUE) {
+		if ($this->vocabularyAuthorizations===NULL && $autoCreate && ! isset($this->_overrides['vocabularyAuthorizations']) ) {
 			$this->vocabularyAuthorizations = $this->createVocabularyAuthorizations();
 		}
 		return $this->vocabularyAuthorizations;
@@ -659,9 +750,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateVocabularyAuthorizations($vocabularyAuthorizations) {
+		if ( $vocabularyAuthorizations === FALSE ) {
+			$this->_overrides['vocabularyAuthorizations'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vocabularyAuthorizations instanceof \com\microsoft\wc\vocab\VocabularyAuthorizations  && ! is_null($vocabularyAuthorizations) ) {
 			$vocabularyAuthorizations = new \com\microsoft\wc\vocab\VocabularyAuthorizations ($vocabularyAuthorizations);
 		}
+
+		unset ($this->_overrides['vocabularyAuthorizations']);
 	
 		return $vocabularyAuthorizations;
 	}

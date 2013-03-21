@@ -15,6 +15,13 @@ class GetAuthorizedPeopleParameters {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="person-id-cursor")
 	 */
 	protected $personIdCursor;
@@ -35,8 +42,8 @@ class GetAuthorizedPeopleParameters {
 		$this->numResults = ($numResults===NULL) ? NULL : $this->validateNumResults($numResults);
 	}
 
-	public function getPersonIdCursor() {
-		if ($this->personIdCursor===NULL) {
+	public function getPersonIdCursor($autoCreate = TRUE) {
+		if ($this->personIdCursor===NULL && $autoCreate && ! isset($this->_overrides['personIdCursor']) ) {
 			$this->personIdCursor = $this->createPersonIdCursor();
 		}
 		return $this->personIdCursor;
@@ -51,15 +58,22 @@ class GetAuthorizedPeopleParameters {
 	}
 
 	protected function validatePersonIdCursor($personIdCursor) {
+		if ( $personIdCursor === FALSE ) {
+			$this->_overrides['personIdCursor'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $personIdCursor instanceof \com\microsoft\wc\types\Guid  && ! is_null($personIdCursor) ) {
 			$personIdCursor = new \com\microsoft\wc\types\Guid ($personIdCursor);
 		}
+
+		unset ($this->_overrides['personIdCursor']);
 	
 		return $personIdCursor;
 	}
 
-	public function getAuthorizationsCreatedSince() {
-		if ($this->authorizationsCreatedSince===NULL) {
+	public function getAuthorizationsCreatedSince($autoCreate = TRUE) {
+		if ($this->authorizationsCreatedSince===NULL && $autoCreate && ! isset($this->_overrides['authorizationsCreatedSince']) ) {
 			$this->authorizationsCreatedSince = $this->createAuthorizationsCreatedSince();
 		}
 		return $this->authorizationsCreatedSince;
@@ -81,8 +95,8 @@ class GetAuthorizedPeopleParameters {
 		return $authorizationsCreatedSince;
 	}
 
-	public function getNumResults() {
-		if ($this->numResults===NULL) {
+	public function getNumResults($autoCreate = TRUE) {
+		if ($this->numResults===NULL && $autoCreate && ! isset($this->_overrides['numResults']) ) {
 			$this->numResults = $this->createNumResults();
 		}
 		return $this->numResults;

@@ -15,6 +15,13 @@ class StudentAcademicRecordType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="ReportingDate")
 	 */
 	protected $reportingDate;
@@ -119,8 +126,8 @@ class StudentAcademicRecordType {
 		$this->sifRefObject = ($sifRefObject===NULL) ? NULL : $this->validateSifRefObject($sifRefObject);
 	}
 
-	public function getReportingDate() {
-		if ($this->reportingDate===NULL) {
+	public function getReportingDate($autoCreate = TRUE) {
+		if ($this->reportingDate===NULL && $autoCreate && ! isset($this->_overrides['reportingDate']) ) {
 			$this->reportingDate = $this->createReportingDate();
 		}
 		return $this->reportingDate;
@@ -142,8 +149,8 @@ class StudentAcademicRecordType {
 		return $reportingDate;
 	}
 
-	public function getStudentSchoolEnrollmentData() {
-		if ($this->studentSchoolEnrollmentData===NULL) {
+	public function getStudentSchoolEnrollmentData($autoCreate = TRUE) {
+		if ($this->studentSchoolEnrollmentData===NULL && $autoCreate && ! isset($this->_overrides['studentSchoolEnrollmentData']) ) {
 			$this->studentSchoolEnrollmentData = $this->createStudentSchoolEnrollmentData();
 		}
 		return $this->studentSchoolEnrollmentData;
@@ -165,8 +172,8 @@ class StudentAcademicRecordType {
 		return $studentSchoolEnrollmentData;
 	}
 
-	public function getDistrictEntryDate() {
-		if ($this->districtEntryDate===NULL) {
+	public function getDistrictEntryDate($autoCreate = TRUE) {
+		if ($this->districtEntryDate===NULL && $autoCreate && ! isset($this->_overrides['districtEntryDate']) ) {
 			$this->districtEntryDate = $this->createDistrictEntryDate();
 		}
 		return $this->districtEntryDate;
@@ -185,8 +192,8 @@ class StudentAcademicRecordType {
 		return $districtEntryDate;
 	}
 
-	public function getSchoolAttendanceHistory() {
-		if ($this->schoolAttendanceHistory===NULL) {
+	public function getSchoolAttendanceHistory($autoCreate = TRUE) {
+		if ($this->schoolAttendanceHistory===NULL && $autoCreate && ! isset($this->_overrides['schoolAttendanceHistory']) ) {
 			$this->schoolAttendanceHistory = $this->createSchoolAttendanceHistory();
 		}
 		return $this->schoolAttendanceHistory;
@@ -208,8 +215,8 @@ class StudentAcademicRecordType {
 		return $schoolAttendanceHistory;
 	}
 
-	public function getEnrollmentHistory() {
-		if ($this->enrollmentHistory===NULL) {
+	public function getEnrollmentHistory($autoCreate = TRUE) {
+		if ($this->enrollmentHistory===NULL && $autoCreate && ! isset($this->_overrides['enrollmentHistory']) ) {
 			$this->enrollmentHistory = $this->createEnrollmentHistory();
 		}
 		return $this->enrollmentHistory;
@@ -224,15 +231,22 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateEnrollmentHistory($enrollmentHistory) {
+		if ( $enrollmentHistory === FALSE ) {
+			$this->_overrides['enrollmentHistory'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $enrollmentHistory instanceof \org\sifinfo\www\infrastructure\_2_x\EnrollmentHistory  && ! is_null($enrollmentHistory) ) {
 			$enrollmentHistory = new \org\sifinfo\www\infrastructure\_2_x\EnrollmentHistory ($enrollmentHistory);
 		}
+
+		unset ($this->_overrides['enrollmentHistory']);
 	
 		return $enrollmentHistory;
 	}
 
-	public function getCurrentCourseActivity() {
-		if ($this->currentCourseActivity===NULL) {
+	public function getCurrentCourseActivity($autoCreate = TRUE) {
+		if ($this->currentCourseActivity===NULL && $autoCreate && ! isset($this->_overrides['currentCourseActivity']) ) {
 			$this->currentCourseActivity = $this->createCurrentCourseActivity();
 		}
 		return $this->currentCourseActivity;
@@ -247,15 +261,22 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateCurrentCourseActivity($currentCourseActivity) {
+		if ( $currentCourseActivity === FALSE ) {
+			$this->_overrides['currentCourseActivity'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $currentCourseActivity instanceof \org\sifinfo\www\infrastructure\_2_x\CurrentCourseActivity  && ! is_null($currentCourseActivity) ) {
 			$currentCourseActivity = new \org\sifinfo\www\infrastructure\_2_x\CurrentCourseActivity ($currentCourseActivity);
 		}
+
+		unset ($this->_overrides['currentCourseActivity']);
 	
 		return $currentCourseActivity;
 	}
 
-	public function getCourseHistory() {
-		if ($this->courseHistory===NULL) {
+	public function getCourseHistory($autoCreate = TRUE) {
+		if ($this->courseHistory===NULL && $autoCreate && ! isset($this->_overrides['courseHistory']) ) {
 			$this->courseHistory = $this->createCourseHistory();
 		}
 		return $this->courseHistory;
@@ -270,15 +291,22 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateCourseHistory($courseHistory) {
+		if ( $courseHistory === FALSE ) {
+			$this->_overrides['courseHistory'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $courseHistory instanceof \org\sifinfo\www\infrastructure\_2_x\CourseHistory  && ! is_null($courseHistory) ) {
 			$courseHistory = new \org\sifinfo\www\infrastructure\_2_x\CourseHistory ($courseHistory);
 		}
+
+		unset ($this->_overrides['courseHistory']);
 	
 		return $courseHistory;
 	}
 
-	public function getAcademicPerformanceHistory() {
-		if ($this->academicPerformanceHistory===NULL) {
+	public function getAcademicPerformanceHistory($autoCreate = TRUE) {
+		if ($this->academicPerformanceHistory===NULL && $autoCreate && ! isset($this->_overrides['academicPerformanceHistory']) ) {
 			$this->academicPerformanceHistory = $this->createAcademicPerformanceHistory();
 		}
 		return $this->academicPerformanceHistory;
@@ -293,15 +321,22 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateAcademicPerformanceHistory($academicPerformanceHistory) {
+		if ( $academicPerformanceHistory === FALSE ) {
+			$this->_overrides['academicPerformanceHistory'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $academicPerformanceHistory instanceof \org\sifinfo\www\infrastructure\_2_x\AcademicPerformanceHistory  && ! is_null($academicPerformanceHistory) ) {
 			$academicPerformanceHistory = new \org\sifinfo\www\infrastructure\_2_x\AcademicPerformanceHistory ($academicPerformanceHistory);
 		}
+
+		unset ($this->_overrides['academicPerformanceHistory']);
 	
 		return $academicPerformanceHistory;
 	}
 
-	public function getAcademicPerformanceSummary() {
-		if ($this->academicPerformanceSummary===NULL) {
+	public function getAcademicPerformanceSummary($autoCreate = TRUE) {
+		if ($this->academicPerformanceSummary===NULL && $autoCreate && ! isset($this->_overrides['academicPerformanceSummary']) ) {
 			$this->academicPerformanceSummary = $this->createAcademicPerformanceSummary();
 		}
 		return $this->academicPerformanceSummary;
@@ -323,8 +358,8 @@ class StudentAcademicRecordType {
 		return $academicPerformanceSummary;
 	}
 
-	public function getAssessmentPerformanceHistory() {
-		if ($this->assessmentPerformanceHistory===NULL) {
+	public function getAssessmentPerformanceHistory($autoCreate = TRUE) {
+		if ($this->assessmentPerformanceHistory===NULL && $autoCreate && ! isset($this->_overrides['assessmentPerformanceHistory']) ) {
 			$this->assessmentPerformanceHistory = $this->createAssessmentPerformanceHistory();
 		}
 		return $this->assessmentPerformanceHistory;
@@ -339,15 +374,22 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateAssessmentPerformanceHistory($assessmentPerformanceHistory) {
+		if ( $assessmentPerformanceHistory === FALSE ) {
+			$this->_overrides['assessmentPerformanceHistory'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $assessmentPerformanceHistory instanceof \org\sifinfo\www\infrastructure\_2_x\AssessmentPerformanceHistory  && ! is_null($assessmentPerformanceHistory) ) {
 			$assessmentPerformanceHistory = new \org\sifinfo\www\infrastructure\_2_x\AssessmentPerformanceHistory ($assessmentPerformanceHistory);
 		}
+
+		unset ($this->_overrides['assessmentPerformanceHistory']);
 	
 		return $assessmentPerformanceHistory;
 	}
 
-	public function getAdditionalGraduationRequirementPerformanceHistory() {
-		if ($this->additionalGraduationRequirementPerformanceHistory===NULL) {
+	public function getAdditionalGraduationRequirementPerformanceHistory($autoCreate = TRUE) {
+		if ($this->additionalGraduationRequirementPerformanceHistory===NULL && $autoCreate && ! isset($this->_overrides['additionalGraduationRequirementPerformanceHistory']) ) {
 			$this->additionalGraduationRequirementPerformanceHistory = $this->createAdditionalGraduationRequirementPerformanceHistory();
 		}
 		return $this->additionalGraduationRequirementPerformanceHistory;
@@ -362,15 +404,22 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateAdditionalGraduationRequirementPerformanceHistory($additionalGraduationRequirementPerformanceHistory) {
+		if ( $additionalGraduationRequirementPerformanceHistory === FALSE ) {
+			$this->_overrides['additionalGraduationRequirementPerformanceHistory'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $additionalGraduationRequirementPerformanceHistory instanceof \org\sifinfo\www\infrastructure\_2_x\AdditionalGraduationRequirementPerformanceHistory  && ! is_null($additionalGraduationRequirementPerformanceHistory) ) {
 			$additionalGraduationRequirementPerformanceHistory = new \org\sifinfo\www\infrastructure\_2_x\AdditionalGraduationRequirementPerformanceHistory ($additionalGraduationRequirementPerformanceHistory);
 		}
+
+		unset ($this->_overrides['additionalGraduationRequirementPerformanceHistory']);
 	
 		return $additionalGraduationRequirementPerformanceHistory;
 	}
 
-	public function getActivityAwardHistory() {
-		if ($this->activityAwardHistory===NULL) {
+	public function getActivityAwardHistory($autoCreate = TRUE) {
+		if ($this->activityAwardHistory===NULL && $autoCreate && ! isset($this->_overrides['activityAwardHistory']) ) {
 			$this->activityAwardHistory = $this->createActivityAwardHistory();
 		}
 		return $this->activityAwardHistory;
@@ -385,15 +434,22 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateActivityAwardHistory($activityAwardHistory) {
+		if ( $activityAwardHistory === FALSE ) {
+			$this->_overrides['activityAwardHistory'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $activityAwardHistory instanceof \org\sifinfo\www\infrastructure\_2_x\ActivityAwardHistory  && ! is_null($activityAwardHistory) ) {
 			$activityAwardHistory = new \org\sifinfo\www\infrastructure\_2_x\ActivityAwardHistory ($activityAwardHistory);
 		}
+
+		unset ($this->_overrides['activityAwardHistory']);
 	
 		return $activityAwardHistory;
 	}
 
-	public function getSifMetadata() {
-		if ($this->sifMetadata===NULL) {
+	public function getSifMetadata($autoCreate = TRUE) {
+		if ($this->sifMetadata===NULL && $autoCreate && ! isset($this->_overrides['sifMetadata']) ) {
 			$this->sifMetadata = $this->createSifMetadata();
 		}
 		return $this->sifMetadata;
@@ -408,15 +464,22 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateSifMetadata($sifMetadata) {
+		if ( $sifMetadata === FALSE ) {
+			$this->_overrides['sifMetadata'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifMetadata instanceof \org\sifinfo\www\infrastructure\_2_x\SIFMetadataType  && ! is_null($sifMetadata) ) {
 			$sifMetadata = new \org\sifinfo\www\infrastructure\_2_x\SIFMetadataType ($sifMetadata);
 		}
+
+		unset ($this->_overrides['sifMetadata']);
 	
 		return $sifMetadata;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -431,15 +494,22 @@ class StudentAcademicRecordType {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}
 
-	public function getRefId() {
-		if ($this->refId===NULL) {
+	public function getRefId($autoCreate = TRUE) {
+		if ($this->refId===NULL && $autoCreate && ! isset($this->_overrides['refId']) ) {
 			$this->refId = $this->createRefId();
 		}
 		return $this->refId;
@@ -458,8 +528,8 @@ class StudentAcademicRecordType {
 		return $refId;
 	}
 
-	public function getSifRefId() {
-		if ($this->sifRefId===NULL) {
+	public function getSifRefId($autoCreate = TRUE) {
+		if ($this->sifRefId===NULL && $autoCreate && ! isset($this->_overrides['sifRefId']) ) {
 			$this->sifRefId = $this->createSifRefId();
 		}
 		return $this->sifRefId;
@@ -478,8 +548,8 @@ class StudentAcademicRecordType {
 		return $sifRefId;
 	}
 
-	public function getSifRefObject() {
-		if ($this->sifRefObject===NULL) {
+	public function getSifRefObject($autoCreate = TRUE) {
+		if ($this->sifRefObject===NULL && $autoCreate && ! isset($this->_overrides['sifRefObject']) ) {
 			$this->sifRefObject = $this->createSifRefObject();
 		}
 		return $this->sifRefObject;

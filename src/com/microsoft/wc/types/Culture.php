@@ -15,6 +15,13 @@ class Culture {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Iso6391", name="language")
 	 */
 	protected $language;
@@ -29,8 +36,8 @@ class Culture {
 		$this->country = ($country===NULL) ? NULL : $this->validateCountry($country);
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -45,15 +52,22 @@ class Culture {
 	}
 
 	protected function validateLanguage($language) {
+		if ( $language === FALSE ) {
+			$this->_overrides['language'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
 			$language = new \com\microsoft\wc\types\Iso6391 ($language);
 		}
+
+		unset ($this->_overrides['language']);
 	
 		return $language;
 	}
 
-	public function getCountry() {
-		if ($this->country===NULL) {
+	public function getCountry($autoCreate = TRUE) {
+		if ($this->country===NULL && $autoCreate && ! isset($this->_overrides['country']) ) {
 			$this->country = $this->createCountry();
 		}
 		return $this->country;
@@ -68,9 +82,16 @@ class Culture {
 	}
 
 	protected function validateCountry($country) {
+		if ( $country === FALSE ) {
+			$this->_overrides['country'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $country instanceof \com\microsoft\wc\types\Iso3166  && ! is_null($country) ) {
 			$country = new \com\microsoft\wc\types\Iso3166 ($country);
 		}
+
+		unset ($this->_overrides['country']);
 	
 		return $country;
 	}

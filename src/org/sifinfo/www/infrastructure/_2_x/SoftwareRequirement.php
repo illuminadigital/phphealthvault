@@ -14,6 +14,13 @@ class SoftwareRequirement {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="SoftwareTitle")
 	 */
 	protected $softwareTitle;
@@ -40,8 +47,8 @@ class SoftwareRequirement {
 		$this->oS = ($oS===NULL) ? NULL : $this->validateOS($oS);
 	}
 
-	public function getSoftwareTitle() {
-		if ($this->softwareTitle===NULL) {
+	public function getSoftwareTitle($autoCreate = TRUE) {
+		if ($this->softwareTitle===NULL && $autoCreate && ! isset($this->_overrides['softwareTitle']) ) {
 			$this->softwareTitle = $this->createSoftwareTitle();
 		}
 		return $this->softwareTitle;
@@ -63,8 +70,8 @@ class SoftwareRequirement {
 		return $softwareTitle;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;
@@ -86,8 +93,8 @@ class SoftwareRequirement {
 		return $version;
 	}
 
-	public function getVendor() {
-		if ($this->vendor===NULL) {
+	public function getVendor($autoCreate = TRUE) {
+		if ($this->vendor===NULL && $autoCreate && ! isset($this->_overrides['vendor']) ) {
 			$this->vendor = $this->createVendor();
 		}
 		return $this->vendor;
@@ -109,8 +116,8 @@ class SoftwareRequirement {
 		return $vendor;
 	}
 
-	public function getOS() {
-		if ($this->oS===NULL) {
+	public function getOS($autoCreate = TRUE) {
+		if ($this->oS===NULL && $autoCreate && ! isset($this->_overrides['oS']) ) {
 			$this->oS = $this->createOS();
 		}
 		return $this->oS;

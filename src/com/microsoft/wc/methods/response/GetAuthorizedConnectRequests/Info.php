@@ -15,6 +15,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="resume-key")
 	 */
 	protected $resumeKey;
@@ -29,8 +36,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->connectRequest = ($connectRequest===NULL) ? NULL : $this->validateConnectRequest($connectRequest);
 	}
 
-	public function getResumeKey() {
-		if ($this->resumeKey===NULL) {
+	public function getResumeKey($autoCreate = TRUE) {
+		if ($this->resumeKey===NULL && $autoCreate && ! isset($this->_overrides['resumeKey']) ) {
 			$this->resumeKey = $this->createResumeKey();
 		}
 		return $this->resumeKey;
@@ -52,8 +59,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		return $resumeKey;
 	}
 
-	public function getConnectRequest() {
-		if ($this->connectRequest===NULL) {
+	public function getConnectRequest($autoCreate = TRUE) {
+		if ($this->connectRequest===NULL && $autoCreate && ! isset($this->_overrides['connectRequest']) ) {
 			$this->connectRequest = $this->createConnectRequest();
 		}
 		return $this->connectRequest;
@@ -68,9 +75,16 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateConnectRequest($connectRequest) {
+		if ( $connectRequest === FALSE ) {
+			$this->_overrides['connectRequest'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($connectRequest) && ! is_null($connectRequest) ) {
 			$connectRequest = array($connectRequest);
 		}
+
+		unset ($this->_overrides['connectRequest']);
 		$count = count($connectRequest);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'connectRequest', 0));

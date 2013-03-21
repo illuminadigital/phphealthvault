@@ -16,6 +16,13 @@ class UserPassCred {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\LoginName", name="username")
 	 */
 	protected $username;
@@ -30,8 +37,8 @@ class UserPassCred {
 		$this->password = ($password===NULL) ? NULL : $this->validatePassword($password);
 	}
 
-	public function getUsername() {
-		if ($this->username===NULL) {
+	public function getUsername($autoCreate = TRUE) {
+		if ($this->username===NULL && $autoCreate && ! isset($this->_overrides['username']) ) {
 			$this->username = $this->createUsername();
 		}
 		return $this->username;
@@ -53,8 +60,8 @@ class UserPassCred {
 		return $username;
 	}
 
-	public function getPassword() {
-		if ($this->password===NULL) {
+	public function getPassword($autoCreate = TRUE) {
+		if ($this->password===NULL && $autoCreate && ! isset($this->_overrides['password']) ) {
 			$this->password = $this->createPassword();
 		}
 		return $this->password;

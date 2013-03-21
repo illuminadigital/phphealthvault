@@ -14,6 +14,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="boolean", name="all-languages")
 	 */
 	protected $allLanguages;
@@ -28,8 +35,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->childAppId = ($childAppId===NULL) ? NULL : $this->validateChildAppId($childAppId);
 	}
 
-	public function getAllLanguages() {
-		if ($this->allLanguages===NULL) {
+	public function getAllLanguages($autoCreate = TRUE) {
+		if ($this->allLanguages===NULL && $autoCreate && ! isset($this->_overrides['allLanguages']) ) {
 			$this->allLanguages = $this->createAllLanguages();
 		}
 		return $this->allLanguages;
@@ -51,8 +58,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $allLanguages;
 	}
 
-	public function getChildAppId() {
-		if ($this->childAppId===NULL) {
+	public function getChildAppId($autoCreate = TRUE) {
+		if ($this->childAppId===NULL && $autoCreate && ! isset($this->_overrides['childAppId']) ) {
 			$this->childAppId = $this->createChildAppId();
 		}
 		return $this->childAppId;
@@ -67,9 +74,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateChildAppId($childAppId) {
+		if ( $childAppId === FALSE ) {
+			$this->_overrides['childAppId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $childAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($childAppId) ) {
 			$childAppId = new \com\microsoft\wc\types\Guid ($childAppId);
 		}
+
+		unset ($this->_overrides['childAppId']);
 	
 		return $childAppId;
 	}

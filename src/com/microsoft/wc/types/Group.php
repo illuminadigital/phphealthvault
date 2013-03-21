@@ -16,6 +16,13 @@ class Group {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String255", name="name")
 	 */
 	protected $name;
@@ -36,8 +43,8 @@ class Group {
 		$this->contactEmail = ($contactEmail===NULL) ? NULL : $this->validateContactEmail($contactEmail);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -59,8 +66,8 @@ class Group {
 		return $name;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -82,8 +89,8 @@ class Group {
 		return $id;
 	}
 
-	public function getContactEmail() {
-		if ($this->contactEmail===NULL) {
+	public function getContactEmail($autoCreate = TRUE) {
+		if ($this->contactEmail===NULL && $autoCreate && ! isset($this->_overrides['contactEmail']) ) {
 			$this->contactEmail = $this->createContactEmail();
 		}
 		return $this->contactEmail;

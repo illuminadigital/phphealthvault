@@ -13,6 +13,13 @@ class LocalId extends \org\sifinfo\www\infrastructure\_2_x\LocalIdType {
 	/**
 	 */
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class LocalId

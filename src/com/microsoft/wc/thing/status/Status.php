@@ -19,6 +19,13 @@ class Status extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Status';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="status-type")
 	 */
 	protected $statusType;
@@ -33,8 +40,8 @@ class Status extends \com\microsoft\wc\thing\AnyMixed {
 		$this->text = ($text===NULL) ? NULL : $this->validateText($text);
 	}
 
-	public function getStatusType() {
-		if ($this->statusType===NULL) {
+	public function getStatusType($autoCreate = TRUE) {
+		if ($this->statusType===NULL && $autoCreate && ! isset($this->_overrides['statusType']) ) {
 			$this->statusType = $this->createStatusType();
 		}
 		return $this->statusType;
@@ -56,8 +63,8 @@ class Status extends \com\microsoft\wc\thing\AnyMixed {
 		return $statusType;
 	}
 
-	public function getText() {
-		if ($this->text===NULL) {
+	public function getText($autoCreate = TRUE) {
+		if ($this->text===NULL && $autoCreate && ! isset($this->_overrides['text']) ) {
 			$this->text = $this->createText();
 		}
 		return $this->text;
@@ -72,9 +79,16 @@ class Status extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateText($text) {
+		if ( $text === FALSE ) {
+			$this->_overrides['text'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $text instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($text) ) {
 			$text = new \com\microsoft\wc\types\Stringnznw ($text);
 		}
+
+		unset ($this->_overrides['text']);
 	
 		return $text;
 	}

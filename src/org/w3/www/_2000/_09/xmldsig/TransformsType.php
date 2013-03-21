@@ -14,6 +14,13 @@ class TransformsType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\Transform", collection="true", name="Transform")
 	 */
 	protected $transform;
@@ -22,8 +29,8 @@ class TransformsType {
 		$this->transform = ($transform===NULL) ? NULL : $this->validateTransform($transform);
 	}
 
-	public function getTransform() {
-		if ($this->transform===NULL) {
+	public function getTransform($autoCreate = TRUE) {
+		if ($this->transform===NULL && $autoCreate && ! isset($this->_overrides['transform']) ) {
 			$this->transform = $this->createTransform();
 		}
 		return $this->transform;

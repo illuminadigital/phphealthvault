@@ -14,6 +14,13 @@ class HttpNotificationChannel {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="url")
 	 */
 	protected $url;
@@ -22,8 +29,8 @@ class HttpNotificationChannel {
 		$this->url = ($url===NULL) ? NULL : $this->validateUrl($url);
 	}
 
-	public function getUrl() {
-		if ($this->url===NULL) {
+	public function getUrl($autoCreate = TRUE) {
+		if ($this->url===NULL && $autoCreate && ! isset($this->_overrides['url']) ) {
 			$this->url = $this->createUrl();
 		}
 		return $this->url;

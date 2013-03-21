@@ -16,6 +16,13 @@ class Sig extends \com\microsoft\wc\types\String1024 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="digestMethod")
 	 */
 	protected $digestMethod;
@@ -36,8 +43,8 @@ class Sig extends \com\microsoft\wc\types\String1024 {
 		$this->thumbprint = ($thumbprint===NULL) ? NULL : $this->validateThumbprint($thumbprint);
 	}
 
-	public function getDigestMethod() {
-		if ($this->digestMethod===NULL) {
+	public function getDigestMethod($autoCreate = TRUE) {
+		if ($this->digestMethod===NULL && $autoCreate && ! isset($this->_overrides['digestMethod']) ) {
 			$this->digestMethod = $this->createDigestMethod();
 		}
 		return $this->digestMethod;
@@ -59,8 +66,8 @@ class Sig extends \com\microsoft\wc\types\String1024 {
 		return $digestMethod;
 	}
 
-	public function getSigMethod() {
-		if ($this->sigMethod===NULL) {
+	public function getSigMethod($autoCreate = TRUE) {
+		if ($this->sigMethod===NULL && $autoCreate && ! isset($this->_overrides['sigMethod']) ) {
 			$this->sigMethod = $this->createSigMethod();
 		}
 		return $this->sigMethod;
@@ -82,8 +89,8 @@ class Sig extends \com\microsoft\wc\types\String1024 {
 		return $sigMethod;
 	}
 
-	public function getThumbprint() {
-		if ($this->thumbprint===NULL) {
+	public function getThumbprint($autoCreate = TRUE) {
+		if ($this->thumbprint===NULL && $autoCreate && ! isset($this->_overrides['thumbprint']) ) {
 			$this->thumbprint = $this->createThumbprint();
 		}
 		return $this->thumbprint;

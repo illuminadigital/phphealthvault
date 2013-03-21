@@ -14,6 +14,13 @@ class OtherRecords {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\IdRefType", collection="true", name="StudentRecordPackageRefId")
 	 */
 	protected $studentRecordPackageRefId;
@@ -22,8 +29,8 @@ class OtherRecords {
 		$this->studentRecordPackageRefId = ($studentRecordPackageRefId===NULL) ? NULL : $this->validateStudentRecordPackageRefId($studentRecordPackageRefId);
 	}
 
-	public function getStudentRecordPackageRefId() {
-		if ($this->studentRecordPackageRefId===NULL) {
+	public function getStudentRecordPackageRefId($autoCreate = TRUE) {
+		if ($this->studentRecordPackageRefId===NULL && $autoCreate && ! isset($this->_overrides['studentRecordPackageRefId']) ) {
 			$this->studentRecordPackageRefId = $this->createStudentRecordPackageRefId();
 		}
 		return $this->studentRecordPackageRefId;

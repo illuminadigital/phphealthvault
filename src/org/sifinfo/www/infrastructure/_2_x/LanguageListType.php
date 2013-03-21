@@ -14,6 +14,13 @@ class LanguageListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Language", collection="true", name="Language")
 	 */
 	protected $language;
@@ -22,8 +29,8 @@ class LanguageListType {
 		$this->language = ($language===NULL) ? NULL : $this->validateLanguage($language);
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;

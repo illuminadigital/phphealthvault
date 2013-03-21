@@ -15,6 +15,13 @@ class DemographicsType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\RaceListType", name="RaceList")
 	 */
 	protected $raceList;
@@ -119,8 +126,8 @@ class DemographicsType {
 		$this->maritalStatus = ($maritalStatus===NULL) ? NULL : $this->validateMaritalStatus($maritalStatus);
 	}
 
-	public function getRaceList() {
-		if ($this->raceList===NULL) {
+	public function getRaceList($autoCreate = TRUE) {
+		if ($this->raceList===NULL && $autoCreate && ! isset($this->_overrides['raceList']) ) {
 			$this->raceList = $this->createRaceList();
 		}
 		return $this->raceList;
@@ -135,15 +142,22 @@ class DemographicsType {
 	}
 
 	protected function validateRaceList($raceList) {
+		if ( $raceList === FALSE ) {
+			$this->_overrides['raceList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $raceList instanceof \org\sifinfo\www\infrastructure\_2_x\RaceListType  && ! is_null($raceList) ) {
 			$raceList = new \org\sifinfo\www\infrastructure\_2_x\RaceListType ($raceList);
 		}
+
+		unset ($this->_overrides['raceList']);
 	
 		return $raceList;
 	}
 
-	public function getHispanicLatino() {
-		if ($this->hispanicLatino===NULL) {
+	public function getHispanicLatino($autoCreate = TRUE) {
+		if ($this->hispanicLatino===NULL && $autoCreate && ! isset($this->_overrides['hispanicLatino']) ) {
 			$this->hispanicLatino = $this->createHispanicLatino();
 		}
 		return $this->hispanicLatino;
@@ -162,8 +176,8 @@ class DemographicsType {
 		return $hispanicLatino;
 	}
 
-	public function getGender() {
-		if ($this->gender===NULL) {
+	public function getGender($autoCreate = TRUE) {
+		if ($this->gender===NULL && $autoCreate && ! isset($this->_overrides['gender']) ) {
 			$this->gender = $this->createGender();
 		}
 		return $this->gender;
@@ -182,8 +196,8 @@ class DemographicsType {
 		return $gender;
 	}
 
-	public function getBirthDate() {
-		if ($this->birthDate===NULL) {
+	public function getBirthDate($autoCreate = TRUE) {
+		if ($this->birthDate===NULL && $autoCreate && ! isset($this->_overrides['birthDate']) ) {
 			$this->birthDate = $this->createBirthDate();
 		}
 		return $this->birthDate;
@@ -202,8 +216,8 @@ class DemographicsType {
 		return $birthDate;
 	}
 
-	public function getBirthDateVerification() {
-		if ($this->birthDateVerification===NULL) {
+	public function getBirthDateVerification($autoCreate = TRUE) {
+		if ($this->birthDateVerification===NULL && $autoCreate && ! isset($this->_overrides['birthDateVerification']) ) {
 			$this->birthDateVerification = $this->createBirthDateVerification();
 		}
 		return $this->birthDateVerification;
@@ -222,8 +236,8 @@ class DemographicsType {
 		return $birthDateVerification;
 	}
 
-	public function getPlaceOfBirth() {
-		if ($this->placeOfBirth===NULL) {
+	public function getPlaceOfBirth($autoCreate = TRUE) {
+		if ($this->placeOfBirth===NULL && $autoCreate && ! isset($this->_overrides['placeOfBirth']) ) {
 			$this->placeOfBirth = $this->createPlaceOfBirth();
 		}
 		return $this->placeOfBirth;
@@ -245,8 +259,8 @@ class DemographicsType {
 		return $placeOfBirth;
 	}
 
-	public function getCountyOfBirth() {
-		if ($this->countyOfBirth===NULL) {
+	public function getCountyOfBirth($autoCreate = TRUE) {
+		if ($this->countyOfBirth===NULL && $autoCreate && ! isset($this->_overrides['countyOfBirth']) ) {
 			$this->countyOfBirth = $this->createCountyOfBirth();
 		}
 		return $this->countyOfBirth;
@@ -268,8 +282,8 @@ class DemographicsType {
 		return $countyOfBirth;
 	}
 
-	public function getStateOfBirth() {
-		if ($this->stateOfBirth===NULL) {
+	public function getStateOfBirth($autoCreate = TRUE) {
+		if ($this->stateOfBirth===NULL && $autoCreate && ! isset($this->_overrides['stateOfBirth']) ) {
 			$this->stateOfBirth = $this->createStateOfBirth();
 		}
 		return $this->stateOfBirth;
@@ -288,8 +302,8 @@ class DemographicsType {
 		return $stateOfBirth;
 	}
 
-	public function getCountryOfBirth() {
-		if ($this->countryOfBirth===NULL) {
+	public function getCountryOfBirth($autoCreate = TRUE) {
+		if ($this->countryOfBirth===NULL && $autoCreate && ! isset($this->_overrides['countryOfBirth']) ) {
 			$this->countryOfBirth = $this->createCountryOfBirth();
 		}
 		return $this->countryOfBirth;
@@ -308,8 +322,8 @@ class DemographicsType {
 		return $countryOfBirth;
 	}
 
-	public function getCountriesOfCitizenship() {
-		if ($this->countriesOfCitizenship===NULL) {
+	public function getCountriesOfCitizenship($autoCreate = TRUE) {
+		if ($this->countriesOfCitizenship===NULL && $autoCreate && ! isset($this->_overrides['countriesOfCitizenship']) ) {
 			$this->countriesOfCitizenship = $this->createCountriesOfCitizenship();
 		}
 		return $this->countriesOfCitizenship;
@@ -324,15 +338,22 @@ class DemographicsType {
 	}
 
 	protected function validateCountriesOfCitizenship($countriesOfCitizenship) {
+		if ( $countriesOfCitizenship === FALSE ) {
+			$this->_overrides['countriesOfCitizenship'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $countriesOfCitizenship instanceof \org\sifinfo\www\infrastructure\_2_x\CountriesOfCitizenship  && ! is_null($countriesOfCitizenship) ) {
 			$countriesOfCitizenship = new \org\sifinfo\www\infrastructure\_2_x\CountriesOfCitizenship ($countriesOfCitizenship);
 		}
+
+		unset ($this->_overrides['countriesOfCitizenship']);
 	
 		return $countriesOfCitizenship;
 	}
 
-	public function getCountriesOfResidency() {
-		if ($this->countriesOfResidency===NULL) {
+	public function getCountriesOfResidency($autoCreate = TRUE) {
+		if ($this->countriesOfResidency===NULL && $autoCreate && ! isset($this->_overrides['countriesOfResidency']) ) {
 			$this->countriesOfResidency = $this->createCountriesOfResidency();
 		}
 		return $this->countriesOfResidency;
@@ -347,15 +368,22 @@ class DemographicsType {
 	}
 
 	protected function validateCountriesOfResidency($countriesOfResidency) {
+		if ( $countriesOfResidency === FALSE ) {
+			$this->_overrides['countriesOfResidency'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $countriesOfResidency instanceof \org\sifinfo\www\infrastructure\_2_x\CountriesOfResidency  && ! is_null($countriesOfResidency) ) {
 			$countriesOfResidency = new \org\sifinfo\www\infrastructure\_2_x\CountriesOfResidency ($countriesOfResidency);
 		}
+
+		unset ($this->_overrides['countriesOfResidency']);
 	
 		return $countriesOfResidency;
 	}
 
-	public function getCountryArrivalDate() {
-		if ($this->countryArrivalDate===NULL) {
+	public function getCountryArrivalDate($autoCreate = TRUE) {
+		if ($this->countryArrivalDate===NULL && $autoCreate && ! isset($this->_overrides['countryArrivalDate']) ) {
 			$this->countryArrivalDate = $this->createCountryArrivalDate();
 		}
 		return $this->countryArrivalDate;
@@ -377,8 +405,8 @@ class DemographicsType {
 		return $countryArrivalDate;
 	}
 
-	public function getCitizenshipStatus() {
-		if ($this->citizenshipStatus===NULL) {
+	public function getCitizenshipStatus($autoCreate = TRUE) {
+		if ($this->citizenshipStatus===NULL && $autoCreate && ! isset($this->_overrides['citizenshipStatus']) ) {
 			$this->citizenshipStatus = $this->createCitizenshipStatus();
 		}
 		return $this->citizenshipStatus;
@@ -397,8 +425,8 @@ class DemographicsType {
 		return $citizenshipStatus;
 	}
 
-	public function getEnglishProficiency() {
-		if ($this->englishProficiency===NULL) {
+	public function getEnglishProficiency($autoCreate = TRUE) {
+		if ($this->englishProficiency===NULL && $autoCreate && ! isset($this->_overrides['englishProficiency']) ) {
 			$this->englishProficiency = $this->createEnglishProficiency();
 		}
 		return $this->englishProficiency;
@@ -413,15 +441,22 @@ class DemographicsType {
 	}
 
 	protected function validateEnglishProficiency($englishProficiency) {
+		if ( $englishProficiency === FALSE ) {
+			$this->_overrides['englishProficiency'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $englishProficiency instanceof \org\sifinfo\www\infrastructure\_2_x\EnglishProficiencyType  && ! is_null($englishProficiency) ) {
 			$englishProficiency = new \org\sifinfo\www\infrastructure\_2_x\EnglishProficiencyType ($englishProficiency);
 		}
+
+		unset ($this->_overrides['englishProficiency']);
 	
 		return $englishProficiency;
 	}
 
-	public function getLanguageList() {
-		if ($this->languageList===NULL) {
+	public function getLanguageList($autoCreate = TRUE) {
+		if ($this->languageList===NULL && $autoCreate && ! isset($this->_overrides['languageList']) ) {
 			$this->languageList = $this->createLanguageList();
 		}
 		return $this->languageList;
@@ -436,15 +471,22 @@ class DemographicsType {
 	}
 
 	protected function validateLanguageList($languageList) {
+		if ( $languageList === FALSE ) {
+			$this->_overrides['languageList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $languageList instanceof \org\sifinfo\www\infrastructure\_2_x\LanguageListType  && ! is_null($languageList) ) {
 			$languageList = new \org\sifinfo\www\infrastructure\_2_x\LanguageListType ($languageList);
 		}
+
+		unset ($this->_overrides['languageList']);
 	
 		return $languageList;
 	}
 
-	public function getDwellingArrangement() {
-		if ($this->dwellingArrangement===NULL) {
+	public function getDwellingArrangement($autoCreate = TRUE) {
+		if ($this->dwellingArrangement===NULL && $autoCreate && ! isset($this->_overrides['dwellingArrangement']) ) {
 			$this->dwellingArrangement = $this->createDwellingArrangement();
 		}
 		return $this->dwellingArrangement;
@@ -459,15 +501,22 @@ class DemographicsType {
 	}
 
 	protected function validateDwellingArrangement($dwellingArrangement) {
+		if ( $dwellingArrangement === FALSE ) {
+			$this->_overrides['dwellingArrangement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dwellingArrangement instanceof \org\sifinfo\www\infrastructure\_2_x\DwellingArrangement  && ! is_null($dwellingArrangement) ) {
 			$dwellingArrangement = new \org\sifinfo\www\infrastructure\_2_x\DwellingArrangement ($dwellingArrangement);
 		}
+
+		unset ($this->_overrides['dwellingArrangement']);
 	
 		return $dwellingArrangement;
 	}
 
-	public function getMaritalStatus() {
-		if ($this->maritalStatus===NULL) {
+	public function getMaritalStatus($autoCreate = TRUE) {
+		if ($this->maritalStatus===NULL && $autoCreate && ! isset($this->_overrides['maritalStatus']) ) {
 			$this->maritalStatus = $this->createMaritalStatus();
 		}
 		return $this->maritalStatus;

@@ -19,6 +19,13 @@ class WeightGoal extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Weight Goal';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\WeightValue", name="initial")
 	 */
 	protected $initial;
@@ -45,8 +52,8 @@ class WeightGoal extends \com\microsoft\wc\thing\AnyMixed {
 		$this->goalInfo = ($goalInfo===NULL) ? NULL : $this->validateGoalInfo($goalInfo);
 	}
 
-	public function getInitial() {
-		if ($this->initial===NULL) {
+	public function getInitial($autoCreate = TRUE) {
+		if ($this->initial===NULL && $autoCreate && ! isset($this->_overrides['initial']) ) {
 			$this->initial = $this->createInitial();
 		}
 		return $this->initial;
@@ -61,15 +68,22 @@ class WeightGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateInitial($initial) {
+		if ( $initial === FALSE ) {
+			$this->_overrides['initial'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $initial instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($initial) ) {
 			$initial = new \com\microsoft\wc\thing\types\WeightValue ($initial);
 		}
+
+		unset ($this->_overrides['initial']);
 	
 		return $initial;
 	}
 
-	public function getMinimum() {
-		if ($this->minimum===NULL) {
+	public function getMinimum($autoCreate = TRUE) {
+		if ($this->minimum===NULL && $autoCreate && ! isset($this->_overrides['minimum']) ) {
 			$this->minimum = $this->createMinimum();
 		}
 		return $this->minimum;
@@ -84,15 +98,22 @@ class WeightGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMinimum($minimum) {
+		if ( $minimum === FALSE ) {
+			$this->_overrides['minimum'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minimum instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($minimum) ) {
 			$minimum = new \com\microsoft\wc\thing\types\WeightValue ($minimum);
 		}
+
+		unset ($this->_overrides['minimum']);
 	
 		return $minimum;
 	}
 
-	public function getMaximum() {
-		if ($this->maximum===NULL) {
+	public function getMaximum($autoCreate = TRUE) {
+		if ($this->maximum===NULL && $autoCreate && ! isset($this->_overrides['maximum']) ) {
 			$this->maximum = $this->createMaximum();
 		}
 		return $this->maximum;
@@ -107,15 +128,22 @@ class WeightGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMaximum($maximum) {
+		if ( $maximum === FALSE ) {
+			$this->_overrides['maximum'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $maximum instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($maximum) ) {
 			$maximum = new \com\microsoft\wc\thing\types\WeightValue ($maximum);
 		}
+
+		unset ($this->_overrides['maximum']);
 	
 		return $maximum;
 	}
 
-	public function getGoalInfo() {
-		if ($this->goalInfo===NULL) {
+	public function getGoalInfo($autoCreate = TRUE) {
+		if ($this->goalInfo===NULL && $autoCreate && ! isset($this->_overrides['goalInfo']) ) {
 			$this->goalInfo = $this->createGoalInfo();
 		}
 		return $this->goalInfo;
@@ -130,9 +158,16 @@ class WeightGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateGoalInfo($goalInfo) {
+		if ( $goalInfo === FALSE ) {
+			$this->_overrides['goalInfo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $goalInfo instanceof \com\microsoft\wc\thing\types\Goal  && ! is_null($goalInfo) ) {
 			$goalInfo = new \com\microsoft\wc\thing\types\Goal ($goalInfo);
 		}
+
+		unset ($this->_overrides['goalInfo']);
 	
 		return $goalInfo;
 	}

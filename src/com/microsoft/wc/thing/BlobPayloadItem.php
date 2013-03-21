@@ -14,6 +14,13 @@ class BlobPayloadItem {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\BlobInfo", name="blob-info")
 	 */
 	protected $blobInfo;
@@ -52,8 +59,8 @@ class BlobPayloadItem {
 		$this->currentContentEncoding = ($currentContentEncoding===NULL) ? NULL : $this->validateCurrentContentEncoding($currentContentEncoding);
 	}
 
-	public function getBlobInfo() {
-		if ($this->blobInfo===NULL) {
+	public function getBlobInfo($autoCreate = TRUE) {
+		if ($this->blobInfo===NULL && $autoCreate && ! isset($this->_overrides['blobInfo']) ) {
 			$this->blobInfo = $this->createBlobInfo();
 		}
 		return $this->blobInfo;
@@ -75,8 +82,8 @@ class BlobPayloadItem {
 		return $blobInfo;
 	}
 
-	public function getContentLength() {
-		if ($this->contentLength===NULL) {
+	public function getContentLength($autoCreate = TRUE) {
+		if ($this->contentLength===NULL && $autoCreate && ! isset($this->_overrides['contentLength']) ) {
 			$this->contentLength = $this->createContentLength();
 		}
 		return $this->contentLength;
@@ -109,8 +116,8 @@ class BlobPayloadItem {
 		return $contentLength;
 	}
 
-	public function getBase64data() {
-		if ($this->base64data===NULL) {
+	public function getBase64data($autoCreate = TRUE) {
+		if ($this->base64data===NULL && $autoCreate && ! isset($this->_overrides['base64data']) ) {
 			$this->base64data = $this->createBase64data();
 		}
 		return $this->base64data;
@@ -125,15 +132,22 @@ class BlobPayloadItem {
 	}
 
 	protected function validateBase64data($base64data) {
+		if ( $base64data === FALSE ) {
+			$this->_overrides['base64data'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $base64data instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($base64data) ) {
 			$base64data = new \com\microsoft\wc\types\Stringnz ($base64data);
 		}
+
+		unset ($this->_overrides['base64data']);
 	
 		return $base64data;
 	}
 
-	public function getBlobRefUrl() {
-		if ($this->blobRefUrl===NULL) {
+	public function getBlobRefUrl($autoCreate = TRUE) {
+		if ($this->blobRefUrl===NULL && $autoCreate && ! isset($this->_overrides['blobRefUrl']) ) {
 			$this->blobRefUrl = $this->createBlobRefUrl();
 		}
 		return $this->blobRefUrl;
@@ -155,8 +169,8 @@ class BlobPayloadItem {
 		return $blobRefUrl;
 	}
 
-	public function getLegacyContentEncoding() {
-		if ($this->legacyContentEncoding===NULL) {
+	public function getLegacyContentEncoding($autoCreate = TRUE) {
+		if ($this->legacyContentEncoding===NULL && $autoCreate && ! isset($this->_overrides['legacyContentEncoding']) ) {
 			$this->legacyContentEncoding = $this->createLegacyContentEncoding();
 		}
 		return $this->legacyContentEncoding;
@@ -171,15 +185,22 @@ class BlobPayloadItem {
 	}
 
 	protected function validateLegacyContentEncoding($legacyContentEncoding) {
+		if ( $legacyContentEncoding === FALSE ) {
+			$this->_overrides['legacyContentEncoding'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $legacyContentEncoding instanceof \com\microsoft\wc\types\Stringz1024  && ! is_null($legacyContentEncoding) ) {
 			$legacyContentEncoding = new \com\microsoft\wc\types\Stringz1024 ($legacyContentEncoding);
 		}
+
+		unset ($this->_overrides['legacyContentEncoding']);
 	
 		return $legacyContentEncoding;
 	}
 
-	public function getCurrentContentEncoding() {
-		if ($this->currentContentEncoding===NULL) {
+	public function getCurrentContentEncoding($autoCreate = TRUE) {
+		if ($this->currentContentEncoding===NULL && $autoCreate && ! isset($this->_overrides['currentContentEncoding']) ) {
 			$this->currentContentEncoding = $this->createCurrentContentEncoding();
 		}
 		return $this->currentContentEncoding;
@@ -194,9 +215,16 @@ class BlobPayloadItem {
 	}
 
 	protected function validateCurrentContentEncoding($currentContentEncoding) {
+		if ( $currentContentEncoding === FALSE ) {
+			$this->_overrides['currentContentEncoding'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $currentContentEncoding instanceof \com\microsoft\wc\types\Stringz1024  && ! is_null($currentContentEncoding) ) {
 			$currentContentEncoding = new \com\microsoft\wc\types\Stringz1024 ($currentContentEncoding);
 		}
+
+		unset ($this->_overrides['currentContentEncoding']);
 	
 		return $currentContentEncoding;
 	}

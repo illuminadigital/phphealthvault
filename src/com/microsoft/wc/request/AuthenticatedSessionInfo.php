@@ -16,6 +16,13 @@ class AuthenticatedSessionInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="auth-token")
 	 */
 	protected $authToken;
@@ -36,8 +43,8 @@ class AuthenticatedSessionInfo {
 		$this->offlinePersonInfo = ($offlinePersonInfo===NULL) ? NULL : $this->validateOfflinePersonInfo($offlinePersonInfo);
 	}
 
-	public function getAuthToken() {
-		if ($this->authToken===NULL) {
+	public function getAuthToken($autoCreate = TRUE) {
+		if ($this->authToken===NULL && $autoCreate && ! isset($this->_overrides['authToken']) ) {
 			$this->authToken = $this->createAuthToken();
 		}
 		return $this->authToken;
@@ -59,8 +66,8 @@ class AuthenticatedSessionInfo {
 		return $authToken;
 	}
 
-	public function getUserAuthToken() {
-		if ($this->userAuthToken===NULL) {
+	public function getUserAuthToken($autoCreate = TRUE) {
+		if ($this->userAuthToken===NULL && $autoCreate && ! isset($this->_overrides['userAuthToken']) ) {
 			$this->userAuthToken = $this->createUserAuthToken();
 		}
 		return $this->userAuthToken;
@@ -82,8 +89,8 @@ class AuthenticatedSessionInfo {
 		return $userAuthToken;
 	}
 
-	public function getOfflinePersonInfo() {
-		if ($this->offlinePersonInfo===NULL) {
+	public function getOfflinePersonInfo($autoCreate = TRUE) {
+		if ($this->offlinePersonInfo===NULL && $autoCreate && ! isset($this->_overrides['offlinePersonInfo']) ) {
 			$this->offlinePersonInfo = $this->createOfflinePersonInfo();
 		}
 		return $this->offlinePersonInfo;
@@ -98,9 +105,16 @@ class AuthenticatedSessionInfo {
 	}
 
 	protected function validateOfflinePersonInfo($offlinePersonInfo) {
+		if ( $offlinePersonInfo === FALSE ) {
+			$this->_overrides['offlinePersonInfo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $offlinePersonInfo instanceof \com\microsoft\wc\request\OfflinePersonInfo  && ! is_null($offlinePersonInfo) ) {
 			$offlinePersonInfo = new \com\microsoft\wc\request\OfflinePersonInfo ($offlinePersonInfo);
 		}
+
+		unset ($this->_overrides['offlinePersonInfo']);
 	
 		return $offlinePersonInfo;
 	}

@@ -14,6 +14,13 @@ class Columns {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetThingType\Column", collection="true", name="column")
 	 */
 	protected $column;
@@ -22,8 +29,8 @@ class Columns {
 		$this->column = ($column===NULL) ? NULL : $this->validateColumn($column);
 	}
 
-	public function getColumn() {
-		if ($this->column===NULL) {
+	public function getColumn($autoCreate = TRUE) {
+		if ($this->column===NULL && $autoCreate && ! isset($this->_overrides['column']) ) {
 			$this->column = $this->createColumn();
 		}
 		return $this->column;
@@ -38,9 +45,16 @@ class Columns {
 	}
 
 	protected function validateColumn($column) {
+		if ( $column === FALSE ) {
+			$this->_overrides['column'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($column) && ! is_null($column) ) {
 			$column = array($column);
 		}
+
+		unset ($this->_overrides['column']);
 		$count = count($column);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'column', 0));

@@ -15,6 +15,13 @@ class ParticipationAncillary {
 	static protected $enumValue = array('ADM' => 'ADM', 'ATND' => 'ATND', 'CALLBCK' => 'CALLBCK', 'CON' => 'CON', 'DIS' => 'DIS', 'ESC' => 'ESC', 'REF' => 'REF');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\hl7_org\v3\Cs", name="value")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class ParticipationAncillary {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

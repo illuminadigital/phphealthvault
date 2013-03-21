@@ -19,6 +19,13 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Medication Fill';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -69,8 +76,8 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 		$this->lotNumber = ($lotNumber===NULL) ? NULL : $this->validateLotNumber($lotNumber);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -92,8 +99,8 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getDateFilled() {
-		if ($this->dateFilled===NULL) {
+	public function getDateFilled($autoCreate = TRUE) {
+		if ($this->dateFilled===NULL && $autoCreate && ! isset($this->_overrides['dateFilled']) ) {
 			$this->dateFilled = $this->createDateFilled();
 		}
 		return $this->dateFilled;
@@ -108,15 +115,22 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDateFilled($dateFilled) {
+		if ( $dateFilled === FALSE ) {
+			$this->_overrides['dateFilled'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dateFilled instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($dateFilled) ) {
 			$dateFilled = new \com\microsoft\wc\dates\ApproxDateTime ($dateFilled);
 		}
+
+		unset ($this->_overrides['dateFilled']);
 	
 		return $dateFilled;
 	}
 
-	public function getDaysSupply() {
-		if ($this->daysSupply===NULL) {
+	public function getDaysSupply($autoCreate = TRUE) {
+		if ($this->daysSupply===NULL && $autoCreate && ! isset($this->_overrides['daysSupply']) ) {
 			$this->daysSupply = $this->createDaysSupply();
 		}
 		return $this->daysSupply;
@@ -131,15 +145,22 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDaysSupply($daysSupply) {
+		if ( $daysSupply === FALSE ) {
+			$this->_overrides['daysSupply'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $daysSupply instanceof \com\microsoft\wc\thing\types\PositiveInt  && ! is_null($daysSupply) ) {
 			$daysSupply = new \com\microsoft\wc\thing\types\PositiveInt ($daysSupply);
 		}
+
+		unset ($this->_overrides['daysSupply']);
 	
 		return $daysSupply;
 	}
 
-	public function getNextRefillDate() {
-		if ($this->nextRefillDate===NULL) {
+	public function getNextRefillDate($autoCreate = TRUE) {
+		if ($this->nextRefillDate===NULL && $autoCreate && ! isset($this->_overrides['nextRefillDate']) ) {
 			$this->nextRefillDate = $this->createNextRefillDate();
 		}
 		return $this->nextRefillDate;
@@ -154,15 +175,22 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateNextRefillDate($nextRefillDate) {
+		if ( $nextRefillDate === FALSE ) {
+			$this->_overrides['nextRefillDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $nextRefillDate instanceof \com\microsoft\wc\dates\Date  && ! is_null($nextRefillDate) ) {
 			$nextRefillDate = new \com\microsoft\wc\dates\Date ($nextRefillDate);
 		}
+
+		unset ($this->_overrides['nextRefillDate']);
 	
 		return $nextRefillDate;
 	}
 
-	public function getRefillsLeft() {
-		if ($this->refillsLeft===NULL) {
+	public function getRefillsLeft($autoCreate = TRUE) {
+		if ($this->refillsLeft===NULL && $autoCreate && ! isset($this->_overrides['refillsLeft']) ) {
 			$this->refillsLeft = $this->createRefillsLeft();
 		}
 		return $this->refillsLeft;
@@ -177,15 +205,22 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateRefillsLeft($refillsLeft) {
+		if ( $refillsLeft === FALSE ) {
+			$this->_overrides['refillsLeft'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $refillsLeft instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($refillsLeft) ) {
 			$refillsLeft = new \com\microsoft\wc\thing\types\NonNegativeInt ($refillsLeft);
 		}
+
+		unset ($this->_overrides['refillsLeft']);
 	
 		return $refillsLeft;
 	}
 
-	public function getPharmacy() {
-		if ($this->pharmacy===NULL) {
+	public function getPharmacy($autoCreate = TRUE) {
+		if ($this->pharmacy===NULL && $autoCreate && ! isset($this->_overrides['pharmacy']) ) {
 			$this->pharmacy = $this->createPharmacy();
 		}
 		return $this->pharmacy;
@@ -200,15 +235,22 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePharmacy($pharmacy) {
+		if ( $pharmacy === FALSE ) {
+			$this->_overrides['pharmacy'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $pharmacy instanceof \com\microsoft\wc\thing\types\Organization  && ! is_null($pharmacy) ) {
 			$pharmacy = new \com\microsoft\wc\thing\types\Organization ($pharmacy);
 		}
+
+		unset ($this->_overrides['pharmacy']);
 	
 		return $pharmacy;
 	}
 
-	public function getPrescriptionNumber() {
-		if ($this->prescriptionNumber===NULL) {
+	public function getPrescriptionNumber($autoCreate = TRUE) {
+		if ($this->prescriptionNumber===NULL && $autoCreate && ! isset($this->_overrides['prescriptionNumber']) ) {
 			$this->prescriptionNumber = $this->createPrescriptionNumber();
 		}
 		return $this->prescriptionNumber;
@@ -230,8 +272,8 @@ class MedicationFill extends \com\microsoft\wc\thing\AnyMixed {
 		return $prescriptionNumber;
 	}
 
-	public function getLotNumber() {
-		if ($this->lotNumber===NULL) {
+	public function getLotNumber($autoCreate = TRUE) {
+		if ($this->lotNumber===NULL && $autoCreate && ! isset($this->_overrides['lotNumber']) ) {
 			$this->lotNumber = $this->createLotNumber();
 		}
 		return $this->lotNumber;

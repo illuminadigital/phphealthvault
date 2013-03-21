@@ -18,6 +18,13 @@ class BloodOxygenSaturation extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Blood Oxygen Saturation';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -44,8 +51,8 @@ class BloodOxygenSaturation extends \com\microsoft\wc\thing\AnyMixed {
 		$this->measurementFlags = ($measurementFlags===NULL) ? NULL : $this->validateMeasurementFlags($measurementFlags);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -67,8 +74,8 @@ class BloodOxygenSaturation extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -90,8 +97,8 @@ class BloodOxygenSaturation extends \com\microsoft\wc\thing\AnyMixed {
 		return $value;
 	}
 
-	public function getMeasurementMethod() {
-		if ($this->measurementMethod===NULL) {
+	public function getMeasurementMethod($autoCreate = TRUE) {
+		if ($this->measurementMethod===NULL && $autoCreate && ! isset($this->_overrides['measurementMethod']) ) {
 			$this->measurementMethod = $this->createMeasurementMethod();
 		}
 		return $this->measurementMethod;
@@ -106,15 +113,22 @@ class BloodOxygenSaturation extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMeasurementMethod($measurementMethod) {
+		if ( $measurementMethod === FALSE ) {
+			$this->_overrides['measurementMethod'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $measurementMethod instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($measurementMethod) ) {
 			$measurementMethod = new \com\microsoft\wc\types\CodableValue ($measurementMethod);
 		}
+
+		unset ($this->_overrides['measurementMethod']);
 	
 		return $measurementMethod;
 	}
 
-	public function getMeasurementFlags() {
-		if ($this->measurementFlags===NULL) {
+	public function getMeasurementFlags($autoCreate = TRUE) {
+		if ($this->measurementFlags===NULL && $autoCreate && ! isset($this->_overrides['measurementFlags']) ) {
 			$this->measurementFlags = $this->createMeasurementFlags();
 		}
 		return $this->measurementFlags;
@@ -129,9 +143,16 @@ class BloodOxygenSaturation extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMeasurementFlags($measurementFlags) {
+		if ( $measurementFlags === FALSE ) {
+			$this->_overrides['measurementFlags'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $measurementFlags instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($measurementFlags) ) {
 			$measurementFlags = new \com\microsoft\wc\types\CodableValue ($measurementFlags);
 		}
+
+		unset ($this->_overrides['measurementFlags']);
 	
 		return $measurementFlags;
 	}

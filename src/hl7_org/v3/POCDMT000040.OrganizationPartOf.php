@@ -14,6 +14,13 @@ class POCDMT000040.OrganizationPartOf {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -76,8 +83,8 @@ class POCDMT000040.OrganizationPartOf {
 		$this->classCode = ($classCode===NULL) ? NULL : $this->validateClassCode($classCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -111,8 +118,8 @@ class POCDMT000040.OrganizationPartOf {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -131,8 +138,8 @@ class POCDMT000040.OrganizationPartOf {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -166,8 +173,8 @@ class POCDMT000040.OrganizationPartOf {
 		return $templateId;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -201,8 +208,8 @@ class POCDMT000040.OrganizationPartOf {
 		return $id;
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -221,8 +228,8 @@ class POCDMT000040.OrganizationPartOf {
 		return $code;
 	}
 
-	public function getStatusCode() {
-		if ($this->statusCode===NULL) {
+	public function getStatusCode($autoCreate = TRUE) {
+		if ($this->statusCode===NULL && $autoCreate && ! isset($this->_overrides['statusCode']) ) {
 			$this->statusCode = $this->createStatusCode();
 		}
 		return $this->statusCode;
@@ -241,8 +248,8 @@ class POCDMT000040.OrganizationPartOf {
 		return $statusCode;
 	}
 
-	public function getEffectiveTime() {
-		if ($this->effectiveTime===NULL) {
+	public function getEffectiveTime($autoCreate = TRUE) {
+		if ($this->effectiveTime===NULL && $autoCreate && ! isset($this->_overrides['effectiveTime']) ) {
 			$this->effectiveTime = $this->createEffectiveTime();
 		}
 		return $this->effectiveTime;
@@ -261,8 +268,8 @@ class POCDMT000040.OrganizationPartOf {
 		return $effectiveTime;
 	}
 
-	public function getWholeOrganization() {
-		if ($this->wholeOrganization===NULL) {
+	public function getWholeOrganization($autoCreate = TRUE) {
+		if ($this->wholeOrganization===NULL && $autoCreate && ! isset($this->_overrides['wholeOrganization']) ) {
 			$this->wholeOrganization = $this->createWholeOrganization();
 		}
 		return $this->wholeOrganization;
@@ -281,8 +288,8 @@ class POCDMT000040.OrganizationPartOf {
 		return $wholeOrganization;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -301,8 +308,8 @@ class POCDMT000040.OrganizationPartOf {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;

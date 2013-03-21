@@ -17,6 +17,13 @@ class WeightValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeDouble", name="kg")
 	 */
 	protected $kg;
@@ -31,8 +38,8 @@ class WeightValue {
 		$this->display = ($display===NULL) ? NULL : $this->validateDisplay($display);
 	}
 
-	public function getKg() {
-		if ($this->kg===NULL) {
+	public function getKg($autoCreate = TRUE) {
+		if ($this->kg===NULL && $autoCreate && ! isset($this->_overrides['kg']) ) {
 			$this->kg = $this->createKg();
 		}
 		return $this->kg;
@@ -54,8 +61,8 @@ class WeightValue {
 		return $kg;
 	}
 
-	public function getDisplay() {
-		if ($this->display===NULL) {
+	public function getDisplay($autoCreate = TRUE) {
+		if ($this->display===NULL && $autoCreate && ! isset($this->_overrides['display']) ) {
 			$this->display = $this->createDisplay();
 		}
 		return $this->display;
@@ -70,9 +77,16 @@ class WeightValue {
 	}
 
 	protected function validateDisplay($display) {
+		if ( $display === FALSE ) {
+			$this->_overrides['display'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $display instanceof \com\microsoft\wc\thing\types\DisplayValue  && ! is_null($display) ) {
 			$display = new \com\microsoft\wc\thing\types\DisplayValue ($display);
 		}
+
+		unset ($this->_overrides['display']);
 	
 		return $display;
 	}

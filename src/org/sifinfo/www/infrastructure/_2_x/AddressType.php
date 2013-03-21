@@ -15,6 +15,13 @@ class AddressType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Street", name="Street")
 	 */
 	protected $street;
@@ -65,8 +72,8 @@ class AddressType {
 		$this->type = ($type===NULL) ? NULL : $this->validateType($type);
 	}
 
-	public function getStreet() {
-		if ($this->street===NULL) {
+	public function getStreet($autoCreate = TRUE) {
+		if ($this->street===NULL && $autoCreate && ! isset($this->_overrides['street']) ) {
 			$this->street = $this->createStreet();
 		}
 		return $this->street;
@@ -88,8 +95,8 @@ class AddressType {
 		return $street;
 	}
 
-	public function getCity() {
-		if ($this->city===NULL) {
+	public function getCity($autoCreate = TRUE) {
+		if ($this->city===NULL && $autoCreate && ! isset($this->_overrides['city']) ) {
 			$this->city = $this->createCity();
 		}
 		return $this->city;
@@ -111,8 +118,8 @@ class AddressType {
 		return $city;
 	}
 
-	public function getCounty() {
-		if ($this->county===NULL) {
+	public function getCounty($autoCreate = TRUE) {
+		if ($this->county===NULL && $autoCreate && ! isset($this->_overrides['county']) ) {
 			$this->county = $this->createCounty();
 		}
 		return $this->county;
@@ -134,8 +141,8 @@ class AddressType {
 		return $county;
 	}
 
-	public function getStateProvince() {
-		if ($this->stateProvince===NULL) {
+	public function getStateProvince($autoCreate = TRUE) {
+		if ($this->stateProvince===NULL && $autoCreate && ! isset($this->_overrides['stateProvince']) ) {
 			$this->stateProvince = $this->createStateProvince();
 		}
 		return $this->stateProvince;
@@ -157,8 +164,8 @@ class AddressType {
 		return $stateProvince;
 	}
 
-	public function getCountry() {
-		if ($this->country===NULL) {
+	public function getCountry($autoCreate = TRUE) {
+		if ($this->country===NULL && $autoCreate && ! isset($this->_overrides['country']) ) {
 			$this->country = $this->createCountry();
 		}
 		return $this->country;
@@ -180,8 +187,8 @@ class AddressType {
 		return $country;
 	}
 
-	public function getPostalCode() {
-		if ($this->postalCode===NULL) {
+	public function getPostalCode($autoCreate = TRUE) {
+		if ($this->postalCode===NULL && $autoCreate && ! isset($this->_overrides['postalCode']) ) {
 			$this->postalCode = $this->createPostalCode();
 		}
 		return $this->postalCode;
@@ -203,8 +210,8 @@ class AddressType {
 		return $postalCode;
 	}
 
-	public function getGridLocation() {
-		if ($this->gridLocation===NULL) {
+	public function getGridLocation($autoCreate = TRUE) {
+		if ($this->gridLocation===NULL && $autoCreate && ! isset($this->_overrides['gridLocation']) ) {
 			$this->gridLocation = $this->createGridLocation();
 		}
 		return $this->gridLocation;
@@ -219,15 +226,22 @@ class AddressType {
 	}
 
 	protected function validateGridLocation($gridLocation) {
+		if ( $gridLocation === FALSE ) {
+			$this->_overrides['gridLocation'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $gridLocation instanceof \org\sifinfo\www\infrastructure\_2_x\GridLocationType  && ! is_null($gridLocation) ) {
 			$gridLocation = new \org\sifinfo\www\infrastructure\_2_x\GridLocationType ($gridLocation);
 		}
+
+		unset ($this->_overrides['gridLocation']);
 	
 		return $gridLocation;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;

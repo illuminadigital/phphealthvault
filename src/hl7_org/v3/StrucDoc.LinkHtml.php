@@ -14,6 +14,13 @@ class StrucDoc.LinkHtml {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Footnote", collection="true", name="footnote")
 	 */
 	protected $footnote;
@@ -76,8 +83,8 @@ class StrucDoc.LinkHtml {
 		$this->styleCode = ($styleCode===NULL) ? NULL : $this->validateStyleCode($styleCode);
 	}
 
-	public function getFootnote() {
-		if ($this->footnote===NULL) {
+	public function getFootnote($autoCreate = TRUE) {
+		if ($this->footnote===NULL && $autoCreate && ! isset($this->_overrides['footnote']) ) {
 			$this->footnote = $this->createFootnote();
 		}
 		return $this->footnote;
@@ -111,8 +118,8 @@ class StrucDoc.LinkHtml {
 		return $footnote;
 	}
 
-	public function getFootnoteRef() {
-		if ($this->footnoteRef===NULL) {
+	public function getFootnoteRef($autoCreate = TRUE) {
+		if ($this->footnoteRef===NULL && $autoCreate && ! isset($this->_overrides['footnoteRef']) ) {
 			$this->footnoteRef = $this->createFootnoteRef();
 		}
 		return $this->footnoteRef;
@@ -146,8 +153,8 @@ class StrucDoc.LinkHtml {
 		return $footnoteRef;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -169,8 +176,8 @@ class StrucDoc.LinkHtml {
 		return $name;
 	}
 
-	public function getHref() {
-		if ($this->href===NULL) {
+	public function getHref($autoCreate = TRUE) {
+		if ($this->href===NULL && $autoCreate && ! isset($this->_overrides['href']) ) {
 			$this->href = $this->createHref();
 		}
 		return $this->href;
@@ -192,8 +199,8 @@ class StrucDoc.LinkHtml {
 		return $href;
 	}
 
-	public function getRel() {
-		if ($this->rel===NULL) {
+	public function getRel($autoCreate = TRUE) {
+		if ($this->rel===NULL && $autoCreate && ! isset($this->_overrides['rel']) ) {
 			$this->rel = $this->createRel();
 		}
 		return $this->rel;
@@ -215,8 +222,8 @@ class StrucDoc.LinkHtml {
 		return $rel;
 	}
 
-	public function getRev() {
-		if ($this->rev===NULL) {
+	public function getRev($autoCreate = TRUE) {
+		if ($this->rev===NULL && $autoCreate && ! isset($this->_overrides['rev']) ) {
 			$this->rev = $this->createRev();
 		}
 		return $this->rev;
@@ -238,8 +245,8 @@ class StrucDoc.LinkHtml {
 		return $rev;
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -261,8 +268,8 @@ class StrucDoc.LinkHtml {
 		return $title;
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -284,8 +291,8 @@ class StrucDoc.LinkHtml {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -307,8 +314,8 @@ class StrucDoc.LinkHtml {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;

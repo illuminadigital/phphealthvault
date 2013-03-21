@@ -14,6 +14,13 @@ class StreamedPackageBlobs {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", collection="true", name="blob-in-package-ref-url")
 	 */
 	protected $blobInPackageRefUrl;
@@ -22,8 +29,8 @@ class StreamedPackageBlobs {
 		$this->blobInPackageRefUrl = ($blobInPackageRefUrl===NULL) ? NULL : $this->validateBlobInPackageRefUrl($blobInPackageRefUrl);
 	}
 
-	public function getBlobInPackageRefUrl() {
-		if ($this->blobInPackageRefUrl===NULL) {
+	public function getBlobInPackageRefUrl($autoCreate = TRUE) {
+		if ($this->blobInPackageRefUrl===NULL && $autoCreate && ! isset($this->_overrides['blobInPackageRefUrl']) ) {
 			$this->blobInPackageRefUrl = $this->createBlobInPackageRefUrl();
 		}
 		return $this->blobInPackageRefUrl;

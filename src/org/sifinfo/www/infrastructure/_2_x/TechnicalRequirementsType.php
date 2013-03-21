@@ -15,6 +15,13 @@ class TechnicalRequirementsType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", collection="true", name="TechnicalRequirement")
 	 */
 	protected $technicalRequirement;
@@ -23,8 +30,8 @@ class TechnicalRequirementsType {
 		$this->technicalRequirement = ($technicalRequirement===NULL) ? NULL : $this->validateTechnicalRequirement($technicalRequirement);
 	}
 
-	public function getTechnicalRequirement() {
-		if ($this->technicalRequirement===NULL) {
+	public function getTechnicalRequirement($autoCreate = TRUE) {
+		if ($this->technicalRequirement===NULL && $autoCreate && ! isset($this->_overrides['technicalRequirement']) ) {
 			$this->technicalRequirement = $this->createTechnicalRequirement();
 		}
 		return $this->technicalRequirement;

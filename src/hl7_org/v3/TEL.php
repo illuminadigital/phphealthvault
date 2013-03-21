@@ -15,6 +15,13 @@ class TEL extends \org\w3\www\_2001\XMLSchema\URL {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\SXCMTS", collection="true", name="useablePeriod")
 	 */
 	protected $useablePeriod;
@@ -29,8 +36,8 @@ class TEL extends \org\w3\www\_2001\XMLSchema\URL {
 		$this->use = ($use===NULL) ? NULL : $this->validateUse($use);
 	}
 
-	public function getUseablePeriod() {
-		if ($this->useablePeriod===NULL) {
+	public function getUseablePeriod($autoCreate = TRUE) {
+		if ($this->useablePeriod===NULL && $autoCreate && ! isset($this->_overrides['useablePeriod']) ) {
 			$this->useablePeriod = $this->createUseablePeriod();
 		}
 		return $this->useablePeriod;
@@ -64,8 +71,8 @@ class TEL extends \org\w3\www\_2001\XMLSchema\URL {
 		return $useablePeriod;
 	}
 
-	public function getUse() {
-		if ($this->use===NULL) {
+	public function getUse($autoCreate = TRUE) {
+		if ($this->use===NULL && $autoCreate && ! isset($this->_overrides['use']) ) {
 			$this->use = $this->createUse();
 		}
 		return $this->use;

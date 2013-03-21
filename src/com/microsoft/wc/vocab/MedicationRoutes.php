@@ -15,6 +15,13 @@ class MedicationRoutes {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", collection="true", name="route")
 	 */
 	protected $route;
@@ -23,8 +30,8 @@ class MedicationRoutes {
 		$this->route = ($route===NULL) ? NULL : $this->validateRoute($route);
 	}
 
-	public function getRoute() {
-		if ($this->route===NULL) {
+	public function getRoute($autoCreate = TRUE) {
+		if ($this->route===NULL && $autoCreate && ! isset($this->_overrides['route']) ) {
 			$this->route = $this->createRoute();
 		}
 		return $this->route;

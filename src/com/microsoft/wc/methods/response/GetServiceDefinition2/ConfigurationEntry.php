@@ -16,6 +16,13 @@ class ConfigurationEntry {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="ConfigurationEntry")
 	 */
 	protected $value;
@@ -30,8 +37,8 @@ class ConfigurationEntry {
 		$this->key = ($key===NULL) ? NULL : $this->validateKey($key);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -53,8 +60,8 @@ class ConfigurationEntry {
 		return $value;
 	}
 
-	public function getKey() {
-		if ($this->key===NULL) {
+	public function getKey($autoCreate = TRUE) {
+		if ($this->key===NULL && $autoCreate && ! isset($this->_overrides['key']) ) {
 			$this->key = $this->createKey();
 		}
 		return $this->key;

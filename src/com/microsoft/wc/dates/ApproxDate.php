@@ -14,6 +14,13 @@ class ApproxDate {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\Year", name="y")
 	 */
 	protected $y;
@@ -34,8 +41,8 @@ class ApproxDate {
 		$this->d = ($d===NULL) ? NULL : $this->validateD($d);
 	}
 
-	public function getY() {
-		if ($this->y===NULL) {
+	public function getY($autoCreate = TRUE) {
+		if ($this->y===NULL && $autoCreate && ! isset($this->_overrides['y']) ) {
 			$this->y = $this->createY();
 		}
 		return $this->y;
@@ -57,8 +64,8 @@ class ApproxDate {
 		return $y;
 	}
 
-	public function getM() {
-		if ($this->m===NULL) {
+	public function getM($autoCreate = TRUE) {
+		if ($this->m===NULL && $autoCreate && ! isset($this->_overrides['m']) ) {
 			$this->m = $this->createM();
 		}
 		return $this->m;
@@ -73,15 +80,22 @@ class ApproxDate {
 	}
 
 	protected function validateM($m) {
+		if ( $m === FALSE ) {
+			$this->_overrides['m'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $m instanceof \com\microsoft\wc\dates\Month  && ! is_null($m) ) {
 			$m = new \com\microsoft\wc\dates\Month ($m);
 		}
+
+		unset ($this->_overrides['m']);
 	
 		return $m;
 	}
 
-	public function getD() {
-		if ($this->d===NULL) {
+	public function getD($autoCreate = TRUE) {
+		if ($this->d===NULL && $autoCreate && ! isset($this->_overrides['d']) ) {
 			$this->d = $this->createD();
 		}
 		return $this->d;
@@ -96,9 +110,16 @@ class ApproxDate {
 	}
 
 	protected function validateD($d) {
+		if ( $d === FALSE ) {
+			$this->_overrides['d'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $d instanceof \com\microsoft\wc\dates\Day  && ! is_null($d) ) {
 			$d = new \com\microsoft\wc\dates\Day ($d);
 		}
+
+		unset ($this->_overrides['d']);
 	
 		return $d;
 	}

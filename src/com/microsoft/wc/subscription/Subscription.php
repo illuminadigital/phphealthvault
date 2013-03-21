@@ -16,6 +16,13 @@ class Subscription {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\subscription\Common", name="common")
 	 */
 	protected $common;
@@ -30,8 +37,8 @@ class Subscription {
 		$this->recordItemChangedEvent = ($recordItemChangedEvent===NULL) ? NULL : $this->validateRecordItemChangedEvent($recordItemChangedEvent);
 	}
 
-	public function getCommon() {
-		if ($this->common===NULL) {
+	public function getCommon($autoCreate = TRUE) {
+		if ($this->common===NULL && $autoCreate && ! isset($this->_overrides['common']) ) {
 			$this->common = $this->createCommon();
 		}
 		return $this->common;
@@ -53,8 +60,8 @@ class Subscription {
 		return $common;
 	}
 
-	public function getRecordItemChangedEvent() {
-		if ($this->recordItemChangedEvent===NULL) {
+	public function getRecordItemChangedEvent($autoCreate = TRUE) {
+		if ($this->recordItemChangedEvent===NULL && $autoCreate && ! isset($this->_overrides['recordItemChangedEvent']) ) {
 			$this->recordItemChangedEvent = $this->createRecordItemChangedEvent();
 		}
 		return $this->recordItemChangedEvent;

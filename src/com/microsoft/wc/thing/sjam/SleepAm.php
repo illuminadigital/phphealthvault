@@ -19,6 +19,13 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Sleep Session';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -69,8 +76,8 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 		$this->wakeState = ($wakeState===NULL) ? NULL : $this->validateWakeState($wakeState);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -92,8 +99,8 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getBedTime() {
-		if ($this->bedTime===NULL) {
+	public function getBedTime($autoCreate = TRUE) {
+		if ($this->bedTime===NULL && $autoCreate && ! isset($this->_overrides['bedTime']) ) {
 			$this->bedTime = $this->createBedTime();
 		}
 		return $this->bedTime;
@@ -115,8 +122,8 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 		return $bedTime;
 	}
 
-	public function getWakeTime() {
-		if ($this->wakeTime===NULL) {
+	public function getWakeTime($autoCreate = TRUE) {
+		if ($this->wakeTime===NULL && $autoCreate && ! isset($this->_overrides['wakeTime']) ) {
 			$this->wakeTime = $this->createWakeTime();
 		}
 		return $this->wakeTime;
@@ -138,8 +145,8 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 		return $wakeTime;
 	}
 
-	public function getSleepMinutes() {
-		if ($this->sleepMinutes===NULL) {
+	public function getSleepMinutes($autoCreate = TRUE) {
+		if ($this->sleepMinutes===NULL && $autoCreate && ! isset($this->_overrides['sleepMinutes']) ) {
 			$this->sleepMinutes = $this->createSleepMinutes();
 		}
 		return $this->sleepMinutes;
@@ -161,8 +168,8 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 		return $sleepMinutes;
 	}
 
-	public function getSettlingMinutes() {
-		if ($this->settlingMinutes===NULL) {
+	public function getSettlingMinutes($autoCreate = TRUE) {
+		if ($this->settlingMinutes===NULL && $autoCreate && ! isset($this->_overrides['settlingMinutes']) ) {
 			$this->settlingMinutes = $this->createSettlingMinutes();
 		}
 		return $this->settlingMinutes;
@@ -184,8 +191,8 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 		return $settlingMinutes;
 	}
 
-	public function getAwakening() {
-		if ($this->awakening===NULL) {
+	public function getAwakening($autoCreate = TRUE) {
+		if ($this->awakening===NULL && $autoCreate && ! isset($this->_overrides['awakening']) ) {
 			$this->awakening = $this->createAwakening();
 		}
 		return $this->awakening;
@@ -200,9 +207,16 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAwakening($awakening) {
+		if ( $awakening === FALSE ) {
+			$this->_overrides['awakening'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($awakening) && ! is_null($awakening) ) {
 			$awakening = array($awakening);
 		}
+
+		unset ($this->_overrides['awakening']);
 		$count = count($awakening);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'awakening', 0));
@@ -220,8 +234,8 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 		$this->awakening[] = $awakening;
 	}
 
-	public function getMedications() {
-		if ($this->medications===NULL) {
+	public function getMedications($autoCreate = TRUE) {
+		if ($this->medications===NULL && $autoCreate && ! isset($this->_overrides['medications']) ) {
 			$this->medications = $this->createMedications();
 		}
 		return $this->medications;
@@ -236,15 +250,22 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMedications($medications) {
+		if ( $medications === FALSE ) {
+			$this->_overrides['medications'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $medications instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($medications) ) {
 			$medications = new \com\microsoft\wc\types\CodableValue ($medications);
 		}
+
+		unset ($this->_overrides['medications']);
 	
 		return $medications;
 	}
 
-	public function getWakeState() {
-		if ($this->wakeState===NULL) {
+	public function getWakeState($autoCreate = TRUE) {
+		if ($this->wakeState===NULL && $autoCreate && ! isset($this->_overrides['wakeState']) ) {
 			$this->wakeState = $this->createWakeState();
 		}
 		return $this->wakeState;

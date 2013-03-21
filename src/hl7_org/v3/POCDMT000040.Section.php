@@ -14,6 +14,13 @@ class POCDMT000040.Section {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -124,8 +131,8 @@ class POCDMT000040.Section {
 		$this->moodCode = ($moodCode===NULL) ? NULL : $this->validateMoodCode($moodCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -159,8 +166,8 @@ class POCDMT000040.Section {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -179,8 +186,8 @@ class POCDMT000040.Section {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -214,8 +221,8 @@ class POCDMT000040.Section {
 		return $templateId;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -234,8 +241,8 @@ class POCDMT000040.Section {
 		return $id;
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -254,8 +261,8 @@ class POCDMT000040.Section {
 		return $code;
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -274,8 +281,8 @@ class POCDMT000040.Section {
 		return $title;
 	}
 
-	public function getText() {
-		if ($this->text===NULL) {
+	public function getText($autoCreate = TRUE) {
+		if ($this->text===NULL && $autoCreate && ! isset($this->_overrides['text']) ) {
 			$this->text = $this->createText();
 		}
 		return $this->text;
@@ -294,8 +301,8 @@ class POCDMT000040.Section {
 		return $text;
 	}
 
-	public function getConfidentialityCode() {
-		if ($this->confidentialityCode===NULL) {
+	public function getConfidentialityCode($autoCreate = TRUE) {
+		if ($this->confidentialityCode===NULL && $autoCreate && ! isset($this->_overrides['confidentialityCode']) ) {
 			$this->confidentialityCode = $this->createConfidentialityCode();
 		}
 		return $this->confidentialityCode;
@@ -314,8 +321,8 @@ class POCDMT000040.Section {
 		return $confidentialityCode;
 	}
 
-	public function getLanguageCode() {
-		if ($this->languageCode===NULL) {
+	public function getLanguageCode($autoCreate = TRUE) {
+		if ($this->languageCode===NULL && $autoCreate && ! isset($this->_overrides['languageCode']) ) {
 			$this->languageCode = $this->createLanguageCode();
 		}
 		return $this->languageCode;
@@ -334,8 +341,8 @@ class POCDMT000040.Section {
 		return $languageCode;
 	}
 
-	public function getSubject() {
-		if ($this->subject===NULL) {
+	public function getSubject($autoCreate = TRUE) {
+		if ($this->subject===NULL && $autoCreate && ! isset($this->_overrides['subject']) ) {
 			$this->subject = $this->createSubject();
 		}
 		return $this->subject;
@@ -354,8 +361,8 @@ class POCDMT000040.Section {
 		return $subject;
 	}
 
-	public function getAuthor() {
-		if ($this->author===NULL) {
+	public function getAuthor($autoCreate = TRUE) {
+		if ($this->author===NULL && $autoCreate && ! isset($this->_overrides['author']) ) {
 			$this->author = $this->createAuthor();
 		}
 		return $this->author;
@@ -389,8 +396,8 @@ class POCDMT000040.Section {
 		return $author;
 	}
 
-	public function getInformant() {
-		if ($this->informant===NULL) {
+	public function getInformant($autoCreate = TRUE) {
+		if ($this->informant===NULL && $autoCreate && ! isset($this->_overrides['informant']) ) {
 			$this->informant = $this->createInformant();
 		}
 		return $this->informant;
@@ -424,8 +431,8 @@ class POCDMT000040.Section {
 		return $informant;
 	}
 
-	public function getEntry() {
-		if ($this->entry===NULL) {
+	public function getEntry($autoCreate = TRUE) {
+		if ($this->entry===NULL && $autoCreate && ! isset($this->_overrides['entry']) ) {
 			$this->entry = $this->createEntry();
 		}
 		return $this->entry;
@@ -459,8 +466,8 @@ class POCDMT000040.Section {
 		return $entry;
 	}
 
-	public function getComponent() {
-		if ($this->component===NULL) {
+	public function getComponent($autoCreate = TRUE) {
+		if ($this->component===NULL && $autoCreate && ! isset($this->_overrides['component']) ) {
 			$this->component = $this->createComponent();
 		}
 		return $this->component;
@@ -494,8 +501,8 @@ class POCDMT000040.Section {
 		return $component;
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -517,8 +524,8 @@ class POCDMT000040.Section {
 		return $iD;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -537,8 +544,8 @@ class POCDMT000040.Section {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;
@@ -557,8 +564,8 @@ class POCDMT000040.Section {
 		return $classCode;
 	}
 
-	public function getMoodCode() {
-		if ($this->moodCode===NULL) {
+	public function getMoodCode($autoCreate = TRUE) {
+		if ($this->moodCode===NULL && $autoCreate && ! isset($this->_overrides['moodCode']) ) {
 			$this->moodCode = $this->createMoodCode();
 		}
 		return $this->moodCode;

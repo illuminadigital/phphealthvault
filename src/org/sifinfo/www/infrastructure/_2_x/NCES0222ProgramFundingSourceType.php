@@ -15,6 +15,13 @@ class NCES0222ProgramFundingSourceType {
 	static protected $enumValue = array('0997' => 'Business', '0654' => 'College/University', '0698' => 'Community', '0797' => 'Federal government', '0749' => 'Foundations and other charitable organizations', '0219' => 'Fraternal organization', '0739' => 'Individuals (endowments)', '0786' => 'Insurance', '0622' => 'Local/community government', '9999' => 'Other', '0720' => 'Parent/guardian in tuition and/or fees', '1899' => 'Parent/guardian\'s employer', '0731' => 'Parent/teacher organizations', '0218' => 'Religious organization', '0675' => 'School', '0709' => 'Self in tuition and/or fees', '0617' => 'State government', '0772' => 'Unions');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0222ProgramFundingSourceType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0222ProgramFundingSourceType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

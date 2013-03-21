@@ -14,6 +14,13 @@ class POCDMT000040.Patient {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -118,8 +125,8 @@ class POCDMT000040.Patient {
 		$this->determinerCode = ($determinerCode===NULL) ? NULL : $this->validateDeterminerCode($determinerCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -153,8 +160,8 @@ class POCDMT000040.Patient {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -173,8 +180,8 @@ class POCDMT000040.Patient {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -208,8 +215,8 @@ class POCDMT000040.Patient {
 		return $templateId;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -228,8 +235,8 @@ class POCDMT000040.Patient {
 		return $id;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -263,8 +270,8 @@ class POCDMT000040.Patient {
 		return $name;
 	}
 
-	public function getAdministrativeGenderCode() {
-		if ($this->administrativeGenderCode===NULL) {
+	public function getAdministrativeGenderCode($autoCreate = TRUE) {
+		if ($this->administrativeGenderCode===NULL && $autoCreate && ! isset($this->_overrides['administrativeGenderCode']) ) {
 			$this->administrativeGenderCode = $this->createAdministrativeGenderCode();
 		}
 		return $this->administrativeGenderCode;
@@ -283,8 +290,8 @@ class POCDMT000040.Patient {
 		return $administrativeGenderCode;
 	}
 
-	public function getBirthTime() {
-		if ($this->birthTime===NULL) {
+	public function getBirthTime($autoCreate = TRUE) {
+		if ($this->birthTime===NULL && $autoCreate && ! isset($this->_overrides['birthTime']) ) {
 			$this->birthTime = $this->createBirthTime();
 		}
 		return $this->birthTime;
@@ -303,8 +310,8 @@ class POCDMT000040.Patient {
 		return $birthTime;
 	}
 
-	public function getMaritalStatusCode() {
-		if ($this->maritalStatusCode===NULL) {
+	public function getMaritalStatusCode($autoCreate = TRUE) {
+		if ($this->maritalStatusCode===NULL && $autoCreate && ! isset($this->_overrides['maritalStatusCode']) ) {
 			$this->maritalStatusCode = $this->createMaritalStatusCode();
 		}
 		return $this->maritalStatusCode;
@@ -323,8 +330,8 @@ class POCDMT000040.Patient {
 		return $maritalStatusCode;
 	}
 
-	public function getReligiousAffiliationCode() {
-		if ($this->religiousAffiliationCode===NULL) {
+	public function getReligiousAffiliationCode($autoCreate = TRUE) {
+		if ($this->religiousAffiliationCode===NULL && $autoCreate && ! isset($this->_overrides['religiousAffiliationCode']) ) {
 			$this->religiousAffiliationCode = $this->createReligiousAffiliationCode();
 		}
 		return $this->religiousAffiliationCode;
@@ -343,8 +350,8 @@ class POCDMT000040.Patient {
 		return $religiousAffiliationCode;
 	}
 
-	public function getRaceCode() {
-		if ($this->raceCode===NULL) {
+	public function getRaceCode($autoCreate = TRUE) {
+		if ($this->raceCode===NULL && $autoCreate && ! isset($this->_overrides['raceCode']) ) {
 			$this->raceCode = $this->createRaceCode();
 		}
 		return $this->raceCode;
@@ -363,8 +370,8 @@ class POCDMT000040.Patient {
 		return $raceCode;
 	}
 
-	public function getEthnicGroupCode() {
-		if ($this->ethnicGroupCode===NULL) {
+	public function getEthnicGroupCode($autoCreate = TRUE) {
+		if ($this->ethnicGroupCode===NULL && $autoCreate && ! isset($this->_overrides['ethnicGroupCode']) ) {
 			$this->ethnicGroupCode = $this->createEthnicGroupCode();
 		}
 		return $this->ethnicGroupCode;
@@ -383,8 +390,8 @@ class POCDMT000040.Patient {
 		return $ethnicGroupCode;
 	}
 
-	public function getGuardian() {
-		if ($this->guardian===NULL) {
+	public function getGuardian($autoCreate = TRUE) {
+		if ($this->guardian===NULL && $autoCreate && ! isset($this->_overrides['guardian']) ) {
 			$this->guardian = $this->createGuardian();
 		}
 		return $this->guardian;
@@ -418,8 +425,8 @@ class POCDMT000040.Patient {
 		return $guardian;
 	}
 
-	public function getBirthplace() {
-		if ($this->birthplace===NULL) {
+	public function getBirthplace($autoCreate = TRUE) {
+		if ($this->birthplace===NULL && $autoCreate && ! isset($this->_overrides['birthplace']) ) {
 			$this->birthplace = $this->createBirthplace();
 		}
 		return $this->birthplace;
@@ -438,8 +445,8 @@ class POCDMT000040.Patient {
 		return $birthplace;
 	}
 
-	public function getLanguageCommunication() {
-		if ($this->languageCommunication===NULL) {
+	public function getLanguageCommunication($autoCreate = TRUE) {
+		if ($this->languageCommunication===NULL && $autoCreate && ! isset($this->_overrides['languageCommunication']) ) {
 			$this->languageCommunication = $this->createLanguageCommunication();
 		}
 		return $this->languageCommunication;
@@ -473,8 +480,8 @@ class POCDMT000040.Patient {
 		return $languageCommunication;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -493,8 +500,8 @@ class POCDMT000040.Patient {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;
@@ -513,8 +520,8 @@ class POCDMT000040.Patient {
 		return $classCode;
 	}
 
-	public function getDeterminerCode() {
-		if ($this->determinerCode===NULL) {
+	public function getDeterminerCode($autoCreate = TRUE) {
+		if ($this->determinerCode===NULL && $autoCreate && ! isset($this->_overrides['determinerCode']) ) {
 			$this->determinerCode = $this->createDeterminerCode();
 		}
 		return $this->determinerCode;

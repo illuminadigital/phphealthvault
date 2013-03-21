@@ -15,6 +15,13 @@ class NCES0798EarlyChildhoodProgramSettingType {
 	static protected $enumValue = array('2170' => 'Business/workplace', '2164' => 'Child\'s home', '2167' => 'Childcare facility', '2190' => 'Facility sponsored by a state agency', '2168' => 'Head Start center (no matter where offered)', '2165' => 'Home other than the child\'s', '2187' => 'Hospital facility', '9999' => 'Other', '2191' => 'Other childcare facility', '2188' => 'Other community-based setting', '0776' => 'Private school', '2166' => 'Public school facility', '2169' => 'Religion-affiliated institution', '2174' => 'Shelter or orphanage', '3497' => 'Special education classroom in a private school', '3496' => 'Special education classroom in a public school facility', '2184' => 'Special education classroom in child care facility', '2172' => 'University/postsecondary institution');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0798EarlyChildhoodProgramSettingType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0798EarlyChildhoodProgramSettingType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

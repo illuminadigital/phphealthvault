@@ -19,6 +19,13 @@ class DiabetesInsulinInjectionUse extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Diabetes Insulin Injection Usage';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -45,8 +52,8 @@ class DiabetesInsulinInjectionUse extends \com\microsoft\wc\thing\AnyMixed {
 		$this->deviceId = ($deviceId===NULL) ? NULL : $this->validateDeviceId($deviceId);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -68,8 +75,8 @@ class DiabetesInsulinInjectionUse extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -91,8 +98,8 @@ class DiabetesInsulinInjectionUse extends \com\microsoft\wc\thing\AnyMixed {
 		return $type;
 	}
 
-	public function getAmount() {
-		if ($this->amount===NULL) {
+	public function getAmount($autoCreate = TRUE) {
+		if ($this->amount===NULL && $autoCreate && ! isset($this->_overrides['amount']) ) {
 			$this->amount = $this->createAmount();
 		}
 		return $this->amount;
@@ -114,8 +121,8 @@ class DiabetesInsulinInjectionUse extends \com\microsoft\wc\thing\AnyMixed {
 		return $amount;
 	}
 
-	public function getDeviceId() {
-		if ($this->deviceId===NULL) {
+	public function getDeviceId($autoCreate = TRUE) {
+		if ($this->deviceId===NULL && $autoCreate && ! isset($this->_overrides['deviceId']) ) {
 			$this->deviceId = $this->createDeviceId();
 		}
 		return $this->deviceId;

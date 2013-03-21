@@ -14,6 +14,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\subscription\Subscription", name="subscription")
 	 */
 	protected $subscription;
@@ -22,8 +29,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->subscription = ($subscription===NULL) ? NULL : $this->validateSubscription($subscription);
 	}
 
-	public function getSubscription() {
-		if ($this->subscription===NULL) {
+	public function getSubscription($autoCreate = TRUE) {
+		if ($this->subscription===NULL && $autoCreate && ! isset($this->_overrides['subscription']) ) {
 			$this->subscription = $this->createSubscription();
 		}
 		return $this->subscription;

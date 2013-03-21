@@ -14,6 +14,13 @@ class StudentSchoolRelationship {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\MembershipType", name="MembershipType")
 	 */
 	protected $membershipType;
@@ -40,8 +47,8 @@ class StudentSchoolRelationship {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getMembershipType() {
-		if ($this->membershipType===NULL) {
+	public function getMembershipType($autoCreate = TRUE) {
+		if ($this->membershipType===NULL && $autoCreate && ! isset($this->_overrides['membershipType']) ) {
 			$this->membershipType = $this->createMembershipType();
 		}
 		return $this->membershipType;
@@ -56,15 +63,22 @@ class StudentSchoolRelationship {
 	}
 
 	protected function validateMembershipType($membershipType) {
+		if ( $membershipType === FALSE ) {
+			$this->_overrides['membershipType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $membershipType instanceof \org\sifinfo\www\infrastructure\_2_x\MembershipType  && ! is_null($membershipType) ) {
 			$membershipType = new \org\sifinfo\www\infrastructure\_2_x\MembershipType ($membershipType);
 		}
+
+		unset ($this->_overrides['membershipType']);
 	
 		return $membershipType;
 	}
 
-	public function getResidencyStatus() {
-		if ($this->residencyStatus===NULL) {
+	public function getResidencyStatus($autoCreate = TRUE) {
+		if ($this->residencyStatus===NULL && $autoCreate && ! isset($this->_overrides['residencyStatus']) ) {
 			$this->residencyStatus = $this->createResidencyStatus();
 		}
 		return $this->residencyStatus;
@@ -79,15 +93,22 @@ class StudentSchoolRelationship {
 	}
 
 	protected function validateResidencyStatus($residencyStatus) {
+		if ( $residencyStatus === FALSE ) {
+			$this->_overrides['residencyStatus'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $residencyStatus instanceof \org\sifinfo\www\infrastructure\_2_x\ResidencyStatus  && ! is_null($residencyStatus) ) {
 			$residencyStatus = new \org\sifinfo\www\infrastructure\_2_x\ResidencyStatus ($residencyStatus);
 		}
+
+		unset ($this->_overrides['residencyStatus']);
 	
 		return $residencyStatus;
 	}
 
-	public function getNonResidentAttendReason() {
-		if ($this->nonResidentAttendReason===NULL) {
+	public function getNonResidentAttendReason($autoCreate = TRUE) {
+		if ($this->nonResidentAttendReason===NULL && $autoCreate && ! isset($this->_overrides['nonResidentAttendReason']) ) {
 			$this->nonResidentAttendReason = $this->createNonResidentAttendReason();
 		}
 		return $this->nonResidentAttendReason;
@@ -106,8 +127,8 @@ class StudentSchoolRelationship {
 		return $nonResidentAttendReason;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -122,9 +143,16 @@ class StudentSchoolRelationship {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

@@ -14,6 +14,13 @@ class NotificationAuthenticationInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\subscription\HVEventingSharedKey", name="hv-eventing-shared-key")
 	 */
 	protected $hvEventingSharedKey;
@@ -22,8 +29,8 @@ class NotificationAuthenticationInfo {
 		$this->hvEventingSharedKey = ($hvEventingSharedKey===NULL) ? NULL : $this->validateHvEventingSharedKey($hvEventingSharedKey);
 	}
 
-	public function getHvEventingSharedKey() {
-		if ($this->hvEventingSharedKey===NULL) {
+	public function getHvEventingSharedKey($autoCreate = TRUE) {
+		if ($this->hvEventingSharedKey===NULL && $autoCreate && ! isset($this->_overrides['hvEventingSharedKey']) ) {
 			$this->hvEventingSharedKey = $this->createHvEventingSharedKey();
 		}
 		return $this->hvEventingSharedKey;

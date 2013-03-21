@@ -19,6 +19,13 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Discharge Summary';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -123,8 +130,8 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 		$this->additionalProcedure = ($additionalProcedure===NULL) ? NULL : $this->validateAdditionalProcedure($additionalProcedure);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -146,8 +153,8 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -162,15 +169,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateType($type) {
+		if ( $type === FALSE ) {
+			$this->_overrides['type'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $type instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($type) ) {
 			$type = new \com\microsoft\wc\types\CodableValue ($type);
 		}
+
+		unset ($this->_overrides['type']);
 	
 		return $type;
 	}
 
-	public function getCategory() {
-		if ($this->category===NULL) {
+	public function getCategory($autoCreate = TRUE) {
+		if ($this->category===NULL && $autoCreate && ! isset($this->_overrides['category']) ) {
 			$this->category = $this->createCategory();
 		}
 		return $this->category;
@@ -185,15 +199,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCategory($category) {
+		if ( $category === FALSE ) {
+			$this->_overrides['category'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $category instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($category) ) {
 			$category = new \com\microsoft\wc\types\CodableValue ($category);
 		}
+
+		unset ($this->_overrides['category']);
 	
 		return $category;
 	}
 
-	public function getSetting() {
-		if ($this->setting===NULL) {
+	public function getSetting($autoCreate = TRUE) {
+		if ($this->setting===NULL && $autoCreate && ! isset($this->_overrides['setting']) ) {
 			$this->setting = $this->createSetting();
 		}
 		return $this->setting;
@@ -208,15 +229,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSetting($setting) {
+		if ( $setting === FALSE ) {
+			$this->_overrides['setting'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $setting instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($setting) ) {
 			$setting = new \com\microsoft\wc\types\CodableValue ($setting);
 		}
+
+		unset ($this->_overrides['setting']);
 	
 		return $setting;
 	}
 
-	public function getSpecialty() {
-		if ($this->specialty===NULL) {
+	public function getSpecialty($autoCreate = TRUE) {
+		if ($this->specialty===NULL && $autoCreate && ! isset($this->_overrides['specialty']) ) {
 			$this->specialty = $this->createSpecialty();
 		}
 		return $this->specialty;
@@ -238,8 +266,8 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 		return $specialty;
 	}
 
-	public function getText() {
-		if ($this->text===NULL) {
+	public function getText($autoCreate = TRUE) {
+		if ($this->text===NULL && $autoCreate && ! isset($this->_overrides['text']) ) {
 			$this->text = $this->createText();
 		}
 		return $this->text;
@@ -261,8 +289,8 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 		return $text;
 	}
 
-	public function getPrimaryProvider() {
-		if ($this->primaryProvider===NULL) {
+	public function getPrimaryProvider($autoCreate = TRUE) {
+		if ($this->primaryProvider===NULL && $autoCreate && ! isset($this->_overrides['primaryProvider']) ) {
 			$this->primaryProvider = $this->createPrimaryProvider();
 		}
 		return $this->primaryProvider;
@@ -277,15 +305,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePrimaryProvider($primaryProvider) {
+		if ( $primaryProvider === FALSE ) {
+			$this->_overrides['primaryProvider'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $primaryProvider instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($primaryProvider) ) {
 			$primaryProvider = new \com\microsoft\wc\thing\types\Person ($primaryProvider);
 		}
+
+		unset ($this->_overrides['primaryProvider']);
 	
 		return $primaryProvider;
 	}
 
-	public function getPrimaryProviderEndorsement() {
-		if ($this->primaryProviderEndorsement===NULL) {
+	public function getPrimaryProviderEndorsement($autoCreate = TRUE) {
+		if ($this->primaryProviderEndorsement===NULL && $autoCreate && ! isset($this->_overrides['primaryProviderEndorsement']) ) {
 			$this->primaryProviderEndorsement = $this->createPrimaryProviderEndorsement();
 		}
 		return $this->primaryProviderEndorsement;
@@ -300,15 +335,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePrimaryProviderEndorsement($primaryProviderEndorsement) {
+		if ( $primaryProviderEndorsement === FALSE ) {
+			$this->_overrides['primaryProviderEndorsement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $primaryProviderEndorsement instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($primaryProviderEndorsement) ) {
 			$primaryProviderEndorsement = new \com\microsoft\wc\dates\DateTime ($primaryProviderEndorsement);
 		}
+
+		unset ($this->_overrides['primaryProviderEndorsement']);
 	
 		return $primaryProviderEndorsement;
 	}
 
-	public function getSecondaryProvider() {
-		if ($this->secondaryProvider===NULL) {
+	public function getSecondaryProvider($autoCreate = TRUE) {
+		if ($this->secondaryProvider===NULL && $autoCreate && ! isset($this->_overrides['secondaryProvider']) ) {
 			$this->secondaryProvider = $this->createSecondaryProvider();
 		}
 		return $this->secondaryProvider;
@@ -323,15 +365,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSecondaryProvider($secondaryProvider) {
+		if ( $secondaryProvider === FALSE ) {
+			$this->_overrides['secondaryProvider'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $secondaryProvider instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($secondaryProvider) ) {
 			$secondaryProvider = new \com\microsoft\wc\thing\types\Person ($secondaryProvider);
 		}
+
+		unset ($this->_overrides['secondaryProvider']);
 	
 		return $secondaryProvider;
 	}
 
-	public function getSecondaryProviderEndorsement() {
-		if ($this->secondaryProviderEndorsement===NULL) {
+	public function getSecondaryProviderEndorsement($autoCreate = TRUE) {
+		if ($this->secondaryProviderEndorsement===NULL && $autoCreate && ! isset($this->_overrides['secondaryProviderEndorsement']) ) {
 			$this->secondaryProviderEndorsement = $this->createSecondaryProviderEndorsement();
 		}
 		return $this->secondaryProviderEndorsement;
@@ -346,15 +395,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSecondaryProviderEndorsement($secondaryProviderEndorsement) {
+		if ( $secondaryProviderEndorsement === FALSE ) {
+			$this->_overrides['secondaryProviderEndorsement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $secondaryProviderEndorsement instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($secondaryProviderEndorsement) ) {
 			$secondaryProviderEndorsement = new \com\microsoft\wc\dates\DateTime ($secondaryProviderEndorsement);
 		}
+
+		unset ($this->_overrides['secondaryProviderEndorsement']);
 	
 		return $secondaryProviderEndorsement;
 	}
 
-	public function getDischargeDateTime() {
-		if ($this->dischargeDateTime===NULL) {
+	public function getDischargeDateTime($autoCreate = TRUE) {
+		if ($this->dischargeDateTime===NULL && $autoCreate && ! isset($this->_overrides['dischargeDateTime']) ) {
 			$this->dischargeDateTime = $this->createDischargeDateTime();
 		}
 		return $this->dischargeDateTime;
@@ -369,15 +425,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDischargeDateTime($dischargeDateTime) {
+		if ( $dischargeDateTime === FALSE ) {
+			$this->_overrides['dischargeDateTime'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dischargeDateTime instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($dischargeDateTime) ) {
 			$dischargeDateTime = new \com\microsoft\wc\dates\ApproxDateTime ($dischargeDateTime);
 		}
+
+		unset ($this->_overrides['dischargeDateTime']);
 	
 		return $dischargeDateTime;
 	}
 
-	public function getAdmittingDiagnosis() {
-		if ($this->admittingDiagnosis===NULL) {
+	public function getAdmittingDiagnosis($autoCreate = TRUE) {
+		if ($this->admittingDiagnosis===NULL && $autoCreate && ! isset($this->_overrides['admittingDiagnosis']) ) {
 			$this->admittingDiagnosis = $this->createAdmittingDiagnosis();
 		}
 		return $this->admittingDiagnosis;
@@ -392,15 +455,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAdmittingDiagnosis($admittingDiagnosis) {
+		if ( $admittingDiagnosis === FALSE ) {
+			$this->_overrides['admittingDiagnosis'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $admittingDiagnosis instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($admittingDiagnosis) ) {
 			$admittingDiagnosis = new \com\microsoft\wc\types\CodableValue ($admittingDiagnosis);
 		}
+
+		unset ($this->_overrides['admittingDiagnosis']);
 	
 		return $admittingDiagnosis;
 	}
 
-	public function getPrincipalDiagnosis() {
-		if ($this->principalDiagnosis===NULL) {
+	public function getPrincipalDiagnosis($autoCreate = TRUE) {
+		if ($this->principalDiagnosis===NULL && $autoCreate && ! isset($this->_overrides['principalDiagnosis']) ) {
 			$this->principalDiagnosis = $this->createPrincipalDiagnosis();
 		}
 		return $this->principalDiagnosis;
@@ -415,15 +485,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePrincipalDiagnosis($principalDiagnosis) {
+		if ( $principalDiagnosis === FALSE ) {
+			$this->_overrides['principalDiagnosis'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $principalDiagnosis instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($principalDiagnosis) ) {
 			$principalDiagnosis = new \com\microsoft\wc\types\CodableValue ($principalDiagnosis);
 		}
+
+		unset ($this->_overrides['principalDiagnosis']);
 	
 		return $principalDiagnosis;
 	}
 
-	public function getAdditionalDiagnosis() {
-		if ($this->additionalDiagnosis===NULL) {
+	public function getAdditionalDiagnosis($autoCreate = TRUE) {
+		if ($this->additionalDiagnosis===NULL && $autoCreate && ! isset($this->_overrides['additionalDiagnosis']) ) {
 			$this->additionalDiagnosis = $this->createAdditionalDiagnosis();
 		}
 		return $this->additionalDiagnosis;
@@ -438,9 +515,16 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAdditionalDiagnosis($additionalDiagnosis) {
+		if ( $additionalDiagnosis === FALSE ) {
+			$this->_overrides['additionalDiagnosis'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($additionalDiagnosis) && ! is_null($additionalDiagnosis) ) {
 			$additionalDiagnosis = array($additionalDiagnosis);
 		}
+
+		unset ($this->_overrides['additionalDiagnosis']);
 		$count = count($additionalDiagnosis);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'additionalDiagnosis', 0));
@@ -458,8 +542,8 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 		$this->additionalDiagnosis[] = $additionalDiagnosis;
 	}
 
-	public function getPrincipalProcedurePhysician() {
-		if ($this->principalProcedurePhysician===NULL) {
+	public function getPrincipalProcedurePhysician($autoCreate = TRUE) {
+		if ($this->principalProcedurePhysician===NULL && $autoCreate && ! isset($this->_overrides['principalProcedurePhysician']) ) {
 			$this->principalProcedurePhysician = $this->createPrincipalProcedurePhysician();
 		}
 		return $this->principalProcedurePhysician;
@@ -474,15 +558,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePrincipalProcedurePhysician($principalProcedurePhysician) {
+		if ( $principalProcedurePhysician === FALSE ) {
+			$this->_overrides['principalProcedurePhysician'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $principalProcedurePhysician instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($principalProcedurePhysician) ) {
 			$principalProcedurePhysician = new \com\microsoft\wc\thing\types\Person ($principalProcedurePhysician);
 		}
+
+		unset ($this->_overrides['principalProcedurePhysician']);
 	
 		return $principalProcedurePhysician;
 	}
 
-	public function getPrincipalProcedure() {
-		if ($this->principalProcedure===NULL) {
+	public function getPrincipalProcedure($autoCreate = TRUE) {
+		if ($this->principalProcedure===NULL && $autoCreate && ! isset($this->_overrides['principalProcedure']) ) {
 			$this->principalProcedure = $this->createPrincipalProcedure();
 		}
 		return $this->principalProcedure;
@@ -497,15 +588,22 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePrincipalProcedure($principalProcedure) {
+		if ( $principalProcedure === FALSE ) {
+			$this->_overrides['principalProcedure'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $principalProcedure instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($principalProcedure) ) {
 			$principalProcedure = new \com\microsoft\wc\types\CodableValue ($principalProcedure);
 		}
+
+		unset ($this->_overrides['principalProcedure']);
 	
 		return $principalProcedure;
 	}
 
-	public function getAdditionalProcedure() {
-		if ($this->additionalProcedure===NULL) {
+	public function getAdditionalProcedure($autoCreate = TRUE) {
+		if ($this->additionalProcedure===NULL && $autoCreate && ! isset($this->_overrides['additionalProcedure']) ) {
 			$this->additionalProcedure = $this->createAdditionalProcedure();
 		}
 		return $this->additionalProcedure;
@@ -520,9 +618,16 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAdditionalProcedure($additionalProcedure) {
+		if ( $additionalProcedure === FALSE ) {
+			$this->_overrides['additionalProcedure'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($additionalProcedure) && ! is_null($additionalProcedure) ) {
 			$additionalProcedure = array($additionalProcedure);
 		}
+
+		unset ($this->_overrides['additionalProcedure']);
 		$count = count($additionalProcedure);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'additionalProcedure', 0));

@@ -14,6 +14,13 @@ class ThingType extends \com\microsoft\wc\types\Guid {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="name")
 	 */
 	protected $name;
@@ -22,8 +29,8 @@ class ThingType extends \com\microsoft\wc\types\Guid {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;

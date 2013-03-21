@@ -14,6 +14,13 @@ class InstructionalStrategies {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\InstructionalStrategy", collection="true", name="InstructionalStrategy")
 	 */
 	protected $instructionalStrategy;
@@ -22,8 +29,8 @@ class InstructionalStrategies {
 		$this->instructionalStrategy = ($instructionalStrategy===NULL) ? NULL : $this->validateInstructionalStrategy($instructionalStrategy);
 	}
 
-	public function getInstructionalStrategy() {
-		if ($this->instructionalStrategy===NULL) {
+	public function getInstructionalStrategy($autoCreate = TRUE) {
+		if ($this->instructionalStrategy===NULL && $autoCreate && ! isset($this->_overrides['instructionalStrategy']) ) {
 			$this->instructionalStrategy = $this->createInstructionalStrategy();
 		}
 		return $this->instructionalStrategy;
@@ -38,9 +45,16 @@ class InstructionalStrategies {
 	}
 
 	protected function validateInstructionalStrategy($instructionalStrategy) {
+		if ( $instructionalStrategy === FALSE ) {
+			$this->_overrides['instructionalStrategy'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($instructionalStrategy) && ! is_null($instructionalStrategy) ) {
 			$instructionalStrategy = array($instructionalStrategy);
 		}
+
+		unset ($this->_overrides['instructionalStrategy']);
 		$count = count($instructionalStrategy);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'instructionalStrategy', 0));

@@ -16,6 +16,13 @@ class HMACFinalized {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\HMACFinalizedData", name="hmac-data")
 	 */
 	protected $hmacData;
@@ -24,8 +31,8 @@ class HMACFinalized {
 		$this->hmacData = ($hmacData===NULL) ? NULL : $this->validateHmacData($hmacData);
 	}
 
-	public function getHmacData() {
-		if ($this->hmacData===NULL) {
+	public function getHmacData($autoCreate = TRUE) {
+		if ($this->hmacData===NULL && $autoCreate && ! isset($this->_overrides['hmacData']) ) {
 			$this->hmacData = $this->createHmacData();
 		}
 		return $this->hmacData;

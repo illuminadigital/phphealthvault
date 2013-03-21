@@ -15,6 +15,13 @@ class AddressListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Address", collection="true", name="Address")
 	 */
 	protected $address;
@@ -23,8 +30,8 @@ class AddressListType {
 		$this->address = ($address===NULL) ? NULL : $this->validateAddress($address);
 	}
 
-	public function getAddress() {
-		if ($this->address===NULL) {
+	public function getAddress($autoCreate = TRUE) {
+		if ($this->address===NULL && $autoCreate && ! isset($this->_overrides['address']) ) {
 			$this->address = $this->createAddress();
 		}
 		return $this->address;

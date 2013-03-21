@@ -15,6 +15,13 @@ class NCES0401BackgroundCheckTypeType {
 	static protected $enumValue = array('1420' => 'Criminal records', '1421' => 'Previous employment records', '1422' => 'Personal references', '1423' => 'Credentials', '9999' => 'Other');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0401BackgroundCheckTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0401BackgroundCheckTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

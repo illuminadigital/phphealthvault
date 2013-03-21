@@ -16,6 +16,13 @@ class SimpleFacebookCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\PositiveLong", name="user-id")
 	 */
 	protected $userId;
@@ -24,8 +31,8 @@ class SimpleFacebookCredential {
 		$this->userId = ($userId===NULL) ? NULL : $this->validateUserId($userId);
 	}
 
-	public function getUserId() {
-		if ($this->userId===NULL) {
+	public function getUserId($autoCreate = TRUE) {
+		if ($this->userId===NULL && $autoCreate && ! isset($this->_overrides['userId']) ) {
 			$this->userId = $this->createUserId();
 		}
 		return $this->userId;

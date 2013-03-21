@@ -14,6 +14,13 @@ class StudentRecordExchangeDataListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\StudentRecordExchangeData", collection="true", name="StudentRecordExchangeData")
 	 */
 	protected $studentRecordExchangeData;
@@ -22,8 +29,8 @@ class StudentRecordExchangeDataListType {
 		$this->studentRecordExchangeData = ($studentRecordExchangeData===NULL) ? NULL : $this->validateStudentRecordExchangeData($studentRecordExchangeData);
 	}
 
-	public function getStudentRecordExchangeData() {
-		if ($this->studentRecordExchangeData===NULL) {
+	public function getStudentRecordExchangeData($autoCreate = TRUE) {
+		if ($this->studentRecordExchangeData===NULL && $autoCreate && ! isset($this->_overrides['studentRecordExchangeData']) ) {
 			$this->studentRecordExchangeData = $this->createStudentRecordExchangeData();
 		}
 		return $this->studentRecordExchangeData;

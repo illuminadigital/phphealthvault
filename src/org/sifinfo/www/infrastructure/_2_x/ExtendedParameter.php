@@ -14,6 +14,13 @@ class ExtendedParameter {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="SIF_Name")
 	 */
 	protected $sifName;
@@ -28,8 +35,8 @@ class ExtendedParameter {
 		$this->sifValue = ($sifValue===NULL) ? NULL : $this->validateSifValue($sifValue);
 	}
 
-	public function getSifName() {
-		if ($this->sifName===NULL) {
+	public function getSifName($autoCreate = TRUE) {
+		if ($this->sifName===NULL && $autoCreate && ! isset($this->_overrides['sifName']) ) {
 			$this->sifName = $this->createSifName();
 		}
 		return $this->sifName;
@@ -51,8 +58,8 @@ class ExtendedParameter {
 		return $sifName;
 	}
 
-	public function getSifValue() {
-		if ($this->sifValue===NULL) {
+	public function getSifValue($autoCreate = TRUE) {
+		if ($this->sifValue===NULL && $autoCreate && ! isset($this->_overrides['sifValue']) ) {
 			$this->sifValue = $this->createSifValue();
 		}
 		return $this->sifValue;

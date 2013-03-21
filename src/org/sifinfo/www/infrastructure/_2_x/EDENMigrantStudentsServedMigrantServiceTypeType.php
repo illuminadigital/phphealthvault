@@ -15,6 +15,13 @@ class EDENMigrantStudentsServedMigrantServiceTypeType {
 	static protected $enumValue = array('COS' => 'Continuation of Service', 'AIS' => 'Any Instructional Service', 'RI' => 'Reading Instruction', 'MI' => 'Mathematics Instruction', 'HSCA' => 'High School Credit Accrual (Grades 9-12 only)', 'ANYSS' => 'Any Support Service', 'CS' => 'Counseling Service', 'ARS' => 'Any Referred Service', 'MISSING' => 'MISSING', 'NOTCOLLECT' => 'Not Collected');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="EDENMigrantStudentsServedMigrantServiceTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class EDENMigrantStudentsServedMigrantServiceTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

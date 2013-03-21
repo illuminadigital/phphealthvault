@@ -16,6 +16,13 @@ class SampleSet {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="base-time")
 	 */
 	protected $baseTime;
@@ -42,8 +49,8 @@ class SampleSet {
 		$this->sample = ($sample===NULL) ? NULL : $this->validateSample($sample);
 	}
 
-	public function getBaseTime() {
-		if ($this->baseTime===NULL) {
+	public function getBaseTime($autoCreate = TRUE) {
+		if ($this->baseTime===NULL && $autoCreate && ! isset($this->_overrides['baseTime']) ) {
 			$this->baseTime = $this->createBaseTime();
 		}
 		return $this->baseTime;
@@ -65,8 +72,8 @@ class SampleSet {
 		return $baseTime;
 	}
 
-	public function getSampleUnit() {
-		if ($this->sampleUnit===NULL) {
+	public function getSampleUnit($autoCreate = TRUE) {
+		if ($this->sampleUnit===NULL && $autoCreate && ! isset($this->_overrides['sampleUnit']) ) {
 			$this->sampleUnit = $this->createSampleUnit();
 		}
 		return $this->sampleUnit;
@@ -88,8 +95,8 @@ class SampleSet {
 		return $sampleUnit;
 	}
 
-	public function getSampleUnitCode() {
-		if ($this->sampleUnitCode===NULL) {
+	public function getSampleUnitCode($autoCreate = TRUE) {
+		if ($this->sampleUnitCode===NULL && $autoCreate && ! isset($this->_overrides['sampleUnitCode']) ) {
 			$this->sampleUnitCode = $this->createSampleUnitCode();
 		}
 		return $this->sampleUnitCode;
@@ -111,8 +118,8 @@ class SampleSet {
 		return $sampleUnitCode;
 	}
 
-	public function getSample() {
-		if ($this->sample===NULL) {
+	public function getSample($autoCreate = TRUE) {
+		if ($this->sample===NULL && $autoCreate && ! isset($this->_overrides['sample']) ) {
 			$this->sample = $this->createSample();
 		}
 		return $this->sample;
@@ -127,9 +134,16 @@ class SampleSet {
 	}
 
 	protected function validateSample($sample) {
+		if ( $sample === FALSE ) {
+			$this->_overrides['sample'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($sample) && ! is_null($sample) ) {
 			$sample = array($sample);
 		}
+
+		unset ($this->_overrides['sample']);
 		$count = count($sample);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sample', 0));

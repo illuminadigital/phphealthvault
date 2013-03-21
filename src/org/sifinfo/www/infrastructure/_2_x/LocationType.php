@@ -14,6 +14,13 @@ class LocationType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="LocationName")
 	 */
 	protected $locationName;
@@ -34,8 +41,8 @@ class LocationType {
 		$this->type = ($type===NULL) ? NULL : $this->validateType($type);
 	}
 
-	public function getLocationName() {
-		if ($this->locationName===NULL) {
+	public function getLocationName($autoCreate = TRUE) {
+		if ($this->locationName===NULL && $autoCreate && ! isset($this->_overrides['locationName']) ) {
 			$this->locationName = $this->createLocationName();
 		}
 		return $this->locationName;
@@ -57,8 +64,8 @@ class LocationType {
 		return $locationName;
 	}
 
-	public function getLocationRefId() {
-		if ($this->locationRefId===NULL) {
+	public function getLocationRefId($autoCreate = TRUE) {
+		if ($this->locationRefId===NULL && $autoCreate && ! isset($this->_overrides['locationRefId']) ) {
 			$this->locationRefId = $this->createLocationRefId();
 		}
 		return $this->locationRefId;
@@ -73,15 +80,22 @@ class LocationType {
 	}
 
 	protected function validateLocationRefId($locationRefId) {
+		if ( $locationRefId === FALSE ) {
+			$this->_overrides['locationRefId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $locationRefId instanceof \org\sifinfo\www\infrastructure\_2_x\LocationRefId  && ! is_null($locationRefId) ) {
 			$locationRefId = new \org\sifinfo\www\infrastructure\_2_x\LocationRefId ($locationRefId);
 		}
+
+		unset ($this->_overrides['locationRefId']);
 	
 		return $locationRefId;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;

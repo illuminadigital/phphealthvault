@@ -16,6 +16,13 @@ class SimplePassportCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Puid", name="puid")
 	 */
 	protected $puid;
@@ -24,8 +31,8 @@ class SimplePassportCredential {
 		$this->puid = ($puid===NULL) ? NULL : $this->validatePuid($puid);
 	}
 
-	public function getPuid() {
-		if ($this->puid===NULL) {
+	public function getPuid($autoCreate = TRUE) {
+		if ($this->puid===NULL && $autoCreate && ! isset($this->_overrides['puid']) ) {
 			$this->puid = $this->createPuid();
 		}
 		return $this->puid;

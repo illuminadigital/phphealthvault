@@ -14,6 +14,13 @@ class Column {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="tag")
 	 */
 	protected $tag;
@@ -46,8 +53,8 @@ class Column {
 		$this->visible = ($visible===NULL) ? NULL : $this->validateVisible($visible);
 	}
 
-	public function getTag() {
-		if ($this->tag===NULL) {
+	public function getTag($autoCreate = TRUE) {
+		if ($this->tag===NULL && $autoCreate && ! isset($this->_overrides['tag']) ) {
 			$this->tag = $this->createTag();
 		}
 		return $this->tag;
@@ -69,8 +76,8 @@ class Column {
 		return $tag;
 	}
 
-	public function getLabel() {
-		if ($this->label===NULL) {
+	public function getLabel($autoCreate = TRUE) {
+		if ($this->label===NULL && $autoCreate && ! isset($this->_overrides['label']) ) {
 			$this->label = $this->createLabel();
 		}
 		return $this->label;
@@ -92,8 +99,8 @@ class Column {
 		return $label;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -115,8 +122,8 @@ class Column {
 		return $type;
 	}
 
-	public function getWidth() {
-		if ($this->width===NULL) {
+	public function getWidth($autoCreate = TRUE) {
+		if ($this->width===NULL && $autoCreate && ! isset($this->_overrides['width']) ) {
 			$this->width = $this->createWidth();
 		}
 		return $this->width;
@@ -146,8 +153,8 @@ class Column {
 		return $width;
 	}
 
-	public function getVisible() {
-		if ($this->visible===NULL) {
+	public function getVisible($autoCreate = TRUE) {
+		if ($this->visible===NULL && $autoCreate && ! isset($this->_overrides['visible']) ) {
 			$this->visible = $this->createVisible();
 		}
 		return $this->visible;

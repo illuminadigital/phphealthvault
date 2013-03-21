@@ -18,6 +18,13 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'CarePlan (Preview)';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnznw", name="name")
 	 */
 	protected $name;
@@ -62,8 +69,8 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 		$this->goalGroups = ($goalGroups===NULL) ? NULL : $this->validateGoalGroups($goalGroups);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -85,8 +92,8 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -101,15 +108,22 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStartDate($startDate) {
+		if ( $startDate === FALSE ) {
+			$this->_overrides['startDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $startDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($startDate) ) {
 			$startDate = new \com\microsoft\wc\dates\ApproxDateTime ($startDate);
 		}
+
+		unset ($this->_overrides['startDate']);
 	
 		return $startDate;
 	}
 
-	public function getStatus() {
-		if ($this->status===NULL) {
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
 			$this->status = $this->createStatus();
 		}
 		return $this->status;
@@ -124,15 +138,22 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStatus($status) {
+		if ( $status === FALSE ) {
+			$this->_overrides['status'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $status instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($status) ) {
 			$status = new \com\microsoft\wc\types\CodableValue ($status);
 		}
+
+		unset ($this->_overrides['status']);
 	
 		return $status;
 	}
 
-	public function getCareTeam() {
-		if ($this->careTeam===NULL) {
+	public function getCareTeam($autoCreate = TRUE) {
+		if ($this->careTeam===NULL && $autoCreate && ! isset($this->_overrides['careTeam']) ) {
 			$this->careTeam = $this->createCareTeam();
 		}
 		return $this->careTeam;
@@ -147,15 +168,22 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCareTeam($careTeam) {
+		if ( $careTeam === FALSE ) {
+			$this->_overrides['careTeam'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $careTeam instanceof \com\microsoft\wc\thing\care_plan\CareTeam  && ! is_null($careTeam) ) {
 			$careTeam = new \com\microsoft\wc\thing\care_plan\CareTeam ($careTeam);
 		}
+
+		unset ($this->_overrides['careTeam']);
 	
 		return $careTeam;
 	}
 
-	public function getCarePlanManager() {
-		if ($this->carePlanManager===NULL) {
+	public function getCarePlanManager($autoCreate = TRUE) {
+		if ($this->carePlanManager===NULL && $autoCreate && ! isset($this->_overrides['carePlanManager']) ) {
 			$this->carePlanManager = $this->createCarePlanManager();
 		}
 		return $this->carePlanManager;
@@ -170,15 +198,22 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCarePlanManager($carePlanManager) {
+		if ( $carePlanManager === FALSE ) {
+			$this->_overrides['carePlanManager'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $carePlanManager instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($carePlanManager) ) {
 			$carePlanManager = new \com\microsoft\wc\thing\types\Person ($carePlanManager);
 		}
+
+		unset ($this->_overrides['carePlanManager']);
 	
 		return $carePlanManager;
 	}
 
-	public function getTasks() {
-		if ($this->tasks===NULL) {
+	public function getTasks($autoCreate = TRUE) {
+		if ($this->tasks===NULL && $autoCreate && ! isset($this->_overrides['tasks']) ) {
 			$this->tasks = $this->createTasks();
 		}
 		return $this->tasks;
@@ -193,15 +228,22 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTasks($tasks) {
+		if ( $tasks === FALSE ) {
+			$this->_overrides['tasks'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $tasks instanceof \com\microsoft\wc\thing\care_plan\CarePlanTasks  && ! is_null($tasks) ) {
 			$tasks = new \com\microsoft\wc\thing\care_plan\CarePlanTasks ($tasks);
 		}
+
+		unset ($this->_overrides['tasks']);
 	
 		return $tasks;
 	}
 
-	public function getGoalGroups() {
-		if ($this->goalGroups===NULL) {
+	public function getGoalGroups($autoCreate = TRUE) {
+		if ($this->goalGroups===NULL && $autoCreate && ! isset($this->_overrides['goalGroups']) ) {
 			$this->goalGroups = $this->createGoalGroups();
 		}
 		return $this->goalGroups;
@@ -216,9 +258,16 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateGoalGroups($goalGroups) {
+		if ( $goalGroups === FALSE ) {
+			$this->_overrides['goalGroups'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $goalGroups instanceof \com\microsoft\wc\thing\care_plan\CarePlanGoalGroups  && ! is_null($goalGroups) ) {
 			$goalGroups = new \com\microsoft\wc\thing\care_plan\CarePlanGoalGroups ($goalGroups);
 		}
+
+		unset ($this->_overrides['goalGroups']);
 	
 		return $goalGroups;
 	}

@@ -14,6 +14,13 @@ class POCDMT000040.ManufacturedProduct {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -70,8 +77,8 @@ class POCDMT000040.ManufacturedProduct {
 		$this->classCode = ($classCode===NULL) ? NULL : $this->validateClassCode($classCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -105,8 +112,8 @@ class POCDMT000040.ManufacturedProduct {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -125,8 +132,8 @@ class POCDMT000040.ManufacturedProduct {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -160,8 +167,8 @@ class POCDMT000040.ManufacturedProduct {
 		return $templateId;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -195,8 +202,8 @@ class POCDMT000040.ManufacturedProduct {
 		return $id;
 	}
 
-	public function getManufacturedLabeledDrug() {
-		if ($this->manufacturedLabeledDrug===NULL) {
+	public function getManufacturedLabeledDrug($autoCreate = TRUE) {
+		if ($this->manufacturedLabeledDrug===NULL && $autoCreate && ! isset($this->_overrides['manufacturedLabeledDrug']) ) {
 			$this->manufacturedLabeledDrug = $this->createManufacturedLabeledDrug();
 		}
 		return $this->manufacturedLabeledDrug;
@@ -215,8 +222,8 @@ class POCDMT000040.ManufacturedProduct {
 		return $manufacturedLabeledDrug;
 	}
 
-	public function getManufacturedMaterial() {
-		if ($this->manufacturedMaterial===NULL) {
+	public function getManufacturedMaterial($autoCreate = TRUE) {
+		if ($this->manufacturedMaterial===NULL && $autoCreate && ! isset($this->_overrides['manufacturedMaterial']) ) {
 			$this->manufacturedMaterial = $this->createManufacturedMaterial();
 		}
 		return $this->manufacturedMaterial;
@@ -235,8 +242,8 @@ class POCDMT000040.ManufacturedProduct {
 		return $manufacturedMaterial;
 	}
 
-	public function getManufacturerOrganization() {
-		if ($this->manufacturerOrganization===NULL) {
+	public function getManufacturerOrganization($autoCreate = TRUE) {
+		if ($this->manufacturerOrganization===NULL && $autoCreate && ! isset($this->_overrides['manufacturerOrganization']) ) {
 			$this->manufacturerOrganization = $this->createManufacturerOrganization();
 		}
 		return $this->manufacturerOrganization;
@@ -255,8 +262,8 @@ class POCDMT000040.ManufacturedProduct {
 		return $manufacturerOrganization;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -275,8 +282,8 @@ class POCDMT000040.ManufacturedProduct {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;

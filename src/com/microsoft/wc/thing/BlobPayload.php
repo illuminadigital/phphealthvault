@@ -14,6 +14,13 @@ class BlobPayload {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\BlobPayloadItem", collection="true", name="blob")
 	 */
 	protected $blob;
@@ -22,8 +29,8 @@ class BlobPayload {
 		$this->blob = ($blob===NULL) ? NULL : $this->validateBlob($blob);
 	}
 
-	public function getBlob() {
-		if ($this->blob===NULL) {
+	public function getBlob($autoCreate = TRUE) {
+		if ($this->blob===NULL && $autoCreate && ! isset($this->_overrides['blob']) ) {
 			$this->blob = $this->createBlob();
 		}
 		return $this->blob;

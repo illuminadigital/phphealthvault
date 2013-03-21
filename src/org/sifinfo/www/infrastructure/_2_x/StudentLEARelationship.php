@@ -14,6 +14,13 @@ class StudentLEARelationship {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\MembershipType", name="MembershipType")
 	 */
 	protected $membershipType;
@@ -34,8 +41,8 @@ class StudentLEARelationship {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getMembershipType() {
-		if ($this->membershipType===NULL) {
+	public function getMembershipType($autoCreate = TRUE) {
+		if ($this->membershipType===NULL && $autoCreate && ! isset($this->_overrides['membershipType']) ) {
 			$this->membershipType = $this->createMembershipType();
 		}
 		return $this->membershipType;
@@ -50,15 +57,22 @@ class StudentLEARelationship {
 	}
 
 	protected function validateMembershipType($membershipType) {
+		if ( $membershipType === FALSE ) {
+			$this->_overrides['membershipType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $membershipType instanceof \org\sifinfo\www\infrastructure\_2_x\MembershipType  && ! is_null($membershipType) ) {
 			$membershipType = new \org\sifinfo\www\infrastructure\_2_x\MembershipType ($membershipType);
 		}
+
+		unset ($this->_overrides['membershipType']);
 	
 		return $membershipType;
 	}
 
-	public function getLEARelationshipType() {
-		if ($this->lEARelationshipType===NULL) {
+	public function getLEARelationshipType($autoCreate = TRUE) {
+		if ($this->lEARelationshipType===NULL && $autoCreate && ! isset($this->_overrides['lEARelationshipType']) ) {
 			$this->lEARelationshipType = $this->createLEARelationshipType();
 		}
 		return $this->lEARelationshipType;
@@ -80,8 +94,8 @@ class StudentLEARelationship {
 		return $lEARelationshipType;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -96,9 +110,16 @@ class StudentLEARelationship {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

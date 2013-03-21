@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetAuthorizedPeople\GetAuthorizedPeopleResponse", name="response-results")
 	 */
 	protected $responseResults;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->responseResults = ($responseResults===NULL) ? NULL : $this->validateResponseResults($responseResults);
 	}
 
-	public function getResponseResults() {
-		if ($this->responseResults===NULL) {
+	public function getResponseResults($autoCreate = TRUE) {
+		if ($this->responseResults===NULL && $autoCreate && ! isset($this->_overrides['responseResults']) ) {
 			$this->responseResults = $this->createResponseResults();
 		}
 		return $this->responseResults;

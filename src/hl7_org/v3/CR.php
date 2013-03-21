@@ -15,6 +15,13 @@ class CR extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CV", name="name")
 	 */
 	protected $name;
@@ -35,8 +42,8 @@ class CR extends \org\w3\www\_2001\XMLSchema\ANY {
 		$this->inverted = ($inverted===NULL) ? NULL : $this->validateInverted($inverted);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -55,8 +62,8 @@ class CR extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $name;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -75,8 +82,8 @@ class CR extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $value;
 	}
 
-	public function getInverted() {
-		if ($this->inverted===NULL) {
+	public function getInverted($autoCreate = TRUE) {
+		if ($this->inverted===NULL && $autoCreate && ! isset($this->_overrides['inverted']) ) {
 			$this->inverted = $this->createInverted();
 		}
 		return $this->inverted;

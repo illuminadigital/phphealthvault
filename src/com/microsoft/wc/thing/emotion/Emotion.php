@@ -18,6 +18,13 @@ class Emotion extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Emotional State';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -44,8 +51,8 @@ class Emotion extends \com\microsoft\wc\thing\AnyMixed {
 		$this->wellbeing = ($wellbeing===NULL) ? NULL : $this->validateWellbeing($wellbeing);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -67,8 +74,8 @@ class Emotion extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getMood() {
-		if ($this->mood===NULL) {
+	public function getMood($autoCreate = TRUE) {
+		if ($this->mood===NULL && $autoCreate && ! isset($this->_overrides['mood']) ) {
 			$this->mood = $this->createMood();
 		}
 		return $this->mood;
@@ -83,15 +90,22 @@ class Emotion extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMood($mood) {
+		if ( $mood === FALSE ) {
+			$this->_overrides['mood'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $mood instanceof \com\microsoft\wc\thing\types\OneToFive  && ! is_null($mood) ) {
 			$mood = new \com\microsoft\wc\thing\types\OneToFive ($mood);
 		}
+
+		unset ($this->_overrides['mood']);
 	
 		return $mood;
 	}
 
-	public function getStress() {
-		if ($this->stress===NULL) {
+	public function getStress($autoCreate = TRUE) {
+		if ($this->stress===NULL && $autoCreate && ! isset($this->_overrides['stress']) ) {
 			$this->stress = $this->createStress();
 		}
 		return $this->stress;
@@ -106,15 +120,22 @@ class Emotion extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStress($stress) {
+		if ( $stress === FALSE ) {
+			$this->_overrides['stress'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $stress instanceof \com\microsoft\wc\thing\types\OneToFive  && ! is_null($stress) ) {
 			$stress = new \com\microsoft\wc\thing\types\OneToFive ($stress);
 		}
+
+		unset ($this->_overrides['stress']);
 	
 		return $stress;
 	}
 
-	public function getWellbeing() {
-		if ($this->wellbeing===NULL) {
+	public function getWellbeing($autoCreate = TRUE) {
+		if ($this->wellbeing===NULL && $autoCreate && ! isset($this->_overrides['wellbeing']) ) {
 			$this->wellbeing = $this->createWellbeing();
 		}
 		return $this->wellbeing;
@@ -129,9 +150,16 @@ class Emotion extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateWellbeing($wellbeing) {
+		if ( $wellbeing === FALSE ) {
+			$this->_overrides['wellbeing'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $wellbeing instanceof \com\microsoft\wc\thing\types\OneToFive  && ! is_null($wellbeing) ) {
 			$wellbeing = new \com\microsoft\wc\thing\types\OneToFive ($wellbeing);
 		}
+
+		unset ($this->_overrides['wellbeing']);
 	
 		return $wellbeing;
 	}

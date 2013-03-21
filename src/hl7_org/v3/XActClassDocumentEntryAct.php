@@ -15,6 +15,13 @@ class XActClassDocumentEntryAct {
 	static protected $enumValue = array('ACT' => 'ACT', 'ACCM' => 'ACCM', 'CONS' => 'CONS', 'CTTEVENT' => 'CTTEVENT', 'INC' => 'INC', 'INFRM' => 'INFRM', 'PCPR' => 'PCPR', 'REG' => 'REG', 'SPCTRT' => 'SPCTRT');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\hl7_org\v3\Cs", name="value")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class XActClassDocumentEntryAct {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

@@ -15,6 +15,13 @@ class TextData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="MIMEType")
 	 */
 	protected $mIMEType;
@@ -35,8 +42,8 @@ class TextData {
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
 	}
 
-	public function getMIMEType() {
-		if ($this->mIMEType===NULL) {
+	public function getMIMEType($autoCreate = TRUE) {
+		if ($this->mIMEType===NULL && $autoCreate && ! isset($this->_overrides['mIMEType']) ) {
 			$this->mIMEType = $this->createMIMEType();
 		}
 		return $this->mIMEType;
@@ -58,8 +65,8 @@ class TextData {
 		return $mIMEType;
 	}
 
-	public function getFileName() {
-		if ($this->fileName===NULL) {
+	public function getFileName($autoCreate = TRUE) {
+		if ($this->fileName===NULL && $autoCreate && ! isset($this->_overrides['fileName']) ) {
 			$this->fileName = $this->createFileName();
 		}
 		return $this->fileName;
@@ -81,8 +88,8 @@ class TextData {
 		return $fileName;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;

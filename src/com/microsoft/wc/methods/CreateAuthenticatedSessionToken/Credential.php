@@ -16,6 +16,13 @@ class Credential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\AppServerCred", name="appserver")
 	 */
 	protected $appserver;
@@ -30,8 +37,8 @@ class Credential {
 		$this->userpassauthsession = ($userpassauthsession===NULL) ? NULL : $this->validateUserpassauthsession($userpassauthsession);
 	}
 
-	public function getAppserver() {
-		if ($this->appserver===NULL) {
+	public function getAppserver($autoCreate = TRUE) {
+		if ($this->appserver===NULL && $autoCreate && ! isset($this->_overrides['appserver']) ) {
 			$this->appserver = $this->createAppserver();
 		}
 		return $this->appserver;
@@ -53,8 +60,8 @@ class Credential {
 		return $appserver;
 	}
 
-	public function getUserpassauthsession() {
-		if ($this->userpassauthsession===NULL) {
+	public function getUserpassauthsession($autoCreate = TRUE) {
+		if ($this->userpassauthsession===NULL && $autoCreate && ! isset($this->_overrides['userpassauthsession']) ) {
 			$this->userpassauthsession = $this->createUserpassauthsession();
 		}
 		return $this->userpassauthsession;

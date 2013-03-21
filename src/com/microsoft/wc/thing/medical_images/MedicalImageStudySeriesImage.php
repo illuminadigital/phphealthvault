@@ -15,6 +15,13 @@ class MedicalImageStudySeriesImage {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnznw", name="image-blob-name")
 	 */
 	protected $imageBlobName;
@@ -29,8 +36,8 @@ class MedicalImageStudySeriesImage {
 		$this->imagePreviewBlobName = ($imagePreviewBlobName===NULL) ? NULL : $this->validateImagePreviewBlobName($imagePreviewBlobName);
 	}
 
-	public function getImageBlobName() {
-		if ($this->imageBlobName===NULL) {
+	public function getImageBlobName($autoCreate = TRUE) {
+		if ($this->imageBlobName===NULL && $autoCreate && ! isset($this->_overrides['imageBlobName']) ) {
 			$this->imageBlobName = $this->createImageBlobName();
 		}
 		return $this->imageBlobName;
@@ -52,8 +59,8 @@ class MedicalImageStudySeriesImage {
 		return $imageBlobName;
 	}
 
-	public function getImagePreviewBlobName() {
-		if ($this->imagePreviewBlobName===NULL) {
+	public function getImagePreviewBlobName($autoCreate = TRUE) {
+		if ($this->imagePreviewBlobName===NULL && $autoCreate && ! isset($this->_overrides['imagePreviewBlobName']) ) {
 			$this->imagePreviewBlobName = $this->createImagePreviewBlobName();
 		}
 		return $this->imagePreviewBlobName;
@@ -68,9 +75,16 @@ class MedicalImageStudySeriesImage {
 	}
 
 	protected function validateImagePreviewBlobName($imagePreviewBlobName) {
+		if ( $imagePreviewBlobName === FALSE ) {
+			$this->_overrides['imagePreviewBlobName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $imagePreviewBlobName instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($imagePreviewBlobName) ) {
 			$imagePreviewBlobName = new \com\microsoft\wc\types\Stringnznw ($imagePreviewBlobName);
 		}
+
+		unset ($this->_overrides['imagePreviewBlobName']);
 	
 		return $imagePreviewBlobName;
 	}

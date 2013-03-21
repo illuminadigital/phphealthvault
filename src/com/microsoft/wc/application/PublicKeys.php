@@ -14,6 +14,13 @@ class PublicKeys {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\application\PublicKey", collection="true", name="public-key")
 	 */
 	protected $publicKey;
@@ -22,8 +29,8 @@ class PublicKeys {
 		$this->publicKey = ($publicKey===NULL) ? NULL : $this->validatePublicKey($publicKey);
 	}
 
-	public function getPublicKey() {
-		if ($this->publicKey===NULL) {
+	public function getPublicKey($autoCreate = TRUE) {
+		if ($this->publicKey===NULL && $autoCreate && ! isset($this->_overrides['publicKey']) ) {
 			$this->publicKey = $this->createPublicKey();
 		}
 		return $this->publicKey;

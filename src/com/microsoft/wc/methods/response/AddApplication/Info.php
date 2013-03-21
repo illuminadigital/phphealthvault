@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="id")
 	 */
 	protected $id;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;

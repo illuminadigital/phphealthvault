@@ -15,6 +15,13 @@ class NameOfRecordType extends BaseNameType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="Type")
 	 */
 	protected $type;
@@ -23,8 +30,8 @@ class NameOfRecordType extends BaseNameType {
 		$this->type = ($type===NULL) ? NULL : $this->validateType($type);
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;

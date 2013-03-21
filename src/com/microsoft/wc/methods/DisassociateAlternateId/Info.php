@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String255nw", name="alternate-id")
 	 */
 	protected $alternateId;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->alternateId = ($alternateId===NULL) ? NULL : $this->validateAlternateId($alternateId);
 	}
 
-	public function getAlternateId() {
-		if ($this->alternateId===NULL) {
+	public function getAlternateId($autoCreate = TRUE) {
+		if ($this->alternateId===NULL && $autoCreate && ! isset($this->_overrides['alternateId']) ) {
 			$this->alternateId = $this->createAlternateId();
 		}
 		return $this->alternateId;

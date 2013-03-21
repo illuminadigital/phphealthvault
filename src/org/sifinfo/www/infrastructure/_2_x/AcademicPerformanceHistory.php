@@ -14,6 +14,13 @@ class AcademicPerformanceHistory {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\TermPerformance", collection="true", name="TermPerformance")
 	 */
 	protected $termPerformance;
@@ -22,8 +29,8 @@ class AcademicPerformanceHistory {
 		$this->termPerformance = ($termPerformance===NULL) ? NULL : $this->validateTermPerformance($termPerformance);
 	}
 
-	public function getTermPerformance() {
-		if ($this->termPerformance===NULL) {
+	public function getTermPerformance($autoCreate = TRUE) {
+		if ($this->termPerformance===NULL && $autoCreate && ! isset($this->_overrides['termPerformance']) ) {
 			$this->termPerformance = $this->createTermPerformance();
 		}
 		return $this->termPerformance;
@@ -38,9 +45,16 @@ class AcademicPerformanceHistory {
 	}
 
 	protected function validateTermPerformance($termPerformance) {
+		if ( $termPerformance === FALSE ) {
+			$this->_overrides['termPerformance'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($termPerformance) && ! is_null($termPerformance) ) {
 			$termPerformance = array($termPerformance);
 		}
+
+		unset ($this->_overrides['termPerformance']);
 		$count = count($termPerformance);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'termPerformance', 0));

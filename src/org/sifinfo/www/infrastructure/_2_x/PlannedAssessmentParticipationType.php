@@ -15,6 +15,13 @@ class PlannedAssessmentParticipationType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="PlannedAssessmentParticipationType")
 	 */
 	protected $value;
@@ -29,8 +36,8 @@ class PlannedAssessmentParticipationType {
 		$this->codeset = ($codeset===NULL) ? NULL : $this->validateCodeset($codeset);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -52,8 +59,8 @@ class PlannedAssessmentParticipationType {
 		return $value;
 	}
 
-	public function getCodeset() {
-		if ($this->codeset===NULL) {
+	public function getCodeset($autoCreate = TRUE) {
+		if ($this->codeset===NULL && $autoCreate && ! isset($this->_overrides['codeset']) ) {
 			$this->codeset = $this->createCodeset();
 		}
 		return $this->codeset;

@@ -15,6 +15,13 @@ class VocabularyAuthorizations {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyAuthorization", collection="true", name="vocabulary-authorization")
 	 */
 	protected $vocabularyAuthorization;
@@ -23,8 +30,8 @@ class VocabularyAuthorizations {
 		$this->vocabularyAuthorization = ($vocabularyAuthorization===NULL) ? NULL : $this->validateVocabularyAuthorization($vocabularyAuthorization);
 	}
 
-	public function getVocabularyAuthorization() {
-		if ($this->vocabularyAuthorization===NULL) {
+	public function getVocabularyAuthorization($autoCreate = TRUE) {
+		if ($this->vocabularyAuthorization===NULL && $autoCreate && ! isset($this->_overrides['vocabularyAuthorization']) ) {
 			$this->vocabularyAuthorization = $this->createVocabularyAuthorization();
 		}
 		return $this->vocabularyAuthorization;

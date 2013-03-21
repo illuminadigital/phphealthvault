@@ -14,6 +14,13 @@ class RTOQTYQTY extends \org\w3\www\_2001\XMLSchema\QTY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\QTY", name="numerator")
 	 */
 	protected $numerator;
@@ -28,8 +35,8 @@ class RTOQTYQTY extends \org\w3\www\_2001\XMLSchema\QTY {
 		$this->denominator = ($denominator===NULL) ? NULL : $this->validateDenominator($denominator);
 	}
 
-	public function getNumerator() {
-		if ($this->numerator===NULL) {
+	public function getNumerator($autoCreate = TRUE) {
+		if ($this->numerator===NULL && $autoCreate && ! isset($this->_overrides['numerator']) ) {
 			$this->numerator = $this->createNumerator();
 		}
 		return $this->numerator;
@@ -48,8 +55,8 @@ class RTOQTYQTY extends \org\w3\www\_2001\XMLSchema\QTY {
 		return $numerator;
 	}
 
-	public function getDenominator() {
-		if ($this->denominator===NULL) {
+	public function getDenominator($autoCreate = TRUE) {
+		if ($this->denominator===NULL && $autoCreate && ! isset($this->_overrides['denominator']) ) {
 			$this->denominator = $this->createDenominator();
 		}
 		return $this->denominator;

@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="identity-code")
 	 */
 	protected $identityCode;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->identityCode = ($identityCode===NULL) ? NULL : $this->validateIdentityCode($identityCode);
 	}
 
-	public function getIdentityCode() {
-		if ($this->identityCode===NULL) {
+	public function getIdentityCode($autoCreate = TRUE) {
+		if ($this->identityCode===NULL && $autoCreate && ! isset($this->_overrides['identityCode']) ) {
 			$this->identityCode = $this->createIdentityCode();
 		}
 		return $this->identityCode;

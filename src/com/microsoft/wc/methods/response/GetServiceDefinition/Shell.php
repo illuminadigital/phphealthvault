@@ -15,6 +15,13 @@ class Shell {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="url")
 	 */
 	protected $url;
@@ -35,8 +42,8 @@ class Shell {
 		$this->redirectToken = ($redirectToken===NULL) ? NULL : $this->validateRedirectToken($redirectToken);
 	}
 
-	public function getUrl() {
-		if ($this->url===NULL) {
+	public function getUrl($autoCreate = TRUE) {
+		if ($this->url===NULL && $autoCreate && ! isset($this->_overrides['url']) ) {
 			$this->url = $this->createUrl();
 		}
 		return $this->url;
@@ -58,8 +65,8 @@ class Shell {
 		return $url;
 	}
 
-	public function getRedirectUrl() {
-		if ($this->redirectUrl===NULL) {
+	public function getRedirectUrl($autoCreate = TRUE) {
+		if ($this->redirectUrl===NULL && $autoCreate && ! isset($this->_overrides['redirectUrl']) ) {
 			$this->redirectUrl = $this->createRedirectUrl();
 		}
 		return $this->redirectUrl;
@@ -81,8 +88,8 @@ class Shell {
 		return $redirectUrl;
 	}
 
-	public function getRedirectToken() {
-		if ($this->redirectToken===NULL) {
+	public function getRedirectToken($autoCreate = TRUE) {
+		if ($this->redirectToken===NULL && $autoCreate && ! isset($this->_overrides['redirectToken']) ) {
 			$this->redirectToken = $this->createRedirectToken();
 		}
 		return $this->redirectToken;
@@ -97,9 +104,16 @@ class Shell {
 	}
 
 	protected function validateRedirectToken($redirectToken) {
+		if ( $redirectToken === FALSE ) {
+			$this->_overrides['redirectToken'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($redirectToken) && ! is_null($redirectToken) ) {
 			$redirectToken = array($redirectToken);
 		}
+
+		unset ($this->_overrides['redirectToken']);
 		$count = count($redirectToken);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'redirectToken', 0));

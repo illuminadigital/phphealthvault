@@ -19,6 +19,13 @@ class RespiratoryProfile extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Respiratory Profile';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -45,8 +52,8 @@ class RespiratoryProfile extends \com\microsoft\wc\thing\AnyMixed {
 		$this->expiratoryFlowYellowZoneUpperBoundary = ($expiratoryFlowYellowZoneUpperBoundary===NULL) ? NULL : $this->validateExpiratoryFlowYellowZoneUpperBoundary($expiratoryFlowYellowZoneUpperBoundary);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -68,8 +75,8 @@ class RespiratoryProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getExpiratoryFlowRedZoneUpperBoundary() {
-		if ($this->expiratoryFlowRedZoneUpperBoundary===NULL) {
+	public function getExpiratoryFlowRedZoneUpperBoundary($autoCreate = TRUE) {
+		if ($this->expiratoryFlowRedZoneUpperBoundary===NULL && $autoCreate && ! isset($this->_overrides['expiratoryFlowRedZoneUpperBoundary']) ) {
 			$this->expiratoryFlowRedZoneUpperBoundary = $this->createExpiratoryFlowRedZoneUpperBoundary();
 		}
 		return $this->expiratoryFlowRedZoneUpperBoundary;
@@ -84,15 +91,22 @@ class RespiratoryProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExpiratoryFlowRedZoneUpperBoundary($expiratoryFlowRedZoneUpperBoundary) {
+		if ( $expiratoryFlowRedZoneUpperBoundary === FALSE ) {
+			$this->_overrides['expiratoryFlowRedZoneUpperBoundary'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $expiratoryFlowRedZoneUpperBoundary instanceof \com\microsoft\wc\thing\types\FlowValue  && ! is_null($expiratoryFlowRedZoneUpperBoundary) ) {
 			$expiratoryFlowRedZoneUpperBoundary = new \com\microsoft\wc\thing\types\FlowValue ($expiratoryFlowRedZoneUpperBoundary);
 		}
+
+		unset ($this->_overrides['expiratoryFlowRedZoneUpperBoundary']);
 	
 		return $expiratoryFlowRedZoneUpperBoundary;
 	}
 
-	public function getExpiratoryFlowOrangeZoneUpperBoundary() {
-		if ($this->expiratoryFlowOrangeZoneUpperBoundary===NULL) {
+	public function getExpiratoryFlowOrangeZoneUpperBoundary($autoCreate = TRUE) {
+		if ($this->expiratoryFlowOrangeZoneUpperBoundary===NULL && $autoCreate && ! isset($this->_overrides['expiratoryFlowOrangeZoneUpperBoundary']) ) {
 			$this->expiratoryFlowOrangeZoneUpperBoundary = $this->createExpiratoryFlowOrangeZoneUpperBoundary();
 		}
 		return $this->expiratoryFlowOrangeZoneUpperBoundary;
@@ -107,15 +121,22 @@ class RespiratoryProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExpiratoryFlowOrangeZoneUpperBoundary($expiratoryFlowOrangeZoneUpperBoundary) {
+		if ( $expiratoryFlowOrangeZoneUpperBoundary === FALSE ) {
+			$this->_overrides['expiratoryFlowOrangeZoneUpperBoundary'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $expiratoryFlowOrangeZoneUpperBoundary instanceof \com\microsoft\wc\thing\types\FlowValue  && ! is_null($expiratoryFlowOrangeZoneUpperBoundary) ) {
 			$expiratoryFlowOrangeZoneUpperBoundary = new \com\microsoft\wc\thing\types\FlowValue ($expiratoryFlowOrangeZoneUpperBoundary);
 		}
+
+		unset ($this->_overrides['expiratoryFlowOrangeZoneUpperBoundary']);
 	
 		return $expiratoryFlowOrangeZoneUpperBoundary;
 	}
 
-	public function getExpiratoryFlowYellowZoneUpperBoundary() {
-		if ($this->expiratoryFlowYellowZoneUpperBoundary===NULL) {
+	public function getExpiratoryFlowYellowZoneUpperBoundary($autoCreate = TRUE) {
+		if ($this->expiratoryFlowYellowZoneUpperBoundary===NULL && $autoCreate && ! isset($this->_overrides['expiratoryFlowYellowZoneUpperBoundary']) ) {
 			$this->expiratoryFlowYellowZoneUpperBoundary = $this->createExpiratoryFlowYellowZoneUpperBoundary();
 		}
 		return $this->expiratoryFlowYellowZoneUpperBoundary;
@@ -130,9 +151,16 @@ class RespiratoryProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExpiratoryFlowYellowZoneUpperBoundary($expiratoryFlowYellowZoneUpperBoundary) {
+		if ( $expiratoryFlowYellowZoneUpperBoundary === FALSE ) {
+			$this->_overrides['expiratoryFlowYellowZoneUpperBoundary'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $expiratoryFlowYellowZoneUpperBoundary instanceof \com\microsoft\wc\thing\types\FlowValue  && ! is_null($expiratoryFlowYellowZoneUpperBoundary) ) {
 			$expiratoryFlowYellowZoneUpperBoundary = new \com\microsoft\wc\thing\types\FlowValue ($expiratoryFlowYellowZoneUpperBoundary);
 		}
+
+		unset ($this->_overrides['expiratoryFlowYellowZoneUpperBoundary']);
 	
 		return $expiratoryFlowYellowZoneUpperBoundary;
 	}

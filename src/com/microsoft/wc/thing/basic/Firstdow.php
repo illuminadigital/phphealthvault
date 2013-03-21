@@ -18,6 +18,13 @@ class Firstdow extends \com\microsoft\wc\thing\AnyMixed {
 	const ID = '3b3e6b16-eb69-483c-8d7e-dfe116ae6092';
 	const NAME = 'Basic Demographic Information';
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class Firstdow

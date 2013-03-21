@@ -15,6 +15,13 @@ class OtherCodeListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\OtherCode", collection="true", name="OtherCode")
 	 */
 	protected $otherCode;
@@ -23,8 +30,8 @@ class OtherCodeListType {
 		$this->otherCode = ($otherCode===NULL) ? NULL : $this->validateOtherCode($otherCode);
 	}
 
-	public function getOtherCode() {
-		if ($this->otherCode===NULL) {
+	public function getOtherCode($autoCreate = TRUE) {
+		if ($this->otherCode===NULL && $autoCreate && ! isset($this->_overrides['otherCode']) ) {
 			$this->otherCode = $this->createOtherCode();
 		}
 		return $this->otherCode;

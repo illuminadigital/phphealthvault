@@ -14,6 +14,13 @@ class XMLData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\AnyMixed", collection="true", name="*")
 	 */
 	protected $any;
@@ -28,8 +35,8 @@ class XMLData {
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;
@@ -69,8 +76,8 @@ class XMLData {
 		return $any;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;

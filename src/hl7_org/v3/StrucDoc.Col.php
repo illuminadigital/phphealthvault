@@ -14,6 +14,13 @@ class StrucDoc.Col {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="ID")
 	 */
 	protected $iD;
@@ -70,8 +77,8 @@ class StrucDoc.Col {
 		$this->valign = ($valign===NULL) ? NULL : $this->validateValign($valign);
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -93,8 +100,8 @@ class StrucDoc.Col {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -116,8 +123,8 @@ class StrucDoc.Col {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;
@@ -139,8 +146,8 @@ class StrucDoc.Col {
 		return $styleCode;
 	}
 
-	public function getSpan() {
-		if ($this->span===NULL) {
+	public function getSpan($autoCreate = TRUE) {
+		if ($this->span===NULL && $autoCreate && ! isset($this->_overrides['span']) ) {
 			$this->span = $this->createSpan();
 		}
 		return $this->span;
@@ -162,8 +169,8 @@ class StrucDoc.Col {
 		return $span;
 	}
 
-	public function getWidth() {
-		if ($this->width===NULL) {
+	public function getWidth($autoCreate = TRUE) {
+		if ($this->width===NULL && $autoCreate && ! isset($this->_overrides['width']) ) {
 			$this->width = $this->createWidth();
 		}
 		return $this->width;
@@ -185,8 +192,8 @@ class StrucDoc.Col {
 		return $width;
 	}
 
-	public function getAlign() {
-		if ($this->align===NULL) {
+	public function getAlign($autoCreate = TRUE) {
+		if ($this->align===NULL && $autoCreate && ! isset($this->_overrides['align']) ) {
 			$this->align = $this->createAlign();
 		}
 		return $this->align;
@@ -208,8 +215,8 @@ class StrucDoc.Col {
 		return $align;
 	}
 
-	public function getChar() {
-		if ($this->char===NULL) {
+	public function getChar($autoCreate = TRUE) {
+		if ($this->char===NULL && $autoCreate && ! isset($this->_overrides['char']) ) {
 			$this->char = $this->createChar();
 		}
 		return $this->char;
@@ -231,8 +238,8 @@ class StrucDoc.Col {
 		return $char;
 	}
 
-	public function getCharoff() {
-		if ($this->charoff===NULL) {
+	public function getCharoff($autoCreate = TRUE) {
+		if ($this->charoff===NULL && $autoCreate && ! isset($this->_overrides['charoff']) ) {
 			$this->charoff = $this->createCharoff();
 		}
 		return $this->charoff;
@@ -254,8 +261,8 @@ class StrucDoc.Col {
 		return $charoff;
 	}
 
-	public function getValign() {
-		if ($this->valign===NULL) {
+	public function getValign($autoCreate = TRUE) {
+		if ($this->valign===NULL && $autoCreate && ! isset($this->_overrides['valign']) ) {
 			$this->valign = $this->createValign();
 		}
 		return $this->valign;

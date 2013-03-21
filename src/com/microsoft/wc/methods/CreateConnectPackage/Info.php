@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="identity-code")
 	 */
 	protected $identityCode;
@@ -48,8 +55,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->package = ($package===NULL) ? NULL : $this->validatePackage($package);
 	}
 
-	public function getIdentityCode() {
-		if ($this->identityCode===NULL) {
+	public function getIdentityCode($autoCreate = TRUE) {
+		if ($this->identityCode===NULL && $autoCreate && ! isset($this->_overrides['identityCode']) ) {
 			$this->identityCode = $this->createIdentityCode();
 		}
 		return $this->identityCode;
@@ -71,8 +78,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $identityCode;
 	}
 
-	public function getFriendlyName() {
-		if ($this->friendlyName===NULL) {
+	public function getFriendlyName($autoCreate = TRUE) {
+		if ($this->friendlyName===NULL && $autoCreate && ! isset($this->_overrides['friendlyName']) ) {
 			$this->friendlyName = $this->createFriendlyName();
 		}
 		return $this->friendlyName;
@@ -94,8 +101,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $friendlyName;
 	}
 
-	public function getQuestion() {
-		if ($this->question===NULL) {
+	public function getQuestion($autoCreate = TRUE) {
+		if ($this->question===NULL && $autoCreate && ! isset($this->_overrides['question']) ) {
 			$this->question = $this->createQuestion();
 		}
 		return $this->question;
@@ -117,8 +124,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $question;
 	}
 
-	public function getExternalId() {
-		if ($this->externalId===NULL) {
+	public function getExternalId($autoCreate = TRUE) {
+		if ($this->externalId===NULL && $autoCreate && ! isset($this->_overrides['externalId']) ) {
 			$this->externalId = $this->createExternalId();
 		}
 		return $this->externalId;
@@ -140,8 +147,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $externalId;
 	}
 
-	public function getPackage() {
-		if ($this->package===NULL) {
+	public function getPackage($autoCreate = TRUE) {
+		if ($this->package===NULL && $autoCreate && ! isset($this->_overrides['package']) ) {
 			$this->package = $this->createPackage();
 		}
 		return $this->package;

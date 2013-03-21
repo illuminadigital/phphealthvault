@@ -19,6 +19,13 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Asthma Inhaler';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="drug")
 	 */
 	protected $drug;
@@ -93,8 +100,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		$this->alert = ($alert===NULL) ? NULL : $this->validateAlert($alert);
 	}
 
-	public function getDrug() {
-		if ($this->drug===NULL) {
+	public function getDrug($autoCreate = TRUE) {
+		if ($this->drug===NULL && $autoCreate && ! isset($this->_overrides['drug']) ) {
 			$this->drug = $this->createDrug();
 		}
 		return $this->drug;
@@ -116,8 +123,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		return $drug;
 	}
 
-	public function getStrength() {
-		if ($this->strength===NULL) {
+	public function getStrength($autoCreate = TRUE) {
+		if ($this->strength===NULL && $autoCreate && ! isset($this->_overrides['strength']) ) {
 			$this->strength = $this->createStrength();
 		}
 		return $this->strength;
@@ -132,15 +139,22 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStrength($strength) {
+		if ( $strength === FALSE ) {
+			$this->_overrides['strength'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $strength instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($strength) ) {
 			$strength = new \com\microsoft\wc\types\CodableValue ($strength);
 		}
+
+		unset ($this->_overrides['strength']);
 	
 		return $strength;
 	}
 
-	public function getPurpose() {
-		if ($this->purpose===NULL) {
+	public function getPurpose($autoCreate = TRUE) {
+		if ($this->purpose===NULL && $autoCreate && ! isset($this->_overrides['purpose']) ) {
 			$this->purpose = $this->createPurpose();
 		}
 		return $this->purpose;
@@ -159,8 +173,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		return $purpose;
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -182,8 +196,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		return $startDate;
 	}
 
-	public function getStopDate() {
-		if ($this->stopDate===NULL) {
+	public function getStopDate($autoCreate = TRUE) {
+		if ($this->stopDate===NULL && $autoCreate && ! isset($this->_overrides['stopDate']) ) {
 			$this->stopDate = $this->createStopDate();
 		}
 		return $this->stopDate;
@@ -198,15 +212,22 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStopDate($stopDate) {
+		if ( $stopDate === FALSE ) {
+			$this->_overrides['stopDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $stopDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($stopDate) ) {
 			$stopDate = new \com\microsoft\wc\dates\ApproxDateTime ($stopDate);
 		}
+
+		unset ($this->_overrides['stopDate']);
 	
 		return $stopDate;
 	}
 
-	public function getExpirationDate() {
-		if ($this->expirationDate===NULL) {
+	public function getExpirationDate($autoCreate = TRUE) {
+		if ($this->expirationDate===NULL && $autoCreate && ! isset($this->_overrides['expirationDate']) ) {
 			$this->expirationDate = $this->createExpirationDate();
 		}
 		return $this->expirationDate;
@@ -221,15 +242,22 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExpirationDate($expirationDate) {
+		if ( $expirationDate === FALSE ) {
+			$this->_overrides['expirationDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $expirationDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($expirationDate) ) {
 			$expirationDate = new \com\microsoft\wc\dates\ApproxDateTime ($expirationDate);
 		}
+
+		unset ($this->_overrides['expirationDate']);
 	
 		return $expirationDate;
 	}
 
-	public function getDeviceId() {
-		if ($this->deviceId===NULL) {
+	public function getDeviceId($autoCreate = TRUE) {
+		if ($this->deviceId===NULL && $autoCreate && ! isset($this->_overrides['deviceId']) ) {
 			$this->deviceId = $this->createDeviceId();
 		}
 		return $this->deviceId;
@@ -251,8 +279,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		return $deviceId;
 	}
 
-	public function getInitialDoses() {
-		if ($this->initialDoses===NULL) {
+	public function getInitialDoses($autoCreate = TRUE) {
+		if ($this->initialDoses===NULL && $autoCreate && ! isset($this->_overrides['initialDoses']) ) {
 			$this->initialDoses = $this->createInitialDoses();
 		}
 		return $this->initialDoses;
@@ -285,8 +313,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		return $initialDoses;
 	}
 
-	public function getMinDailyDoses() {
-		if ($this->minDailyDoses===NULL) {
+	public function getMinDailyDoses($autoCreate = TRUE) {
+		if ($this->minDailyDoses===NULL && $autoCreate && ! isset($this->_overrides['minDailyDoses']) ) {
 			$this->minDailyDoses = $this->createMinDailyDoses();
 		}
 		return $this->minDailyDoses;
@@ -319,8 +347,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		return $minDailyDoses;
 	}
 
-	public function getMaxDailyDoses() {
-		if ($this->maxDailyDoses===NULL) {
+	public function getMaxDailyDoses($autoCreate = TRUE) {
+		if ($this->maxDailyDoses===NULL && $autoCreate && ! isset($this->_overrides['maxDailyDoses']) ) {
 			$this->maxDailyDoses = $this->createMaxDailyDoses();
 		}
 		return $this->maxDailyDoses;
@@ -353,8 +381,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		return $maxDailyDoses;
 	}
 
-	public function getCanAlert() {
-		if ($this->canAlert===NULL) {
+	public function getCanAlert($autoCreate = TRUE) {
+		if ($this->canAlert===NULL && $autoCreate && ! isset($this->_overrides['canAlert']) ) {
 			$this->canAlert = $this->createCanAlert();
 		}
 		return $this->canAlert;
@@ -376,8 +404,8 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		return $canAlert;
 	}
 
-	public function getAlert() {
-		if ($this->alert===NULL) {
+	public function getAlert($autoCreate = TRUE) {
+		if ($this->alert===NULL && $autoCreate && ! isset($this->_overrides['alert']) ) {
 			$this->alert = $this->createAlert();
 		}
 		return $this->alert;
@@ -392,9 +420,16 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAlert($alert) {
+		if ( $alert === FALSE ) {
+			$this->_overrides['alert'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($alert) && ! is_null($alert) ) {
 			$alert = array($alert);
 		}
+
+		unset ($this->_overrides['alert']);
 		$count = count($alert);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'alert', 0));

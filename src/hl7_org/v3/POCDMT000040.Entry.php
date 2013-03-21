@@ -14,6 +14,13 @@ class POCDMT000040.Entry {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -106,8 +113,8 @@ class POCDMT000040.Entry {
 		$this->contextConductionInd = ($contextConductionInd===NULL) ? NULL : $this->validateContextConductionInd($contextConductionInd);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -141,8 +148,8 @@ class POCDMT000040.Entry {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -161,8 +168,8 @@ class POCDMT000040.Entry {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -196,8 +203,8 @@ class POCDMT000040.Entry {
 		return $templateId;
 	}
 
-	public function getAct() {
-		if ($this->act===NULL) {
+	public function getAct($autoCreate = TRUE) {
+		if ($this->act===NULL && $autoCreate && ! isset($this->_overrides['act']) ) {
 			$this->act = $this->createAct();
 		}
 		return $this->act;
@@ -216,8 +223,8 @@ class POCDMT000040.Entry {
 		return $act;
 	}
 
-	public function getEncounter() {
-		if ($this->encounter===NULL) {
+	public function getEncounter($autoCreate = TRUE) {
+		if ($this->encounter===NULL && $autoCreate && ! isset($this->_overrides['encounter']) ) {
 			$this->encounter = $this->createEncounter();
 		}
 		return $this->encounter;
@@ -236,8 +243,8 @@ class POCDMT000040.Entry {
 		return $encounter;
 	}
 
-	public function getObservation() {
-		if ($this->observation===NULL) {
+	public function getObservation($autoCreate = TRUE) {
+		if ($this->observation===NULL && $autoCreate && ! isset($this->_overrides['observation']) ) {
 			$this->observation = $this->createObservation();
 		}
 		return $this->observation;
@@ -256,8 +263,8 @@ class POCDMT000040.Entry {
 		return $observation;
 	}
 
-	public function getObservationMedia() {
-		if ($this->observationMedia===NULL) {
+	public function getObservationMedia($autoCreate = TRUE) {
+		if ($this->observationMedia===NULL && $autoCreate && ! isset($this->_overrides['observationMedia']) ) {
 			$this->observationMedia = $this->createObservationMedia();
 		}
 		return $this->observationMedia;
@@ -276,8 +283,8 @@ class POCDMT000040.Entry {
 		return $observationMedia;
 	}
 
-	public function getOrganizer() {
-		if ($this->organizer===NULL) {
+	public function getOrganizer($autoCreate = TRUE) {
+		if ($this->organizer===NULL && $autoCreate && ! isset($this->_overrides['organizer']) ) {
 			$this->organizer = $this->createOrganizer();
 		}
 		return $this->organizer;
@@ -296,8 +303,8 @@ class POCDMT000040.Entry {
 		return $organizer;
 	}
 
-	public function getProcedure() {
-		if ($this->procedure===NULL) {
+	public function getProcedure($autoCreate = TRUE) {
+		if ($this->procedure===NULL && $autoCreate && ! isset($this->_overrides['procedure']) ) {
 			$this->procedure = $this->createProcedure();
 		}
 		return $this->procedure;
@@ -316,8 +323,8 @@ class POCDMT000040.Entry {
 		return $procedure;
 	}
 
-	public function getRegionOfInterest() {
-		if ($this->regionOfInterest===NULL) {
+	public function getRegionOfInterest($autoCreate = TRUE) {
+		if ($this->regionOfInterest===NULL && $autoCreate && ! isset($this->_overrides['regionOfInterest']) ) {
 			$this->regionOfInterest = $this->createRegionOfInterest();
 		}
 		return $this->regionOfInterest;
@@ -336,8 +343,8 @@ class POCDMT000040.Entry {
 		return $regionOfInterest;
 	}
 
-	public function getSubstanceAdministration() {
-		if ($this->substanceAdministration===NULL) {
+	public function getSubstanceAdministration($autoCreate = TRUE) {
+		if ($this->substanceAdministration===NULL && $autoCreate && ! isset($this->_overrides['substanceAdministration']) ) {
 			$this->substanceAdministration = $this->createSubstanceAdministration();
 		}
 		return $this->substanceAdministration;
@@ -356,8 +363,8 @@ class POCDMT000040.Entry {
 		return $substanceAdministration;
 	}
 
-	public function getSupply() {
-		if ($this->supply===NULL) {
+	public function getSupply($autoCreate = TRUE) {
+		if ($this->supply===NULL && $autoCreate && ! isset($this->_overrides['supply']) ) {
 			$this->supply = $this->createSupply();
 		}
 		return $this->supply;
@@ -376,8 +383,8 @@ class POCDMT000040.Entry {
 		return $supply;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -396,8 +403,8 @@ class POCDMT000040.Entry {
 		return $nullFlavor;
 	}
 
-	public function getTypeCode() {
-		if ($this->typeCode===NULL) {
+	public function getTypeCode($autoCreate = TRUE) {
+		if ($this->typeCode===NULL && $autoCreate && ! isset($this->_overrides['typeCode']) ) {
 			$this->typeCode = $this->createTypeCode();
 		}
 		return $this->typeCode;
@@ -416,8 +423,8 @@ class POCDMT000040.Entry {
 		return $typeCode;
 	}
 
-	public function getContextConductionInd() {
-		if ($this->contextConductionInd===NULL) {
+	public function getContextConductionInd($autoCreate = TRUE) {
+		if ($this->contextConductionInd===NULL && $autoCreate && ! isset($this->_overrides['contextConductionInd']) ) {
 			$this->contextConductionInd = $this->createContextConductionInd();
 		}
 		return $this->contextConductionInd;

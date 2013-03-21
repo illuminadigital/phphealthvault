@@ -18,6 +18,13 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Dietary Intake';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="food-item")
 	 */
 	protected $foodItem;
@@ -236,8 +243,8 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 		$this->additionalNutritionFacts = ($additionalNutritionFacts===NULL) ? NULL : $this->validateAdditionalNutritionFacts($additionalNutritionFacts);
 	}
 
-	public function getFoodItem() {
-		if ($this->foodItem===NULL) {
+	public function getFoodItem($autoCreate = TRUE) {
+		if ($this->foodItem===NULL && $autoCreate && ! isset($this->_overrides['foodItem']) ) {
 			$this->foodItem = $this->createFoodItem();
 		}
 		return $this->foodItem;
@@ -259,8 +266,8 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 		return $foodItem;
 	}
 
-	public function getServingSize() {
-		if ($this->servingSize===NULL) {
+	public function getServingSize($autoCreate = TRUE) {
+		if ($this->servingSize===NULL && $autoCreate && ! isset($this->_overrides['servingSize']) ) {
 			$this->servingSize = $this->createServingSize();
 		}
 		return $this->servingSize;
@@ -275,15 +282,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateServingSize($servingSize) {
+		if ( $servingSize === FALSE ) {
+			$this->_overrides['servingSize'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $servingSize instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($servingSize) ) {
 			$servingSize = new \com\microsoft\wc\types\CodableValue ($servingSize);
 		}
+
+		unset ($this->_overrides['servingSize']);
 	
 		return $servingSize;
 	}
 
-	public function getServingsConsumed() {
-		if ($this->servingsConsumed===NULL) {
+	public function getServingsConsumed($autoCreate = TRUE) {
+		if ($this->servingsConsumed===NULL && $autoCreate && ! isset($this->_overrides['servingsConsumed']) ) {
 			$this->servingsConsumed = $this->createServingsConsumed();
 		}
 		return $this->servingsConsumed;
@@ -298,15 +312,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateServingsConsumed($servingsConsumed) {
+		if ( $servingsConsumed === FALSE ) {
+			$this->_overrides['servingsConsumed'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $servingsConsumed instanceof \com\microsoft\wc\thing\types\NonNegativeDouble  && ! is_null($servingsConsumed) ) {
 			$servingsConsumed = new \com\microsoft\wc\thing\types\NonNegativeDouble ($servingsConsumed);
 		}
+
+		unset ($this->_overrides['servingsConsumed']);
 	
 		return $servingsConsumed;
 	}
 
-	public function getMeal() {
-		if ($this->meal===NULL) {
+	public function getMeal($autoCreate = TRUE) {
+		if ($this->meal===NULL && $autoCreate && ! isset($this->_overrides['meal']) ) {
 			$this->meal = $this->createMeal();
 		}
 		return $this->meal;
@@ -321,15 +342,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMeal($meal) {
+		if ( $meal === FALSE ) {
+			$this->_overrides['meal'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $meal instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($meal) ) {
 			$meal = new \com\microsoft\wc\types\CodableValue ($meal);
 		}
+
+		unset ($this->_overrides['meal']);
 	
 		return $meal;
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -344,15 +372,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateWhen($when) {
+		if ( $when === FALSE ) {
+			$this->_overrides['when'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $when instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($when) ) {
 			$when = new \com\microsoft\wc\dates\DateTime ($when);
 		}
+
+		unset ($this->_overrides['when']);
 	
 		return $when;
 	}
 
-	public function getEnergy() {
-		if ($this->energy===NULL) {
+	public function getEnergy($autoCreate = TRUE) {
+		if ($this->energy===NULL && $autoCreate && ! isset($this->_overrides['energy']) ) {
 			$this->energy = $this->createEnergy();
 		}
 		return $this->energy;
@@ -367,15 +402,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateEnergy($energy) {
+		if ( $energy === FALSE ) {
+			$this->_overrides['energy'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $energy instanceof \com\microsoft\wc\thing\dietary_intake\FoodEnergyValue  && ! is_null($energy) ) {
 			$energy = new \com\microsoft\wc\thing\dietary_intake\FoodEnergyValue ($energy);
 		}
+
+		unset ($this->_overrides['energy']);
 	
 		return $energy;
 	}
 
-	public function getEnergyFromFat() {
-		if ($this->energyFromFat===NULL) {
+	public function getEnergyFromFat($autoCreate = TRUE) {
+		if ($this->energyFromFat===NULL && $autoCreate && ! isset($this->_overrides['energyFromFat']) ) {
 			$this->energyFromFat = $this->createEnergyFromFat();
 		}
 		return $this->energyFromFat;
@@ -390,15 +432,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateEnergyFromFat($energyFromFat) {
+		if ( $energyFromFat === FALSE ) {
+			$this->_overrides['energyFromFat'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $energyFromFat instanceof \com\microsoft\wc\thing\dietary_intake\FoodEnergyValue  && ! is_null($energyFromFat) ) {
 			$energyFromFat = new \com\microsoft\wc\thing\dietary_intake\FoodEnergyValue ($energyFromFat);
 		}
+
+		unset ($this->_overrides['energyFromFat']);
 	
 		return $energyFromFat;
 	}
 
-	public function getTotalFat() {
-		if ($this->totalFat===NULL) {
+	public function getTotalFat($autoCreate = TRUE) {
+		if ($this->totalFat===NULL && $autoCreate && ! isset($this->_overrides['totalFat']) ) {
 			$this->totalFat = $this->createTotalFat();
 		}
 		return $this->totalFat;
@@ -413,15 +462,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTotalFat($totalFat) {
+		if ( $totalFat === FALSE ) {
+			$this->_overrides['totalFat'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $totalFat instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($totalFat) ) {
 			$totalFat = new \com\microsoft\wc\thing\types\WeightValue ($totalFat);
 		}
+
+		unset ($this->_overrides['totalFat']);
 	
 		return $totalFat;
 	}
 
-	public function getSaturatedFat() {
-		if ($this->saturatedFat===NULL) {
+	public function getSaturatedFat($autoCreate = TRUE) {
+		if ($this->saturatedFat===NULL && $autoCreate && ! isset($this->_overrides['saturatedFat']) ) {
 			$this->saturatedFat = $this->createSaturatedFat();
 		}
 		return $this->saturatedFat;
@@ -436,15 +492,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSaturatedFat($saturatedFat) {
+		if ( $saturatedFat === FALSE ) {
+			$this->_overrides['saturatedFat'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $saturatedFat instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($saturatedFat) ) {
 			$saturatedFat = new \com\microsoft\wc\thing\types\WeightValue ($saturatedFat);
 		}
+
+		unset ($this->_overrides['saturatedFat']);
 	
 		return $saturatedFat;
 	}
 
-	public function getTransFat() {
-		if ($this->transFat===NULL) {
+	public function getTransFat($autoCreate = TRUE) {
+		if ($this->transFat===NULL && $autoCreate && ! isset($this->_overrides['transFat']) ) {
 			$this->transFat = $this->createTransFat();
 		}
 		return $this->transFat;
@@ -459,15 +522,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTransFat($transFat) {
+		if ( $transFat === FALSE ) {
+			$this->_overrides['transFat'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $transFat instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($transFat) ) {
 			$transFat = new \com\microsoft\wc\thing\types\WeightValue ($transFat);
 		}
+
+		unset ($this->_overrides['transFat']);
 	
 		return $transFat;
 	}
 
-	public function getMonounsaturatedFat() {
-		if ($this->monounsaturatedFat===NULL) {
+	public function getMonounsaturatedFat($autoCreate = TRUE) {
+		if ($this->monounsaturatedFat===NULL && $autoCreate && ! isset($this->_overrides['monounsaturatedFat']) ) {
 			$this->monounsaturatedFat = $this->createMonounsaturatedFat();
 		}
 		return $this->monounsaturatedFat;
@@ -482,15 +552,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMonounsaturatedFat($monounsaturatedFat) {
+		if ( $monounsaturatedFat === FALSE ) {
+			$this->_overrides['monounsaturatedFat'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $monounsaturatedFat instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($monounsaturatedFat) ) {
 			$monounsaturatedFat = new \com\microsoft\wc\thing\types\WeightValue ($monounsaturatedFat);
 		}
+
+		unset ($this->_overrides['monounsaturatedFat']);
 	
 		return $monounsaturatedFat;
 	}
 
-	public function getPolyunsaturatedFat() {
-		if ($this->polyunsaturatedFat===NULL) {
+	public function getPolyunsaturatedFat($autoCreate = TRUE) {
+		if ($this->polyunsaturatedFat===NULL && $autoCreate && ! isset($this->_overrides['polyunsaturatedFat']) ) {
 			$this->polyunsaturatedFat = $this->createPolyunsaturatedFat();
 		}
 		return $this->polyunsaturatedFat;
@@ -505,15 +582,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePolyunsaturatedFat($polyunsaturatedFat) {
+		if ( $polyunsaturatedFat === FALSE ) {
+			$this->_overrides['polyunsaturatedFat'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $polyunsaturatedFat instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($polyunsaturatedFat) ) {
 			$polyunsaturatedFat = new \com\microsoft\wc\thing\types\WeightValue ($polyunsaturatedFat);
 		}
+
+		unset ($this->_overrides['polyunsaturatedFat']);
 	
 		return $polyunsaturatedFat;
 	}
 
-	public function getProtein() {
-		if ($this->protein===NULL) {
+	public function getProtein($autoCreate = TRUE) {
+		if ($this->protein===NULL && $autoCreate && ! isset($this->_overrides['protein']) ) {
 			$this->protein = $this->createProtein();
 		}
 		return $this->protein;
@@ -528,15 +612,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateProtein($protein) {
+		if ( $protein === FALSE ) {
+			$this->_overrides['protein'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $protein instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($protein) ) {
 			$protein = new \com\microsoft\wc\thing\types\WeightValue ($protein);
 		}
+
+		unset ($this->_overrides['protein']);
 	
 		return $protein;
 	}
 
-	public function getCarbohydrates() {
-		if ($this->carbohydrates===NULL) {
+	public function getCarbohydrates($autoCreate = TRUE) {
+		if ($this->carbohydrates===NULL && $autoCreate && ! isset($this->_overrides['carbohydrates']) ) {
 			$this->carbohydrates = $this->createCarbohydrates();
 		}
 		return $this->carbohydrates;
@@ -551,15 +642,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCarbohydrates($carbohydrates) {
+		if ( $carbohydrates === FALSE ) {
+			$this->_overrides['carbohydrates'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $carbohydrates instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($carbohydrates) ) {
 			$carbohydrates = new \com\microsoft\wc\thing\types\WeightValue ($carbohydrates);
 		}
+
+		unset ($this->_overrides['carbohydrates']);
 	
 		return $carbohydrates;
 	}
 
-	public function getDietaryFiber() {
-		if ($this->dietaryFiber===NULL) {
+	public function getDietaryFiber($autoCreate = TRUE) {
+		if ($this->dietaryFiber===NULL && $autoCreate && ! isset($this->_overrides['dietaryFiber']) ) {
 			$this->dietaryFiber = $this->createDietaryFiber();
 		}
 		return $this->dietaryFiber;
@@ -574,15 +672,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDietaryFiber($dietaryFiber) {
+		if ( $dietaryFiber === FALSE ) {
+			$this->_overrides['dietaryFiber'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dietaryFiber instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($dietaryFiber) ) {
 			$dietaryFiber = new \com\microsoft\wc\thing\types\WeightValue ($dietaryFiber);
 		}
+
+		unset ($this->_overrides['dietaryFiber']);
 	
 		return $dietaryFiber;
 	}
 
-	public function getSugars() {
-		if ($this->sugars===NULL) {
+	public function getSugars($autoCreate = TRUE) {
+		if ($this->sugars===NULL && $autoCreate && ! isset($this->_overrides['sugars']) ) {
 			$this->sugars = $this->createSugars();
 		}
 		return $this->sugars;
@@ -597,15 +702,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSugars($sugars) {
+		if ( $sugars === FALSE ) {
+			$this->_overrides['sugars'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sugars instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($sugars) ) {
 			$sugars = new \com\microsoft\wc\thing\types\WeightValue ($sugars);
 		}
+
+		unset ($this->_overrides['sugars']);
 	
 		return $sugars;
 	}
 
-	public function getSodium() {
-		if ($this->sodium===NULL) {
+	public function getSodium($autoCreate = TRUE) {
+		if ($this->sodium===NULL && $autoCreate && ! isset($this->_overrides['sodium']) ) {
 			$this->sodium = $this->createSodium();
 		}
 		return $this->sodium;
@@ -620,15 +732,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSodium($sodium) {
+		if ( $sodium === FALSE ) {
+			$this->_overrides['sodium'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sodium instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($sodium) ) {
 			$sodium = new \com\microsoft\wc\thing\types\WeightValue ($sodium);
 		}
+
+		unset ($this->_overrides['sodium']);
 	
 		return $sodium;
 	}
 
-	public function getCholesterol() {
-		if ($this->cholesterol===NULL) {
+	public function getCholesterol($autoCreate = TRUE) {
+		if ($this->cholesterol===NULL && $autoCreate && ! isset($this->_overrides['cholesterol']) ) {
 			$this->cholesterol = $this->createCholesterol();
 		}
 		return $this->cholesterol;
@@ -643,15 +762,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCholesterol($cholesterol) {
+		if ( $cholesterol === FALSE ) {
+			$this->_overrides['cholesterol'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $cholesterol instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($cholesterol) ) {
 			$cholesterol = new \com\microsoft\wc\thing\types\WeightValue ($cholesterol);
 		}
+
+		unset ($this->_overrides['cholesterol']);
 	
 		return $cholesterol;
 	}
 
-	public function getCalcium() {
-		if ($this->calcium===NULL) {
+	public function getCalcium($autoCreate = TRUE) {
+		if ($this->calcium===NULL && $autoCreate && ! isset($this->_overrides['calcium']) ) {
 			$this->calcium = $this->createCalcium();
 		}
 		return $this->calcium;
@@ -666,15 +792,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCalcium($calcium) {
+		if ( $calcium === FALSE ) {
+			$this->_overrides['calcium'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $calcium instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($calcium) ) {
 			$calcium = new \com\microsoft\wc\thing\types\WeightValue ($calcium);
 		}
+
+		unset ($this->_overrides['calcium']);
 	
 		return $calcium;
 	}
 
-	public function getIron() {
-		if ($this->iron===NULL) {
+	public function getIron($autoCreate = TRUE) {
+		if ($this->iron===NULL && $autoCreate && ! isset($this->_overrides['iron']) ) {
 			$this->iron = $this->createIron();
 		}
 		return $this->iron;
@@ -689,15 +822,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateIron($iron) {
+		if ( $iron === FALSE ) {
+			$this->_overrides['iron'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $iron instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($iron) ) {
 			$iron = new \com\microsoft\wc\thing\types\WeightValue ($iron);
 		}
+
+		unset ($this->_overrides['iron']);
 	
 		return $iron;
 	}
 
-	public function getMagnesium() {
-		if ($this->magnesium===NULL) {
+	public function getMagnesium($autoCreate = TRUE) {
+		if ($this->magnesium===NULL && $autoCreate && ! isset($this->_overrides['magnesium']) ) {
 			$this->magnesium = $this->createMagnesium();
 		}
 		return $this->magnesium;
@@ -712,15 +852,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMagnesium($magnesium) {
+		if ( $magnesium === FALSE ) {
+			$this->_overrides['magnesium'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $magnesium instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($magnesium) ) {
 			$magnesium = new \com\microsoft\wc\thing\types\WeightValue ($magnesium);
 		}
+
+		unset ($this->_overrides['magnesium']);
 	
 		return $magnesium;
 	}
 
-	public function getPhosphorus() {
-		if ($this->phosphorus===NULL) {
+	public function getPhosphorus($autoCreate = TRUE) {
+		if ($this->phosphorus===NULL && $autoCreate && ! isset($this->_overrides['phosphorus']) ) {
 			$this->phosphorus = $this->createPhosphorus();
 		}
 		return $this->phosphorus;
@@ -735,15 +882,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePhosphorus($phosphorus) {
+		if ( $phosphorus === FALSE ) {
+			$this->_overrides['phosphorus'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $phosphorus instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($phosphorus) ) {
 			$phosphorus = new \com\microsoft\wc\thing\types\WeightValue ($phosphorus);
 		}
+
+		unset ($this->_overrides['phosphorus']);
 	
 		return $phosphorus;
 	}
 
-	public function getPotassium() {
-		if ($this->potassium===NULL) {
+	public function getPotassium($autoCreate = TRUE) {
+		if ($this->potassium===NULL && $autoCreate && ! isset($this->_overrides['potassium']) ) {
 			$this->potassium = $this->createPotassium();
 		}
 		return $this->potassium;
@@ -758,15 +912,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePotassium($potassium) {
+		if ( $potassium === FALSE ) {
+			$this->_overrides['potassium'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $potassium instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($potassium) ) {
 			$potassium = new \com\microsoft\wc\thing\types\WeightValue ($potassium);
 		}
+
+		unset ($this->_overrides['potassium']);
 	
 		return $potassium;
 	}
 
-	public function getZinc() {
-		if ($this->zinc===NULL) {
+	public function getZinc($autoCreate = TRUE) {
+		if ($this->zinc===NULL && $autoCreate && ! isset($this->_overrides['zinc']) ) {
 			$this->zinc = $this->createZinc();
 		}
 		return $this->zinc;
@@ -781,15 +942,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateZinc($zinc) {
+		if ( $zinc === FALSE ) {
+			$this->_overrides['zinc'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $zinc instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($zinc) ) {
 			$zinc = new \com\microsoft\wc\thing\types\WeightValue ($zinc);
 		}
+
+		unset ($this->_overrides['zinc']);
 	
 		return $zinc;
 	}
 
-	public function getVitaminARAE() {
-		if ($this->vitaminARAE===NULL) {
+	public function getVitaminARAE($autoCreate = TRUE) {
+		if ($this->vitaminARAE===NULL && $autoCreate && ! isset($this->_overrides['vitaminARAE']) ) {
 			$this->vitaminARAE = $this->createVitaminARAE();
 		}
 		return $this->vitaminARAE;
@@ -804,15 +972,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVitaminARAE($vitaminARAE) {
+		if ( $vitaminARAE === FALSE ) {
+			$this->_overrides['vitaminARAE'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vitaminARAE instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($vitaminARAE) ) {
 			$vitaminARAE = new \com\microsoft\wc\thing\types\WeightValue ($vitaminARAE);
 		}
+
+		unset ($this->_overrides['vitaminARAE']);
 	
 		return $vitaminARAE;
 	}
 
-	public function getVitaminE() {
-		if ($this->vitaminE===NULL) {
+	public function getVitaminE($autoCreate = TRUE) {
+		if ($this->vitaminE===NULL && $autoCreate && ! isset($this->_overrides['vitaminE']) ) {
 			$this->vitaminE = $this->createVitaminE();
 		}
 		return $this->vitaminE;
@@ -827,15 +1002,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVitaminE($vitaminE) {
+		if ( $vitaminE === FALSE ) {
+			$this->_overrides['vitaminE'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vitaminE instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($vitaminE) ) {
 			$vitaminE = new \com\microsoft\wc\thing\types\WeightValue ($vitaminE);
 		}
+
+		unset ($this->_overrides['vitaminE']);
 	
 		return $vitaminE;
 	}
 
-	public function getVitaminD() {
-		if ($this->vitaminD===NULL) {
+	public function getVitaminD($autoCreate = TRUE) {
+		if ($this->vitaminD===NULL && $autoCreate && ! isset($this->_overrides['vitaminD']) ) {
 			$this->vitaminD = $this->createVitaminD();
 		}
 		return $this->vitaminD;
@@ -850,15 +1032,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVitaminD($vitaminD) {
+		if ( $vitaminD === FALSE ) {
+			$this->_overrides['vitaminD'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vitaminD instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($vitaminD) ) {
 			$vitaminD = new \com\microsoft\wc\thing\types\WeightValue ($vitaminD);
 		}
+
+		unset ($this->_overrides['vitaminD']);
 	
 		return $vitaminD;
 	}
 
-	public function getVitaminC() {
-		if ($this->vitaminC===NULL) {
+	public function getVitaminC($autoCreate = TRUE) {
+		if ($this->vitaminC===NULL && $autoCreate && ! isset($this->_overrides['vitaminC']) ) {
 			$this->vitaminC = $this->createVitaminC();
 		}
 		return $this->vitaminC;
@@ -873,15 +1062,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVitaminC($vitaminC) {
+		if ( $vitaminC === FALSE ) {
+			$this->_overrides['vitaminC'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vitaminC instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($vitaminC) ) {
 			$vitaminC = new \com\microsoft\wc\thing\types\WeightValue ($vitaminC);
 		}
+
+		unset ($this->_overrides['vitaminC']);
 	
 		return $vitaminC;
 	}
 
-	public function getThiamin() {
-		if ($this->thiamin===NULL) {
+	public function getThiamin($autoCreate = TRUE) {
+		if ($this->thiamin===NULL && $autoCreate && ! isset($this->_overrides['thiamin']) ) {
 			$this->thiamin = $this->createThiamin();
 		}
 		return $this->thiamin;
@@ -896,15 +1092,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateThiamin($thiamin) {
+		if ( $thiamin === FALSE ) {
+			$this->_overrides['thiamin'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $thiamin instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($thiamin) ) {
 			$thiamin = new \com\microsoft\wc\thing\types\WeightValue ($thiamin);
 		}
+
+		unset ($this->_overrides['thiamin']);
 	
 		return $thiamin;
 	}
 
-	public function getRiboflavin() {
-		if ($this->riboflavin===NULL) {
+	public function getRiboflavin($autoCreate = TRUE) {
+		if ($this->riboflavin===NULL && $autoCreate && ! isset($this->_overrides['riboflavin']) ) {
 			$this->riboflavin = $this->createRiboflavin();
 		}
 		return $this->riboflavin;
@@ -919,15 +1122,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateRiboflavin($riboflavin) {
+		if ( $riboflavin === FALSE ) {
+			$this->_overrides['riboflavin'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $riboflavin instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($riboflavin) ) {
 			$riboflavin = new \com\microsoft\wc\thing\types\WeightValue ($riboflavin);
 		}
+
+		unset ($this->_overrides['riboflavin']);
 	
 		return $riboflavin;
 	}
 
-	public function getNiacin() {
-		if ($this->niacin===NULL) {
+	public function getNiacin($autoCreate = TRUE) {
+		if ($this->niacin===NULL && $autoCreate && ! isset($this->_overrides['niacin']) ) {
 			$this->niacin = $this->createNiacin();
 		}
 		return $this->niacin;
@@ -942,15 +1152,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateNiacin($niacin) {
+		if ( $niacin === FALSE ) {
+			$this->_overrides['niacin'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $niacin instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($niacin) ) {
 			$niacin = new \com\microsoft\wc\thing\types\WeightValue ($niacin);
 		}
+
+		unset ($this->_overrides['niacin']);
 	
 		return $niacin;
 	}
 
-	public function getVitaminB6() {
-		if ($this->vitaminB6===NULL) {
+	public function getVitaminB6($autoCreate = TRUE) {
+		if ($this->vitaminB6===NULL && $autoCreate && ! isset($this->_overrides['vitaminB6']) ) {
 			$this->vitaminB6 = $this->createVitaminB6();
 		}
 		return $this->vitaminB6;
@@ -965,15 +1182,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVitaminB6($vitaminB6) {
+		if ( $vitaminB6 === FALSE ) {
+			$this->_overrides['vitaminB6'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vitaminB6 instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($vitaminB6) ) {
 			$vitaminB6 = new \com\microsoft\wc\thing\types\WeightValue ($vitaminB6);
 		}
+
+		unset ($this->_overrides['vitaminB6']);
 	
 		return $vitaminB6;
 	}
 
-	public function getFolateDFE() {
-		if ($this->folateDFE===NULL) {
+	public function getFolateDFE($autoCreate = TRUE) {
+		if ($this->folateDFE===NULL && $autoCreate && ! isset($this->_overrides['folateDFE']) ) {
 			$this->folateDFE = $this->createFolateDFE();
 		}
 		return $this->folateDFE;
@@ -988,15 +1212,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFolateDFE($folateDFE) {
+		if ( $folateDFE === FALSE ) {
+			$this->_overrides['folateDFE'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $folateDFE instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($folateDFE) ) {
 			$folateDFE = new \com\microsoft\wc\thing\types\WeightValue ($folateDFE);
 		}
+
+		unset ($this->_overrides['folateDFE']);
 	
 		return $folateDFE;
 	}
 
-	public function getVitaminB12() {
-		if ($this->vitaminB12===NULL) {
+	public function getVitaminB12($autoCreate = TRUE) {
+		if ($this->vitaminB12===NULL && $autoCreate && ! isset($this->_overrides['vitaminB12']) ) {
 			$this->vitaminB12 = $this->createVitaminB12();
 		}
 		return $this->vitaminB12;
@@ -1011,15 +1242,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVitaminB12($vitaminB12) {
+		if ( $vitaminB12 === FALSE ) {
+			$this->_overrides['vitaminB12'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vitaminB12 instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($vitaminB12) ) {
 			$vitaminB12 = new \com\microsoft\wc\thing\types\WeightValue ($vitaminB12);
 		}
+
+		unset ($this->_overrides['vitaminB12']);
 	
 		return $vitaminB12;
 	}
 
-	public function getVitaminK() {
-		if ($this->vitaminK===NULL) {
+	public function getVitaminK($autoCreate = TRUE) {
+		if ($this->vitaminK===NULL && $autoCreate && ! isset($this->_overrides['vitaminK']) ) {
 			$this->vitaminK = $this->createVitaminK();
 		}
 		return $this->vitaminK;
@@ -1034,15 +1272,22 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVitaminK($vitaminK) {
+		if ( $vitaminK === FALSE ) {
+			$this->_overrides['vitaminK'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vitaminK instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($vitaminK) ) {
 			$vitaminK = new \com\microsoft\wc\thing\types\WeightValue ($vitaminK);
 		}
+
+		unset ($this->_overrides['vitaminK']);
 	
 		return $vitaminK;
 	}
 
-	public function getAdditionalNutritionFacts() {
-		if ($this->additionalNutritionFacts===NULL) {
+	public function getAdditionalNutritionFacts($autoCreate = TRUE) {
+		if ($this->additionalNutritionFacts===NULL && $autoCreate && ! isset($this->_overrides['additionalNutritionFacts']) ) {
 			$this->additionalNutritionFacts = $this->createAdditionalNutritionFacts();
 		}
 		return $this->additionalNutritionFacts;
@@ -1057,9 +1302,16 @@ class DietaryIntake extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAdditionalNutritionFacts($additionalNutritionFacts) {
+		if ( $additionalNutritionFacts === FALSE ) {
+			$this->_overrides['additionalNutritionFacts'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $additionalNutritionFacts instanceof \com\microsoft\wc\thing\dietary_intake\AdditionalNutritionFacts  && ! is_null($additionalNutritionFacts) ) {
 			$additionalNutritionFacts = new \com\microsoft\wc\thing\dietary_intake\AdditionalNutritionFacts ($additionalNutritionFacts);
 		}
+
+		unset ($this->_overrides['additionalNutritionFacts']);
 	
 		return $additionalNutritionFacts;
 	}

@@ -15,6 +15,13 @@ class FromMailbox {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String255", name="mailbox-name")
 	 */
 	protected $mailboxName;
@@ -29,8 +36,8 @@ class FromMailbox {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 	}
 
-	public function getMailboxName() {
-		if ($this->mailboxName===NULL) {
+	public function getMailboxName($autoCreate = TRUE) {
+		if ($this->mailboxName===NULL && $autoCreate && ! isset($this->_overrides['mailboxName']) ) {
 			$this->mailboxName = $this->createMailboxName();
 		}
 		return $this->mailboxName;
@@ -52,8 +59,8 @@ class FromMailbox {
 		return $mailboxName;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;

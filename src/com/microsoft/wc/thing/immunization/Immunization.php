@@ -19,6 +19,13 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Immunization';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -87,8 +94,8 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 		$this->consent = ($consent===NULL) ? NULL : $this->validateConsent($consent);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -110,8 +117,8 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getAdministrationDate() {
-		if ($this->administrationDate===NULL) {
+	public function getAdministrationDate($autoCreate = TRUE) {
+		if ($this->administrationDate===NULL && $autoCreate && ! isset($this->_overrides['administrationDate']) ) {
 			$this->administrationDate = $this->createAdministrationDate();
 		}
 		return $this->administrationDate;
@@ -133,8 +140,8 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 		return $administrationDate;
 	}
 
-	public function getAdministrator() {
-		if ($this->administrator===NULL) {
+	public function getAdministrator($autoCreate = TRUE) {
+		if ($this->administrator===NULL && $autoCreate && ! isset($this->_overrides['administrator']) ) {
 			$this->administrator = $this->createAdministrator();
 		}
 		return $this->administrator;
@@ -149,15 +156,22 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAdministrator($administrator) {
+		if ( $administrator === FALSE ) {
+			$this->_overrides['administrator'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $administrator instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($administrator) ) {
 			$administrator = new \com\microsoft\wc\thing\types\Person ($administrator);
 		}
+
+		unset ($this->_overrides['administrator']);
 	
 		return $administrator;
 	}
 
-	public function getManufacturer() {
-		if ($this->manufacturer===NULL) {
+	public function getManufacturer($autoCreate = TRUE) {
+		if ($this->manufacturer===NULL && $autoCreate && ! isset($this->_overrides['manufacturer']) ) {
 			$this->manufacturer = $this->createManufacturer();
 		}
 		return $this->manufacturer;
@@ -179,8 +193,8 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 		return $manufacturer;
 	}
 
-	public function getLot() {
-		if ($this->lot===NULL) {
+	public function getLot($autoCreate = TRUE) {
+		if ($this->lot===NULL && $autoCreate && ! isset($this->_overrides['lot']) ) {
 			$this->lot = $this->createLot();
 		}
 		return $this->lot;
@@ -202,8 +216,8 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 		return $lot;
 	}
 
-	public function getRoute() {
-		if ($this->route===NULL) {
+	public function getRoute($autoCreate = TRUE) {
+		if ($this->route===NULL && $autoCreate && ! isset($this->_overrides['route']) ) {
 			$this->route = $this->createRoute();
 		}
 		return $this->route;
@@ -218,15 +232,22 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateRoute($route) {
+		if ( $route === FALSE ) {
+			$this->_overrides['route'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $route instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($route) ) {
 			$route = new \com\microsoft\wc\types\CodableValue ($route);
 		}
+
+		unset ($this->_overrides['route']);
 	
 		return $route;
 	}
 
-	public function getExpirationDate() {
-		if ($this->expirationDate===NULL) {
+	public function getExpirationDate($autoCreate = TRUE) {
+		if ($this->expirationDate===NULL && $autoCreate && ! isset($this->_overrides['expirationDate']) ) {
 			$this->expirationDate = $this->createExpirationDate();
 		}
 		return $this->expirationDate;
@@ -241,15 +262,22 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExpirationDate($expirationDate) {
+		if ( $expirationDate === FALSE ) {
+			$this->_overrides['expirationDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $expirationDate instanceof \com\microsoft\wc\dates\ApproxDate  && ! is_null($expirationDate) ) {
 			$expirationDate = new \com\microsoft\wc\dates\ApproxDate ($expirationDate);
 		}
+
+		unset ($this->_overrides['expirationDate']);
 	
 		return $expirationDate;
 	}
 
-	public function getSequence() {
-		if ($this->sequence===NULL) {
+	public function getSequence($autoCreate = TRUE) {
+		if ($this->sequence===NULL && $autoCreate && ! isset($this->_overrides['sequence']) ) {
 			$this->sequence = $this->createSequence();
 		}
 		return $this->sequence;
@@ -271,8 +299,8 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 		return $sequence;
 	}
 
-	public function getAnatomicSurface() {
-		if ($this->anatomicSurface===NULL) {
+	public function getAnatomicSurface($autoCreate = TRUE) {
+		if ($this->anatomicSurface===NULL && $autoCreate && ! isset($this->_overrides['anatomicSurface']) ) {
 			$this->anatomicSurface = $this->createAnatomicSurface();
 		}
 		return $this->anatomicSurface;
@@ -287,15 +315,22 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAnatomicSurface($anatomicSurface) {
+		if ( $anatomicSurface === FALSE ) {
+			$this->_overrides['anatomicSurface'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $anatomicSurface instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($anatomicSurface) ) {
 			$anatomicSurface = new \com\microsoft\wc\types\CodableValue ($anatomicSurface);
 		}
+
+		unset ($this->_overrides['anatomicSurface']);
 	
 		return $anatomicSurface;
 	}
 
-	public function getAdverseEvent() {
-		if ($this->adverseEvent===NULL) {
+	public function getAdverseEvent($autoCreate = TRUE) {
+		if ($this->adverseEvent===NULL && $autoCreate && ! isset($this->_overrides['adverseEvent']) ) {
 			$this->adverseEvent = $this->createAdverseEvent();
 		}
 		return $this->adverseEvent;
@@ -317,8 +352,8 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 		return $adverseEvent;
 	}
 
-	public function getConsent() {
-		if ($this->consent===NULL) {
+	public function getConsent($autoCreate = TRUE) {
+		if ($this->consent===NULL && $autoCreate && ! isset($this->_overrides['consent']) ) {
 			$this->consent = $this->createConsent();
 		}
 		return $this->consent;

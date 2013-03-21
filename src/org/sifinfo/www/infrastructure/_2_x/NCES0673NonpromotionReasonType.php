@@ -15,6 +15,13 @@ class NCES0673NonpromotionReasonType {
 	static protected $enumValue = array('1979' => 'Failed to meet testing requirements', '1980' => 'Illness', '1981' => 'Immaturity', '1982' => 'Inadequate performance', '1983' => 'Insufficient credits', '9999' => 'Other', '1984' => 'Prolonged absence');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0673NonpromotionReasonType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0673NonpromotionReasonType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

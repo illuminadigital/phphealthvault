@@ -16,6 +16,13 @@ class HMACFinalizedData extends \com\microsoft\wc\types\String512 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="algName")
 	 */
 	protected $algName;
@@ -24,8 +31,8 @@ class HMACFinalizedData extends \com\microsoft\wc\types\String512 {
 		$this->algName = ($algName===NULL) ? NULL : $this->validateAlgName($algName);
 	}
 
-	public function getAlgName() {
-		if ($this->algName===NULL) {
+	public function getAlgName($autoCreate = TRUE) {
+		if ($this->algName===NULL && $autoCreate && ! isset($this->_overrides['algName']) ) {
 			$this->algName = $this->createAlgName();
 		}
 		return $this->algName;

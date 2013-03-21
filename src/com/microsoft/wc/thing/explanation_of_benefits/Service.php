@@ -15,6 +15,13 @@ class Service {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="service-type")
 	 */
 	protected $serviceType;
@@ -53,8 +60,8 @@ class Service {
 		$this->notes = ($notes===NULL) ? NULL : $this->validateNotes($notes);
 	}
 
-	public function getServiceType() {
-		if ($this->serviceType===NULL) {
+	public function getServiceType($autoCreate = TRUE) {
+		if ($this->serviceType===NULL && $autoCreate && ! isset($this->_overrides['serviceType']) ) {
 			$this->serviceType = $this->createServiceType();
 		}
 		return $this->serviceType;
@@ -76,8 +83,8 @@ class Service {
 		return $serviceType;
 	}
 
-	public function getDiagnosis() {
-		if ($this->diagnosis===NULL) {
+	public function getDiagnosis($autoCreate = TRUE) {
+		if ($this->diagnosis===NULL && $autoCreate && ! isset($this->_overrides['diagnosis']) ) {
 			$this->diagnosis = $this->createDiagnosis();
 		}
 		return $this->diagnosis;
@@ -92,15 +99,22 @@ class Service {
 	}
 
 	protected function validateDiagnosis($diagnosis) {
+		if ( $diagnosis === FALSE ) {
+			$this->_overrides['diagnosis'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $diagnosis instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($diagnosis) ) {
 			$diagnosis = new \com\microsoft\wc\types\CodableValue ($diagnosis);
 		}
+
+		unset ($this->_overrides['diagnosis']);
 	
 		return $diagnosis;
 	}
 
-	public function getBillingCode() {
-		if ($this->billingCode===NULL) {
+	public function getBillingCode($autoCreate = TRUE) {
+		if ($this->billingCode===NULL && $autoCreate && ! isset($this->_overrides['billingCode']) ) {
 			$this->billingCode = $this->createBillingCode();
 		}
 		return $this->billingCode;
@@ -115,15 +129,22 @@ class Service {
 	}
 
 	protected function validateBillingCode($billingCode) {
+		if ( $billingCode === FALSE ) {
+			$this->_overrides['billingCode'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $billingCode instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($billingCode) ) {
 			$billingCode = new \com\microsoft\wc\types\CodableValue ($billingCode);
 		}
+
+		unset ($this->_overrides['billingCode']);
 	
 		return $billingCode;
 	}
 
-	public function getServiceDates() {
-		if ($this->serviceDates===NULL) {
+	public function getServiceDates($autoCreate = TRUE) {
+		if ($this->serviceDates===NULL && $autoCreate && ! isset($this->_overrides['serviceDates']) ) {
 			$this->serviceDates = $this->createServiceDates();
 		}
 		return $this->serviceDates;
@@ -145,8 +166,8 @@ class Service {
 		return $serviceDates;
 	}
 
-	public function getClaimAmounts() {
-		if ($this->claimAmounts===NULL) {
+	public function getClaimAmounts($autoCreate = TRUE) {
+		if ($this->claimAmounts===NULL && $autoCreate && ! isset($this->_overrides['claimAmounts']) ) {
 			$this->claimAmounts = $this->createClaimAmounts();
 		}
 		return $this->claimAmounts;
@@ -168,8 +189,8 @@ class Service {
 		return $claimAmounts;
 	}
 
-	public function getNotes() {
-		if ($this->notes===NULL) {
+	public function getNotes($autoCreate = TRUE) {
+		if ($this->notes===NULL && $autoCreate && ! isset($this->_overrides['notes']) ) {
 			$this->notes = $this->createNotes();
 		}
 		return $this->notes;
@@ -184,9 +205,16 @@ class Service {
 	}
 
 	protected function validateNotes($notes) {
+		if ( $notes === FALSE ) {
+			$this->_overrides['notes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($notes) && ! is_null($notes) ) {
 			$notes = array($notes);
 		}
+
+		unset ($this->_overrides['notes']);
 		$count = count($notes);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'notes', 0));

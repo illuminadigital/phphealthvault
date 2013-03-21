@@ -14,6 +14,13 @@ class ExceptionalityCategoriesType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ExceptionalityCategory", collection="true", name="ExceptionalityCategory")
 	 */
 	protected $exceptionalityCategory;
@@ -22,8 +29,8 @@ class ExceptionalityCategoriesType {
 		$this->exceptionalityCategory = ($exceptionalityCategory===NULL) ? NULL : $this->validateExceptionalityCategory($exceptionalityCategory);
 	}
 
-	public function getExceptionalityCategory() {
-		if ($this->exceptionalityCategory===NULL) {
+	public function getExceptionalityCategory($autoCreate = TRUE) {
+		if ($this->exceptionalityCategory===NULL && $autoCreate && ! isset($this->_overrides['exceptionalityCategory']) ) {
 			$this->exceptionalityCategory = $this->createExceptionalityCategory();
 		}
 		return $this->exceptionalityCategory;

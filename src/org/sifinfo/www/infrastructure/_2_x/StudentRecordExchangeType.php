@@ -15,6 +15,13 @@ class StudentRecordExchangeType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\StateProvinceIdType", name="StateProvinceId")
 	 */
 	protected $stateProvinceId;
@@ -59,8 +66,8 @@ class StudentRecordExchangeType {
 		$this->refId = ($refId===NULL) ? NULL : $this->validateRefId($refId);
 	}
 
-	public function getStateProvinceId() {
-		if ($this->stateProvinceId===NULL) {
+	public function getStateProvinceId($autoCreate = TRUE) {
+		if ($this->stateProvinceId===NULL && $autoCreate && ! isset($this->_overrides['stateProvinceId']) ) {
 			$this->stateProvinceId = $this->createStateProvinceId();
 		}
 		return $this->stateProvinceId;
@@ -79,8 +86,8 @@ class StudentRecordExchangeType {
 		return $stateProvinceId;
 	}
 
-	public function getLocalId() {
-		if ($this->localId===NULL) {
+	public function getLocalId($autoCreate = TRUE) {
+		if ($this->localId===NULL && $autoCreate && ! isset($this->_overrides['localId']) ) {
 			$this->localId = $this->createLocalId();
 		}
 		return $this->localId;
@@ -99,8 +106,8 @@ class StudentRecordExchangeType {
 		return $localId;
 	}
 
-	public function getStudentPersonalRefId() {
-		if ($this->studentPersonalRefId===NULL) {
+	public function getStudentPersonalRefId($autoCreate = TRUE) {
+		if ($this->studentPersonalRefId===NULL && $autoCreate && ! isset($this->_overrides['studentPersonalRefId']) ) {
 			$this->studentPersonalRefId = $this->createStudentPersonalRefId();
 		}
 		return $this->studentPersonalRefId;
@@ -119,8 +126,8 @@ class StudentRecordExchangeType {
 		return $studentPersonalRefId;
 	}
 
-	public function getRecords() {
-		if ($this->records===NULL) {
+	public function getRecords($autoCreate = TRUE) {
+		if ($this->records===NULL && $autoCreate && ! isset($this->_overrides['records']) ) {
 			$this->records = $this->createRecords();
 		}
 		return $this->records;
@@ -142,8 +149,8 @@ class StudentRecordExchangeType {
 		return $records;
 	}
 
-	public function getSifMetadata() {
-		if ($this->sifMetadata===NULL) {
+	public function getSifMetadata($autoCreate = TRUE) {
+		if ($this->sifMetadata===NULL && $autoCreate && ! isset($this->_overrides['sifMetadata']) ) {
 			$this->sifMetadata = $this->createSifMetadata();
 		}
 		return $this->sifMetadata;
@@ -158,15 +165,22 @@ class StudentRecordExchangeType {
 	}
 
 	protected function validateSifMetadata($sifMetadata) {
+		if ( $sifMetadata === FALSE ) {
+			$this->_overrides['sifMetadata'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifMetadata instanceof \org\sifinfo\www\infrastructure\_2_x\SIFMetadataType  && ! is_null($sifMetadata) ) {
 			$sifMetadata = new \org\sifinfo\www\infrastructure\_2_x\SIFMetadataType ($sifMetadata);
 		}
+
+		unset ($this->_overrides['sifMetadata']);
 	
 		return $sifMetadata;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -181,15 +195,22 @@ class StudentRecordExchangeType {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}
 
-	public function getRefId() {
-		if ($this->refId===NULL) {
+	public function getRefId($autoCreate = TRUE) {
+		if ($this->refId===NULL && $autoCreate && ! isset($this->_overrides['refId']) ) {
 			$this->refId = $this->createRefId();
 		}
 		return $this->refId;

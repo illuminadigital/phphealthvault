@@ -14,6 +14,13 @@ class Requirement {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="Name")
 	 */
 	protected $name;
@@ -46,8 +53,8 @@ class Requirement {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -69,8 +76,8 @@ class Requirement {
 		return $name;
 	}
 
-	public function getMethod() {
-		if ($this->method===NULL) {
+	public function getMethod($autoCreate = TRUE) {
+		if ($this->method===NULL && $autoCreate && ! isset($this->_overrides['method']) ) {
 			$this->method = $this->createMethod();
 		}
 		return $this->method;
@@ -92,8 +99,8 @@ class Requirement {
 		return $method;
 	}
 
-	public function getStatus() {
-		if ($this->status===NULL) {
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
 			$this->status = $this->createStatus();
 		}
 		return $this->status;
@@ -115,8 +122,8 @@ class Requirement {
 		return $status;
 	}
 
-	public function getStatusDeterminationDate() {
-		if ($this->statusDeterminationDate===NULL) {
+	public function getStatusDeterminationDate($autoCreate = TRUE) {
+		if ($this->statusDeterminationDate===NULL && $autoCreate && ! isset($this->_overrides['statusDeterminationDate']) ) {
 			$this->statusDeterminationDate = $this->createStatusDeterminationDate();
 		}
 		return $this->statusDeterminationDate;
@@ -135,8 +142,8 @@ class Requirement {
 		return $statusDeterminationDate;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -151,9 +158,16 @@ class Requirement {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

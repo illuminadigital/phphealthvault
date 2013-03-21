@@ -16,6 +16,13 @@ class VocabularyKey {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="name")
 	 */
 	protected $name;
@@ -48,8 +55,8 @@ class VocabularyKey {
 		$this->xmlLang = ($xmlLang===NULL) ? NULL : $this->validateXmlLang($xmlLang);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -71,8 +78,8 @@ class VocabularyKey {
 		return $name;
 	}
 
-	public function getFamily() {
-		if ($this->family===NULL) {
+	public function getFamily($autoCreate = TRUE) {
+		if ($this->family===NULL && $autoCreate && ! isset($this->_overrides['family']) ) {
 			$this->family = $this->createFamily();
 		}
 		return $this->family;
@@ -87,15 +94,22 @@ class VocabularyKey {
 	}
 
 	protected function validateFamily($family) {
+		if ( $family === FALSE ) {
+			$this->_overrides['family'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $family instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($family) ) {
 			$family = new \com\microsoft\wc\types\Stringnz ($family);
 		}
+
+		unset ($this->_overrides['family']);
 	
 		return $family;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;
@@ -110,15 +124,22 @@ class VocabularyKey {
 	}
 
 	protected function validateVersion($version) {
+		if ( $version === FALSE ) {
+			$this->_overrides['version'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $version instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($version) ) {
 			$version = new \com\microsoft\wc\types\Stringnz ($version);
 		}
+
+		unset ($this->_overrides['version']);
 	
 		return $version;
 	}
 
-	public function getCodeValue() {
-		if ($this->codeValue===NULL) {
+	public function getCodeValue($autoCreate = TRUE) {
+		if ($this->codeValue===NULL && $autoCreate && ! isset($this->_overrides['codeValue']) ) {
 			$this->codeValue = $this->createCodeValue();
 		}
 		return $this->codeValue;
@@ -140,8 +161,8 @@ class VocabularyKey {
 		return $codeValue;
 	}
 
-	public function getXmlLang() {
-		if ($this->xmlLang===NULL) {
+	public function getXmlLang($autoCreate = TRUE) {
+		if ($this->xmlLang===NULL && $autoCreate && ! isset($this->_overrides['xmlLang']) ) {
 			$this->xmlLang = $this->createXmlLang();
 		}
 		return $this->xmlLang;

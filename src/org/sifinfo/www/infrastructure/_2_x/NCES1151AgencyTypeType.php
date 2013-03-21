@@ -15,6 +15,13 @@ class NCES1151AgencyTypeType {
 	static protected $enumValue = array('3491' => 'Federal school district', '9999' => 'Other', '3489' => 'Regional education service agency (RESA)', '3486' => 'Regular school district', '3487' => 'School district that is a component of a supervisory union', '3490' => 'State school district', '3488' => 'Supervisory Union');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES1151AgencyTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES1151AgencyTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

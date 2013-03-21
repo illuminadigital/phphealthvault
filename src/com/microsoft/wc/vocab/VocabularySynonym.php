@@ -15,6 +15,13 @@ class VocabularySynonym {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="term")
 	 */
 	protected $term;
@@ -23,8 +30,8 @@ class VocabularySynonym {
 		$this->term = ($term===NULL) ? NULL : $this->validateTerm($term);
 	}
 
-	public function getTerm() {
-		if ($this->term===NULL) {
+	public function getTerm($autoCreate = TRUE) {
+		if ($this->term===NULL && $autoCreate && ! isset($this->_overrides['term']) ) {
 			$this->term = $this->createTerm();
 		}
 		return $this->term;

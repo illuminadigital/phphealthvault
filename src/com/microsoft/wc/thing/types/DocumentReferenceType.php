@@ -16,6 +16,13 @@ class DocumentReferenceType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="title")
 	 */
 	protected $title;
@@ -42,8 +49,8 @@ class DocumentReferenceType {
 		$this->version = ($version===NULL) ? NULL : $this->validateVersion($version);
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -65,8 +72,8 @@ class DocumentReferenceType {
 		return $title;
 	}
 
-	public function getUrl() {
-		if ($this->url===NULL) {
+	public function getUrl($autoCreate = TRUE) {
+		if ($this->url===NULL && $autoCreate && ! isset($this->_overrides['url']) ) {
 			$this->url = $this->createUrl();
 		}
 		return $this->url;
@@ -88,8 +95,8 @@ class DocumentReferenceType {
 		return $url;
 	}
 
-	public function getDocumentIndex() {
-		if ($this->documentIndex===NULL) {
+	public function getDocumentIndex($autoCreate = TRUE) {
+		if ($this->documentIndex===NULL && $autoCreate && ! isset($this->_overrides['documentIndex']) ) {
 			$this->documentIndex = $this->createDocumentIndex();
 		}
 		return $this->documentIndex;
@@ -111,8 +118,8 @@ class DocumentReferenceType {
 		return $documentIndex;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;

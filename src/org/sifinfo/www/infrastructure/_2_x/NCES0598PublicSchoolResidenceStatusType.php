@@ -15,6 +15,13 @@ class NCES0598PublicSchoolResidenceStatusType {
 	static protected $enumValue = array('1652' => 'Resident of administrative unit and usual school attendance area', '1653' => 'Resident of administrative unit, but of other school attendance area', '1655' => 'Resident of an administrative unit that crosses state boundaries', '1656' => 'Resident of another state', '1654' => 'Resident of this state, but not of this administrative unit');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0598PublicSchoolResidenceStatusType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0598PublicSchoolResidenceStatusType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

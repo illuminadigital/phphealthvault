@@ -18,6 +18,13 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Pregnancy';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDate", name="due-date")
 	 */
 	protected $dueDate;
@@ -56,8 +63,8 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 		$this->delivery = ($delivery===NULL) ? NULL : $this->validateDelivery($delivery);
 	}
 
-	public function getDueDate() {
-		if ($this->dueDate===NULL) {
+	public function getDueDate($autoCreate = TRUE) {
+		if ($this->dueDate===NULL && $autoCreate && ! isset($this->_overrides['dueDate']) ) {
 			$this->dueDate = $this->createDueDate();
 		}
 		return $this->dueDate;
@@ -72,15 +79,22 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDueDate($dueDate) {
+		if ( $dueDate === FALSE ) {
+			$this->_overrides['dueDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dueDate instanceof \com\microsoft\wc\dates\ApproxDate  && ! is_null($dueDate) ) {
 			$dueDate = new \com\microsoft\wc\dates\ApproxDate ($dueDate);
 		}
+
+		unset ($this->_overrides['dueDate']);
 	
 		return $dueDate;
 	}
 
-	public function getLastMenstrualPeriod() {
-		if ($this->lastMenstrualPeriod===NULL) {
+	public function getLastMenstrualPeriod($autoCreate = TRUE) {
+		if ($this->lastMenstrualPeriod===NULL && $autoCreate && ! isset($this->_overrides['lastMenstrualPeriod']) ) {
 			$this->lastMenstrualPeriod = $this->createLastMenstrualPeriod();
 		}
 		return $this->lastMenstrualPeriod;
@@ -95,15 +109,22 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLastMenstrualPeriod($lastMenstrualPeriod) {
+		if ( $lastMenstrualPeriod === FALSE ) {
+			$this->_overrides['lastMenstrualPeriod'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $lastMenstrualPeriod instanceof \com\microsoft\wc\dates\Date  && ! is_null($lastMenstrualPeriod) ) {
 			$lastMenstrualPeriod = new \com\microsoft\wc\dates\Date ($lastMenstrualPeriod);
 		}
+
+		unset ($this->_overrides['lastMenstrualPeriod']);
 	
 		return $lastMenstrualPeriod;
 	}
 
-	public function getConceptionMethod() {
-		if ($this->conceptionMethod===NULL) {
+	public function getConceptionMethod($autoCreate = TRUE) {
+		if ($this->conceptionMethod===NULL && $autoCreate && ! isset($this->_overrides['conceptionMethod']) ) {
 			$this->conceptionMethod = $this->createConceptionMethod();
 		}
 		return $this->conceptionMethod;
@@ -118,15 +139,22 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateConceptionMethod($conceptionMethod) {
+		if ( $conceptionMethod === FALSE ) {
+			$this->_overrides['conceptionMethod'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $conceptionMethod instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($conceptionMethod) ) {
 			$conceptionMethod = new \com\microsoft\wc\types\CodableValue ($conceptionMethod);
 		}
+
+		unset ($this->_overrides['conceptionMethod']);
 	
 		return $conceptionMethod;
 	}
 
-	public function getFetusCount() {
-		if ($this->fetusCount===NULL) {
+	public function getFetusCount($autoCreate = TRUE) {
+		if ($this->fetusCount===NULL && $autoCreate && ! isset($this->_overrides['fetusCount']) ) {
 			$this->fetusCount = $this->createFetusCount();
 		}
 		return $this->fetusCount;
@@ -141,15 +169,22 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFetusCount($fetusCount) {
+		if ( $fetusCount === FALSE ) {
+			$this->_overrides['fetusCount'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fetusCount instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($fetusCount) ) {
 			$fetusCount = new \com\microsoft\wc\thing\types\NonNegativeInt ($fetusCount);
 		}
+
+		unset ($this->_overrides['fetusCount']);
 	
 		return $fetusCount;
 	}
 
-	public function getGestationalAge() {
-		if ($this->gestationalAge===NULL) {
+	public function getGestationalAge($autoCreate = TRUE) {
+		if ($this->gestationalAge===NULL && $autoCreate && ! isset($this->_overrides['gestationalAge']) ) {
 			$this->gestationalAge = $this->createGestationalAge();
 		}
 		return $this->gestationalAge;
@@ -164,15 +199,22 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateGestationalAge($gestationalAge) {
+		if ( $gestationalAge === FALSE ) {
+			$this->_overrides['gestationalAge'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $gestationalAge instanceof \com\microsoft\wc\thing\types\PositiveInt  && ! is_null($gestationalAge) ) {
 			$gestationalAge = new \com\microsoft\wc\thing\types\PositiveInt ($gestationalAge);
 		}
+
+		unset ($this->_overrides['gestationalAge']);
 	
 		return $gestationalAge;
 	}
 
-	public function getDelivery() {
-		if ($this->delivery===NULL) {
+	public function getDelivery($autoCreate = TRUE) {
+		if ($this->delivery===NULL && $autoCreate && ! isset($this->_overrides['delivery']) ) {
 			$this->delivery = $this->createDelivery();
 		}
 		return $this->delivery;
@@ -187,9 +229,16 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDelivery($delivery) {
+		if ( $delivery === FALSE ) {
+			$this->_overrides['delivery'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($delivery) && ! is_null($delivery) ) {
 			$delivery = array($delivery);
 		}
+
+		unset ($this->_overrides['delivery']);
 		$count = count($delivery);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'delivery', 0));

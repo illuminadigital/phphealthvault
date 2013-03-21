@@ -14,6 +14,13 @@ class TextualRule {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="permission")
 	 */
 	protected $permission;
@@ -58,8 +65,8 @@ class TextualRule {
 		$this->exceptDates = ($exceptDates===NULL) ? NULL : $this->validateExceptDates($exceptDates);
 	}
 
-	public function getPermission() {
-		if ($this->permission===NULL) {
+	public function getPermission($autoCreate = TRUE) {
+		if ($this->permission===NULL && $autoCreate && ! isset($this->_overrides['permission']) ) {
 			$this->permission = $this->createPermission();
 		}
 		return $this->permission;
@@ -81,8 +88,8 @@ class TextualRule {
 		return $permission;
 	}
 
-	public function getTargetThingTypes() {
-		if ($this->targetThingTypes===NULL) {
+	public function getTargetThingTypes($autoCreate = TRUE) {
+		if ($this->targetThingTypes===NULL && $autoCreate && ! isset($this->_overrides['targetThingTypes']) ) {
 			$this->targetThingTypes = $this->createTargetThingTypes();
 		}
 		return $this->targetThingTypes;
@@ -104,8 +111,8 @@ class TextualRule {
 		return $targetThingTypes;
 	}
 
-	public function getTargetSets() {
-		if ($this->targetSets===NULL) {
+	public function getTargetSets($autoCreate = TRUE) {
+		if ($this->targetSets===NULL && $autoCreate && ! isset($this->_overrides['targetSets']) ) {
 			$this->targetSets = $this->createTargetSets();
 		}
 		return $this->targetSets;
@@ -127,8 +134,8 @@ class TextualRule {
 		return $targetSets;
 	}
 
-	public function getTargetDates() {
-		if ($this->targetDates===NULL) {
+	public function getTargetDates($autoCreate = TRUE) {
+		if ($this->targetDates===NULL && $autoCreate && ! isset($this->_overrides['targetDates']) ) {
 			$this->targetDates = $this->createTargetDates();
 		}
 		return $this->targetDates;
@@ -150,8 +157,8 @@ class TextualRule {
 		return $targetDates;
 	}
 
-	public function getExceptThingTypes() {
-		if ($this->exceptThingTypes===NULL) {
+	public function getExceptThingTypes($autoCreate = TRUE) {
+		if ($this->exceptThingTypes===NULL && $autoCreate && ! isset($this->_overrides['exceptThingTypes']) ) {
 			$this->exceptThingTypes = $this->createExceptThingTypes();
 		}
 		return $this->exceptThingTypes;
@@ -173,8 +180,8 @@ class TextualRule {
 		return $exceptThingTypes;
 	}
 
-	public function getExceptSets() {
-		if ($this->exceptSets===NULL) {
+	public function getExceptSets($autoCreate = TRUE) {
+		if ($this->exceptSets===NULL && $autoCreate && ! isset($this->_overrides['exceptSets']) ) {
 			$this->exceptSets = $this->createExceptSets();
 		}
 		return $this->exceptSets;
@@ -196,8 +203,8 @@ class TextualRule {
 		return $exceptSets;
 	}
 
-	public function getExceptDates() {
-		if ($this->exceptDates===NULL) {
+	public function getExceptDates($autoCreate = TRUE) {
+		if ($this->exceptDates===NULL && $autoCreate && ! isset($this->_overrides['exceptDates']) ) {
 			$this->exceptDates = $this->createExceptDates();
 		}
 		return $this->exceptDates;

@@ -14,6 +14,13 @@ class TimeElements {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\TimeElement", collection="true", name="TimeElement")
 	 */
 	protected $timeElement;
@@ -22,8 +29,8 @@ class TimeElements {
 		$this->timeElement = ($timeElement===NULL) ? NULL : $this->validateTimeElement($timeElement);
 	}
 
-	public function getTimeElement() {
-		if ($this->timeElement===NULL) {
+	public function getTimeElement($autoCreate = TRUE) {
+		if ($this->timeElement===NULL && $autoCreate && ! isset($this->_overrides['timeElement']) ) {
 			$this->timeElement = $this->createTimeElement();
 		}
 		return $this->timeElement;
@@ -38,9 +45,16 @@ class TimeElements {
 	}
 
 	protected function validateTimeElement($timeElement) {
+		if ( $timeElement === FALSE ) {
+			$this->_overrides['timeElement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($timeElement) && ! is_null($timeElement) ) {
 			$timeElement = array($timeElement);
 		}
+
+		unset ($this->_overrides['timeElement']);
 		$count = count($timeElement);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'timeElement', 0));

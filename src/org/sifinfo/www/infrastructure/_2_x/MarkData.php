@@ -14,6 +14,13 @@ class MarkData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="float", name="Percentage")
 	 */
 	protected $percentage;
@@ -58,8 +65,8 @@ class MarkData {
 		$this->markValueInfoDataRefId = ($markValueInfoDataRefId===NULL) ? NULL : $this->validateMarkValueInfoDataRefId($markValueInfoDataRefId);
 	}
 
-	public function getPercentage() {
-		if ($this->percentage===NULL) {
+	public function getPercentage($autoCreate = TRUE) {
+		if ($this->percentage===NULL && $autoCreate && ! isset($this->_overrides['percentage']) ) {
 			$this->percentage = $this->createPercentage();
 		}
 		return $this->percentage;
@@ -92,8 +99,8 @@ class MarkData {
 		return $percentage;
 	}
 
-	public function getNumeric() {
-		if ($this->numeric===NULL) {
+	public function getNumeric($autoCreate = TRUE) {
+		if ($this->numeric===NULL && $autoCreate && ! isset($this->_overrides['numeric']) ) {
 			$this->numeric = $this->createNumeric();
 		}
 		return $this->numeric;
@@ -126,8 +133,8 @@ class MarkData {
 		return $numeric;
 	}
 
-	public function getNumericAsDecimal() {
-		if ($this->numericAsDecimal===NULL) {
+	public function getNumericAsDecimal($autoCreate = TRUE) {
+		if ($this->numericAsDecimal===NULL && $autoCreate && ! isset($this->_overrides['numericAsDecimal']) ) {
 			$this->numericAsDecimal = $this->createNumericAsDecimal();
 		}
 		return $this->numericAsDecimal;
@@ -160,8 +167,8 @@ class MarkData {
 		return $numericAsDecimal;
 	}
 
-	public function getLetter() {
-		if ($this->letter===NULL) {
+	public function getLetter($autoCreate = TRUE) {
+		if ($this->letter===NULL && $autoCreate && ! isset($this->_overrides['letter']) ) {
 			$this->letter = $this->createLetter();
 		}
 		return $this->letter;
@@ -183,8 +190,8 @@ class MarkData {
 		return $letter;
 	}
 
-	public function getNarrative() {
-		if ($this->narrative===NULL) {
+	public function getNarrative($autoCreate = TRUE) {
+		if ($this->narrative===NULL && $autoCreate && ! isset($this->_overrides['narrative']) ) {
 			$this->narrative = $this->createNarrative();
 		}
 		return $this->narrative;
@@ -206,8 +213,8 @@ class MarkData {
 		return $narrative;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -222,15 +229,22 @@ class MarkData {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}
 
-	public function getMarkValueInfoDataRefId() {
-		if ($this->markValueInfoDataRefId===NULL) {
+	public function getMarkValueInfoDataRefId($autoCreate = TRUE) {
+		if ($this->markValueInfoDataRefId===NULL && $autoCreate && ! isset($this->_overrides['markValueInfoDataRefId']) ) {
 			$this->markValueInfoDataRefId = $this->createMarkValueInfoDataRefId();
 		}
 		return $this->markValueInfoDataRefId;

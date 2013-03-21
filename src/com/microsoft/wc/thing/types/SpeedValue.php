@@ -17,6 +17,13 @@ class SpeedValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\PositiveDouble", name="meters-per-second")
 	 */
 	protected $metersPerSecond;
@@ -31,8 +38,8 @@ class SpeedValue {
 		$this->display = ($display===NULL) ? NULL : $this->validateDisplay($display);
 	}
 
-	public function getMetersPerSecond() {
-		if ($this->metersPerSecond===NULL) {
+	public function getMetersPerSecond($autoCreate = TRUE) {
+		if ($this->metersPerSecond===NULL && $autoCreate && ! isset($this->_overrides['metersPerSecond']) ) {
 			$this->metersPerSecond = $this->createMetersPerSecond();
 		}
 		return $this->metersPerSecond;
@@ -54,8 +61,8 @@ class SpeedValue {
 		return $metersPerSecond;
 	}
 
-	public function getDisplay() {
-		if ($this->display===NULL) {
+	public function getDisplay($autoCreate = TRUE) {
+		if ($this->display===NULL && $autoCreate && ! isset($this->_overrides['display']) ) {
 			$this->display = $this->createDisplay();
 		}
 		return $this->display;
@@ -70,9 +77,16 @@ class SpeedValue {
 	}
 
 	protected function validateDisplay($display) {
+		if ( $display === FALSE ) {
+			$this->_overrides['display'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $display instanceof \com\microsoft\wc\thing\types\DisplayValue  && ! is_null($display) ) {
 			$display = new \com\microsoft\wc\thing\types\DisplayValue ($display);
 		}
+
+		unset ($this->_overrides['display']);
 	
 		return $display;
 	}

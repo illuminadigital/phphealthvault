@@ -19,6 +19,13 @@ class ExerciseSamples extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Exercise Samples';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -45,8 +52,8 @@ class ExerciseSamples extends \com\microsoft\wc\thing\AnyMixed {
 		$this->samplingInterval = ($samplingInterval===NULL) ? NULL : $this->validateSamplingInterval($samplingInterval);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -68,8 +75,8 @@ class ExerciseSamples extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -91,8 +98,8 @@ class ExerciseSamples extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getUnit() {
-		if ($this->unit===NULL) {
+	public function getUnit($autoCreate = TRUE) {
+		if ($this->unit===NULL && $autoCreate && ! isset($this->_overrides['unit']) ) {
 			$this->unit = $this->createUnit();
 		}
 		return $this->unit;
@@ -114,8 +121,8 @@ class ExerciseSamples extends \com\microsoft\wc\thing\AnyMixed {
 		return $unit;
 	}
 
-	public function getSamplingInterval() {
-		if ($this->samplingInterval===NULL) {
+	public function getSamplingInterval($autoCreate = TRUE) {
+		if ($this->samplingInterval===NULL && $autoCreate && ! isset($this->_overrides['samplingInterval']) ) {
 			$this->samplingInterval = $this->createSamplingInterval();
 		}
 		return $this->samplingInterval;

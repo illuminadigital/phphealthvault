@@ -17,6 +17,13 @@ class Condition {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -55,8 +62,8 @@ class Condition {
 		$this->severity = ($severity===NULL) ? NULL : $this->validateSeverity($severity);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -78,8 +85,8 @@ class Condition {
 		return $name;
 	}
 
-	public function getOnsetDate() {
-		if ($this->onsetDate===NULL) {
+	public function getOnsetDate($autoCreate = TRUE) {
+		if ($this->onsetDate===NULL && $autoCreate && ! isset($this->_overrides['onsetDate']) ) {
 			$this->onsetDate = $this->createOnsetDate();
 		}
 		return $this->onsetDate;
@@ -94,15 +101,22 @@ class Condition {
 	}
 
 	protected function validateOnsetDate($onsetDate) {
+		if ( $onsetDate === FALSE ) {
+			$this->_overrides['onsetDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $onsetDate instanceof \com\microsoft\wc\dates\ApproxDate  && ! is_null($onsetDate) ) {
 			$onsetDate = new \com\microsoft\wc\dates\ApproxDate ($onsetDate);
 		}
+
+		unset ($this->_overrides['onsetDate']);
 	
 		return $onsetDate;
 	}
 
-	public function getResolutionDate() {
-		if ($this->resolutionDate===NULL) {
+	public function getResolutionDate($autoCreate = TRUE) {
+		if ($this->resolutionDate===NULL && $autoCreate && ! isset($this->_overrides['resolutionDate']) ) {
 			$this->resolutionDate = $this->createResolutionDate();
 		}
 		return $this->resolutionDate;
@@ -117,15 +131,22 @@ class Condition {
 	}
 
 	protected function validateResolutionDate($resolutionDate) {
+		if ( $resolutionDate === FALSE ) {
+			$this->_overrides['resolutionDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $resolutionDate instanceof \com\microsoft\wc\dates\ApproxDate  && ! is_null($resolutionDate) ) {
 			$resolutionDate = new \com\microsoft\wc\dates\ApproxDate ($resolutionDate);
 		}
+
+		unset ($this->_overrides['resolutionDate']);
 	
 		return $resolutionDate;
 	}
 
-	public function getResolution() {
-		if ($this->resolution===NULL) {
+	public function getResolution($autoCreate = TRUE) {
+		if ($this->resolution===NULL && $autoCreate && ! isset($this->_overrides['resolution']) ) {
 			$this->resolution = $this->createResolution();
 		}
 		return $this->resolution;
@@ -147,8 +168,8 @@ class Condition {
 		return $resolution;
 	}
 
-	public function getOccurrence() {
-		if ($this->occurrence===NULL) {
+	public function getOccurrence($autoCreate = TRUE) {
+		if ($this->occurrence===NULL && $autoCreate && ! isset($this->_overrides['occurrence']) ) {
 			$this->occurrence = $this->createOccurrence();
 		}
 		return $this->occurrence;
@@ -163,15 +184,22 @@ class Condition {
 	}
 
 	protected function validateOccurrence($occurrence) {
+		if ( $occurrence === FALSE ) {
+			$this->_overrides['occurrence'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $occurrence instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($occurrence) ) {
 			$occurrence = new \com\microsoft\wc\types\CodableValue ($occurrence);
 		}
+
+		unset ($this->_overrides['occurrence']);
 	
 		return $occurrence;
 	}
 
-	public function getSeverity() {
-		if ($this->severity===NULL) {
+	public function getSeverity($autoCreate = TRUE) {
+		if ($this->severity===NULL && $autoCreate && ! isset($this->_overrides['severity']) ) {
 			$this->severity = $this->createSeverity();
 		}
 		return $this->severity;
@@ -186,9 +214,16 @@ class Condition {
 	}
 
 	protected function validateSeverity($severity) {
+		if ( $severity === FALSE ) {
+			$this->_overrides['severity'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $severity instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($severity) ) {
 			$severity = new \com\microsoft\wc\types\CodableValue ($severity);
 		}
+
+		unset ($this->_overrides['severity']);
 	
 		return $severity;
 	}

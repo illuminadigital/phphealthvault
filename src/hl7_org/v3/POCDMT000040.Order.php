@@ -14,6 +14,13 @@ class POCDMT000040.Order {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -70,8 +77,8 @@ class POCDMT000040.Order {
 		$this->moodCode = ($moodCode===NULL) ? NULL : $this->validateMoodCode($moodCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -105,8 +112,8 @@ class POCDMT000040.Order {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -125,8 +132,8 @@ class POCDMT000040.Order {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -160,8 +167,8 @@ class POCDMT000040.Order {
 		return $templateId;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -195,8 +202,8 @@ class POCDMT000040.Order {
 		return $id;
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -215,8 +222,8 @@ class POCDMT000040.Order {
 		return $code;
 	}
 
-	public function getPriorityCode() {
-		if ($this->priorityCode===NULL) {
+	public function getPriorityCode($autoCreate = TRUE) {
+		if ($this->priorityCode===NULL && $autoCreate && ! isset($this->_overrides['priorityCode']) ) {
 			$this->priorityCode = $this->createPriorityCode();
 		}
 		return $this->priorityCode;
@@ -235,8 +242,8 @@ class POCDMT000040.Order {
 		return $priorityCode;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -255,8 +262,8 @@ class POCDMT000040.Order {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;
@@ -275,8 +282,8 @@ class POCDMT000040.Order {
 		return $classCode;
 	}
 
-	public function getMoodCode() {
-		if ($this->moodCode===NULL) {
+	public function getMoodCode($autoCreate = TRUE) {
+		if ($this->moodCode===NULL && $autoCreate && ! isset($this->_overrides['moodCode']) ) {
 			$this->moodCode = $this->createMoodCode();
 		}
 		return $this->moodCode;

@@ -14,6 +14,13 @@ class Letter {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ValidMark", collection="true", name="ValidMark")
 	 */
 	protected $validMark;
@@ -22,8 +29,8 @@ class Letter {
 		$this->validMark = ($validMark===NULL) ? NULL : $this->validateValidMark($validMark);
 	}
 
-	public function getValidMark() {
-		if ($this->validMark===NULL) {
+	public function getValidMark($autoCreate = TRUE) {
+		if ($this->validMark===NULL && $autoCreate && ! isset($this->_overrides['validMark']) ) {
 			$this->validMark = $this->createValidMark();
 		}
 		return $this->validMark;

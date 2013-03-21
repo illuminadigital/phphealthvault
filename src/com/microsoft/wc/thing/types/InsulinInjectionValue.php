@@ -17,6 +17,13 @@ class InsulinInjectionValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\PositiveDouble", name="IE")
 	 */
 	protected $iE;
@@ -31,8 +38,8 @@ class InsulinInjectionValue {
 		$this->display = ($display===NULL) ? NULL : $this->validateDisplay($display);
 	}
 
-	public function getIE() {
-		if ($this->iE===NULL) {
+	public function getIE($autoCreate = TRUE) {
+		if ($this->iE===NULL && $autoCreate && ! isset($this->_overrides['iE']) ) {
 			$this->iE = $this->createIE();
 		}
 		return $this->iE;
@@ -54,8 +61,8 @@ class InsulinInjectionValue {
 		return $iE;
 	}
 
-	public function getDisplay() {
-		if ($this->display===NULL) {
+	public function getDisplay($autoCreate = TRUE) {
+		if ($this->display===NULL && $autoCreate && ! isset($this->_overrides['display']) ) {
 			$this->display = $this->createDisplay();
 		}
 		return $this->display;
@@ -70,9 +77,16 @@ class InsulinInjectionValue {
 	}
 
 	protected function validateDisplay($display) {
+		if ( $display === FALSE ) {
+			$this->_overrides['display'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $display instanceof \com\microsoft\wc\thing\types\DisplayValue  && ! is_null($display) ) {
 			$display = new \com\microsoft\wc\thing\types\DisplayValue ($display);
 		}
+
+		unset ($this->_overrides['display']);
 	
 		return $display;
 	}

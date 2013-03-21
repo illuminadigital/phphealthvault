@@ -14,6 +14,13 @@ class AdditionalNutritionFacts {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\dietary_intake\NutritionFact", collection="true", name="nutrition-fact")
 	 */
 	protected $nutritionFact;
@@ -22,8 +29,8 @@ class AdditionalNutritionFacts {
 		$this->nutritionFact = ($nutritionFact===NULL) ? NULL : $this->validateNutritionFact($nutritionFact);
 	}
 
-	public function getNutritionFact() {
-		if ($this->nutritionFact===NULL) {
+	public function getNutritionFact($autoCreate = TRUE) {
+		if ($this->nutritionFact===NULL && $autoCreate && ! isset($this->_overrides['nutritionFact']) ) {
 			$this->nutritionFact = $this->createNutritionFact();
 		}
 		return $this->nutritionFact;

@@ -18,6 +18,13 @@ class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Blood Glucose Measurement';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -62,8 +69,8 @@ class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 		$this->measurementContext = ($measurementContext===NULL) ? NULL : $this->validateMeasurementContext($measurementContext);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -85,8 +92,8 @@ class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -108,8 +115,8 @@ class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 		return $value;
 	}
 
-	public function getGlucoseMeasurementType() {
-		if ($this->glucoseMeasurementType===NULL) {
+	public function getGlucoseMeasurementType($autoCreate = TRUE) {
+		if ($this->glucoseMeasurementType===NULL && $autoCreate && ! isset($this->_overrides['glucoseMeasurementType']) ) {
 			$this->glucoseMeasurementType = $this->createGlucoseMeasurementType();
 		}
 		return $this->glucoseMeasurementType;
@@ -131,8 +138,8 @@ class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 		return $glucoseMeasurementType;
 	}
 
-	public function getOutsideOperatingTemp() {
-		if ($this->outsideOperatingTemp===NULL) {
+	public function getOutsideOperatingTemp($autoCreate = TRUE) {
+		if ($this->outsideOperatingTemp===NULL && $autoCreate && ! isset($this->_overrides['outsideOperatingTemp']) ) {
 			$this->outsideOperatingTemp = $this->createOutsideOperatingTemp();
 		}
 		return $this->outsideOperatingTemp;
@@ -154,8 +161,8 @@ class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 		return $outsideOperatingTemp;
 	}
 
-	public function getIsControlTest() {
-		if ($this->isControlTest===NULL) {
+	public function getIsControlTest($autoCreate = TRUE) {
+		if ($this->isControlTest===NULL && $autoCreate && ! isset($this->_overrides['isControlTest']) ) {
 			$this->isControlTest = $this->createIsControlTest();
 		}
 		return $this->isControlTest;
@@ -177,8 +184,8 @@ class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 		return $isControlTest;
 	}
 
-	public function getNormalcy() {
-		if ($this->normalcy===NULL) {
+	public function getNormalcy($autoCreate = TRUE) {
+		if ($this->normalcy===NULL && $autoCreate && ! isset($this->_overrides['normalcy']) ) {
 			$this->normalcy = $this->createNormalcy();
 		}
 		return $this->normalcy;
@@ -193,15 +200,22 @@ class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateNormalcy($normalcy) {
+		if ( $normalcy === FALSE ) {
+			$this->_overrides['normalcy'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $normalcy instanceof \com\microsoft\wc\thing\types\OneToFive  && ! is_null($normalcy) ) {
 			$normalcy = new \com\microsoft\wc\thing\types\OneToFive ($normalcy);
 		}
+
+		unset ($this->_overrides['normalcy']);
 	
 		return $normalcy;
 	}
 
-	public function getMeasurementContext() {
-		if ($this->measurementContext===NULL) {
+	public function getMeasurementContext($autoCreate = TRUE) {
+		if ($this->measurementContext===NULL && $autoCreate && ! isset($this->_overrides['measurementContext']) ) {
 			$this->measurementContext = $this->createMeasurementContext();
 		}
 		return $this->measurementContext;
@@ -216,9 +230,16 @@ class BloodGlucose extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMeasurementContext($measurementContext) {
+		if ( $measurementContext === FALSE ) {
+			$this->_overrides['measurementContext'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $measurementContext instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($measurementContext) ) {
 			$measurementContext = new \com\microsoft\wc\types\CodableValue ($measurementContext);
 		}
+
+		unset ($this->_overrides['measurementContext']);
 	
 		return $measurementContext;
 	}

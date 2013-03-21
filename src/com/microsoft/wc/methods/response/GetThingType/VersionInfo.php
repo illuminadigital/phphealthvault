@@ -15,6 +15,13 @@ class VersionInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="version-type-id")
 	 */
 	protected $versionTypeId;
@@ -35,8 +42,8 @@ class VersionInfo {
 		$this->versionSequence = ($versionSequence===NULL) ? NULL : $this->validateVersionSequence($versionSequence);
 	}
 
-	public function getVersionTypeId() {
-		if ($this->versionTypeId===NULL) {
+	public function getVersionTypeId($autoCreate = TRUE) {
+		if ($this->versionTypeId===NULL && $autoCreate && ! isset($this->_overrides['versionTypeId']) ) {
 			$this->versionTypeId = $this->createVersionTypeId();
 		}
 		return $this->versionTypeId;
@@ -58,8 +65,8 @@ class VersionInfo {
 		return $versionTypeId;
 	}
 
-	public function getVersionName() {
-		if ($this->versionName===NULL) {
+	public function getVersionName($autoCreate = TRUE) {
+		if ($this->versionName===NULL && $autoCreate && ! isset($this->_overrides['versionName']) ) {
 			$this->versionName = $this->createVersionName();
 		}
 		return $this->versionName;
@@ -81,8 +88,8 @@ class VersionInfo {
 		return $versionName;
 	}
 
-	public function getVersionSequence() {
-		if ($this->versionSequence===NULL) {
+	public function getVersionSequence($autoCreate = TRUE) {
+		if ($this->versionSequence===NULL && $autoCreate && ! isset($this->_overrides['versionSequence']) ) {
 			$this->versionSequence = $this->createVersionSequence();
 		}
 		return $this->versionSequence;

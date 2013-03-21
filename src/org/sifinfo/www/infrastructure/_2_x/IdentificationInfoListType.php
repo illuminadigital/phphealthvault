@@ -14,6 +14,13 @@ class IdentificationInfoListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\IdentificationInfo", collection="true", name="IdentificationInfo")
 	 */
 	protected $identificationInfo;
@@ -22,8 +29,8 @@ class IdentificationInfoListType {
 		$this->identificationInfo = ($identificationInfo===NULL) ? NULL : $this->validateIdentificationInfo($identificationInfo);
 	}
 
-	public function getIdentificationInfo() {
-		if ($this->identificationInfo===NULL) {
+	public function getIdentificationInfo($autoCreate = TRUE) {
+		if ($this->identificationInfo===NULL && $autoCreate && ! isset($this->_overrides['identificationInfo']) ) {
 			$this->identificationInfo = $this->createIdentificationInfo();
 		}
 		return $this->identificationInfo;

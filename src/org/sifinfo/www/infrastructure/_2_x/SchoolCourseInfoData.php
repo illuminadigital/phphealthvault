@@ -14,6 +14,13 @@ class SchoolCourseInfoData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\CourseCodeType", name="CourseCode")
 	 */
 	protected $courseCode;
@@ -88,8 +95,8 @@ class SchoolCourseInfoData {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getCourseCode() {
-		if ($this->courseCode===NULL) {
+	public function getCourseCode($autoCreate = TRUE) {
+		if ($this->courseCode===NULL && $autoCreate && ! isset($this->_overrides['courseCode']) ) {
 			$this->courseCode = $this->createCourseCode();
 		}
 		return $this->courseCode;
@@ -108,8 +115,8 @@ class SchoolCourseInfoData {
 		return $courseCode;
 	}
 
-	public function getStateCourseCode() {
-		if ($this->stateCourseCode===NULL) {
+	public function getStateCourseCode($autoCreate = TRUE) {
+		if ($this->stateCourseCode===NULL && $autoCreate && ! isset($this->_overrides['stateCourseCode']) ) {
 			$this->stateCourseCode = $this->createStateCourseCode();
 		}
 		return $this->stateCourseCode;
@@ -128,8 +135,8 @@ class SchoolCourseInfoData {
 		return $stateCourseCode;
 	}
 
-	public function getDistrictCourseCode() {
-		if ($this->districtCourseCode===NULL) {
+	public function getDistrictCourseCode($autoCreate = TRUE) {
+		if ($this->districtCourseCode===NULL && $autoCreate && ! isset($this->_overrides['districtCourseCode']) ) {
 			$this->districtCourseCode = $this->createDistrictCourseCode();
 		}
 		return $this->districtCourseCode;
@@ -148,8 +155,8 @@ class SchoolCourseInfoData {
 		return $districtCourseCode;
 	}
 
-	public function getNationalCourseCode() {
-		if ($this->nationalCourseCode===NULL) {
+	public function getNationalCourseCode($autoCreate = TRUE) {
+		if ($this->nationalCourseCode===NULL && $autoCreate && ! isset($this->_overrides['nationalCourseCode']) ) {
 			$this->nationalCourseCode = $this->createNationalCourseCode();
 		}
 		return $this->nationalCourseCode;
@@ -171,8 +178,8 @@ class SchoolCourseInfoData {
 		return $nationalCourseCode;
 	}
 
-	public function getSubjectAreaList() {
-		if ($this->subjectAreaList===NULL) {
+	public function getSubjectAreaList($autoCreate = TRUE) {
+		if ($this->subjectAreaList===NULL && $autoCreate && ! isset($this->_overrides['subjectAreaList']) ) {
 			$this->subjectAreaList = $this->createSubjectAreaList();
 		}
 		return $this->subjectAreaList;
@@ -187,15 +194,22 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateSubjectAreaList($subjectAreaList) {
+		if ( $subjectAreaList === FALSE ) {
+			$this->_overrides['subjectAreaList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $subjectAreaList instanceof \org\sifinfo\www\infrastructure\_2_x\SubjectAreaListType  && ! is_null($subjectAreaList) ) {
 			$subjectAreaList = new \org\sifinfo\www\infrastructure\_2_x\SubjectAreaListType ($subjectAreaList);
 		}
+
+		unset ($this->_overrides['subjectAreaList']);
 	
 		return $subjectAreaList;
 	}
 
-	public function getCourseTitle() {
-		if ($this->courseTitle===NULL) {
+	public function getCourseTitle($autoCreate = TRUE) {
+		if ($this->courseTitle===NULL && $autoCreate && ! isset($this->_overrides['courseTitle']) ) {
 			$this->courseTitle = $this->createCourseTitle();
 		}
 		return $this->courseTitle;
@@ -214,8 +228,8 @@ class SchoolCourseInfoData {
 		return $courseTitle;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -237,8 +251,8 @@ class SchoolCourseInfoData {
 		return $description;
 	}
 
-	public function getInstructionalLevel() {
-		if ($this->instructionalLevel===NULL) {
+	public function getInstructionalLevel($autoCreate = TRUE) {
+		if ($this->instructionalLevel===NULL && $autoCreate && ! isset($this->_overrides['instructionalLevel']) ) {
 			$this->instructionalLevel = $this->createInstructionalLevel();
 		}
 		return $this->instructionalLevel;
@@ -253,15 +267,22 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateInstructionalLevel($instructionalLevel) {
+		if ( $instructionalLevel === FALSE ) {
+			$this->_overrides['instructionalLevel'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $instructionalLevel instanceof \org\sifinfo\www\infrastructure\_2_x\InstructionalLevelType  && ! is_null($instructionalLevel) ) {
 			$instructionalLevel = new \org\sifinfo\www\infrastructure\_2_x\InstructionalLevelType ($instructionalLevel);
 		}
+
+		unset ($this->_overrides['instructionalLevel']);
 	
 		return $instructionalLevel;
 	}
 
-	public function getCoreAcademicCourse() {
-		if ($this->coreAcademicCourse===NULL) {
+	public function getCoreAcademicCourse($autoCreate = TRUE) {
+		if ($this->coreAcademicCourse===NULL && $autoCreate && ! isset($this->_overrides['coreAcademicCourse']) ) {
 			$this->coreAcademicCourse = $this->createCoreAcademicCourse();
 		}
 		return $this->coreAcademicCourse;
@@ -283,8 +304,8 @@ class SchoolCourseInfoData {
 		return $coreAcademicCourse;
 	}
 
-	public function getGraduationRequirement() {
-		if ($this->graduationRequirement===NULL) {
+	public function getGraduationRequirement($autoCreate = TRUE) {
+		if ($this->graduationRequirement===NULL && $autoCreate && ! isset($this->_overrides['graduationRequirement']) ) {
 			$this->graduationRequirement = $this->createGraduationRequirement();
 		}
 		return $this->graduationRequirement;
@@ -303,8 +324,8 @@ class SchoolCourseInfoData {
 		return $graduationRequirement;
 	}
 
-	public function getDepartment() {
-		if ($this->department===NULL) {
+	public function getDepartment($autoCreate = TRUE) {
+		if ($this->department===NULL && $autoCreate && ! isset($this->_overrides['department']) ) {
 			$this->department = $this->createDepartment();
 		}
 		return $this->department;
@@ -326,8 +347,8 @@ class SchoolCourseInfoData {
 		return $department;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -342,9 +363,16 @@ class SchoolCourseInfoData {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

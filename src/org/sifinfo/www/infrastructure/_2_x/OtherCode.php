@@ -15,6 +15,13 @@ class OtherCode {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="Codeset")
 	 */
 	protected $codeset;
@@ -23,8 +30,8 @@ class OtherCode {
 		$this->codeset = ($codeset===NULL) ? NULL : $this->validateCodeset($codeset);
 	}
 
-	public function getCodeset() {
-		if ($this->codeset===NULL) {
+	public function getCodeset($autoCreate = TRUE) {
+		if ($this->codeset===NULL && $autoCreate && ! isset($this->_overrides['codeset']) ) {
 			$this->codeset = $this->createCodeset();
 		}
 		return $this->codeset;

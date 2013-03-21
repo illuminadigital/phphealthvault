@@ -14,6 +14,13 @@ class ServiceCategory {
 	 * Category of service (for example, whether it is instruction or a related / transitional service or a supplemental service). Typically designated by a state.
 	 */
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class ServiceCategory

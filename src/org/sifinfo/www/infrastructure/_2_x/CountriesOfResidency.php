@@ -14,6 +14,13 @@ class CountriesOfResidency {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\CountryType", collection="true", name="CountryOfResidency")
 	 */
 	protected $countryOfResidency;
@@ -22,8 +29,8 @@ class CountriesOfResidency {
 		$this->countryOfResidency = ($countryOfResidency===NULL) ? NULL : $this->validateCountryOfResidency($countryOfResidency);
 	}
 
-	public function getCountryOfResidency() {
-		if ($this->countryOfResidency===NULL) {
+	public function getCountryOfResidency($autoCreate = TRUE) {
+		if ($this->countryOfResidency===NULL && $autoCreate && ! isset($this->_overrides['countryOfResidency']) ) {
 			$this->countryOfResidency = $this->createCountryOfResidency();
 		}
 		return $this->countryOfResidency;

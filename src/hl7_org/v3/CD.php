@@ -15,6 +15,13 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\ED", name="originalText")
 	 */
 	protected $originalText;
@@ -65,8 +72,8 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		$this->displayName = ($displayName===NULL) ? NULL : $this->validateDisplayName($displayName);
 	}
 
-	public function getOriginalText() {
-		if ($this->originalText===NULL) {
+	public function getOriginalText($autoCreate = TRUE) {
+		if ($this->originalText===NULL && $autoCreate && ! isset($this->_overrides['originalText']) ) {
 			$this->originalText = $this->createOriginalText();
 		}
 		return $this->originalText;
@@ -85,8 +92,8 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $originalText;
 	}
 
-	public function getQualifier() {
-		if ($this->qualifier===NULL) {
+	public function getQualifier($autoCreate = TRUE) {
+		if ($this->qualifier===NULL && $autoCreate && ! isset($this->_overrides['qualifier']) ) {
 			$this->qualifier = $this->createQualifier();
 		}
 		return $this->qualifier;
@@ -120,8 +127,8 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $qualifier;
 	}
 
-	public function getTranslation() {
-		if ($this->translation===NULL) {
+	public function getTranslation($autoCreate = TRUE) {
+		if ($this->translation===NULL && $autoCreate && ! isset($this->_overrides['translation']) ) {
 			$this->translation = $this->createTranslation();
 		}
 		return $this->translation;
@@ -155,8 +162,8 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $translation;
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -175,8 +182,8 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $code;
 	}
 
-	public function getCodeSystem() {
-		if ($this->codeSystem===NULL) {
+	public function getCodeSystem($autoCreate = TRUE) {
+		if ($this->codeSystem===NULL && $autoCreate && ! isset($this->_overrides['codeSystem']) ) {
 			$this->codeSystem = $this->createCodeSystem();
 		}
 		return $this->codeSystem;
@@ -195,8 +202,8 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $codeSystem;
 	}
 
-	public function getCodeSystemName() {
-		if ($this->codeSystemName===NULL) {
+	public function getCodeSystemName($autoCreate = TRUE) {
+		if ($this->codeSystemName===NULL && $autoCreate && ! isset($this->_overrides['codeSystemName']) ) {
 			$this->codeSystemName = $this->createCodeSystemName();
 		}
 		return $this->codeSystemName;
@@ -215,8 +222,8 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $codeSystemName;
 	}
 
-	public function getCodeSystemVersion() {
-		if ($this->codeSystemVersion===NULL) {
+	public function getCodeSystemVersion($autoCreate = TRUE) {
+		if ($this->codeSystemVersion===NULL && $autoCreate && ! isset($this->_overrides['codeSystemVersion']) ) {
 			$this->codeSystemVersion = $this->createCodeSystemVersion();
 		}
 		return $this->codeSystemVersion;
@@ -235,8 +242,8 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $codeSystemVersion;
 	}
 
-	public function getDisplayName() {
-		if ($this->displayName===NULL) {
+	public function getDisplayName($autoCreate = TRUE) {
+		if ($this->displayName===NULL && $autoCreate && ! isset($this->_overrides['displayName']) ) {
 			$this->displayName = $this->createDisplayName();
 		}
 		return $this->displayName;

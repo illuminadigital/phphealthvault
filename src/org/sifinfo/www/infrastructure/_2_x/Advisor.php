@@ -14,6 +14,13 @@ class Advisor {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\StaffPersonalData", name="StaffPersonalData")
 	 */
 	protected $staffPersonalData;
@@ -22,8 +29,8 @@ class Advisor {
 		$this->staffPersonalData = ($staffPersonalData===NULL) ? NULL : $this->validateStaffPersonalData($staffPersonalData);
 	}
 
-	public function getStaffPersonalData() {
-		if ($this->staffPersonalData===NULL) {
+	public function getStaffPersonalData($autoCreate = TRUE) {
+		if ($this->staffPersonalData===NULL && $autoCreate && ! isset($this->_overrides['staffPersonalData']) ) {
 			$this->staffPersonalData = $this->createStaffPersonalData();
 		}
 		return $this->staffPersonalData;

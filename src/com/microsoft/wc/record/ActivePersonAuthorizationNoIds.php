@@ -14,6 +14,13 @@ class ActivePersonAuthorizationNoIds {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="name")
 	 */
 	protected $name;
@@ -88,8 +95,8 @@ class ActivePersonAuthorizationNoIds {
 		$this->canAccessAudit = ($canAccessAudit===NULL) ? NULL : $this->validateCanAccessAudit($canAccessAudit);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -111,8 +118,8 @@ class ActivePersonAuthorizationNoIds {
 		return $name;
 	}
 
-	public function getRecordCustodian() {
-		if ($this->recordCustodian===NULL) {
+	public function getRecordCustodian($autoCreate = TRUE) {
+		if ($this->recordCustodian===NULL && $autoCreate && ! isset($this->_overrides['recordCustodian']) ) {
 			$this->recordCustodian = $this->createRecordCustodian();
 		}
 		return $this->recordCustodian;
@@ -134,8 +141,8 @@ class ActivePersonAuthorizationNoIds {
 		return $recordCustodian;
 	}
 
-	public function getIsGroup() {
-		if ($this->isGroup===NULL) {
+	public function getIsGroup($autoCreate = TRUE) {
+		if ($this->isGroup===NULL && $autoCreate && ! isset($this->_overrides['isGroup']) ) {
 			$this->isGroup = $this->createIsGroup();
 		}
 		return $this->isGroup;
@@ -157,8 +164,8 @@ class ActivePersonAuthorizationNoIds {
 		return $isGroup;
 	}
 
-	public function getContactEmail() {
-		if ($this->contactEmail===NULL) {
+	public function getContactEmail($autoCreate = TRUE) {
+		if ($this->contactEmail===NULL && $autoCreate && ! isset($this->_overrides['contactEmail']) ) {
 			$this->contactEmail = $this->createContactEmail();
 		}
 		return $this->contactEmail;
@@ -180,8 +187,8 @@ class ActivePersonAuthorizationNoIds {
 		return $contactEmail;
 	}
 
-	public function getContactEmailValidated() {
-		if ($this->contactEmailValidated===NULL) {
+	public function getContactEmailValidated($autoCreate = TRUE) {
+		if ($this->contactEmailValidated===NULL && $autoCreate && ! isset($this->_overrides['contactEmailValidated']) ) {
 			$this->contactEmailValidated = $this->createContactEmailValidated();
 		}
 		return $this->contactEmailValidated;
@@ -203,8 +210,8 @@ class ActivePersonAuthorizationNoIds {
 		return $contactEmailValidated;
 	}
 
-	public function getRecordDisplayName() {
-		if ($this->recordDisplayName===NULL) {
+	public function getRecordDisplayName($autoCreate = TRUE) {
+		if ($this->recordDisplayName===NULL && $autoCreate && ! isset($this->_overrides['recordDisplayName']) ) {
 			$this->recordDisplayName = $this->createRecordDisplayName();
 		}
 		return $this->recordDisplayName;
@@ -219,15 +226,22 @@ class ActivePersonAuthorizationNoIds {
 	}
 
 	protected function validateRecordDisplayName($recordDisplayName) {
+		if ( $recordDisplayName === FALSE ) {
+			$this->_overrides['recordDisplayName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $recordDisplayName instanceof \com\microsoft\wc\types\String255  && ! is_null($recordDisplayName) ) {
 			$recordDisplayName = new \com\microsoft\wc\types\String255 ($recordDisplayName);
 		}
+
+		unset ($this->_overrides['recordDisplayName']);
 	
 		return $recordDisplayName;
 	}
 
-	public function getDateAuthExpires() {
-		if ($this->dateAuthExpires===NULL) {
+	public function getDateAuthExpires($autoCreate = TRUE) {
+		if ($this->dateAuthExpires===NULL && $autoCreate && ! isset($this->_overrides['dateAuthExpires']) ) {
 			$this->dateAuthExpires = $this->createDateAuthExpires();
 		}
 		return $this->dateAuthExpires;
@@ -249,8 +263,8 @@ class ActivePersonAuthorizationNoIds {
 		return $dateAuthExpires;
 	}
 
-	public function getAuthXml() {
-		if ($this->authXml===NULL) {
+	public function getAuthXml($autoCreate = TRUE) {
+		if ($this->authXml===NULL && $autoCreate && ! isset($this->_overrides['authXml']) ) {
 			$this->authXml = $this->createAuthXml();
 		}
 		return $this->authXml;
@@ -265,15 +279,22 @@ class ActivePersonAuthorizationNoIds {
 	}
 
 	protected function validateAuthXml($authXml) {
+		if ( $authXml === FALSE ) {
+			$this->_overrides['authXml'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $authXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($authXml) ) {
 			$authXml = new \com\microsoft\wc\auth\AuthXml ($authXml);
 		}
+
+		unset ($this->_overrides['authXml']);
 	
 		return $authXml;
 	}
 
-	public function getRelType() {
-		if ($this->relType===NULL) {
+	public function getRelType($autoCreate = TRUE) {
+		if ($this->relType===NULL && $autoCreate && ! isset($this->_overrides['relType']) ) {
 			$this->relType = $this->createRelType();
 		}
 		return $this->relType;
@@ -306,8 +327,8 @@ class ActivePersonAuthorizationNoIds {
 		return $relType;
 	}
 
-	public function getDateAuthCreated() {
-		if ($this->dateAuthCreated===NULL) {
+	public function getDateAuthCreated($autoCreate = TRUE) {
+		if ($this->dateAuthCreated===NULL && $autoCreate && ! isset($this->_overrides['dateAuthCreated']) ) {
 			$this->dateAuthCreated = $this->createDateAuthCreated();
 		}
 		return $this->dateAuthCreated;
@@ -329,8 +350,8 @@ class ActivePersonAuthorizationNoIds {
 		return $dateAuthCreated;
 	}
 
-	public function getDateAuthUpdated() {
-		if ($this->dateAuthUpdated===NULL) {
+	public function getDateAuthUpdated($autoCreate = TRUE) {
+		if ($this->dateAuthUpdated===NULL && $autoCreate && ! isset($this->_overrides['dateAuthUpdated']) ) {
 			$this->dateAuthUpdated = $this->createDateAuthUpdated();
 		}
 		return $this->dateAuthUpdated;
@@ -352,8 +373,8 @@ class ActivePersonAuthorizationNoIds {
 		return $dateAuthUpdated;
 	}
 
-	public function getCanAccessAudit() {
-		if ($this->canAccessAudit===NULL) {
+	public function getCanAccessAudit($autoCreate = TRUE) {
+		if ($this->canAccessAudit===NULL && $autoCreate && ! isset($this->_overrides['canAccessAudit']) ) {
 			$this->canAccessAudit = $this->createCanAccessAudit();
 		}
 		return $this->canAccessAudit;

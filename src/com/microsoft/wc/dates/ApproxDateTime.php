@@ -14,6 +14,13 @@ class ApproxDateTime {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\StructuredApproxDate", name="structured")
 	 */
 	protected $structured;
@@ -28,8 +35,8 @@ class ApproxDateTime {
 		$this->descriptive = ($descriptive===NULL) ? NULL : $this->validateDescriptive($descriptive);
 	}
 
-	public function getStructured() {
-		if ($this->structured===NULL) {
+	public function getStructured($autoCreate = TRUE) {
+		if ($this->structured===NULL && $autoCreate && ! isset($this->_overrides['structured']) ) {
 			$this->structured = $this->createStructured();
 		}
 		return $this->structured;
@@ -51,8 +58,8 @@ class ApproxDateTime {
 		return $structured;
 	}
 
-	public function getDescriptive() {
-		if ($this->descriptive===NULL) {
+	public function getDescriptive($autoCreate = TRUE) {
+		if ($this->descriptive===NULL && $autoCreate && ! isset($this->_overrides['descriptive']) ) {
 			$this->descriptive = $this->createDescriptive();
 		}
 		return $this->descriptive;

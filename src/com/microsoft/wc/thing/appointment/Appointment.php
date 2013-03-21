@@ -19,6 +19,13 @@ class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Appointment';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -63,8 +70,8 @@ class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 		$this->careClass = ($careClass===NULL) ? NULL : $this->validateCareClass($careClass);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -86,8 +93,8 @@ class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getDuration() {
-		if ($this->duration===NULL) {
+	public function getDuration($autoCreate = TRUE) {
+		if ($this->duration===NULL && $autoCreate && ! isset($this->_overrides['duration']) ) {
 			$this->duration = $this->createDuration();
 		}
 		return $this->duration;
@@ -102,15 +109,22 @@ class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDuration($duration) {
+		if ( $duration === FALSE ) {
+			$this->_overrides['duration'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $duration instanceof \com\microsoft\wc\thing\types\DurationValue  && ! is_null($duration) ) {
 			$duration = new \com\microsoft\wc\thing\types\DurationValue ($duration);
 		}
+
+		unset ($this->_overrides['duration']);
 	
 		return $duration;
 	}
 
-	public function getService() {
-		if ($this->service===NULL) {
+	public function getService($autoCreate = TRUE) {
+		if ($this->service===NULL && $autoCreate && ! isset($this->_overrides['service']) ) {
 			$this->service = $this->createService();
 		}
 		return $this->service;
@@ -125,15 +139,22 @@ class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateService($service) {
+		if ( $service === FALSE ) {
+			$this->_overrides['service'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $service instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($service) ) {
 			$service = new \com\microsoft\wc\types\CodableValue ($service);
 		}
+
+		unset ($this->_overrides['service']);
 	
 		return $service;
 	}
 
-	public function getClinic() {
-		if ($this->clinic===NULL) {
+	public function getClinic($autoCreate = TRUE) {
+		if ($this->clinic===NULL && $autoCreate && ! isset($this->_overrides['clinic']) ) {
 			$this->clinic = $this->createClinic();
 		}
 		return $this->clinic;
@@ -148,15 +169,22 @@ class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateClinic($clinic) {
+		if ( $clinic === FALSE ) {
+			$this->_overrides['clinic'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $clinic instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($clinic) ) {
 			$clinic = new \com\microsoft\wc\thing\types\Person ($clinic);
 		}
+
+		unset ($this->_overrides['clinic']);
 	
 		return $clinic;
 	}
 
-	public function getSpecialty() {
-		if ($this->specialty===NULL) {
+	public function getSpecialty($autoCreate = TRUE) {
+		if ($this->specialty===NULL && $autoCreate && ! isset($this->_overrides['specialty']) ) {
 			$this->specialty = $this->createSpecialty();
 		}
 		return $this->specialty;
@@ -171,15 +199,22 @@ class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSpecialty($specialty) {
+		if ( $specialty === FALSE ) {
+			$this->_overrides['specialty'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $specialty instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($specialty) ) {
 			$specialty = new \com\microsoft\wc\types\CodableValue ($specialty);
 		}
+
+		unset ($this->_overrides['specialty']);
 	
 		return $specialty;
 	}
 
-	public function getStatus() {
-		if ($this->status===NULL) {
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
 			$this->status = $this->createStatus();
 		}
 		return $this->status;
@@ -194,15 +229,22 @@ class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStatus($status) {
+		if ( $status === FALSE ) {
+			$this->_overrides['status'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $status instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($status) ) {
 			$status = new \com\microsoft\wc\types\CodableValue ($status);
 		}
+
+		unset ($this->_overrides['status']);
 	
 		return $status;
 	}
 
-	public function getCareClass() {
-		if ($this->careClass===NULL) {
+	public function getCareClass($autoCreate = TRUE) {
+		if ($this->careClass===NULL && $autoCreate && ! isset($this->_overrides['careClass']) ) {
 			$this->careClass = $this->createCareClass();
 		}
 		return $this->careClass;
@@ -217,9 +259,16 @@ class Appointment extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCareClass($careClass) {
+		if ( $careClass === FALSE ) {
+			$this->_overrides['careClass'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $careClass instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($careClass) ) {
 			$careClass = new \com\microsoft\wc\types\CodableValue ($careClass);
 		}
+
+		unset ($this->_overrides['careClass']);
 	
 		return $careClass;
 	}

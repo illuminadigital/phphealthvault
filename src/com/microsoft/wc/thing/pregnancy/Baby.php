@@ -15,6 +15,13 @@ class Baby {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Name", name="name")
 	 */
 	protected $name;
@@ -53,8 +60,8 @@ class Baby {
 		$this->note = ($note===NULL) ? NULL : $this->validateNote($note);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -69,15 +76,22 @@ class Baby {
 	}
 
 	protected function validateName($name) {
+		if ( $name === FALSE ) {
+			$this->_overrides['name'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $name instanceof \com\microsoft\wc\thing\types\Name  && ! is_null($name) ) {
 			$name = new \com\microsoft\wc\thing\types\Name ($name);
 		}
+
+		unset ($this->_overrides['name']);
 	
 		return $name;
 	}
 
-	public function getGender() {
-		if ($this->gender===NULL) {
+	public function getGender($autoCreate = TRUE) {
+		if ($this->gender===NULL && $autoCreate && ! isset($this->_overrides['gender']) ) {
 			$this->gender = $this->createGender();
 		}
 		return $this->gender;
@@ -92,15 +106,22 @@ class Baby {
 	}
 
 	protected function validateGender($gender) {
+		if ( $gender === FALSE ) {
+			$this->_overrides['gender'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $gender instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($gender) ) {
 			$gender = new \com\microsoft\wc\types\CodableValue ($gender);
 		}
+
+		unset ($this->_overrides['gender']);
 	
 		return $gender;
 	}
 
-	public function getWeight() {
-		if ($this->weight===NULL) {
+	public function getWeight($autoCreate = TRUE) {
+		if ($this->weight===NULL && $autoCreate && ! isset($this->_overrides['weight']) ) {
 			$this->weight = $this->createWeight();
 		}
 		return $this->weight;
@@ -115,15 +136,22 @@ class Baby {
 	}
 
 	protected function validateWeight($weight) {
+		if ( $weight === FALSE ) {
+			$this->_overrides['weight'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $weight instanceof \com\microsoft\wc\thing\types\WeightValue  && ! is_null($weight) ) {
 			$weight = new \com\microsoft\wc\thing\types\WeightValue ($weight);
 		}
+
+		unset ($this->_overrides['weight']);
 	
 		return $weight;
 	}
 
-	public function getLength() {
-		if ($this->length===NULL) {
+	public function getLength($autoCreate = TRUE) {
+		if ($this->length===NULL && $autoCreate && ! isset($this->_overrides['length']) ) {
 			$this->length = $this->createLength();
 		}
 		return $this->length;
@@ -138,15 +166,22 @@ class Baby {
 	}
 
 	protected function validateLength($length) {
+		if ( $length === FALSE ) {
+			$this->_overrides['length'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $length instanceof \com\microsoft\wc\thing\types\LengthValue  && ! is_null($length) ) {
 			$length = new \com\microsoft\wc\thing\types\LengthValue ($length);
 		}
+
+		unset ($this->_overrides['length']);
 	
 		return $length;
 	}
 
-	public function getHeadCircumference() {
-		if ($this->headCircumference===NULL) {
+	public function getHeadCircumference($autoCreate = TRUE) {
+		if ($this->headCircumference===NULL && $autoCreate && ! isset($this->_overrides['headCircumference']) ) {
 			$this->headCircumference = $this->createHeadCircumference();
 		}
 		return $this->headCircumference;
@@ -161,15 +196,22 @@ class Baby {
 	}
 
 	protected function validateHeadCircumference($headCircumference) {
+		if ( $headCircumference === FALSE ) {
+			$this->_overrides['headCircumference'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $headCircumference instanceof \com\microsoft\wc\thing\types\LengthValue  && ! is_null($headCircumference) ) {
 			$headCircumference = new \com\microsoft\wc\thing\types\LengthValue ($headCircumference);
 		}
+
+		unset ($this->_overrides['headCircumference']);
 	
 		return $headCircumference;
 	}
 
-	public function getNote() {
-		if ($this->note===NULL) {
+	public function getNote($autoCreate = TRUE) {
+		if ($this->note===NULL && $autoCreate && ! isset($this->_overrides['note']) ) {
 			$this->note = $this->createNote();
 		}
 		return $this->note;

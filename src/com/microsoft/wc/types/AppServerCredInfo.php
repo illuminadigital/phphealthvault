@@ -16,6 +16,13 @@ class AppServerCredInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="app-id")
 	 */
 	protected $appId;
@@ -30,8 +37,8 @@ class AppServerCredInfo {
 		$this->sharedSecret = ($sharedSecret===NULL) ? NULL : $this->validateSharedSecret($sharedSecret);
 	}
 
-	public function getAppId() {
-		if ($this->appId===NULL) {
+	public function getAppId($autoCreate = TRUE) {
+		if ($this->appId===NULL && $autoCreate && ! isset($this->_overrides['appId']) ) {
 			$this->appId = $this->createAppId();
 		}
 		return $this->appId;
@@ -53,8 +60,8 @@ class AppServerCredInfo {
 		return $appId;
 	}
 
-	public function getSharedSecret() {
-		if ($this->sharedSecret===NULL) {
+	public function getSharedSecret($autoCreate = TRUE) {
+		if ($this->sharedSecret===NULL && $autoCreate && ! isset($this->_overrides['sharedSecret']) ) {
 			$this->sharedSecret = $this->createSharedSecret();
 		}
 		return $this->sharedSecret;

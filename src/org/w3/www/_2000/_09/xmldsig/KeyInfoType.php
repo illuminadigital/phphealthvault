@@ -14,6 +14,13 @@ class KeyInfoType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\KeyName", collection="true", name="KeyName")
 	 */
 	protected $keyName;
@@ -70,8 +77,8 @@ class KeyInfoType {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 	}
 
-	public function getKeyName() {
-		if ($this->keyName===NULL) {
+	public function getKeyName($autoCreate = TRUE) {
+		if ($this->keyName===NULL && $autoCreate && ! isset($this->_overrides['keyName']) ) {
 			$this->keyName = $this->createKeyName();
 		}
 		return $this->keyName;
@@ -106,8 +113,8 @@ class KeyInfoType {
 		$this->keyName[] = $keyName;
 	}
 
-	public function getKeyValue() {
-		if ($this->keyValue===NULL) {
+	public function getKeyValue($autoCreate = TRUE) {
+		if ($this->keyValue===NULL && $autoCreate && ! isset($this->_overrides['keyValue']) ) {
 			$this->keyValue = $this->createKeyValue();
 		}
 		return $this->keyValue;
@@ -142,8 +149,8 @@ class KeyInfoType {
 		$this->keyValue[] = $keyValue;
 	}
 
-	public function getRetrievalMethod() {
-		if ($this->retrievalMethod===NULL) {
+	public function getRetrievalMethod($autoCreate = TRUE) {
+		if ($this->retrievalMethod===NULL && $autoCreate && ! isset($this->_overrides['retrievalMethod']) ) {
 			$this->retrievalMethod = $this->createRetrievalMethod();
 		}
 		return $this->retrievalMethod;
@@ -178,8 +185,8 @@ class KeyInfoType {
 		$this->retrievalMethod[] = $retrievalMethod;
 	}
 
-	public function getX509Data() {
-		if ($this->x509Data===NULL) {
+	public function getX509Data($autoCreate = TRUE) {
+		if ($this->x509Data===NULL && $autoCreate && ! isset($this->_overrides['x509Data']) ) {
 			$this->x509Data = $this->createX509Data();
 		}
 		return $this->x509Data;
@@ -214,8 +221,8 @@ class KeyInfoType {
 		$this->x509Data[] = $x509Data;
 	}
 
-	public function getPGPData() {
-		if ($this->pGPData===NULL) {
+	public function getPGPData($autoCreate = TRUE) {
+		if ($this->pGPData===NULL && $autoCreate && ! isset($this->_overrides['pGPData']) ) {
 			$this->pGPData = $this->createPGPData();
 		}
 		return $this->pGPData;
@@ -250,8 +257,8 @@ class KeyInfoType {
 		$this->pGPData[] = $pGPData;
 	}
 
-	public function getSPKIData() {
-		if ($this->sPKIData===NULL) {
+	public function getSPKIData($autoCreate = TRUE) {
+		if ($this->sPKIData===NULL && $autoCreate && ! isset($this->_overrides['sPKIData']) ) {
 			$this->sPKIData = $this->createSPKIData();
 		}
 		return $this->sPKIData;
@@ -286,8 +293,8 @@ class KeyInfoType {
 		$this->sPKIData[] = $sPKIData;
 	}
 
-	public function getMgmtData() {
-		if ($this->mgmtData===NULL) {
+	public function getMgmtData($autoCreate = TRUE) {
+		if ($this->mgmtData===NULL && $autoCreate && ! isset($this->_overrides['mgmtData']) ) {
 			$this->mgmtData = $this->createMgmtData();
 		}
 		return $this->mgmtData;
@@ -322,8 +329,8 @@ class KeyInfoType {
 		$this->mgmtData[] = $mgmtData;
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;
@@ -363,8 +370,8 @@ class KeyInfoType {
 		return $any;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;

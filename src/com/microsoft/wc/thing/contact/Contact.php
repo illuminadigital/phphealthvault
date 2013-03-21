@@ -19,6 +19,13 @@ class Contact extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Contact';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Contact", name="contact")
 	 */
 	protected $contact;
@@ -27,8 +34,8 @@ class Contact extends \com\microsoft\wc\thing\AnyMixed {
 		$this->contact = ($contact===NULL) ? NULL : $this->validateContact($contact);
 	}
 
-	public function getContact() {
-		if ($this->contact===NULL) {
+	public function getContact($autoCreate = TRUE) {
+		if ($this->contact===NULL && $autoCreate && ! isset($this->_overrides['contact']) ) {
 			$this->contact = $this->createContact();
 		}
 		return $this->contact;

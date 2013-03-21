@@ -16,6 +16,13 @@ class RelatedThing {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="thing-id")
 	 */
 	protected $thingId;
@@ -42,8 +49,8 @@ class RelatedThing {
 		$this->relationshipType = ($relationshipType===NULL) ? NULL : $this->validateRelationshipType($relationshipType);
 	}
 
-	public function getThingId() {
-		if ($this->thingId===NULL) {
+	public function getThingId($autoCreate = TRUE) {
+		if ($this->thingId===NULL && $autoCreate && ! isset($this->_overrides['thingId']) ) {
 			$this->thingId = $this->createThingId();
 		}
 		return $this->thingId;
@@ -65,8 +72,8 @@ class RelatedThing {
 		return $thingId;
 	}
 
-	public function getVersionStamp() {
-		if ($this->versionStamp===NULL) {
+	public function getVersionStamp($autoCreate = TRUE) {
+		if ($this->versionStamp===NULL && $autoCreate && ! isset($this->_overrides['versionStamp']) ) {
 			$this->versionStamp = $this->createVersionStamp();
 		}
 		return $this->versionStamp;
@@ -81,15 +88,22 @@ class RelatedThing {
 	}
 
 	protected function validateVersionStamp($versionStamp) {
+		if ( $versionStamp === FALSE ) {
+			$this->_overrides['versionStamp'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $versionStamp instanceof \com\microsoft\wc\types\Guid  && ! is_null($versionStamp) ) {
 			$versionStamp = new \com\microsoft\wc\types\Guid ($versionStamp);
 		}
+
+		unset ($this->_overrides['versionStamp']);
 	
 		return $versionStamp;
 	}
 
-	public function getClientThingId() {
-		if ($this->clientThingId===NULL) {
+	public function getClientThingId($autoCreate = TRUE) {
+		if ($this->clientThingId===NULL && $autoCreate && ! isset($this->_overrides['clientThingId']) ) {
 			$this->clientThingId = $this->createClientThingId();
 		}
 		return $this->clientThingId;
@@ -104,15 +118,22 @@ class RelatedThing {
 	}
 
 	protected function validateClientThingId($clientThingId) {
+		if ( $clientThingId === FALSE ) {
+			$this->_overrides['clientThingId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $clientThingId instanceof \com\microsoft\wc\types\String255  && ! is_null($clientThingId) ) {
 			$clientThingId = new \com\microsoft\wc\types\String255 ($clientThingId);
 		}
+
+		unset ($this->_overrides['clientThingId']);
 	
 		return $clientThingId;
 	}
 
-	public function getRelationshipType() {
-		if ($this->relationshipType===NULL) {
+	public function getRelationshipType($autoCreate = TRUE) {
+		if ($this->relationshipType===NULL && $autoCreate && ! isset($this->_overrides['relationshipType']) ) {
 			$this->relationshipType = $this->createRelationshipType();
 		}
 		return $this->relationshipType;

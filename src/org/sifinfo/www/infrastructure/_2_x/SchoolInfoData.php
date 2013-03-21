@@ -14,6 +14,13 @@ class SchoolInfoData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\LocalId", name="LocalId")
 	 */
 	protected $localId;
@@ -82,8 +89,8 @@ class SchoolInfoData {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getLocalId() {
-		if ($this->localId===NULL) {
+	public function getLocalId($autoCreate = TRUE) {
+		if ($this->localId===NULL && $autoCreate && ! isset($this->_overrides['localId']) ) {
 			$this->localId = $this->createLocalId();
 		}
 		return $this->localId;
@@ -105,8 +112,8 @@ class SchoolInfoData {
 		return $localId;
 	}
 
-	public function getStateProvinceId() {
-		if ($this->stateProvinceId===NULL) {
+	public function getStateProvinceId($autoCreate = TRUE) {
+		if ($this->stateProvinceId===NULL && $autoCreate && ! isset($this->_overrides['stateProvinceId']) ) {
 			$this->stateProvinceId = $this->createStateProvinceId();
 		}
 		return $this->stateProvinceId;
@@ -125,8 +132,8 @@ class SchoolInfoData {
 		return $stateProvinceId;
 	}
 
-	public function getNCESId() {
-		if ($this->nCESId===NULL) {
+	public function getNCESId($autoCreate = TRUE) {
+		if ($this->nCESId===NULL && $autoCreate && ! isset($this->_overrides['nCESId']) ) {
 			$this->nCESId = $this->createNCESId();
 		}
 		return $this->nCESId;
@@ -145,8 +152,8 @@ class SchoolInfoData {
 		return $nCESId;
 	}
 
-	public function getSchoolName() {
-		if ($this->schoolName===NULL) {
+	public function getSchoolName($autoCreate = TRUE) {
+		if ($this->schoolName===NULL && $autoCreate && ! isset($this->_overrides['schoolName']) ) {
 			$this->schoolName = $this->createSchoolName();
 		}
 		return $this->schoolName;
@@ -168,8 +175,8 @@ class SchoolInfoData {
 		return $schoolName;
 	}
 
-	public function getSchoolURL() {
-		if ($this->schoolURL===NULL) {
+	public function getSchoolURL($autoCreate = TRUE) {
+		if ($this->schoolURL===NULL && $autoCreate && ! isset($this->_overrides['schoolURL']) ) {
 			$this->schoolURL = $this->createSchoolURL();
 		}
 		return $this->schoolURL;
@@ -188,8 +195,8 @@ class SchoolInfoData {
 		return $schoolURL;
 	}
 
-	public function getSchoolContactList() {
-		if ($this->schoolContactList===NULL) {
+	public function getSchoolContactList($autoCreate = TRUE) {
+		if ($this->schoolContactList===NULL && $autoCreate && ! isset($this->_overrides['schoolContactList']) ) {
 			$this->schoolContactList = $this->createSchoolContactList();
 		}
 		return $this->schoolContactList;
@@ -204,15 +211,22 @@ class SchoolInfoData {
 	}
 
 	protected function validateSchoolContactList($schoolContactList) {
+		if ( $schoolContactList === FALSE ) {
+			$this->_overrides['schoolContactList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $schoolContactList instanceof \org\sifinfo\www\infrastructure\_2_x\SchoolContactListType  && ! is_null($schoolContactList) ) {
 			$schoolContactList = new \org\sifinfo\www\infrastructure\_2_x\SchoolContactListType ($schoolContactList);
 		}
+
+		unset ($this->_overrides['schoolContactList']);
 	
 		return $schoolContactList;
 	}
 
-	public function getAddressList() {
-		if ($this->addressList===NULL) {
+	public function getAddressList($autoCreate = TRUE) {
+		if ($this->addressList===NULL && $autoCreate && ! isset($this->_overrides['addressList']) ) {
 			$this->addressList = $this->createAddressList();
 		}
 		return $this->addressList;
@@ -227,15 +241,22 @@ class SchoolInfoData {
 	}
 
 	protected function validateAddressList($addressList) {
+		if ( $addressList === FALSE ) {
+			$this->_overrides['addressList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $addressList instanceof \org\sifinfo\www\infrastructure\_2_x\AddressListType  && ! is_null($addressList) ) {
 			$addressList = new \org\sifinfo\www\infrastructure\_2_x\AddressListType ($addressList);
 		}
+
+		unset ($this->_overrides['addressList']);
 	
 		return $addressList;
 	}
 
-	public function getPhoneNumberList() {
-		if ($this->phoneNumberList===NULL) {
+	public function getPhoneNumberList($autoCreate = TRUE) {
+		if ($this->phoneNumberList===NULL && $autoCreate && ! isset($this->_overrides['phoneNumberList']) ) {
 			$this->phoneNumberList = $this->createPhoneNumberList();
 		}
 		return $this->phoneNumberList;
@@ -250,15 +271,22 @@ class SchoolInfoData {
 	}
 
 	protected function validatePhoneNumberList($phoneNumberList) {
+		if ( $phoneNumberList === FALSE ) {
+			$this->_overrides['phoneNumberList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $phoneNumberList instanceof \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType  && ! is_null($phoneNumberList) ) {
 			$phoneNumberList = new \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType ($phoneNumberList);
 		}
+
+		unset ($this->_overrides['phoneNumberList']);
 	
 		return $phoneNumberList;
 	}
 
-	public function getIdentificationInfoList() {
-		if ($this->identificationInfoList===NULL) {
+	public function getIdentificationInfoList($autoCreate = TRUE) {
+		if ($this->identificationInfoList===NULL && $autoCreate && ! isset($this->_overrides['identificationInfoList']) ) {
 			$this->identificationInfoList = $this->createIdentificationInfoList();
 		}
 		return $this->identificationInfoList;
@@ -273,15 +301,22 @@ class SchoolInfoData {
 	}
 
 	protected function validateIdentificationInfoList($identificationInfoList) {
+		if ( $identificationInfoList === FALSE ) {
+			$this->_overrides['identificationInfoList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $identificationInfoList instanceof \org\sifinfo\www\infrastructure\_2_x\IdentificationInfoListType  && ! is_null($identificationInfoList) ) {
 			$identificationInfoList = new \org\sifinfo\www\infrastructure\_2_x\IdentificationInfoListType ($identificationInfoList);
 		}
+
+		unset ($this->_overrides['identificationInfoList']);
 	
 		return $identificationInfoList;
 	}
 
-	public function getGradeLevels() {
-		if ($this->gradeLevels===NULL) {
+	public function getGradeLevels($autoCreate = TRUE) {
+		if ($this->gradeLevels===NULL && $autoCreate && ! isset($this->_overrides['gradeLevels']) ) {
 			$this->gradeLevels = $this->createGradeLevels();
 		}
 		return $this->gradeLevels;
@@ -296,15 +331,22 @@ class SchoolInfoData {
 	}
 
 	protected function validateGradeLevels($gradeLevels) {
+		if ( $gradeLevels === FALSE ) {
+			$this->_overrides['gradeLevels'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $gradeLevels instanceof \org\sifinfo\www\infrastructure\_2_x\GradeLevelsType  && ! is_null($gradeLevels) ) {
 			$gradeLevels = new \org\sifinfo\www\infrastructure\_2_x\GradeLevelsType ($gradeLevels);
 		}
+
+		unset ($this->_overrides['gradeLevels']);
 	
 		return $gradeLevels;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -319,9 +361,16 @@ class SchoolInfoData {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

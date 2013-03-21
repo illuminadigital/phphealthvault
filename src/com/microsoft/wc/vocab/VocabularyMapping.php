@@ -15,6 +15,13 @@ class VocabularyMapping {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyMappingItem", collection="true", name="vocabulary-mapping-item")
 	 */
 	protected $vocabularyMappingItem;
@@ -23,8 +30,8 @@ class VocabularyMapping {
 		$this->vocabularyMappingItem = ($vocabularyMappingItem===NULL) ? NULL : $this->validateVocabularyMappingItem($vocabularyMappingItem);
 	}
 
-	public function getVocabularyMappingItem() {
-		if ($this->vocabularyMappingItem===NULL) {
+	public function getVocabularyMappingItem($autoCreate = TRUE) {
+		if ($this->vocabularyMappingItem===NULL && $autoCreate && ! isset($this->_overrides['vocabularyMappingItem']) ) {
 			$this->vocabularyMappingItem = $this->createVocabularyMappingItem();
 		}
 		return $this->vocabularyMappingItem;
@@ -39,9 +46,16 @@ class VocabularyMapping {
 	}
 
 	protected function validateVocabularyMappingItem($vocabularyMappingItem) {
+		if ( $vocabularyMappingItem === FALSE ) {
+			$this->_overrides['vocabularyMappingItem'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($vocabularyMappingItem) && ! is_null($vocabularyMappingItem) ) {
 			$vocabularyMappingItem = array($vocabularyMappingItem);
 		}
+
+		unset ($this->_overrides['vocabularyMappingItem']);
 		$count = count($vocabularyMappingItem);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularyMappingItem', 0));

@@ -15,6 +15,13 @@ class Location {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String3nw", name="country")
 	 */
 	protected $country;
@@ -29,8 +36,8 @@ class Location {
 		$this->stateProvince = ($stateProvince===NULL) ? NULL : $this->validateStateProvince($stateProvince);
 	}
 
-	public function getCountry() {
-		if ($this->country===NULL) {
+	public function getCountry($autoCreate = TRUE) {
+		if ($this->country===NULL && $autoCreate && ! isset($this->_overrides['country']) ) {
 			$this->country = $this->createCountry();
 		}
 		return $this->country;
@@ -52,8 +59,8 @@ class Location {
 		return $country;
 	}
 
-	public function getStateProvince() {
-		if ($this->stateProvince===NULL) {
+	public function getStateProvince($autoCreate = TRUE) {
+		if ($this->stateProvince===NULL && $autoCreate && ! isset($this->_overrides['stateProvince']) ) {
 			$this->stateProvince = $this->createStateProvince();
 		}
 		return $this->stateProvince;
@@ -68,9 +75,16 @@ class Location {
 	}
 
 	protected function validateStateProvince($stateProvince) {
+		if ( $stateProvince === FALSE ) {
+			$this->_overrides['stateProvince'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $stateProvince instanceof \com\microsoft\wc\types\String3nw  && ! is_null($stateProvince) ) {
 			$stateProvince = new \com\microsoft\wc\types\String3nw ($stateProvince);
 		}
+
+		unset ($this->_overrides['stateProvince']);
 	
 		return $stateProvince;
 	}

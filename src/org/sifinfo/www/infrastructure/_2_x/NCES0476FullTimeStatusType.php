@@ -15,6 +15,13 @@ class NCES0476FullTimeStatusType {
 	static protected $enumValue = array('0843' => 'Full-time', '0844' => 'Part-time');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0476FullTimeStatusType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0476FullTimeStatusType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

@@ -16,6 +16,13 @@ class CultureSpecificStatement extends \com\microsoft\wc\application\Statement {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="xml:lang")
 	 */
 	protected $xmlLang;
@@ -24,8 +31,8 @@ class CultureSpecificStatement extends \com\microsoft\wc\application\Statement {
 		$this->xmlLang = ($xmlLang===NULL) ? NULL : $this->validateXmlLang($xmlLang);
 	}
 
-	public function getXmlLang() {
-		if ($this->xmlLang===NULL) {
+	public function getXmlLang($autoCreate = TRUE) {
+		if ($this->xmlLang===NULL && $autoCreate && ! isset($this->_overrides['xmlLang']) ) {
 			$this->xmlLang = $this->createXmlLang();
 		}
 		return $this->xmlLang;

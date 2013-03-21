@@ -19,6 +19,13 @@ class DiabeticProfile extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Diabetic Profile';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -39,8 +46,8 @@ class DiabeticProfile extends \com\microsoft\wc\thing\AnyMixed {
 		$this->targetGlucoseZoneGroup = ($targetGlucoseZoneGroup===NULL) ? NULL : $this->validateTargetGlucoseZoneGroup($targetGlucoseZoneGroup);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -62,8 +69,8 @@ class DiabeticProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getMaxHbA1C() {
-		if ($this->maxHbA1C===NULL) {
+	public function getMaxHbA1C($autoCreate = TRUE) {
+		if ($this->maxHbA1C===NULL && $autoCreate && ! isset($this->_overrides['maxHbA1C']) ) {
 			$this->maxHbA1C = $this->createMaxHbA1C();
 		}
 		return $this->maxHbA1C;
@@ -78,15 +85,22 @@ class DiabeticProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMaxHbA1C($maxHbA1C) {
+		if ( $maxHbA1C === FALSE ) {
+			$this->_overrides['maxHbA1C'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $maxHbA1C instanceof \com\microsoft\wc\thing\types\Percentage  && ! is_null($maxHbA1C) ) {
 			$maxHbA1C = new \com\microsoft\wc\thing\types\Percentage ($maxHbA1C);
 		}
+
+		unset ($this->_overrides['maxHbA1C']);
 	
 		return $maxHbA1C;
 	}
 
-	public function getTargetGlucoseZoneGroup() {
-		if ($this->targetGlucoseZoneGroup===NULL) {
+	public function getTargetGlucoseZoneGroup($autoCreate = TRUE) {
+		if ($this->targetGlucoseZoneGroup===NULL && $autoCreate && ! isset($this->_overrides['targetGlucoseZoneGroup']) ) {
 			$this->targetGlucoseZoneGroup = $this->createTargetGlucoseZoneGroup();
 		}
 		return $this->targetGlucoseZoneGroup;
@@ -101,9 +115,16 @@ class DiabeticProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTargetGlucoseZoneGroup($targetGlucoseZoneGroup) {
+		if ( $targetGlucoseZoneGroup === FALSE ) {
+			$this->_overrides['targetGlucoseZoneGroup'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($targetGlucoseZoneGroup) && ! is_null($targetGlucoseZoneGroup) ) {
 			$targetGlucoseZoneGroup = array($targetGlucoseZoneGroup);
 		}
+
+		unset ($this->_overrides['targetGlucoseZoneGroup']);
 		$count = count($targetGlucoseZoneGroup);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'targetGlucoseZoneGroup', 0));

@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\response\QueryPermissions\ThingTypePermission", collection="true", name="thing-type-permission")
 	 */
 	protected $thingTypePermission;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->thingTypePermission = ($thingTypePermission===NULL) ? NULL : $this->validateThingTypePermission($thingTypePermission);
 	}
 
-	public function getThingTypePermission() {
-		if ($this->thingTypePermission===NULL) {
+	public function getThingTypePermission($autoCreate = TRUE) {
+		if ($this->thingTypePermission===NULL && $autoCreate && ! isset($this->_overrides['thingTypePermission']) ) {
 			$this->thingTypePermission = $this->createThingTypePermission();
 		}
 		return $this->thingTypePermission;
@@ -40,9 +47,16 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateThingTypePermission($thingTypePermission) {
+		if ( $thingTypePermission === FALSE ) {
+			$this->_overrides['thingTypePermission'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($thingTypePermission) && ! is_null($thingTypePermission) ) {
 			$thingTypePermission = array($thingTypePermission);
 		}
+
+		unset ($this->_overrides['thingTypePermission']);
 		$count = count($thingTypePermission);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'thingTypePermission', 0));

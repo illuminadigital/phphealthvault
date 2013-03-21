@@ -19,6 +19,13 @@ class AppSpecific extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Application-Specific Information';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="format-appid")
 	 */
 	protected $formatAppid;
@@ -51,8 +58,8 @@ class AppSpecific extends \com\microsoft\wc\thing\AnyMixed {
 		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 	}
 
-	public function getFormatAppid() {
-		if ($this->formatAppid===NULL) {
+	public function getFormatAppid($autoCreate = TRUE) {
+		if ($this->formatAppid===NULL && $autoCreate && ! isset($this->_overrides['formatAppid']) ) {
 			$this->formatAppid = $this->createFormatAppid();
 		}
 		return $this->formatAppid;
@@ -74,8 +81,8 @@ class AppSpecific extends \com\microsoft\wc\thing\AnyMixed {
 		return $formatAppid;
 	}
 
-	public function getFormatTag() {
-		if ($this->formatTag===NULL) {
+	public function getFormatTag($autoCreate = TRUE) {
+		if ($this->formatTag===NULL && $autoCreate && ! isset($this->_overrides['formatTag']) ) {
 			$this->formatTag = $this->createFormatTag();
 		}
 		return $this->formatTag;
@@ -97,8 +104,8 @@ class AppSpecific extends \com\microsoft\wc\thing\AnyMixed {
 		return $formatTag;
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -113,15 +120,22 @@ class AppSpecific extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateWhen($when) {
+		if ( $when === FALSE ) {
+			$this->_overrides['when'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $when instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($when) ) {
 			$when = new \com\microsoft\wc\dates\DateTime ($when);
 		}
+
+		unset ($this->_overrides['when']);
 	
 		return $when;
 	}
 
-	public function getSummary() {
-		if ($this->summary===NULL) {
+	public function getSummary($autoCreate = TRUE) {
+		if ($this->summary===NULL && $autoCreate && ! isset($this->_overrides['summary']) ) {
 			$this->summary = $this->createSummary();
 		}
 		return $this->summary;
@@ -143,8 +157,8 @@ class AppSpecific extends \com\microsoft\wc\thing\AnyMixed {
 		return $summary;
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;

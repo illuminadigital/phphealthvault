@@ -14,6 +14,13 @@ class ANYNonNull extends \org\w3\www\_2001\XMLSchema\ANY {
 	 * The BooleanNonNull type is used where a Boolean cannot have a null value. A Boolean value can be either true or false.
 	 */
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class ANYNonNull

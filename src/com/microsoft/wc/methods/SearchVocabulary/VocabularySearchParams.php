@@ -16,6 +16,13 @@ class VocabularySearchParams {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\SearchVocabulary\VocabularySearchString", name="search-string")
 	 */
 	protected $searchString;
@@ -30,8 +37,8 @@ class VocabularySearchParams {
 		$this->maxResults = ($maxResults===NULL) ? NULL : $this->validateMaxResults($maxResults);
 	}
 
-	public function getSearchString() {
-		if ($this->searchString===NULL) {
+	public function getSearchString($autoCreate = TRUE) {
+		if ($this->searchString===NULL && $autoCreate && ! isset($this->_overrides['searchString']) ) {
 			$this->searchString = $this->createSearchString();
 		}
 		return $this->searchString;
@@ -53,8 +60,8 @@ class VocabularySearchParams {
 		return $searchString;
 	}
 
-	public function getMaxResults() {
-		if ($this->maxResults===NULL) {
+	public function getMaxResults($autoCreate = TRUE) {
+		if ($this->maxResults===NULL && $autoCreate && ! isset($this->_overrides['maxResults']) ) {
 			$this->maxResults = $this->createMaxResults();
 		}
 		return $this->maxResults;

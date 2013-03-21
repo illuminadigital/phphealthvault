@@ -18,6 +18,13 @@ class GroupMembership extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Group Membership';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\GroupMembershipType", collection="true", name="membership")
 	 */
 	protected $membership;
@@ -32,8 +39,8 @@ class GroupMembership extends \com\microsoft\wc\thing\AnyMixed {
 		$this->expires = ($expires===NULL) ? NULL : $this->validateExpires($expires);
 	}
 
-	public function getMembership() {
-		if ($this->membership===NULL) {
+	public function getMembership($autoCreate = TRUE) {
+		if ($this->membership===NULL && $autoCreate && ! isset($this->_overrides['membership']) ) {
 			$this->membership = $this->createMembership();
 		}
 		return $this->membership;
@@ -48,9 +55,16 @@ class GroupMembership extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMembership($membership) {
+		if ( $membership === FALSE ) {
+			$this->_overrides['membership'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($membership) && ! is_null($membership) ) {
 			$membership = array($membership);
 		}
+
+		unset ($this->_overrides['membership']);
 		$count = count($membership);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'membership', 0));
@@ -68,8 +82,8 @@ class GroupMembership extends \com\microsoft\wc\thing\AnyMixed {
 		$this->membership[] = $membership;
 	}
 
-	public function getExpires() {
-		if ($this->expires===NULL) {
+	public function getExpires($autoCreate = TRUE) {
+		if ($this->expires===NULL && $autoCreate && ! isset($this->_overrides['expires']) ) {
 			$this->expires = $this->createExpires();
 		}
 		return $this->expires;
@@ -84,9 +98,16 @@ class GroupMembership extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExpires($expires) {
+		if ( $expires === FALSE ) {
+			$this->_overrides['expires'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $expires instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($expires) ) {
 			$expires = new \com\microsoft\wc\dates\DateTime ($expires);
 		}
+
+		unset ($this->_overrides['expires']);
 	
 		return $expires;
 	}

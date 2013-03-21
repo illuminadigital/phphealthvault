@@ -14,6 +14,13 @@ class StrucDoc.Td {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Content", collection="true", name="content")
 	 */
 	protected $content;
@@ -154,8 +161,8 @@ class StrucDoc.Td {
 		$this->valign = ($valign===NULL) ? NULL : $this->validateValign($valign);
 	}
 
-	public function getContent() {
-		if ($this->content===NULL) {
+	public function getContent($autoCreate = TRUE) {
+		if ($this->content===NULL && $autoCreate && ! isset($this->_overrides['content']) ) {
 			$this->content = $this->createContent();
 		}
 		return $this->content;
@@ -189,8 +196,8 @@ class StrucDoc.Td {
 		return $content;
 	}
 
-	public function getLinkHtml() {
-		if ($this->linkHtml===NULL) {
+	public function getLinkHtml($autoCreate = TRUE) {
+		if ($this->linkHtml===NULL && $autoCreate && ! isset($this->_overrides['linkHtml']) ) {
 			$this->linkHtml = $this->createLinkHtml();
 		}
 		return $this->linkHtml;
@@ -224,8 +231,8 @@ class StrucDoc.Td {
 		return $linkHtml;
 	}
 
-	public function getSub() {
-		if ($this->sub===NULL) {
+	public function getSub($autoCreate = TRUE) {
+		if ($this->sub===NULL && $autoCreate && ! isset($this->_overrides['sub']) ) {
 			$this->sub = $this->createSub();
 		}
 		return $this->sub;
@@ -259,8 +266,8 @@ class StrucDoc.Td {
 		return $sub;
 	}
 
-	public function getSup() {
-		if ($this->sup===NULL) {
+	public function getSup($autoCreate = TRUE) {
+		if ($this->sup===NULL && $autoCreate && ! isset($this->_overrides['sup']) ) {
 			$this->sup = $this->createSup();
 		}
 		return $this->sup;
@@ -294,8 +301,8 @@ class StrucDoc.Td {
 		return $sup;
 	}
 
-	public function getBr() {
-		if ($this->br===NULL) {
+	public function getBr($autoCreate = TRUE) {
+		if ($this->br===NULL && $autoCreate && ! isset($this->_overrides['br']) ) {
 			$this->br = $this->createBr();
 		}
 		return $this->br;
@@ -329,8 +336,8 @@ class StrucDoc.Td {
 		return $br;
 	}
 
-	public function getFootnote() {
-		if ($this->footnote===NULL) {
+	public function getFootnote($autoCreate = TRUE) {
+		if ($this->footnote===NULL && $autoCreate && ! isset($this->_overrides['footnote']) ) {
 			$this->footnote = $this->createFootnote();
 		}
 		return $this->footnote;
@@ -364,8 +371,8 @@ class StrucDoc.Td {
 		return $footnote;
 	}
 
-	public function getFootnoteRef() {
-		if ($this->footnoteRef===NULL) {
+	public function getFootnoteRef($autoCreate = TRUE) {
+		if ($this->footnoteRef===NULL && $autoCreate && ! isset($this->_overrides['footnoteRef']) ) {
 			$this->footnoteRef = $this->createFootnoteRef();
 		}
 		return $this->footnoteRef;
@@ -399,8 +406,8 @@ class StrucDoc.Td {
 		return $footnoteRef;
 	}
 
-	public function getRenderMultiMedia() {
-		if ($this->renderMultiMedia===NULL) {
+	public function getRenderMultiMedia($autoCreate = TRUE) {
+		if ($this->renderMultiMedia===NULL && $autoCreate && ! isset($this->_overrides['renderMultiMedia']) ) {
 			$this->renderMultiMedia = $this->createRenderMultiMedia();
 		}
 		return $this->renderMultiMedia;
@@ -434,8 +441,8 @@ class StrucDoc.Td {
 		return $renderMultiMedia;
 	}
 
-	public function getParagraph() {
-		if ($this->paragraph===NULL) {
+	public function getParagraph($autoCreate = TRUE) {
+		if ($this->paragraph===NULL && $autoCreate && ! isset($this->_overrides['paragraph']) ) {
 			$this->paragraph = $this->createParagraph();
 		}
 		return $this->paragraph;
@@ -469,8 +476,8 @@ class StrucDoc.Td {
 		return $paragraph;
 	}
 
-	public function getList() {
-		if ($this->list===NULL) {
+	public function getList($autoCreate = TRUE) {
+		if ($this->list===NULL && $autoCreate && ! isset($this->_overrides['list']) ) {
 			$this->list = $this->createList();
 		}
 		return $this->list;
@@ -504,8 +511,8 @@ class StrucDoc.Td {
 		return $list;
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -527,8 +534,8 @@ class StrucDoc.Td {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -550,8 +557,8 @@ class StrucDoc.Td {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;
@@ -573,8 +580,8 @@ class StrucDoc.Td {
 		return $styleCode;
 	}
 
-	public function getAbbr() {
-		if ($this->abbr===NULL) {
+	public function getAbbr($autoCreate = TRUE) {
+		if ($this->abbr===NULL && $autoCreate && ! isset($this->_overrides['abbr']) ) {
 			$this->abbr = $this->createAbbr();
 		}
 		return $this->abbr;
@@ -596,8 +603,8 @@ class StrucDoc.Td {
 		return $abbr;
 	}
 
-	public function getAxis() {
-		if ($this->axis===NULL) {
+	public function getAxis($autoCreate = TRUE) {
+		if ($this->axis===NULL && $autoCreate && ! isset($this->_overrides['axis']) ) {
 			$this->axis = $this->createAxis();
 		}
 		return $this->axis;
@@ -619,8 +626,8 @@ class StrucDoc.Td {
 		return $axis;
 	}
 
-	public function getHeaders() {
-		if ($this->headers===NULL) {
+	public function getHeaders($autoCreate = TRUE) {
+		if ($this->headers===NULL && $autoCreate && ! isset($this->_overrides['headers']) ) {
 			$this->headers = $this->createHeaders();
 		}
 		return $this->headers;
@@ -642,8 +649,8 @@ class StrucDoc.Td {
 		return $headers;
 	}
 
-	public function getScope() {
-		if ($this->scope===NULL) {
+	public function getScope($autoCreate = TRUE) {
+		if ($this->scope===NULL && $autoCreate && ! isset($this->_overrides['scope']) ) {
 			$this->scope = $this->createScope();
 		}
 		return $this->scope;
@@ -665,8 +672,8 @@ class StrucDoc.Td {
 		return $scope;
 	}
 
-	public function getRowspan() {
-		if ($this->rowspan===NULL) {
+	public function getRowspan($autoCreate = TRUE) {
+		if ($this->rowspan===NULL && $autoCreate && ! isset($this->_overrides['rowspan']) ) {
 			$this->rowspan = $this->createRowspan();
 		}
 		return $this->rowspan;
@@ -688,8 +695,8 @@ class StrucDoc.Td {
 		return $rowspan;
 	}
 
-	public function getColspan() {
-		if ($this->colspan===NULL) {
+	public function getColspan($autoCreate = TRUE) {
+		if ($this->colspan===NULL && $autoCreate && ! isset($this->_overrides['colspan']) ) {
 			$this->colspan = $this->createColspan();
 		}
 		return $this->colspan;
@@ -711,8 +718,8 @@ class StrucDoc.Td {
 		return $colspan;
 	}
 
-	public function getAlign() {
-		if ($this->align===NULL) {
+	public function getAlign($autoCreate = TRUE) {
+		if ($this->align===NULL && $autoCreate && ! isset($this->_overrides['align']) ) {
 			$this->align = $this->createAlign();
 		}
 		return $this->align;
@@ -734,8 +741,8 @@ class StrucDoc.Td {
 		return $align;
 	}
 
-	public function getChar() {
-		if ($this->char===NULL) {
+	public function getChar($autoCreate = TRUE) {
+		if ($this->char===NULL && $autoCreate && ! isset($this->_overrides['char']) ) {
 			$this->char = $this->createChar();
 		}
 		return $this->char;
@@ -757,8 +764,8 @@ class StrucDoc.Td {
 		return $char;
 	}
 
-	public function getCharoff() {
-		if ($this->charoff===NULL) {
+	public function getCharoff($autoCreate = TRUE) {
+		if ($this->charoff===NULL && $autoCreate && ! isset($this->_overrides['charoff']) ) {
 			$this->charoff = $this->createCharoff();
 		}
 		return $this->charoff;
@@ -780,8 +787,8 @@ class StrucDoc.Td {
 		return $charoff;
 	}
 
-	public function getValign() {
-		if ($this->valign===NULL) {
+	public function getValign($autoCreate = TRUE) {
+		if ($this->valign===NULL && $autoCreate && ! isset($this->_overrides['valign']) ) {
 			$this->valign = $this->createValign();
 		}
 		return $this->valign;

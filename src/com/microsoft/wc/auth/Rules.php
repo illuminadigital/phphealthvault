@@ -14,6 +14,13 @@ class Rules {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\auth\Rule", collection="true", name="rule")
 	 */
 	protected $rule;
@@ -22,8 +29,8 @@ class Rules {
 		$this->rule = ($rule===NULL) ? NULL : $this->validateRule($rule);
 	}
 
-	public function getRule() {
-		if ($this->rule===NULL) {
+	public function getRule($autoCreate = TRUE) {
+		if ($this->rule===NULL && $autoCreate && ! isset($this->_overrides['rule']) ) {
 			$this->rule = $this->createRule();
 		}
 		return $this->rule;
@@ -38,9 +45,16 @@ class Rules {
 	}
 
 	protected function validateRule($rule) {
+		if ( $rule === FALSE ) {
+			$this->_overrides['rule'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($rule) && ! is_null($rule) ) {
 			$rule = array($rule);
 		}
+
+		unset ($this->_overrides['rule']);
 		$count = count($rule);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'rule', 0));

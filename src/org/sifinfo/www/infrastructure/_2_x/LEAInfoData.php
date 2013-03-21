@@ -14,6 +14,13 @@ class LEAInfoData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\LocalIdType", name="LocalId")
 	 */
 	protected $localId;
@@ -46,8 +53,8 @@ class LEAInfoData {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getLocalId() {
-		if ($this->localId===NULL) {
+	public function getLocalId($autoCreate = TRUE) {
+		if ($this->localId===NULL && $autoCreate && ! isset($this->_overrides['localId']) ) {
 			$this->localId = $this->createLocalId();
 		}
 		return $this->localId;
@@ -66,8 +73,8 @@ class LEAInfoData {
 		return $localId;
 	}
 
-	public function getStateProvinceId() {
-		if ($this->stateProvinceId===NULL) {
+	public function getStateProvinceId($autoCreate = TRUE) {
+		if ($this->stateProvinceId===NULL && $autoCreate && ! isset($this->_overrides['stateProvinceId']) ) {
 			$this->stateProvinceId = $this->createStateProvinceId();
 		}
 		return $this->stateProvinceId;
@@ -86,8 +93,8 @@ class LEAInfoData {
 		return $stateProvinceId;
 	}
 
-	public function getNCESId() {
-		if ($this->nCESId===NULL) {
+	public function getNCESId($autoCreate = TRUE) {
+		if ($this->nCESId===NULL && $autoCreate && ! isset($this->_overrides['nCESId']) ) {
 			$this->nCESId = $this->createNCESId();
 		}
 		return $this->nCESId;
@@ -106,8 +113,8 @@ class LEAInfoData {
 		return $nCESId;
 	}
 
-	public function getLEAName() {
-		if ($this->lEAName===NULL) {
+	public function getLEAName($autoCreate = TRUE) {
+		if ($this->lEAName===NULL && $autoCreate && ! isset($this->_overrides['lEAName']) ) {
 			$this->lEAName = $this->createLEAName();
 		}
 		return $this->lEAName;
@@ -129,8 +136,8 @@ class LEAInfoData {
 		return $lEAName;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -145,9 +152,16 @@ class LEAInfoData {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

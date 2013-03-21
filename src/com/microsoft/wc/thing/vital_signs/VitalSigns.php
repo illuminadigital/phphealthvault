@@ -19,6 +19,13 @@ class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Vital Signs';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -45,8 +52,8 @@ class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 		$this->position = ($position===NULL) ? NULL : $this->validatePosition($position);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -68,8 +75,8 @@ class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getVitalSignsResults() {
-		if ($this->vitalSignsResults===NULL) {
+	public function getVitalSignsResults($autoCreate = TRUE) {
+		if ($this->vitalSignsResults===NULL && $autoCreate && ! isset($this->_overrides['vitalSignsResults']) ) {
 			$this->vitalSignsResults = $this->createVitalSignsResults();
 		}
 		return $this->vitalSignsResults;
@@ -84,9 +91,16 @@ class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVitalSignsResults($vitalSignsResults) {
+		if ( $vitalSignsResults === FALSE ) {
+			$this->_overrides['vitalSignsResults'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($vitalSignsResults) && ! is_null($vitalSignsResults) ) {
 			$vitalSignsResults = array($vitalSignsResults);
 		}
+
+		unset ($this->_overrides['vitalSignsResults']);
 		$count = count($vitalSignsResults);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vitalSignsResults', 0));
@@ -104,8 +118,8 @@ class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 		$this->vitalSignsResults[] = $vitalSignsResults;
 	}
 
-	public function getSite() {
-		if ($this->site===NULL) {
+	public function getSite($autoCreate = TRUE) {
+		if ($this->site===NULL && $autoCreate && ! isset($this->_overrides['site']) ) {
 			$this->site = $this->createSite();
 		}
 		return $this->site;
@@ -127,8 +141,8 @@ class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 		return $site;
 	}
 
-	public function getPosition() {
-		if ($this->position===NULL) {
+	public function getPosition($autoCreate = TRUE) {
+		if ($this->position===NULL && $autoCreate && ! isset($this->_overrides['position']) ) {
 			$this->position = $this->createPosition();
 		}
 		return $this->position;

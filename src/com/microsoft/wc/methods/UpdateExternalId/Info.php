@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="identity-code")
 	 */
 	protected $identityCode;
@@ -36,8 +43,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->newExternalId = ($newExternalId===NULL) ? NULL : $this->validateNewExternalId($newExternalId);
 	}
 
-	public function getIdentityCode() {
-		if ($this->identityCode===NULL) {
+	public function getIdentityCode($autoCreate = TRUE) {
+		if ($this->identityCode===NULL && $autoCreate && ! isset($this->_overrides['identityCode']) ) {
 			$this->identityCode = $this->createIdentityCode();
 		}
 		return $this->identityCode;
@@ -59,8 +66,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $identityCode;
 	}
 
-	public function getOldExternalId() {
-		if ($this->oldExternalId===NULL) {
+	public function getOldExternalId($autoCreate = TRUE) {
+		if ($this->oldExternalId===NULL && $autoCreate && ! isset($this->_overrides['oldExternalId']) ) {
 			$this->oldExternalId = $this->createOldExternalId();
 		}
 		return $this->oldExternalId;
@@ -82,8 +89,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $oldExternalId;
 	}
 
-	public function getNewExternalId() {
-		if ($this->newExternalId===NULL) {
+	public function getNewExternalId($autoCreate = TRUE) {
+		if ($this->newExternalId===NULL && $autoCreate && ! isset($this->_overrides['newExternalId']) ) {
 			$this->newExternalId = $this->createNewExternalId();
 		}
 		return $this->newExternalId;

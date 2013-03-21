@@ -17,6 +17,13 @@ class CodableValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="text")
 	 */
 	protected $text;
@@ -31,8 +38,8 @@ class CodableValue {
 		$this->code = ($code===NULL) ? NULL : $this->validateCode($code);
 	}
 
-	public function getText() {
-		if ($this->text===NULL) {
+	public function getText($autoCreate = TRUE) {
+		if ($this->text===NULL && $autoCreate && ! isset($this->_overrides['text']) ) {
 			$this->text = $this->createText();
 		}
 		return $this->text;
@@ -54,8 +61,8 @@ class CodableValue {
 		return $text;
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -70,9 +77,16 @@ class CodableValue {
 	}
 
 	protected function validateCode($code) {
+		if ( $code === FALSE ) {
+			$this->_overrides['code'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($code) && ! is_null($code) ) {
 			$code = array($code);
 		}
+
+		unset ($this->_overrides['code']);
 		$count = count($code);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'code', 0));

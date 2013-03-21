@@ -16,6 +16,13 @@ class HVEventingSharedKey {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String128nw", name="notification-key")
 	 */
 	protected $notificationKey;
@@ -30,8 +37,8 @@ class HVEventingSharedKey {
 		$this->notificationKeyVersionId = ($notificationKeyVersionId===NULL) ? NULL : $this->validateNotificationKeyVersionId($notificationKeyVersionId);
 	}
 
-	public function getNotificationKey() {
-		if ($this->notificationKey===NULL) {
+	public function getNotificationKey($autoCreate = TRUE) {
+		if ($this->notificationKey===NULL && $autoCreate && ! isset($this->_overrides['notificationKey']) ) {
 			$this->notificationKey = $this->createNotificationKey();
 		}
 		return $this->notificationKey;
@@ -53,8 +60,8 @@ class HVEventingSharedKey {
 		return $notificationKey;
 	}
 
-	public function getNotificationKeyVersionId() {
-		if ($this->notificationKeyVersionId===NULL) {
+	public function getNotificationKeyVersionId($autoCreate = TRUE) {
+		if ($this->notificationKeyVersionId===NULL && $autoCreate && ! isset($this->_overrides['notificationKeyVersionId']) ) {
 			$this->notificationKeyVersionId = $this->createNotificationKeyVersionId();
 		}
 		return $this->notificationKeyVersionId;

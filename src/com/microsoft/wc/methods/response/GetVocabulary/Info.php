@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyCodeSet", collection="true", name="vocabulary")
 	 */
 	protected $vocabulary;
@@ -30,8 +37,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->vocabularyKey = ($vocabularyKey===NULL) ? NULL : $this->validateVocabularyKey($vocabularyKey);
 	}
 
-	public function getVocabulary() {
-		if ($this->vocabulary===NULL) {
+	public function getVocabulary($autoCreate = TRUE) {
+		if ($this->vocabulary===NULL && $autoCreate && ! isset($this->_overrides['vocabulary']) ) {
 			$this->vocabulary = $this->createVocabulary();
 		}
 		return $this->vocabulary;
@@ -66,8 +73,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->vocabulary[] = $vocabulary;
 	}
 
-	public function getVocabularyKey() {
-		if ($this->vocabularyKey===NULL) {
+	public function getVocabularyKey($autoCreate = TRUE) {
+		if ($this->vocabularyKey===NULL && $autoCreate && ! isset($this->_overrides['vocabularyKey']) ) {
 			$this->vocabularyKey = $this->createVocabularyKey();
 		}
 		return $this->vocabularyKey;

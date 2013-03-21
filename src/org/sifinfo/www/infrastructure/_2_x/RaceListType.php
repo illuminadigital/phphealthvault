@@ -14,6 +14,13 @@ class RaceListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Race", collection="true", name="Race")
 	 */
 	protected $race;
@@ -22,8 +29,8 @@ class RaceListType {
 		$this->race = ($race===NULL) ? NULL : $this->validateRace($race);
 	}
 
-	public function getRace() {
-		if ($this->race===NULL) {
+	public function getRace($autoCreate = TRUE) {
+		if ($this->race===NULL && $autoCreate && ! isset($this->_overrides['race']) ) {
 			$this->race = $this->createRace();
 		}
 		return $this->race;

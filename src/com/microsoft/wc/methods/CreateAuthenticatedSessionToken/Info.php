@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\CreateAuthenticatedSessionToken\AuthTokenInfo", name="auth-info")
 	 */
 	protected $authInfo;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->authInfo = ($authInfo===NULL) ? NULL : $this->validateAuthInfo($authInfo);
 	}
 
-	public function getAuthInfo() {
-		if ($this->authInfo===NULL) {
+	public function getAuthInfo($autoCreate = TRUE) {
+		if ($this->authInfo===NULL && $autoCreate && ! isset($this->_overrides['authInfo']) ) {
 			$this->authInfo = $this->createAuthInfo();
 		}
 		return $this->authInfo;

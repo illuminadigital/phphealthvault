@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Record", collection="true", name="record")
 	 */
 	protected $record;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->record = ($record===NULL) ? NULL : $this->validateRecord($record);
 	}
 
-	public function getRecord() {
-		if ($this->record===NULL) {
+	public function getRecord($autoCreate = TRUE) {
+		if ($this->record===NULL && $autoCreate && ! isset($this->_overrides['record']) ) {
 			$this->record = $this->createRecord();
 		}
 		return $this->record;
@@ -40,9 +47,16 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateRecord($record) {
+		if ( $record === FALSE ) {
+			$this->_overrides['record'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($record) && ! is_null($record) ) {
 			$record = array($record);
 		}
+
+		unset ($this->_overrides['record']);
 		$count = count($record);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'record', 0));

@@ -19,6 +19,13 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Encounter';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -57,8 +64,8 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 		$this->consentGranted = ($consentGranted===NULL) ? NULL : $this->validateConsentGranted($consentGranted);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -80,8 +87,8 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -103,8 +110,8 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 		return $type;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -126,8 +133,8 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 		return $id;
 	}
 
-	public function getDuration() {
-		if ($this->duration===NULL) {
+	public function getDuration($autoCreate = TRUE) {
+		if ($this->duration===NULL && $autoCreate && ! isset($this->_overrides['duration']) ) {
 			$this->duration = $this->createDuration();
 		}
 		return $this->duration;
@@ -142,15 +149,22 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDuration($duration) {
+		if ( $duration === FALSE ) {
+			$this->_overrides['duration'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $duration instanceof \com\microsoft\wc\thing\types\DurationValue  && ! is_null($duration) ) {
 			$duration = new \com\microsoft\wc\thing\types\DurationValue ($duration);
 		}
+
+		unset ($this->_overrides['duration']);
 	
 		return $duration;
 	}
 
-	public function getLocation() {
-		if ($this->location===NULL) {
+	public function getLocation($autoCreate = TRUE) {
+		if ($this->location===NULL && $autoCreate && ! isset($this->_overrides['location']) ) {
 			$this->location = $this->createLocation();
 		}
 		return $this->location;
@@ -165,15 +179,22 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLocation($location) {
+		if ( $location === FALSE ) {
+			$this->_overrides['location'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $location instanceof \com\microsoft\wc\thing\types\Address  && ! is_null($location) ) {
 			$location = new \com\microsoft\wc\thing\types\Address ($location);
 		}
+
+		unset ($this->_overrides['location']);
 	
 		return $location;
 	}
 
-	public function getConsentGranted() {
-		if ($this->consentGranted===NULL) {
+	public function getConsentGranted($autoCreate = TRUE) {
+		if ($this->consentGranted===NULL && $autoCreate && ! isset($this->_overrides['consentGranted']) ) {
 			$this->consentGranted = $this->createConsentGranted();
 		}
 		return $this->consentGranted;

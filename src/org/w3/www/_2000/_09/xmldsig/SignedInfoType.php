@@ -14,6 +14,13 @@ class SignedInfoType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\CanonicalizationMethod", name="CanonicalizationMethod")
 	 */
 	protected $canonicalizationMethod;
@@ -40,8 +47,8 @@ class SignedInfoType {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 	}
 
-	public function getCanonicalizationMethod() {
-		if ($this->canonicalizationMethod===NULL) {
+	public function getCanonicalizationMethod($autoCreate = TRUE) {
+		if ($this->canonicalizationMethod===NULL && $autoCreate && ! isset($this->_overrides['canonicalizationMethod']) ) {
 			$this->canonicalizationMethod = $this->createCanonicalizationMethod();
 		}
 		return $this->canonicalizationMethod;
@@ -63,8 +70,8 @@ class SignedInfoType {
 		return $canonicalizationMethod;
 	}
 
-	public function getSignatureMethod() {
-		if ($this->signatureMethod===NULL) {
+	public function getSignatureMethod($autoCreate = TRUE) {
+		if ($this->signatureMethod===NULL && $autoCreate && ! isset($this->_overrides['signatureMethod']) ) {
 			$this->signatureMethod = $this->createSignatureMethod();
 		}
 		return $this->signatureMethod;
@@ -86,8 +93,8 @@ class SignedInfoType {
 		return $signatureMethod;
 	}
 
-	public function getReference() {
-		if ($this->reference===NULL) {
+	public function getReference($autoCreate = TRUE) {
+		if ($this->reference===NULL && $autoCreate && ! isset($this->_overrides['reference']) ) {
 			$this->reference = $this->createReference();
 		}
 		return $this->reference;
@@ -122,8 +129,8 @@ class SignedInfoType {
 		$this->reference[] = $reference;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;

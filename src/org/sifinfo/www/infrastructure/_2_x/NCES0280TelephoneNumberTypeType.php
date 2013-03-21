@@ -15,6 +15,13 @@ class NCES0280TelephoneNumberTypeType {
 	static protected $enumValue = array('0350' => 'Alternate telephone number', '0359' => 'Answering service', '0400' => 'Appointment telephone number', '0370' => 'Beeper number', '2364' => 'Facsimile number', '0478' => 'Instant messaging number', '0096' => 'Main telephone number', '0486' => 'Media conferencing number', '0437' => 'Telemail', '0426' => 'Telex number', '0448' => 'Voice mail');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0280TelephoneNumberTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0280TelephoneNumberTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

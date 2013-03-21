@@ -15,6 +15,13 @@ class AppRecordAuthAction {
 	static protected $enumValue = array('AuthorizationRequired' => 'The application has never been authorized. The user must authorize this application.', 'ReauthorizationRequired' => 'The user must authorize this application.', 'ReauthorizationNotPossible' => 'It is not possible to reauthorize this application.', 'NoActionRequired' => 'No actions are required.', 'RecordLocationNotSupported' => 'The record location isn\'t supported by the application.');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="AppRecordAuthAction")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class AppRecordAuthAction {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

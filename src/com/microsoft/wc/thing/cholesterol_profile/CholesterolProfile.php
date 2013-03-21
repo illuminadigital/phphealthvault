@@ -18,6 +18,13 @@ class CholesterolProfile extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Cholesterol Measurement';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -50,8 +57,8 @@ class CholesterolProfile extends \com\microsoft\wc\thing\AnyMixed {
 		$this->triglyceride = ($triglyceride===NULL) ? NULL : $this->validateTriglyceride($triglyceride);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -73,8 +80,8 @@ class CholesterolProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getLdl() {
-		if ($this->ldl===NULL) {
+	public function getLdl($autoCreate = TRUE) {
+		if ($this->ldl===NULL && $autoCreate && ! isset($this->_overrides['ldl']) ) {
 			$this->ldl = $this->createLdl();
 		}
 		return $this->ldl;
@@ -89,15 +96,22 @@ class CholesterolProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLdl($ldl) {
+		if ( $ldl === FALSE ) {
+			$this->_overrides['ldl'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $ldl instanceof \com\microsoft\wc\thing\types\ConcentrationValue  && ! is_null($ldl) ) {
 			$ldl = new \com\microsoft\wc\thing\types\ConcentrationValue ($ldl);
 		}
+
+		unset ($this->_overrides['ldl']);
 	
 		return $ldl;
 	}
 
-	public function getHdl() {
-		if ($this->hdl===NULL) {
+	public function getHdl($autoCreate = TRUE) {
+		if ($this->hdl===NULL && $autoCreate && ! isset($this->_overrides['hdl']) ) {
 			$this->hdl = $this->createHdl();
 		}
 		return $this->hdl;
@@ -112,15 +126,22 @@ class CholesterolProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateHdl($hdl) {
+		if ( $hdl === FALSE ) {
+			$this->_overrides['hdl'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $hdl instanceof \com\microsoft\wc\thing\types\ConcentrationValue  && ! is_null($hdl) ) {
 			$hdl = new \com\microsoft\wc\thing\types\ConcentrationValue ($hdl);
 		}
+
+		unset ($this->_overrides['hdl']);
 	
 		return $hdl;
 	}
 
-	public function getTotalCholesterol() {
-		if ($this->totalCholesterol===NULL) {
+	public function getTotalCholesterol($autoCreate = TRUE) {
+		if ($this->totalCholesterol===NULL && $autoCreate && ! isset($this->_overrides['totalCholesterol']) ) {
 			$this->totalCholesterol = $this->createTotalCholesterol();
 		}
 		return $this->totalCholesterol;
@@ -135,15 +156,22 @@ class CholesterolProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTotalCholesterol($totalCholesterol) {
+		if ( $totalCholesterol === FALSE ) {
+			$this->_overrides['totalCholesterol'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $totalCholesterol instanceof \com\microsoft\wc\thing\types\ConcentrationValue  && ! is_null($totalCholesterol) ) {
 			$totalCholesterol = new \com\microsoft\wc\thing\types\ConcentrationValue ($totalCholesterol);
 		}
+
+		unset ($this->_overrides['totalCholesterol']);
 	
 		return $totalCholesterol;
 	}
 
-	public function getTriglyceride() {
-		if ($this->triglyceride===NULL) {
+	public function getTriglyceride($autoCreate = TRUE) {
+		if ($this->triglyceride===NULL && $autoCreate && ! isset($this->_overrides['triglyceride']) ) {
 			$this->triglyceride = $this->createTriglyceride();
 		}
 		return $this->triglyceride;
@@ -158,9 +186,16 @@ class CholesterolProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTriglyceride($triglyceride) {
+		if ( $triglyceride === FALSE ) {
+			$this->_overrides['triglyceride'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $triglyceride instanceof \com\microsoft\wc\thing\types\ConcentrationValue  && ! is_null($triglyceride) ) {
 			$triglyceride = new \com\microsoft\wc\thing\types\ConcentrationValue ($triglyceride);
 		}
+
+		unset ($this->_overrides['triglyceride']);
 	
 		return $triglyceride;
 	}

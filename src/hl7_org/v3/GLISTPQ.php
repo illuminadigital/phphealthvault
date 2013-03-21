@@ -14,6 +14,13 @@ class GLISTPQ extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="head")
 	 */
 	protected $head;
@@ -40,8 +47,8 @@ class GLISTPQ extends \org\w3\www\_2001\XMLSchema\ANY {
 		$this->denominator = ($denominator===NULL) ? NULL : $this->validateDenominator($denominator);
 	}
 
-	public function getHead() {
-		if ($this->head===NULL) {
+	public function getHead($autoCreate = TRUE) {
+		if ($this->head===NULL && $autoCreate && ! isset($this->_overrides['head']) ) {
 			$this->head = $this->createHead();
 		}
 		return $this->head;
@@ -60,8 +67,8 @@ class GLISTPQ extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $head;
 	}
 
-	public function getIncrement() {
-		if ($this->increment===NULL) {
+	public function getIncrement($autoCreate = TRUE) {
+		if ($this->increment===NULL && $autoCreate && ! isset($this->_overrides['increment']) ) {
 			$this->increment = $this->createIncrement();
 		}
 		return $this->increment;
@@ -80,8 +87,8 @@ class GLISTPQ extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $increment;
 	}
 
-	public function getPeriod() {
-		if ($this->period===NULL) {
+	public function getPeriod($autoCreate = TRUE) {
+		if ($this->period===NULL && $autoCreate && ! isset($this->_overrides['period']) ) {
 			$this->period = $this->createPeriod();
 		}
 		return $this->period;
@@ -100,8 +107,8 @@ class GLISTPQ extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $period;
 	}
 
-	public function getDenominator() {
-		if ($this->denominator===NULL) {
+	public function getDenominator($autoCreate = TRUE) {
+		if ($this->denominator===NULL && $autoCreate && ! isset($this->_overrides['denominator']) ) {
 			$this->denominator = $this->createDenominator();
 		}
 		return $this->denominator;

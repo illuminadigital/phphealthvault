@@ -14,6 +14,13 @@ class StrucDoc.RenderMultiMedia {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Caption", name="caption")
 	 */
 	protected $caption;
@@ -46,8 +53,8 @@ class StrucDoc.RenderMultiMedia {
 		$this->styleCode = ($styleCode===NULL) ? NULL : $this->validateStyleCode($styleCode);
 	}
 
-	public function getCaption() {
-		if ($this->caption===NULL) {
+	public function getCaption($autoCreate = TRUE) {
+		if ($this->caption===NULL && $autoCreate && ! isset($this->_overrides['caption']) ) {
 			$this->caption = $this->createCaption();
 		}
 		return $this->caption;
@@ -66,8 +73,8 @@ class StrucDoc.RenderMultiMedia {
 		return $caption;
 	}
 
-	public function getReferencedObject() {
-		if ($this->referencedObject===NULL) {
+	public function getReferencedObject($autoCreate = TRUE) {
+		if ($this->referencedObject===NULL && $autoCreate && ! isset($this->_overrides['referencedObject']) ) {
 			$this->referencedObject = $this->createReferencedObject();
 		}
 		return $this->referencedObject;
@@ -89,8 +96,8 @@ class StrucDoc.RenderMultiMedia {
 		return $referencedObject;
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -112,8 +119,8 @@ class StrucDoc.RenderMultiMedia {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -135,8 +142,8 @@ class StrucDoc.RenderMultiMedia {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;

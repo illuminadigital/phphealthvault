@@ -14,6 +14,13 @@ class Reference {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="URL")
 	 */
 	protected $uRL;
@@ -34,8 +41,8 @@ class Reference {
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
 	}
 
-	public function getURL() {
-		if ($this->uRL===NULL) {
+	public function getURL($autoCreate = TRUE) {
+		if ($this->uRL===NULL && $autoCreate && ! isset($this->_overrides['uRL']) ) {
 			$this->uRL = $this->createURL();
 		}
 		return $this->uRL;
@@ -57,8 +64,8 @@ class Reference {
 		return $uRL;
 	}
 
-	public function getMIMEType() {
-		if ($this->mIMEType===NULL) {
+	public function getMIMEType($autoCreate = TRUE) {
+		if ($this->mIMEType===NULL && $autoCreate && ! isset($this->_overrides['mIMEType']) ) {
 			$this->mIMEType = $this->createMIMEType();
 		}
 		return $this->mIMEType;
@@ -80,8 +87,8 @@ class Reference {
 		return $mIMEType;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;

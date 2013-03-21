@@ -14,6 +14,13 @@ class UVPTS extends \org\w3\www\_2001\XMLSchema\TS {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="probability")
 	 */
 	protected $probability;
@@ -22,8 +29,8 @@ class UVPTS extends \org\w3\www\_2001\XMLSchema\TS {
 		$this->probability = ($probability===NULL) ? NULL : $this->validateProbability($probability);
 	}
 
-	public function getProbability() {
-		if ($this->probability===NULL) {
+	public function getProbability($autoCreate = TRUE) {
+		if ($this->probability===NULL && $autoCreate && ! isset($this->_overrides['probability']) ) {
 			$this->probability = $this->createProbability();
 		}
 		return $this->probability;

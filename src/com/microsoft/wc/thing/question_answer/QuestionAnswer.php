@@ -18,6 +18,13 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Question Answer';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -44,8 +51,8 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 		$this->answer = ($answer===NULL) ? NULL : $this->validateAnswer($answer);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -67,8 +74,8 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getQuestion() {
-		if ($this->question===NULL) {
+	public function getQuestion($autoCreate = TRUE) {
+		if ($this->question===NULL && $autoCreate && ! isset($this->_overrides['question']) ) {
 			$this->question = $this->createQuestion();
 		}
 		return $this->question;
@@ -90,8 +97,8 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 		return $question;
 	}
 
-	public function getAnswerChoice() {
-		if ($this->answerChoice===NULL) {
+	public function getAnswerChoice($autoCreate = TRUE) {
+		if ($this->answerChoice===NULL && $autoCreate && ! isset($this->_overrides['answerChoice']) ) {
 			$this->answerChoice = $this->createAnswerChoice();
 		}
 		return $this->answerChoice;
@@ -106,9 +113,16 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAnswerChoice($answerChoice) {
+		if ( $answerChoice === FALSE ) {
+			$this->_overrides['answerChoice'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($answerChoice) && ! is_null($answerChoice) ) {
 			$answerChoice = array($answerChoice);
 		}
+
+		unset ($this->_overrides['answerChoice']);
 		$count = count($answerChoice);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'answerChoice', 0));
@@ -126,8 +140,8 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 		$this->answerChoice[] = $answerChoice;
 	}
 
-	public function getAnswer() {
-		if ($this->answer===NULL) {
+	public function getAnswer($autoCreate = TRUE) {
+		if ($this->answer===NULL && $autoCreate && ! isset($this->_overrides['answer']) ) {
 			$this->answer = $this->createAnswer();
 		}
 		return $this->answer;
@@ -142,9 +156,16 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAnswer($answer) {
+		if ( $answer === FALSE ) {
+			$this->_overrides['answer'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($answer) && ! is_null($answer) ) {
 			$answer = array($answer);
 		}
+
+		unset ($this->_overrides['answer']);
 		$count = count($answer);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'answer', 0));

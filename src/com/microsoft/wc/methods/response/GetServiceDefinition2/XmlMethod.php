@@ -15,6 +15,13 @@ class XmlMethod {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="name")
 	 */
 	protected $name;
@@ -29,8 +36,8 @@ class XmlMethod {
 		$this->version = ($version===NULL) ? NULL : $this->validateVersion($version);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -52,8 +59,8 @@ class XmlMethod {
 		return $name;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;
@@ -68,9 +75,16 @@ class XmlMethod {
 	}
 
 	protected function validateVersion($version) {
+		if ( $version === FALSE ) {
+			$this->_overrides['version'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($version) && ! is_null($version) ) {
 			$version = array($version);
 		}
+
+		unset ($this->_overrides['version']);
 		$count = count($version);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'version', 0));

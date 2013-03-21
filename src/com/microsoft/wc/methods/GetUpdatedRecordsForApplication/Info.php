@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="update-date")
 	 */
 	protected $updateDate;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->updateDate = ($updateDate===NULL) ? NULL : $this->validateUpdateDate($updateDate);
 	}
 
-	public function getUpdateDate() {
-		if ($this->updateDate===NULL) {
+	public function getUpdateDate($autoCreate = TRUE) {
+		if ($this->updateDate===NULL && $autoCreate && ! isset($this->_overrides['updateDate']) ) {
 			$this->updateDate = $this->createUpdateDate();
 		}
 		return $this->updateDate;

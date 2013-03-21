@@ -15,6 +15,13 @@ class Platform {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="url")
 	 */
 	protected $url;
@@ -35,8 +42,8 @@ class Platform {
 		$this->configuration = ($configuration===NULL) ? NULL : $this->validateConfiguration($configuration);
 	}
 
-	public function getUrl() {
-		if ($this->url===NULL) {
+	public function getUrl($autoCreate = TRUE) {
+		if ($this->url===NULL && $autoCreate && ! isset($this->_overrides['url']) ) {
 			$this->url = $this->createUrl();
 		}
 		return $this->url;
@@ -58,8 +65,8 @@ class Platform {
 		return $url;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;
@@ -81,8 +88,8 @@ class Platform {
 		return $version;
 	}
 
-	public function getConfiguration() {
-		if ($this->configuration===NULL) {
+	public function getConfiguration($autoCreate = TRUE) {
+		if ($this->configuration===NULL && $autoCreate && ! isset($this->_overrides['configuration']) ) {
 			$this->configuration = $this->createConfiguration();
 		}
 		return $this->configuration;
@@ -97,9 +104,16 @@ class Platform {
 	}
 
 	protected function validateConfiguration($configuration) {
+		if ( $configuration === FALSE ) {
+			$this->_overrides['configuration'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($configuration) && ! is_null($configuration) ) {
 			$configuration = array($configuration);
 		}
+
+		unset ($this->_overrides['configuration']);
 		$count = count($configuration);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'configuration', 0));

@@ -16,6 +16,13 @@ class AppServerCred {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Sig", name="sig")
 	 */
 	protected $sig;
@@ -30,8 +37,8 @@ class AppServerCred {
 		$this->content = ($content===NULL) ? NULL : $this->validateContent($content);
 	}
 
-	public function getSig() {
-		if ($this->sig===NULL) {
+	public function getSig($autoCreate = TRUE) {
+		if ($this->sig===NULL && $autoCreate && ! isset($this->_overrides['sig']) ) {
 			$this->sig = $this->createSig();
 		}
 		return $this->sig;
@@ -53,8 +60,8 @@ class AppServerCred {
 		return $sig;
 	}
 
-	public function getContent() {
-		if ($this->content===NULL) {
+	public function getContent($autoCreate = TRUE) {
+		if ($this->content===NULL && $autoCreate && ! isset($this->_overrides['content']) ) {
 			$this->content = $this->createContent();
 		}
 		return $this->content;

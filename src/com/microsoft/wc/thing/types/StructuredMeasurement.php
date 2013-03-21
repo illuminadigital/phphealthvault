@@ -17,6 +17,13 @@ class StructuredMeasurement {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="float", name="value")
 	 */
 	protected $value;
@@ -31,8 +38,8 @@ class StructuredMeasurement {
 		$this->units = ($units===NULL) ? NULL : $this->validateUnits($units);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -62,8 +69,8 @@ class StructuredMeasurement {
 		return $value;
 	}
 
-	public function getUnits() {
-		if ($this->units===NULL) {
+	public function getUnits($autoCreate = TRUE) {
+		if ($this->units===NULL && $autoCreate && ! isset($this->_overrides['units']) ) {
 			$this->units = $this->createUnits();
 		}
 		return $this->units;

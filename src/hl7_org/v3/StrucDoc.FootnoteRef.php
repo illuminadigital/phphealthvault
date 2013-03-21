@@ -14,6 +14,13 @@ class StrucDoc.FootnoteRef {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="ID")
 	 */
 	protected $iD;
@@ -40,8 +47,8 @@ class StrucDoc.FootnoteRef {
 		$this->iDREF = ($iDREF===NULL) ? NULL : $this->validateIDREF($iDREF);
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -63,8 +70,8 @@ class StrucDoc.FootnoteRef {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -86,8 +93,8 @@ class StrucDoc.FootnoteRef {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;
@@ -109,8 +116,8 @@ class StrucDoc.FootnoteRef {
 		return $styleCode;
 	}
 
-	public function getIDREF() {
-		if ($this->iDREF===NULL) {
+	public function getIDREF($autoCreate = TRUE) {
+		if ($this->iDREF===NULL && $autoCreate && ! isset($this->_overrides['iDREF']) ) {
 			$this->iDREF = $this->createIDREF();
 		}
 		return $this->iDREF;

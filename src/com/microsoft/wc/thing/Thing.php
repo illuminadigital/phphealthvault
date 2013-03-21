@@ -14,6 +14,13 @@ class Thing {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\ThingKey", name="thing-id")
 	 */
 	protected $thingId;
@@ -88,8 +95,8 @@ class Thing {
 		$this->signature = ($signature===NULL) ? NULL : $this->validateSignature($signature);
 	}
 
-	public function getThingId() {
-		if ($this->thingId===NULL) {
+	public function getThingId($autoCreate = TRUE) {
+		if ($this->thingId===NULL && $autoCreate && ! isset($this->_overrides['thingId']) ) {
 			$this->thingId = $this->createThingId();
 		}
 		return $this->thingId;
@@ -104,15 +111,22 @@ class Thing {
 	}
 
 	protected function validateThingId($thingId) {
+		if ( $thingId === FALSE ) {
+			$this->_overrides['thingId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $thingId instanceof \com\microsoft\wc\thing\ThingKey  && ! is_null($thingId) ) {
 			$thingId = new \com\microsoft\wc\thing\ThingKey ($thingId);
 		}
+
+		unset ($this->_overrides['thingId']);
 	
 		return $thingId;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -127,15 +141,22 @@ class Thing {
 	}
 
 	protected function validateTypeId($typeId) {
+		if ( $typeId === FALSE ) {
+			$this->_overrides['typeId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $typeId instanceof \com\microsoft\wc\thing\ThingType  && ! is_null($typeId) ) {
 			$typeId = new \com\microsoft\wc\thing\ThingType ($typeId);
 		}
+
+		unset ($this->_overrides['typeId']);
 	
 		return $typeId;
 	}
 
-	public function getThingState() {
-		if ($this->thingState===NULL) {
+	public function getThingState($autoCreate = TRUE) {
+		if ($this->thingState===NULL && $autoCreate && ! isset($this->_overrides['thingState']) ) {
 			$this->thingState = $this->createThingState();
 		}
 		return $this->thingState;
@@ -150,15 +171,22 @@ class Thing {
 	}
 
 	protected function validateThingState($thingState) {
+		if ( $thingState === FALSE ) {
+			$this->_overrides['thingState'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $thingState instanceof \com\microsoft\wc\thing\ThingState  && ! is_null($thingState) ) {
 			$thingState = new \com\microsoft\wc\thing\ThingState ($thingState);
 		}
+
+		unset ($this->_overrides['thingState']);
 	
 		return $thingState;
 	}
 
-	public function getFlags() {
-		if ($this->flags===NULL) {
+	public function getFlags($autoCreate = TRUE) {
+		if ($this->flags===NULL && $autoCreate && ! isset($this->_overrides['flags']) ) {
 			$this->flags = $this->createFlags();
 		}
 		return $this->flags;
@@ -191,8 +219,8 @@ class Thing {
 		return $flags;
 	}
 
-	public function getEffDate() {
-		if ($this->effDate===NULL) {
+	public function getEffDate($autoCreate = TRUE) {
+		if ($this->effDate===NULL && $autoCreate && ! isset($this->_overrides['effDate']) ) {
 			$this->effDate = $this->createEffDate();
 		}
 		return $this->effDate;
@@ -214,8 +242,8 @@ class Thing {
 		return $effDate;
 	}
 
-	public function getCreated() {
-		if ($this->created===NULL) {
+	public function getCreated($autoCreate = TRUE) {
+		if ($this->created===NULL && $autoCreate && ! isset($this->_overrides['created']) ) {
 			$this->created = $this->createCreated();
 		}
 		return $this->created;
@@ -230,15 +258,22 @@ class Thing {
 	}
 
 	protected function validateCreated($created) {
+		if ( $created === FALSE ) {
+			$this->_overrides['created'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $created instanceof \com\microsoft\wc\thing\Audit  && ! is_null($created) ) {
 			$created = new \com\microsoft\wc\thing\Audit ($created);
 		}
+
+		unset ($this->_overrides['created']);
 	
 		return $created;
 	}
 
-	public function getUpdated() {
-		if ($this->updated===NULL) {
+	public function getUpdated($autoCreate = TRUE) {
+		if ($this->updated===NULL && $autoCreate && ! isset($this->_overrides['updated']) ) {
 			$this->updated = $this->createUpdated();
 		}
 		return $this->updated;
@@ -253,15 +288,22 @@ class Thing {
 	}
 
 	protected function validateUpdated($updated) {
+		if ( $updated === FALSE ) {
+			$this->_overrides['updated'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $updated instanceof \com\microsoft\wc\thing\Audit  && ! is_null($updated) ) {
 			$updated = new \com\microsoft\wc\thing\Audit ($updated);
 		}
+
+		unset ($this->_overrides['updated']);
 	
 		return $updated;
 	}
 
-	public function getDataXml() {
-		if ($this->dataXml===NULL) {
+	public function getDataXml($autoCreate = TRUE) {
+		if ($this->dataXml===NULL && $autoCreate && ! isset($this->_overrides['dataXml']) ) {
 			$this->dataXml = $this->createDataXml();
 		}
 		return $this->dataXml;
@@ -276,9 +318,16 @@ class Thing {
 	}
 
 	protected function validateDataXml($dataXml) {
+		if ( $dataXml === FALSE ) {
+			$this->_overrides['dataXml'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($dataXml) && ! is_null($dataXml) ) {
 			$dataXml = array($dataXml);
 		}
+
+		unset ($this->_overrides['dataXml']);
 		$count = count($dataXml);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'dataXml', 0));
@@ -296,8 +345,8 @@ class Thing {
 		$this->dataXml[] = $dataXml;
 	}
 
-	public function getDataOther() {
-		if ($this->dataOther===NULL) {
+	public function getDataOther($autoCreate = TRUE) {
+		if ($this->dataOther===NULL && $autoCreate && ! isset($this->_overrides['dataOther']) ) {
 			$this->dataOther = $this->createDataOther();
 		}
 		return $this->dataOther;
@@ -312,15 +361,22 @@ class Thing {
 	}
 
 	protected function validateDataOther($dataOther) {
+		if ( $dataOther === FALSE ) {
+			$this->_overrides['dataOther'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dataOther instanceof \com\microsoft\wc\thing\DataOther  && ! is_null($dataOther) ) {
 			$dataOther = new \com\microsoft\wc\thing\DataOther ($dataOther);
 		}
+
+		unset ($this->_overrides['dataOther']);
 	
 		return $dataOther;
 	}
 
-	public function getEffPermissions() {
-		if ($this->effPermissions===NULL) {
+	public function getEffPermissions($autoCreate = TRUE) {
+		if ($this->effPermissions===NULL && $autoCreate && ! isset($this->_overrides['effPermissions']) ) {
 			$this->effPermissions = $this->createEffPermissions();
 		}
 		return $this->effPermissions;
@@ -335,15 +391,22 @@ class Thing {
 	}
 
 	protected function validateEffPermissions($effPermissions) {
+		if ( $effPermissions === FALSE ) {
+			$this->_overrides['effPermissions'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $effPermissions instanceof \com\microsoft\wc\thing\EffectivePermissions  && ! is_null($effPermissions) ) {
 			$effPermissions = new \com\microsoft\wc\thing\EffectivePermissions ($effPermissions);
 		}
+
+		unset ($this->_overrides['effPermissions']);
 	
 		return $effPermissions;
 	}
 
-	public function getTags() {
-		if ($this->tags===NULL) {
+	public function getTags($autoCreate = TRUE) {
+		if ($this->tags===NULL && $autoCreate && ! isset($this->_overrides['tags']) ) {
 			$this->tags = $this->createTags();
 		}
 		return $this->tags;
@@ -358,15 +421,22 @@ class Thing {
 	}
 
 	protected function validateTags($tags) {
+		if ( $tags === FALSE ) {
+			$this->_overrides['tags'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $tags instanceof \com\microsoft\wc\types\String512  && ! is_null($tags) ) {
 			$tags = new \com\microsoft\wc\types\String512 ($tags);
 		}
+
+		unset ($this->_overrides['tags']);
 	
 		return $tags;
 	}
 
-	public function getSignature() {
-		if ($this->signature===NULL) {
+	public function getSignature($autoCreate = TRUE) {
+		if ($this->signature===NULL && $autoCreate && ! isset($this->_overrides['signature']) ) {
 			$this->signature = $this->createSignature();
 		}
 		return $this->signature;
@@ -381,9 +451,16 @@ class Thing {
 	}
 
 	protected function validateSignature($signature) {
+		if ( $signature === FALSE ) {
+			$this->_overrides['signature'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $signature instanceof \org\w3\www\_2000\_09\xmldsig\Signature  && ! is_null($signature) ) {
 			$signature = new \org\w3\www\_2000\_09\xmldsig\Signature ($signature);
 		}
+
+		unset ($this->_overrides['signature']);
 	
 		return $signature;
 	}

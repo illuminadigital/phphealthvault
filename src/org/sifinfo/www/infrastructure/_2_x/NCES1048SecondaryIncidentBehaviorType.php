@@ -15,6 +15,13 @@ class NCES1048SecondaryIncidentBehaviorType {
 	static protected $enumValue = array('3066' => 'Alcohol-related', '3067' => 'Drug-related', '3068' => 'Gang-related', '3069' => 'Hate-related', '3070' => 'Weapon-related', '04645' => 'Fighting');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES1048SecondaryIncidentBehaviorType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES1048SecondaryIncidentBehaviorType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

@@ -15,6 +15,13 @@ class NCES0806IndividualizedProgramTypeType {
 	static protected $enumValue = array('2196' => 'Individualized education program (IEP)', '2198' => 'Individualized family service plan (IFSP)', '2197' => 'Individualized learning program (ILP)', '9999' => 'Other');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0806IndividualizedProgramTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0806IndividualizedProgramTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

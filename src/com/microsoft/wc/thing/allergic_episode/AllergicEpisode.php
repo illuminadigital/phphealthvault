@@ -18,6 +18,13 @@ class AllergicEpisode extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Allergic Episode';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -44,8 +51,8 @@ class AllergicEpisode extends \com\microsoft\wc\thing\AnyMixed {
 		$this->treatment = ($treatment===NULL) ? NULL : $this->validateTreatment($treatment);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -67,8 +74,8 @@ class AllergicEpisode extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -90,8 +97,8 @@ class AllergicEpisode extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getReaction() {
-		if ($this->reaction===NULL) {
+	public function getReaction($autoCreate = TRUE) {
+		if ($this->reaction===NULL && $autoCreate && ! isset($this->_overrides['reaction']) ) {
 			$this->reaction = $this->createReaction();
 		}
 		return $this->reaction;
@@ -106,15 +113,22 @@ class AllergicEpisode extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateReaction($reaction) {
+		if ( $reaction === FALSE ) {
+			$this->_overrides['reaction'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $reaction instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($reaction) ) {
 			$reaction = new \com\microsoft\wc\types\CodableValue ($reaction);
 		}
+
+		unset ($this->_overrides['reaction']);
 	
 		return $reaction;
 	}
 
-	public function getTreatment() {
-		if ($this->treatment===NULL) {
+	public function getTreatment($autoCreate = TRUE) {
+		if ($this->treatment===NULL && $autoCreate && ! isset($this->_overrides['treatment']) ) {
 			$this->treatment = $this->createTreatment();
 		}
 		return $this->treatment;
@@ -129,9 +143,16 @@ class AllergicEpisode extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTreatment($treatment) {
+		if ( $treatment === FALSE ) {
+			$this->_overrides['treatment'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $treatment instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($treatment) ) {
 			$treatment = new \com\microsoft\wc\types\CodableValue ($treatment);
 		}
+
+		unset ($this->_overrides['treatment']);
 	
 		return $treatment;
 	}

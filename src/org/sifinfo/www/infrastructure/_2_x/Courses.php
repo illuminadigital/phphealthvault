@@ -14,6 +14,13 @@ class Courses {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Course", collection="true", name="Course")
 	 */
 	protected $course;
@@ -22,8 +29,8 @@ class Courses {
 		$this->course = ($course===NULL) ? NULL : $this->validateCourse($course);
 	}
 
-	public function getCourse() {
-		if ($this->course===NULL) {
+	public function getCourse($autoCreate = TRUE) {
+		if ($this->course===NULL && $autoCreate && ! isset($this->_overrides['course']) ) {
 			$this->course = $this->createCourse();
 		}
 		return $this->course;

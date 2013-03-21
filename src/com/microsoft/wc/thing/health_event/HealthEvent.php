@@ -19,6 +19,13 @@ class HealthEvent extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Health Event';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -39,8 +46,8 @@ class HealthEvent extends \com\microsoft\wc\thing\AnyMixed {
 		$this->category = ($category===NULL) ? NULL : $this->validateCategory($category);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -62,8 +69,8 @@ class HealthEvent extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getEvent() {
-		if ($this->event===NULL) {
+	public function getEvent($autoCreate = TRUE) {
+		if ($this->event===NULL && $autoCreate && ! isset($this->_overrides['event']) ) {
 			$this->event = $this->createEvent();
 		}
 		return $this->event;
@@ -85,8 +92,8 @@ class HealthEvent extends \com\microsoft\wc\thing\AnyMixed {
 		return $event;
 	}
 
-	public function getCategory() {
-		if ($this->category===NULL) {
+	public function getCategory($autoCreate = TRUE) {
+		if ($this->category===NULL && $autoCreate && ! isset($this->_overrides['category']) ) {
 			$this->category = $this->createCategory();
 		}
 		return $this->category;
@@ -101,9 +108,16 @@ class HealthEvent extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCategory($category) {
+		if ( $category === FALSE ) {
+			$this->_overrides['category'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $category instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($category) ) {
 			$category = new \com\microsoft\wc\types\CodableValue ($category);
 		}
+
+		unset ($this->_overrides['category']);
 	
 		return $category;
 	}

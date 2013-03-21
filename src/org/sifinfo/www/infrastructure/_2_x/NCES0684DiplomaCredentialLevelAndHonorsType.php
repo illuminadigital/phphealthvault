@@ -15,6 +15,13 @@ class NCES0684DiplomaCredentialLevelAndHonorsType {
 	static protected $enumValue = array('2004' => 'Class salutatorian', '2003' => 'Class valedictorian', '1995' => 'Cum laude', '2000' => 'Local scholar award', '2006' => 'Locally-sponsored scholarships', '1996' => 'Magna cum laude', '2002' => 'National scholar award', '2008' => 'Nationally-sponsored scholarships', '9999' => 'Other', '2009' => 'Other monetary award', '2005' => 'Prize awards (not limited to subject matter awards)', '2357' => 'Rank', '1999' => 'Scholar award with distinction', '1998' => 'Scholar award with honor', '2001' => 'State scholar award', '2007' => 'State-sponsored scholarships', '1997' => 'Summa cum laude');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0684DiplomaCredentialLevelAndHonorsType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0684DiplomaCredentialLevelAndHonorsType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

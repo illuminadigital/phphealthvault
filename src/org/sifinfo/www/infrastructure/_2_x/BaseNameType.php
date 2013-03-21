@@ -15,6 +15,13 @@ class BaseNameType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="Prefix")
 	 */
 	protected $prefix;
@@ -65,8 +72,8 @@ class BaseNameType {
 		$this->fullName = ($fullName===NULL) ? NULL : $this->validateFullName($fullName);
 	}
 
-	public function getPrefix() {
-		if ($this->prefix===NULL) {
+	public function getPrefix($autoCreate = TRUE) {
+		if ($this->prefix===NULL && $autoCreate && ! isset($this->_overrides['prefix']) ) {
 			$this->prefix = $this->createPrefix();
 		}
 		return $this->prefix;
@@ -88,8 +95,8 @@ class BaseNameType {
 		return $prefix;
 	}
 
-	public function getLastName() {
-		if ($this->lastName===NULL) {
+	public function getLastName($autoCreate = TRUE) {
+		if ($this->lastName===NULL && $autoCreate && ! isset($this->_overrides['lastName']) ) {
 			$this->lastName = $this->createLastName();
 		}
 		return $this->lastName;
@@ -111,8 +118,8 @@ class BaseNameType {
 		return $lastName;
 	}
 
-	public function getFirstName() {
-		if ($this->firstName===NULL) {
+	public function getFirstName($autoCreate = TRUE) {
+		if ($this->firstName===NULL && $autoCreate && ! isset($this->_overrides['firstName']) ) {
 			$this->firstName = $this->createFirstName();
 		}
 		return $this->firstName;
@@ -134,8 +141,8 @@ class BaseNameType {
 		return $firstName;
 	}
 
-	public function getMiddleName() {
-		if ($this->middleName===NULL) {
+	public function getMiddleName($autoCreate = TRUE) {
+		if ($this->middleName===NULL && $autoCreate && ! isset($this->_overrides['middleName']) ) {
 			$this->middleName = $this->createMiddleName();
 		}
 		return $this->middleName;
@@ -154,8 +161,8 @@ class BaseNameType {
 		return $middleName;
 	}
 
-	public function getSuffix() {
-		if ($this->suffix===NULL) {
+	public function getSuffix($autoCreate = TRUE) {
+		if ($this->suffix===NULL && $autoCreate && ! isset($this->_overrides['suffix']) ) {
 			$this->suffix = $this->createSuffix();
 		}
 		return $this->suffix;
@@ -177,8 +184,8 @@ class BaseNameType {
 		return $suffix;
 	}
 
-	public function getPreferredName() {
-		if ($this->preferredName===NULL) {
+	public function getPreferredName($autoCreate = TRUE) {
+		if ($this->preferredName===NULL && $autoCreate && ! isset($this->_overrides['preferredName']) ) {
 			$this->preferredName = $this->createPreferredName();
 		}
 		return $this->preferredName;
@@ -200,8 +207,8 @@ class BaseNameType {
 		return $preferredName;
 	}
 
-	public function getSortName() {
-		if ($this->sortName===NULL) {
+	public function getSortName($autoCreate = TRUE) {
+		if ($this->sortName===NULL && $autoCreate && ! isset($this->_overrides['sortName']) ) {
 			$this->sortName = $this->createSortName();
 		}
 		return $this->sortName;
@@ -223,8 +230,8 @@ class BaseNameType {
 		return $sortName;
 	}
 
-	public function getFullName() {
-		if ($this->fullName===NULL) {
+	public function getFullName($autoCreate = TRUE) {
+		if ($this->fullName===NULL && $autoCreate && ! isset($this->_overrides['fullName']) ) {
 			$this->fullName = $this->createFullName();
 		}
 		return $this->fullName;

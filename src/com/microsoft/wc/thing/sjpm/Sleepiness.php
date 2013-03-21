@@ -18,6 +18,13 @@ class Sleepiness extends \com\microsoft\wc\thing\AnyMixed {
 	const ID = '031F5706-7F1A-11DB-AD56-7BD355D89593';
 	const NAME = 'Sleep Related Activity';
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class Sleepiness

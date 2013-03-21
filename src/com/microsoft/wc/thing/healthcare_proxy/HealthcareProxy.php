@@ -19,6 +19,13 @@ class HealthcareProxy extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'HealthCare Proxy';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -57,8 +64,8 @@ class HealthcareProxy extends \com\microsoft\wc\thing\AnyMixed {
 		$this->content = ($content===NULL) ? NULL : $this->validateContent($content);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -80,8 +87,8 @@ class HealthcareProxy extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getProxy() {
-		if ($this->proxy===NULL) {
+	public function getProxy($autoCreate = TRUE) {
+		if ($this->proxy===NULL && $autoCreate && ! isset($this->_overrides['proxy']) ) {
 			$this->proxy = $this->createProxy();
 		}
 		return $this->proxy;
@@ -96,15 +103,22 @@ class HealthcareProxy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateProxy($proxy) {
+		if ( $proxy === FALSE ) {
+			$this->_overrides['proxy'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $proxy instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($proxy) ) {
 			$proxy = new \com\microsoft\wc\thing\types\Person ($proxy);
 		}
+
+		unset ($this->_overrides['proxy']);
 	
 		return $proxy;
 	}
 
-	public function getAlternate() {
-		if ($this->alternate===NULL) {
+	public function getAlternate($autoCreate = TRUE) {
+		if ($this->alternate===NULL && $autoCreate && ! isset($this->_overrides['alternate']) ) {
 			$this->alternate = $this->createAlternate();
 		}
 		return $this->alternate;
@@ -119,15 +133,22 @@ class HealthcareProxy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAlternate($alternate) {
+		if ( $alternate === FALSE ) {
+			$this->_overrides['alternate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $alternate instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($alternate) ) {
 			$alternate = new \com\microsoft\wc\thing\types\Person ($alternate);
 		}
+
+		unset ($this->_overrides['alternate']);
 	
 		return $alternate;
 	}
 
-	public function getPrimaryWitness() {
-		if ($this->primaryWitness===NULL) {
+	public function getPrimaryWitness($autoCreate = TRUE) {
+		if ($this->primaryWitness===NULL && $autoCreate && ! isset($this->_overrides['primaryWitness']) ) {
 			$this->primaryWitness = $this->createPrimaryWitness();
 		}
 		return $this->primaryWitness;
@@ -142,15 +163,22 @@ class HealthcareProxy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePrimaryWitness($primaryWitness) {
+		if ( $primaryWitness === FALSE ) {
+			$this->_overrides['primaryWitness'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $primaryWitness instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($primaryWitness) ) {
 			$primaryWitness = new \com\microsoft\wc\thing\types\Person ($primaryWitness);
 		}
+
+		unset ($this->_overrides['primaryWitness']);
 	
 		return $primaryWitness;
 	}
 
-	public function getSecondaryWitness() {
-		if ($this->secondaryWitness===NULL) {
+	public function getSecondaryWitness($autoCreate = TRUE) {
+		if ($this->secondaryWitness===NULL && $autoCreate && ! isset($this->_overrides['secondaryWitness']) ) {
 			$this->secondaryWitness = $this->createSecondaryWitness();
 		}
 		return $this->secondaryWitness;
@@ -165,15 +193,22 @@ class HealthcareProxy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSecondaryWitness($secondaryWitness) {
+		if ( $secondaryWitness === FALSE ) {
+			$this->_overrides['secondaryWitness'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $secondaryWitness instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($secondaryWitness) ) {
 			$secondaryWitness = new \com\microsoft\wc\thing\types\Person ($secondaryWitness);
 		}
+
+		unset ($this->_overrides['secondaryWitness']);
 	
 		return $secondaryWitness;
 	}
 
-	public function getContent() {
-		if ($this->content===NULL) {
+	public function getContent($autoCreate = TRUE) {
+		if ($this->content===NULL && $autoCreate && ! isset($this->_overrides['content']) ) {
 			$this->content = $this->createContent();
 		}
 		return $this->content;

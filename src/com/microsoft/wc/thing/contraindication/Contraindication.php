@@ -19,6 +19,13 @@ class Contraindication extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Contraindication';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="substance")
 	 */
 	protected $substance;
@@ -51,8 +58,8 @@ class Contraindication extends \com\microsoft\wc\thing\AnyMixed {
 		$this->documentedDate = ($documentedDate===NULL) ? NULL : $this->validateDocumentedDate($documentedDate);
 	}
 
-	public function getSubstance() {
-		if ($this->substance===NULL) {
+	public function getSubstance($autoCreate = TRUE) {
+		if ($this->substance===NULL && $autoCreate && ! isset($this->_overrides['substance']) ) {
 			$this->substance = $this->createSubstance();
 		}
 		return $this->substance;
@@ -74,8 +81,8 @@ class Contraindication extends \com\microsoft\wc\thing\AnyMixed {
 		return $substance;
 	}
 
-	public function getStatus() {
-		if ($this->status===NULL) {
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
 			$this->status = $this->createStatus();
 		}
 		return $this->status;
@@ -97,8 +104,8 @@ class Contraindication extends \com\microsoft\wc\thing\AnyMixed {
 		return $status;
 	}
 
-	public function getSource() {
-		if ($this->source===NULL) {
+	public function getSource($autoCreate = TRUE) {
+		if ($this->source===NULL && $autoCreate && ! isset($this->_overrides['source']) ) {
 			$this->source = $this->createSource();
 		}
 		return $this->source;
@@ -113,15 +120,22 @@ class Contraindication extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSource($source) {
+		if ( $source === FALSE ) {
+			$this->_overrides['source'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $source instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($source) ) {
 			$source = new \com\microsoft\wc\types\CodableValue ($source);
 		}
+
+		unset ($this->_overrides['source']);
 	
 		return $source;
 	}
 
-	public function getDocumenter() {
-		if ($this->documenter===NULL) {
+	public function getDocumenter($autoCreate = TRUE) {
+		if ($this->documenter===NULL && $autoCreate && ! isset($this->_overrides['documenter']) ) {
 			$this->documenter = $this->createDocumenter();
 		}
 		return $this->documenter;
@@ -136,15 +150,22 @@ class Contraindication extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDocumenter($documenter) {
+		if ( $documenter === FALSE ) {
+			$this->_overrides['documenter'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $documenter instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($documenter) ) {
 			$documenter = new \com\microsoft\wc\thing\types\Person ($documenter);
 		}
+
+		unset ($this->_overrides['documenter']);
 	
 		return $documenter;
 	}
 
-	public function getDocumentedDate() {
-		if ($this->documentedDate===NULL) {
+	public function getDocumentedDate($autoCreate = TRUE) {
+		if ($this->documentedDate===NULL && $autoCreate && ! isset($this->_overrides['documentedDate']) ) {
 			$this->documentedDate = $this->createDocumentedDate();
 		}
 		return $this->documentedDate;
@@ -159,9 +180,16 @@ class Contraindication extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDocumentedDate($documentedDate) {
+		if ( $documentedDate === FALSE ) {
+			$this->_overrides['documentedDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $documentedDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($documentedDate) ) {
 			$documentedDate = new \com\microsoft\wc\dates\ApproxDateTime ($documentedDate);
 		}
+
+		unset ($this->_overrides['documentedDate']);
 	
 		return $documentedDate;
 	}

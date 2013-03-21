@@ -15,6 +15,13 @@ class UnitOfMeasurePrefixSens {
 	static protected $enumValue = array('a' => 'a', 'c' => 'c', 'd' => 'd', 'da' => 'da', 'E' => 'E', 'f' => 'f', 'Gi' => 'Gi', 'G' => 'G', 'h' => 'h', 'Ki' => 'Ki', 'k' => 'k', 'Mi' => 'Mi', 'M' => 'M', 'u' => 'u', 'm' => 'm', 'n' => 'n', 'P' => 'P', 'p' => 'p', 'Ti' => 'Ti', 'T' => 'T', 'y' => 'y', 'Y' => 'Y', 'z' => 'z', 'Z' => 'Z');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\hl7_org\v3\Cs", name="value")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class UnitOfMeasurePrefixSens {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

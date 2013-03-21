@@ -16,6 +16,13 @@ class VocabularyCodeItem {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="code-value")
 	 */
 	protected $codeValue;
@@ -42,8 +49,8 @@ class VocabularyCodeItem {
 		$this->infoXml = ($infoXml===NULL) ? NULL : $this->validateInfoXml($infoXml);
 	}
 
-	public function getCodeValue() {
-		if ($this->codeValue===NULL) {
+	public function getCodeValue($autoCreate = TRUE) {
+		if ($this->codeValue===NULL && $autoCreate && ! isset($this->_overrides['codeValue']) ) {
 			$this->codeValue = $this->createCodeValue();
 		}
 		return $this->codeValue;
@@ -65,8 +72,8 @@ class VocabularyCodeItem {
 		return $codeValue;
 	}
 
-	public function getDisplayText() {
-		if ($this->displayText===NULL) {
+	public function getDisplayText($autoCreate = TRUE) {
+		if ($this->displayText===NULL && $autoCreate && ! isset($this->_overrides['displayText']) ) {
 			$this->displayText = $this->createDisplayText();
 		}
 		return $this->displayText;
@@ -88,8 +95,8 @@ class VocabularyCodeItem {
 		return $displayText;
 	}
 
-	public function getAbbreviationText() {
-		if ($this->abbreviationText===NULL) {
+	public function getAbbreviationText($autoCreate = TRUE) {
+		if ($this->abbreviationText===NULL && $autoCreate && ! isset($this->_overrides['abbreviationText']) ) {
 			$this->abbreviationText = $this->createAbbreviationText();
 		}
 		return $this->abbreviationText;
@@ -111,8 +118,8 @@ class VocabularyCodeItem {
 		return $abbreviationText;
 	}
 
-	public function getInfoXml() {
-		if ($this->infoXml===NULL) {
+	public function getInfoXml($autoCreate = TRUE) {
+		if ($this->infoXml===NULL && $autoCreate && ! isset($this->_overrides['infoXml']) ) {
 			$this->infoXml = $this->createInfoXml();
 		}
 		return $this->infoXml;
@@ -127,9 +134,16 @@ class VocabularyCodeItem {
 	}
 
 	protected function validateInfoXml($infoXml) {
+		if ( $infoXml === FALSE ) {
+			$this->_overrides['infoXml'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $infoXml instanceof \com\microsoft\wc\vocab\InfoXml  && ! is_null($infoXml) ) {
 			$infoXml = new \com\microsoft\wc\vocab\InfoXml ($infoXml);
 		}
+
+		unset ($this->_overrides['infoXml']);
 	
 		return $infoXml;
 	}

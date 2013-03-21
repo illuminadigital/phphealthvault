@@ -15,6 +15,13 @@ class ED extends \org\w3\www\_2001\XMLSchema\BIN {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TEL", name="reference")
 	 */
 	protected $reference;
@@ -59,8 +66,8 @@ class ED extends \org\w3\www\_2001\XMLSchema\BIN {
 		$this->integrityCheckAlgorithm = ($integrityCheckAlgorithm===NULL) ? NULL : $this->validateIntegrityCheckAlgorithm($integrityCheckAlgorithm);
 	}
 
-	public function getReference() {
-		if ($this->reference===NULL) {
+	public function getReference($autoCreate = TRUE) {
+		if ($this->reference===NULL && $autoCreate && ! isset($this->_overrides['reference']) ) {
 			$this->reference = $this->createReference();
 		}
 		return $this->reference;
@@ -79,8 +86,8 @@ class ED extends \org\w3\www\_2001\XMLSchema\BIN {
 		return $reference;
 	}
 
-	public function getThumbnail() {
-		if ($this->thumbnail===NULL) {
+	public function getThumbnail($autoCreate = TRUE) {
+		if ($this->thumbnail===NULL && $autoCreate && ! isset($this->_overrides['thumbnail']) ) {
 			$this->thumbnail = $this->createThumbnail();
 		}
 		return $this->thumbnail;
@@ -99,8 +106,8 @@ class ED extends \org\w3\www\_2001\XMLSchema\BIN {
 		return $thumbnail;
 	}
 
-	public function getMediaType() {
-		if ($this->mediaType===NULL) {
+	public function getMediaType($autoCreate = TRUE) {
+		if ($this->mediaType===NULL && $autoCreate && ! isset($this->_overrides['mediaType']) ) {
 			$this->mediaType = $this->createMediaType();
 		}
 		return $this->mediaType;
@@ -119,8 +126,8 @@ class ED extends \org\w3\www\_2001\XMLSchema\BIN {
 		return $mediaType;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -139,8 +146,8 @@ class ED extends \org\w3\www\_2001\XMLSchema\BIN {
 		return $language;
 	}
 
-	public function getCompression() {
-		if ($this->compression===NULL) {
+	public function getCompression($autoCreate = TRUE) {
+		if ($this->compression===NULL && $autoCreate && ! isset($this->_overrides['compression']) ) {
 			$this->compression = $this->createCompression();
 		}
 		return $this->compression;
@@ -159,8 +166,8 @@ class ED extends \org\w3\www\_2001\XMLSchema\BIN {
 		return $compression;
 	}
 
-	public function getIntegrityCheck() {
-		if ($this->integrityCheck===NULL) {
+	public function getIntegrityCheck($autoCreate = TRUE) {
+		if ($this->integrityCheck===NULL && $autoCreate && ! isset($this->_overrides['integrityCheck']) ) {
 			$this->integrityCheck = $this->createIntegrityCheck();
 		}
 		return $this->integrityCheck;
@@ -179,8 +186,8 @@ class ED extends \org\w3\www\_2001\XMLSchema\BIN {
 		return $integrityCheck;
 	}
 
-	public function getIntegrityCheckAlgorithm() {
-		if ($this->integrityCheckAlgorithm===NULL) {
+	public function getIntegrityCheckAlgorithm($autoCreate = TRUE) {
+		if ($this->integrityCheckAlgorithm===NULL && $autoCreate && ! isset($this->_overrides['integrityCheckAlgorithm']) ) {
 			$this->integrityCheckAlgorithm = $this->createIntegrityCheckAlgorithm();
 		}
 		return $this->integrityCheckAlgorithm;

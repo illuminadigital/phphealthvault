@@ -15,6 +15,13 @@ class TestResultRange {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="type")
 	 */
 	protected $type;
@@ -35,8 +42,8 @@ class TestResultRange {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -58,8 +65,8 @@ class TestResultRange {
 		return $type;
 	}
 
-	public function getText() {
-		if ($this->text===NULL) {
+	public function getText($autoCreate = TRUE) {
+		if ($this->text===NULL && $autoCreate && ! isset($this->_overrides['text']) ) {
 			$this->text = $this->createText();
 		}
 		return $this->text;
@@ -81,8 +88,8 @@ class TestResultRange {
 		return $text;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -97,9 +104,16 @@ class TestResultRange {
 	}
 
 	protected function validateValue($value) {
+		if ( $value === FALSE ) {
+			$this->_overrides['value'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $value instanceof \com\microsoft\wc\thing\lab_test_results\TestResultRangeValue  && ! is_null($value) ) {
 			$value = new \com\microsoft\wc\thing\lab_test_results\TestResultRangeValue ($value);
 		}
+
+		unset ($this->_overrides['value']);
 	
 		return $value;
 	}

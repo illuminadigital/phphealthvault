@@ -14,6 +14,13 @@ class DrugInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\vocab\MedicationStrength", collection="true", name="strength")
 	 */
 	protected $strength;
@@ -28,8 +35,8 @@ class DrugInfo {
 		$this->routes = ($routes===NULL) ? NULL : $this->validateRoutes($routes);
 	}
 
-	public function getStrength() {
-		if ($this->strength===NULL) {
+	public function getStrength($autoCreate = TRUE) {
+		if ($this->strength===NULL && $autoCreate && ! isset($this->_overrides['strength']) ) {
 			$this->strength = $this->createStrength();
 		}
 		return $this->strength;
@@ -44,9 +51,16 @@ class DrugInfo {
 	}
 
 	protected function validateStrength($strength) {
+		if ( $strength === FALSE ) {
+			$this->_overrides['strength'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($strength) && ! is_null($strength) ) {
 			$strength = array($strength);
 		}
+
+		unset ($this->_overrides['strength']);
 		$count = count($strength);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'strength', 0));
@@ -64,8 +78,8 @@ class DrugInfo {
 		$this->strength[] = $strength;
 	}
 
-	public function getRoutes() {
-		if ($this->routes===NULL) {
+	public function getRoutes($autoCreate = TRUE) {
+		if ($this->routes===NULL && $autoCreate && ! isset($this->_overrides['routes']) ) {
 			$this->routes = $this->createRoutes();
 		}
 		return $this->routes;
@@ -80,9 +94,16 @@ class DrugInfo {
 	}
 
 	protected function validateRoutes($routes) {
+		if ( $routes === FALSE ) {
+			$this->_overrides['routes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $routes instanceof \com\microsoft\wc\vocab\MedicationRoutes  && ! is_null($routes) ) {
 			$routes = new \com\microsoft\wc\vocab\MedicationRoutes ($routes);
 		}
+
+		unset ($this->_overrides['routes']);
 	
 		return $routes;
 	}

@@ -15,6 +15,13 @@ class AbstractContentPackageType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\XMLData", name="XMLData")
 	 */
 	protected $xMLData;
@@ -47,8 +54,8 @@ class AbstractContentPackageType {
 		$this->refId = ($refId===NULL) ? NULL : $this->validateRefId($refId);
 	}
 
-	public function getXMLData() {
-		if ($this->xMLData===NULL) {
+	public function getXMLData($autoCreate = TRUE) {
+		if ($this->xMLData===NULL && $autoCreate && ! isset($this->_overrides['xMLData']) ) {
 			$this->xMLData = $this->createXMLData();
 		}
 		return $this->xMLData;
@@ -70,8 +77,8 @@ class AbstractContentPackageType {
 		return $xMLData;
 	}
 
-	public function getTextData() {
-		if ($this->textData===NULL) {
+	public function getTextData($autoCreate = TRUE) {
+		if ($this->textData===NULL && $autoCreate && ! isset($this->_overrides['textData']) ) {
 			$this->textData = $this->createTextData();
 		}
 		return $this->textData;
@@ -93,8 +100,8 @@ class AbstractContentPackageType {
 		return $textData;
 	}
 
-	public function getBinaryData() {
-		if ($this->binaryData===NULL) {
+	public function getBinaryData($autoCreate = TRUE) {
+		if ($this->binaryData===NULL && $autoCreate && ! isset($this->_overrides['binaryData']) ) {
 			$this->binaryData = $this->createBinaryData();
 		}
 		return $this->binaryData;
@@ -116,8 +123,8 @@ class AbstractContentPackageType {
 		return $binaryData;
 	}
 
-	public function getReference() {
-		if ($this->reference===NULL) {
+	public function getReference($autoCreate = TRUE) {
+		if ($this->reference===NULL && $autoCreate && ! isset($this->_overrides['reference']) ) {
 			$this->reference = $this->createReference();
 		}
 		return $this->reference;
@@ -139,8 +146,8 @@ class AbstractContentPackageType {
 		return $reference;
 	}
 
-	public function getRefId() {
-		if ($this->refId===NULL) {
+	public function getRefId($autoCreate = TRUE) {
+		if ($this->refId===NULL && $autoCreate && ! isset($this->_overrides['refId']) ) {
 			$this->refId = $this->createRefId();
 		}
 		return $this->refId;

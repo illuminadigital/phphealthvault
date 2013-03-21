@@ -14,6 +14,13 @@ class ResourceTypes {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ResourceType", collection="true", name="ResourceType")
 	 */
 	protected $resourceType;
@@ -22,8 +29,8 @@ class ResourceTypes {
 		$this->resourceType = ($resourceType===NULL) ? NULL : $this->validateResourceType($resourceType);
 	}
 
-	public function getResourceType() {
-		if ($this->resourceType===NULL) {
+	public function getResourceType($autoCreate = TRUE) {
+		if ($this->resourceType===NULL && $autoCreate && ! isset($this->_overrides['resourceType']) ) {
 			$this->resourceType = $this->createResourceType();
 		}
 		return $this->resourceType;

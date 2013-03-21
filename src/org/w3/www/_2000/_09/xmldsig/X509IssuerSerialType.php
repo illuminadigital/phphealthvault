@@ -14,6 +14,13 @@ class X509IssuerSerialType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="X509IssuerName")
 	 */
 	protected $x509IssuerName;
@@ -28,8 +35,8 @@ class X509IssuerSerialType {
 		$this->x509SerialNumber = ($x509SerialNumber===NULL) ? NULL : $this->validateX509SerialNumber($x509SerialNumber);
 	}
 
-	public function getX509IssuerName() {
-		if ($this->x509IssuerName===NULL) {
+	public function getX509IssuerName($autoCreate = TRUE) {
+		if ($this->x509IssuerName===NULL && $autoCreate && ! isset($this->_overrides['x509IssuerName']) ) {
 			$this->x509IssuerName = $this->createX509IssuerName();
 		}
 		return $this->x509IssuerName;
@@ -51,8 +58,8 @@ class X509IssuerSerialType {
 		return $x509IssuerName;
 	}
 
-	public function getX509SerialNumber() {
-		if ($this->x509SerialNumber===NULL) {
+	public function getX509SerialNumber($autoCreate = TRUE) {
+		if ($this->x509SerialNumber===NULL && $autoCreate && ! isset($this->_overrides['x509SerialNumber']) ) {
 			$this->x509SerialNumber = $this->createX509SerialNumber();
 		}
 		return $this->x509SerialNumber;

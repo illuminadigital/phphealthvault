@@ -14,6 +14,13 @@ class Race {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Code", name="Code")
 	 */
 	protected $code;
@@ -34,8 +41,8 @@ class Race {
 		$this->proportion = ($proportion===NULL) ? NULL : $this->validateProportion($proportion);
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -57,8 +64,8 @@ class Race {
 		return $code;
 	}
 
-	public function getOtherCodeList() {
-		if ($this->otherCodeList===NULL) {
+	public function getOtherCodeList($autoCreate = TRUE) {
+		if ($this->otherCodeList===NULL && $autoCreate && ! isset($this->_overrides['otherCodeList']) ) {
 			$this->otherCodeList = $this->createOtherCodeList();
 		}
 		return $this->otherCodeList;
@@ -73,15 +80,22 @@ class Race {
 	}
 
 	protected function validateOtherCodeList($otherCodeList) {
+		if ( $otherCodeList === FALSE ) {
+			$this->_overrides['otherCodeList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $otherCodeList instanceof \org\sifinfo\www\infrastructure\_2_x\OtherCodeListType  && ! is_null($otherCodeList) ) {
 			$otherCodeList = new \org\sifinfo\www\infrastructure\_2_x\OtherCodeListType ($otherCodeList);
 		}
+
+		unset ($this->_overrides['otherCodeList']);
 	
 		return $otherCodeList;
 	}
 
-	public function getProportion() {
-		if ($this->proportion===NULL) {
+	public function getProportion($autoCreate = TRUE) {
+		if ($this->proportion===NULL && $autoCreate && ! isset($this->_overrides['proportion']) ) {
 			$this->proportion = $this->createProportion();
 		}
 		return $this->proportion;

@@ -14,6 +14,13 @@ class ActivityAward {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="Name")
 	 */
 	protected $name;
@@ -76,8 +83,8 @@ class ActivityAward {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -99,8 +106,8 @@ class ActivityAward {
 		return $name;
 	}
 
-	public function getInvolvementCode() {
-		if ($this->involvementCode===NULL) {
+	public function getInvolvementCode($autoCreate = TRUE) {
+		if ($this->involvementCode===NULL && $autoCreate && ! isset($this->_overrides['involvementCode']) ) {
 			$this->involvementCode = $this->createInvolvementCode();
 		}
 		return $this->involvementCode;
@@ -119,8 +126,8 @@ class ActivityAward {
 		return $involvementCode;
 	}
 
-	public function getInvolvementBeginningDate() {
-		if ($this->involvementBeginningDate===NULL) {
+	public function getInvolvementBeginningDate($autoCreate = TRUE) {
+		if ($this->involvementBeginningDate===NULL && $autoCreate && ! isset($this->_overrides['involvementBeginningDate']) ) {
 			$this->involvementBeginningDate = $this->createInvolvementBeginningDate();
 		}
 		return $this->involvementBeginningDate;
@@ -139,8 +146,8 @@ class ActivityAward {
 		return $involvementBeginningDate;
 	}
 
-	public function getInvolvementEndingDate() {
-		if ($this->involvementEndingDate===NULL) {
+	public function getInvolvementEndingDate($autoCreate = TRUE) {
+		if ($this->involvementEndingDate===NULL && $autoCreate && ! isset($this->_overrides['involvementEndingDate']) ) {
 			$this->involvementEndingDate = $this->createInvolvementEndingDate();
 		}
 		return $this->involvementEndingDate;
@@ -159,8 +166,8 @@ class ActivityAward {
 		return $involvementEndingDate;
 	}
 
-	public function getInvolvementAmount() {
-		if ($this->involvementAmount===NULL) {
+	public function getInvolvementAmount($autoCreate = TRUE) {
+		if ($this->involvementAmount===NULL && $autoCreate && ! isset($this->_overrides['involvementAmount']) ) {
 			$this->involvementAmount = $this->createInvolvementAmount();
 		}
 		return $this->involvementAmount;
@@ -182,8 +189,8 @@ class ActivityAward {
 		return $involvementAmount;
 	}
 
-	public function getHonorsInformationCode() {
-		if ($this->honorsInformationCode===NULL) {
+	public function getHonorsInformationCode($autoCreate = TRUE) {
+		if ($this->honorsInformationCode===NULL && $autoCreate && ! isset($this->_overrides['honorsInformationCode']) ) {
 			$this->honorsInformationCode = $this->createHonorsInformationCode();
 		}
 		return $this->honorsInformationCode;
@@ -202,8 +209,8 @@ class ActivityAward {
 		return $honorsInformationCode;
 	}
 
-	public function getHonorsDescription() {
-		if ($this->honorsDescription===NULL) {
+	public function getHonorsDescription($autoCreate = TRUE) {
+		if ($this->honorsDescription===NULL && $autoCreate && ! isset($this->_overrides['honorsDescription']) ) {
 			$this->honorsDescription = $this->createHonorsDescription();
 		}
 		return $this->honorsDescription;
@@ -225,8 +232,8 @@ class ActivityAward {
 		return $honorsDescription;
 	}
 
-	public function getDiplomaCredentialHonorsCode() {
-		if ($this->diplomaCredentialHonorsCode===NULL) {
+	public function getDiplomaCredentialHonorsCode($autoCreate = TRUE) {
+		if ($this->diplomaCredentialHonorsCode===NULL && $autoCreate && ! isset($this->_overrides['diplomaCredentialHonorsCode']) ) {
 			$this->diplomaCredentialHonorsCode = $this->createDiplomaCredentialHonorsCode();
 		}
 		return $this->diplomaCredentialHonorsCode;
@@ -245,8 +252,8 @@ class ActivityAward {
 		return $diplomaCredentialHonorsCode;
 	}
 
-	public function getDiplomaCredentialHonorsDescription() {
-		if ($this->diplomaCredentialHonorsDescription===NULL) {
+	public function getDiplomaCredentialHonorsDescription($autoCreate = TRUE) {
+		if ($this->diplomaCredentialHonorsDescription===NULL && $autoCreate && ! isset($this->_overrides['diplomaCredentialHonorsDescription']) ) {
 			$this->diplomaCredentialHonorsDescription = $this->createDiplomaCredentialHonorsDescription();
 		}
 		return $this->diplomaCredentialHonorsDescription;
@@ -268,8 +275,8 @@ class ActivityAward {
 		return $diplomaCredentialHonorsDescription;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -284,9 +291,16 @@ class ActivityAward {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

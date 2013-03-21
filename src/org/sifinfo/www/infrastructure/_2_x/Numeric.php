@@ -14,6 +14,13 @@ class Numeric {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="integer", name="Precision")
 	 */
 	protected $precision;
@@ -40,8 +47,8 @@ class Numeric {
 		$this->high = ($high===NULL) ? NULL : $this->validateHigh($high);
 	}
 
-	public function getPrecision() {
-		if ($this->precision===NULL) {
+	public function getPrecision($autoCreate = TRUE) {
+		if ($this->precision===NULL && $autoCreate && ! isset($this->_overrides['precision']) ) {
 			$this->precision = $this->createPrecision();
 		}
 		return $this->precision;
@@ -74,8 +81,8 @@ class Numeric {
 		return $precision;
 	}
 
-	public function getScale() {
-		if ($this->scale===NULL) {
+	public function getScale($autoCreate = TRUE) {
+		if ($this->scale===NULL && $autoCreate && ! isset($this->_overrides['scale']) ) {
 			$this->scale = $this->createScale();
 		}
 		return $this->scale;
@@ -108,8 +115,8 @@ class Numeric {
 		return $scale;
 	}
 
-	public function getLow() {
-		if ($this->low===NULL) {
+	public function getLow($autoCreate = TRUE) {
+		if ($this->low===NULL && $autoCreate && ! isset($this->_overrides['low']) ) {
 			$this->low = $this->createLow();
 		}
 		return $this->low;
@@ -142,8 +149,8 @@ class Numeric {
 		return $low;
 	}
 
-	public function getHigh() {
-		if ($this->high===NULL) {
+	public function getHigh($autoCreate = TRUE) {
+		if ($this->high===NULL && $autoCreate && ! isset($this->_overrides['high']) ) {
 			$this->high = $this->createHigh();
 		}
 		return $this->high;

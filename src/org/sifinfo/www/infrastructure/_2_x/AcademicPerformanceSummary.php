@@ -14,6 +14,13 @@ class AcademicPerformanceSummary {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="float", name="TotalCreditsAttempted")
 	 */
 	protected $totalCreditsAttempted;
@@ -112,8 +119,8 @@ class AcademicPerformanceSummary {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getTotalCreditsAttempted() {
-		if ($this->totalCreditsAttempted===NULL) {
+	public function getTotalCreditsAttempted($autoCreate = TRUE) {
+		if ($this->totalCreditsAttempted===NULL && $autoCreate && ! isset($this->_overrides['totalCreditsAttempted']) ) {
 			$this->totalCreditsAttempted = $this->createTotalCreditsAttempted();
 		}
 		return $this->totalCreditsAttempted;
@@ -146,8 +153,8 @@ class AcademicPerformanceSummary {
 		return $totalCreditsAttempted;
 	}
 
-	public function getTotalCreditsEarned() {
-		if ($this->totalCreditsEarned===NULL) {
+	public function getTotalCreditsEarned($autoCreate = TRUE) {
+		if ($this->totalCreditsEarned===NULL && $autoCreate && ! isset($this->_overrides['totalCreditsEarned']) ) {
 			$this->totalCreditsEarned = $this->createTotalCreditsEarned();
 		}
 		return $this->totalCreditsEarned;
@@ -180,8 +187,8 @@ class AcademicPerformanceSummary {
 		return $totalCreditsEarned;
 	}
 
-	public function getCumulativeGPACreditsEarned() {
-		if ($this->cumulativeGPACreditsEarned===NULL) {
+	public function getCumulativeGPACreditsEarned($autoCreate = TRUE) {
+		if ($this->cumulativeGPACreditsEarned===NULL && $autoCreate && ! isset($this->_overrides['cumulativeGPACreditsEarned']) ) {
 			$this->cumulativeGPACreditsEarned = $this->createCumulativeGPACreditsEarned();
 		}
 		return $this->cumulativeGPACreditsEarned;
@@ -214,8 +221,8 @@ class AcademicPerformanceSummary {
 		return $cumulativeGPACreditsEarned;
 	}
 
-	public function getCumulativeGradePoints() {
-		if ($this->cumulativeGradePoints===NULL) {
+	public function getCumulativeGradePoints($autoCreate = TRUE) {
+		if ($this->cumulativeGradePoints===NULL && $autoCreate && ! isset($this->_overrides['cumulativeGradePoints']) ) {
 			$this->cumulativeGradePoints = $this->createCumulativeGradePoints();
 		}
 		return $this->cumulativeGradePoints;
@@ -248,8 +255,8 @@ class AcademicPerformanceSummary {
 		return $cumulativeGradePoints;
 	}
 
-	public function getCumulativeGPA() {
-		if ($this->cumulativeGPA===NULL) {
+	public function getCumulativeGPA($autoCreate = TRUE) {
+		if ($this->cumulativeGPA===NULL && $autoCreate && ! isset($this->_overrides['cumulativeGPA']) ) {
 			$this->cumulativeGPA = $this->createCumulativeGPA();
 		}
 		return $this->cumulativeGPA;
@@ -282,8 +289,8 @@ class AcademicPerformanceSummary {
 		return $cumulativeGPA;
 	}
 
-	public function getGPAType() {
-		if ($this->gPAType===NULL) {
+	public function getGPAType($autoCreate = TRUE) {
+		if ($this->gPAType===NULL && $autoCreate && ! isset($this->_overrides['gPAType']) ) {
 			$this->gPAType = $this->createGPAType();
 		}
 		return $this->gPAType;
@@ -305,8 +312,8 @@ class AcademicPerformanceSummary {
 		return $gPAType;
 	}
 
-	public function getClassRank() {
-		if ($this->classRank===NULL) {
+	public function getClassRank($autoCreate = TRUE) {
+		if ($this->classRank===NULL && $autoCreate && ! isset($this->_overrides['classRank']) ) {
 			$this->classRank = $this->createClassRank();
 		}
 		return $this->classRank;
@@ -339,8 +346,8 @@ class AcademicPerformanceSummary {
 		return $classRank;
 	}
 
-	public function getClassTotalNumber() {
-		if ($this->classTotalNumber===NULL) {
+	public function getClassTotalNumber($autoCreate = TRUE) {
+		if ($this->classTotalNumber===NULL && $autoCreate && ! isset($this->_overrides['classTotalNumber']) ) {
 			$this->classTotalNumber = $this->createClassTotalNumber();
 		}
 		return $this->classTotalNumber;
@@ -373,8 +380,8 @@ class AcademicPerformanceSummary {
 		return $classTotalNumber;
 	}
 
-	public function getClassRankingDate() {
-		if ($this->classRankingDate===NULL) {
+	public function getClassRankingDate($autoCreate = TRUE) {
+		if ($this->classRankingDate===NULL && $autoCreate && ! isset($this->_overrides['classRankingDate']) ) {
 			$this->classRankingDate = $this->createClassRankingDate();
 		}
 		return $this->classRankingDate;
@@ -393,8 +400,8 @@ class AcademicPerformanceSummary {
 		return $classRankingDate;
 	}
 
-	public function getProjectedGraduationDate() {
-		if ($this->projectedGraduationDate===NULL) {
+	public function getProjectedGraduationDate($autoCreate = TRUE) {
+		if ($this->projectedGraduationDate===NULL && $autoCreate && ! isset($this->_overrides['projectedGraduationDate']) ) {
 			$this->projectedGraduationDate = $this->createProjectedGraduationDate();
 		}
 		return $this->projectedGraduationDate;
@@ -413,8 +420,8 @@ class AcademicPerformanceSummary {
 		return $projectedGraduationDate;
 	}
 
-	public function getGraduationDate() {
-		if ($this->graduationDate===NULL) {
+	public function getGraduationDate($autoCreate = TRUE) {
+		if ($this->graduationDate===NULL && $autoCreate && ! isset($this->_overrides['graduationDate']) ) {
 			$this->graduationDate = $this->createGraduationDate();
 		}
 		return $this->graduationDate;
@@ -433,8 +440,8 @@ class AcademicPerformanceSummary {
 		return $graduationDate;
 	}
 
-	public function getGraduationDiplomaType() {
-		if ($this->graduationDiplomaType===NULL) {
+	public function getGraduationDiplomaType($autoCreate = TRUE) {
+		if ($this->graduationDiplomaType===NULL && $autoCreate && ! isset($this->_overrides['graduationDiplomaType']) ) {
 			$this->graduationDiplomaType = $this->createGraduationDiplomaType();
 		}
 		return $this->graduationDiplomaType;
@@ -456,8 +463,8 @@ class AcademicPerformanceSummary {
 		return $graduationDiplomaType;
 	}
 
-	public function getAcademicTrack() {
-		if ($this->academicTrack===NULL) {
+	public function getAcademicTrack($autoCreate = TRUE) {
+		if ($this->academicTrack===NULL && $autoCreate && ! isset($this->_overrides['academicTrack']) ) {
 			$this->academicTrack = $this->createAcademicTrack();
 		}
 		return $this->academicTrack;
@@ -476,8 +483,8 @@ class AcademicPerformanceSummary {
 		return $academicTrack;
 	}
 
-	public function getAcademicFoci() {
-		if ($this->academicFoci===NULL) {
+	public function getAcademicFoci($autoCreate = TRUE) {
+		if ($this->academicFoci===NULL && $autoCreate && ! isset($this->_overrides['academicFoci']) ) {
 			$this->academicFoci = $this->createAcademicFoci();
 		}
 		return $this->academicFoci;
@@ -492,15 +499,22 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateAcademicFoci($academicFoci) {
+		if ( $academicFoci === FALSE ) {
+			$this->_overrides['academicFoci'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $academicFoci instanceof \org\sifinfo\www\infrastructure\_2_x\AcademicFoci  && ! is_null($academicFoci) ) {
 			$academicFoci = new \org\sifinfo\www\infrastructure\_2_x\AcademicFoci ($academicFoci);
 		}
+
+		unset ($this->_overrides['academicFoci']);
 	
 		return $academicFoci;
 	}
 
-	public function getAcademicSubjects() {
-		if ($this->academicSubjects===NULL) {
+	public function getAcademicSubjects($autoCreate = TRUE) {
+		if ($this->academicSubjects===NULL && $autoCreate && ! isset($this->_overrides['academicSubjects']) ) {
 			$this->academicSubjects = $this->createAcademicSubjects();
 		}
 		return $this->academicSubjects;
@@ -515,15 +529,22 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateAcademicSubjects($academicSubjects) {
+		if ( $academicSubjects === FALSE ) {
+			$this->_overrides['academicSubjects'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $academicSubjects instanceof \org\sifinfo\www\infrastructure\_2_x\AcademicSubjects  && ! is_null($academicSubjects) ) {
 			$academicSubjects = new \org\sifinfo\www\infrastructure\_2_x\AcademicSubjects ($academicSubjects);
 		}
+
+		unset ($this->_overrides['academicSubjects']);
 	
 		return $academicSubjects;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -538,9 +559,16 @@ class AcademicPerformanceSummary {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

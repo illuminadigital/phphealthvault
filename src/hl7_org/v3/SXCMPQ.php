@@ -14,6 +14,13 @@ class SXCMPQ extends \org\w3\www\_2001\XMLSchema\PQ {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="operator")
 	 */
 	protected $operator;
@@ -22,8 +29,8 @@ class SXCMPQ extends \org\w3\www\_2001\XMLSchema\PQ {
 		$this->operator = ($operator===NULL) ? NULL : $this->validateOperator($operator);
 	}
 
-	public function getOperator() {
-		if ($this->operator===NULL) {
+	public function getOperator($autoCreate = TRUE) {
+		if ($this->operator===NULL && $autoCreate && ! isset($this->_overrides['operator']) ) {
 			$this->operator = $this->createOperator();
 		}
 		return $this->operator;

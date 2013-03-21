@@ -16,6 +16,13 @@ class CommunicationType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="communication-medium")
 	 */
 	protected $communicationMedium;
@@ -42,8 +49,8 @@ class CommunicationType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getCommunicationMedium() {
-		if ($this->communicationMedium===NULL) {
+	public function getCommunicationMedium($autoCreate = TRUE) {
+		if ($this->communicationMedium===NULL && $autoCreate && ! isset($this->_overrides['communicationMedium']) ) {
 			$this->communicationMedium = $this->createCommunicationMedium();
 		}
 		return $this->communicationMedium;
@@ -65,8 +72,8 @@ class CommunicationType {
 		return $communicationMedium;
 	}
 
-	public function getPriority() {
-		if ($this->priority===NULL) {
+	public function getPriority($autoCreate = TRUE) {
+		if ($this->priority===NULL && $autoCreate && ! isset($this->_overrides['priority']) ) {
 			$this->priority = $this->createPriority();
 		}
 		return $this->priority;
@@ -81,15 +88,22 @@ class CommunicationType {
 	}
 
 	protected function validatePriority($priority) {
+		if ( $priority === FALSE ) {
+			$this->_overrides['priority'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $priority instanceof \com\microsoft\wc\thing\types\PositiveInt  && ! is_null($priority) ) {
 			$priority = new \com\microsoft\wc\thing\types\PositiveInt ($priority);
 		}
+
+		unset ($this->_overrides['priority']);
 	
 		return $priority;
 	}
 
-	public function getClass() {
-		if ($this->class===NULL) {
+	public function getClass($autoCreate = TRUE) {
+		if ($this->class===NULL && $autoCreate && ! isset($this->_overrides['class']) ) {
 			$this->class = $this->createClass();
 		}
 		return $this->class;
@@ -104,15 +118,22 @@ class CommunicationType {
 	}
 
 	protected function validateClass($class) {
+		if ( $class === FALSE ) {
+			$this->_overrides['class'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $class instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($class) ) {
 			$class = new \com\microsoft\wc\types\CodableValue ($class);
 		}
+
+		unset ($this->_overrides['class']);
 	
 		return $class;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

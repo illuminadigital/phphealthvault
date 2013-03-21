@@ -16,6 +16,13 @@ class VocabularyKeyInfo extends \com\microsoft\wc\vocab\VocabularyKey {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="description")
 	 */
 	protected $description;
@@ -24,8 +31,8 @@ class VocabularyKeyInfo extends \com\microsoft\wc\vocab\VocabularyKey {
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;

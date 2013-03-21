@@ -19,6 +19,13 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Spirometer Measurement';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -105,8 +112,8 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 		$this->mVV = ($mVV===NULL) ? NULL : $this->validateMVV($mVV);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -128,8 +135,8 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getFev1() {
-		if ($this->fev1===NULL) {
+	public function getFev1($autoCreate = TRUE) {
+		if ($this->fev1===NULL && $autoCreate && ! isset($this->_overrides['fev1']) ) {
 			$this->fev1 = $this->createFev1();
 		}
 		return $this->fev1;
@@ -144,15 +151,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFev1($fev1) {
+		if ( $fev1 === FALSE ) {
+			$this->_overrides['fev1'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fev1 instanceof \com\microsoft\wc\thing\types\FlowValue  && ! is_null($fev1) ) {
 			$fev1 = new \com\microsoft\wc\thing\types\FlowValue ($fev1);
 		}
+
+		unset ($this->_overrides['fev1']);
 	
 		return $fev1;
 	}
 
-	public function getPef() {
-		if ($this->pef===NULL) {
+	public function getPef($autoCreate = TRUE) {
+		if ($this->pef===NULL && $autoCreate && ! isset($this->_overrides['pef']) ) {
 			$this->pef = $this->createPef();
 		}
 		return $this->pef;
@@ -167,15 +181,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePef($pef) {
+		if ( $pef === FALSE ) {
+			$this->_overrides['pef'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $pef instanceof \com\microsoft\wc\thing\types\FlowValue  && ! is_null($pef) ) {
 			$pef = new \com\microsoft\wc\thing\types\FlowValue ($pef);
 		}
+
+		unset ($this->_overrides['pef']);
 	
 		return $pef;
 	}
 
-	public function getWarning() {
-		if ($this->warning===NULL) {
+	public function getWarning($autoCreate = TRUE) {
+		if ($this->warning===NULL && $autoCreate && ! isset($this->_overrides['warning']) ) {
 			$this->warning = $this->createWarning();
 		}
 		return $this->warning;
@@ -215,8 +236,8 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 		return $warning;
 	}
 
-	public function getProblem() {
-		if ($this->problem===NULL) {
+	public function getProblem($autoCreate = TRUE) {
+		if ($this->problem===NULL && $autoCreate && ! isset($this->_overrides['problem']) ) {
 			$this->problem = $this->createProblem();
 		}
 		return $this->problem;
@@ -256,8 +277,8 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 		return $problem;
 	}
 
-	public function getFEVoverFVC() {
-		if ($this->fEVoverFVC===NULL) {
+	public function getFEVoverFVC($autoCreate = TRUE) {
+		if ($this->fEVoverFVC===NULL && $autoCreate && ! isset($this->_overrides['fEVoverFVC']) ) {
 			$this->fEVoverFVC = $this->createFEVoverFVC();
 		}
 		return $this->fEVoverFVC;
@@ -272,15 +293,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFEVoverFVC($fEVoverFVC) {
+		if ( $fEVoverFVC === FALSE ) {
+			$this->_overrides['fEVoverFVC'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fEVoverFVC instanceof \com\microsoft\wc\thing\types\Percentage  && ! is_null($fEVoverFVC) ) {
 			$fEVoverFVC = new \com\microsoft\wc\thing\types\Percentage ($fEVoverFVC);
 		}
+
+		unset ($this->_overrides['fEVoverFVC']);
 	
 		return $fEVoverFVC;
 	}
 
-	public function getFEF25to75() {
-		if ($this->fEF25to75===NULL) {
+	public function getFEF25to75($autoCreate = TRUE) {
+		if ($this->fEF25to75===NULL && $autoCreate && ! isset($this->_overrides['fEF25to75']) ) {
 			$this->fEF25to75 = $this->createFEF25to75();
 		}
 		return $this->fEF25to75;
@@ -295,15 +323,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFEF25to75($fEF25to75) {
+		if ( $fEF25to75 === FALSE ) {
+			$this->_overrides['fEF25to75'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fEF25to75 instanceof \com\microsoft\wc\thing\types\Percentage  && ! is_null($fEF25to75) ) {
 			$fEF25to75 = new \com\microsoft\wc\thing\types\Percentage ($fEF25to75);
 		}
+
+		unset ($this->_overrides['fEF25to75']);
 	
 		return $fEF25to75;
 	}
 
-	public function getFEF25to50() {
-		if ($this->fEF25to50===NULL) {
+	public function getFEF25to50($autoCreate = TRUE) {
+		if ($this->fEF25to50===NULL && $autoCreate && ! isset($this->_overrides['fEF25to50']) ) {
 			$this->fEF25to50 = $this->createFEF25to50();
 		}
 		return $this->fEF25to50;
@@ -318,15 +353,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFEF25to50($fEF25to50) {
+		if ( $fEF25to50 === FALSE ) {
+			$this->_overrides['fEF25to50'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fEF25to50 instanceof \com\microsoft\wc\thing\types\Percentage  && ! is_null($fEF25to50) ) {
 			$fEF25to50 = new \com\microsoft\wc\thing\types\Percentage ($fEF25to50);
 		}
+
+		unset ($this->_overrides['fEF25to50']);
 	
 		return $fEF25to50;
 	}
 
-	public function getFIF25to75() {
-		if ($this->fIF25to75===NULL) {
+	public function getFIF25to75($autoCreate = TRUE) {
+		if ($this->fIF25to75===NULL && $autoCreate && ! isset($this->_overrides['fIF25to75']) ) {
 			$this->fIF25to75 = $this->createFIF25to75();
 		}
 		return $this->fIF25to75;
@@ -341,15 +383,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFIF25to75($fIF25to75) {
+		if ( $fIF25to75 === FALSE ) {
+			$this->_overrides['fIF25to75'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fIF25to75 instanceof \com\microsoft\wc\thing\types\Percentage  && ! is_null($fIF25to75) ) {
 			$fIF25to75 = new \com\microsoft\wc\thing\types\Percentage ($fIF25to75);
 		}
+
+		unset ($this->_overrides['fIF25to75']);
 	
 		return $fIF25to75;
 	}
 
-	public function getFIF25to50() {
-		if ($this->fIF25to50===NULL) {
+	public function getFIF25to50($autoCreate = TRUE) {
+		if ($this->fIF25to50===NULL && $autoCreate && ! isset($this->_overrides['fIF25to50']) ) {
 			$this->fIF25to50 = $this->createFIF25to50();
 		}
 		return $this->fIF25to50;
@@ -364,15 +413,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFIF25to50($fIF25to50) {
+		if ( $fIF25to50 === FALSE ) {
+			$this->_overrides['fIF25to50'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fIF25to50 instanceof \com\microsoft\wc\thing\types\Percentage  && ! is_null($fIF25to50) ) {
 			$fIF25to50 = new \com\microsoft\wc\thing\types\Percentage ($fIF25to50);
 		}
+
+		unset ($this->_overrides['fIF25to50']);
 	
 		return $fIF25to50;
 	}
 
-	public function getFET() {
-		if ($this->fET===NULL) {
+	public function getFET($autoCreate = TRUE) {
+		if ($this->fET===NULL && $autoCreate && ! isset($this->_overrides['fET']) ) {
 			$this->fET = $this->createFET();
 		}
 		return $this->fET;
@@ -387,15 +443,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFET($fET) {
+		if ( $fET === FALSE ) {
+			$this->_overrides['fET'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fET instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($fET) ) {
 			$fET = new \com\microsoft\wc\thing\types\PositiveDouble ($fET);
 		}
+
+		unset ($this->_overrides['fET']);
 	
 		return $fET;
 	}
 
-	public function getSVC() {
-		if ($this->sVC===NULL) {
+	public function getSVC($autoCreate = TRUE) {
+		if ($this->sVC===NULL && $autoCreate && ! isset($this->_overrides['sVC']) ) {
 			$this->sVC = $this->createSVC();
 		}
 		return $this->sVC;
@@ -410,15 +473,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSVC($sVC) {
+		if ( $sVC === FALSE ) {
+			$this->_overrides['sVC'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sVC instanceof \com\microsoft\wc\thing\types\VolumeValue  && ! is_null($sVC) ) {
 			$sVC = new \com\microsoft\wc\thing\types\VolumeValue ($sVC);
 		}
+
+		unset ($this->_overrides['sVC']);
 	
 		return $sVC;
 	}
 
-	public function getTV() {
-		if ($this->tV===NULL) {
+	public function getTV($autoCreate = TRUE) {
+		if ($this->tV===NULL && $autoCreate && ! isset($this->_overrides['tV']) ) {
 			$this->tV = $this->createTV();
 		}
 		return $this->tV;
@@ -433,15 +503,22 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTV($tV) {
+		if ( $tV === FALSE ) {
+			$this->_overrides['tV'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $tV instanceof \com\microsoft\wc\thing\types\VolumeValue  && ! is_null($tV) ) {
 			$tV = new \com\microsoft\wc\thing\types\VolumeValue ($tV);
 		}
+
+		unset ($this->_overrides['tV']);
 	
 		return $tV;
 	}
 
-	public function getMVV() {
-		if ($this->mVV===NULL) {
+	public function getMVV($autoCreate = TRUE) {
+		if ($this->mVV===NULL && $autoCreate && ! isset($this->_overrides['mVV']) ) {
 			$this->mVV = $this->createMVV();
 		}
 		return $this->mVV;
@@ -456,9 +533,16 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMVV($mVV) {
+		if ( $mVV === FALSE ) {
+			$this->_overrides['mVV'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $mVV instanceof \com\microsoft\wc\thing\types\FlowValue  && ! is_null($mVV) ) {
 			$mVV = new \com\microsoft\wc\thing\types\FlowValue ($mVV);
 		}
+
+		unset ($this->_overrides['mVV']);
 	
 		return $mVV;
 	}

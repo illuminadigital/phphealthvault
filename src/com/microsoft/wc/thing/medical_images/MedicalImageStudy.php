@@ -19,6 +19,13 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Medical Image Study';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -69,8 +76,8 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 		$this->studyInstanceUid = ($studyInstanceUid===NULL) ? NULL : $this->validateStudyInstanceUid($studyInstanceUid);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -92,8 +99,8 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getPatientName() {
-		if ($this->patientName===NULL) {
+	public function getPatientName($autoCreate = TRUE) {
+		if ($this->patientName===NULL && $autoCreate && ! isset($this->_overrides['patientName']) ) {
 			$this->patientName = $this->createPatientName();
 		}
 		return $this->patientName;
@@ -108,15 +115,22 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePatientName($patientName) {
+		if ( $patientName === FALSE ) {
+			$this->_overrides['patientName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $patientName instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($patientName) ) {
 			$patientName = new \com\microsoft\wc\types\Stringnznw ($patientName);
 		}
+
+		unset ($this->_overrides['patientName']);
 	
 		return $patientName;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -131,15 +145,22 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDescription($description) {
+		if ( $description === FALSE ) {
+			$this->_overrides['description'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $description instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($description) ) {
 			$description = new \com\microsoft\wc\types\Stringnznw ($description);
 		}
+
+		unset ($this->_overrides['description']);
 	
 		return $description;
 	}
 
-	public function getSeries() {
-		if ($this->series===NULL) {
+	public function getSeries($autoCreate = TRUE) {
+		if ($this->series===NULL && $autoCreate && ! isset($this->_overrides['series']) ) {
 			$this->series = $this->createSeries();
 		}
 		return $this->series;
@@ -174,8 +195,8 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 		$this->series[] = $series;
 	}
 
-	public function getReason() {
-		if ($this->reason===NULL) {
+	public function getReason($autoCreate = TRUE) {
+		if ($this->reason===NULL && $autoCreate && ! isset($this->_overrides['reason']) ) {
 			$this->reason = $this->createReason();
 		}
 		return $this->reason;
@@ -190,15 +211,22 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateReason($reason) {
+		if ( $reason === FALSE ) {
+			$this->_overrides['reason'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $reason instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($reason) ) {
 			$reason = new \com\microsoft\wc\types\CodableValue ($reason);
 		}
+
+		unset ($this->_overrides['reason']);
 	
 		return $reason;
 	}
 
-	public function getPreviewBlobName() {
-		if ($this->previewBlobName===NULL) {
+	public function getPreviewBlobName($autoCreate = TRUE) {
+		if ($this->previewBlobName===NULL && $autoCreate && ! isset($this->_overrides['previewBlobName']) ) {
 			$this->previewBlobName = $this->createPreviewBlobName();
 		}
 		return $this->previewBlobName;
@@ -213,15 +241,22 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePreviewBlobName($previewBlobName) {
+		if ( $previewBlobName === FALSE ) {
+			$this->_overrides['previewBlobName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $previewBlobName instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($previewBlobName) ) {
 			$previewBlobName = new \com\microsoft\wc\types\Stringnznw ($previewBlobName);
 		}
+
+		unset ($this->_overrides['previewBlobName']);
 	
 		return $previewBlobName;
 	}
 
-	public function getKeyImages() {
-		if ($this->keyImages===NULL) {
+	public function getKeyImages($autoCreate = TRUE) {
+		if ($this->keyImages===NULL && $autoCreate && ! isset($this->_overrides['keyImages']) ) {
 			$this->keyImages = $this->createKeyImages();
 		}
 		return $this->keyImages;
@@ -236,9 +271,16 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateKeyImages($keyImages) {
+		if ( $keyImages === FALSE ) {
+			$this->_overrides['keyImages'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($keyImages) && ! is_null($keyImages) ) {
 			$keyImages = array($keyImages);
 		}
+
+		unset ($this->_overrides['keyImages']);
 		$count = count($keyImages);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'keyImages', 0));
@@ -256,8 +298,8 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 		$this->keyImages[] = $keyImages;
 	}
 
-	public function getStudyInstanceUid() {
-		if ($this->studyInstanceUid===NULL) {
+	public function getStudyInstanceUid($autoCreate = TRUE) {
+		if ($this->studyInstanceUid===NULL && $autoCreate && ! isset($this->_overrides['studyInstanceUid']) ) {
 			$this->studyInstanceUid = $this->createStudyInstanceUid();
 		}
 		return $this->studyInstanceUid;
@@ -272,9 +314,16 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStudyInstanceUid($studyInstanceUid) {
+		if ( $studyInstanceUid === FALSE ) {
+			$this->_overrides['studyInstanceUid'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $studyInstanceUid instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($studyInstanceUid) ) {
 			$studyInstanceUid = new \com\microsoft\wc\types\Stringnznw ($studyInstanceUid);
 		}
+
+		unset ($this->_overrides['studyInstanceUid']);
 	
 		return $studyInstanceUid;
 	}

@@ -15,6 +15,13 @@ class SCEDSecondaryCoursesType {
 	static protected $enumValue = array('01' => 'English Language and Literature', '02' => 'Mathematics', '03' => 'Life and Physical Sciences', '04' => 'Social Sciences and History', '05' => 'Fine and Performing Arts', '06' => 'Foreign Language and Literature', '07' => 'Religious Education and Theology', '08' => 'Physical, Health, and Safety Education', '09' => 'Military Science', '10' => 'Computer and Information Sciences', '11' => 'Communication and Audio/Visual Technology', '12' => 'Business and Marketing', '13' => 'Manufacturing', '14' => 'Health Care Sciences', '15' => 'Public, Protective, and Government Service', '16' => 'Hospitality and Tourism', '17' => 'Architecture and Construction', '18' => 'Agriculture, Food, and Natural Resources', '19' => 'Human Services', '20' => 'Transportation, Distribution and Logistics', '21' => 'Engineering and Technology', '22' => 'Miscellaneous');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="SCEDSecondaryCoursesType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class SCEDSecondaryCoursesType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

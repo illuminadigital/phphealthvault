@@ -14,6 +14,13 @@ class StrucDoc.Title {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.TitleContent", collection="true", name="content")
 	 */
 	protected $content;
@@ -76,8 +83,8 @@ class StrucDoc.Title {
 		$this->mediaType = ($mediaType===NULL) ? NULL : $this->validateMediaType($mediaType);
 	}
 
-	public function getContent() {
-		if ($this->content===NULL) {
+	public function getContent($autoCreate = TRUE) {
+		if ($this->content===NULL && $autoCreate && ! isset($this->_overrides['content']) ) {
 			$this->content = $this->createContent();
 		}
 		return $this->content;
@@ -111,8 +118,8 @@ class StrucDoc.Title {
 		return $content;
 	}
 
-	public function getSub() {
-		if ($this->sub===NULL) {
+	public function getSub($autoCreate = TRUE) {
+		if ($this->sub===NULL && $autoCreate && ! isset($this->_overrides['sub']) ) {
 			$this->sub = $this->createSub();
 		}
 		return $this->sub;
@@ -146,8 +153,8 @@ class StrucDoc.Title {
 		return $sub;
 	}
 
-	public function getSup() {
-		if ($this->sup===NULL) {
+	public function getSup($autoCreate = TRUE) {
+		if ($this->sup===NULL && $autoCreate && ! isset($this->_overrides['sup']) ) {
 			$this->sup = $this->createSup();
 		}
 		return $this->sup;
@@ -181,8 +188,8 @@ class StrucDoc.Title {
 		return $sup;
 	}
 
-	public function getBr() {
-		if ($this->br===NULL) {
+	public function getBr($autoCreate = TRUE) {
+		if ($this->br===NULL && $autoCreate && ! isset($this->_overrides['br']) ) {
 			$this->br = $this->createBr();
 		}
 		return $this->br;
@@ -216,8 +223,8 @@ class StrucDoc.Title {
 		return $br;
 	}
 
-	public function getFootnote() {
-		if ($this->footnote===NULL) {
+	public function getFootnote($autoCreate = TRUE) {
+		if ($this->footnote===NULL && $autoCreate && ! isset($this->_overrides['footnote']) ) {
 			$this->footnote = $this->createFootnote();
 		}
 		return $this->footnote;
@@ -251,8 +258,8 @@ class StrucDoc.Title {
 		return $footnote;
 	}
 
-	public function getFootnoteRef() {
-		if ($this->footnoteRef===NULL) {
+	public function getFootnoteRef($autoCreate = TRUE) {
+		if ($this->footnoteRef===NULL && $autoCreate && ! isset($this->_overrides['footnoteRef']) ) {
 			$this->footnoteRef = $this->createFootnoteRef();
 		}
 		return $this->footnoteRef;
@@ -286,8 +293,8 @@ class StrucDoc.Title {
 		return $footnoteRef;
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -309,8 +316,8 @@ class StrucDoc.Title {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -332,8 +339,8 @@ class StrucDoc.Title {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;
@@ -355,8 +362,8 @@ class StrucDoc.Title {
 		return $styleCode;
 	}
 
-	public function getMediaType() {
-		if ($this->mediaType===NULL) {
+	public function getMediaType($autoCreate = TRUE) {
+		if ($this->mediaType===NULL && $autoCreate && ! isset($this->_overrides['mediaType']) ) {
 			$this->mediaType = $this->createMediaType();
 		}
 		return $this->mediaType;

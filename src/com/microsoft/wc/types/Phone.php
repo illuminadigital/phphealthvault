@@ -14,6 +14,13 @@ class Phone {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="description")
 	 */
 	protected $description;
@@ -34,8 +41,8 @@ class Phone {
 		$this->number = ($number===NULL) ? NULL : $this->validateNumber($number);
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -57,8 +64,8 @@ class Phone {
 		return $description;
 	}
 
-	public function getIsPrimary() {
-		if ($this->isPrimary===NULL) {
+	public function getIsPrimary($autoCreate = TRUE) {
+		if ($this->isPrimary===NULL && $autoCreate && ! isset($this->_overrides['isPrimary']) ) {
 			$this->isPrimary = $this->createIsPrimary();
 		}
 		return $this->isPrimary;
@@ -80,8 +87,8 @@ class Phone {
 		return $isPrimary;
 	}
 
-	public function getNumber() {
-		if ($this->number===NULL) {
+	public function getNumber($autoCreate = TRUE) {
+		if ($this->number===NULL && $autoCreate && ! isset($this->_overrides['number']) ) {
 			$this->number = $this->createNumber();
 		}
 		return $this->number;

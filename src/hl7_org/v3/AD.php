@@ -15,6 +15,13 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\Adxp.delimiter", collection="true", name="delimiter")
 	 */
 	protected $delimiter;
@@ -197,8 +204,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		$this->isNotOrdered = ($isNotOrdered===NULL) ? NULL : $this->validateIsNotOrdered($isNotOrdered);
 	}
 
-	public function getDelimiter() {
-		if ($this->delimiter===NULL) {
+	public function getDelimiter($autoCreate = TRUE) {
+		if ($this->delimiter===NULL && $autoCreate && ! isset($this->_overrides['delimiter']) ) {
 			$this->delimiter = $this->createDelimiter();
 		}
 		return $this->delimiter;
@@ -232,8 +239,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $delimiter;
 	}
 
-	public function getCountry() {
-		if ($this->country===NULL) {
+	public function getCountry($autoCreate = TRUE) {
+		if ($this->country===NULL && $autoCreate && ! isset($this->_overrides['country']) ) {
 			$this->country = $this->createCountry();
 		}
 		return $this->country;
@@ -267,8 +274,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $country;
 	}
 
-	public function getState() {
-		if ($this->state===NULL) {
+	public function getState($autoCreate = TRUE) {
+		if ($this->state===NULL && $autoCreate && ! isset($this->_overrides['state']) ) {
 			$this->state = $this->createState();
 		}
 		return $this->state;
@@ -302,8 +309,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $state;
 	}
 
-	public function getCounty() {
-		if ($this->county===NULL) {
+	public function getCounty($autoCreate = TRUE) {
+		if ($this->county===NULL && $autoCreate && ! isset($this->_overrides['county']) ) {
 			$this->county = $this->createCounty();
 		}
 		return $this->county;
@@ -337,8 +344,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $county;
 	}
 
-	public function getCity() {
-		if ($this->city===NULL) {
+	public function getCity($autoCreate = TRUE) {
+		if ($this->city===NULL && $autoCreate && ! isset($this->_overrides['city']) ) {
 			$this->city = $this->createCity();
 		}
 		return $this->city;
@@ -372,8 +379,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $city;
 	}
 
-	public function getPostalCode() {
-		if ($this->postalCode===NULL) {
+	public function getPostalCode($autoCreate = TRUE) {
+		if ($this->postalCode===NULL && $autoCreate && ! isset($this->_overrides['postalCode']) ) {
 			$this->postalCode = $this->createPostalCode();
 		}
 		return $this->postalCode;
@@ -407,8 +414,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $postalCode;
 	}
 
-	public function getStreetAddressLine() {
-		if ($this->streetAddressLine===NULL) {
+	public function getStreetAddressLine($autoCreate = TRUE) {
+		if ($this->streetAddressLine===NULL && $autoCreate && ! isset($this->_overrides['streetAddressLine']) ) {
 			$this->streetAddressLine = $this->createStreetAddressLine();
 		}
 		return $this->streetAddressLine;
@@ -442,8 +449,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $streetAddressLine;
 	}
 
-	public function getHouseNumber() {
-		if ($this->houseNumber===NULL) {
+	public function getHouseNumber($autoCreate = TRUE) {
+		if ($this->houseNumber===NULL && $autoCreate && ! isset($this->_overrides['houseNumber']) ) {
 			$this->houseNumber = $this->createHouseNumber();
 		}
 		return $this->houseNumber;
@@ -477,8 +484,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $houseNumber;
 	}
 
-	public function getHouseNumberNumeric() {
-		if ($this->houseNumberNumeric===NULL) {
+	public function getHouseNumberNumeric($autoCreate = TRUE) {
+		if ($this->houseNumberNumeric===NULL && $autoCreate && ! isset($this->_overrides['houseNumberNumeric']) ) {
 			$this->houseNumberNumeric = $this->createHouseNumberNumeric();
 		}
 		return $this->houseNumberNumeric;
@@ -512,8 +519,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $houseNumberNumeric;
 	}
 
-	public function getDirection() {
-		if ($this->direction===NULL) {
+	public function getDirection($autoCreate = TRUE) {
+		if ($this->direction===NULL && $autoCreate && ! isset($this->_overrides['direction']) ) {
 			$this->direction = $this->createDirection();
 		}
 		return $this->direction;
@@ -547,8 +554,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $direction;
 	}
 
-	public function getStreetName() {
-		if ($this->streetName===NULL) {
+	public function getStreetName($autoCreate = TRUE) {
+		if ($this->streetName===NULL && $autoCreate && ! isset($this->_overrides['streetName']) ) {
 			$this->streetName = $this->createStreetName();
 		}
 		return $this->streetName;
@@ -582,8 +589,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $streetName;
 	}
 
-	public function getStreetNameBase() {
-		if ($this->streetNameBase===NULL) {
+	public function getStreetNameBase($autoCreate = TRUE) {
+		if ($this->streetNameBase===NULL && $autoCreate && ! isset($this->_overrides['streetNameBase']) ) {
 			$this->streetNameBase = $this->createStreetNameBase();
 		}
 		return $this->streetNameBase;
@@ -617,8 +624,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $streetNameBase;
 	}
 
-	public function getStreetNameType() {
-		if ($this->streetNameType===NULL) {
+	public function getStreetNameType($autoCreate = TRUE) {
+		if ($this->streetNameType===NULL && $autoCreate && ! isset($this->_overrides['streetNameType']) ) {
 			$this->streetNameType = $this->createStreetNameType();
 		}
 		return $this->streetNameType;
@@ -652,8 +659,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $streetNameType;
 	}
 
-	public function getAdditionalLocator() {
-		if ($this->additionalLocator===NULL) {
+	public function getAdditionalLocator($autoCreate = TRUE) {
+		if ($this->additionalLocator===NULL && $autoCreate && ! isset($this->_overrides['additionalLocator']) ) {
 			$this->additionalLocator = $this->createAdditionalLocator();
 		}
 		return $this->additionalLocator;
@@ -687,8 +694,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $additionalLocator;
 	}
 
-	public function getUnitID() {
-		if ($this->unitID===NULL) {
+	public function getUnitID($autoCreate = TRUE) {
+		if ($this->unitID===NULL && $autoCreate && ! isset($this->_overrides['unitID']) ) {
 			$this->unitID = $this->createUnitID();
 		}
 		return $this->unitID;
@@ -722,8 +729,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $unitID;
 	}
 
-	public function getUnitType() {
-		if ($this->unitType===NULL) {
+	public function getUnitType($autoCreate = TRUE) {
+		if ($this->unitType===NULL && $autoCreate && ! isset($this->_overrides['unitType']) ) {
 			$this->unitType = $this->createUnitType();
 		}
 		return $this->unitType;
@@ -757,8 +764,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $unitType;
 	}
 
-	public function getCareOf() {
-		if ($this->careOf===NULL) {
+	public function getCareOf($autoCreate = TRUE) {
+		if ($this->careOf===NULL && $autoCreate && ! isset($this->_overrides['careOf']) ) {
 			$this->careOf = $this->createCareOf();
 		}
 		return $this->careOf;
@@ -792,8 +799,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $careOf;
 	}
 
-	public function getCensusTract() {
-		if ($this->censusTract===NULL) {
+	public function getCensusTract($autoCreate = TRUE) {
+		if ($this->censusTract===NULL && $autoCreate && ! isset($this->_overrides['censusTract']) ) {
 			$this->censusTract = $this->createCensusTract();
 		}
 		return $this->censusTract;
@@ -827,8 +834,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $censusTract;
 	}
 
-	public function getDeliveryAddressLine() {
-		if ($this->deliveryAddressLine===NULL) {
+	public function getDeliveryAddressLine($autoCreate = TRUE) {
+		if ($this->deliveryAddressLine===NULL && $autoCreate && ! isset($this->_overrides['deliveryAddressLine']) ) {
 			$this->deliveryAddressLine = $this->createDeliveryAddressLine();
 		}
 		return $this->deliveryAddressLine;
@@ -862,8 +869,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $deliveryAddressLine;
 	}
 
-	public function getDeliveryInstallationType() {
-		if ($this->deliveryInstallationType===NULL) {
+	public function getDeliveryInstallationType($autoCreate = TRUE) {
+		if ($this->deliveryInstallationType===NULL && $autoCreate && ! isset($this->_overrides['deliveryInstallationType']) ) {
 			$this->deliveryInstallationType = $this->createDeliveryInstallationType();
 		}
 		return $this->deliveryInstallationType;
@@ -897,8 +904,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $deliveryInstallationType;
 	}
 
-	public function getDeliveryInstallationArea() {
-		if ($this->deliveryInstallationArea===NULL) {
+	public function getDeliveryInstallationArea($autoCreate = TRUE) {
+		if ($this->deliveryInstallationArea===NULL && $autoCreate && ! isset($this->_overrides['deliveryInstallationArea']) ) {
 			$this->deliveryInstallationArea = $this->createDeliveryInstallationArea();
 		}
 		return $this->deliveryInstallationArea;
@@ -932,8 +939,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $deliveryInstallationArea;
 	}
 
-	public function getDeliveryInstallationQualifier() {
-		if ($this->deliveryInstallationQualifier===NULL) {
+	public function getDeliveryInstallationQualifier($autoCreate = TRUE) {
+		if ($this->deliveryInstallationQualifier===NULL && $autoCreate && ! isset($this->_overrides['deliveryInstallationQualifier']) ) {
 			$this->deliveryInstallationQualifier = $this->createDeliveryInstallationQualifier();
 		}
 		return $this->deliveryInstallationQualifier;
@@ -967,8 +974,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $deliveryInstallationQualifier;
 	}
 
-	public function getDeliveryMode() {
-		if ($this->deliveryMode===NULL) {
+	public function getDeliveryMode($autoCreate = TRUE) {
+		if ($this->deliveryMode===NULL && $autoCreate && ! isset($this->_overrides['deliveryMode']) ) {
 			$this->deliveryMode = $this->createDeliveryMode();
 		}
 		return $this->deliveryMode;
@@ -1002,8 +1009,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $deliveryMode;
 	}
 
-	public function getDeliveryModeIdentifier() {
-		if ($this->deliveryModeIdentifier===NULL) {
+	public function getDeliveryModeIdentifier($autoCreate = TRUE) {
+		if ($this->deliveryModeIdentifier===NULL && $autoCreate && ! isset($this->_overrides['deliveryModeIdentifier']) ) {
 			$this->deliveryModeIdentifier = $this->createDeliveryModeIdentifier();
 		}
 		return $this->deliveryModeIdentifier;
@@ -1037,8 +1044,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $deliveryModeIdentifier;
 	}
 
-	public function getBuildingNumberSuffix() {
-		if ($this->buildingNumberSuffix===NULL) {
+	public function getBuildingNumberSuffix($autoCreate = TRUE) {
+		if ($this->buildingNumberSuffix===NULL && $autoCreate && ! isset($this->_overrides['buildingNumberSuffix']) ) {
 			$this->buildingNumberSuffix = $this->createBuildingNumberSuffix();
 		}
 		return $this->buildingNumberSuffix;
@@ -1072,8 +1079,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $buildingNumberSuffix;
 	}
 
-	public function getPostBox() {
-		if ($this->postBox===NULL) {
+	public function getPostBox($autoCreate = TRUE) {
+		if ($this->postBox===NULL && $autoCreate && ! isset($this->_overrides['postBox']) ) {
 			$this->postBox = $this->createPostBox();
 		}
 		return $this->postBox;
@@ -1107,8 +1114,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $postBox;
 	}
 
-	public function getPrecinct() {
-		if ($this->precinct===NULL) {
+	public function getPrecinct($autoCreate = TRUE) {
+		if ($this->precinct===NULL && $autoCreate && ! isset($this->_overrides['precinct']) ) {
 			$this->precinct = $this->createPrecinct();
 		}
 		return $this->precinct;
@@ -1142,8 +1149,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $precinct;
 	}
 
-	public function getUseablePeriod() {
-		if ($this->useablePeriod===NULL) {
+	public function getUseablePeriod($autoCreate = TRUE) {
+		if ($this->useablePeriod===NULL && $autoCreate && ! isset($this->_overrides['useablePeriod']) ) {
 			$this->useablePeriod = $this->createUseablePeriod();
 		}
 		return $this->useablePeriod;
@@ -1177,8 +1184,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $useablePeriod;
 	}
 
-	public function getUse() {
-		if ($this->use===NULL) {
+	public function getUse($autoCreate = TRUE) {
+		if ($this->use===NULL && $autoCreate && ! isset($this->_overrides['use']) ) {
 			$this->use = $this->createUse();
 		}
 		return $this->use;
@@ -1197,8 +1204,8 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $use;
 	}
 
-	public function getIsNotOrdered() {
-		if ($this->isNotOrdered===NULL) {
+	public function getIsNotOrdered($autoCreate = TRUE) {
+		if ($this->isNotOrdered===NULL && $autoCreate && ! isset($this->_overrides['isNotOrdered']) ) {
 			$this->isNotOrdered = $this->createIsNotOrdered();
 		}
 		return $this->isNotOrdered;

@@ -15,6 +15,13 @@ class NCES0721TransportationAtPublicExpenseEligibilityType {
 	static protected $enumValue = array('2069' => 'Eligible because of disability', '2070' => 'Eligible because of disability and distance', '2068' => 'Eligible because of distance', '2071' => 'Eligible because of hazardous conditions', '2072' => 'Eligible because of program for desegregation or integration', '2073' => 'Eligible because of special instruction', '2074' => 'Not eligible', '9999' => 'Other');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0721TransportationAtPublicExpenseEligibilityType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0721TransportationAtPublicExpenseEligibilityType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

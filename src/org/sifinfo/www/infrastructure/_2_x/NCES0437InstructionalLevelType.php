@@ -15,6 +15,13 @@ class NCES0437InstructionalLevelType {
 	static protected $enumValue = array('0568' => 'Remedial', '0569' => 'Special education course', '0570' => 'Basic', '0571' => 'General', '0572' => 'Honors level', '0573' => 'Gifted and talented level', '0574' => 'International Baccalaureate program', '0575' => 'Advanced placement', '0576' => 'College level', '0577' => 'Untracked', '0578' => 'English Language Learner (ELL)', '0579' => 'Accepted as a high school equivalent', '9999' => 'Other');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0437InstructionalLevelType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0437InstructionalLevelType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

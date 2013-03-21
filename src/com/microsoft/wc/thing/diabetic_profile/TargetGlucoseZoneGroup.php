@@ -16,6 +16,13 @@ class TargetGlucoseZoneGroup {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\diabetic_profile\TargetGlucoseZone", collection="true", name="target-glucose-zone")
 	 */
 	protected $targetGlucoseZone;
@@ -30,8 +37,8 @@ class TargetGlucoseZoneGroup {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 	}
 
-	public function getTargetGlucoseZone() {
-		if ($this->targetGlucoseZone===NULL) {
+	public function getTargetGlucoseZone($autoCreate = TRUE) {
+		if ($this->targetGlucoseZone===NULL && $autoCreate && ! isset($this->_overrides['targetGlucoseZone']) ) {
 			$this->targetGlucoseZone = $this->createTargetGlucoseZone();
 		}
 		return $this->targetGlucoseZone;
@@ -46,9 +53,16 @@ class TargetGlucoseZoneGroup {
 	}
 
 	protected function validateTargetGlucoseZone($targetGlucoseZone) {
+		if ( $targetGlucoseZone === FALSE ) {
+			$this->_overrides['targetGlucoseZone'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($targetGlucoseZone) && ! is_null($targetGlucoseZone) ) {
 			$targetGlucoseZone = array($targetGlucoseZone);
 		}
+
+		unset ($this->_overrides['targetGlucoseZone']);
 		$count = count($targetGlucoseZone);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'targetGlucoseZone', 0));
@@ -66,8 +80,8 @@ class TargetGlucoseZoneGroup {
 		$this->targetGlucoseZone[] = $targetGlucoseZone;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;

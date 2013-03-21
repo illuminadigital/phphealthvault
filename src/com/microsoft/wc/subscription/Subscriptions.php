@@ -15,6 +15,13 @@ class Subscriptions {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\subscription\Subscription", collection="true", name="subscription")
 	 */
 	protected $subscription;
@@ -23,8 +30,8 @@ class Subscriptions {
 		$this->subscription = ($subscription===NULL) ? NULL : $this->validateSubscription($subscription);
 	}
 
-	public function getSubscription() {
-		if ($this->subscription===NULL) {
+	public function getSubscription($autoCreate = TRUE) {
+		if ($this->subscription===NULL && $autoCreate && ! isset($this->_overrides['subscription']) ) {
 			$this->subscription = $this->createSubscription();
 		}
 		return $this->subscription;
@@ -39,9 +46,16 @@ class Subscriptions {
 	}
 
 	protected function validateSubscription($subscription) {
+		if ( $subscription === FALSE ) {
+			$this->_overrides['subscription'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($subscription) && ! is_null($subscription) ) {
 			$subscription = array($subscription);
 		}
+
+		unset ($this->_overrides['subscription']);
 		$count = count($subscription);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'subscription', 0));

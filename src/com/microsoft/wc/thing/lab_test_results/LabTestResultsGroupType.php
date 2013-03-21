@@ -14,6 +14,13 @@ class LabTestResultsGroupType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="group-name")
 	 */
 	protected $groupName;
@@ -46,8 +53,8 @@ class LabTestResultsGroupType {
 		$this->results = ($results===NULL) ? NULL : $this->validateResults($results);
 	}
 
-	public function getGroupName() {
-		if ($this->groupName===NULL) {
+	public function getGroupName($autoCreate = TRUE) {
+		if ($this->groupName===NULL && $autoCreate && ! isset($this->_overrides['groupName']) ) {
 			$this->groupName = $this->createGroupName();
 		}
 		return $this->groupName;
@@ -69,8 +76,8 @@ class LabTestResultsGroupType {
 		return $groupName;
 	}
 
-	public function getLaboratoryName() {
-		if ($this->laboratoryName===NULL) {
+	public function getLaboratoryName($autoCreate = TRUE) {
+		if ($this->laboratoryName===NULL && $autoCreate && ! isset($this->_overrides['laboratoryName']) ) {
 			$this->laboratoryName = $this->createLaboratoryName();
 		}
 		return $this->laboratoryName;
@@ -85,15 +92,22 @@ class LabTestResultsGroupType {
 	}
 
 	protected function validateLaboratoryName($laboratoryName) {
+		if ( $laboratoryName === FALSE ) {
+			$this->_overrides['laboratoryName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $laboratoryName instanceof \com\microsoft\wc\thing\types\Organization  && ! is_null($laboratoryName) ) {
 			$laboratoryName = new \com\microsoft\wc\thing\types\Organization ($laboratoryName);
 		}
+
+		unset ($this->_overrides['laboratoryName']);
 	
 		return $laboratoryName;
 	}
 
-	public function getStatus() {
-		if ($this->status===NULL) {
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
 			$this->status = $this->createStatus();
 		}
 		return $this->status;
@@ -108,15 +122,22 @@ class LabTestResultsGroupType {
 	}
 
 	protected function validateStatus($status) {
+		if ( $status === FALSE ) {
+			$this->_overrides['status'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $status instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($status) ) {
 			$status = new \com\microsoft\wc\types\CodableValue ($status);
 		}
+
+		unset ($this->_overrides['status']);
 	
 		return $status;
 	}
 
-	public function getSubGroups() {
-		if ($this->subGroups===NULL) {
+	public function getSubGroups($autoCreate = TRUE) {
+		if ($this->subGroups===NULL && $autoCreate && ! isset($this->_overrides['subGroups']) ) {
 			$this->subGroups = $this->createSubGroups();
 		}
 		return $this->subGroups;
@@ -131,9 +152,16 @@ class LabTestResultsGroupType {
 	}
 
 	protected function validateSubGroups($subGroups) {
+		if ( $subGroups === FALSE ) {
+			$this->_overrides['subGroups'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($subGroups) && ! is_null($subGroups) ) {
 			$subGroups = array($subGroups);
 		}
+
+		unset ($this->_overrides['subGroups']);
 		$count = count($subGroups);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'subGroups', 0));
@@ -151,8 +179,8 @@ class LabTestResultsGroupType {
 		$this->subGroups[] = $subGroups;
 	}
 
-	public function getResults() {
-		if ($this->results===NULL) {
+	public function getResults($autoCreate = TRUE) {
+		if ($this->results===NULL && $autoCreate && ! isset($this->_overrides['results']) ) {
 			$this->results = $this->createResults();
 		}
 		return $this->results;
@@ -167,9 +195,16 @@ class LabTestResultsGroupType {
 	}
 
 	protected function validateResults($results) {
+		if ( $results === FALSE ) {
+			$this->_overrides['results'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($results) && ! is_null($results) ) {
 			$results = array($results);
 		}
+
+		unset ($this->_overrides['results']);
 		$count = count($results);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'results', 0));

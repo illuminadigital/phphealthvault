@@ -14,6 +14,13 @@ class BlobFilterSpec {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnwz64", name="blob-name")
 	 */
 	protected $blobName;
@@ -22,8 +29,8 @@ class BlobFilterSpec {
 		$this->blobName = ($blobName===NULL) ? NULL : $this->validateBlobName($blobName);
 	}
 
-	public function getBlobName() {
-		if ($this->blobName===NULL) {
+	public function getBlobName($autoCreate = TRUE) {
+		if ($this->blobName===NULL && $autoCreate && ! isset($this->_overrides['blobName']) ) {
 			$this->blobName = $this->createBlobName();
 		}
 		return $this->blobName;

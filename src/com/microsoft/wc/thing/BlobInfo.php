@@ -14,6 +14,13 @@ class BlobInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringz255", name="name")
 	 */
 	protected $name;
@@ -34,8 +41,8 @@ class BlobInfo {
 		$this->hashInfo = ($hashInfo===NULL) ? NULL : $this->validateHashInfo($hashInfo);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -57,8 +64,8 @@ class BlobInfo {
 		return $name;
 	}
 
-	public function getContentType() {
-		if ($this->contentType===NULL) {
+	public function getContentType($autoCreate = TRUE) {
+		if ($this->contentType===NULL && $autoCreate && ! isset($this->_overrides['contentType']) ) {
 			$this->contentType = $this->createContentType();
 		}
 		return $this->contentType;
@@ -80,8 +87,8 @@ class BlobInfo {
 		return $contentType;
 	}
 
-	public function getHashInfo() {
-		if ($this->hashInfo===NULL) {
+	public function getHashInfo($autoCreate = TRUE) {
+		if ($this->hashInfo===NULL && $autoCreate && ! isset($this->_overrides['hashInfo']) ) {
 			$this->hashInfo = $this->createHashInfo();
 		}
 		return $this->hashInfo;
@@ -96,9 +103,16 @@ class BlobInfo {
 	}
 
 	protected function validateHashInfo($hashInfo) {
+		if ( $hashInfo === FALSE ) {
+			$this->_overrides['hashInfo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $hashInfo instanceof \com\microsoft\wc\thing\BlobHashInfo  && ! is_null($hashInfo) ) {
 			$hashInfo = new \com\microsoft\wc\thing\BlobHashInfo ($hashInfo);
 		}
+
+		unset ($this->_overrides['hashInfo']);
 	
 		return $hashInfo;
 	}

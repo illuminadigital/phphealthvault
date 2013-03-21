@@ -19,6 +19,13 @@ class File extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'File';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\String255", name="name")
 	 */
 	protected $name;
@@ -39,8 +46,8 @@ class File extends \com\microsoft\wc\thing\AnyMixed {
 		$this->contentType = ($contentType===NULL) ? NULL : $this->validateContentType($contentType);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -62,8 +69,8 @@ class File extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getSize() {
-		if ($this->size===NULL) {
+	public function getSize($autoCreate = TRUE) {
+		if ($this->size===NULL && $autoCreate && ! isset($this->_overrides['size']) ) {
 			$this->size = $this->createSize();
 		}
 		return $this->size;
@@ -93,8 +100,8 @@ class File extends \com\microsoft\wc\thing\AnyMixed {
 		return $size;
 	}
 
-	public function getContentType() {
-		if ($this->contentType===NULL) {
+	public function getContentType($autoCreate = TRUE) {
+		if ($this->contentType===NULL && $autoCreate && ! isset($this->_overrides['contentType']) ) {
 			$this->contentType = $this->createContentType();
 		}
 		return $this->contentType;
@@ -109,9 +116,16 @@ class File extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateContentType($contentType) {
+		if ( $contentType === FALSE ) {
+			$this->_overrides['contentType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $contentType instanceof \com\microsoft\wc\thing\types\CodableValue  && ! is_null($contentType) ) {
 			$contentType = new \com\microsoft\wc\thing\types\CodableValue ($contentType);
 		}
+
+		unset ($this->_overrides['contentType']);
 	
 		return $contentType;
 	}

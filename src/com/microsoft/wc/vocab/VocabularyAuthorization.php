@@ -15,6 +15,13 @@ class VocabularyAuthorization {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="family")
 	 */
 	protected $family;
@@ -29,8 +36,8 @@ class VocabularyAuthorization {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 	}
 
-	public function getFamily() {
-		if ($this->family===NULL) {
+	public function getFamily($autoCreate = TRUE) {
+		if ($this->family===NULL && $autoCreate && ! isset($this->_overrides['family']) ) {
 			$this->family = $this->createFamily();
 		}
 		return $this->family;
@@ -52,8 +59,8 @@ class VocabularyAuthorization {
 		return $family;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -68,9 +75,16 @@ class VocabularyAuthorization {
 	}
 
 	protected function validateName($name) {
+		if ( $name === FALSE ) {
+			$this->_overrides['name'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $name instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($name) ) {
 			$name = new \com\microsoft\wc\types\Stringnz ($name);
 		}
+
+		unset ($this->_overrides['name']);
 	
 		return $name;
 	}

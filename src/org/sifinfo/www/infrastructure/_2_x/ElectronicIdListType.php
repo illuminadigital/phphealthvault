@@ -15,6 +15,13 @@ class ElectronicIdListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ElectronicId", collection="true", name="ElectronicId")
 	 */
 	protected $electronicId;
@@ -23,8 +30,8 @@ class ElectronicIdListType {
 		$this->electronicId = ($electronicId===NULL) ? NULL : $this->validateElectronicId($electronicId);
 	}
 
-	public function getElectronicId() {
-		if ($this->electronicId===NULL) {
+	public function getElectronicId($autoCreate = TRUE) {
+		if ($this->electronicId===NULL && $autoCreate && ! isset($this->_overrides['electronicId']) ) {
 			$this->electronicId = $this->createElectronicId();
 		}
 		return $this->electronicId;

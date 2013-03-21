@@ -14,6 +14,13 @@ class Common {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="source")
 	 */
 	protected $source;
@@ -52,8 +59,8 @@ class Common {
 		$this->clientThingId = ($clientThingId===NULL) ? NULL : $this->validateClientThingId($clientThingId);
 	}
 
-	public function getSource() {
-		if ($this->source===NULL) {
+	public function getSource($autoCreate = TRUE) {
+		if ($this->source===NULL && $autoCreate && ! isset($this->_overrides['source']) ) {
 			$this->source = $this->createSource();
 		}
 		return $this->source;
@@ -75,8 +82,8 @@ class Common {
 		return $source;
 	}
 
-	public function getNote() {
-		if ($this->note===NULL) {
+	public function getNote($autoCreate = TRUE) {
+		if ($this->note===NULL && $autoCreate && ! isset($this->_overrides['note']) ) {
 			$this->note = $this->createNote();
 		}
 		return $this->note;
@@ -98,8 +105,8 @@ class Common {
 		return $note;
 	}
 
-	public function getTags() {
-		if ($this->tags===NULL) {
+	public function getTags($autoCreate = TRUE) {
+		if ($this->tags===NULL && $autoCreate && ! isset($this->_overrides['tags']) ) {
 			$this->tags = $this->createTags();
 		}
 		return $this->tags;
@@ -114,15 +121,22 @@ class Common {
 	}
 
 	protected function validateTags($tags) {
+		if ( $tags === FALSE ) {
+			$this->_overrides['tags'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $tags instanceof \com\microsoft\wc\types\Stringz512  && ! is_null($tags) ) {
 			$tags = new \com\microsoft\wc\types\Stringz512 ($tags);
 		}
+
+		unset ($this->_overrides['tags']);
 	
 		return $tags;
 	}
 
-	public function getExtension() {
-		if ($this->extension===NULL) {
+	public function getExtension($autoCreate = TRUE) {
+		if ($this->extension===NULL && $autoCreate && ! isset($this->_overrides['extension']) ) {
 			$this->extension = $this->createExtension();
 		}
 		return $this->extension;
@@ -137,9 +151,16 @@ class Common {
 	}
 
 	protected function validateExtension($extension) {
+		if ( $extension === FALSE ) {
+			$this->_overrides['extension'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($extension) && ! is_null($extension) ) {
 			$extension = array($extension);
 		}
+
+		unset ($this->_overrides['extension']);
 		$count = count($extension);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'extension', 0));
@@ -157,8 +178,8 @@ class Common {
 		$this->extension[] = $extension;
 	}
 
-	public function getRelatedThing() {
-		if ($this->relatedThing===NULL) {
+	public function getRelatedThing($autoCreate = TRUE) {
+		if ($this->relatedThing===NULL && $autoCreate && ! isset($this->_overrides['relatedThing']) ) {
 			$this->relatedThing = $this->createRelatedThing();
 		}
 		return $this->relatedThing;
@@ -173,9 +194,16 @@ class Common {
 	}
 
 	protected function validateRelatedThing($relatedThing) {
+		if ( $relatedThing === FALSE ) {
+			$this->_overrides['relatedThing'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($relatedThing) && ! is_null($relatedThing) ) {
 			$relatedThing = array($relatedThing);
 		}
+
+		unset ($this->_overrides['relatedThing']);
 		$count = count($relatedThing);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'relatedThing', 0));
@@ -193,8 +221,8 @@ class Common {
 		$this->relatedThing[] = $relatedThing;
 	}
 
-	public function getClientThingId() {
-		if ($this->clientThingId===NULL) {
+	public function getClientThingId($autoCreate = TRUE) {
+		if ($this->clientThingId===NULL && $autoCreate && ! isset($this->_overrides['clientThingId']) ) {
 			$this->clientThingId = $this->createClientThingId();
 		}
 		return $this->clientThingId;
@@ -209,9 +237,16 @@ class Common {
 	}
 
 	protected function validateClientThingId($clientThingId) {
+		if ( $clientThingId === FALSE ) {
+			$this->_overrides['clientThingId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $clientThingId instanceof \com\microsoft\wc\types\String255  && ! is_null($clientThingId) ) {
 			$clientThingId = new \com\microsoft\wc\types\String255 ($clientThingId);
 		}
+
+		unset ($this->_overrides['clientThingId']);
 	
 		return $clientThingId;
 	}

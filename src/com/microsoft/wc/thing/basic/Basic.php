@@ -19,6 +19,13 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Basic Demographic Information';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\basic\Gender", name="gender")
 	 */
 	protected $gender;
@@ -69,8 +76,8 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 		$this->language = ($language===NULL) ? NULL : $this->validateLanguage($language);
 	}
 
-	public function getGender() {
-		if ($this->gender===NULL) {
+	public function getGender($autoCreate = TRUE) {
+		if ($this->gender===NULL && $autoCreate && ! isset($this->_overrides['gender']) ) {
 			$this->gender = $this->createGender();
 		}
 		return $this->gender;
@@ -85,15 +92,22 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateGender($gender) {
+		if ( $gender === FALSE ) {
+			$this->_overrides['gender'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $gender instanceof \com\microsoft\wc\thing\basic\Gender  && ! is_null($gender) ) {
 			$gender = new \com\microsoft\wc\thing\basic\Gender ($gender);
 		}
+
+		unset ($this->_overrides['gender']);
 	
 		return $gender;
 	}
 
-	public function getBirthyear() {
-		if ($this->birthyear===NULL) {
+	public function getBirthyear($autoCreate = TRUE) {
+		if ($this->birthyear===NULL && $autoCreate && ! isset($this->_overrides['birthyear']) ) {
 			$this->birthyear = $this->createBirthyear();
 		}
 		return $this->birthyear;
@@ -108,15 +122,22 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateBirthyear($birthyear) {
+		if ( $birthyear === FALSE ) {
+			$this->_overrides['birthyear'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $birthyear instanceof \com\microsoft\wc\thing\basic\Birthyear  && ! is_null($birthyear) ) {
 			$birthyear = new \com\microsoft\wc\thing\basic\Birthyear ($birthyear);
 		}
+
+		unset ($this->_overrides['birthyear']);
 	
 		return $birthyear;
 	}
 
-	public function getCountry() {
-		if ($this->country===NULL) {
+	public function getCountry($autoCreate = TRUE) {
+		if ($this->country===NULL && $autoCreate && ! isset($this->_overrides['country']) ) {
 			$this->country = $this->createCountry();
 		}
 		return $this->country;
@@ -131,15 +152,22 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCountry($country) {
+		if ( $country === FALSE ) {
+			$this->_overrides['country'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $country instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($country) ) {
 			$country = new \com\microsoft\wc\types\CodableValue ($country);
 		}
+
+		unset ($this->_overrides['country']);
 	
 		return $country;
 	}
 
-	public function getPostcode() {
-		if ($this->postcode===NULL) {
+	public function getPostcode($autoCreate = TRUE) {
+		if ($this->postcode===NULL && $autoCreate && ! isset($this->_overrides['postcode']) ) {
 			$this->postcode = $this->createPostcode();
 		}
 		return $this->postcode;
@@ -161,8 +189,8 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 		return $postcode;
 	}
 
-	public function getCity() {
-		if ($this->city===NULL) {
+	public function getCity($autoCreate = TRUE) {
+		if ($this->city===NULL && $autoCreate && ! isset($this->_overrides['city']) ) {
 			$this->city = $this->createCity();
 		}
 		return $this->city;
@@ -184,8 +212,8 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 		return $city;
 	}
 
-	public function getState() {
-		if ($this->state===NULL) {
+	public function getState($autoCreate = TRUE) {
+		if ($this->state===NULL && $autoCreate && ! isset($this->_overrides['state']) ) {
 			$this->state = $this->createState();
 		}
 		return $this->state;
@@ -200,15 +228,22 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateState($state) {
+		if ( $state === FALSE ) {
+			$this->_overrides['state'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $state instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($state) ) {
 			$state = new \com\microsoft\wc\types\CodableValue ($state);
 		}
+
+		unset ($this->_overrides['state']);
 	
 		return $state;
 	}
 
-	public function getFirstdow() {
-		if ($this->firstdow===NULL) {
+	public function getFirstdow($autoCreate = TRUE) {
+		if ($this->firstdow===NULL && $autoCreate && ! isset($this->_overrides['firstdow']) ) {
 			$this->firstdow = $this->createFirstdow();
 		}
 		return $this->firstdow;
@@ -223,15 +258,22 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFirstdow($firstdow) {
+		if ( $firstdow === FALSE ) {
+			$this->_overrides['firstdow'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $firstdow instanceof \com\microsoft\wc\thing\basic\Firstdow  && ! is_null($firstdow) ) {
 			$firstdow = new \com\microsoft\wc\thing\basic\Firstdow ($firstdow);
 		}
+
+		unset ($this->_overrides['firstdow']);
 	
 		return $firstdow;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -246,9 +288,16 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLanguage($language) {
+		if ( $language === FALSE ) {
+			$this->_overrides['language'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($language) && ! is_null($language) ) {
 			$language = array($language);
 		}
+
+		unset ($this->_overrides['language']);
 		$count = count($language);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'language', 0));

@@ -14,6 +14,13 @@ class StrucDoc.Text {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Content", collection="true", name="content")
 	 */
 	protected $content;
@@ -106,8 +113,8 @@ class StrucDoc.Text {
 		$this->mediaType = ($mediaType===NULL) ? NULL : $this->validateMediaType($mediaType);
 	}
 
-	public function getContent() {
-		if ($this->content===NULL) {
+	public function getContent($autoCreate = TRUE) {
+		if ($this->content===NULL && $autoCreate && ! isset($this->_overrides['content']) ) {
 			$this->content = $this->createContent();
 		}
 		return $this->content;
@@ -141,8 +148,8 @@ class StrucDoc.Text {
 		return $content;
 	}
 
-	public function getLinkHtml() {
-		if ($this->linkHtml===NULL) {
+	public function getLinkHtml($autoCreate = TRUE) {
+		if ($this->linkHtml===NULL && $autoCreate && ! isset($this->_overrides['linkHtml']) ) {
 			$this->linkHtml = $this->createLinkHtml();
 		}
 		return $this->linkHtml;
@@ -176,8 +183,8 @@ class StrucDoc.Text {
 		return $linkHtml;
 	}
 
-	public function getSub() {
-		if ($this->sub===NULL) {
+	public function getSub($autoCreate = TRUE) {
+		if ($this->sub===NULL && $autoCreate && ! isset($this->_overrides['sub']) ) {
 			$this->sub = $this->createSub();
 		}
 		return $this->sub;
@@ -211,8 +218,8 @@ class StrucDoc.Text {
 		return $sub;
 	}
 
-	public function getSup() {
-		if ($this->sup===NULL) {
+	public function getSup($autoCreate = TRUE) {
+		if ($this->sup===NULL && $autoCreate && ! isset($this->_overrides['sup']) ) {
 			$this->sup = $this->createSup();
 		}
 		return $this->sup;
@@ -246,8 +253,8 @@ class StrucDoc.Text {
 		return $sup;
 	}
 
-	public function getBr() {
-		if ($this->br===NULL) {
+	public function getBr($autoCreate = TRUE) {
+		if ($this->br===NULL && $autoCreate && ! isset($this->_overrides['br']) ) {
 			$this->br = $this->createBr();
 		}
 		return $this->br;
@@ -281,8 +288,8 @@ class StrucDoc.Text {
 		return $br;
 	}
 
-	public function getFootnote() {
-		if ($this->footnote===NULL) {
+	public function getFootnote($autoCreate = TRUE) {
+		if ($this->footnote===NULL && $autoCreate && ! isset($this->_overrides['footnote']) ) {
 			$this->footnote = $this->createFootnote();
 		}
 		return $this->footnote;
@@ -316,8 +323,8 @@ class StrucDoc.Text {
 		return $footnote;
 	}
 
-	public function getFootnoteRef() {
-		if ($this->footnoteRef===NULL) {
+	public function getFootnoteRef($autoCreate = TRUE) {
+		if ($this->footnoteRef===NULL && $autoCreate && ! isset($this->_overrides['footnoteRef']) ) {
 			$this->footnoteRef = $this->createFootnoteRef();
 		}
 		return $this->footnoteRef;
@@ -351,8 +358,8 @@ class StrucDoc.Text {
 		return $footnoteRef;
 	}
 
-	public function getRenderMultiMedia() {
-		if ($this->renderMultiMedia===NULL) {
+	public function getRenderMultiMedia($autoCreate = TRUE) {
+		if ($this->renderMultiMedia===NULL && $autoCreate && ! isset($this->_overrides['renderMultiMedia']) ) {
 			$this->renderMultiMedia = $this->createRenderMultiMedia();
 		}
 		return $this->renderMultiMedia;
@@ -386,8 +393,8 @@ class StrucDoc.Text {
 		return $renderMultiMedia;
 	}
 
-	public function getParagraph() {
-		if ($this->paragraph===NULL) {
+	public function getParagraph($autoCreate = TRUE) {
+		if ($this->paragraph===NULL && $autoCreate && ! isset($this->_overrides['paragraph']) ) {
 			$this->paragraph = $this->createParagraph();
 		}
 		return $this->paragraph;
@@ -421,8 +428,8 @@ class StrucDoc.Text {
 		return $paragraph;
 	}
 
-	public function getList() {
-		if ($this->list===NULL) {
+	public function getList($autoCreate = TRUE) {
+		if ($this->list===NULL && $autoCreate && ! isset($this->_overrides['list']) ) {
 			$this->list = $this->createList();
 		}
 		return $this->list;
@@ -456,8 +463,8 @@ class StrucDoc.Text {
 		return $list;
 	}
 
-	public function getTable() {
-		if ($this->table===NULL) {
+	public function getTable($autoCreate = TRUE) {
+		if ($this->table===NULL && $autoCreate && ! isset($this->_overrides['table']) ) {
 			$this->table = $this->createTable();
 		}
 		return $this->table;
@@ -491,8 +498,8 @@ class StrucDoc.Text {
 		return $table;
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -514,8 +521,8 @@ class StrucDoc.Text {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -537,8 +544,8 @@ class StrucDoc.Text {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;
@@ -560,8 +567,8 @@ class StrucDoc.Text {
 		return $styleCode;
 	}
 
-	public function getMediaType() {
-		if ($this->mediaType===NULL) {
+	public function getMediaType($autoCreate = TRUE) {
+		if ($this->mediaType===NULL && $autoCreate && ! isset($this->_overrides['mediaType']) ) {
 			$this->mediaType = $this->createMediaType();
 		}
 		return $this->mediaType;

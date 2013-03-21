@@ -14,6 +14,13 @@ class SpanGap {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="Type")
 	 */
 	protected $type;
@@ -52,8 +59,8 @@ class SpanGap {
 		$this->endDateTime = ($endDateTime===NULL) ? NULL : $this->validateEndDateTime($endDateTime);
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -75,8 +82,8 @@ class SpanGap {
 		return $type;
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -98,8 +105,8 @@ class SpanGap {
 		return $code;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -121,8 +128,8 @@ class SpanGap {
 		return $name;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -144,8 +151,8 @@ class SpanGap {
 		return $value;
 	}
 
-	public function getStartDateTime() {
-		if ($this->startDateTime===NULL) {
+	public function getStartDateTime($autoCreate = TRUE) {
+		if ($this->startDateTime===NULL && $autoCreate && ! isset($this->_overrides['startDateTime']) ) {
 			$this->startDateTime = $this->createStartDateTime();
 		}
 		return $this->startDateTime;
@@ -167,8 +174,8 @@ class SpanGap {
 		return $startDateTime;
 	}
 
-	public function getEndDateTime() {
-		if ($this->endDateTime===NULL) {
+	public function getEndDateTime($autoCreate = TRUE) {
+		if ($this->endDateTime===NULL && $autoCreate && ! isset($this->_overrides['endDateTime']) ) {
 			$this->endDateTime = $this->createEndDateTime();
 		}
 		return $this->endDateTime;

@@ -17,6 +17,13 @@ class Request {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\HMACFinalized", name="auth")
 	 */
 	protected $auth;
@@ -37,8 +44,8 @@ class Request {
 		$this->info = ($info===NULL) ? NULL : $this->validateInfo($info);
 	}
 
-	public function getAuth() {
-		if ($this->auth===NULL) {
+	public function getAuth($autoCreate = TRUE) {
+		if ($this->auth===NULL && $autoCreate && ! isset($this->_overrides['auth']) ) {
 			$this->auth = $this->createAuth();
 		}
 		return $this->auth;
@@ -53,15 +60,22 @@ class Request {
 	}
 
 	protected function validateAuth($auth) {
+		if ( $auth === FALSE ) {
+			$this->_overrides['auth'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $auth instanceof \com\microsoft\wc\types\HMACFinalized  && ! is_null($auth) ) {
 			$auth = new \com\microsoft\wc\types\HMACFinalized ($auth);
 		}
+
+		unset ($this->_overrides['auth']);
 	
 		return $auth;
 	}
 
-	public function getHeader() {
-		if ($this->header===NULL) {
+	public function getHeader($autoCreate = TRUE) {
+		if ($this->header===NULL && $autoCreate && ! isset($this->_overrides['header']) ) {
 			$this->header = $this->createHeader();
 		}
 		return $this->header;
@@ -83,8 +97,8 @@ class Request {
 		return $header;
 	}
 
-	public function getInfo() {
-		if ($this->info===NULL) {
+	public function getInfo($autoCreate = TRUE) {
+		if ($this->info===NULL && $autoCreate && ! isset($this->_overrides['info']) ) {
 			$this->info = $this->createInfo();
 		}
 		return $this->info;

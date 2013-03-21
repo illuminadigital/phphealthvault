@@ -15,6 +15,13 @@ class Response {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\response\Status", name="status")
 	 */
 	protected $status;
@@ -29,8 +36,8 @@ class Response {
 		$this->info = ($info===NULL) ? NULL : $this->validateInfo($info);
 	}
 
-	public function getStatus() {
-		if ($this->status===NULL) {
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
 			$this->status = $this->createStatus();
 		}
 		return $this->status;
@@ -52,8 +59,8 @@ class Response {
 		return $status;
 	}
 
-	public function getInfo() {
-		if ($this->info===NULL) {
+	public function getInfo($autoCreate = TRUE) {
+		if ($this->info===NULL && $autoCreate && ! isset($this->_overrides['info']) ) {
 			$this->info = $this->createInfo();
 		}
 		return $this->info;

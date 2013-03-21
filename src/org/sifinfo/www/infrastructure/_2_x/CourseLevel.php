@@ -14,6 +14,13 @@ class CourseLevel {
 	 * Conveys the level of the course.
 	 */
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class CourseLevel

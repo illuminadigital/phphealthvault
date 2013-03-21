@@ -14,6 +14,13 @@ class HXITCE extends \org\w3\www\_2001\XMLSchema\CE {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVLTS", name="validTime")
 	 */
 	protected $validTime;
@@ -22,8 +29,8 @@ class HXITCE extends \org\w3\www\_2001\XMLSchema\CE {
 		$this->validTime = ($validTime===NULL) ? NULL : $this->validateValidTime($validTime);
 	}
 
-	public function getValidTime() {
-		if ($this->validTime===NULL) {
+	public function getValidTime($autoCreate = TRUE) {
+		if ($this->validTime===NULL && $autoCreate && ! isset($this->_overrides['validTime']) ) {
 			$this->validTime = $this->createValidTime();
 		}
 		return $this->validTime;

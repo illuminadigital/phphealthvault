@@ -15,6 +15,13 @@ class TopicalApplication {
 	static protected $enumValue = array('OCDRESTA' => 'OCDRESTA', 'SUBCONJTA' => 'SUBCONJTA', 'TOPICAL' => 'TOPICAL', 'BUC' => 'BUC', 'CERV' => 'CERV', 'DEN' => 'DEN', 'GIN' => 'GIN', 'HAIR' => 'HAIR', 'ICORNTA' => 'ICORNTA', 'ICORONTA' => 'ICORONTA', 'IESOPHTA' => 'IESOPHTA', 'IILEALTA' => 'IILEALTA', 'ILTOP' => 'ILTOP', 'ILUMTA' => 'ILUMTA', 'IOTOP' => 'IOTOP', 'IONTO' => 'IONTO', 'LARYNGTA' => 'LARYNGTA', 'MUC' => 'MUC', 'NAIL' => 'NAIL', 'NASAL' => 'NASAL', 'OPTHALTA' => 'OPTHALTA', 'ORALTA' => 'ORALTA', 'ORMUC' => 'ORMUC', 'OROPHARTA' => 'OROPHARTA', 'PERIANAL' => 'PERIANAL', 'PERINEAL' => 'PERINEAL', 'PDONTTA' => 'PDONTTA', 'RECTAL' => 'RECTAL', 'SCALP' => 'SCALP', 'SKIN' => 'SKIN', 'DRESS' => 'DRESS', 'SWAB' => 'SWAB', 'TMUCTA' => 'TMUCTA', 'VAGINS' => 'VAGINS');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\hl7_org\v3\Cs", name="value")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class TopicalApplication {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

@@ -14,6 +14,13 @@ class NutritionFact {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -28,8 +35,8 @@ class NutritionFact {
 		$this->fact = ($fact===NULL) ? NULL : $this->validateFact($fact);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -51,8 +58,8 @@ class NutritionFact {
 		return $name;
 	}
 
-	public function getFact() {
-		if ($this->fact===NULL) {
+	public function getFact($autoCreate = TRUE) {
+		if ($this->fact===NULL && $autoCreate && ! isset($this->_overrides['fact']) ) {
 			$this->fact = $this->createFact();
 		}
 		return $this->fact;
@@ -67,9 +74,16 @@ class NutritionFact {
 	}
 
 	protected function validateFact($fact) {
+		if ( $fact === FALSE ) {
+			$this->_overrides['fact'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fact instanceof \com\microsoft\wc\thing\types\GeneralMeasurement  && ! is_null($fact) ) {
 			$fact = new \com\microsoft\wc\thing\types\GeneralMeasurement ($fact);
 		}
+
+		unset ($this->_overrides['fact']);
 	
 		return $fact;
 	}

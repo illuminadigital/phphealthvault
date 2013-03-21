@@ -14,6 +14,13 @@ class BlobHashAlgorithmParameters {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="integer", name="block-size")
 	 */
 	protected $blockSize;
@@ -22,8 +29,8 @@ class BlobHashAlgorithmParameters {
 		$this->blockSize = ($blockSize===NULL) ? NULL : $this->validateBlockSize($blockSize);
 	}
 
-	public function getBlockSize() {
-		if ($this->blockSize===NULL) {
+	public function getBlockSize($autoCreate = TRUE) {
+		if ($this->blockSize===NULL && $autoCreate && ! isset($this->_overrides['blockSize']) ) {
 			$this->blockSize = $this->createBlockSize();
 		}
 		return $this->blockSize;

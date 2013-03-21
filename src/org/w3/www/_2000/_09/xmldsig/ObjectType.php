@@ -14,6 +14,13 @@ class ObjectType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\AnyMixed", collection="true", name="*")
 	 */
 	protected $any;
@@ -40,8 +47,8 @@ class ObjectType {
 		$this->encoding = ($encoding===NULL) ? NULL : $this->validateEncoding($encoding);
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;
@@ -81,8 +88,8 @@ class ObjectType {
 		return $any;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -104,8 +111,8 @@ class ObjectType {
 		return $id;
 	}
 
-	public function getMimeType() {
-		if ($this->mimeType===NULL) {
+	public function getMimeType($autoCreate = TRUE) {
+		if ($this->mimeType===NULL && $autoCreate && ! isset($this->_overrides['mimeType']) ) {
 			$this->mimeType = $this->createMimeType();
 		}
 		return $this->mimeType;
@@ -127,8 +134,8 @@ class ObjectType {
 		return $mimeType;
 	}
 
-	public function getEncoding() {
-		if ($this->encoding===NULL) {
+	public function getEncoding($autoCreate = TRUE) {
+		if ($this->encoding===NULL && $autoCreate && ! isset($this->_overrides['encoding']) ) {
 			$this->encoding = $this->createEncoding();
 		}
 		return $this->encoding;

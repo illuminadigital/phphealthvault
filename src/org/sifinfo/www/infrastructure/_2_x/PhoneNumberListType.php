@@ -15,6 +15,13 @@ class PhoneNumberListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\PhoneNumber", collection="true", name="PhoneNumber")
 	 */
 	protected $phoneNumber;
@@ -23,8 +30,8 @@ class PhoneNumberListType {
 		$this->phoneNumber = ($phoneNumber===NULL) ? NULL : $this->validatePhoneNumber($phoneNumber);
 	}
 
-	public function getPhoneNumber() {
-		if ($this->phoneNumber===NULL) {
+	public function getPhoneNumber($autoCreate = TRUE) {
+		if ($this->phoneNumber===NULL && $autoCreate && ! isset($this->_overrides['phoneNumber']) ) {
 			$this->phoneNumber = $this->createPhoneNumber();
 		}
 		return $this->phoneNumber;

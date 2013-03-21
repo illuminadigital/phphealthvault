@@ -18,6 +18,13 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'PAP Session';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -86,8 +93,8 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 		$this->respiratoryRate = ($respiratoryRate===NULL) ? NULL : $this->validateRespiratoryRate($respiratoryRate);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -109,8 +116,8 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getDurationMinutes() {
-		if ($this->durationMinutes===NULL) {
+	public function getDurationMinutes($autoCreate = TRUE) {
+		if ($this->durationMinutes===NULL && $autoCreate && ! isset($this->_overrides['durationMinutes']) ) {
 			$this->durationMinutes = $this->createDurationMinutes();
 		}
 		return $this->durationMinutes;
@@ -132,8 +139,8 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 		return $durationMinutes;
 	}
 
-	public function getApneaHypopneaIndex() {
-		if ($this->apneaHypopneaIndex===NULL) {
+	public function getApneaHypopneaIndex($autoCreate = TRUE) {
+		if ($this->apneaHypopneaIndex===NULL && $autoCreate && ! isset($this->_overrides['apneaHypopneaIndex']) ) {
 			$this->apneaHypopneaIndex = $this->createApneaHypopneaIndex();
 		}
 		return $this->apneaHypopneaIndex;
@@ -155,8 +162,8 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 		return $apneaHypopneaIndex;
 	}
 
-	public function getApneaIndex() {
-		if ($this->apneaIndex===NULL) {
+	public function getApneaIndex($autoCreate = TRUE) {
+		if ($this->apneaIndex===NULL && $autoCreate && ! isset($this->_overrides['apneaIndex']) ) {
 			$this->apneaIndex = $this->createApneaIndex();
 		}
 		return $this->apneaIndex;
@@ -171,15 +178,22 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateApneaIndex($apneaIndex) {
+		if ( $apneaIndex === FALSE ) {
+			$this->_overrides['apneaIndex'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $apneaIndex instanceof \com\microsoft\wc\thing\types\NonNegativeDouble  && ! is_null($apneaIndex) ) {
 			$apneaIndex = new \com\microsoft\wc\thing\types\NonNegativeDouble ($apneaIndex);
 		}
+
+		unset ($this->_overrides['apneaIndex']);
 	
 		return $apneaIndex;
 	}
 
-	public function getHypopneaIndex() {
-		if ($this->hypopneaIndex===NULL) {
+	public function getHypopneaIndex($autoCreate = TRUE) {
+		if ($this->hypopneaIndex===NULL && $autoCreate && ! isset($this->_overrides['hypopneaIndex']) ) {
 			$this->hypopneaIndex = $this->createHypopneaIndex();
 		}
 		return $this->hypopneaIndex;
@@ -194,15 +208,22 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateHypopneaIndex($hypopneaIndex) {
+		if ( $hypopneaIndex === FALSE ) {
+			$this->_overrides['hypopneaIndex'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $hypopneaIndex instanceof \com\microsoft\wc\thing\types\NonNegativeDouble  && ! is_null($hypopneaIndex) ) {
 			$hypopneaIndex = new \com\microsoft\wc\thing\types\NonNegativeDouble ($hypopneaIndex);
 		}
+
+		unset ($this->_overrides['hypopneaIndex']);
 	
 		return $hypopneaIndex;
 	}
 
-	public function getOxygenDesaturationIndex() {
-		if ($this->oxygenDesaturationIndex===NULL) {
+	public function getOxygenDesaturationIndex($autoCreate = TRUE) {
+		if ($this->oxygenDesaturationIndex===NULL && $autoCreate && ! isset($this->_overrides['oxygenDesaturationIndex']) ) {
 			$this->oxygenDesaturationIndex = $this->createOxygenDesaturationIndex();
 		}
 		return $this->oxygenDesaturationIndex;
@@ -217,15 +238,22 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateOxygenDesaturationIndex($oxygenDesaturationIndex) {
+		if ( $oxygenDesaturationIndex === FALSE ) {
+			$this->_overrides['oxygenDesaturationIndex'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $oxygenDesaturationIndex instanceof \com\microsoft\wc\thing\types\NonNegativeDouble  && ! is_null($oxygenDesaturationIndex) ) {
 			$oxygenDesaturationIndex = new \com\microsoft\wc\thing\types\NonNegativeDouble ($oxygenDesaturationIndex);
 		}
+
+		unset ($this->_overrides['oxygenDesaturationIndex']);
 	
 		return $oxygenDesaturationIndex;
 	}
 
-	public function getPressure() {
-		if ($this->pressure===NULL) {
+	public function getPressure($autoCreate = TRUE) {
+		if ($this->pressure===NULL && $autoCreate && ! isset($this->_overrides['pressure']) ) {
 			$this->pressure = $this->createPressure();
 		}
 		return $this->pressure;
@@ -240,15 +268,22 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePressure($pressure) {
+		if ( $pressure === FALSE ) {
+			$this->_overrides['pressure'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $pressure instanceof \com\microsoft\wc\thing\pap_session\PapSessionPressure  && ! is_null($pressure) ) {
 			$pressure = new \com\microsoft\wc\thing\pap_session\PapSessionPressure ($pressure);
 		}
+
+		unset ($this->_overrides['pressure']);
 	
 		return $pressure;
 	}
 
-	public function getLeakRate() {
-		if ($this->leakRate===NULL) {
+	public function getLeakRate($autoCreate = TRUE) {
+		if ($this->leakRate===NULL && $autoCreate && ! isset($this->_overrides['leakRate']) ) {
 			$this->leakRate = $this->createLeakRate();
 		}
 		return $this->leakRate;
@@ -263,15 +298,22 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLeakRate($leakRate) {
+		if ( $leakRate === FALSE ) {
+			$this->_overrides['leakRate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $leakRate instanceof \com\microsoft\wc\thing\pap_session\PapSessionLeakRate  && ! is_null($leakRate) ) {
 			$leakRate = new \com\microsoft\wc\thing\pap_session\PapSessionLeakRate ($leakRate);
 		}
+
+		unset ($this->_overrides['leakRate']);
 	
 		return $leakRate;
 	}
 
-	public function getTidalVolume() {
-		if ($this->tidalVolume===NULL) {
+	public function getTidalVolume($autoCreate = TRUE) {
+		if ($this->tidalVolume===NULL && $autoCreate && ! isset($this->_overrides['tidalVolume']) ) {
 			$this->tidalVolume = $this->createTidalVolume();
 		}
 		return $this->tidalVolume;
@@ -286,15 +328,22 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTidalVolume($tidalVolume) {
+		if ( $tidalVolume === FALSE ) {
+			$this->_overrides['tidalVolume'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $tidalVolume instanceof \com\microsoft\wc\thing\pap_session\PapSessionTidalVolume  && ! is_null($tidalVolume) ) {
 			$tidalVolume = new \com\microsoft\wc\thing\pap_session\PapSessionTidalVolume ($tidalVolume);
 		}
+
+		unset ($this->_overrides['tidalVolume']);
 	
 		return $tidalVolume;
 	}
 
-	public function getMinuteVentilation() {
-		if ($this->minuteVentilation===NULL) {
+	public function getMinuteVentilation($autoCreate = TRUE) {
+		if ($this->minuteVentilation===NULL && $autoCreate && ! isset($this->_overrides['minuteVentilation']) ) {
 			$this->minuteVentilation = $this->createMinuteVentilation();
 		}
 		return $this->minuteVentilation;
@@ -309,15 +358,22 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMinuteVentilation($minuteVentilation) {
+		if ( $minuteVentilation === FALSE ) {
+			$this->_overrides['minuteVentilation'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minuteVentilation instanceof \com\microsoft\wc\thing\pap_session\PapSessionMinuteVentilation  && ! is_null($minuteVentilation) ) {
 			$minuteVentilation = new \com\microsoft\wc\thing\pap_session\PapSessionMinuteVentilation ($minuteVentilation);
 		}
+
+		unset ($this->_overrides['minuteVentilation']);
 	
 		return $minuteVentilation;
 	}
 
-	public function getRespiratoryRate() {
-		if ($this->respiratoryRate===NULL) {
+	public function getRespiratoryRate($autoCreate = TRUE) {
+		if ($this->respiratoryRate===NULL && $autoCreate && ! isset($this->_overrides['respiratoryRate']) ) {
 			$this->respiratoryRate = $this->createRespiratoryRate();
 		}
 		return $this->respiratoryRate;
@@ -332,9 +388,16 @@ class PapSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateRespiratoryRate($respiratoryRate) {
+		if ( $respiratoryRate === FALSE ) {
+			$this->_overrides['respiratoryRate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $respiratoryRate instanceof \com\microsoft\wc\thing\pap_session\PapSessionRespiratoryRate  && ! is_null($respiratoryRate) ) {
 			$respiratoryRate = new \com\microsoft\wc\thing\pap_session\PapSessionRespiratoryRate ($respiratoryRate);
 		}
+
+		unset ($this->_overrides['respiratoryRate']);
 	
 		return $respiratoryRate;
 	}

@@ -19,6 +19,13 @@ class FamilyHistoryPerson extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'FamilyHistoryPerson';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Person", name="relative-name")
 	 */
 	protected $relativeName;
@@ -45,8 +52,8 @@ class FamilyHistoryPerson extends \com\microsoft\wc\thing\AnyMixed {
 		$this->dateOfDeath = ($dateOfDeath===NULL) ? NULL : $this->validateDateOfDeath($dateOfDeath);
 	}
 
-	public function getRelativeName() {
-		if ($this->relativeName===NULL) {
+	public function getRelativeName($autoCreate = TRUE) {
+		if ($this->relativeName===NULL && $autoCreate && ! isset($this->_overrides['relativeName']) ) {
 			$this->relativeName = $this->createRelativeName();
 		}
 		return $this->relativeName;
@@ -68,8 +75,8 @@ class FamilyHistoryPerson extends \com\microsoft\wc\thing\AnyMixed {
 		return $relativeName;
 	}
 
-	public function getRelationship() {
-		if ($this->relationship===NULL) {
+	public function getRelationship($autoCreate = TRUE) {
+		if ($this->relationship===NULL && $autoCreate && ! isset($this->_overrides['relationship']) ) {
 			$this->relationship = $this->createRelationship();
 		}
 		return $this->relationship;
@@ -84,15 +91,22 @@ class FamilyHistoryPerson extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateRelationship($relationship) {
+		if ( $relationship === FALSE ) {
+			$this->_overrides['relationship'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $relationship instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($relationship) ) {
 			$relationship = new \com\microsoft\wc\types\CodableValue ($relationship);
 		}
+
+		unset ($this->_overrides['relationship']);
 	
 		return $relationship;
 	}
 
-	public function getDateOfBirth() {
-		if ($this->dateOfBirth===NULL) {
+	public function getDateOfBirth($autoCreate = TRUE) {
+		if ($this->dateOfBirth===NULL && $autoCreate && ! isset($this->_overrides['dateOfBirth']) ) {
 			$this->dateOfBirth = $this->createDateOfBirth();
 		}
 		return $this->dateOfBirth;
@@ -107,15 +121,22 @@ class FamilyHistoryPerson extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDateOfBirth($dateOfBirth) {
+		if ( $dateOfBirth === FALSE ) {
+			$this->_overrides['dateOfBirth'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dateOfBirth instanceof \com\microsoft\wc\dates\ApproxDate  && ! is_null($dateOfBirth) ) {
 			$dateOfBirth = new \com\microsoft\wc\dates\ApproxDate ($dateOfBirth);
 		}
+
+		unset ($this->_overrides['dateOfBirth']);
 	
 		return $dateOfBirth;
 	}
 
-	public function getDateOfDeath() {
-		if ($this->dateOfDeath===NULL) {
+	public function getDateOfDeath($autoCreate = TRUE) {
+		if ($this->dateOfDeath===NULL && $autoCreate && ! isset($this->_overrides['dateOfDeath']) ) {
 			$this->dateOfDeath = $this->createDateOfDeath();
 		}
 		return $this->dateOfDeath;
@@ -130,9 +151,16 @@ class FamilyHistoryPerson extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDateOfDeath($dateOfDeath) {
+		if ( $dateOfDeath === FALSE ) {
+			$this->_overrides['dateOfDeath'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dateOfDeath instanceof \com\microsoft\wc\dates\ApproxDate  && ! is_null($dateOfDeath) ) {
 			$dateOfDeath = new \com\microsoft\wc\dates\ApproxDate ($dateOfDeath);
 		}
+
+		unset ($this->_overrides['dateOfDeath']);
 	
 		return $dateOfDeath;
 	}

@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="authorized-connect-requests-since")
 	 */
 	protected $authorizedConnectRequestsSince;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->authorizedConnectRequestsSince = ($authorizedConnectRequestsSince===NULL) ? NULL : $this->validateAuthorizedConnectRequestsSince($authorizedConnectRequestsSince);
 	}
 
-	public function getAuthorizedConnectRequestsSince() {
-		if ($this->authorizedConnectRequestsSince===NULL) {
+	public function getAuthorizedConnectRequestsSince($autoCreate = TRUE) {
+		if ($this->authorizedConnectRequestsSince===NULL && $autoCreate && ! isset($this->_overrides['authorizedConnectRequestsSince']) ) {
 			$this->authorizedConnectRequestsSince = $this->createAuthorizedConnectRequestsSince();
 		}
 		return $this->authorizedConnectRequestsSince;

@@ -15,6 +15,13 @@ class NCES0599NonResidentAttendanceRationaleType {
 	static protected $enumValue = array('1661' => 'Attending a private school', '1657' => 'Attending an area alternative school', '1658' => 'Attending an area magnet program', '1659' => 'Attending an area special education school', '1660' => 'Attending an area vocational/technical school', '1668' => 'Charter school', '1662' => 'Court-mandated juvenile system assignment', '1663' => 'Home schooling', '1664' => 'Local education agency (LEA) assignment', '1665' => 'Migrant education program participation', '1666' => 'Open school enrollment', '1667' => 'Voucher');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0599NonResidentAttendanceRationaleType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0599NonResidentAttendanceRationaleType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

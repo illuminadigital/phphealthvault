@@ -16,6 +16,13 @@ class SimplePhoneFactorCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String64", name="id")
 	 */
 	protected $id;
@@ -30,8 +37,8 @@ class SimplePhoneFactorCredential {
 		$this->phoneNumber = ($phoneNumber===NULL) ? NULL : $this->validatePhoneNumber($phoneNumber);
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -53,8 +60,8 @@ class SimplePhoneFactorCredential {
 		return $id;
 	}
 
-	public function getPhoneNumber() {
-		if ($this->phoneNumber===NULL) {
+	public function getPhoneNumber($autoCreate = TRUE) {
+		if ($this->phoneNumber===NULL && $autoCreate && ! isset($this->_overrides['phoneNumber']) ) {
 			$this->phoneNumber = $this->createPhoneNumber();
 		}
 		return $this->phoneNumber;

@@ -19,6 +19,13 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Exercise';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -63,8 +70,8 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 		$this->segment = ($segment===NULL) ? NULL : $this->validateSegment($segment);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -86,8 +93,8 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getActivity() {
-		if ($this->activity===NULL) {
+	public function getActivity($autoCreate = TRUE) {
+		if ($this->activity===NULL && $autoCreate && ! isset($this->_overrides['activity']) ) {
 			$this->activity = $this->createActivity();
 		}
 		return $this->activity;
@@ -109,8 +116,8 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 		return $activity;
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -132,8 +139,8 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 		return $title;
 	}
 
-	public function getDistance() {
-		if ($this->distance===NULL) {
+	public function getDistance($autoCreate = TRUE) {
+		if ($this->distance===NULL && $autoCreate && ! isset($this->_overrides['distance']) ) {
 			$this->distance = $this->createDistance();
 		}
 		return $this->distance;
@@ -148,15 +155,22 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDistance($distance) {
+		if ( $distance === FALSE ) {
+			$this->_overrides['distance'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $distance instanceof \com\microsoft\wc\thing\types\LengthValue  && ! is_null($distance) ) {
 			$distance = new \com\microsoft\wc\thing\types\LengthValue ($distance);
 		}
+
+		unset ($this->_overrides['distance']);
 	
 		return $distance;
 	}
 
-	public function getDuration() {
-		if ($this->duration===NULL) {
+	public function getDuration($autoCreate = TRUE) {
+		if ($this->duration===NULL && $autoCreate && ! isset($this->_overrides['duration']) ) {
 			$this->duration = $this->createDuration();
 		}
 		return $this->duration;
@@ -171,15 +185,22 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDuration($duration) {
+		if ( $duration === FALSE ) {
+			$this->_overrides['duration'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $duration instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($duration) ) {
 			$duration = new \com\microsoft\wc\thing\types\PositiveDouble ($duration);
 		}
+
+		unset ($this->_overrides['duration']);
 	
 		return $duration;
 	}
 
-	public function getDetail() {
-		if ($this->detail===NULL) {
+	public function getDetail($autoCreate = TRUE) {
+		if ($this->detail===NULL && $autoCreate && ! isset($this->_overrides['detail']) ) {
 			$this->detail = $this->createDetail();
 		}
 		return $this->detail;
@@ -194,9 +215,16 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDetail($detail) {
+		if ( $detail === FALSE ) {
+			$this->_overrides['detail'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($detail) && ! is_null($detail) ) {
 			$detail = array($detail);
 		}
+
+		unset ($this->_overrides['detail']);
 		$count = count($detail);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'detail', 0));
@@ -214,8 +242,8 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 		$this->detail[] = $detail;
 	}
 
-	public function getSegment() {
-		if ($this->segment===NULL) {
+	public function getSegment($autoCreate = TRUE) {
+		if ($this->segment===NULL && $autoCreate && ! isset($this->_overrides['segment']) ) {
 			$this->segment = $this->createSegment();
 		}
 		return $this->segment;
@@ -230,9 +258,16 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSegment($segment) {
+		if ( $segment === FALSE ) {
+			$this->_overrides['segment'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($segment) && ! is_null($segment) ) {
 			$segment = array($segment);
 		}
+
+		unset ($this->_overrides['segment']);
 		$count = count($segment);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'segment', 0));

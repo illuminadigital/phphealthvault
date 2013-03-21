@@ -14,6 +14,13 @@ class MembershipType {
 	 * The type of this affiliation as it relates to the LEA identified.
 	 */
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class MembershipType

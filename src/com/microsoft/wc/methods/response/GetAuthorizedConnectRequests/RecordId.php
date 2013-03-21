@@ -15,6 +15,13 @@ class RecordId {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="app-specific-record-id")
 	 */
 	protected $appSpecificRecordId;
@@ -23,8 +30,8 @@ class RecordId {
 		$this->appSpecificRecordId = ($appSpecificRecordId===NULL) ? NULL : $this->validateAppSpecificRecordId($appSpecificRecordId);
 	}
 
-	public function getAppSpecificRecordId() {
-		if ($this->appSpecificRecordId===NULL) {
+	public function getAppSpecificRecordId($autoCreate = TRUE) {
+		if ($this->appSpecificRecordId===NULL && $autoCreate && ! isset($this->_overrides['appSpecificRecordId']) ) {
 			$this->appSpecificRecordId = $this->createAppSpecificRecordId();
 		}
 		return $this->appSpecificRecordId;

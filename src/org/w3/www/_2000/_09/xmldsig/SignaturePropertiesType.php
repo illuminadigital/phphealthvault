@@ -14,6 +14,13 @@ class SignaturePropertiesType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\SignatureProperty", collection="true", name="SignatureProperty")
 	 */
 	protected $signatureProperty;
@@ -28,8 +35,8 @@ class SignaturePropertiesType {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 	}
 
-	public function getSignatureProperty() {
-		if ($this->signatureProperty===NULL) {
+	public function getSignatureProperty($autoCreate = TRUE) {
+		if ($this->signatureProperty===NULL && $autoCreate && ! isset($this->_overrides['signatureProperty']) ) {
 			$this->signatureProperty = $this->createSignatureProperty();
 		}
 		return $this->signatureProperty;
@@ -64,8 +71,8 @@ class SignaturePropertiesType {
 		$this->signatureProperty[] = $signatureProperty;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;

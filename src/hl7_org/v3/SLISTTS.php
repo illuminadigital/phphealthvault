@@ -14,6 +14,13 @@ class SLISTTS extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\TS", name="origin")
 	 */
 	protected $origin;
@@ -34,8 +41,8 @@ class SLISTTS extends \org\w3\www\_2001\XMLSchema\ANY {
 		$this->digits = ($digits===NULL) ? NULL : $this->validateDigits($digits);
 	}
 
-	public function getOrigin() {
-		if ($this->origin===NULL) {
+	public function getOrigin($autoCreate = TRUE) {
+		if ($this->origin===NULL && $autoCreate && ! isset($this->_overrides['origin']) ) {
 			$this->origin = $this->createOrigin();
 		}
 		return $this->origin;
@@ -54,8 +61,8 @@ class SLISTTS extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $origin;
 	}
 
-	public function getScale() {
-		if ($this->scale===NULL) {
+	public function getScale($autoCreate = TRUE) {
+		if ($this->scale===NULL && $autoCreate && ! isset($this->_overrides['scale']) ) {
 			$this->scale = $this->createScale();
 		}
 		return $this->scale;
@@ -74,8 +81,8 @@ class SLISTTS extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $scale;
 	}
 
-	public function getDigits() {
-		if ($this->digits===NULL) {
+	public function getDigits($autoCreate = TRUE) {
+		if ($this->digits===NULL && $autoCreate && ! isset($this->_overrides['digits']) ) {
 			$this->digits = $this->createDigits();
 		}
 		return $this->digits;

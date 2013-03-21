@@ -14,6 +14,13 @@ class KeyValueType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\DSAKeyValue", name="DSAKeyValue")
 	 */
 	protected $dSAKeyValue;
@@ -34,8 +41,8 @@ class KeyValueType {
 		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 	}
 
-	public function getDSAKeyValue() {
-		if ($this->dSAKeyValue===NULL) {
+	public function getDSAKeyValue($autoCreate = TRUE) {
+		if ($this->dSAKeyValue===NULL && $autoCreate && ! isset($this->_overrides['dSAKeyValue']) ) {
 			$this->dSAKeyValue = $this->createDSAKeyValue();
 		}
 		return $this->dSAKeyValue;
@@ -57,8 +64,8 @@ class KeyValueType {
 		return $dSAKeyValue;
 	}
 
-	public function getRSAKeyValue() {
-		if ($this->rSAKeyValue===NULL) {
+	public function getRSAKeyValue($autoCreate = TRUE) {
+		if ($this->rSAKeyValue===NULL && $autoCreate && ! isset($this->_overrides['rSAKeyValue']) ) {
 			$this->rSAKeyValue = $this->createRSAKeyValue();
 		}
 		return $this->rSAKeyValue;
@@ -80,8 +87,8 @@ class KeyValueType {
 		return $rSAKeyValue;
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;

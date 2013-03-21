@@ -15,6 +15,13 @@ class NCES0468ContractualTermType {
 	static protected $enumValue = array('1439' => 'Short-term', '0410' => 'Annual year', '1440' => 'Continuing', '1441' => 'Renewable', '1442' => 'Multiyear', '9999' => 'Other');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0468ContractualTermType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0468ContractualTermType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

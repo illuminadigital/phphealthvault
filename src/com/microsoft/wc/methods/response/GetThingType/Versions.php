@@ -15,6 +15,13 @@ class Versions {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetThingType\VersionInfo", collection="true", name="version-info")
 	 */
 	protected $versionInfo;
@@ -29,8 +36,8 @@ class Versions {
 		$this->thingTypeId = ($thingTypeId===NULL) ? NULL : $this->validateThingTypeId($thingTypeId);
 	}
 
-	public function getVersionInfo() {
-		if ($this->versionInfo===NULL) {
+	public function getVersionInfo($autoCreate = TRUE) {
+		if ($this->versionInfo===NULL && $autoCreate && ! isset($this->_overrides['versionInfo']) ) {
 			$this->versionInfo = $this->createVersionInfo();
 		}
 		return $this->versionInfo;
@@ -65,8 +72,8 @@ class Versions {
 		$this->versionInfo[] = $versionInfo;
 	}
 
-	public function getThingTypeId() {
-		if ($this->thingTypeId===NULL) {
+	public function getThingTypeId($autoCreate = TRUE) {
+		if ($this->thingTypeId===NULL && $autoCreate && ! isset($this->_overrides['thingTypeId']) ) {
 			$this->thingTypeId = $this->createThingTypeId();
 		}
 		return $this->thingTypeId;

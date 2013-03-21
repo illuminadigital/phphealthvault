@@ -15,6 +15,13 @@ class MealStatusType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="StartDate")
 	 */
 	protected $startDate;
@@ -41,8 +48,8 @@ class MealStatusType {
 		$this->type = ($type===NULL) ? NULL : $this->validateType($type);
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -64,8 +71,8 @@ class MealStatusType {
 		return $startDate;
 	}
 
-	public function getEndDate() {
-		if ($this->endDate===NULL) {
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
 			$this->endDate = $this->createEndDate();
 		}
 		return $this->endDate;
@@ -87,8 +94,8 @@ class MealStatusType {
 		return $endDate;
 	}
 
-	public function getSchoolYear() {
-		if ($this->schoolYear===NULL) {
+	public function getSchoolYear($autoCreate = TRUE) {
+		if ($this->schoolYear===NULL && $autoCreate && ! isset($this->_overrides['schoolYear']) ) {
 			$this->schoolYear = $this->createSchoolYear();
 		}
 		return $this->schoolYear;
@@ -107,8 +114,8 @@ class MealStatusType {
 		return $schoolYear;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;

@@ -15,6 +15,13 @@ class SCEDCodeType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SCEDCourseTitlesType", name="CourseDescription")
 	 */
 	protected $courseDescription;
@@ -47,8 +54,8 @@ class SCEDCodeType {
 		$this->sequenceLimit = ($sequenceLimit===NULL) ? NULL : $this->validateSequenceLimit($sequenceLimit);
 	}
 
-	public function getCourseDescription() {
-		if ($this->courseDescription===NULL) {
+	public function getCourseDescription($autoCreate = TRUE) {
+		if ($this->courseDescription===NULL && $autoCreate && ! isset($this->_overrides['courseDescription']) ) {
 			$this->courseDescription = $this->createCourseDescription();
 		}
 		return $this->courseDescription;
@@ -67,8 +74,8 @@ class SCEDCodeType {
 		return $courseDescription;
 	}
 
-	public function getCourseLevel() {
-		if ($this->courseLevel===NULL) {
+	public function getCourseLevel($autoCreate = TRUE) {
+		if ($this->courseLevel===NULL && $autoCreate && ! isset($this->_overrides['courseLevel']) ) {
 			$this->courseLevel = $this->createCourseLevel();
 		}
 		return $this->courseLevel;
@@ -90,8 +97,8 @@ class SCEDCodeType {
 		return $courseLevel;
 	}
 
-	public function getAvailableCredit() {
-		if ($this->availableCredit===NULL) {
+	public function getAvailableCredit($autoCreate = TRUE) {
+		if ($this->availableCredit===NULL && $autoCreate && ! isset($this->_overrides['availableCredit']) ) {
 			$this->availableCredit = $this->createAvailableCredit();
 		}
 		return $this->availableCredit;
@@ -113,8 +120,8 @@ class SCEDCodeType {
 		return $availableCredit;
 	}
 
-	public function getSequenceNumber() {
-		if ($this->sequenceNumber===NULL) {
+	public function getSequenceNumber($autoCreate = TRUE) {
+		if ($this->sequenceNumber===NULL && $autoCreate && ! isset($this->_overrides['sequenceNumber']) ) {
 			$this->sequenceNumber = $this->createSequenceNumber();
 		}
 		return $this->sequenceNumber;
@@ -136,8 +143,8 @@ class SCEDCodeType {
 		return $sequenceNumber;
 	}
 
-	public function getSequenceLimit() {
-		if ($this->sequenceLimit===NULL) {
+	public function getSequenceLimit($autoCreate = TRUE) {
+		if ($this->sequenceLimit===NULL && $autoCreate && ! isset($this->_overrides['sequenceLimit']) ) {
 			$this->sequenceLimit = $this->createSequenceLimit();
 		}
 		return $this->sequenceLimit;

@@ -15,6 +15,13 @@ class NCES1046IncidentInjuryType {
 	static protected $enumValue = array('3064' => 'Major injury', '3063' => 'Minor injury', '3065' => 'No injury', '3579' => 'Serious bodily injury');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES1046IncidentInjuryType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES1046IncidentInjuryType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

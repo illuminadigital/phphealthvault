@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\AppSettings", name="app-settings")
 	 */
 	protected $appSettings;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->appSettings = ($appSettings===NULL) ? NULL : $this->validateAppSettings($appSettings);
 	}
 
-	public function getAppSettings() {
-		if ($this->appSettings===NULL) {
+	public function getAppSettings($autoCreate = TRUE) {
+		if ($this->appSettings===NULL && $autoCreate && ! isset($this->_overrides['appSettings']) ) {
 			$this->appSettings = $this->createAppSettings();
 		}
 		return $this->appSettings;
@@ -40,9 +47,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateAppSettings($appSettings) {
+		if ( $appSettings === FALSE ) {
+			$this->_overrides['appSettings'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $appSettings instanceof \com\microsoft\wc\types\AppSettings  && ! is_null($appSettings) ) {
 			$appSettings = new \com\microsoft\wc\types\AppSettings ($appSettings);
 		}
+
+		unset ($this->_overrides['appSettings']);
 	
 		return $appSettings;
 	}

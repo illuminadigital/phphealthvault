@@ -15,6 +15,13 @@ class FSCountType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\MealStatusType", name="MealStatus")
 	 */
 	protected $mealStatus;
@@ -53,8 +60,8 @@ class FSCountType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getMealStatus() {
-		if ($this->mealStatus===NULL) {
+	public function getMealStatus($autoCreate = TRUE) {
+		if ($this->mealStatus===NULL && $autoCreate && ! isset($this->_overrides['mealStatus']) ) {
 			$this->mealStatus = $this->createMealStatus();
 		}
 		return $this->mealStatus;
@@ -69,15 +76,22 @@ class FSCountType {
 	}
 
 	protected function validateMealStatus($mealStatus) {
+		if ( $mealStatus === FALSE ) {
+			$this->_overrides['mealStatus'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $mealStatus instanceof \org\sifinfo\www\infrastructure\_2_x\MealStatusType  && ! is_null($mealStatus) ) {
 			$mealStatus = new \org\sifinfo\www\infrastructure\_2_x\MealStatusType ($mealStatus);
 		}
+
+		unset ($this->_overrides['mealStatus']);
 	
 		return $mealStatus;
 	}
 
-	public function getEarnedStatus() {
-		if ($this->earnedStatus===NULL) {
+	public function getEarnedStatus($autoCreate = TRUE) {
+		if ($this->earnedStatus===NULL && $autoCreate && ! isset($this->_overrides['earnedStatus']) ) {
 			$this->earnedStatus = $this->createEarnedStatus();
 		}
 		return $this->earnedStatus;
@@ -92,15 +106,22 @@ class FSCountType {
 	}
 
 	protected function validateEarnedStatus($earnedStatus) {
+		if ( $earnedStatus === FALSE ) {
+			$this->_overrides['earnedStatus'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $earnedStatus instanceof \org\sifinfo\www\infrastructure\_2_x\EarnedStatusType  && ! is_null($earnedStatus) ) {
 			$earnedStatus = new \org\sifinfo\www\infrastructure\_2_x\EarnedStatusType ($earnedStatus);
 		}
+
+		unset ($this->_overrides['earnedStatus']);
 	
 		return $earnedStatus;
 	}
 
-	public function getMealType() {
-		if ($this->mealType===NULL) {
+	public function getMealType($autoCreate = TRUE) {
+		if ($this->mealType===NULL && $autoCreate && ! isset($this->_overrides['mealType']) ) {
 			$this->mealType = $this->createMealType();
 		}
 		return $this->mealType;
@@ -119,8 +140,8 @@ class FSCountType {
 		return $mealType;
 	}
 
-	public function getAmount() {
-		if ($this->amount===NULL) {
+	public function getAmount($autoCreate = TRUE) {
+		if ($this->amount===NULL && $autoCreate && ! isset($this->_overrides['amount']) ) {
 			$this->amount = $this->createAmount();
 		}
 		return $this->amount;
@@ -135,15 +156,22 @@ class FSCountType {
 	}
 
 	protected function validateAmount($amount) {
+		if ( $amount === FALSE ) {
+			$this->_overrides['amount'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $amount instanceof \org\sifinfo\www\infrastructure\_2_x\FSAmountType  && ! is_null($amount) ) {
 			$amount = new \org\sifinfo\www\infrastructure\_2_x\FSAmountType ($amount);
 		}
+
+		unset ($this->_overrides['amount']);
 	
 		return $amount;
 	}
 
-	public function getTax() {
-		if ($this->tax===NULL) {
+	public function getTax($autoCreate = TRUE) {
+		if ($this->tax===NULL && $autoCreate && ! isset($this->_overrides['tax']) ) {
 			$this->tax = $this->createTax();
 		}
 		return $this->tax;
@@ -158,15 +186,22 @@ class FSCountType {
 	}
 
 	protected function validateTax($tax) {
+		if ( $tax === FALSE ) {
+			$this->_overrides['tax'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $tax instanceof \org\sifinfo\www\infrastructure\_2_x\MonetaryAmountType  && ! is_null($tax) ) {
 			$tax = new \org\sifinfo\www\infrastructure\_2_x\MonetaryAmountType ($tax);
 		}
+
+		unset ($this->_overrides['tax']);
 	
 		return $tax;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

@@ -14,6 +14,13 @@ class DataXml {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\AnyMixed", collection="true", name="*")
 	 */
 	protected $any;
@@ -34,8 +41,8 @@ class DataXml {
 		$this->transform = ($transform===NULL) ? NULL : $this->validateTransform($transform);
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;
@@ -75,8 +82,8 @@ class DataXml {
 		return $any;
 	}
 
-	public function getCommon() {
-		if ($this->common===NULL) {
+	public function getCommon($autoCreate = TRUE) {
+		if ($this->common===NULL && $autoCreate && ! isset($this->_overrides['common']) ) {
 			$this->common = $this->createCommon();
 		}
 		return $this->common;
@@ -91,15 +98,22 @@ class DataXml {
 	}
 
 	protected function validateCommon($common) {
+		if ( $common === FALSE ) {
+			$this->_overrides['common'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $common instanceof \com\microsoft\wc\thing\Common  && ! is_null($common) ) {
 			$common = new \com\microsoft\wc\thing\Common ($common);
 		}
+
+		unset ($this->_overrides['common']);
 	
 		return $common;
 	}
 
-	public function getTransform() {
-		if ($this->transform===NULL) {
+	public function getTransform($autoCreate = TRUE) {
+		if ($this->transform===NULL && $autoCreate && ! isset($this->_overrides['transform']) ) {
 			$this->transform = $this->createTransform();
 		}
 		return $this->transform;

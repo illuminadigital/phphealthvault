@@ -14,6 +14,13 @@ class Assessment {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="Name")
 	 */
 	protected $name;
@@ -70,8 +77,8 @@ class Assessment {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -93,8 +100,8 @@ class Assessment {
 		return $name;
 	}
 
-	public function getAdministrationDate() {
-		if ($this->administrationDate===NULL) {
+	public function getAdministrationDate($autoCreate = TRUE) {
+		if ($this->administrationDate===NULL && $autoCreate && ! isset($this->_overrides['administrationDate']) ) {
 			$this->administrationDate = $this->createAdministrationDate();
 		}
 		return $this->administrationDate;
@@ -113,8 +120,8 @@ class Assessment {
 		return $administrationDate;
 	}
 
-	public function getForm() {
-		if ($this->form===NULL) {
+	public function getForm($autoCreate = TRUE) {
+		if ($this->form===NULL && $autoCreate && ! isset($this->_overrides['form']) ) {
 			$this->form = $this->createForm();
 		}
 		return $this->form;
@@ -136,8 +143,8 @@ class Assessment {
 		return $form;
 	}
 
-	public function getLevel() {
-		if ($this->level===NULL) {
+	public function getLevel($autoCreate = TRUE) {
+		if ($this->level===NULL && $autoCreate && ! isset($this->_overrides['level']) ) {
 			$this->level = $this->createLevel();
 		}
 		return $this->level;
@@ -159,8 +166,8 @@ class Assessment {
 		return $level;
 	}
 
-	public function getStudentGradeLevelWhenAssessed() {
-		if ($this->studentGradeLevelWhenAssessed===NULL) {
+	public function getStudentGradeLevelWhenAssessed($autoCreate = TRUE) {
+		if ($this->studentGradeLevelWhenAssessed===NULL && $autoCreate && ! isset($this->_overrides['studentGradeLevelWhenAssessed']) ) {
 			$this->studentGradeLevelWhenAssessed = $this->createStudentGradeLevelWhenAssessed();
 		}
 		return $this->studentGradeLevelWhenAssessed;
@@ -175,15 +182,22 @@ class Assessment {
 	}
 
 	protected function validateStudentGradeLevelWhenAssessed($studentGradeLevelWhenAssessed) {
+		if ( $studentGradeLevelWhenAssessed === FALSE ) {
+			$this->_overrides['studentGradeLevelWhenAssessed'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $studentGradeLevelWhenAssessed instanceof \org\sifinfo\www\infrastructure\_2_x\GradeLevelType  && ! is_null($studentGradeLevelWhenAssessed) ) {
 			$studentGradeLevelWhenAssessed = new \org\sifinfo\www\infrastructure\_2_x\GradeLevelType ($studentGradeLevelWhenAssessed);
 		}
+
+		unset ($this->_overrides['studentGradeLevelWhenAssessed']);
 	
 		return $studentGradeLevelWhenAssessed;
 	}
 
-	public function getSubtestCategory() {
-		if ($this->subtestCategory===NULL) {
+	public function getSubtestCategory($autoCreate = TRUE) {
+		if ($this->subtestCategory===NULL && $autoCreate && ! isset($this->_overrides['subtestCategory']) ) {
 			$this->subtestCategory = $this->createSubtestCategory();
 		}
 		return $this->subtestCategory;
@@ -205,8 +219,8 @@ class Assessment {
 		return $subtestCategory;
 	}
 
-	public function getTestScoreType() {
-		if ($this->testScoreType===NULL) {
+	public function getTestScoreType($autoCreate = TRUE) {
+		if ($this->testScoreType===NULL && $autoCreate && ! isset($this->_overrides['testScoreType']) ) {
 			$this->testScoreType = $this->createTestScoreType();
 		}
 		return $this->testScoreType;
@@ -225,8 +239,8 @@ class Assessment {
 		return $testScoreType;
 	}
 
-	public function getTestScore() {
-		if ($this->testScore===NULL) {
+	public function getTestScore($autoCreate = TRUE) {
+		if ($this->testScore===NULL && $autoCreate && ! isset($this->_overrides['testScore']) ) {
 			$this->testScore = $this->createTestScore();
 		}
 		return $this->testScore;
@@ -248,8 +262,8 @@ class Assessment {
 		return $testScore;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -264,9 +278,16 @@ class Assessment {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

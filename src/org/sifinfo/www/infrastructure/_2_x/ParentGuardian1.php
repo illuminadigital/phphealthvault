@@ -14,6 +14,13 @@ class ParentGuardian1 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Name", name="Name")
 	 */
 	protected $name;
@@ -34,8 +41,8 @@ class ParentGuardian1 {
 		$this->addressList = ($addressList===NULL) ? NULL : $this->validateAddressList($addressList);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -57,8 +64,8 @@ class ParentGuardian1 {
 		return $name;
 	}
 
-	public function getPhoneNumberList() {
-		if ($this->phoneNumberList===NULL) {
+	public function getPhoneNumberList($autoCreate = TRUE) {
+		if ($this->phoneNumberList===NULL && $autoCreate && ! isset($this->_overrides['phoneNumberList']) ) {
 			$this->phoneNumberList = $this->createPhoneNumberList();
 		}
 		return $this->phoneNumberList;
@@ -73,15 +80,22 @@ class ParentGuardian1 {
 	}
 
 	protected function validatePhoneNumberList($phoneNumberList) {
+		if ( $phoneNumberList === FALSE ) {
+			$this->_overrides['phoneNumberList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $phoneNumberList instanceof \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType  && ! is_null($phoneNumberList) ) {
 			$phoneNumberList = new \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType ($phoneNumberList);
 		}
+
+		unset ($this->_overrides['phoneNumberList']);
 	
 		return $phoneNumberList;
 	}
 
-	public function getAddressList() {
-		if ($this->addressList===NULL) {
+	public function getAddressList($autoCreate = TRUE) {
+		if ($this->addressList===NULL && $autoCreate && ! isset($this->_overrides['addressList']) ) {
 			$this->addressList = $this->createAddressList();
 		}
 		return $this->addressList;
@@ -96,9 +110,16 @@ class ParentGuardian1 {
 	}
 
 	protected function validateAddressList($addressList) {
+		if ( $addressList === FALSE ) {
+			$this->_overrides['addressList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $addressList instanceof \org\sifinfo\www\infrastructure\_2_x\AddressListType  && ! is_null($addressList) ) {
 			$addressList = new \org\sifinfo\www\infrastructure\_2_x\AddressListType ($addressList);
 		}
+
+		unset ($this->_overrides['addressList']);
 	
 		return $addressList;
 	}

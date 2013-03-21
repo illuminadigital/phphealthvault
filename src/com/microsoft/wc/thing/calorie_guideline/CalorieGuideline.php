@@ -19,6 +19,13 @@ class CalorieGuideline extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Calorie Guideline';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -39,8 +46,8 @@ class CalorieGuideline extends \com\microsoft\wc\thing\AnyMixed {
 		$this->calories = ($calories===NULL) ? NULL : $this->validateCalories($calories);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -62,8 +69,8 @@ class CalorieGuideline extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -85,8 +92,8 @@ class CalorieGuideline extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getCalories() {
-		if ($this->calories===NULL) {
+	public function getCalories($autoCreate = TRUE) {
+		if ($this->calories===NULL && $autoCreate && ! isset($this->_overrides['calories']) ) {
 			$this->calories = $this->createCalories();
 		}
 		return $this->calories;

@@ -14,6 +14,13 @@ class Modified {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="By")
 	 */
 	protected $by;
@@ -34,8 +41,8 @@ class Modified {
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
 	}
 
-	public function getBy() {
-		if ($this->by===NULL) {
+	public function getBy($autoCreate = TRUE) {
+		if ($this->by===NULL && $autoCreate && ! isset($this->_overrides['by']) ) {
 			$this->by = $this->createBy();
 		}
 		return $this->by;
@@ -57,8 +64,8 @@ class Modified {
 		return $by;
 	}
 
-	public function getDateTime() {
-		if ($this->dateTime===NULL) {
+	public function getDateTime($autoCreate = TRUE) {
+		if ($this->dateTime===NULL && $autoCreate && ! isset($this->_overrides['dateTime']) ) {
 			$this->dateTime = $this->createDateTime();
 		}
 		return $this->dateTime;
@@ -80,8 +87,8 @@ class Modified {
 		return $dateTime;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;

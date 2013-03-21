@@ -16,6 +16,13 @@ class ExerciseSegment {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="activity")
 	 */
 	protected $activity;
@@ -54,8 +61,8 @@ class ExerciseSegment {
 		$this->detail = ($detail===NULL) ? NULL : $this->validateDetail($detail);
 	}
 
-	public function getActivity() {
-		if ($this->activity===NULL) {
+	public function getActivity($autoCreate = TRUE) {
+		if ($this->activity===NULL && $autoCreate && ! isset($this->_overrides['activity']) ) {
 			$this->activity = $this->createActivity();
 		}
 		return $this->activity;
@@ -77,8 +84,8 @@ class ExerciseSegment {
 		return $activity;
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -100,8 +107,8 @@ class ExerciseSegment {
 		return $title;
 	}
 
-	public function getDistance() {
-		if ($this->distance===NULL) {
+	public function getDistance($autoCreate = TRUE) {
+		if ($this->distance===NULL && $autoCreate && ! isset($this->_overrides['distance']) ) {
 			$this->distance = $this->createDistance();
 		}
 		return $this->distance;
@@ -116,15 +123,22 @@ class ExerciseSegment {
 	}
 
 	protected function validateDistance($distance) {
+		if ( $distance === FALSE ) {
+			$this->_overrides['distance'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $distance instanceof \com\microsoft\wc\thing\types\LengthValue  && ! is_null($distance) ) {
 			$distance = new \com\microsoft\wc\thing\types\LengthValue ($distance);
 		}
+
+		unset ($this->_overrides['distance']);
 	
 		return $distance;
 	}
 
-	public function getDuration() {
-		if ($this->duration===NULL) {
+	public function getDuration($autoCreate = TRUE) {
+		if ($this->duration===NULL && $autoCreate && ! isset($this->_overrides['duration']) ) {
 			$this->duration = $this->createDuration();
 		}
 		return $this->duration;
@@ -139,15 +153,22 @@ class ExerciseSegment {
 	}
 
 	protected function validateDuration($duration) {
+		if ( $duration === FALSE ) {
+			$this->_overrides['duration'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $duration instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($duration) ) {
 			$duration = new \com\microsoft\wc\thing\types\PositiveDouble ($duration);
 		}
+
+		unset ($this->_overrides['duration']);
 	
 		return $duration;
 	}
 
-	public function getOffset() {
-		if ($this->offset===NULL) {
+	public function getOffset($autoCreate = TRUE) {
+		if ($this->offset===NULL && $autoCreate && ! isset($this->_overrides['offset']) ) {
 			$this->offset = $this->createOffset();
 		}
 		return $this->offset;
@@ -162,15 +183,22 @@ class ExerciseSegment {
 	}
 
 	protected function validateOffset($offset) {
+		if ( $offset === FALSE ) {
+			$this->_overrides['offset'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $offset instanceof \com\microsoft\wc\thing\types\NonNegativeDouble  && ! is_null($offset) ) {
 			$offset = new \com\microsoft\wc\thing\types\NonNegativeDouble ($offset);
 		}
+
+		unset ($this->_overrides['offset']);
 	
 		return $offset;
 	}
 
-	public function getDetail() {
-		if ($this->detail===NULL) {
+	public function getDetail($autoCreate = TRUE) {
+		if ($this->detail===NULL && $autoCreate && ! isset($this->_overrides['detail']) ) {
 			$this->detail = $this->createDetail();
 		}
 		return $this->detail;
@@ -185,9 +213,16 @@ class ExerciseSegment {
 	}
 
 	protected function validateDetail($detail) {
+		if ( $detail === FALSE ) {
+			$this->_overrides['detail'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($detail) && ! is_null($detail) ) {
 			$detail = array($detail);
 		}
+
+		unset ($this->_overrides['detail']);
 		$count = count($detail);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'detail', 0));

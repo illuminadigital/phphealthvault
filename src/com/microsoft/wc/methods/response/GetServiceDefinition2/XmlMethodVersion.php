@@ -15,6 +15,13 @@ class XmlMethodVersion {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="request-schema-url")
 	 */
 	protected $requestSchemaUrl;
@@ -35,8 +42,8 @@ class XmlMethodVersion {
 		$this->number = ($number===NULL) ? NULL : $this->validateNumber($number);
 	}
 
-	public function getRequestSchemaUrl() {
-		if ($this->requestSchemaUrl===NULL) {
+	public function getRequestSchemaUrl($autoCreate = TRUE) {
+		if ($this->requestSchemaUrl===NULL && $autoCreate && ! isset($this->_overrides['requestSchemaUrl']) ) {
 			$this->requestSchemaUrl = $this->createRequestSchemaUrl();
 		}
 		return $this->requestSchemaUrl;
@@ -58,8 +65,8 @@ class XmlMethodVersion {
 		return $requestSchemaUrl;
 	}
 
-	public function getResponseSchemaUrl() {
-		if ($this->responseSchemaUrl===NULL) {
+	public function getResponseSchemaUrl($autoCreate = TRUE) {
+		if ($this->responseSchemaUrl===NULL && $autoCreate && ! isset($this->_overrides['responseSchemaUrl']) ) {
 			$this->responseSchemaUrl = $this->createResponseSchemaUrl();
 		}
 		return $this->responseSchemaUrl;
@@ -81,8 +88,8 @@ class XmlMethodVersion {
 		return $responseSchemaUrl;
 	}
 
-	public function getNumber() {
-		if ($this->number===NULL) {
+	public function getNumber($autoCreate = TRUE) {
+		if ($this->number===NULL && $autoCreate && ! isset($this->_overrides['number']) ) {
 			$this->number = $this->createNumber();
 		}
 		return $this->number;

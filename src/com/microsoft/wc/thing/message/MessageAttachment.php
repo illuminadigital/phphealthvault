@@ -15,6 +15,13 @@ class MessageAttachment {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnznw", name="name")
 	 */
 	protected $name;
@@ -41,8 +48,8 @@ class MessageAttachment {
 		$this->contentId = ($contentId===NULL) ? NULL : $this->validateContentId($contentId);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -64,8 +71,8 @@ class MessageAttachment {
 		return $name;
 	}
 
-	public function getBlobName() {
-		if ($this->blobName===NULL) {
+	public function getBlobName($autoCreate = TRUE) {
+		if ($this->blobName===NULL && $autoCreate && ! isset($this->_overrides['blobName']) ) {
 			$this->blobName = $this->createBlobName();
 		}
 		return $this->blobName;
@@ -87,8 +94,8 @@ class MessageAttachment {
 		return $blobName;
 	}
 
-	public function getInlineDisplay() {
-		if ($this->inlineDisplay===NULL) {
+	public function getInlineDisplay($autoCreate = TRUE) {
+		if ($this->inlineDisplay===NULL && $autoCreate && ! isset($this->_overrides['inlineDisplay']) ) {
 			$this->inlineDisplay = $this->createInlineDisplay();
 		}
 		return $this->inlineDisplay;
@@ -110,8 +117,8 @@ class MessageAttachment {
 		return $inlineDisplay;
 	}
 
-	public function getContentId() {
-		if ($this->contentId===NULL) {
+	public function getContentId($autoCreate = TRUE) {
+		if ($this->contentId===NULL && $autoCreate && ! isset($this->_overrides['contentId']) ) {
 			$this->contentId = $this->createContentId();
 		}
 		return $this->contentId;
@@ -126,9 +133,16 @@ class MessageAttachment {
 	}
 
 	protected function validateContentId($contentId) {
+		if ( $contentId === FALSE ) {
+			$this->_overrides['contentId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $contentId instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($contentId) ) {
 			$contentId = new \com\microsoft\wc\types\Stringnznw ($contentId);
 		}
+
+		unset ($this->_overrides['contentId']);
 	
 		return $contentId;
 	}

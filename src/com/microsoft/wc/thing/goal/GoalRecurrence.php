@@ -15,6 +15,13 @@ class GoalRecurrence {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="interval")
 	 */
 	protected $interval;
@@ -29,8 +36,8 @@ class GoalRecurrence {
 		$this->timesInInterval = ($timesInInterval===NULL) ? NULL : $this->validateTimesInInterval($timesInInterval);
 	}
 
-	public function getInterval() {
-		if ($this->interval===NULL) {
+	public function getInterval($autoCreate = TRUE) {
+		if ($this->interval===NULL && $autoCreate && ! isset($this->_overrides['interval']) ) {
 			$this->interval = $this->createInterval();
 		}
 		return $this->interval;
@@ -52,8 +59,8 @@ class GoalRecurrence {
 		return $interval;
 	}
 
-	public function getTimesInInterval() {
-		if ($this->timesInInterval===NULL) {
+	public function getTimesInInterval($autoCreate = TRUE) {
+		if ($this->timesInInterval===NULL && $autoCreate && ! isset($this->_overrides['timesInInterval']) ) {
 			$this->timesInInterval = $this->createTimesInInterval();
 		}
 		return $this->timesInInterval;

@@ -16,6 +16,13 @@ class CarePlanTaskRecurrence {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="ical-recurrence")
 	 */
 	protected $icalRecurrence;
@@ -36,8 +43,8 @@ class CarePlanTaskRecurrence {
 		$this->timesInInterval = ($timesInInterval===NULL) ? NULL : $this->validateTimesInInterval($timesInInterval);
 	}
 
-	public function getIcalRecurrence() {
-		if ($this->icalRecurrence===NULL) {
+	public function getIcalRecurrence($autoCreate = TRUE) {
+		if ($this->icalRecurrence===NULL && $autoCreate && ! isset($this->_overrides['icalRecurrence']) ) {
 			$this->icalRecurrence = $this->createIcalRecurrence();
 		}
 		return $this->icalRecurrence;
@@ -59,8 +66,8 @@ class CarePlanTaskRecurrence {
 		return $icalRecurrence;
 	}
 
-	public function getInterval() {
-		if ($this->interval===NULL) {
+	public function getInterval($autoCreate = TRUE) {
+		if ($this->interval===NULL && $autoCreate && ! isset($this->_overrides['interval']) ) {
 			$this->interval = $this->createInterval();
 		}
 		return $this->interval;
@@ -82,8 +89,8 @@ class CarePlanTaskRecurrence {
 		return $interval;
 	}
 
-	public function getTimesInInterval() {
-		if ($this->timesInInterval===NULL) {
+	public function getTimesInInterval($autoCreate = TRUE) {
+		if ($this->timesInInterval===NULL && $autoCreate && ! isset($this->_overrides['timesInInterval']) ) {
 			$this->timesInInterval = $this->createTimesInInterval();
 		}
 		return $this->timesInInterval;

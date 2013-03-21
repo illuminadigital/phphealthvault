@@ -14,6 +14,13 @@ class LanguageCompetency extends \com\microsoft\wc\types\Iso6391 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="boolean", name="is-primary")
 	 */
 	protected $isPrimary;
@@ -22,8 +29,8 @@ class LanguageCompetency extends \com\microsoft\wc\types\Iso6391 {
 		$this->isPrimary = ($isPrimary===NULL) ? NULL : $this->validateIsPrimary($isPrimary);
 	}
 
-	public function getIsPrimary() {
-		if ($this->isPrimary===NULL) {
+	public function getIsPrimary($autoCreate = TRUE) {
+		if ($this->isPrimary===NULL && $autoCreate && ! isset($this->_overrides['isPrimary']) ) {
 			$this->isPrimary = $this->createIsPrimary();
 		}
 		return $this->isPrimary;

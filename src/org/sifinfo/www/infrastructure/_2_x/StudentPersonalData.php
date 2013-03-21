@@ -14,6 +14,13 @@ class StudentPersonalData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\LocalIdType", name="LocalId")
 	 */
 	protected $localId;
@@ -136,8 +143,8 @@ class StudentPersonalData {
 		$this->neglectedDelinquent = ($neglectedDelinquent===NULL) ? NULL : $this->validateNeglectedDelinquent($neglectedDelinquent);
 	}
 
-	public function getLocalId() {
-		if ($this->localId===NULL) {
+	public function getLocalId($autoCreate = TRUE) {
+		if ($this->localId===NULL && $autoCreate && ! isset($this->_overrides['localId']) ) {
 			$this->localId = $this->createLocalId();
 		}
 		return $this->localId;
@@ -156,8 +163,8 @@ class StudentPersonalData {
 		return $localId;
 	}
 
-	public function getStateProvinceId() {
-		if ($this->stateProvinceId===NULL) {
+	public function getStateProvinceId($autoCreate = TRUE) {
+		if ($this->stateProvinceId===NULL && $autoCreate && ! isset($this->_overrides['stateProvinceId']) ) {
 			$this->stateProvinceId = $this->createStateProvinceId();
 		}
 		return $this->stateProvinceId;
@@ -176,8 +183,8 @@ class StudentPersonalData {
 		return $stateProvinceId;
 	}
 
-	public function getSSN() {
-		if ($this->sSN===NULL) {
+	public function getSSN($autoCreate = TRUE) {
+		if ($this->sSN===NULL && $autoCreate && ! isset($this->_overrides['sSN']) ) {
 			$this->sSN = $this->createSSN();
 		}
 		return $this->sSN;
@@ -196,8 +203,8 @@ class StudentPersonalData {
 		return $sSN;
 	}
 
-	public function getOtherIdList() {
-		if ($this->otherIdList===NULL) {
+	public function getOtherIdList($autoCreate = TRUE) {
+		if ($this->otherIdList===NULL && $autoCreate && ! isset($this->_overrides['otherIdList']) ) {
 			$this->otherIdList = $this->createOtherIdList();
 		}
 		return $this->otherIdList;
@@ -212,15 +219,22 @@ class StudentPersonalData {
 	}
 
 	protected function validateOtherIdList($otherIdList) {
+		if ( $otherIdList === FALSE ) {
+			$this->_overrides['otherIdList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $otherIdList instanceof \org\sifinfo\www\infrastructure\_2_x\OtherIdList  && ! is_null($otherIdList) ) {
 			$otherIdList = new \org\sifinfo\www\infrastructure\_2_x\OtherIdList ($otherIdList);
 		}
+
+		unset ($this->_overrides['otherIdList']);
 	
 		return $otherIdList;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -242,8 +256,8 @@ class StudentPersonalData {
 		return $name;
 	}
 
-	public function getOtherNames() {
-		if ($this->otherNames===NULL) {
+	public function getOtherNames($autoCreate = TRUE) {
+		if ($this->otherNames===NULL && $autoCreate && ! isset($this->_overrides['otherNames']) ) {
 			$this->otherNames = $this->createOtherNames();
 		}
 		return $this->otherNames;
@@ -258,15 +272,22 @@ class StudentPersonalData {
 	}
 
 	protected function validateOtherNames($otherNames) {
+		if ( $otherNames === FALSE ) {
+			$this->_overrides['otherNames'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $otherNames instanceof \org\sifinfo\www\infrastructure\_2_x\OtherNamesType  && ! is_null($otherNames) ) {
 			$otherNames = new \org\sifinfo\www\infrastructure\_2_x\OtherNamesType ($otherNames);
 		}
+
+		unset ($this->_overrides['otherNames']);
 	
 		return $otherNames;
 	}
 
-	public function getDemographicsData() {
-		if ($this->demographicsData===NULL) {
+	public function getDemographicsData($autoCreate = TRUE) {
+		if ($this->demographicsData===NULL && $autoCreate && ! isset($this->_overrides['demographicsData']) ) {
 			$this->demographicsData = $this->createDemographicsData();
 		}
 		return $this->demographicsData;
@@ -281,15 +302,22 @@ class StudentPersonalData {
 	}
 
 	protected function validateDemographicsData($demographicsData) {
+		if ( $demographicsData === FALSE ) {
+			$this->_overrides['demographicsData'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $demographicsData instanceof \org\sifinfo\www\infrastructure\_2_x\DemographicsData  && ! is_null($demographicsData) ) {
 			$demographicsData = new \org\sifinfo\www\infrastructure\_2_x\DemographicsData ($demographicsData);
 		}
+
+		unset ($this->_overrides['demographicsData']);
 	
 		return $demographicsData;
 	}
 
-	public function getAddressList() {
-		if ($this->addressList===NULL) {
+	public function getAddressList($autoCreate = TRUE) {
+		if ($this->addressList===NULL && $autoCreate && ! isset($this->_overrides['addressList']) ) {
 			$this->addressList = $this->createAddressList();
 		}
 		return $this->addressList;
@@ -304,15 +332,22 @@ class StudentPersonalData {
 	}
 
 	protected function validateAddressList($addressList) {
+		if ( $addressList === FALSE ) {
+			$this->_overrides['addressList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $addressList instanceof \org\sifinfo\www\infrastructure\_2_x\AddressListType  && ! is_null($addressList) ) {
 			$addressList = new \org\sifinfo\www\infrastructure\_2_x\AddressListType ($addressList);
 		}
+
+		unset ($this->_overrides['addressList']);
 	
 		return $addressList;
 	}
 
-	public function getPhoneNumberList() {
-		if ($this->phoneNumberList===NULL) {
+	public function getPhoneNumberList($autoCreate = TRUE) {
+		if ($this->phoneNumberList===NULL && $autoCreate && ! isset($this->_overrides['phoneNumberList']) ) {
 			$this->phoneNumberList = $this->createPhoneNumberList();
 		}
 		return $this->phoneNumberList;
@@ -327,15 +362,22 @@ class StudentPersonalData {
 	}
 
 	protected function validatePhoneNumberList($phoneNumberList) {
+		if ( $phoneNumberList === FALSE ) {
+			$this->_overrides['phoneNumberList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $phoneNumberList instanceof \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType  && ! is_null($phoneNumberList) ) {
 			$phoneNumberList = new \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType ($phoneNumberList);
 		}
+
+		unset ($this->_overrides['phoneNumberList']);
 	
 		return $phoneNumberList;
 	}
 
-	public function getIDEA() {
-		if ($this->iDEA===NULL) {
+	public function getIDEA($autoCreate = TRUE) {
+		if ($this->iDEA===NULL && $autoCreate && ! isset($this->_overrides['iDEA']) ) {
 			$this->iDEA = $this->createIDEA();
 		}
 		return $this->iDEA;
@@ -354,8 +396,8 @@ class StudentPersonalData {
 		return $iDEA;
 	}
 
-	public function getMigrant() {
-		if ($this->migrant===NULL) {
+	public function getMigrant($autoCreate = TRUE) {
+		if ($this->migrant===NULL && $autoCreate && ! isset($this->_overrides['migrant']) ) {
 			$this->migrant = $this->createMigrant();
 		}
 		return $this->migrant;
@@ -374,8 +416,8 @@ class StudentPersonalData {
 		return $migrant;
 	}
 
-	public function getTitle1() {
-		if ($this->title1===NULL) {
+	public function getTitle1($autoCreate = TRUE) {
+		if ($this->title1===NULL && $autoCreate && ! isset($this->_overrides['title1']) ) {
 			$this->title1 = $this->createTitle1();
 		}
 		return $this->title1;
@@ -394,8 +436,8 @@ class StudentPersonalData {
 		return $title1;
 	}
 
-	public function getGiftedTalented() {
-		if ($this->giftedTalented===NULL) {
+	public function getGiftedTalented($autoCreate = TRUE) {
+		if ($this->giftedTalented===NULL && $autoCreate && ! isset($this->_overrides['giftedTalented']) ) {
 			$this->giftedTalented = $this->createGiftedTalented();
 		}
 		return $this->giftedTalented;
@@ -414,8 +456,8 @@ class StudentPersonalData {
 		return $giftedTalented;
 	}
 
-	public function getEconomicDisadvantage() {
-		if ($this->economicDisadvantage===NULL) {
+	public function getEconomicDisadvantage($autoCreate = TRUE) {
+		if ($this->economicDisadvantage===NULL && $autoCreate && ! isset($this->_overrides['economicDisadvantage']) ) {
 			$this->economicDisadvantage = $this->createEconomicDisadvantage();
 		}
 		return $this->economicDisadvantage;
@@ -434,8 +476,8 @@ class StudentPersonalData {
 		return $economicDisadvantage;
 	}
 
-	public function getELL() {
-		if ($this->eLL===NULL) {
+	public function getELL($autoCreate = TRUE) {
+		if ($this->eLL===NULL && $autoCreate && ! isset($this->_overrides['eLL']) ) {
 			$this->eLL = $this->createELL();
 		}
 		return $this->eLL;
@@ -454,8 +496,8 @@ class StudentPersonalData {
 		return $eLL;
 	}
 
-	public function getHomeless() {
-		if ($this->homeless===NULL) {
+	public function getHomeless($autoCreate = TRUE) {
+		if ($this->homeless===NULL && $autoCreate && ! isset($this->_overrides['homeless']) ) {
 			$this->homeless = $this->createHomeless();
 		}
 		return $this->homeless;
@@ -474,8 +516,8 @@ class StudentPersonalData {
 		return $homeless;
 	}
 
-	public function getSection504() {
-		if ($this->section504===NULL) {
+	public function getSection504($autoCreate = TRUE) {
+		if ($this->section504===NULL && $autoCreate && ! isset($this->_overrides['section504']) ) {
 			$this->section504 = $this->createSection504();
 		}
 		return $this->section504;
@@ -494,8 +536,8 @@ class StudentPersonalData {
 		return $section504;
 	}
 
-	public function getVocationalConcentrator() {
-		if ($this->vocationalConcentrator===NULL) {
+	public function getVocationalConcentrator($autoCreate = TRUE) {
+		if ($this->vocationalConcentrator===NULL && $autoCreate && ! isset($this->_overrides['vocationalConcentrator']) ) {
 			$this->vocationalConcentrator = $this->createVocationalConcentrator();
 		}
 		return $this->vocationalConcentrator;
@@ -514,8 +556,8 @@ class StudentPersonalData {
 		return $vocationalConcentrator;
 	}
 
-	public function getImmigrant() {
-		if ($this->immigrant===NULL) {
+	public function getImmigrant($autoCreate = TRUE) {
+		if ($this->immigrant===NULL && $autoCreate && ! isset($this->_overrides['immigrant']) ) {
 			$this->immigrant = $this->createImmigrant();
 		}
 		return $this->immigrant;
@@ -534,8 +576,8 @@ class StudentPersonalData {
 		return $immigrant;
 	}
 
-	public function getNeglectedDelinquent() {
-		if ($this->neglectedDelinquent===NULL) {
+	public function getNeglectedDelinquent($autoCreate = TRUE) {
+		if ($this->neglectedDelinquent===NULL && $autoCreate && ! isset($this->_overrides['neglectedDelinquent']) ) {
 			$this->neglectedDelinquent = $this->createNeglectedDelinquent();
 		}
 		return $this->neglectedDelinquent;

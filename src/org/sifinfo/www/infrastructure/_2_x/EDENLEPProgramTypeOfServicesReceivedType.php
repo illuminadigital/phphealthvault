@@ -15,6 +15,13 @@ class EDENLEPProgramTypeOfServicesReceivedType {
 	static protected $enumValue = array('BILING' => 'Bilingual (including native language support)', 'DUALLANG' => 'Dual language', 'TWOIMM' => 'Two-way bilingual immersion', 'TRANSBIL' => 'Transitional bilingual', 'DEVBIL' => 'Developmental bilingual', 'HERITAGE' => 'Heritage language preservation programs', 'SHELENGL' => 'Sheltered English Instruction', 'STRUCIMM' => 'Structured English Immersion', 'SDAIE' => 'Specially designed academic instruction delivered in English', 'CONTENTESL' => 'Content-based ESL', 'PULLESL' => 'Pull-out ESL', 'OTHER' => 'Other', 'MISSING' => 'MISSING', 'NOTCOLLECT' => 'Not Collected');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="EDENLEPProgramTypeOfServicesReceivedType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class EDENLEPProgramTypeOfServicesReceivedType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

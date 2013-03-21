@@ -15,6 +15,13 @@ class PhoneNumberType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="Number")
 	 */
 	protected $number;
@@ -41,8 +48,8 @@ class PhoneNumberType {
 		$this->type = ($type===NULL) ? NULL : $this->validateType($type);
 	}
 
-	public function getNumber() {
-		if ($this->number===NULL) {
+	public function getNumber($autoCreate = TRUE) {
+		if ($this->number===NULL && $autoCreate && ! isset($this->_overrides['number']) ) {
 			$this->number = $this->createNumber();
 		}
 		return $this->number;
@@ -64,8 +71,8 @@ class PhoneNumberType {
 		return $number;
 	}
 
-	public function getExtension() {
-		if ($this->extension===NULL) {
+	public function getExtension($autoCreate = TRUE) {
+		if ($this->extension===NULL && $autoCreate && ! isset($this->_overrides['extension']) ) {
 			$this->extension = $this->createExtension();
 		}
 		return $this->extension;
@@ -87,8 +94,8 @@ class PhoneNumberType {
 		return $extension;
 	}
 
-	public function getListedStatus() {
-		if ($this->listedStatus===NULL) {
+	public function getListedStatus($autoCreate = TRUE) {
+		if ($this->listedStatus===NULL && $autoCreate && ! isset($this->_overrides['listedStatus']) ) {
 			$this->listedStatus = $this->createListedStatus();
 		}
 		return $this->listedStatus;
@@ -103,15 +110,22 @@ class PhoneNumberType {
 	}
 
 	protected function validateListedStatus($listedStatus) {
+		if ( $listedStatus === FALSE ) {
+			$this->_overrides['listedStatus'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $listedStatus instanceof \org\sifinfo\www\infrastructure\_2_x\ListedStatus  && ! is_null($listedStatus) ) {
 			$listedStatus = new \org\sifinfo\www\infrastructure\_2_x\ListedStatus ($listedStatus);
 		}
+
+		unset ($this->_overrides['listedStatus']);
 	
 		return $listedStatus;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;

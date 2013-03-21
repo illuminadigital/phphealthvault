@@ -15,6 +15,13 @@ class ISO31663CodeForFormerlyUsedNamesOfCountriesType {
 	static protected $enumValue = array('AIDJ' => 'French Territory of the Afars and the Issas', 'BQAQ' => 'British Antarctic Territory', 'BUMM' => 'Burma', 'CSHH' => 'Czechoslovakia', 'CTKI' => 'Canton and Enderbury Islands', 'DDDE' => 'East Germany', 'DYBJ' => 'Dahomey', 'FQHH' => 'French Southern and Antarctic Territories', 'FXFR' => 'Metropolitan France', 'GEHH' => 'Gilbert and Ellice Islands', 'HVBF' => 'Upper Volta (Haute-Volta)', 'JTUM' => 'Johnston Island', 'MIUM' => 'Midway Atoll', 'NHVU' => 'New Hebrides', 'NQAQ' => 'Queen Maud Land', 'NTHH' => 'Neutral Zone', 'PCHH' => 'Trust Territory of the Pacific Islands', 'PUUM' => 'U.S. Miscellaneous Pacific Islands', 'PZPA' => 'Panama Canal Zone', 'RHZW' => 'Rhodesia', 'SKIN' => 'Sikkim', 'SUHH' => 'Soviet Union', 'TPTL' => 'East Timor', 'VDVN' => 'Democratic Republic of Vietnam', 'WKUM' => 'Wake Island', 'YDYE' => 'South Yemen', 'YUCS' => 'Yugoslavia', 'ZRCD' => 'Zaire');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="ISO31663CodeForFormerlyUsedNamesOfCountriesType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class ISO31663CodeForFormerlyUsedNamesOfCountriesType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

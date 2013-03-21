@@ -15,6 +15,13 @@ class EIVLTS extends \org\w3\www\_2001\XMLSchema\SXCMTS {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\EIVL.event", name="event")
 	 */
 	protected $event;
@@ -29,8 +36,8 @@ class EIVLTS extends \org\w3\www\_2001\XMLSchema\SXCMTS {
 		$this->offset = ($offset===NULL) ? NULL : $this->validateOffset($offset);
 	}
 
-	public function getEvent() {
-		if ($this->event===NULL) {
+	public function getEvent($autoCreate = TRUE) {
+		if ($this->event===NULL && $autoCreate && ! isset($this->_overrides['event']) ) {
 			$this->event = $this->createEvent();
 		}
 		return $this->event;
@@ -49,8 +56,8 @@ class EIVLTS extends \org\w3\www\_2001\XMLSchema\SXCMTS {
 		return $event;
 	}
 
-	public function getOffset() {
-		if ($this->offset===NULL) {
+	public function getOffset($autoCreate = TRUE) {
+		if ($this->offset===NULL && $autoCreate && ! isset($this->_overrides['offset']) ) {
 			$this->offset = $this->createOffset();
 		}
 		return $this->offset;

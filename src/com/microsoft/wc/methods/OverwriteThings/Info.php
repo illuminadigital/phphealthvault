@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\Thing", collection="true", name="thing")
 	 */
 	protected $thing;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->thing = ($thing===NULL) ? NULL : $this->validateThing($thing);
 	}
 
-	public function getThing() {
-		if ($this->thing===NULL) {
+	public function getThing($autoCreate = TRUE) {
+		if ($this->thing===NULL && $autoCreate && ! isset($this->_overrides['thing']) ) {
 			$this->thing = $this->createThing();
 		}
 		return $this->thing;

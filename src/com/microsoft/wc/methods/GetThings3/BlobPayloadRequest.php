@@ -14,6 +14,13 @@ class BlobPayloadRequest {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\GetThings3\BlobFilters", name="blob-filters")
 	 */
 	protected $blobFilters;
@@ -28,8 +35,8 @@ class BlobPayloadRequest {
 		$this->blobFormat = ($blobFormat===NULL) ? NULL : $this->validateBlobFormat($blobFormat);
 	}
 
-	public function getBlobFilters() {
-		if ($this->blobFilters===NULL) {
+	public function getBlobFilters($autoCreate = TRUE) {
+		if ($this->blobFilters===NULL && $autoCreate && ! isset($this->_overrides['blobFilters']) ) {
 			$this->blobFilters = $this->createBlobFilters();
 		}
 		return $this->blobFilters;
@@ -44,15 +51,22 @@ class BlobPayloadRequest {
 	}
 
 	protected function validateBlobFilters($blobFilters) {
+		if ( $blobFilters === FALSE ) {
+			$this->_overrides['blobFilters'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $blobFilters instanceof \com\microsoft\wc\methods\GetThings3\BlobFilters  && ! is_null($blobFilters) ) {
 			$blobFilters = new \com\microsoft\wc\methods\GetThings3\BlobFilters ($blobFilters);
 		}
+
+		unset ($this->_overrides['blobFilters']);
 	
 		return $blobFilters;
 	}
 
-	public function getBlobFormat() {
-		if ($this->blobFormat===NULL) {
+	public function getBlobFormat($autoCreate = TRUE) {
+		if ($this->blobFormat===NULL && $autoCreate && ! isset($this->_overrides['blobFormat']) ) {
 			$this->blobFormat = $this->createBlobFormat();
 		}
 		return $this->blobFormat;

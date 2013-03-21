@@ -15,6 +15,13 @@ class CarePlanGoalRange {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeInt", name="status-indicator")
 	 */
 	protected $statusIndicator;
@@ -35,8 +42,8 @@ class CarePlanGoalRange {
 		$this->maximumValue = ($maximumValue===NULL) ? NULL : $this->validateMaximumValue($maximumValue);
 	}
 
-	public function getStatusIndicator() {
-		if ($this->statusIndicator===NULL) {
+	public function getStatusIndicator($autoCreate = TRUE) {
+		if ($this->statusIndicator===NULL && $autoCreate && ! isset($this->_overrides['statusIndicator']) ) {
 			$this->statusIndicator = $this->createStatusIndicator();
 		}
 		return $this->statusIndicator;
@@ -58,8 +65,8 @@ class CarePlanGoalRange {
 		return $statusIndicator;
 	}
 
-	public function getMinimumValue() {
-		if ($this->minimumValue===NULL) {
+	public function getMinimumValue($autoCreate = TRUE) {
+		if ($this->minimumValue===NULL && $autoCreate && ! isset($this->_overrides['minimumValue']) ) {
 			$this->minimumValue = $this->createMinimumValue();
 		}
 		return $this->minimumValue;
@@ -92,8 +99,8 @@ class CarePlanGoalRange {
 		return $minimumValue;
 	}
 
-	public function getMaximumValue() {
-		if ($this->maximumValue===NULL) {
+	public function getMaximumValue($autoCreate = TRUE) {
+		if ($this->maximumValue===NULL && $autoCreate && ! isset($this->_overrides['maximumValue']) ) {
 			$this->maximumValue = $this->createMaximumValue();
 		}
 		return $this->maximumValue;

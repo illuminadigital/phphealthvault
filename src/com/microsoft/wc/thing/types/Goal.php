@@ -17,6 +17,13 @@ class Goal {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="target-date")
 	 */
 	protected $targetDate;
@@ -37,8 +44,8 @@ class Goal {
 		$this->status = ($status===NULL) ? NULL : $this->validateStatus($status);
 	}
 
-	public function getTargetDate() {
-		if ($this->targetDate===NULL) {
+	public function getTargetDate($autoCreate = TRUE) {
+		if ($this->targetDate===NULL && $autoCreate && ! isset($this->_overrides['targetDate']) ) {
 			$this->targetDate = $this->createTargetDate();
 		}
 		return $this->targetDate;
@@ -53,15 +60,22 @@ class Goal {
 	}
 
 	protected function validateTargetDate($targetDate) {
+		if ( $targetDate === FALSE ) {
+			$this->_overrides['targetDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $targetDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($targetDate) ) {
 			$targetDate = new \com\microsoft\wc\dates\ApproxDateTime ($targetDate);
 		}
+
+		unset ($this->_overrides['targetDate']);
 	
 		return $targetDate;
 	}
 
-	public function getCompletionDate() {
-		if ($this->completionDate===NULL) {
+	public function getCompletionDate($autoCreate = TRUE) {
+		if ($this->completionDate===NULL && $autoCreate && ! isset($this->_overrides['completionDate']) ) {
 			$this->completionDate = $this->createCompletionDate();
 		}
 		return $this->completionDate;
@@ -76,15 +90,22 @@ class Goal {
 	}
 
 	protected function validateCompletionDate($completionDate) {
+		if ( $completionDate === FALSE ) {
+			$this->_overrides['completionDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $completionDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($completionDate) ) {
 			$completionDate = new \com\microsoft\wc\dates\ApproxDateTime ($completionDate);
 		}
+
+		unset ($this->_overrides['completionDate']);
 	
 		return $completionDate;
 	}
 
-	public function getStatus() {
-		if ($this->status===NULL) {
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
 			$this->status = $this->createStatus();
 		}
 		return $this->status;
@@ -99,9 +120,16 @@ class Goal {
 	}
 
 	protected function validateStatus($status) {
+		if ( $status === FALSE ) {
+			$this->_overrides['status'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $status instanceof \com\microsoft\wc\thing\types\GoalStatus  && ! is_null($status) ) {
 			$status = new \com\microsoft\wc\thing\types\GoalStatus ($status);
 		}
+
+		unset ($this->_overrides['status']);
 	
 		return $status;
 	}

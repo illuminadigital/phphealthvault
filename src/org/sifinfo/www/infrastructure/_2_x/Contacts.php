@@ -14,6 +14,13 @@ class Contacts {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Contact", collection="true", name="Contact")
 	 */
 	protected $contact;
@@ -22,8 +29,8 @@ class Contacts {
 		$this->contact = ($contact===NULL) ? NULL : $this->validateContact($contact);
 	}
 
-	public function getContact() {
-		if ($this->contact===NULL) {
+	public function getContact($autoCreate = TRUE) {
+		if ($this->contact===NULL && $autoCreate && ! isset($this->_overrides['contact']) ) {
 			$this->contact = $this->createContact();
 		}
 		return $this->contact;
@@ -38,9 +45,16 @@ class Contacts {
 	}
 
 	protected function validateContact($contact) {
+		if ( $contact === FALSE ) {
+			$this->_overrides['contact'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($contact) && ! is_null($contact) ) {
 			$contact = array($contact);
 		}
+
+		unset ($this->_overrides['contact']);
 		$count = count($contact);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'contact', 0));

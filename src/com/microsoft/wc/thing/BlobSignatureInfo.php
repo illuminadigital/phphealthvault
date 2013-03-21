@@ -14,6 +14,13 @@ class BlobSignatureInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\CreateConnectPackage2\Item", collection="true", name="item")
 	 */
 	protected $item;
@@ -22,8 +29,8 @@ class BlobSignatureInfo {
 		$this->item = ($item===NULL) ? NULL : $this->validateItem($item);
 	}
 
-	public function getItem() {
-		if ($this->item===NULL) {
+	public function getItem($autoCreate = TRUE) {
+		if ($this->item===NULL && $autoCreate && ! isset($this->_overrides['item']) ) {
 			$this->item = $this->createItem();
 		}
 		return $this->item;

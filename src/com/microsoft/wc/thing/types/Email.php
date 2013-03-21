@@ -16,6 +16,13 @@ class Email {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="description")
 	 */
 	protected $description;
@@ -36,8 +43,8 @@ class Email {
 		$this->address = ($address===NULL) ? NULL : $this->validateAddress($address);
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -59,8 +66,8 @@ class Email {
 		return $description;
 	}
 
-	public function getIsPrimary() {
-		if ($this->isPrimary===NULL) {
+	public function getIsPrimary($autoCreate = TRUE) {
+		if ($this->isPrimary===NULL && $autoCreate && ! isset($this->_overrides['isPrimary']) ) {
 			$this->isPrimary = $this->createIsPrimary();
 		}
 		return $this->isPrimary;
@@ -82,8 +89,8 @@ class Email {
 		return $isPrimary;
 	}
 
-	public function getAddress() {
-		if ($this->address===NULL) {
+	public function getAddress($autoCreate = TRUE) {
+		if ($this->address===NULL && $autoCreate && ! isset($this->_overrides['address']) ) {
 			$this->address = $this->createAddress();
 		}
 		return $this->address;

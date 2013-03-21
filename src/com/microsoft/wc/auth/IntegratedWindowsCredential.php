@@ -16,6 +16,13 @@ class IntegratedWindowsCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String255nw", name="sid")
 	 */
 	protected $sid;
@@ -24,8 +31,8 @@ class IntegratedWindowsCredential {
 		$this->sid = ($sid===NULL) ? NULL : $this->validateSid($sid);
 	}
 
-	public function getSid() {
-		if ($this->sid===NULL) {
+	public function getSid($autoCreate = TRUE) {
+		if ($this->sid===NULL && $autoCreate && ! isset($this->_overrides['sid']) ) {
 			$this->sid = $this->createSid();
 		}
 		return $this->sid;

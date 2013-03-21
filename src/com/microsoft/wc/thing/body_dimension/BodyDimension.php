@@ -19,6 +19,13 @@ class BodyDimension extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Body Dimension';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -39,8 +46,8 @@ class BodyDimension extends \com\microsoft\wc\thing\AnyMixed {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -62,8 +69,8 @@ class BodyDimension extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getMeasurementName() {
-		if ($this->measurementName===NULL) {
+	public function getMeasurementName($autoCreate = TRUE) {
+		if ($this->measurementName===NULL && $autoCreate && ! isset($this->_overrides['measurementName']) ) {
 			$this->measurementName = $this->createMeasurementName();
 		}
 		return $this->measurementName;
@@ -85,8 +92,8 @@ class BodyDimension extends \com\microsoft\wc\thing\AnyMixed {
 		return $measurementName;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

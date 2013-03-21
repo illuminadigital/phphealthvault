@@ -16,6 +16,13 @@ class VolumeValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\PositiveDouble", name="liters")
 	 */
 	protected $liters;
@@ -30,8 +37,8 @@ class VolumeValue {
 		$this->display = ($display===NULL) ? NULL : $this->validateDisplay($display);
 	}
 
-	public function getLiters() {
-		if ($this->liters===NULL) {
+	public function getLiters($autoCreate = TRUE) {
+		if ($this->liters===NULL && $autoCreate && ! isset($this->_overrides['liters']) ) {
 			$this->liters = $this->createLiters();
 		}
 		return $this->liters;
@@ -53,8 +60,8 @@ class VolumeValue {
 		return $liters;
 	}
 
-	public function getDisplay() {
-		if ($this->display===NULL) {
+	public function getDisplay($autoCreate = TRUE) {
+		if ($this->display===NULL && $autoCreate && ! isset($this->_overrides['display']) ) {
 			$this->display = $this->createDisplay();
 		}
 		return $this->display;
@@ -69,9 +76,16 @@ class VolumeValue {
 	}
 
 	protected function validateDisplay($display) {
+		if ( $display === FALSE ) {
+			$this->_overrides['display'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $display instanceof \com\microsoft\wc\thing\types\DisplayValue  && ! is_null($display) ) {
 			$display = new \com\microsoft\wc\thing\types\DisplayValue ($display);
 		}
+
+		unset ($this->_overrides['display']);
 	
 		return $display;
 	}

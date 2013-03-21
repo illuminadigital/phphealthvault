@@ -17,6 +17,13 @@ class Organization {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="name")
 	 */
 	protected $name;
@@ -43,8 +50,8 @@ class Organization {
 		$this->website = ($website===NULL) ? NULL : $this->validateWebsite($website);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -66,8 +73,8 @@ class Organization {
 		return $name;
 	}
 
-	public function getContact() {
-		if ($this->contact===NULL) {
+	public function getContact($autoCreate = TRUE) {
+		if ($this->contact===NULL && $autoCreate && ! isset($this->_overrides['contact']) ) {
 			$this->contact = $this->createContact();
 		}
 		return $this->contact;
@@ -82,15 +89,22 @@ class Organization {
 	}
 
 	protected function validateContact($contact) {
+		if ( $contact === FALSE ) {
+			$this->_overrides['contact'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $contact instanceof \com\microsoft\wc\thing\types\Contact  && ! is_null($contact) ) {
 			$contact = new \com\microsoft\wc\thing\types\Contact ($contact);
 		}
+
+		unset ($this->_overrides['contact']);
 	
 		return $contact;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -105,15 +119,22 @@ class Organization {
 	}
 
 	protected function validateType($type) {
+		if ( $type === FALSE ) {
+			$this->_overrides['type'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $type instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($type) ) {
 			$type = new \com\microsoft\wc\types\CodableValue ($type);
 		}
+
+		unset ($this->_overrides['type']);
 	
 		return $type;
 	}
 
-	public function getWebsite() {
-		if ($this->website===NULL) {
+	public function getWebsite($autoCreate = TRUE) {
+		if ($this->website===NULL && $autoCreate && ! isset($this->_overrides['website']) ) {
 			$this->website = $this->createWebsite();
 		}
 		return $this->website;

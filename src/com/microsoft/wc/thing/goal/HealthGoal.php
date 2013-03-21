@@ -19,6 +19,13 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'HealthGoal';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -69,8 +76,8 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 		$this->recurrence = ($recurrence===NULL) ? NULL : $this->validateRecurrence($recurrence);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -92,8 +99,8 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -115,8 +122,8 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 		return $description;
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -131,15 +138,22 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStartDate($startDate) {
+		if ( $startDate === FALSE ) {
+			$this->_overrides['startDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $startDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($startDate) ) {
 			$startDate = new \com\microsoft\wc\dates\ApproxDateTime ($startDate);
 		}
+
+		unset ($this->_overrides['startDate']);
 	
 		return $startDate;
 	}
 
-	public function getEndDate() {
-		if ($this->endDate===NULL) {
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
 			$this->endDate = $this->createEndDate();
 		}
 		return $this->endDate;
@@ -154,15 +168,22 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateEndDate($endDate) {
+		if ( $endDate === FALSE ) {
+			$this->_overrides['endDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $endDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($endDate) ) {
 			$endDate = new \com\microsoft\wc\dates\ApproxDateTime ($endDate);
 		}
+
+		unset ($this->_overrides['endDate']);
 	
 		return $endDate;
 	}
 
-	public function getAssociatedTypeInfo() {
-		if ($this->associatedTypeInfo===NULL) {
+	public function getAssociatedTypeInfo($autoCreate = TRUE) {
+		if ($this->associatedTypeInfo===NULL && $autoCreate && ! isset($this->_overrides['associatedTypeInfo']) ) {
 			$this->associatedTypeInfo = $this->createAssociatedTypeInfo();
 		}
 		return $this->associatedTypeInfo;
@@ -177,15 +198,22 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAssociatedTypeInfo($associatedTypeInfo) {
+		if ( $associatedTypeInfo === FALSE ) {
+			$this->_overrides['associatedTypeInfo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $associatedTypeInfo instanceof \com\microsoft\wc\thing\goal\GoalAssociatedTypeInfo  && ! is_null($associatedTypeInfo) ) {
 			$associatedTypeInfo = new \com\microsoft\wc\thing\goal\GoalAssociatedTypeInfo ($associatedTypeInfo);
 		}
+
+		unset ($this->_overrides['associatedTypeInfo']);
 	
 		return $associatedTypeInfo;
 	}
 
-	public function getTargetRange() {
-		if ($this->targetRange===NULL) {
+	public function getTargetRange($autoCreate = TRUE) {
+		if ($this->targetRange===NULL && $autoCreate && ! isset($this->_overrides['targetRange']) ) {
 			$this->targetRange = $this->createTargetRange();
 		}
 		return $this->targetRange;
@@ -200,15 +228,22 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTargetRange($targetRange) {
+		if ( $targetRange === FALSE ) {
+			$this->_overrides['targetRange'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $targetRange instanceof \com\microsoft\wc\thing\goal\GoalRange  && ! is_null($targetRange) ) {
 			$targetRange = new \com\microsoft\wc\thing\goal\GoalRange ($targetRange);
 		}
+
+		unset ($this->_overrides['targetRange']);
 	
 		return $targetRange;
 	}
 
-	public function getGoalAdditionalRanges() {
-		if ($this->goalAdditionalRanges===NULL) {
+	public function getGoalAdditionalRanges($autoCreate = TRUE) {
+		if ($this->goalAdditionalRanges===NULL && $autoCreate && ! isset($this->_overrides['goalAdditionalRanges']) ) {
 			$this->goalAdditionalRanges = $this->createGoalAdditionalRanges();
 		}
 		return $this->goalAdditionalRanges;
@@ -223,9 +258,16 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateGoalAdditionalRanges($goalAdditionalRanges) {
+		if ( $goalAdditionalRanges === FALSE ) {
+			$this->_overrides['goalAdditionalRanges'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($goalAdditionalRanges) && ! is_null($goalAdditionalRanges) ) {
 			$goalAdditionalRanges = array($goalAdditionalRanges);
 		}
+
+		unset ($this->_overrides['goalAdditionalRanges']);
 		$count = count($goalAdditionalRanges);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'goalAdditionalRanges', 0));
@@ -243,8 +285,8 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 		$this->goalAdditionalRanges[] = $goalAdditionalRanges;
 	}
 
-	public function getRecurrence() {
-		if ($this->recurrence===NULL) {
+	public function getRecurrence($autoCreate = TRUE) {
+		if ($this->recurrence===NULL && $autoCreate && ! isset($this->_overrides['recurrence']) ) {
 			$this->recurrence = $this->createRecurrence();
 		}
 		return $this->recurrence;
@@ -259,9 +301,16 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateRecurrence($recurrence) {
+		if ( $recurrence === FALSE ) {
+			$this->_overrides['recurrence'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $recurrence instanceof \com\microsoft\wc\thing\goal\GoalRecurrence  && ! is_null($recurrence) ) {
 			$recurrence = new \com\microsoft\wc\thing\goal\GoalRecurrence ($recurrence);
 		}
+
+		unset ($this->_overrides['recurrence']);
 	
 		return $recurrence;
 	}

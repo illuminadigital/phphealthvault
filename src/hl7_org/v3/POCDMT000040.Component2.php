@@ -14,6 +14,13 @@ class POCDMT000040.Component2 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -64,8 +71,8 @@ class POCDMT000040.Component2 {
 		$this->contextConductionInd = ($contextConductionInd===NULL) ? NULL : $this->validateContextConductionInd($contextConductionInd);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -99,8 +106,8 @@ class POCDMT000040.Component2 {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -119,8 +126,8 @@ class POCDMT000040.Component2 {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -154,8 +161,8 @@ class POCDMT000040.Component2 {
 		return $templateId;
 	}
 
-	public function getNonXMLBody() {
-		if ($this->nonXMLBody===NULL) {
+	public function getNonXMLBody($autoCreate = TRUE) {
+		if ($this->nonXMLBody===NULL && $autoCreate && ! isset($this->_overrides['nonXMLBody']) ) {
 			$this->nonXMLBody = $this->createNonXMLBody();
 		}
 		return $this->nonXMLBody;
@@ -174,8 +181,8 @@ class POCDMT000040.Component2 {
 		return $nonXMLBody;
 	}
 
-	public function getStructuredBody() {
-		if ($this->structuredBody===NULL) {
+	public function getStructuredBody($autoCreate = TRUE) {
+		if ($this->structuredBody===NULL && $autoCreate && ! isset($this->_overrides['structuredBody']) ) {
 			$this->structuredBody = $this->createStructuredBody();
 		}
 		return $this->structuredBody;
@@ -194,8 +201,8 @@ class POCDMT000040.Component2 {
 		return $structuredBody;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -214,8 +221,8 @@ class POCDMT000040.Component2 {
 		return $nullFlavor;
 	}
 
-	public function getTypeCode() {
-		if ($this->typeCode===NULL) {
+	public function getTypeCode($autoCreate = TRUE) {
+		if ($this->typeCode===NULL && $autoCreate && ! isset($this->_overrides['typeCode']) ) {
 			$this->typeCode = $this->createTypeCode();
 		}
 		return $this->typeCode;
@@ -234,8 +241,8 @@ class POCDMT000040.Component2 {
 		return $typeCode;
 	}
 
-	public function getContextConductionInd() {
-		if ($this->contextConductionInd===NULL) {
+	public function getContextConductionInd($autoCreate = TRUE) {
+		if ($this->contextConductionInd===NULL && $autoCreate && ! isset($this->_overrides['contextConductionInd']) ) {
 			$this->contextConductionInd = $this->createContextConductionInd();
 		}
 		return $this->contextConductionInd;

@@ -15,6 +15,13 @@ class NCES0672PromotionTypeType {
 	static protected $enumValue = array('1974' => 'Accelerated promotion', '1975' => 'Continuous promotion', '9999' => 'Other', '1976' => 'Probationary promotion', '1973' => 'Regular promotion', '1977' => 'Social promotion', '1978' => 'Variable progress');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0672PromotionTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0672PromotionTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

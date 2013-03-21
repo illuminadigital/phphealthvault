@@ -16,6 +16,13 @@ class FederatingCred {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="federating-auth-token")
 	 */
 	protected $federatingAuthToken;
@@ -24,8 +31,8 @@ class FederatingCred {
 		$this->federatingAuthToken = ($federatingAuthToken===NULL) ? NULL : $this->validateFederatingAuthToken($federatingAuthToken);
 	}
 
-	public function getFederatingAuthToken() {
-		if ($this->federatingAuthToken===NULL) {
+	public function getFederatingAuthToken($autoCreate = TRUE) {
+		if ($this->federatingAuthToken===NULL && $autoCreate && ! isset($this->_overrides['federatingAuthToken']) ) {
 			$this->federatingAuthToken = $this->createFederatingAuthToken();
 		}
 		return $this->federatingAuthToken;

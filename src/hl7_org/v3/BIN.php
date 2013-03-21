@@ -15,6 +15,13 @@ class BIN extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="representation")
 	 */
 	protected $representation;
@@ -23,8 +30,8 @@ class BIN extends \org\w3\www\_2001\XMLSchema\ANY {
 		$this->representation = ($representation===NULL) ? NULL : $this->validateRepresentation($representation);
 	}
 
-	public function getRepresentation() {
-		if ($this->representation===NULL) {
+	public function getRepresentation($autoCreate = TRUE) {
+		if ($this->representation===NULL && $autoCreate && ! isset($this->_overrides['representation']) ) {
 			$this->representation = $this->createRepresentation();
 		}
 		return $this->representation;

@@ -14,6 +14,13 @@ class Created {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="DateTime")
 	 */
 	protected $dateTime;
@@ -28,8 +35,8 @@ class Created {
 		$this->creators = ($creators===NULL) ? NULL : $this->validateCreators($creators);
 	}
 
-	public function getDateTime() {
-		if ($this->dateTime===NULL) {
+	public function getDateTime($autoCreate = TRUE) {
+		if ($this->dateTime===NULL && $autoCreate && ! isset($this->_overrides['dateTime']) ) {
 			$this->dateTime = $this->createDateTime();
 		}
 		return $this->dateTime;
@@ -51,8 +58,8 @@ class Created {
 		return $dateTime;
 	}
 
-	public function getCreators() {
-		if ($this->creators===NULL) {
+	public function getCreators($autoCreate = TRUE) {
+		if ($this->creators===NULL && $autoCreate && ! isset($this->_overrides['creators']) ) {
 			$this->creators = $this->createCreators();
 		}
 		return $this->creators;
@@ -67,9 +74,16 @@ class Created {
 	}
 
 	protected function validateCreators($creators) {
+		if ( $creators === FALSE ) {
+			$this->_overrides['creators'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $creators instanceof \org\sifinfo\www\infrastructure\_2_x\Creators  && ! is_null($creators) ) {
 			$creators = new \org\sifinfo\www\infrastructure\_2_x\Creators ($creators);
 		}
+
+		unset ($this->_overrides['creators']);
 	
 		return $creators;
 	}

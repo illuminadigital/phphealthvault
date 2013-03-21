@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetServiceDefinition2\Platform", name="platform")
 	 */
 	protected $platform;
@@ -42,8 +49,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->commonSchema = ($commonSchema===NULL) ? NULL : $this->validateCommonSchema($commonSchema);
 	}
 
-	public function getPlatform() {
-		if ($this->platform===NULL) {
+	public function getPlatform($autoCreate = TRUE) {
+		if ($this->platform===NULL && $autoCreate && ! isset($this->_overrides['platform']) ) {
 			$this->platform = $this->createPlatform();
 		}
 		return $this->platform;
@@ -65,8 +72,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		return $platform;
 	}
 
-	public function getShell() {
-		if ($this->shell===NULL) {
+	public function getShell($autoCreate = TRUE) {
+		if ($this->shell===NULL && $autoCreate && ! isset($this->_overrides['shell']) ) {
 			$this->shell = $this->createShell();
 		}
 		return $this->shell;
@@ -88,8 +95,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		return $shell;
 	}
 
-	public function getXmlMethod() {
-		if ($this->xmlMethod===NULL) {
+	public function getXmlMethod($autoCreate = TRUE) {
+		if ($this->xmlMethod===NULL && $autoCreate && ! isset($this->_overrides['xmlMethod']) ) {
 			$this->xmlMethod = $this->createXmlMethod();
 		}
 		return $this->xmlMethod;
@@ -124,8 +131,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->xmlMethod[] = $xmlMethod;
 	}
 
-	public function getCommonSchema() {
-		if ($this->commonSchema===NULL) {
+	public function getCommonSchema($autoCreate = TRUE) {
+		if ($this->commonSchema===NULL && $autoCreate && ! isset($this->_overrides['commonSchema']) ) {
 			$this->commonSchema = $this->createCommonSchema();
 		}
 		return $this->commonSchema;

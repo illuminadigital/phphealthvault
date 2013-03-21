@@ -14,6 +14,13 @@ class POCDMT000040.Participant1 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -70,8 +77,8 @@ class POCDMT000040.Participant1 {
 		$this->contextControlCode = ($contextControlCode===NULL) ? NULL : $this->validateContextControlCode($contextControlCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -105,8 +112,8 @@ class POCDMT000040.Participant1 {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -125,8 +132,8 @@ class POCDMT000040.Participant1 {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -160,8 +167,8 @@ class POCDMT000040.Participant1 {
 		return $templateId;
 	}
 
-	public function getFunctionCode() {
-		if ($this->functionCode===NULL) {
+	public function getFunctionCode($autoCreate = TRUE) {
+		if ($this->functionCode===NULL && $autoCreate && ! isset($this->_overrides['functionCode']) ) {
 			$this->functionCode = $this->createFunctionCode();
 		}
 		return $this->functionCode;
@@ -180,8 +187,8 @@ class POCDMT000040.Participant1 {
 		return $functionCode;
 	}
 
-	public function getTime() {
-		if ($this->time===NULL) {
+	public function getTime($autoCreate = TRUE) {
+		if ($this->time===NULL && $autoCreate && ! isset($this->_overrides['time']) ) {
 			$this->time = $this->createTime();
 		}
 		return $this->time;
@@ -200,8 +207,8 @@ class POCDMT000040.Participant1 {
 		return $time;
 	}
 
-	public function getAssociatedEntity() {
-		if ($this->associatedEntity===NULL) {
+	public function getAssociatedEntity($autoCreate = TRUE) {
+		if ($this->associatedEntity===NULL && $autoCreate && ! isset($this->_overrides['associatedEntity']) ) {
 			$this->associatedEntity = $this->createAssociatedEntity();
 		}
 		return $this->associatedEntity;
@@ -220,8 +227,8 @@ class POCDMT000040.Participant1 {
 		return $associatedEntity;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -240,8 +247,8 @@ class POCDMT000040.Participant1 {
 		return $nullFlavor;
 	}
 
-	public function getTypeCode() {
-		if ($this->typeCode===NULL) {
+	public function getTypeCode($autoCreate = TRUE) {
+		if ($this->typeCode===NULL && $autoCreate && ! isset($this->_overrides['typeCode']) ) {
 			$this->typeCode = $this->createTypeCode();
 		}
 		return $this->typeCode;
@@ -260,8 +267,8 @@ class POCDMT000040.Participant1 {
 		return $typeCode;
 	}
 
-	public function getContextControlCode() {
-		if ($this->contextControlCode===NULL) {
+	public function getContextControlCode($autoCreate = TRUE) {
+		if ($this->contextControlCode===NULL && $autoCreate && ! isset($this->_overrides['contextControlCode']) ) {
 			$this->contextControlCode = $this->createContextControlCode();
 		}
 		return $this->contextControlCode;

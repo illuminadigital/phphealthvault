@@ -14,6 +14,13 @@ class Header {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="method")
 	 */
 	protected $method;
@@ -94,8 +101,8 @@ class Header {
 		$this->infoHash = ($infoHash===NULL) ? NULL : $this->validateInfoHash($infoHash);
 	}
 
-	public function getMethod() {
-		if ($this->method===NULL) {
+	public function getMethod($autoCreate = TRUE) {
+		if ($this->method===NULL && $autoCreate && ! isset($this->_overrides['method']) ) {
 			$this->method = $this->createMethod();
 		}
 		return $this->method;
@@ -117,8 +124,8 @@ class Header {
 		return $method;
 	}
 
-	public function getMethodVersion() {
-		if ($this->methodVersion===NULL) {
+	public function getMethodVersion($autoCreate = TRUE) {
+		if ($this->methodVersion===NULL && $autoCreate && ! isset($this->_overrides['methodVersion']) ) {
 			$this->methodVersion = $this->createMethodVersion();
 		}
 		return $this->methodVersion;
@@ -148,8 +155,8 @@ class Header {
 		return $methodVersion;
 	}
 
-	public function getTargetPersonId() {
-		if ($this->targetPersonId===NULL) {
+	public function getTargetPersonId($autoCreate = TRUE) {
+		if ($this->targetPersonId===NULL && $autoCreate && ! isset($this->_overrides['targetPersonId']) ) {
 			$this->targetPersonId = $this->createTargetPersonId();
 		}
 		return $this->targetPersonId;
@@ -164,15 +171,22 @@ class Header {
 	}
 
 	protected function validateTargetPersonId($targetPersonId) {
+		if ( $targetPersonId === FALSE ) {
+			$this->_overrides['targetPersonId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $targetPersonId instanceof \com\microsoft\wc\types\Guid  && ! is_null($targetPersonId) ) {
 			$targetPersonId = new \com\microsoft\wc\types\Guid ($targetPersonId);
 		}
+
+		unset ($this->_overrides['targetPersonId']);
 	
 		return $targetPersonId;
 	}
 
-	public function getRecordId() {
-		if ($this->recordId===NULL) {
+	public function getRecordId($autoCreate = TRUE) {
+		if ($this->recordId===NULL && $autoCreate && ! isset($this->_overrides['recordId']) ) {
 			$this->recordId = $this->createRecordId();
 		}
 		return $this->recordId;
@@ -187,15 +201,22 @@ class Header {
 	}
 
 	protected function validateRecordId($recordId) {
+		if ( $recordId === FALSE ) {
+			$this->_overrides['recordId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $recordId instanceof \com\microsoft\wc\types\Guid  && ! is_null($recordId) ) {
 			$recordId = new \com\microsoft\wc\types\Guid ($recordId);
 		}
+
+		unset ($this->_overrides['recordId']);
 	
 		return $recordId;
 	}
 
-	public function getAppId() {
-		if ($this->appId===NULL) {
+	public function getAppId($autoCreate = TRUE) {
+		if ($this->appId===NULL && $autoCreate && ! isset($this->_overrides['appId']) ) {
 			$this->appId = $this->createAppId();
 		}
 		return $this->appId;
@@ -217,8 +238,8 @@ class Header {
 		return $appId;
 	}
 
-	public function getAuthSession() {
-		if ($this->authSession===NULL) {
+	public function getAuthSession($autoCreate = TRUE) {
+		if ($this->authSession===NULL && $autoCreate && ! isset($this->_overrides['authSession']) ) {
 			$this->authSession = $this->createAuthSession();
 		}
 		return $this->authSession;
@@ -240,8 +261,8 @@ class Header {
 		return $authSession;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -256,15 +277,22 @@ class Header {
 	}
 
 	protected function validateLanguage($language) {
+		if ( $language === FALSE ) {
+			$this->_overrides['language'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
 			$language = new \com\microsoft\wc\types\Iso6391 ($language);
 		}
+
+		unset ($this->_overrides['language']);
 	
 		return $language;
 	}
 
-	public function getCountry() {
-		if ($this->country===NULL) {
+	public function getCountry($autoCreate = TRUE) {
+		if ($this->country===NULL && $autoCreate && ! isset($this->_overrides['country']) ) {
 			$this->country = $this->createCountry();
 		}
 		return $this->country;
@@ -279,15 +307,22 @@ class Header {
 	}
 
 	protected function validateCountry($country) {
+		if ( $country === FALSE ) {
+			$this->_overrides['country'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $country instanceof \com\microsoft\wc\types\Iso3166  && ! is_null($country) ) {
 			$country = new \com\microsoft\wc\types\Iso3166 ($country);
 		}
+
+		unset ($this->_overrides['country']);
 	
 		return $country;
 	}
 
-	public function getFinalXsl() {
-		if ($this->finalXsl===NULL) {
+	public function getFinalXsl($autoCreate = TRUE) {
+		if ($this->finalXsl===NULL && $autoCreate && ! isset($this->_overrides['finalXsl']) ) {
 			$this->finalXsl = $this->createFinalXsl();
 		}
 		return $this->finalXsl;
@@ -302,15 +337,22 @@ class Header {
 	}
 
 	protected function validateFinalXsl($finalXsl) {
+		if ( $finalXsl === FALSE ) {
+			$this->_overrides['finalXsl'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $finalXsl instanceof \com\microsoft\wc\request\Xsl  && ! is_null($finalXsl) ) {
 			$finalXsl = new \com\microsoft\wc\request\Xsl ($finalXsl);
 		}
+
+		unset ($this->_overrides['finalXsl']);
 	
 		return $finalXsl;
 	}
 
-	public function getMsgTime() {
-		if ($this->msgTime===NULL) {
+	public function getMsgTime($autoCreate = TRUE) {
+		if ($this->msgTime===NULL && $autoCreate && ! isset($this->_overrides['msgTime']) ) {
 			$this->msgTime = $this->createMsgTime();
 		}
 		return $this->msgTime;
@@ -332,8 +374,8 @@ class Header {
 		return $msgTime;
 	}
 
-	public function getMsgTtl() {
-		if ($this->msgTtl===NULL) {
+	public function getMsgTtl($autoCreate = TRUE) {
+		if ($this->msgTtl===NULL && $autoCreate && ! isset($this->_overrides['msgTtl']) ) {
 			$this->msgTtl = $this->createMsgTtl();
 		}
 		return $this->msgTtl;
@@ -363,8 +405,8 @@ class Header {
 		return $msgTtl;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;
@@ -386,8 +428,8 @@ class Header {
 		return $version;
 	}
 
-	public function getInfoHash() {
-		if ($this->infoHash===NULL) {
+	public function getInfoHash($autoCreate = TRUE) {
+		if ($this->infoHash===NULL && $autoCreate && ! isset($this->_overrides['infoHash']) ) {
 			$this->infoHash = $this->createInfoHash();
 		}
 		return $this->infoHash;
@@ -402,9 +444,16 @@ class Header {
 	}
 
 	protected function validateInfoHash($infoHash) {
+		if ( $infoHash === FALSE ) {
+			$this->_overrides['infoHash'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $infoHash instanceof \com\microsoft\wc\types\HashFinalized  && ! is_null($infoHash) ) {
 			$infoHash = new \com\microsoft\wc\types\HashFinalized ($infoHash);
 		}
+
+		unset ($this->_overrides['infoHash']);
 	
 		return $infoHash;
 	}

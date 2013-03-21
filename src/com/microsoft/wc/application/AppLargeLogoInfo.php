@@ -14,6 +14,13 @@ class AppLargeLogoInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\application\CultureSpecificAppLargeLogo", collection="true", name="logo")
 	 */
 	protected $logo;
@@ -28,8 +35,8 @@ class AppLargeLogoInfo {
 		$this->contentType = ($contentType===NULL) ? NULL : $this->validateContentType($contentType);
 	}
 
-	public function getLogo() {
-		if ($this->logo===NULL) {
+	public function getLogo($autoCreate = TRUE) {
+		if ($this->logo===NULL && $autoCreate && ! isset($this->_overrides['logo']) ) {
 			$this->logo = $this->createLogo();
 		}
 		return $this->logo;
@@ -64,8 +71,8 @@ class AppLargeLogoInfo {
 		$this->logo[] = $logo;
 	}
 
-	public function getContentType() {
-		if ($this->contentType===NULL) {
+	public function getContentType($autoCreate = TRUE) {
+		if ($this->contentType===NULL && $autoCreate && ! isset($this->_overrides['contentType']) ) {
 			$this->contentType = $this->createContentType();
 		}
 		return $this->contentType;

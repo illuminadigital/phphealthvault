@@ -14,6 +14,13 @@ class PbeParametersType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="salt")
 	 */
 	protected $salt;
@@ -34,8 +41,8 @@ class PbeParametersType {
 		$this->keyLength = ($keyLength===NULL) ? NULL : $this->validateKeyLength($keyLength);
 	}
 
-	public function getSalt() {
-		if ($this->salt===NULL) {
+	public function getSalt($autoCreate = TRUE) {
+		if ($this->salt===NULL && $autoCreate && ! isset($this->_overrides['salt']) ) {
 			$this->salt = $this->createSalt();
 		}
 		return $this->salt;
@@ -57,8 +64,8 @@ class PbeParametersType {
 		return $salt;
 	}
 
-	public function getIterationCount() {
-		if ($this->iterationCount===NULL) {
+	public function getIterationCount($autoCreate = TRUE) {
+		if ($this->iterationCount===NULL && $autoCreate && ! isset($this->_overrides['iterationCount']) ) {
 			$this->iterationCount = $this->createIterationCount();
 		}
 		return $this->iterationCount;
@@ -88,8 +95,8 @@ class PbeParametersType {
 		return $iterationCount;
 	}
 
-	public function getKeyLength() {
-		if ($this->keyLength===NULL) {
+	public function getKeyLength($autoCreate = TRUE) {
+		if ($this->keyLength===NULL && $autoCreate && ! isset($this->_overrides['keyLength']) ) {
 			$this->keyLength = $this->createKeyLength();
 		}
 		return $this->keyLength;

@@ -15,6 +15,13 @@ class CareTeam {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Person", collection="true", name="person")
 	 */
 	protected $person;
@@ -23,8 +30,8 @@ class CareTeam {
 		$this->person = ($person===NULL) ? NULL : $this->validatePerson($person);
 	}
 
-	public function getPerson() {
-		if ($this->person===NULL) {
+	public function getPerson($autoCreate = TRUE) {
+		if ($this->person===NULL && $autoCreate && ! isset($this->_overrides['person']) ) {
 			$this->person = $this->createPerson();
 		}
 		return $this->person;

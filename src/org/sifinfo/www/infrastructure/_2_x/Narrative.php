@@ -14,6 +14,13 @@ class Narrative {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="integer", name="MaximumSize")
 	 */
 	protected $maximumSize;
@@ -22,8 +29,8 @@ class Narrative {
 		$this->maximumSize = ($maximumSize===NULL) ? NULL : $this->validateMaximumSize($maximumSize);
 	}
 
-	public function getMaximumSize() {
-		if ($this->maximumSize===NULL) {
+	public function getMaximumSize($autoCreate = TRUE) {
+		if ($this->maximumSize===NULL && $autoCreate && ! isset($this->_overrides['maximumSize']) ) {
 			$this->maximumSize = $this->createMaximumSize();
 		}
 		return $this->maximumSize;

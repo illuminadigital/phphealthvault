@@ -15,6 +15,13 @@ class NCES0084CalendarEventType {
 	static protected $enumValue = array('0849' => 'Emergency day', '0846' => 'Holiday', '9999' => 'Other', '3421' => 'Strike', '0848' => 'Student late arrival/early dismissal', '0845' => 'Teacher only day');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0084CalendarEventType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0084CalendarEventType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

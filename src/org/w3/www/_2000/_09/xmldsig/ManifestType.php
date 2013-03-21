@@ -14,6 +14,13 @@ class ManifestType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\Reference", collection="true", name="Reference")
 	 */
 	protected $reference;
@@ -28,8 +35,8 @@ class ManifestType {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 	}
 
-	public function getReference() {
-		if ($this->reference===NULL) {
+	public function getReference($autoCreate = TRUE) {
+		if ($this->reference===NULL && $autoCreate && ! isset($this->_overrides['reference']) ) {
 			$this->reference = $this->createReference();
 		}
 		return $this->reference;
@@ -64,8 +71,8 @@ class ManifestType {
 		$this->reference[] = $reference;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;

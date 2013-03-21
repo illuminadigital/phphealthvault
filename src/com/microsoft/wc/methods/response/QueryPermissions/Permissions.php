@@ -14,6 +14,13 @@ class Permissions {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Permission", collection="true", name="permission")
 	 */
 	protected $permission;
@@ -22,8 +29,8 @@ class Permissions {
 		$this->permission = ($permission===NULL) ? NULL : $this->validatePermission($permission);
 	}
 
-	public function getPermission() {
-		if ($this->permission===NULL) {
+	public function getPermission($autoCreate = TRUE) {
+		if ($this->permission===NULL && $autoCreate && ! isset($this->_overrides['permission']) ) {
 			$this->permission = $this->createPermission();
 		}
 		return $this->permission;

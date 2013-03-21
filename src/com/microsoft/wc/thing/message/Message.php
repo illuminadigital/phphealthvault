@@ -19,6 +19,13 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Message';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -63,8 +70,8 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 		$this->attachments = ($attachments===NULL) ? NULL : $this->validateAttachments($attachments);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -86,8 +93,8 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getHeaders() {
-		if ($this->headers===NULL) {
+	public function getHeaders($autoCreate = TRUE) {
+		if ($this->headers===NULL && $autoCreate && ! isset($this->_overrides['headers']) ) {
 			$this->headers = $this->createHeaders();
 		}
 		return $this->headers;
@@ -102,9 +109,16 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateHeaders($headers) {
+		if ( $headers === FALSE ) {
+			$this->_overrides['headers'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($headers) && ! is_null($headers) ) {
 			$headers = array($headers);
 		}
+
+		unset ($this->_overrides['headers']);
 		$count = count($headers);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'headers', 0));
@@ -122,8 +136,8 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 		$this->headers[] = $headers;
 	}
 
-	public function getSize() {
-		if ($this->size===NULL) {
+	public function getSize($autoCreate = TRUE) {
+		if ($this->size===NULL && $autoCreate && ! isset($this->_overrides['size']) ) {
 			$this->size = $this->createSize();
 		}
 		return $this->size;
@@ -153,8 +167,8 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 		return $size;
 	}
 
-	public function getSummary() {
-		if ($this->summary===NULL) {
+	public function getSummary($autoCreate = TRUE) {
+		if ($this->summary===NULL && $autoCreate && ! isset($this->_overrides['summary']) ) {
 			$this->summary = $this->createSummary();
 		}
 		return $this->summary;
@@ -176,8 +190,8 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 		return $summary;
 	}
 
-	public function getHtmlBlobName() {
-		if ($this->htmlBlobName===NULL) {
+	public function getHtmlBlobName($autoCreate = TRUE) {
+		if ($this->htmlBlobName===NULL && $autoCreate && ! isset($this->_overrides['htmlBlobName']) ) {
 			$this->htmlBlobName = $this->createHtmlBlobName();
 		}
 		return $this->htmlBlobName;
@@ -192,15 +206,22 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateHtmlBlobName($htmlBlobName) {
+		if ( $htmlBlobName === FALSE ) {
+			$this->_overrides['htmlBlobName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $htmlBlobName instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($htmlBlobName) ) {
 			$htmlBlobName = new \com\microsoft\wc\types\Stringnznw ($htmlBlobName);
 		}
+
+		unset ($this->_overrides['htmlBlobName']);
 	
 		return $htmlBlobName;
 	}
 
-	public function getTextBlobName() {
-		if ($this->textBlobName===NULL) {
+	public function getTextBlobName($autoCreate = TRUE) {
+		if ($this->textBlobName===NULL && $autoCreate && ! isset($this->_overrides['textBlobName']) ) {
 			$this->textBlobName = $this->createTextBlobName();
 		}
 		return $this->textBlobName;
@@ -215,15 +236,22 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTextBlobName($textBlobName) {
+		if ( $textBlobName === FALSE ) {
+			$this->_overrides['textBlobName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $textBlobName instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($textBlobName) ) {
 			$textBlobName = new \com\microsoft\wc\types\Stringnznw ($textBlobName);
 		}
+
+		unset ($this->_overrides['textBlobName']);
 	
 		return $textBlobName;
 	}
 
-	public function getAttachments() {
-		if ($this->attachments===NULL) {
+	public function getAttachments($autoCreate = TRUE) {
+		if ($this->attachments===NULL && $autoCreate && ! isset($this->_overrides['attachments']) ) {
 			$this->attachments = $this->createAttachments();
 		}
 		return $this->attachments;
@@ -238,9 +266,16 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAttachments($attachments) {
+		if ( $attachments === FALSE ) {
+			$this->_overrides['attachments'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($attachments) && ! is_null($attachments) ) {
 			$attachments = array($attachments);
 		}
+
+		unset ($this->_overrides['attachments']);
 		$count = count($attachments);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'attachments', 0));

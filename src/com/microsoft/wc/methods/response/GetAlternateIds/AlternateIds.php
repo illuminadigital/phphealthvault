@@ -14,6 +14,13 @@ class AlternateIds {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String255nw", collection="true", name="alternate-id")
 	 */
 	protected $alternateId;
@@ -22,8 +29,8 @@ class AlternateIds {
 		$this->alternateId = ($alternateId===NULL) ? NULL : $this->validateAlternateId($alternateId);
 	}
 
-	public function getAlternateId() {
-		if ($this->alternateId===NULL) {
+	public function getAlternateId($autoCreate = TRUE) {
+		if ($this->alternateId===NULL && $autoCreate && ! isset($this->_overrides['alternateId']) ) {
 			$this->alternateId = $this->createAlternateId();
 		}
 		return $this->alternateId;
@@ -38,9 +45,16 @@ class AlternateIds {
 	}
 
 	protected function validateAlternateId($alternateId) {
+		if ( $alternateId === FALSE ) {
+			$this->_overrides['alternateId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($alternateId) && ! is_null($alternateId) ) {
 			$alternateId = array($alternateId);
 		}
+
+		unset ($this->_overrides['alternateId']);
 		$count = count($alternateId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'alternateId', 0));

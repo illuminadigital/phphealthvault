@@ -15,6 +15,13 @@ class SimpleEmergencyAccessCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String128nw", name="access-code")
 	 */
 	protected $accessCode;
@@ -23,8 +30,8 @@ class SimpleEmergencyAccessCredential {
 		$this->accessCode = ($accessCode===NULL) ? NULL : $this->validateAccessCode($accessCode);
 	}
 
-	public function getAccessCode() {
-		if ($this->accessCode===NULL) {
+	public function getAccessCode($autoCreate = TRUE) {
+		if ($this->accessCode===NULL && $autoCreate && ! isset($this->_overrides['accessCode']) ) {
 			$this->accessCode = $this->createAccessCode();
 		}
 		return $this->accessCode;

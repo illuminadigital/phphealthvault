@@ -16,6 +16,13 @@ class SimpleUserPassCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\auth\UserPassCred", name="simple-userpass")
 	 */
 	protected $simpleUserpass;
@@ -24,8 +31,8 @@ class SimpleUserPassCredential {
 		$this->simpleUserpass = ($simpleUserpass===NULL) ? NULL : $this->validateSimpleUserpass($simpleUserpass);
 	}
 
-	public function getSimpleUserpass() {
-		if ($this->simpleUserpass===NULL) {
+	public function getSimpleUserpass($autoCreate = TRUE) {
+		if ($this->simpleUserpass===NULL && $autoCreate && ! isset($this->_overrides['simpleUserpass']) ) {
 			$this->simpleUserpass = $this->createSimpleUserpass();
 		}
 		return $this->simpleUserpass;

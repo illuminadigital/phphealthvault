@@ -15,6 +15,13 @@ class NCES0614EmployerTypeType {
 	static protected $enumValue = array('1808' => 'Agricultural/fishery seasonal employer', '1803' => 'Government', '1804' => 'Military', '1807' => 'Military/Department of Defense', '9999' => 'Other', '1805' => 'Private organization', '1806' => 'Self-employed');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0614EmployerTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0614EmployerTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

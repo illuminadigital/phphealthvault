@@ -15,6 +15,13 @@ class SIFExtendedElementsType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SIFExtendedElement", collection="true", name="SIF_ExtendedElement")
 	 */
 	protected $sifExtendedElement;
@@ -23,8 +30,8 @@ class SIFExtendedElementsType {
 		$this->sifExtendedElement = ($sifExtendedElement===NULL) ? NULL : $this->validateSifExtendedElement($sifExtendedElement);
 	}
 
-	public function getSifExtendedElement() {
-		if ($this->sifExtendedElement===NULL) {
+	public function getSifExtendedElement($autoCreate = TRUE) {
+		if ($this->sifExtendedElement===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElement']) ) {
 			$this->sifExtendedElement = $this->createSifExtendedElement();
 		}
 		return $this->sifExtendedElement;
@@ -39,9 +46,16 @@ class SIFExtendedElementsType {
 	}
 
 	protected function validateSifExtendedElement($sifExtendedElement) {
+		if ( $sifExtendedElement === FALSE ) {
+			$this->_overrides['sifExtendedElement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($sifExtendedElement) && ! is_null($sifExtendedElement) ) {
 			$sifExtendedElement = array($sifExtendedElement);
 		}
+
+		unset ($this->_overrides['sifExtendedElement']);
 		$count = count($sifExtendedElement);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sifExtendedElement', 0));

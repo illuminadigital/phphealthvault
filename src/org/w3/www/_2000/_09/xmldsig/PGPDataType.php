@@ -14,6 +14,13 @@ class PGPDataType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="PGPKeyID")
 	 */
 	protected $pGPKeyID;
@@ -34,8 +41,8 @@ class PGPDataType {
 		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 	}
 
-	public function getPGPKeyID() {
-		if ($this->pGPKeyID===NULL) {
+	public function getPGPKeyID($autoCreate = TRUE) {
+		if ($this->pGPKeyID===NULL && $autoCreate && ! isset($this->_overrides['pGPKeyID']) ) {
 			$this->pGPKeyID = $this->createPGPKeyID();
 		}
 		return $this->pGPKeyID;
@@ -57,8 +64,8 @@ class PGPDataType {
 		return $pGPKeyID;
 	}
 
-	public function getPGPKeyPacket() {
-		if ($this->pGPKeyPacket===NULL) {
+	public function getPGPKeyPacket($autoCreate = TRUE) {
+		if ($this->pGPKeyPacket===NULL && $autoCreate && ! isset($this->_overrides['pGPKeyPacket']) ) {
 			$this->pGPKeyPacket = $this->createPGPKeyPacket();
 		}
 		return $this->pGPKeyPacket;
@@ -80,8 +87,8 @@ class PGPDataType {
 		return $pGPKeyPacket;
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;

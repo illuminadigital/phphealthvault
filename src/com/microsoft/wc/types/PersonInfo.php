@@ -16,6 +16,13 @@ class PersonInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="person-id")
 	 */
 	protected $personId;
@@ -78,8 +85,8 @@ class PersonInfo {
 		$this->location = ($location===NULL) ? NULL : $this->validateLocation($location);
 	}
 
-	public function getPersonId() {
-		if ($this->personId===NULL) {
+	public function getPersonId($autoCreate = TRUE) {
+		if ($this->personId===NULL && $autoCreate && ! isset($this->_overrides['personId']) ) {
 			$this->personId = $this->createPersonId();
 		}
 		return $this->personId;
@@ -101,8 +108,8 @@ class PersonInfo {
 		return $personId;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -124,8 +131,8 @@ class PersonInfo {
 		return $name;
 	}
 
-	public function getAppSettings() {
-		if ($this->appSettings===NULL) {
+	public function getAppSettings($autoCreate = TRUE) {
+		if ($this->appSettings===NULL && $autoCreate && ! isset($this->_overrides['appSettings']) ) {
 			$this->appSettings = $this->createAppSettings();
 		}
 		return $this->appSettings;
@@ -140,15 +147,22 @@ class PersonInfo {
 	}
 
 	protected function validateAppSettings($appSettings) {
+		if ( $appSettings === FALSE ) {
+			$this->_overrides['appSettings'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $appSettings instanceof \com\microsoft\wc\types\AppSettings  && ! is_null($appSettings) ) {
 			$appSettings = new \com\microsoft\wc\types\AppSettings ($appSettings);
 		}
+
+		unset ($this->_overrides['appSettings']);
 	
 		return $appSettings;
 	}
 
-	public function getSelectedRecordId() {
-		if ($this->selectedRecordId===NULL) {
+	public function getSelectedRecordId($autoCreate = TRUE) {
+		if ($this->selectedRecordId===NULL && $autoCreate && ! isset($this->_overrides['selectedRecordId']) ) {
 			$this->selectedRecordId = $this->createSelectedRecordId();
 		}
 		return $this->selectedRecordId;
@@ -163,15 +177,22 @@ class PersonInfo {
 	}
 
 	protected function validateSelectedRecordId($selectedRecordId) {
+		if ( $selectedRecordId === FALSE ) {
+			$this->_overrides['selectedRecordId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $selectedRecordId instanceof \com\microsoft\wc\types\Guid  && ! is_null($selectedRecordId) ) {
 			$selectedRecordId = new \com\microsoft\wc\types\Guid ($selectedRecordId);
 		}
+
+		unset ($this->_overrides['selectedRecordId']);
 	
 		return $selectedRecordId;
 	}
 
-	public function getMoreRecords() {
-		if ($this->moreRecords===NULL) {
+	public function getMoreRecords($autoCreate = TRUE) {
+		if ($this->moreRecords===NULL && $autoCreate && ! isset($this->_overrides['moreRecords']) ) {
 			$this->moreRecords = $this->createMoreRecords();
 		}
 		return $this->moreRecords;
@@ -193,8 +214,8 @@ class PersonInfo {
 		return $moreRecords;
 	}
 
-	public function getRecord() {
-		if ($this->record===NULL) {
+	public function getRecord($autoCreate = TRUE) {
+		if ($this->record===NULL && $autoCreate && ! isset($this->_overrides['record']) ) {
 			$this->record = $this->createRecord();
 		}
 		return $this->record;
@@ -209,9 +230,16 @@ class PersonInfo {
 	}
 
 	protected function validateRecord($record) {
+		if ( $record === FALSE ) {
+			$this->_overrides['record'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($record) && ! is_null($record) ) {
 			$record = array($record);
 		}
+
+		unset ($this->_overrides['record']);
 		$count = count($record);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'record', 0));
@@ -229,8 +257,8 @@ class PersonInfo {
 		$this->record[] = $record;
 	}
 
-	public function getGroups() {
-		if ($this->groups===NULL) {
+	public function getGroups($autoCreate = TRUE) {
+		if ($this->groups===NULL && $autoCreate && ! isset($this->_overrides['groups']) ) {
 			$this->groups = $this->createGroups();
 		}
 		return $this->groups;
@@ -245,15 +273,22 @@ class PersonInfo {
 	}
 
 	protected function validateGroups($groups) {
+		if ( $groups === FALSE ) {
+			$this->_overrides['groups'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $groups instanceof \com\microsoft\wc\types\Groups  && ! is_null($groups) ) {
 			$groups = new \com\microsoft\wc\types\Groups ($groups);
 		}
+
+		unset ($this->_overrides['groups']);
 	
 		return $groups;
 	}
 
-	public function getPreferredCulture() {
-		if ($this->preferredCulture===NULL) {
+	public function getPreferredCulture($autoCreate = TRUE) {
+		if ($this->preferredCulture===NULL && $autoCreate && ! isset($this->_overrides['preferredCulture']) ) {
 			$this->preferredCulture = $this->createPreferredCulture();
 		}
 		return $this->preferredCulture;
@@ -268,15 +303,22 @@ class PersonInfo {
 	}
 
 	protected function validatePreferredCulture($preferredCulture) {
+		if ( $preferredCulture === FALSE ) {
+			$this->_overrides['preferredCulture'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $preferredCulture instanceof \com\microsoft\wc\types\Culture  && ! is_null($preferredCulture) ) {
 			$preferredCulture = new \com\microsoft\wc\types\Culture ($preferredCulture);
 		}
+
+		unset ($this->_overrides['preferredCulture']);
 	
 		return $preferredCulture;
 	}
 
-	public function getPreferredUiculture() {
-		if ($this->preferredUiculture===NULL) {
+	public function getPreferredUiculture($autoCreate = TRUE) {
+		if ($this->preferredUiculture===NULL && $autoCreate && ! isset($this->_overrides['preferredUiculture']) ) {
 			$this->preferredUiculture = $this->createPreferredUiculture();
 		}
 		return $this->preferredUiculture;
@@ -291,15 +333,22 @@ class PersonInfo {
 	}
 
 	protected function validatePreferredUiculture($preferredUiculture) {
+		if ( $preferredUiculture === FALSE ) {
+			$this->_overrides['preferredUiculture'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $preferredUiculture instanceof \com\microsoft\wc\types\Culture  && ! is_null($preferredUiculture) ) {
 			$preferredUiculture = new \com\microsoft\wc\types\Culture ($preferredUiculture);
 		}
+
+		unset ($this->_overrides['preferredUiculture']);
 	
 		return $preferredUiculture;
 	}
 
-	public function getLocation() {
-		if ($this->location===NULL) {
+	public function getLocation($autoCreate = TRUE) {
+		if ($this->location===NULL && $autoCreate && ! isset($this->_overrides['location']) ) {
 			$this->location = $this->createLocation();
 		}
 		return $this->location;
@@ -314,9 +363,16 @@ class PersonInfo {
 	}
 
 	protected function validateLocation($location) {
+		if ( $location === FALSE ) {
+			$this->_overrides['location'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $location instanceof \com\microsoft\wc\types\Location  && ! is_null($location) ) {
 			$location = new \com\microsoft\wc\types\Location ($location);
 		}
+
+		unset ($this->_overrides['location']);
 	
 		return $location;
 	}

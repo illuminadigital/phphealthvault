@@ -16,6 +16,13 @@ class Alert {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Dow", collection="true", name="dow")
 	 */
 	protected $dow;
@@ -30,8 +37,8 @@ class Alert {
 		$this->time = ($time===NULL) ? NULL : $this->validateTime($time);
 	}
 
-	public function getDow() {
-		if ($this->dow===NULL) {
+	public function getDow($autoCreate = TRUE) {
+		if ($this->dow===NULL && $autoCreate && ! isset($this->_overrides['dow']) ) {
 			$this->dow = $this->createDow();
 		}
 		return $this->dow;
@@ -69,8 +76,8 @@ class Alert {
 		$this->dow[] = $dow;
 	}
 
-	public function getTime() {
-		if ($this->time===NULL) {
+	public function getTime($autoCreate = TRUE) {
+		if ($this->time===NULL && $autoCreate && ! isset($this->_overrides['time']) ) {
 			$this->time = $this->createTime();
 		}
 		return $this->time;

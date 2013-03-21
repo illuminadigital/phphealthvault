@@ -14,6 +14,13 @@ class SchoolAttendanceHistory {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SchoolAttended", collection="true", name="SchoolAttended")
 	 */
 	protected $schoolAttended;
@@ -22,8 +29,8 @@ class SchoolAttendanceHistory {
 		$this->schoolAttended = ($schoolAttended===NULL) ? NULL : $this->validateSchoolAttended($schoolAttended);
 	}
 
-	public function getSchoolAttended() {
-		if ($this->schoolAttended===NULL) {
+	public function getSchoolAttended($autoCreate = TRUE) {
+		if ($this->schoolAttended===NULL && $autoCreate && ! isset($this->_overrides['schoolAttended']) ) {
 			$this->schoolAttended = $this->createSchoolAttended();
 		}
 		return $this->schoolAttended;

@@ -14,6 +14,13 @@ class IVLINT extends \org\w3\www\_2001\XMLSchema\SXCMINT {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVXBINT", name="low")
 	 */
 	protected $low;
@@ -40,8 +47,8 @@ class IVLINT extends \org\w3\www\_2001\XMLSchema\SXCMINT {
 		$this->center = ($center===NULL) ? NULL : $this->validateCenter($center);
 	}
 
-	public function getLow() {
-		if ($this->low===NULL) {
+	public function getLow($autoCreate = TRUE) {
+		if ($this->low===NULL && $autoCreate && ! isset($this->_overrides['low']) ) {
 			$this->low = $this->createLow();
 		}
 		return $this->low;
@@ -60,8 +67,8 @@ class IVLINT extends \org\w3\www\_2001\XMLSchema\SXCMINT {
 		return $low;
 	}
 
-	public function getWidth() {
-		if ($this->width===NULL) {
+	public function getWidth($autoCreate = TRUE) {
+		if ($this->width===NULL && $autoCreate && ! isset($this->_overrides['width']) ) {
 			$this->width = $this->createWidth();
 		}
 		return $this->width;
@@ -80,8 +87,8 @@ class IVLINT extends \org\w3\www\_2001\XMLSchema\SXCMINT {
 		return $width;
 	}
 
-	public function getHigh() {
-		if ($this->high===NULL) {
+	public function getHigh($autoCreate = TRUE) {
+		if ($this->high===NULL && $autoCreate && ! isset($this->_overrides['high']) ) {
 			$this->high = $this->createHigh();
 		}
 		return $this->high;
@@ -100,8 +107,8 @@ class IVLINT extends \org\w3\www\_2001\XMLSchema\SXCMINT {
 		return $high;
 	}
 
-	public function getCenter() {
-		if ($this->center===NULL) {
+	public function getCenter($autoCreate = TRUE) {
+		if ($this->center===NULL && $autoCreate && ! isset($this->_overrides['center']) ) {
 			$this->center = $this->createCenter();
 		}
 		return $this->center;

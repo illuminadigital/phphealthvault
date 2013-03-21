@@ -19,6 +19,13 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Genetic SNP Result';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -81,8 +88,8 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 		$this->platform = ($platform===NULL) ? NULL : $this->validatePlatform($platform);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -104,8 +111,8 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getGenomeBuild() {
-		if ($this->genomeBuild===NULL) {
+	public function getGenomeBuild($autoCreate = TRUE) {
+		if ($this->genomeBuild===NULL && $autoCreate && ! isset($this->_overrides['genomeBuild']) ) {
 			$this->genomeBuild = $this->createGenomeBuild();
 		}
 		return $this->genomeBuild;
@@ -127,8 +134,8 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $genomeBuild;
 	}
 
-	public function getChromosome() {
-		if ($this->chromosome===NULL) {
+	public function getChromosome($autoCreate = TRUE) {
+		if ($this->chromosome===NULL && $autoCreate && ! isset($this->_overrides['chromosome']) ) {
 			$this->chromosome = $this->createChromosome();
 		}
 		return $this->chromosome;
@@ -150,8 +157,8 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $chromosome;
 	}
 
-	public function getNumberingScheme() {
-		if ($this->numberingScheme===NULL) {
+	public function getNumberingScheme($autoCreate = TRUE) {
+		if ($this->numberingScheme===NULL && $autoCreate && ! isset($this->_overrides['numberingScheme']) ) {
 			$this->numberingScheme = $this->createNumberingScheme();
 		}
 		return $this->numberingScheme;
@@ -173,8 +180,8 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $numberingScheme;
 	}
 
-	public function getOrderedBy() {
-		if ($this->orderedBy===NULL) {
+	public function getOrderedBy($autoCreate = TRUE) {
+		if ($this->orderedBy===NULL && $autoCreate && ! isset($this->_overrides['orderedBy']) ) {
 			$this->orderedBy = $this->createOrderedBy();
 		}
 		return $this->orderedBy;
@@ -189,15 +196,22 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateOrderedBy($orderedBy) {
+		if ( $orderedBy === FALSE ) {
+			$this->_overrides['orderedBy'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $orderedBy instanceof \com\microsoft\wc\thing\types\Organization  && ! is_null($orderedBy) ) {
 			$orderedBy = new \com\microsoft\wc\thing\types\Organization ($orderedBy);
 		}
+
+		unset ($this->_overrides['orderedBy']);
 	
 		return $orderedBy;
 	}
 
-	public function getTestProvider() {
-		if ($this->testProvider===NULL) {
+	public function getTestProvider($autoCreate = TRUE) {
+		if ($this->testProvider===NULL && $autoCreate && ! isset($this->_overrides['testProvider']) ) {
 			$this->testProvider = $this->createTestProvider();
 		}
 		return $this->testProvider;
@@ -212,15 +226,22 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTestProvider($testProvider) {
+		if ( $testProvider === FALSE ) {
+			$this->_overrides['testProvider'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $testProvider instanceof \com\microsoft\wc\thing\types\Organization  && ! is_null($testProvider) ) {
 			$testProvider = new \com\microsoft\wc\thing\types\Organization ($testProvider);
 		}
+
+		unset ($this->_overrides['testProvider']);
 	
 		return $testProvider;
 	}
 
-	public function getLaboratoryName() {
-		if ($this->laboratoryName===NULL) {
+	public function getLaboratoryName($autoCreate = TRUE) {
+		if ($this->laboratoryName===NULL && $autoCreate && ! isset($this->_overrides['laboratoryName']) ) {
 			$this->laboratoryName = $this->createLaboratoryName();
 		}
 		return $this->laboratoryName;
@@ -235,15 +256,22 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLaboratoryName($laboratoryName) {
+		if ( $laboratoryName === FALSE ) {
+			$this->_overrides['laboratoryName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $laboratoryName instanceof \com\microsoft\wc\thing\types\Organization  && ! is_null($laboratoryName) ) {
 			$laboratoryName = new \com\microsoft\wc\thing\types\Organization ($laboratoryName);
 		}
+
+		unset ($this->_overrides['laboratoryName']);
 	
 		return $laboratoryName;
 	}
 
-	public function getAnnotationVersion() {
-		if ($this->annotationVersion===NULL) {
+	public function getAnnotationVersion($autoCreate = TRUE) {
+		if ($this->annotationVersion===NULL && $autoCreate && ! isset($this->_overrides['annotationVersion']) ) {
 			$this->annotationVersion = $this->createAnnotationVersion();
 		}
 		return $this->annotationVersion;
@@ -265,8 +293,8 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $annotationVersion;
 	}
 
-	public function getDbsnpBuild () {
-		if ($this->dbsnpBuild ===NULL) {
+	public function getDbsnpBuild ($autoCreate = TRUE) {
+		if ($this->dbsnpBuild ===NULL && $autoCreate && ! isset($this->_overrides['dbsnpBuild ']) ) {
 			$this->dbsnpBuild  = $this->createDbsnpBuild ();
 		}
 		return $this->dbsnpBuild ;
@@ -288,8 +316,8 @@ class GeneticSnpResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $dbsnpBuild ;
 	}
 
-	public function getPlatform() {
-		if ($this->platform===NULL) {
+	public function getPlatform($autoCreate = TRUE) {
+		if ($this->platform===NULL && $autoCreate && ! isset($this->_overrides['platform']) ) {
 			$this->platform = $this->createPlatform();
 		}
 		return $this->platform;

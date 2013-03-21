@@ -16,6 +16,13 @@ class SimpleOpenIdCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String128", name="claimed-id")
 	 */
 	protected $claimedId;
@@ -24,8 +31,8 @@ class SimpleOpenIdCredential {
 		$this->claimedId = ($claimedId===NULL) ? NULL : $this->validateClaimedId($claimedId);
 	}
 
-	public function getClaimedId() {
-		if ($this->claimedId===NULL) {
+	public function getClaimedId($autoCreate = TRUE) {
+		if ($this->claimedId===NULL && $autoCreate && ! isset($this->_overrides['claimedId']) ) {
 			$this->claimedId = $this->createClaimedId();
 		}
 		return $this->claimedId;

@@ -14,6 +14,13 @@ class MediaTypes {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", collection="true", name="MediaType")
 	 */
 	protected $mediaType;
@@ -22,8 +29,8 @@ class MediaTypes {
 		$this->mediaType = ($mediaType===NULL) ? NULL : $this->validateMediaType($mediaType);
 	}
 
-	public function getMediaType() {
-		if ($this->mediaType===NULL) {
+	public function getMediaType($autoCreate = TRUE) {
+		if ($this->mediaType===NULL && $autoCreate && ! isset($this->_overrides['mediaType']) ) {
 			$this->mediaType = $this->createMediaType();
 		}
 		return $this->mediaType;

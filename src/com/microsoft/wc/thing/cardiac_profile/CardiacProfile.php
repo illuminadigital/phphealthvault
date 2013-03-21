@@ -19,6 +19,13 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Cardiac Profile';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -75,8 +82,8 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 		$this->hasPersonStrokeHistory = ($hasPersonStrokeHistory===NULL) ? NULL : $this->validateHasPersonStrokeHistory($hasPersonStrokeHistory);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -98,8 +105,8 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getOnHypertensionDiet() {
-		if ($this->onHypertensionDiet===NULL) {
+	public function getOnHypertensionDiet($autoCreate = TRUE) {
+		if ($this->onHypertensionDiet===NULL && $autoCreate && ! isset($this->_overrides['onHypertensionDiet']) ) {
 			$this->onHypertensionDiet = $this->createOnHypertensionDiet();
 		}
 		return $this->onHypertensionDiet;
@@ -121,8 +128,8 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $onHypertensionDiet;
 	}
 
-	public function getOnHypertensionMedication() {
-		if ($this->onHypertensionMedication===NULL) {
+	public function getOnHypertensionMedication($autoCreate = TRUE) {
+		if ($this->onHypertensionMedication===NULL && $autoCreate && ! isset($this->_overrides['onHypertensionMedication']) ) {
 			$this->onHypertensionMedication = $this->createOnHypertensionMedication();
 		}
 		return $this->onHypertensionMedication;
@@ -144,8 +151,8 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $onHypertensionMedication;
 	}
 
-	public function getRenalFailureDiagnosed() {
-		if ($this->renalFailureDiagnosed===NULL) {
+	public function getRenalFailureDiagnosed($autoCreate = TRUE) {
+		if ($this->renalFailureDiagnosed===NULL && $autoCreate && ! isset($this->_overrides['renalFailureDiagnosed']) ) {
 			$this->renalFailureDiagnosed = $this->createRenalFailureDiagnosed();
 		}
 		return $this->renalFailureDiagnosed;
@@ -167,8 +174,8 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $renalFailureDiagnosed;
 	}
 
-	public function getDiabetesDiagnosed() {
-		if ($this->diabetesDiagnosed===NULL) {
+	public function getDiabetesDiagnosed($autoCreate = TRUE) {
+		if ($this->diabetesDiagnosed===NULL && $autoCreate && ! isset($this->_overrides['diabetesDiagnosed']) ) {
 			$this->diabetesDiagnosed = $this->createDiabetesDiagnosed();
 		}
 		return $this->diabetesDiagnosed;
@@ -190,8 +197,8 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $diabetesDiagnosed;
 	}
 
-	public function getHasFamilyHeartDiseaseHistory() {
-		if ($this->hasFamilyHeartDiseaseHistory===NULL) {
+	public function getHasFamilyHeartDiseaseHistory($autoCreate = TRUE) {
+		if ($this->hasFamilyHeartDiseaseHistory===NULL && $autoCreate && ! isset($this->_overrides['hasFamilyHeartDiseaseHistory']) ) {
 			$this->hasFamilyHeartDiseaseHistory = $this->createHasFamilyHeartDiseaseHistory();
 		}
 		return $this->hasFamilyHeartDiseaseHistory;
@@ -213,8 +220,8 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $hasFamilyHeartDiseaseHistory;
 	}
 
-	public function getHasFamilyStrokeHistory() {
-		if ($this->hasFamilyStrokeHistory===NULL) {
+	public function getHasFamilyStrokeHistory($autoCreate = TRUE) {
+		if ($this->hasFamilyStrokeHistory===NULL && $autoCreate && ! isset($this->_overrides['hasFamilyStrokeHistory']) ) {
 			$this->hasFamilyStrokeHistory = $this->createHasFamilyStrokeHistory();
 		}
 		return $this->hasFamilyStrokeHistory;
@@ -236,8 +243,8 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $hasFamilyStrokeHistory;
 	}
 
-	public function getHasPersonalHeartDiseaseHistory() {
-		if ($this->hasPersonalHeartDiseaseHistory===NULL) {
+	public function getHasPersonalHeartDiseaseHistory($autoCreate = TRUE) {
+		if ($this->hasPersonalHeartDiseaseHistory===NULL && $autoCreate && ! isset($this->_overrides['hasPersonalHeartDiseaseHistory']) ) {
 			$this->hasPersonalHeartDiseaseHistory = $this->createHasPersonalHeartDiseaseHistory();
 		}
 		return $this->hasPersonalHeartDiseaseHistory;
@@ -259,8 +266,8 @@ class CardiacProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $hasPersonalHeartDiseaseHistory;
 	}
 
-	public function getHasPersonStrokeHistory() {
-		if ($this->hasPersonStrokeHistory===NULL) {
+	public function getHasPersonStrokeHistory($autoCreate = TRUE) {
+		if ($this->hasPersonStrokeHistory===NULL && $autoCreate && ! isset($this->_overrides['hasPersonStrokeHistory']) ) {
 			$this->hasPersonStrokeHistory = $this->createHasPersonStrokeHistory();
 		}
 		return $this->hasPersonStrokeHistory;

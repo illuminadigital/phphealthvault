@@ -14,6 +14,13 @@ class Set {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\DateRange", collection="true", name="date-range")
 	 */
 	protected $dateRange;
@@ -28,8 +35,8 @@ class Set {
 		$this->typeId = ($typeId===NULL) ? NULL : $this->validateTypeId($typeId);
 	}
 
-	public function getDateRange() {
-		if ($this->dateRange===NULL) {
+	public function getDateRange($autoCreate = TRUE) {
+		if ($this->dateRange===NULL && $autoCreate && ! isset($this->_overrides['dateRange']) ) {
 			$this->dateRange = $this->createDateRange();
 		}
 		return $this->dateRange;
@@ -44,9 +51,16 @@ class Set {
 	}
 
 	protected function validateDateRange($dateRange) {
+		if ( $dateRange === FALSE ) {
+			$this->_overrides['dateRange'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($dateRange) && ! is_null($dateRange) ) {
 			$dateRange = array($dateRange);
 		}
+
+		unset ($this->_overrides['dateRange']);
 		$count = count($dateRange);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'dateRange', 0));
@@ -64,8 +78,8 @@ class Set {
 		$this->dateRange[] = $dateRange;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -80,9 +94,16 @@ class Set {
 	}
 
 	protected function validateTypeId($typeId) {
+		if ( $typeId === FALSE ) {
+			$this->_overrides['typeId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($typeId) && ! is_null($typeId) ) {
 			$typeId = array($typeId);
 		}
+
+		unset ($this->_overrides['typeId']);
 		$count = count($typeId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'typeId', 0));

@@ -15,6 +15,13 @@ class ADXP extends \org\w3\www\_2001\XMLSchema\ST {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="partType")
 	 */
 	protected $partType;
@@ -23,8 +30,8 @@ class ADXP extends \org\w3\www\_2001\XMLSchema\ST {
 		$this->partType = ($partType===NULL) ? NULL : $this->validatePartType($partType);
 	}
 
-	public function getPartType() {
-		if ($this->partType===NULL) {
+	public function getPartType($autoCreate = TRUE) {
+		if ($this->partType===NULL && $autoCreate && ! isset($this->_overrides['partType']) ) {
 			$this->partType = $this->createPartType();
 		}
 		return $this->partType;

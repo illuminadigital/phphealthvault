@@ -15,6 +15,13 @@ class CarePlanTask {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -77,8 +84,8 @@ class CarePlanTask {
 		$this->referenceId = ($referenceId===NULL) ? NULL : $this->validateReferenceId($referenceId);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -100,8 +107,8 @@ class CarePlanTask {
 		return $name;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -123,8 +130,8 @@ class CarePlanTask {
 		return $description;
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -139,15 +146,22 @@ class CarePlanTask {
 	}
 
 	protected function validateStartDate($startDate) {
+		if ( $startDate === FALSE ) {
+			$this->_overrides['startDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $startDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($startDate) ) {
 			$startDate = new \com\microsoft\wc\dates\ApproxDateTime ($startDate);
 		}
+
+		unset ($this->_overrides['startDate']);
 	
 		return $startDate;
 	}
 
-	public function getEndDate() {
-		if ($this->endDate===NULL) {
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
 			$this->endDate = $this->createEndDate();
 		}
 		return $this->endDate;
@@ -162,15 +176,22 @@ class CarePlanTask {
 	}
 
 	protected function validateEndDate($endDate) {
+		if ( $endDate === FALSE ) {
+			$this->_overrides['endDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $endDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($endDate) ) {
 			$endDate = new \com\microsoft\wc\dates\ApproxDateTime ($endDate);
 		}
+
+		unset ($this->_overrides['endDate']);
 	
 		return $endDate;
 	}
 
-	public function getSequenceNumber() {
-		if ($this->sequenceNumber===NULL) {
+	public function getSequenceNumber($autoCreate = TRUE) {
+		if ($this->sequenceNumber===NULL && $autoCreate && ! isset($this->_overrides['sequenceNumber']) ) {
 			$this->sequenceNumber = $this->createSequenceNumber();
 		}
 		return $this->sequenceNumber;
@@ -185,15 +206,22 @@ class CarePlanTask {
 	}
 
 	protected function validateSequenceNumber($sequenceNumber) {
+		if ( $sequenceNumber === FALSE ) {
+			$this->_overrides['sequenceNumber'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sequenceNumber instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($sequenceNumber) ) {
 			$sequenceNumber = new \com\microsoft\wc\thing\types\NonNegativeInt ($sequenceNumber);
 		}
+
+		unset ($this->_overrides['sequenceNumber']);
 	
 		return $sequenceNumber;
 	}
 
-	public function getContact() {
-		if ($this->contact===NULL) {
+	public function getContact($autoCreate = TRUE) {
+		if ($this->contact===NULL && $autoCreate && ! isset($this->_overrides['contact']) ) {
 			$this->contact = $this->createContact();
 		}
 		return $this->contact;
@@ -208,15 +236,22 @@ class CarePlanTask {
 	}
 
 	protected function validateContact($contact) {
+		if ( $contact === FALSE ) {
+			$this->_overrides['contact'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $contact instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($contact) ) {
 			$contact = new \com\microsoft\wc\thing\types\Person ($contact);
 		}
+
+		unset ($this->_overrides['contact']);
 	
 		return $contact;
 	}
 
-	public function getRecurrence() {
-		if ($this->recurrence===NULL) {
+	public function getRecurrence($autoCreate = TRUE) {
+		if ($this->recurrence===NULL && $autoCreate && ! isset($this->_overrides['recurrence']) ) {
 			$this->recurrence = $this->createRecurrence();
 		}
 		return $this->recurrence;
@@ -231,15 +266,22 @@ class CarePlanTask {
 	}
 
 	protected function validateRecurrence($recurrence) {
+		if ( $recurrence === FALSE ) {
+			$this->_overrides['recurrence'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $recurrence instanceof \com\microsoft\wc\thing\care_plan\CarePlanTaskRecurrence  && ! is_null($recurrence) ) {
 			$recurrence = new \com\microsoft\wc\thing\care_plan\CarePlanTaskRecurrence ($recurrence);
 		}
+
+		unset ($this->_overrides['recurrence']);
 	
 		return $recurrence;
 	}
 
-	public function getThingTypeVersionId() {
-		if ($this->thingTypeVersionId===NULL) {
+	public function getThingTypeVersionId($autoCreate = TRUE) {
+		if ($this->thingTypeVersionId===NULL && $autoCreate && ! isset($this->_overrides['thingTypeVersionId']) ) {
 			$this->thingTypeVersionId = $this->createThingTypeVersionId();
 		}
 		return $this->thingTypeVersionId;
@@ -254,15 +296,22 @@ class CarePlanTask {
 	}
 
 	protected function validateThingTypeVersionId($thingTypeVersionId) {
+		if ( $thingTypeVersionId === FALSE ) {
+			$this->_overrides['thingTypeVersionId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $thingTypeVersionId instanceof \com\microsoft\wc\types\Guid  && ! is_null($thingTypeVersionId) ) {
 			$thingTypeVersionId = new \com\microsoft\wc\types\Guid ($thingTypeVersionId);
 		}
+
+		unset ($this->_overrides['thingTypeVersionId']);
 	
 		return $thingTypeVersionId;
 	}
 
-	public function getThingTypeXpath() {
-		if ($this->thingTypeXpath===NULL) {
+	public function getThingTypeXpath($autoCreate = TRUE) {
+		if ($this->thingTypeXpath===NULL && $autoCreate && ! isset($this->_overrides['thingTypeXpath']) ) {
 			$this->thingTypeXpath = $this->createThingTypeXpath();
 		}
 		return $this->thingTypeXpath;
@@ -284,8 +333,8 @@ class CarePlanTask {
 		return $thingTypeXpath;
 	}
 
-	public function getReferenceId() {
-		if ($this->referenceId===NULL) {
+	public function getReferenceId($autoCreate = TRUE) {
+		if ($this->referenceId===NULL && $autoCreate && ! isset($this->_overrides['referenceId']) ) {
 			$this->referenceId = $this->createReferenceId();
 		}
 		return $this->referenceId;

@@ -14,6 +14,13 @@ class SignatureInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\SignatureData", name="sig-data")
 	 */
 	protected $sigData;
@@ -28,8 +35,8 @@ class SignatureInfo {
 		$this->signature = ($signature===NULL) ? NULL : $this->validateSignature($signature);
 	}
 
-	public function getSigData() {
-		if ($this->sigData===NULL) {
+	public function getSigData($autoCreate = TRUE) {
+		if ($this->sigData===NULL && $autoCreate && ! isset($this->_overrides['sigData']) ) {
 			$this->sigData = $this->createSigData();
 		}
 		return $this->sigData;
@@ -51,8 +58,8 @@ class SignatureInfo {
 		return $sigData;
 	}
 
-	public function getSignature() {
-		if ($this->signature===NULL) {
+	public function getSignature($autoCreate = TRUE) {
+		if ($this->signature===NULL && $autoCreate && ! isset($this->_overrides['signature']) ) {
 			$this->signature = $this->createSignature();
 		}
 		return $this->signature;
@@ -67,9 +74,16 @@ class SignatureInfo {
 	}
 
 	protected function validateSignature($signature) {
+		if ( $signature === FALSE ) {
+			$this->_overrides['signature'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $signature instanceof \org\w3\www\_2000\_09\xmldsig\Signature  && ! is_null($signature) ) {
 			$signature = new \org\w3\www\_2000\_09\xmldsig\Signature ($signature);
 		}
+
+		unset ($this->_overrides['signature']);
 	
 		return $signature;
 	}

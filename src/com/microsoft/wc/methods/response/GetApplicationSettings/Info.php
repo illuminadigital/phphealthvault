@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\AppSettings", name="app-settings")
 	 */
 	protected $appSettings;
@@ -30,8 +37,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->selectedRecordId = ($selectedRecordId===NULL) ? NULL : $this->validateSelectedRecordId($selectedRecordId);
 	}
 
-	public function getAppSettings() {
-		if ($this->appSettings===NULL) {
+	public function getAppSettings($autoCreate = TRUE) {
+		if ($this->appSettings===NULL && $autoCreate && ! isset($this->_overrides['appSettings']) ) {
 			$this->appSettings = $this->createAppSettings();
 		}
 		return $this->appSettings;
@@ -46,15 +53,22 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateAppSettings($appSettings) {
+		if ( $appSettings === FALSE ) {
+			$this->_overrides['appSettings'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $appSettings instanceof \com\microsoft\wc\types\AppSettings  && ! is_null($appSettings) ) {
 			$appSettings = new \com\microsoft\wc\types\AppSettings ($appSettings);
 		}
+
+		unset ($this->_overrides['appSettings']);
 	
 		return $appSettings;
 	}
 
-	public function getSelectedRecordId() {
-		if ($this->selectedRecordId===NULL) {
+	public function getSelectedRecordId($autoCreate = TRUE) {
+		if ($this->selectedRecordId===NULL && $autoCreate && ! isset($this->_overrides['selectedRecordId']) ) {
 			$this->selectedRecordId = $this->createSelectedRecordId();
 		}
 		return $this->selectedRecordId;
@@ -69,9 +83,16 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateSelectedRecordId($selectedRecordId) {
+		if ( $selectedRecordId === FALSE ) {
+			$this->_overrides['selectedRecordId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $selectedRecordId instanceof \com\microsoft\wc\types\Guid  && ! is_null($selectedRecordId) ) {
 			$selectedRecordId = new \com\microsoft\wc\types\Guid ($selectedRecordId);
 		}
+
+		unset ($this->_overrides['selectedRecordId']);
 	
 		return $selectedRecordId;
 	}

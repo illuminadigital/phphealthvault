@@ -17,6 +17,13 @@ class Contact {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Address", collection="true", name="address")
 	 */
 	protected $address;
@@ -37,8 +44,8 @@ class Contact {
 		$this->email = ($email===NULL) ? NULL : $this->validateEmail($email);
 	}
 
-	public function getAddress() {
-		if ($this->address===NULL) {
+	public function getAddress($autoCreate = TRUE) {
+		if ($this->address===NULL && $autoCreate && ! isset($this->_overrides['address']) ) {
 			$this->address = $this->createAddress();
 		}
 		return $this->address;
@@ -53,9 +60,16 @@ class Contact {
 	}
 
 	protected function validateAddress($address) {
+		if ( $address === FALSE ) {
+			$this->_overrides['address'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($address) && ! is_null($address) ) {
 			$address = array($address);
 		}
+
+		unset ($this->_overrides['address']);
 		$count = count($address);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'address', 0));
@@ -73,8 +87,8 @@ class Contact {
 		$this->address[] = $address;
 	}
 
-	public function getPhone() {
-		if ($this->phone===NULL) {
+	public function getPhone($autoCreate = TRUE) {
+		if ($this->phone===NULL && $autoCreate && ! isset($this->_overrides['phone']) ) {
 			$this->phone = $this->createPhone();
 		}
 		return $this->phone;
@@ -89,9 +103,16 @@ class Contact {
 	}
 
 	protected function validatePhone($phone) {
+		if ( $phone === FALSE ) {
+			$this->_overrides['phone'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($phone) && ! is_null($phone) ) {
 			$phone = array($phone);
 		}
+
+		unset ($this->_overrides['phone']);
 		$count = count($phone);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'phone', 0));
@@ -109,8 +130,8 @@ class Contact {
 		$this->phone[] = $phone;
 	}
 
-	public function getEmail() {
-		if ($this->email===NULL) {
+	public function getEmail($autoCreate = TRUE) {
+		if ($this->email===NULL && $autoCreate && ! isset($this->_overrides['email']) ) {
 			$this->email = $this->createEmail();
 		}
 		return $this->email;
@@ -125,9 +146,16 @@ class Contact {
 	}
 
 	protected function validateEmail($email) {
+		if ( $email === FALSE ) {
+			$this->_overrides['email'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($email) && ! is_null($email) ) {
 			$email = array($email);
 		}
+
+		unset ($this->_overrides['email']);
 		$count = count($email);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'email', 0));

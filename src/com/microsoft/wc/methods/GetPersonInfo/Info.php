@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="boolean", name="group-membership")
 	 */
 	protected $groupMembership;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->groupMembership = ($groupMembership===NULL) ? NULL : $this->validateGroupMembership($groupMembership);
 	}
 
-	public function getGroupMembership() {
-		if ($this->groupMembership===NULL) {
+	public function getGroupMembership($autoCreate = TRUE) {
+		if ($this->groupMembership===NULL && $autoCreate && ! isset($this->_overrides['groupMembership']) ) {
 			$this->groupMembership = $this->createGroupMembership();
 		}
 		return $this->groupMembership;

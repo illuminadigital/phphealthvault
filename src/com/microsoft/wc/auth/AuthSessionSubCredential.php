@@ -16,6 +16,13 @@ class AuthSessionSubCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\auth\SimplePassportCredential", name="simple-passport")
 	 */
 	protected $simplePassport;
@@ -24,8 +31,8 @@ class AuthSessionSubCredential {
 		$this->simplePassport = ($simplePassport===NULL) ? NULL : $this->validateSimplePassport($simplePassport);
 	}
 
-	public function getSimplePassport() {
-		if ($this->simplePassport===NULL) {
+	public function getSimplePassport($autoCreate = TRUE) {
+		if ($this->simplePassport===NULL && $autoCreate && ! isset($this->_overrides['simplePassport']) ) {
 			$this->simplePassport = $this->createSimplePassport();
 		}
 		return $this->simplePassport;

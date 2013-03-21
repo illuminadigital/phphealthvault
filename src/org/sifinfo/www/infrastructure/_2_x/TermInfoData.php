@@ -14,6 +14,13 @@ class TermInfoData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SchoolYearType", name="SchoolYear")
 	 */
 	protected $schoolYear;
@@ -70,8 +77,8 @@ class TermInfoData {
 		$this->schoolAttendedRefId = ($schoolAttendedRefId===NULL) ? NULL : $this->validateSchoolAttendedRefId($schoolAttendedRefId);
 	}
 
-	public function getSchoolYear() {
-		if ($this->schoolYear===NULL) {
+	public function getSchoolYear($autoCreate = TRUE) {
+		if ($this->schoolYear===NULL && $autoCreate && ! isset($this->_overrides['schoolYear']) ) {
 			$this->schoolYear = $this->createSchoolYear();
 		}
 		return $this->schoolYear;
@@ -90,8 +97,8 @@ class TermInfoData {
 		return $schoolYear;
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -110,8 +117,8 @@ class TermInfoData {
 		return $startDate;
 	}
 
-	public function getEndDate() {
-		if ($this->endDate===NULL) {
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
 			$this->endDate = $this->createEndDate();
 		}
 		return $this->endDate;
@@ -130,8 +137,8 @@ class TermInfoData {
 		return $endDate;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -153,8 +160,8 @@ class TermInfoData {
 		return $description;
 	}
 
-	public function getTermCode() {
-		if ($this->termCode===NULL) {
+	public function getTermCode($autoCreate = TRUE) {
+		if ($this->termCode===NULL && $autoCreate && ! isset($this->_overrides['termCode']) ) {
 			$this->termCode = $this->createTermCode();
 		}
 		return $this->termCode;
@@ -176,8 +183,8 @@ class TermInfoData {
 		return $termCode;
 	}
 
-	public function getTrack() {
-		if ($this->track===NULL) {
+	public function getTrack($autoCreate = TRUE) {
+		if ($this->track===NULL && $autoCreate && ! isset($this->_overrides['track']) ) {
 			$this->track = $this->createTrack();
 		}
 		return $this->track;
@@ -199,8 +206,8 @@ class TermInfoData {
 		return $track;
 	}
 
-	public function getTermSpan() {
-		if ($this->termSpan===NULL) {
+	public function getTermSpan($autoCreate = TRUE) {
+		if ($this->termSpan===NULL && $autoCreate && ! isset($this->_overrides['termSpan']) ) {
 			$this->termSpan = $this->createTermSpan();
 		}
 		return $this->termSpan;
@@ -215,15 +222,22 @@ class TermInfoData {
 	}
 
 	protected function validateTermSpan($termSpan) {
+		if ( $termSpan === FALSE ) {
+			$this->_overrides['termSpan'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $termSpan instanceof \org\sifinfo\www\infrastructure\_2_x\TermSpanType  && ! is_null($termSpan) ) {
 			$termSpan = new \org\sifinfo\www\infrastructure\_2_x\TermSpanType ($termSpan);
 		}
+
+		unset ($this->_overrides['termSpan']);
 	
 		return $termSpan;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -238,15 +252,22 @@ class TermInfoData {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}
 
-	public function getSchoolAttendedRefId() {
-		if ($this->schoolAttendedRefId===NULL) {
+	public function getSchoolAttendedRefId($autoCreate = TRUE) {
+		if ($this->schoolAttendedRefId===NULL && $autoCreate && ! isset($this->_overrides['schoolAttendedRefId']) ) {
 			$this->schoolAttendedRefId = $this->createSchoolAttendedRefId();
 		}
 		return $this->schoolAttendedRefId;

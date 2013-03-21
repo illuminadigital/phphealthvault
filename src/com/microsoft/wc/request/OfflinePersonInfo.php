@@ -14,6 +14,13 @@ class OfflinePersonInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="offline-person-id")
 	 */
 	protected $offlinePersonId;
@@ -22,8 +29,8 @@ class OfflinePersonInfo {
 		$this->offlinePersonId = ($offlinePersonId===NULL) ? NULL : $this->validateOfflinePersonId($offlinePersonId);
 	}
 
-	public function getOfflinePersonId() {
-		if ($this->offlinePersonId===NULL) {
+	public function getOfflinePersonId($autoCreate = TRUE) {
+		if ($this->offlinePersonId===NULL && $autoCreate && ! isset($this->_overrides['offlinePersonId']) ) {
 			$this->offlinePersonId = $this->createOfflinePersonId();
 		}
 		return $this->offlinePersonId;

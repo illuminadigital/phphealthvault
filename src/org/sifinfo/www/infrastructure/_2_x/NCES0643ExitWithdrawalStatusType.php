@@ -15,6 +15,13 @@ class NCES0643ExitWithdrawalStatusType {
 	static protected $enumValue = array('1905' => 'Permanent exit/withdrawal', '1906' => 'Temporary exit/withdrawal');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0643ExitWithdrawalStatusType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0643ExitWithdrawalStatusType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

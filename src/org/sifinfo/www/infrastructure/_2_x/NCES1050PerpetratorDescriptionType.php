@@ -15,6 +15,13 @@ class NCES1050PerpetratorDescriptionType {
 	static protected $enumValue = array('3168' => 'Former student', '3054' => 'Law enforcement officer', '3059' => 'Nonschool personnel', '3061' => 'Other adult', '3062' => 'Other nonstudent youth', '0850' => 'Parent/guardian', '3060' => 'Representative of visiting school', '3422' => 'Staff member', '0126' => 'Student', '9997' => 'Unknown');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES1050PerpetratorDescriptionType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES1050PerpetratorDescriptionType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

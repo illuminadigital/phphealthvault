@@ -14,6 +14,13 @@ class LearningStandardItems {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\IdRefType", collection="true", name="LearningStandardItemRefId")
 	 */
 	protected $learningStandardItemRefId;
@@ -22,8 +29,8 @@ class LearningStandardItems {
 		$this->learningStandardItemRefId = ($learningStandardItemRefId===NULL) ? NULL : $this->validateLearningStandardItemRefId($learningStandardItemRefId);
 	}
 
-	public function getLearningStandardItemRefId() {
-		if ($this->learningStandardItemRefId===NULL) {
+	public function getLearningStandardItemRefId($autoCreate = TRUE) {
+		if ($this->learningStandardItemRefId===NULL && $autoCreate && ! isset($this->_overrides['learningStandardItemRefId']) ) {
 			$this->learningStandardItemRefId = $this->createLearningStandardItemRefId();
 		}
 		return $this->learningStandardItemRefId;

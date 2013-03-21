@@ -15,6 +15,13 @@ class VocabularySynonyms {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularySynonym", collection="true", name="vocabulary-synonym")
 	 */
 	protected $vocabularySynonym;
@@ -23,8 +30,8 @@ class VocabularySynonyms {
 		$this->vocabularySynonym = ($vocabularySynonym===NULL) ? NULL : $this->validateVocabularySynonym($vocabularySynonym);
 	}
 
-	public function getVocabularySynonym() {
-		if ($this->vocabularySynonym===NULL) {
+	public function getVocabularySynonym($autoCreate = TRUE) {
+		if ($this->vocabularySynonym===NULL && $autoCreate && ! isset($this->_overrides['vocabularySynonym']) ) {
 			$this->vocabularySynonym = $this->createVocabularySynonym();
 		}
 		return $this->vocabularySynonym;
@@ -39,9 +46,16 @@ class VocabularySynonyms {
 	}
 
 	protected function validateVocabularySynonym($vocabularySynonym) {
+		if ( $vocabularySynonym === FALSE ) {
+			$this->_overrides['vocabularySynonym'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($vocabularySynonym) && ! is_null($vocabularySynonym) ) {
 			$vocabularySynonym = array($vocabularySynonym);
 		}
+
+		unset ($this->_overrides['vocabularySynonym']);
 		$count = count($vocabularySynonym);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularySynonym', 0));

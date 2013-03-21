@@ -15,6 +15,13 @@ class VocabularyCodeSet {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="name")
 	 */
 	protected $name;
@@ -53,8 +60,8 @@ class VocabularyCodeSet {
 		$this->xmlLang = ($xmlLang===NULL) ? NULL : $this->validateXmlLang($xmlLang);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -76,8 +83,8 @@ class VocabularyCodeSet {
 		return $name;
 	}
 
-	public function getFamily() {
-		if ($this->family===NULL) {
+	public function getFamily($autoCreate = TRUE) {
+		if ($this->family===NULL && $autoCreate && ! isset($this->_overrides['family']) ) {
 			$this->family = $this->createFamily();
 		}
 		return $this->family;
@@ -99,8 +106,8 @@ class VocabularyCodeSet {
 		return $family;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;
@@ -122,8 +129,8 @@ class VocabularyCodeSet {
 		return $version;
 	}
 
-	public function getCodeItem() {
-		if ($this->codeItem===NULL) {
+	public function getCodeItem($autoCreate = TRUE) {
+		if ($this->codeItem===NULL && $autoCreate && ! isset($this->_overrides['codeItem']) ) {
 			$this->codeItem = $this->createCodeItem();
 		}
 		return $this->codeItem;
@@ -138,9 +145,16 @@ class VocabularyCodeSet {
 	}
 
 	protected function validateCodeItem($codeItem) {
+		if ( $codeItem === FALSE ) {
+			$this->_overrides['codeItem'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($codeItem) && ! is_null($codeItem) ) {
 			$codeItem = array($codeItem);
 		}
+
+		unset ($this->_overrides['codeItem']);
 		$count = count($codeItem);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'codeItem', 0));
@@ -158,8 +172,8 @@ class VocabularyCodeSet {
 		$this->codeItem[] = $codeItem;
 	}
 
-	public function getIsVocabTruncated() {
-		if ($this->isVocabTruncated===NULL) {
+	public function getIsVocabTruncated($autoCreate = TRUE) {
+		if ($this->isVocabTruncated===NULL && $autoCreate && ! isset($this->_overrides['isVocabTruncated']) ) {
 			$this->isVocabTruncated = $this->createIsVocabTruncated();
 		}
 		return $this->isVocabTruncated;
@@ -181,8 +195,8 @@ class VocabularyCodeSet {
 		return $isVocabTruncated;
 	}
 
-	public function getXmlLang() {
-		if ($this->xmlLang===NULL) {
+	public function getXmlLang($autoCreate = TRUE) {
+		if ($this->xmlLang===NULL && $autoCreate && ! isset($this->_overrides['xmlLang']) ) {
 			$this->xmlLang = $this->createXmlLang();
 		}
 		return $this->xmlLang;

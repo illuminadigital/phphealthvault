@@ -19,6 +19,13 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Advance Directive';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="start-date")
 	 */
 	protected $startDate;
@@ -117,8 +124,8 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 		$this->discontinuationNurseEndorsement = ($discontinuationNurseEndorsement===NULL) ? NULL : $this->validateDiscontinuationNurseEndorsement($discontinuationNurseEndorsement);
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -140,8 +147,8 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 		return $startDate;
 	}
 
-	public function getStopDate() {
-		if ($this->stopDate===NULL) {
+	public function getStopDate($autoCreate = TRUE) {
+		if ($this->stopDate===NULL && $autoCreate && ! isset($this->_overrides['stopDate']) ) {
 			$this->stopDate = $this->createStopDate();
 		}
 		return $this->stopDate;
@@ -163,8 +170,8 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 		return $stopDate;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -186,8 +193,8 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 		return $description;
 	}
 
-	public function getFullResuscitation() {
-		if ($this->fullResuscitation===NULL) {
+	public function getFullResuscitation($autoCreate = TRUE) {
+		if ($this->fullResuscitation===NULL && $autoCreate && ! isset($this->_overrides['fullResuscitation']) ) {
 			$this->fullResuscitation = $this->createFullResuscitation();
 		}
 		return $this->fullResuscitation;
@@ -209,8 +216,8 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 		return $fullResuscitation;
 	}
 
-	public function getProhibitedInterventions() {
-		if ($this->prohibitedInterventions===NULL) {
+	public function getProhibitedInterventions($autoCreate = TRUE) {
+		if ($this->prohibitedInterventions===NULL && $autoCreate && ! isset($this->_overrides['prohibitedInterventions']) ) {
 			$this->prohibitedInterventions = $this->createProhibitedInterventions();
 		}
 		return $this->prohibitedInterventions;
@@ -225,9 +232,16 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateProhibitedInterventions($prohibitedInterventions) {
+		if ( $prohibitedInterventions === FALSE ) {
+			$this->_overrides['prohibitedInterventions'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($prohibitedInterventions) && ! is_null($prohibitedInterventions) ) {
 			$prohibitedInterventions = array($prohibitedInterventions);
 		}
+
+		unset ($this->_overrides['prohibitedInterventions']);
 		$count = count($prohibitedInterventions);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'prohibitedInterventions', 0));
@@ -245,8 +259,8 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 		$this->prohibitedInterventions[] = $prohibitedInterventions;
 	}
 
-	public function getAdditionalInstructions() {
-		if ($this->additionalInstructions===NULL) {
+	public function getAdditionalInstructions($autoCreate = TRUE) {
+		if ($this->additionalInstructions===NULL && $autoCreate && ! isset($this->_overrides['additionalInstructions']) ) {
 			$this->additionalInstructions = $this->createAdditionalInstructions();
 		}
 		return $this->additionalInstructions;
@@ -268,8 +282,8 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 		return $additionalInstructions;
 	}
 
-	public function getAttendingPhysician() {
-		if ($this->attendingPhysician===NULL) {
+	public function getAttendingPhysician($autoCreate = TRUE) {
+		if ($this->attendingPhysician===NULL && $autoCreate && ! isset($this->_overrides['attendingPhysician']) ) {
 			$this->attendingPhysician = $this->createAttendingPhysician();
 		}
 		return $this->attendingPhysician;
@@ -284,15 +298,22 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAttendingPhysician($attendingPhysician) {
+		if ( $attendingPhysician === FALSE ) {
+			$this->_overrides['attendingPhysician'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $attendingPhysician instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($attendingPhysician) ) {
 			$attendingPhysician = new \com\microsoft\wc\thing\types\Person ($attendingPhysician);
 		}
+
+		unset ($this->_overrides['attendingPhysician']);
 	
 		return $attendingPhysician;
 	}
 
-	public function getAttendingPhysicianEndorsement() {
-		if ($this->attendingPhysicianEndorsement===NULL) {
+	public function getAttendingPhysicianEndorsement($autoCreate = TRUE) {
+		if ($this->attendingPhysicianEndorsement===NULL && $autoCreate && ! isset($this->_overrides['attendingPhysicianEndorsement']) ) {
 			$this->attendingPhysicianEndorsement = $this->createAttendingPhysicianEndorsement();
 		}
 		return $this->attendingPhysicianEndorsement;
@@ -307,15 +328,22 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAttendingPhysicianEndorsement($attendingPhysicianEndorsement) {
+		if ( $attendingPhysicianEndorsement === FALSE ) {
+			$this->_overrides['attendingPhysicianEndorsement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $attendingPhysicianEndorsement instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($attendingPhysicianEndorsement) ) {
 			$attendingPhysicianEndorsement = new \com\microsoft\wc\dates\DateTime ($attendingPhysicianEndorsement);
 		}
+
+		unset ($this->_overrides['attendingPhysicianEndorsement']);
 	
 		return $attendingPhysicianEndorsement;
 	}
 
-	public function getAttendingNurse() {
-		if ($this->attendingNurse===NULL) {
+	public function getAttendingNurse($autoCreate = TRUE) {
+		if ($this->attendingNurse===NULL && $autoCreate && ! isset($this->_overrides['attendingNurse']) ) {
 			$this->attendingNurse = $this->createAttendingNurse();
 		}
 		return $this->attendingNurse;
@@ -330,15 +358,22 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAttendingNurse($attendingNurse) {
+		if ( $attendingNurse === FALSE ) {
+			$this->_overrides['attendingNurse'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $attendingNurse instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($attendingNurse) ) {
 			$attendingNurse = new \com\microsoft\wc\thing\types\Person ($attendingNurse);
 		}
+
+		unset ($this->_overrides['attendingNurse']);
 	
 		return $attendingNurse;
 	}
 
-	public function getAttendingNurseEndorsement() {
-		if ($this->attendingNurseEndorsement===NULL) {
+	public function getAttendingNurseEndorsement($autoCreate = TRUE) {
+		if ($this->attendingNurseEndorsement===NULL && $autoCreate && ! isset($this->_overrides['attendingNurseEndorsement']) ) {
 			$this->attendingNurseEndorsement = $this->createAttendingNurseEndorsement();
 		}
 		return $this->attendingNurseEndorsement;
@@ -353,15 +388,22 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAttendingNurseEndorsement($attendingNurseEndorsement) {
+		if ( $attendingNurseEndorsement === FALSE ) {
+			$this->_overrides['attendingNurseEndorsement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $attendingNurseEndorsement instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($attendingNurseEndorsement) ) {
 			$attendingNurseEndorsement = new \com\microsoft\wc\dates\DateTime ($attendingNurseEndorsement);
 		}
+
+		unset ($this->_overrides['attendingNurseEndorsement']);
 	
 		return $attendingNurseEndorsement;
 	}
 
-	public function getExpirationDate() {
-		if ($this->expirationDate===NULL) {
+	public function getExpirationDate($autoCreate = TRUE) {
+		if ($this->expirationDate===NULL && $autoCreate && ! isset($this->_overrides['expirationDate']) ) {
 			$this->expirationDate = $this->createExpirationDate();
 		}
 		return $this->expirationDate;
@@ -376,15 +418,22 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExpirationDate($expirationDate) {
+		if ( $expirationDate === FALSE ) {
+			$this->_overrides['expirationDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $expirationDate instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($expirationDate) ) {
 			$expirationDate = new \com\microsoft\wc\dates\DateTime ($expirationDate);
 		}
+
+		unset ($this->_overrides['expirationDate']);
 	
 		return $expirationDate;
 	}
 
-	public function getDiscontinuationDate() {
-		if ($this->discontinuationDate===NULL) {
+	public function getDiscontinuationDate($autoCreate = TRUE) {
+		if ($this->discontinuationDate===NULL && $autoCreate && ! isset($this->_overrides['discontinuationDate']) ) {
 			$this->discontinuationDate = $this->createDiscontinuationDate();
 		}
 		return $this->discontinuationDate;
@@ -399,15 +448,22 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDiscontinuationDate($discontinuationDate) {
+		if ( $discontinuationDate === FALSE ) {
+			$this->_overrides['discontinuationDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $discontinuationDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($discontinuationDate) ) {
 			$discontinuationDate = new \com\microsoft\wc\dates\ApproxDateTime ($discontinuationDate);
 		}
+
+		unset ($this->_overrides['discontinuationDate']);
 	
 		return $discontinuationDate;
 	}
 
-	public function getDiscontinuationPhysician() {
-		if ($this->discontinuationPhysician===NULL) {
+	public function getDiscontinuationPhysician($autoCreate = TRUE) {
+		if ($this->discontinuationPhysician===NULL && $autoCreate && ! isset($this->_overrides['discontinuationPhysician']) ) {
 			$this->discontinuationPhysician = $this->createDiscontinuationPhysician();
 		}
 		return $this->discontinuationPhysician;
@@ -422,15 +478,22 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDiscontinuationPhysician($discontinuationPhysician) {
+		if ( $discontinuationPhysician === FALSE ) {
+			$this->_overrides['discontinuationPhysician'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $discontinuationPhysician instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($discontinuationPhysician) ) {
 			$discontinuationPhysician = new \com\microsoft\wc\thing\types\Person ($discontinuationPhysician);
 		}
+
+		unset ($this->_overrides['discontinuationPhysician']);
 	
 		return $discontinuationPhysician;
 	}
 
-	public function getDiscontinuationPhysicianEndorsement() {
-		if ($this->discontinuationPhysicianEndorsement===NULL) {
+	public function getDiscontinuationPhysicianEndorsement($autoCreate = TRUE) {
+		if ($this->discontinuationPhysicianEndorsement===NULL && $autoCreate && ! isset($this->_overrides['discontinuationPhysicianEndorsement']) ) {
 			$this->discontinuationPhysicianEndorsement = $this->createDiscontinuationPhysicianEndorsement();
 		}
 		return $this->discontinuationPhysicianEndorsement;
@@ -445,15 +508,22 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDiscontinuationPhysicianEndorsement($discontinuationPhysicianEndorsement) {
+		if ( $discontinuationPhysicianEndorsement === FALSE ) {
+			$this->_overrides['discontinuationPhysicianEndorsement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $discontinuationPhysicianEndorsement instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($discontinuationPhysicianEndorsement) ) {
 			$discontinuationPhysicianEndorsement = new \com\microsoft\wc\dates\DateTime ($discontinuationPhysicianEndorsement);
 		}
+
+		unset ($this->_overrides['discontinuationPhysicianEndorsement']);
 	
 		return $discontinuationPhysicianEndorsement;
 	}
 
-	public function getDiscontinuationNurse() {
-		if ($this->discontinuationNurse===NULL) {
+	public function getDiscontinuationNurse($autoCreate = TRUE) {
+		if ($this->discontinuationNurse===NULL && $autoCreate && ! isset($this->_overrides['discontinuationNurse']) ) {
 			$this->discontinuationNurse = $this->createDiscontinuationNurse();
 		}
 		return $this->discontinuationNurse;
@@ -468,15 +538,22 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDiscontinuationNurse($discontinuationNurse) {
+		if ( $discontinuationNurse === FALSE ) {
+			$this->_overrides['discontinuationNurse'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $discontinuationNurse instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($discontinuationNurse) ) {
 			$discontinuationNurse = new \com\microsoft\wc\thing\types\Person ($discontinuationNurse);
 		}
+
+		unset ($this->_overrides['discontinuationNurse']);
 	
 		return $discontinuationNurse;
 	}
 
-	public function getDiscontinuationNurseEndorsement() {
-		if ($this->discontinuationNurseEndorsement===NULL) {
+	public function getDiscontinuationNurseEndorsement($autoCreate = TRUE) {
+		if ($this->discontinuationNurseEndorsement===NULL && $autoCreate && ! isset($this->_overrides['discontinuationNurseEndorsement']) ) {
 			$this->discontinuationNurseEndorsement = $this->createDiscontinuationNurseEndorsement();
 		}
 		return $this->discontinuationNurseEndorsement;
@@ -491,9 +568,16 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDiscontinuationNurseEndorsement($discontinuationNurseEndorsement) {
+		if ( $discontinuationNurseEndorsement === FALSE ) {
+			$this->_overrides['discontinuationNurseEndorsement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $discontinuationNurseEndorsement instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($discontinuationNurseEndorsement) ) {
 			$discontinuationNurseEndorsement = new \com\microsoft\wc\dates\DateTime ($discontinuationNurseEndorsement);
 		}
+
+		unset ($this->_overrides['discontinuationNurseEndorsement']);
 	
 		return $discontinuationNurseEndorsement;
 	}

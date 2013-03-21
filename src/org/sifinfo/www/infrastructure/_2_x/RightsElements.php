@@ -14,6 +14,13 @@ class RightsElements {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\RightsElement", collection="true", name="RightsElement")
 	 */
 	protected $rightsElement;
@@ -22,8 +29,8 @@ class RightsElements {
 		$this->rightsElement = ($rightsElement===NULL) ? NULL : $this->validateRightsElement($rightsElement);
 	}
 
-	public function getRightsElement() {
-		if ($this->rightsElement===NULL) {
+	public function getRightsElement($autoCreate = TRUE) {
+		if ($this->rightsElement===NULL && $autoCreate && ! isset($this->_overrides['rightsElement']) ) {
 			$this->rightsElement = $this->createRightsElement();
 		}
 		return $this->rightsElement;
@@ -38,9 +45,16 @@ class RightsElements {
 	}
 
 	protected function validateRightsElement($rightsElement) {
+		if ( $rightsElement === FALSE ) {
+			$this->_overrides['rightsElement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($rightsElement) && ! is_null($rightsElement) ) {
 			$rightsElement = array($rightsElement);
 		}
+
+		unset ($this->_overrides['rightsElement']);
 		$count = count($rightsElement);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'rightsElement', 0));

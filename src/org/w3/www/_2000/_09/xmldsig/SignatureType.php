@@ -14,6 +14,13 @@ class SignatureType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\SignedInfo", name="SignedInfo")
 	 */
 	protected $signedInfo;
@@ -46,8 +53,8 @@ class SignatureType {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 	}
 
-	public function getSignedInfo() {
-		if ($this->signedInfo===NULL) {
+	public function getSignedInfo($autoCreate = TRUE) {
+		if ($this->signedInfo===NULL && $autoCreate && ! isset($this->_overrides['signedInfo']) ) {
 			$this->signedInfo = $this->createSignedInfo();
 		}
 		return $this->signedInfo;
@@ -69,8 +76,8 @@ class SignatureType {
 		return $signedInfo;
 	}
 
-	public function getSignatureValue() {
-		if ($this->signatureValue===NULL) {
+	public function getSignatureValue($autoCreate = TRUE) {
+		if ($this->signatureValue===NULL && $autoCreate && ! isset($this->_overrides['signatureValue']) ) {
 			$this->signatureValue = $this->createSignatureValue();
 		}
 		return $this->signatureValue;
@@ -92,8 +99,8 @@ class SignatureType {
 		return $signatureValue;
 	}
 
-	public function getKeyInfo() {
-		if ($this->keyInfo===NULL) {
+	public function getKeyInfo($autoCreate = TRUE) {
+		if ($this->keyInfo===NULL && $autoCreate && ! isset($this->_overrides['keyInfo']) ) {
 			$this->keyInfo = $this->createKeyInfo();
 		}
 		return $this->keyInfo;
@@ -108,15 +115,22 @@ class SignatureType {
 	}
 
 	protected function validateKeyInfo($keyInfo) {
+		if ( $keyInfo === FALSE ) {
+			$this->_overrides['keyInfo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $keyInfo instanceof \org\w3\www\_2000\_09\xmldsig\KeyInfo  && ! is_null($keyInfo) ) {
 			$keyInfo = new \org\w3\www\_2000\_09\xmldsig\KeyInfo ($keyInfo);
 		}
+
+		unset ($this->_overrides['keyInfo']);
 	
 		return $keyInfo;
 	}
 
-	public function getObject() {
-		if ($this->object===NULL) {
+	public function getObject($autoCreate = TRUE) {
+		if ($this->object===NULL && $autoCreate && ! isset($this->_overrides['object']) ) {
 			$this->object = $this->createObject();
 		}
 		return $this->object;
@@ -131,9 +145,16 @@ class SignatureType {
 	}
 
 	protected function validateObject($object) {
+		if ( $object === FALSE ) {
+			$this->_overrides['object'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($object) && ! is_null($object) ) {
 			$object = array($object);
 		}
+
+		unset ($this->_overrides['object']);
 		$count = count($object);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'object', 0));
@@ -151,8 +172,8 @@ class SignatureType {
 		$this->object[] = $object;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;

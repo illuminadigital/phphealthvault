@@ -16,6 +16,13 @@ class ThingFormatSpec {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\GetThings\ThingSectionSpec", collection="true", name="section")
 	 */
 	protected $section;
@@ -36,8 +43,8 @@ class ThingFormatSpec {
 		$this->typeVersionFormat = ($typeVersionFormat===NULL) ? NULL : $this->validateTypeVersionFormat($typeVersionFormat);
 	}
 
-	public function getSection() {
-		if ($this->section===NULL) {
+	public function getSection($autoCreate = TRUE) {
+		if ($this->section===NULL && $autoCreate && ! isset($this->_overrides['section']) ) {
 			$this->section = $this->createSection();
 		}
 		return $this->section;
@@ -52,9 +59,16 @@ class ThingFormatSpec {
 	}
 
 	protected function validateSection($section) {
+		if ( $section === FALSE ) {
+			$this->_overrides['section'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($section) && ! is_null($section) ) {
 			$section = array($section);
 		}
+
+		unset ($this->_overrides['section']);
 		$count = count($section);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'section', 0));
@@ -72,8 +86,8 @@ class ThingFormatSpec {
 		$this->section[] = $section;
 	}
 
-	public function getXml() {
-		if ($this->xml===NULL) {
+	public function getXml($autoCreate = TRUE) {
+		if ($this->xml===NULL && $autoCreate && ! isset($this->_overrides['xml']) ) {
 			$this->xml = $this->createXml();
 		}
 		return $this->xml;
@@ -113,8 +127,8 @@ class ThingFormatSpec {
 		return $xml;
 	}
 
-	public function getTypeVersionFormat() {
-		if ($this->typeVersionFormat===NULL) {
+	public function getTypeVersionFormat($autoCreate = TRUE) {
+		if ($this->typeVersionFormat===NULL && $autoCreate && ! isset($this->_overrides['typeVersionFormat']) ) {
 			$this->typeVersionFormat = $this->createTypeVersionFormat();
 		}
 		return $this->typeVersionFormat;
@@ -129,9 +143,16 @@ class ThingFormatSpec {
 	}
 
 	protected function validateTypeVersionFormat($typeVersionFormat) {
+		if ( $typeVersionFormat === FALSE ) {
+			$this->_overrides['typeVersionFormat'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($typeVersionFormat) && ! is_null($typeVersionFormat) ) {
 			$typeVersionFormat = array($typeVersionFormat);
 		}
+
+		unset ($this->_overrides['typeVersionFormat']);
 		$count = count($typeVersionFormat);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'typeVersionFormat', 0));

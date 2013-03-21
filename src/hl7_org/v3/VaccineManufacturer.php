@@ -15,6 +15,13 @@ class VaccineManufacturer {
 	static protected $enumValue = array('AB' => 'AB', 'AD' => 'AD', 'ALP' => 'ALP', 'AR' => 'AR', 'PMC' => 'PMC', 'AVI' => 'AVI', 'BA' => 'BA', 'BAY' => 'BAY', 'BPC' => 'BPC', 'BP' => 'BP', 'MIP' => 'MIP', 'CEN' => 'CEN', 'CHI' => 'CHI', 'CON' => 'CON', 'EVN' => 'EVN', 'GRE' => 'GRE', 'IAG' => 'IAG', 'IUS' => 'IUS', 'KGC' => 'KGC', 'LED' => 'LED', 'MA' => 'MA', 'MED' => 'MED', 'MSD' => 'MSD', 'IM' => 'IM', 'MIL' => 'MIL', 'NAB' => 'NAB', 'NYB' => 'NYB', 'NAV' => 'NAV', 'NOV' => 'NOV', 'OTC' => 'OTC', 'ORT' => 'ORT', 'PD' => 'PD', 'PRX' => 'PRX', 'SCL' => 'SCL', 'SKB' => 'SKB', 'SI' => 'SI', 'JPN' => 'JPN', 'USA' => 'USA', 'WAL' => 'WAL', 'WA' => 'WA');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\hl7_org\v3\Cs", name="value")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class VaccineManufacturer {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

@@ -14,6 +14,13 @@ class ProgramFundingSources {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ProgramFundingSource", collection="true", name="ProgramFundingSource")
 	 */
 	protected $programFundingSource;
@@ -22,8 +29,8 @@ class ProgramFundingSources {
 		$this->programFundingSource = ($programFundingSource===NULL) ? NULL : $this->validateProgramFundingSource($programFundingSource);
 	}
 
-	public function getProgramFundingSource() {
-		if ($this->programFundingSource===NULL) {
+	public function getProgramFundingSource($autoCreate = TRUE) {
+		if ($this->programFundingSource===NULL && $autoCreate && ! isset($this->_overrides['programFundingSource']) ) {
 			$this->programFundingSource = $this->createProgramFundingSource();
 		}
 		return $this->programFundingSource;

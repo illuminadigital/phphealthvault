@@ -15,6 +15,13 @@ class GoalRange {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -41,8 +48,8 @@ class GoalRange {
 		$this->maximum = ($maximum===NULL) ? NULL : $this->validateMaximum($maximum);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -64,8 +71,8 @@ class GoalRange {
 		return $name;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -87,8 +94,8 @@ class GoalRange {
 		return $description;
 	}
 
-	public function getMinimum() {
-		if ($this->minimum===NULL) {
+	public function getMinimum($autoCreate = TRUE) {
+		if ($this->minimum===NULL && $autoCreate && ! isset($this->_overrides['minimum']) ) {
 			$this->minimum = $this->createMinimum();
 		}
 		return $this->minimum;
@@ -103,15 +110,22 @@ class GoalRange {
 	}
 
 	protected function validateMinimum($minimum) {
+		if ( $minimum === FALSE ) {
+			$this->_overrides['minimum'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minimum instanceof \com\microsoft\wc\thing\types\GeneralMeasurement  && ! is_null($minimum) ) {
 			$minimum = new \com\microsoft\wc\thing\types\GeneralMeasurement ($minimum);
 		}
+
+		unset ($this->_overrides['minimum']);
 	
 		return $minimum;
 	}
 
-	public function getMaximum() {
-		if ($this->maximum===NULL) {
+	public function getMaximum($autoCreate = TRUE) {
+		if ($this->maximum===NULL && $autoCreate && ! isset($this->_overrides['maximum']) ) {
 			$this->maximum = $this->createMaximum();
 		}
 		return $this->maximum;
@@ -126,9 +140,16 @@ class GoalRange {
 	}
 
 	protected function validateMaximum($maximum) {
+		if ( $maximum === FALSE ) {
+			$this->_overrides['maximum'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $maximum instanceof \com\microsoft\wc\thing\types\GeneralMeasurement  && ! is_null($maximum) ) {
 			$maximum = new \com\microsoft\wc\thing\types\GeneralMeasurement ($maximum);
 		}
+
+		unset ($this->_overrides['maximum']);
 	
 		return $maximum;
 	}

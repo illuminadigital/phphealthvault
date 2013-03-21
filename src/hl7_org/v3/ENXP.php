@@ -15,6 +15,13 @@ class ENXP extends \org\w3\www\_2001\XMLSchema\ST {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="partType")
 	 */
 	protected $partType;
@@ -29,8 +36,8 @@ class ENXP extends \org\w3\www\_2001\XMLSchema\ST {
 		$this->qualifier = ($qualifier===NULL) ? NULL : $this->validateQualifier($qualifier);
 	}
 
-	public function getPartType() {
-		if ($this->partType===NULL) {
+	public function getPartType($autoCreate = TRUE) {
+		if ($this->partType===NULL && $autoCreate && ! isset($this->_overrides['partType']) ) {
 			$this->partType = $this->createPartType();
 		}
 		return $this->partType;
@@ -49,8 +56,8 @@ class ENXP extends \org\w3\www\_2001\XMLSchema\ST {
 		return $partType;
 	}
 
-	public function getQualifier() {
-		if ($this->qualifier===NULL) {
+	public function getQualifier($autoCreate = TRUE) {
+		if ($this->qualifier===NULL && $autoCreate && ! isset($this->_overrides['qualifier']) ) {
 			$this->qualifier = $this->createQualifier();
 		}
 		return $this->qualifier;

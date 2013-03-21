@@ -15,6 +15,13 @@ class PQ extends \org\w3\www\_2001\XMLSchema\QTY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQR", collection="true", name="translation")
 	 */
 	protected $translation;
@@ -35,8 +42,8 @@ class PQ extends \org\w3\www\_2001\XMLSchema\QTY {
 		$this->unit = ($unit===NULL) ? NULL : $this->validateUnit($unit);
 	}
 
-	public function getTranslation() {
-		if ($this->translation===NULL) {
+	public function getTranslation($autoCreate = TRUE) {
+		if ($this->translation===NULL && $autoCreate && ! isset($this->_overrides['translation']) ) {
 			$this->translation = $this->createTranslation();
 		}
 		return $this->translation;
@@ -70,8 +77,8 @@ class PQ extends \org\w3\www\_2001\XMLSchema\QTY {
 		return $translation;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -90,8 +97,8 @@ class PQ extends \org\w3\www\_2001\XMLSchema\QTY {
 		return $value;
 	}
 
-	public function getUnit() {
-		if ($this->unit===NULL) {
+	public function getUnit($autoCreate = TRUE) {
+		if ($this->unit===NULL && $autoCreate && ! isset($this->_overrides['unit']) ) {
 			$this->unit = $this->createUnit();
 		}
 		return $this->unit;

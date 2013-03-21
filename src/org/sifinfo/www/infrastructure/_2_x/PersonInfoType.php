@@ -15,6 +15,13 @@ class PersonInfoType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\LocalIdType", name="LocalId")
 	 */
 	protected $localId;
@@ -65,8 +72,8 @@ class PersonInfoType {
 		$this->emailList = ($emailList===NULL) ? NULL : $this->validateEmailList($emailList);
 	}
 
-	public function getLocalId() {
-		if ($this->localId===NULL) {
+	public function getLocalId($autoCreate = TRUE) {
+		if ($this->localId===NULL && $autoCreate && ! isset($this->_overrides['localId']) ) {
 			$this->localId = $this->createLocalId();
 		}
 		return $this->localId;
@@ -85,8 +92,8 @@ class PersonInfoType {
 		return $localId;
 	}
 
-	public function getOtherIdList() {
-		if ($this->otherIdList===NULL) {
+	public function getOtherIdList($autoCreate = TRUE) {
+		if ($this->otherIdList===NULL && $autoCreate && ! isset($this->_overrides['otherIdList']) ) {
 			$this->otherIdList = $this->createOtherIdList();
 		}
 		return $this->otherIdList;
@@ -101,15 +108,22 @@ class PersonInfoType {
 	}
 
 	protected function validateOtherIdList($otherIdList) {
+		if ( $otherIdList === FALSE ) {
+			$this->_overrides['otherIdList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $otherIdList instanceof \org\sifinfo\www\infrastructure\_2_x\OtherIdListType  && ! is_null($otherIdList) ) {
 			$otherIdList = new \org\sifinfo\www\infrastructure\_2_x\OtherIdListType ($otherIdList);
 		}
+
+		unset ($this->_overrides['otherIdList']);
 	
 		return $otherIdList;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -131,8 +145,8 @@ class PersonInfoType {
 		return $name;
 	}
 
-	public function getOtherNames() {
-		if ($this->otherNames===NULL) {
+	public function getOtherNames($autoCreate = TRUE) {
+		if ($this->otherNames===NULL && $autoCreate && ! isset($this->_overrides['otherNames']) ) {
 			$this->otherNames = $this->createOtherNames();
 		}
 		return $this->otherNames;
@@ -147,15 +161,22 @@ class PersonInfoType {
 	}
 
 	protected function validateOtherNames($otherNames) {
+		if ( $otherNames === FALSE ) {
+			$this->_overrides['otherNames'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $otherNames instanceof \org\sifinfo\www\infrastructure\_2_x\OtherNamesType  && ! is_null($otherNames) ) {
 			$otherNames = new \org\sifinfo\www\infrastructure\_2_x\OtherNamesType ($otherNames);
 		}
+
+		unset ($this->_overrides['otherNames']);
 	
 		return $otherNames;
 	}
 
-	public function getDemographics() {
-		if ($this->demographics===NULL) {
+	public function getDemographics($autoCreate = TRUE) {
+		if ($this->demographics===NULL && $autoCreate && ! isset($this->_overrides['demographics']) ) {
 			$this->demographics = $this->createDemographics();
 		}
 		return $this->demographics;
@@ -170,15 +191,22 @@ class PersonInfoType {
 	}
 
 	protected function validateDemographics($demographics) {
+		if ( $demographics === FALSE ) {
+			$this->_overrides['demographics'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $demographics instanceof \org\sifinfo\www\infrastructure\_2_x\DemographicsType  && ! is_null($demographics) ) {
 			$demographics = new \org\sifinfo\www\infrastructure\_2_x\DemographicsType ($demographics);
 		}
+
+		unset ($this->_overrides['demographics']);
 	
 		return $demographics;
 	}
 
-	public function getAddressList() {
-		if ($this->addressList===NULL) {
+	public function getAddressList($autoCreate = TRUE) {
+		if ($this->addressList===NULL && $autoCreate && ! isset($this->_overrides['addressList']) ) {
 			$this->addressList = $this->createAddressList();
 		}
 		return $this->addressList;
@@ -193,15 +221,22 @@ class PersonInfoType {
 	}
 
 	protected function validateAddressList($addressList) {
+		if ( $addressList === FALSE ) {
+			$this->_overrides['addressList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $addressList instanceof \org\sifinfo\www\infrastructure\_2_x\AddressListType  && ! is_null($addressList) ) {
 			$addressList = new \org\sifinfo\www\infrastructure\_2_x\AddressListType ($addressList);
 		}
+
+		unset ($this->_overrides['addressList']);
 	
 		return $addressList;
 	}
 
-	public function getPhoneNumberList() {
-		if ($this->phoneNumberList===NULL) {
+	public function getPhoneNumberList($autoCreate = TRUE) {
+		if ($this->phoneNumberList===NULL && $autoCreate && ! isset($this->_overrides['phoneNumberList']) ) {
 			$this->phoneNumberList = $this->createPhoneNumberList();
 		}
 		return $this->phoneNumberList;
@@ -216,15 +251,22 @@ class PersonInfoType {
 	}
 
 	protected function validatePhoneNumberList($phoneNumberList) {
+		if ( $phoneNumberList === FALSE ) {
+			$this->_overrides['phoneNumberList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $phoneNumberList instanceof \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType  && ! is_null($phoneNumberList) ) {
 			$phoneNumberList = new \org\sifinfo\www\infrastructure\_2_x\PhoneNumberListType ($phoneNumberList);
 		}
+
+		unset ($this->_overrides['phoneNumberList']);
 	
 		return $phoneNumberList;
 	}
 
-	public function getEmailList() {
-		if ($this->emailList===NULL) {
+	public function getEmailList($autoCreate = TRUE) {
+		if ($this->emailList===NULL && $autoCreate && ! isset($this->_overrides['emailList']) ) {
 			$this->emailList = $this->createEmailList();
 		}
 		return $this->emailList;
@@ -239,9 +281,16 @@ class PersonInfoType {
 	}
 
 	protected function validateEmailList($emailList) {
+		if ( $emailList === FALSE ) {
+			$this->_overrides['emailList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $emailList instanceof \org\sifinfo\www\infrastructure\_2_x\EmailListType  && ! is_null($emailList) ) {
 			$emailList = new \org\sifinfo\www\infrastructure\_2_x\EmailListType ($emailList);
 		}
+
+		unset ($this->_overrides['emailList']);
 	
 		return $emailList;
 	}

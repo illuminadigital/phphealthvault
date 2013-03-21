@@ -15,6 +15,13 @@ class SodaAppConfig {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="id")
 	 */
 	protected $id;
@@ -41,8 +48,8 @@ class SodaAppConfig {
 		$this->publicKeys = ($publicKeys===NULL) ? NULL : $this->validatePublicKeys($publicKeys);
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -64,8 +71,8 @@ class SodaAppConfig {
 		return $id;
 	}
 
-	public function getParentId() {
-		if ($this->parentId===NULL) {
+	public function getParentId($autoCreate = TRUE) {
+		if ($this->parentId===NULL && $autoCreate && ! isset($this->_overrides['parentId']) ) {
 			$this->parentId = $this->createParentId();
 		}
 		return $this->parentId;
@@ -87,8 +94,8 @@ class SodaAppConfig {
 		return $parentId;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -110,8 +117,8 @@ class SodaAppConfig {
 		return $name;
 	}
 
-	public function getPublicKeys() {
-		if ($this->publicKeys===NULL) {
+	public function getPublicKeys($autoCreate = TRUE) {
+		if ($this->publicKeys===NULL && $autoCreate && ! isset($this->_overrides['publicKeys']) ) {
 			$this->publicKeys = $this->createPublicKeys();
 		}
 		return $this->publicKeys;

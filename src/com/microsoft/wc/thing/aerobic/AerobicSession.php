@@ -19,6 +19,13 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Aerobic Exercise Session';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -45,8 +52,8 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 		$this->lapSession = ($lapSession===NULL) ? NULL : $this->validateLapSession($lapSession);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -68,8 +75,8 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getSession() {
-		if ($this->session===NULL) {
+	public function getSession($autoCreate = TRUE) {
+		if ($this->session===NULL && $autoCreate && ! isset($this->_overrides['session']) ) {
 			$this->session = $this->createSession();
 		}
 		return $this->session;
@@ -91,8 +98,8 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 		return $session;
 	}
 
-	public function getSessionSamples() {
-		if ($this->sessionSamples===NULL) {
+	public function getSessionSamples($autoCreate = TRUE) {
+		if ($this->sessionSamples===NULL && $autoCreate && ! isset($this->_overrides['sessionSamples']) ) {
 			$this->sessionSamples = $this->createSessionSamples();
 		}
 		return $this->sessionSamples;
@@ -107,15 +114,22 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSessionSamples($sessionSamples) {
+		if ( $sessionSamples === FALSE ) {
+			$this->_overrides['sessionSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sessionSamples instanceof \com\microsoft\wc\thing\types\AerobicSessionSamples  && ! is_null($sessionSamples) ) {
 			$sessionSamples = new \com\microsoft\wc\thing\types\AerobicSessionSamples ($sessionSamples);
 		}
+
+		unset ($this->_overrides['sessionSamples']);
 	
 		return $sessionSamples;
 	}
 
-	public function getLapSession() {
-		if ($this->lapSession===NULL) {
+	public function getLapSession($autoCreate = TRUE) {
+		if ($this->lapSession===NULL && $autoCreate && ! isset($this->_overrides['lapSession']) ) {
 			$this->lapSession = $this->createLapSession();
 		}
 		return $this->lapSession;
@@ -130,9 +144,16 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateLapSession($lapSession) {
+		if ( $lapSession === FALSE ) {
+			$this->_overrides['lapSession'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($lapSession) && ! is_null($lapSession) ) {
 			$lapSession = array($lapSession);
 		}
+
+		unset ($this->_overrides['lapSession']);
 		$count = count($lapSession);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'lapSession', 0));

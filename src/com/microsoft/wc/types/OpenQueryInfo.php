@@ -16,6 +16,13 @@ class OpenQueryInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="query-id")
 	 */
 	protected $queryId;
@@ -54,8 +61,8 @@ class OpenQueryInfo {
 		$this->note = ($note===NULL) ? NULL : $this->validateNote($note);
 	}
 
-	public function getQueryId() {
-		if ($this->queryId===NULL) {
+	public function getQueryId($autoCreate = TRUE) {
+		if ($this->queryId===NULL && $autoCreate && ! isset($this->_overrides['queryId']) ) {
 			$this->queryId = $this->createQueryId();
 		}
 		return $this->queryId;
@@ -77,8 +84,8 @@ class OpenQueryInfo {
 		return $queryId;
 	}
 
-	public function getAppName() {
-		if ($this->appName===NULL) {
+	public function getAppName($autoCreate = TRUE) {
+		if ($this->appName===NULL && $autoCreate && ! isset($this->_overrides['appName']) ) {
 			$this->appName = $this->createAppName();
 		}
 		return $this->appName;
@@ -100,8 +107,8 @@ class OpenQueryInfo {
 		return $appName;
 	}
 
-	public function getDateCreated() {
-		if ($this->dateCreated===NULL) {
+	public function getDateCreated($autoCreate = TRUE) {
+		if ($this->dateCreated===NULL && $autoCreate && ! isset($this->_overrides['dateCreated']) ) {
 			$this->dateCreated = $this->createDateCreated();
 		}
 		return $this->dateCreated;
@@ -123,8 +130,8 @@ class OpenQueryInfo {
 		return $dateCreated;
 	}
 
-	public function getExpiresDate() {
-		if ($this->expiresDate===NULL) {
+	public function getExpiresDate($autoCreate = TRUE) {
+		if ($this->expiresDate===NULL && $autoCreate && ! isset($this->_overrides['expiresDate']) ) {
 			$this->expiresDate = $this->createExpiresDate();
 		}
 		return $this->expiresDate;
@@ -146,8 +153,8 @@ class OpenQueryInfo {
 		return $expiresDate;
 	}
 
-	public function getPinRequired() {
-		if ($this->pinRequired===NULL) {
+	public function getPinRequired($autoCreate = TRUE) {
+		if ($this->pinRequired===NULL && $autoCreate && ! isset($this->_overrides['pinRequired']) ) {
 			$this->pinRequired = $this->createPinRequired();
 		}
 		return $this->pinRequired;
@@ -169,8 +176,8 @@ class OpenQueryInfo {
 		return $pinRequired;
 	}
 
-	public function getNote() {
-		if ($this->note===NULL) {
+	public function getNote($autoCreate = TRUE) {
+		if ($this->note===NULL && $autoCreate && ! isset($this->_overrides['note']) ) {
 			$this->note = $this->createNote();
 		}
 		return $this->note;
@@ -185,9 +192,16 @@ class OpenQueryInfo {
 	}
 
 	protected function validateNote($note) {
+		if ( $note === FALSE ) {
+			$this->_overrides['note'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $note instanceof \com\microsoft\wc\types\String128  && ! is_null($note) ) {
 			$note = new \com\microsoft\wc\types\String128 ($note);
 		}
+
+		unset ($this->_overrides['note']);
 	
 		return $note;
 	}

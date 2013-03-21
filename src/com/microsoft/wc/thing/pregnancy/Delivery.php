@@ -15,6 +15,13 @@ class Delivery {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Organization", name="location")
 	 */
 	protected $location;
@@ -71,8 +78,8 @@ class Delivery {
 		$this->note = ($note===NULL) ? NULL : $this->validateNote($note);
 	}
 
-	public function getLocation() {
-		if ($this->location===NULL) {
+	public function getLocation($autoCreate = TRUE) {
+		if ($this->location===NULL && $autoCreate && ! isset($this->_overrides['location']) ) {
 			$this->location = $this->createLocation();
 		}
 		return $this->location;
@@ -87,15 +94,22 @@ class Delivery {
 	}
 
 	protected function validateLocation($location) {
+		if ( $location === FALSE ) {
+			$this->_overrides['location'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $location instanceof \com\microsoft\wc\thing\types\Organization  && ! is_null($location) ) {
 			$location = new \com\microsoft\wc\thing\types\Organization ($location);
 		}
+
+		unset ($this->_overrides['location']);
 	
 		return $location;
 	}
 
-	public function getTimeOfDelivery() {
-		if ($this->timeOfDelivery===NULL) {
+	public function getTimeOfDelivery($autoCreate = TRUE) {
+		if ($this->timeOfDelivery===NULL && $autoCreate && ! isset($this->_overrides['timeOfDelivery']) ) {
 			$this->timeOfDelivery = $this->createTimeOfDelivery();
 		}
 		return $this->timeOfDelivery;
@@ -110,15 +124,22 @@ class Delivery {
 	}
 
 	protected function validateTimeOfDelivery($timeOfDelivery) {
+		if ( $timeOfDelivery === FALSE ) {
+			$this->_overrides['timeOfDelivery'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $timeOfDelivery instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($timeOfDelivery) ) {
 			$timeOfDelivery = new \com\microsoft\wc\dates\ApproxDateTime ($timeOfDelivery);
 		}
+
+		unset ($this->_overrides['timeOfDelivery']);
 	
 		return $timeOfDelivery;
 	}
 
-	public function getLaborDuration() {
-		if ($this->laborDuration===NULL) {
+	public function getLaborDuration($autoCreate = TRUE) {
+		if ($this->laborDuration===NULL && $autoCreate && ! isset($this->_overrides['laborDuration']) ) {
 			$this->laborDuration = $this->createLaborDuration();
 		}
 		return $this->laborDuration;
@@ -133,15 +154,22 @@ class Delivery {
 	}
 
 	protected function validateLaborDuration($laborDuration) {
+		if ( $laborDuration === FALSE ) {
+			$this->_overrides['laborDuration'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $laborDuration instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($laborDuration) ) {
 			$laborDuration = new \com\microsoft\wc\thing\types\PositiveDouble ($laborDuration);
 		}
+
+		unset ($this->_overrides['laborDuration']);
 	
 		return $laborDuration;
 	}
 
-	public function getComplications() {
-		if ($this->complications===NULL) {
+	public function getComplications($autoCreate = TRUE) {
+		if ($this->complications===NULL && $autoCreate && ! isset($this->_overrides['complications']) ) {
 			$this->complications = $this->createComplications();
 		}
 		return $this->complications;
@@ -156,9 +184,16 @@ class Delivery {
 	}
 
 	protected function validateComplications($complications) {
+		if ( $complications === FALSE ) {
+			$this->_overrides['complications'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($complications) && ! is_null($complications) ) {
 			$complications = array($complications);
 		}
+
+		unset ($this->_overrides['complications']);
 		$count = count($complications);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'complications', 0));
@@ -176,8 +211,8 @@ class Delivery {
 		$this->complications[] = $complications;
 	}
 
-	public function getAnesthesia() {
-		if ($this->anesthesia===NULL) {
+	public function getAnesthesia($autoCreate = TRUE) {
+		if ($this->anesthesia===NULL && $autoCreate && ! isset($this->_overrides['anesthesia']) ) {
 			$this->anesthesia = $this->createAnesthesia();
 		}
 		return $this->anesthesia;
@@ -192,9 +227,16 @@ class Delivery {
 	}
 
 	protected function validateAnesthesia($anesthesia) {
+		if ( $anesthesia === FALSE ) {
+			$this->_overrides['anesthesia'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($anesthesia) && ! is_null($anesthesia) ) {
 			$anesthesia = array($anesthesia);
 		}
+
+		unset ($this->_overrides['anesthesia']);
 		$count = count($anesthesia);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'anesthesia', 0));
@@ -212,8 +254,8 @@ class Delivery {
 		$this->anesthesia[] = $anesthesia;
 	}
 
-	public function getDeliveryMethod() {
-		if ($this->deliveryMethod===NULL) {
+	public function getDeliveryMethod($autoCreate = TRUE) {
+		if ($this->deliveryMethod===NULL && $autoCreate && ! isset($this->_overrides['deliveryMethod']) ) {
 			$this->deliveryMethod = $this->createDeliveryMethod();
 		}
 		return $this->deliveryMethod;
@@ -228,15 +270,22 @@ class Delivery {
 	}
 
 	protected function validateDeliveryMethod($deliveryMethod) {
+		if ( $deliveryMethod === FALSE ) {
+			$this->_overrides['deliveryMethod'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $deliveryMethod instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($deliveryMethod) ) {
 			$deliveryMethod = new \com\microsoft\wc\types\CodableValue ($deliveryMethod);
 		}
+
+		unset ($this->_overrides['deliveryMethod']);
 	
 		return $deliveryMethod;
 	}
 
-	public function getOutcome() {
-		if ($this->outcome===NULL) {
+	public function getOutcome($autoCreate = TRUE) {
+		if ($this->outcome===NULL && $autoCreate && ! isset($this->_overrides['outcome']) ) {
 			$this->outcome = $this->createOutcome();
 		}
 		return $this->outcome;
@@ -251,15 +300,22 @@ class Delivery {
 	}
 
 	protected function validateOutcome($outcome) {
+		if ( $outcome === FALSE ) {
+			$this->_overrides['outcome'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $outcome instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($outcome) ) {
 			$outcome = new \com\microsoft\wc\types\CodableValue ($outcome);
 		}
+
+		unset ($this->_overrides['outcome']);
 	
 		return $outcome;
 	}
 
-	public function getBaby() {
-		if ($this->baby===NULL) {
+	public function getBaby($autoCreate = TRUE) {
+		if ($this->baby===NULL && $autoCreate && ! isset($this->_overrides['baby']) ) {
 			$this->baby = $this->createBaby();
 		}
 		return $this->baby;
@@ -274,15 +330,22 @@ class Delivery {
 	}
 
 	protected function validateBaby($baby) {
+		if ( $baby === FALSE ) {
+			$this->_overrides['baby'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $baby instanceof \com\microsoft\wc\thing\pregnancy\Baby  && ! is_null($baby) ) {
 			$baby = new \com\microsoft\wc\thing\pregnancy\Baby ($baby);
 		}
+
+		unset ($this->_overrides['baby']);
 	
 		return $baby;
 	}
 
-	public function getNote() {
-		if ($this->note===NULL) {
+	public function getNote($autoCreate = TRUE) {
+		if ($this->note===NULL && $autoCreate && ! isset($this->_overrides['note']) ) {
 			$this->note = $this->createNote();
 		}
 		return $this->note;

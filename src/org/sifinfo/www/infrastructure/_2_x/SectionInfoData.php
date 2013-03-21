@@ -14,6 +14,13 @@ class SectionInfoData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\MediumOfInstruction", name="MediumOfInstruction")
 	 */
 	protected $mediumOfInstruction;
@@ -22,8 +29,8 @@ class SectionInfoData {
 		$this->mediumOfInstruction = ($mediumOfInstruction===NULL) ? NULL : $this->validateMediumOfInstruction($mediumOfInstruction);
 	}
 
-	public function getMediumOfInstruction() {
-		if ($this->mediumOfInstruction===NULL) {
+	public function getMediumOfInstruction($autoCreate = TRUE) {
+		if ($this->mediumOfInstruction===NULL && $autoCreate && ! isset($this->_overrides['mediumOfInstruction']) ) {
 			$this->mediumOfInstruction = $this->createMediumOfInstruction();
 		}
 		return $this->mediumOfInstruction;
@@ -38,9 +45,16 @@ class SectionInfoData {
 	}
 
 	protected function validateMediumOfInstruction($mediumOfInstruction) {
+		if ( $mediumOfInstruction === FALSE ) {
+			$this->_overrides['mediumOfInstruction'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $mediumOfInstruction instanceof \org\sifinfo\www\infrastructure\_2_x\MediumOfInstruction  && ! is_null($mediumOfInstruction) ) {
 			$mediumOfInstruction = new \org\sifinfo\www\infrastructure\_2_x\MediumOfInstruction ($mediumOfInstruction);
 		}
+
+		unset ($this->_overrides['mediumOfInstruction']);
 	
 		return $mediumOfInstruction;
 	}

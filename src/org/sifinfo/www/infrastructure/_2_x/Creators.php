@@ -14,6 +14,13 @@ class Creators {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Creator", collection="true", name="Creator")
 	 */
 	protected $creator;
@@ -22,8 +29,8 @@ class Creators {
 		$this->creator = ($creator===NULL) ? NULL : $this->validateCreator($creator);
 	}
 
-	public function getCreator() {
-		if ($this->creator===NULL) {
+	public function getCreator($autoCreate = TRUE) {
+		if ($this->creator===NULL && $autoCreate && ! isset($this->_overrides['creator']) ) {
 			$this->creator = $this->createCreator();
 		}
 		return $this->creator;

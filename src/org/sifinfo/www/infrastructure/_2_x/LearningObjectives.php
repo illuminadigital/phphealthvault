@@ -14,6 +14,13 @@ class LearningObjectives {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", collection="true", name="LearningObjective")
 	 */
 	protected $learningObjective;
@@ -22,8 +29,8 @@ class LearningObjectives {
 		$this->learningObjective = ($learningObjective===NULL) ? NULL : $this->validateLearningObjective($learningObjective);
 	}
 
-	public function getLearningObjective() {
-		if ($this->learningObjective===NULL) {
+	public function getLearningObjective($autoCreate = TRUE) {
+		if ($this->learningObjective===NULL && $autoCreate && ! isset($this->_overrides['learningObjective']) ) {
 			$this->learningObjective = $this->createLearningObjective();
 		}
 		return $this->learningObjective;

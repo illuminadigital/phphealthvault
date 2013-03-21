@@ -14,6 +14,13 @@ class StudentPlacementList {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\StudentPlacementData", collection="true", name="StudentPlacementData")
 	 */
 	protected $studentPlacementData;
@@ -22,8 +29,8 @@ class StudentPlacementList {
 		$this->studentPlacementData = ($studentPlacementData===NULL) ? NULL : $this->validateStudentPlacementData($studentPlacementData);
 	}
 
-	public function getStudentPlacementData() {
-		if ($this->studentPlacementData===NULL) {
+	public function getStudentPlacementData($autoCreate = TRUE) {
+		if ($this->studentPlacementData===NULL && $autoCreate && ! isset($this->_overrides['studentPlacementData']) ) {
 			$this->studentPlacementData = $this->createStudentPlacementData();
 		}
 		return $this->studentPlacementData;

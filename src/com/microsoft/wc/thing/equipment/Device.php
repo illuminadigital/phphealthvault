@@ -19,6 +19,13 @@ class Device extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Device';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -63,8 +70,8 @@ class Device extends \com\microsoft\wc\thing\AnyMixed {
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -86,8 +93,8 @@ class Device extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getDeviceName() {
-		if ($this->deviceName===NULL) {
+	public function getDeviceName($autoCreate = TRUE) {
+		if ($this->deviceName===NULL && $autoCreate && ! isset($this->_overrides['deviceName']) ) {
 			$this->deviceName = $this->createDeviceName();
 		}
 		return $this->deviceName;
@@ -109,8 +116,8 @@ class Device extends \com\microsoft\wc\thing\AnyMixed {
 		return $deviceName;
 	}
 
-	public function getVendor() {
-		if ($this->vendor===NULL) {
+	public function getVendor($autoCreate = TRUE) {
+		if ($this->vendor===NULL && $autoCreate && ! isset($this->_overrides['vendor']) ) {
 			$this->vendor = $this->createVendor();
 		}
 		return $this->vendor;
@@ -125,15 +132,22 @@ class Device extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVendor($vendor) {
+		if ( $vendor === FALSE ) {
+			$this->_overrides['vendor'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vendor instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($vendor) ) {
 			$vendor = new \com\microsoft\wc\thing\types\Person ($vendor);
 		}
+
+		unset ($this->_overrides['vendor']);
 	
 		return $vendor;
 	}
 
-	public function getModel() {
-		if ($this->model===NULL) {
+	public function getModel($autoCreate = TRUE) {
+		if ($this->model===NULL && $autoCreate && ! isset($this->_overrides['model']) ) {
 			$this->model = $this->createModel();
 		}
 		return $this->model;
@@ -155,8 +169,8 @@ class Device extends \com\microsoft\wc\thing\AnyMixed {
 		return $model;
 	}
 
-	public function getSerialNumber() {
-		if ($this->serialNumber===NULL) {
+	public function getSerialNumber($autoCreate = TRUE) {
+		if ($this->serialNumber===NULL && $autoCreate && ! isset($this->_overrides['serialNumber']) ) {
 			$this->serialNumber = $this->createSerialNumber();
 		}
 		return $this->serialNumber;
@@ -178,8 +192,8 @@ class Device extends \com\microsoft\wc\thing\AnyMixed {
 		return $serialNumber;
 	}
 
-	public function getAnatomicSite() {
-		if ($this->anatomicSite===NULL) {
+	public function getAnatomicSite($autoCreate = TRUE) {
+		if ($this->anatomicSite===NULL && $autoCreate && ! isset($this->_overrides['anatomicSite']) ) {
 			$this->anatomicSite = $this->createAnatomicSite();
 		}
 		return $this->anatomicSite;
@@ -201,8 +215,8 @@ class Device extends \com\microsoft\wc\thing\AnyMixed {
 		return $anatomicSite;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;

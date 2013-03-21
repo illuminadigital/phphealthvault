@@ -15,6 +15,13 @@ class SecondFactorCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\auth\SimplePhoneFactorCredential", name="simple-phone-factor")
 	 */
 	protected $simplePhoneFactor;
@@ -23,8 +30,8 @@ class SecondFactorCredential {
 		$this->simplePhoneFactor = ($simplePhoneFactor===NULL) ? NULL : $this->validateSimplePhoneFactor($simplePhoneFactor);
 	}
 
-	public function getSimplePhoneFactor() {
-		if ($this->simplePhoneFactor===NULL) {
+	public function getSimplePhoneFactor($autoCreate = TRUE) {
+		if ($this->simplePhoneFactor===NULL && $autoCreate && ! isset($this->_overrides['simplePhoneFactor']) ) {
 			$this->simplePhoneFactor = $this->createSimplePhoneFactor();
 		}
 		return $this->simplePhoneFactor;

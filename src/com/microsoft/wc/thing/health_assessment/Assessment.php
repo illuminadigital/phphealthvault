@@ -15,6 +15,13 @@ class Assessment {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -35,8 +42,8 @@ class Assessment {
 		$this->group = ($group===NULL) ? NULL : $this->validateGroup($group);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -58,8 +65,8 @@ class Assessment {
 		return $name;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -94,8 +101,8 @@ class Assessment {
 		$this->value[] = $value;
 	}
 
-	public function getGroup() {
-		if ($this->group===NULL) {
+	public function getGroup($autoCreate = TRUE) {
+		if ($this->group===NULL && $autoCreate && ! isset($this->_overrides['group']) ) {
 			$this->group = $this->createGroup();
 		}
 		return $this->group;
@@ -110,9 +117,16 @@ class Assessment {
 	}
 
 	protected function validateGroup($group) {
+		if ( $group === FALSE ) {
+			$this->_overrides['group'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $group instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($group) ) {
 			$group = new \com\microsoft\wc\types\CodableValue ($group);
 		}
+
+		unset ($this->_overrides['group']);
 	
 		return $group;
 	}

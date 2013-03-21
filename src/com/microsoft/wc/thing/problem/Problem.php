@@ -19,6 +19,13 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Medical Problem';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -45,8 +52,8 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 		$this->importance = ($importance===NULL) ? NULL : $this->validateImportance($importance);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -68,8 +75,8 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getDiagnosis() {
-		if ($this->diagnosis===NULL) {
+	public function getDiagnosis($autoCreate = TRUE) {
+		if ($this->diagnosis===NULL && $autoCreate && ! isset($this->_overrides['diagnosis']) ) {
 			$this->diagnosis = $this->createDiagnosis();
 		}
 		return $this->diagnosis;
@@ -84,9 +91,16 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDiagnosis($diagnosis) {
+		if ( $diagnosis === FALSE ) {
+			$this->_overrides['diagnosis'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($diagnosis) && ! is_null($diagnosis) ) {
 			$diagnosis = array($diagnosis);
 		}
+
+		unset ($this->_overrides['diagnosis']);
 		$count = count($diagnosis);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'diagnosis', 0));
@@ -104,8 +118,8 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 		$this->diagnosis[] = $diagnosis;
 	}
 
-	public function getDuration() {
-		if ($this->duration===NULL) {
+	public function getDuration($autoCreate = TRUE) {
+		if ($this->duration===NULL && $autoCreate && ! isset($this->_overrides['duration']) ) {
 			$this->duration = $this->createDuration();
 		}
 		return $this->duration;
@@ -120,9 +134,16 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDuration($duration) {
+		if ( $duration === FALSE ) {
+			$this->_overrides['duration'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($duration) && ! is_null($duration) ) {
 			$duration = array($duration);
 		}
+
+		unset ($this->_overrides['duration']);
 		$count = count($duration);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'duration', 0));
@@ -140,8 +161,8 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 		$this->duration[] = $duration;
 	}
 
-	public function getImportance() {
-		if ($this->importance===NULL) {
+	public function getImportance($autoCreate = TRUE) {
+		if ($this->importance===NULL && $autoCreate && ! isset($this->_overrides['importance']) ) {
 			$this->importance = $this->createImportance();
 		}
 		return $this->importance;
@@ -156,9 +177,16 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateImportance($importance) {
+		if ( $importance === FALSE ) {
+			$this->_overrides['importance'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $importance instanceof \com\microsoft\wc\thing\problem\Importance  && ! is_null($importance) ) {
 			$importance = new \com\microsoft\wc\thing\problem\Importance ($importance);
 		}
+
+		unset ($this->_overrides['importance']);
 	
 		return $importance;
 	}

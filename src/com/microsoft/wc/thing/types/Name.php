@@ -16,6 +16,13 @@ class Name {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="full")
 	 */
 	protected $full;
@@ -54,8 +61,8 @@ class Name {
 		$this->suffix = ($suffix===NULL) ? NULL : $this->validateSuffix($suffix);
 	}
 
-	public function getFull() {
-		if ($this->full===NULL) {
+	public function getFull($autoCreate = TRUE) {
+		if ($this->full===NULL && $autoCreate && ! isset($this->_overrides['full']) ) {
 			$this->full = $this->createFull();
 		}
 		return $this->full;
@@ -77,8 +84,8 @@ class Name {
 		return $full;
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -93,15 +100,22 @@ class Name {
 	}
 
 	protected function validateTitle($title) {
+		if ( $title === FALSE ) {
+			$this->_overrides['title'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $title instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($title) ) {
 			$title = new \com\microsoft\wc\types\CodableValue ($title);
 		}
+
+		unset ($this->_overrides['title']);
 	
 		return $title;
 	}
 
-	public function getFirst() {
-		if ($this->first===NULL) {
+	public function getFirst($autoCreate = TRUE) {
+		if ($this->first===NULL && $autoCreate && ! isset($this->_overrides['first']) ) {
 			$this->first = $this->createFirst();
 		}
 		return $this->first;
@@ -123,8 +137,8 @@ class Name {
 		return $first;
 	}
 
-	public function getMiddle() {
-		if ($this->middle===NULL) {
+	public function getMiddle($autoCreate = TRUE) {
+		if ($this->middle===NULL && $autoCreate && ! isset($this->_overrides['middle']) ) {
 			$this->middle = $this->createMiddle();
 		}
 		return $this->middle;
@@ -146,8 +160,8 @@ class Name {
 		return $middle;
 	}
 
-	public function getLast() {
-		if ($this->last===NULL) {
+	public function getLast($autoCreate = TRUE) {
+		if ($this->last===NULL && $autoCreate && ! isset($this->_overrides['last']) ) {
 			$this->last = $this->createLast();
 		}
 		return $this->last;
@@ -169,8 +183,8 @@ class Name {
 		return $last;
 	}
 
-	public function getSuffix() {
-		if ($this->suffix===NULL) {
+	public function getSuffix($autoCreate = TRUE) {
+		if ($this->suffix===NULL && $autoCreate && ! isset($this->_overrides['suffix']) ) {
 			$this->suffix = $this->createSuffix();
 		}
 		return $this->suffix;
@@ -185,9 +199,16 @@ class Name {
 	}
 
 	protected function validateSuffix($suffix) {
+		if ( $suffix === FALSE ) {
+			$this->_overrides['suffix'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $suffix instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($suffix) ) {
 			$suffix = new \com\microsoft\wc\types\CodableValue ($suffix);
 		}
+
+		unset ($this->_overrides['suffix']);
 	
 		return $suffix;
 	}

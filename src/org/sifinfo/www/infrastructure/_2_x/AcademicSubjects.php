@@ -14,6 +14,13 @@ class AcademicSubjects {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\AcademicSubject", collection="true", name="AcademicSubject")
 	 */
 	protected $academicSubject;
@@ -22,8 +29,8 @@ class AcademicSubjects {
 		$this->academicSubject = ($academicSubject===NULL) ? NULL : $this->validateAcademicSubject($academicSubject);
 	}
 
-	public function getAcademicSubject() {
-		if ($this->academicSubject===NULL) {
+	public function getAcademicSubject($autoCreate = TRUE) {
+		if ($this->academicSubject===NULL && $autoCreate && ! isset($this->_overrides['academicSubject']) ) {
 			$this->academicSubject = $this->createAcademicSubject();
 		}
 		return $this->academicSubject;
@@ -38,9 +45,16 @@ class AcademicSubjects {
 	}
 
 	protected function validateAcademicSubject($academicSubject) {
+		if ( $academicSubject === FALSE ) {
+			$this->_overrides['academicSubject'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($academicSubject) && ! is_null($academicSubject) ) {
 			$academicSubject = array($academicSubject);
 		}
+
+		unset ($this->_overrides['academicSubject']);
 		$count = count($academicSubject);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'academicSubject', 0));

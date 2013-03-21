@@ -15,6 +15,13 @@ class RightsElementType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="boolean", name="Cost")
 	 */
 	protected $cost;
@@ -41,8 +48,8 @@ class RightsElementType {
 		$this->termsOfUse = ($termsOfUse===NULL) ? NULL : $this->validateTermsOfUse($termsOfUse);
 	}
 
-	public function getCost() {
-		if ($this->cost===NULL) {
+	public function getCost($autoCreate = TRUE) {
+		if ($this->cost===NULL && $autoCreate && ! isset($this->_overrides['cost']) ) {
 			$this->cost = $this->createCost();
 		}
 		return $this->cost;
@@ -64,8 +71,8 @@ class RightsElementType {
 		return $cost;
 	}
 
-	public function getFeesForUse() {
-		if ($this->feesForUse===NULL) {
+	public function getFeesForUse($autoCreate = TRUE) {
+		if ($this->feesForUse===NULL && $autoCreate && ! isset($this->_overrides['feesForUse']) ) {
 			$this->feesForUse = $this->createFeesForUse();
 		}
 		return $this->feesForUse;
@@ -80,15 +87,22 @@ class RightsElementType {
 	}
 
 	protected function validateFeesForUse($feesForUse) {
+		if ( $feesForUse === FALSE ) {
+			$this->_overrides['feesForUse'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $feesForUse instanceof \org\sifinfo\www\infrastructure\_2_x\FeesForUse  && ! is_null($feesForUse) ) {
 			$feesForUse = new \org\sifinfo\www\infrastructure\_2_x\FeesForUse ($feesForUse);
 		}
+
+		unset ($this->_overrides['feesForUse']);
 	
 		return $feesForUse;
 	}
 
-	public function getCopyrightStatement() {
-		if ($this->copyrightStatement===NULL) {
+	public function getCopyrightStatement($autoCreate = TRUE) {
+		if ($this->copyrightStatement===NULL && $autoCreate && ! isset($this->_overrides['copyrightStatement']) ) {
 			$this->copyrightStatement = $this->createCopyrightStatement();
 		}
 		return $this->copyrightStatement;
@@ -110,8 +124,8 @@ class RightsElementType {
 		return $copyrightStatement;
 	}
 
-	public function getTermsOfUse() {
-		if ($this->termsOfUse===NULL) {
+	public function getTermsOfUse($autoCreate = TRUE) {
+		if ($this->termsOfUse===NULL && $autoCreate && ! isset($this->_overrides['termsOfUse']) ) {
 			$this->termsOfUse = $this->createTermsOfUse();
 		}
 		return $this->termsOfUse;

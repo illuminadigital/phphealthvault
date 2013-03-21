@@ -14,6 +14,13 @@ class MarkingPeriods {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\MarkingPeriod", collection="true", name="MarkingPeriod")
 	 */
 	protected $markingPeriod;
@@ -22,8 +29,8 @@ class MarkingPeriods {
 		$this->markingPeriod = ($markingPeriod===NULL) ? NULL : $this->validateMarkingPeriod($markingPeriod);
 	}
 
-	public function getMarkingPeriod() {
-		if ($this->markingPeriod===NULL) {
+	public function getMarkingPeriod($autoCreate = TRUE) {
+		if ($this->markingPeriod===NULL && $autoCreate && ! isset($this->_overrides['markingPeriod']) ) {
 			$this->markingPeriod = $this->createMarkingPeriod();
 		}
 		return $this->markingPeriod;

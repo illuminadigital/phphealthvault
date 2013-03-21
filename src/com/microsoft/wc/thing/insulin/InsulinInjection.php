@@ -19,6 +19,13 @@ class InsulinInjection extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Insulin Injection';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="type")
 	 */
 	protected $type;
@@ -39,8 +46,8 @@ class InsulinInjection extends \com\microsoft\wc\thing\AnyMixed {
 		$this->deviceId = ($deviceId===NULL) ? NULL : $this->validateDeviceId($deviceId);
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -62,8 +69,8 @@ class InsulinInjection extends \com\microsoft\wc\thing\AnyMixed {
 		return $type;
 	}
 
-	public function getAmount() {
-		if ($this->amount===NULL) {
+	public function getAmount($autoCreate = TRUE) {
+		if ($this->amount===NULL && $autoCreate && ! isset($this->_overrides['amount']) ) {
 			$this->amount = $this->createAmount();
 		}
 		return $this->amount;
@@ -85,8 +92,8 @@ class InsulinInjection extends \com\microsoft\wc\thing\AnyMixed {
 		return $amount;
 	}
 
-	public function getDeviceId() {
-		if ($this->deviceId===NULL) {
+	public function getDeviceId($autoCreate = TRUE) {
+		if ($this->deviceId===NULL && $autoCreate && ! isset($this->_overrides['deviceId']) ) {
 			$this->deviceId = $this->createDeviceId();
 		}
 		return $this->deviceId;

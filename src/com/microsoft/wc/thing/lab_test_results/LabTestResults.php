@@ -18,6 +18,13 @@ class LabTestResults extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Lab Test Result';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -38,8 +45,8 @@ class LabTestResults extends \com\microsoft\wc\thing\AnyMixed {
 		$this->orderedBy = ($orderedBy===NULL) ? NULL : $this->validateOrderedBy($orderedBy);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -54,15 +61,22 @@ class LabTestResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateWhen($when) {
+		if ( $when === FALSE ) {
+			$this->_overrides['when'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $when instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($when) ) {
 			$when = new \com\microsoft\wc\dates\ApproxDateTime ($when);
 		}
+
+		unset ($this->_overrides['when']);
 	
 		return $when;
 	}
 
-	public function getLabGroup() {
-		if ($this->labGroup===NULL) {
+	public function getLabGroup($autoCreate = TRUE) {
+		if ($this->labGroup===NULL && $autoCreate && ! isset($this->_overrides['labGroup']) ) {
 			$this->labGroup = $this->createLabGroup();
 		}
 		return $this->labGroup;
@@ -97,8 +111,8 @@ class LabTestResults extends \com\microsoft\wc\thing\AnyMixed {
 		$this->labGroup[] = $labGroup;
 	}
 
-	public function getOrderedBy() {
-		if ($this->orderedBy===NULL) {
+	public function getOrderedBy($autoCreate = TRUE) {
+		if ($this->orderedBy===NULL && $autoCreate && ! isset($this->_overrides['orderedBy']) ) {
 			$this->orderedBy = $this->createOrderedBy();
 		}
 		return $this->orderedBy;
@@ -113,9 +127,16 @@ class LabTestResults extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateOrderedBy($orderedBy) {
+		if ( $orderedBy === FALSE ) {
+			$this->_overrides['orderedBy'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $orderedBy instanceof \com\microsoft\wc\thing\types\Organization  && ! is_null($orderedBy) ) {
 			$orderedBy = new \com\microsoft\wc\thing\types\Organization ($orderedBy);
 		}
+
+		unset ($this->_overrides['orderedBy']);
 	
 		return $orderedBy;
 	}

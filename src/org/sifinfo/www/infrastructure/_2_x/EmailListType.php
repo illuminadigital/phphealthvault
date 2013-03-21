@@ -15,6 +15,13 @@ class EmailListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Email", collection="true", name="Email")
 	 */
 	protected $email;
@@ -23,8 +30,8 @@ class EmailListType {
 		$this->email = ($email===NULL) ? NULL : $this->validateEmail($email);
 	}
 
-	public function getEmail() {
-		if ($this->email===NULL) {
+	public function getEmail($autoCreate = TRUE) {
+		if ($this->email===NULL && $autoCreate && ! isset($this->_overrides['email']) ) {
 			$this->email = $this->createEmail();
 		}
 		return $this->email;

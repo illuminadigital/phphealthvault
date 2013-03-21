@@ -15,6 +15,13 @@ class TypeIds {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", collection="true", name="type-id")
 	 */
 	protected $typeId;
@@ -23,8 +30,8 @@ class TypeIds {
 		$this->typeId = ($typeId===NULL) ? NULL : $this->validateTypeId($typeId);
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;

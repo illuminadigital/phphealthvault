@@ -14,6 +14,13 @@ class NonActiveAuthorization {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="record-id")
 	 */
 	protected $recordId;
@@ -130,8 +137,8 @@ class NonActiveAuthorization {
 		$this->expiresDate = ($expiresDate===NULL) ? NULL : $this->validateExpiresDate($expiresDate);
 	}
 
-	public function getRecordId() {
-		if ($this->recordId===NULL) {
+	public function getRecordId($autoCreate = TRUE) {
+		if ($this->recordId===NULL && $autoCreate && ! isset($this->_overrides['recordId']) ) {
 			$this->recordId = $this->createRecordId();
 		}
 		return $this->recordId;
@@ -153,8 +160,8 @@ class NonActiveAuthorization {
 		return $recordId;
 	}
 
-	public function getEmailAddress() {
-		if ($this->emailAddress===NULL) {
+	public function getEmailAddress($autoCreate = TRUE) {
+		if ($this->emailAddress===NULL && $autoCreate && ! isset($this->_overrides['emailAddress']) ) {
 			$this->emailAddress = $this->createEmailAddress();
 		}
 		return $this->emailAddress;
@@ -176,8 +183,8 @@ class NonActiveAuthorization {
 		return $emailAddress;
 	}
 
-	public function getRecordCustodian() {
-		if ($this->recordCustodian===NULL) {
+	public function getRecordCustodian($autoCreate = TRUE) {
+		if ($this->recordCustodian===NULL && $autoCreate && ! isset($this->_overrides['recordCustodian']) ) {
 			$this->recordCustodian = $this->createRecordCustodian();
 		}
 		return $this->recordCustodian;
@@ -199,8 +206,8 @@ class NonActiveAuthorization {
 		return $recordCustodian;
 	}
 
-	public function getAuthorizedRecordState() {
-		if ($this->authorizedRecordState===NULL) {
+	public function getAuthorizedRecordState($autoCreate = TRUE) {
+		if ($this->authorizedRecordState===NULL && $autoCreate && ! isset($this->_overrides['authorizedRecordState']) ) {
 			$this->authorizedRecordState = $this->createAuthorizedRecordState();
 		}
 		return $this->authorizedRecordState;
@@ -222,8 +229,8 @@ class NonActiveAuthorization {
 		return $authorizedRecordState;
 	}
 
-	public function getRecordDisplayName() {
-		if ($this->recordDisplayName===NULL) {
+	public function getRecordDisplayName($autoCreate = TRUE) {
+		if ($this->recordDisplayName===NULL && $autoCreate && ! isset($this->_overrides['recordDisplayName']) ) {
 			$this->recordDisplayName = $this->createRecordDisplayName();
 		}
 		return $this->recordDisplayName;
@@ -245,8 +252,8 @@ class NonActiveAuthorization {
 		return $recordDisplayName;
 	}
 
-	public function getDateAuthExpires() {
-		if ($this->dateAuthExpires===NULL) {
+	public function getDateAuthExpires($autoCreate = TRUE) {
+		if ($this->dateAuthExpires===NULL && $autoCreate && ! isset($this->_overrides['dateAuthExpires']) ) {
 			$this->dateAuthExpires = $this->createDateAuthExpires();
 		}
 		return $this->dateAuthExpires;
@@ -268,8 +275,8 @@ class NonActiveAuthorization {
 		return $dateAuthExpires;
 	}
 
-	public function getAuthXml() {
-		if ($this->authXml===NULL) {
+	public function getAuthXml($autoCreate = TRUE) {
+		if ($this->authXml===NULL && $autoCreate && ! isset($this->_overrides['authXml']) ) {
 			$this->authXml = $this->createAuthXml();
 		}
 		return $this->authXml;
@@ -291,8 +298,8 @@ class NonActiveAuthorization {
 		return $authXml;
 	}
 
-	public function getRelType() {
-		if ($this->relType===NULL) {
+	public function getRelType($autoCreate = TRUE) {
+		if ($this->relType===NULL && $autoCreate && ! isset($this->_overrides['relType']) ) {
 			$this->relType = $this->createRelType();
 		}
 		return $this->relType;
@@ -322,8 +329,8 @@ class NonActiveAuthorization {
 		return $relType;
 	}
 
-	public function getDateAuthCreated() {
-		if ($this->dateAuthCreated===NULL) {
+	public function getDateAuthCreated($autoCreate = TRUE) {
+		if ($this->dateAuthCreated===NULL && $autoCreate && ! isset($this->_overrides['dateAuthCreated']) ) {
 			$this->dateAuthCreated = $this->createDateAuthCreated();
 		}
 		return $this->dateAuthCreated;
@@ -345,8 +352,8 @@ class NonActiveAuthorization {
 		return $dateAuthCreated;
 	}
 
-	public function getDateAuthUpdated() {
-		if ($this->dateAuthUpdated===NULL) {
+	public function getDateAuthUpdated($autoCreate = TRUE) {
+		if ($this->dateAuthUpdated===NULL && $autoCreate && ! isset($this->_overrides['dateAuthUpdated']) ) {
 			$this->dateAuthUpdated = $this->createDateAuthUpdated();
 		}
 		return $this->dateAuthUpdated;
@@ -368,8 +375,8 @@ class NonActiveAuthorization {
 		return $dateAuthUpdated;
 	}
 
-	public function getGrantorName() {
-		if ($this->grantorName===NULL) {
+	public function getGrantorName($autoCreate = TRUE) {
+		if ($this->grantorName===NULL && $autoCreate && ! isset($this->_overrides['grantorName']) ) {
 			$this->grantorName = $this->createGrantorName();
 		}
 		return $this->grantorName;
@@ -391,8 +398,8 @@ class NonActiveAuthorization {
 		return $grantorName;
 	}
 
-	public function getGrantorPersonId() {
-		if ($this->grantorPersonId===NULL) {
+	public function getGrantorPersonId($autoCreate = TRUE) {
+		if ($this->grantorPersonId===NULL && $autoCreate && ! isset($this->_overrides['grantorPersonId']) ) {
 			$this->grantorPersonId = $this->createGrantorPersonId();
 		}
 		return $this->grantorPersonId;
@@ -414,8 +421,8 @@ class NonActiveAuthorization {
 		return $grantorPersonId;
 	}
 
-	public function getGranteeName() {
-		if ($this->granteeName===NULL) {
+	public function getGranteeName($autoCreate = TRUE) {
+		if ($this->granteeName===NULL && $autoCreate && ! isset($this->_overrides['granteeName']) ) {
 			$this->granteeName = $this->createGranteeName();
 		}
 		return $this->granteeName;
@@ -437,8 +444,8 @@ class NonActiveAuthorization {
 		return $granteeName;
 	}
 
-	public function getRecordAuthorizationToken() {
-		if ($this->recordAuthorizationToken===NULL) {
+	public function getRecordAuthorizationToken($autoCreate = TRUE) {
+		if ($this->recordAuthorizationToken===NULL && $autoCreate && ! isset($this->_overrides['recordAuthorizationToken']) ) {
 			$this->recordAuthorizationToken = $this->createRecordAuthorizationToken();
 		}
 		return $this->recordAuthorizationToken;
@@ -453,15 +460,22 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateRecordAuthorizationToken($recordAuthorizationToken) {
+		if ( $recordAuthorizationToken === FALSE ) {
+			$this->_overrides['recordAuthorizationToken'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $recordAuthorizationToken instanceof \com\microsoft\wc\types\Base64  && ! is_null($recordAuthorizationToken) ) {
 			$recordAuthorizationToken = new \com\microsoft\wc\types\Base64 ($recordAuthorizationToken);
 		}
+
+		unset ($this->_overrides['recordAuthorizationToken']);
 	
 		return $recordAuthorizationToken;
 	}
 
-	public function getEmailText() {
-		if ($this->emailText===NULL) {
+	public function getEmailText($autoCreate = TRUE) {
+		if ($this->emailText===NULL && $autoCreate && ! isset($this->_overrides['emailText']) ) {
 			$this->emailText = $this->createEmailText();
 		}
 		return $this->emailText;
@@ -476,15 +490,22 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateEmailText($emailText) {
+		if ( $emailText === FALSE ) {
+			$this->_overrides['emailText'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $emailText instanceof \com\microsoft\wc\types\String1024  && ! is_null($emailText) ) {
 			$emailText = new \com\microsoft\wc\types\String1024 ($emailText);
 		}
+
+		unset ($this->_overrides['emailText']);
 	
 		return $emailText;
 	}
 
-	public function getCanAccessAudit() {
-		if ($this->canAccessAudit===NULL) {
+	public function getCanAccessAudit($autoCreate = TRUE) {
+		if ($this->canAccessAudit===NULL && $autoCreate && ! isset($this->_overrides['canAccessAudit']) ) {
 			$this->canAccessAudit = $this->createCanAccessAudit();
 		}
 		return $this->canAccessAudit;
@@ -506,8 +527,8 @@ class NonActiveAuthorization {
 		return $canAccessAudit;
 	}
 
-	public function getRequestingApplicationId() {
-		if ($this->requestingApplicationId===NULL) {
+	public function getRequestingApplicationId($autoCreate = TRUE) {
+		if ($this->requestingApplicationId===NULL && $autoCreate && ! isset($this->_overrides['requestingApplicationId']) ) {
 			$this->requestingApplicationId = $this->createRequestingApplicationId();
 		}
 		return $this->requestingApplicationId;
@@ -522,15 +543,22 @@ class NonActiveAuthorization {
 	}
 
 	protected function validateRequestingApplicationId($requestingApplicationId) {
+		if ( $requestingApplicationId === FALSE ) {
+			$this->_overrides['requestingApplicationId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $requestingApplicationId instanceof \com\microsoft\wc\types\Guid  && ! is_null($requestingApplicationId) ) {
 			$requestingApplicationId = new \com\microsoft\wc\types\Guid ($requestingApplicationId);
 		}
+
+		unset ($this->_overrides['requestingApplicationId']);
 	
 		return $requestingApplicationId;
 	}
 
-	public function getPinRequired() {
-		if ($this->pinRequired===NULL) {
+	public function getPinRequired($autoCreate = TRUE) {
+		if ($this->pinRequired===NULL && $autoCreate && ! isset($this->_overrides['pinRequired']) ) {
 			$this->pinRequired = $this->createPinRequired();
 		}
 		return $this->pinRequired;
@@ -552,8 +580,8 @@ class NonActiveAuthorization {
 		return $pinRequired;
 	}
 
-	public function getExpiresDate() {
-		if ($this->expiresDate===NULL) {
+	public function getExpiresDate($autoCreate = TRUE) {
+		if ($this->expiresDate===NULL && $autoCreate && ! isset($this->_overrides['expiresDate']) ) {
 			$this->expiresDate = $this->createExpiresDate();
 		}
 		return $this->expiresDate;

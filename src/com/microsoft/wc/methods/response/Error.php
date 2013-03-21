@@ -15,6 +15,13 @@ class Error {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="message")
 	 */
 	protected $message;
@@ -23,8 +30,8 @@ class Error {
 		$this->message = ($message===NULL) ? NULL : $this->validateMessage($message);
 	}
 
-	public function getMessage() {
-		if ($this->message===NULL) {
+	public function getMessage($autoCreate = TRUE) {
+		if ($this->message===NULL && $autoCreate && ! isset($this->_overrides['message']) ) {
 			$this->message = $this->createMessage();
 		}
 		return $this->message;

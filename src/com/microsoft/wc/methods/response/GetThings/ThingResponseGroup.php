@@ -16,6 +16,13 @@ class ThingResponseGroup {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\Thing", collection="true", name="thing")
 	 */
 	protected $thing;
@@ -42,8 +49,8 @@ class ThingResponseGroup {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 	}
 
-	public function getThing() {
-		if ($this->thing===NULL) {
+	public function getThing($autoCreate = TRUE) {
+		if ($this->thing===NULL && $autoCreate && ! isset($this->_overrides['thing']) ) {
 			$this->thing = $this->createThing();
 		}
 		return $this->thing;
@@ -58,9 +65,16 @@ class ThingResponseGroup {
 	}
 
 	protected function validateThing($thing) {
+		if ( $thing === FALSE ) {
+			$this->_overrides['thing'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($thing) && ! is_null($thing) ) {
 			$thing = array($thing);
 		}
+
+		unset ($this->_overrides['thing']);
 		$count = count($thing);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'thing', 0));
@@ -78,8 +92,8 @@ class ThingResponseGroup {
 		$this->thing[] = $thing;
 	}
 
-	public function getUnprocessedThingKeyInfo() {
-		if ($this->unprocessedThingKeyInfo===NULL) {
+	public function getUnprocessedThingKeyInfo($autoCreate = TRUE) {
+		if ($this->unprocessedThingKeyInfo===NULL && $autoCreate && ! isset($this->_overrides['unprocessedThingKeyInfo']) ) {
 			$this->unprocessedThingKeyInfo = $this->createUnprocessedThingKeyInfo();
 		}
 		return $this->unprocessedThingKeyInfo;
@@ -94,9 +108,16 @@ class ThingResponseGroup {
 	}
 
 	protected function validateUnprocessedThingKeyInfo($unprocessedThingKeyInfo) {
+		if ( $unprocessedThingKeyInfo === FALSE ) {
+			$this->_overrides['unprocessedThingKeyInfo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($unprocessedThingKeyInfo) && ! is_null($unprocessedThingKeyInfo) ) {
 			$unprocessedThingKeyInfo = array($unprocessedThingKeyInfo);
 		}
+
+		unset ($this->_overrides['unprocessedThingKeyInfo']);
 		$count = count($unprocessedThingKeyInfo);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'unprocessedThingKeyInfo', 0));
@@ -114,8 +135,8 @@ class ThingResponseGroup {
 		$this->unprocessedThingKeyInfo[] = $unprocessedThingKeyInfo;
 	}
 
-	public function getFiltered() {
-		if ($this->filtered===NULL) {
+	public function getFiltered($autoCreate = TRUE) {
+		if ($this->filtered===NULL && $autoCreate && ! isset($this->_overrides['filtered']) ) {
 			$this->filtered = $this->createFiltered();
 		}
 		return $this->filtered;
@@ -137,8 +158,8 @@ class ThingResponseGroup {
 		return $filtered;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;

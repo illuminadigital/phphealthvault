@@ -15,6 +15,13 @@ class ClaimAmounts {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="float", name="charged-amount")
 	 */
 	protected $chargedAmount;
@@ -83,8 +90,8 @@ class ClaimAmounts {
 		$this->patientResponsibility = ($patientResponsibility===NULL) ? NULL : $this->validatePatientResponsibility($patientResponsibility);
 	}
 
-	public function getChargedAmount() {
-		if ($this->chargedAmount===NULL) {
+	public function getChargedAmount($autoCreate = TRUE) {
+		if ($this->chargedAmount===NULL && $autoCreate && ! isset($this->_overrides['chargedAmount']) ) {
 			$this->chargedAmount = $this->createChargedAmount();
 		}
 		return $this->chargedAmount;
@@ -114,8 +121,8 @@ class ClaimAmounts {
 		return $chargedAmount;
 	}
 
-	public function getNegotiatedAmount() {
-		if ($this->negotiatedAmount===NULL) {
+	public function getNegotiatedAmount($autoCreate = TRUE) {
+		if ($this->negotiatedAmount===NULL && $autoCreate && ! isset($this->_overrides['negotiatedAmount']) ) {
 			$this->negotiatedAmount = $this->createNegotiatedAmount();
 		}
 		return $this->negotiatedAmount;
@@ -145,8 +152,8 @@ class ClaimAmounts {
 		return $negotiatedAmount;
 	}
 
-	public function getCopay() {
-		if ($this->copay===NULL) {
+	public function getCopay($autoCreate = TRUE) {
+		if ($this->copay===NULL && $autoCreate && ! isset($this->_overrides['copay']) ) {
 			$this->copay = $this->createCopay();
 		}
 		return $this->copay;
@@ -176,8 +183,8 @@ class ClaimAmounts {
 		return $copay;
 	}
 
-	public function getDeductible() {
-		if ($this->deductible===NULL) {
+	public function getDeductible($autoCreate = TRUE) {
+		if ($this->deductible===NULL && $autoCreate && ! isset($this->_overrides['deductible']) ) {
 			$this->deductible = $this->createDeductible();
 		}
 		return $this->deductible;
@@ -207,8 +214,8 @@ class ClaimAmounts {
 		return $deductible;
 	}
 
-	public function getAmountNotCovered() {
-		if ($this->amountNotCovered===NULL) {
+	public function getAmountNotCovered($autoCreate = TRUE) {
+		if ($this->amountNotCovered===NULL && $autoCreate && ! isset($this->_overrides['amountNotCovered']) ) {
 			$this->amountNotCovered = $this->createAmountNotCovered();
 		}
 		return $this->amountNotCovered;
@@ -238,8 +245,8 @@ class ClaimAmounts {
 		return $amountNotCovered;
 	}
 
-	public function getEligibleForBenefits() {
-		if ($this->eligibleForBenefits===NULL) {
+	public function getEligibleForBenefits($autoCreate = TRUE) {
+		if ($this->eligibleForBenefits===NULL && $autoCreate && ! isset($this->_overrides['eligibleForBenefits']) ) {
 			$this->eligibleForBenefits = $this->createEligibleForBenefits();
 		}
 		return $this->eligibleForBenefits;
@@ -269,8 +276,8 @@ class ClaimAmounts {
 		return $eligibleForBenefits;
 	}
 
-	public function getPercentageCovered() {
-		if ($this->percentageCovered===NULL) {
+	public function getPercentageCovered($autoCreate = TRUE) {
+		if ($this->percentageCovered===NULL && $autoCreate && ! isset($this->_overrides['percentageCovered']) ) {
 			$this->percentageCovered = $this->createPercentageCovered();
 		}
 		return $this->percentageCovered;
@@ -285,15 +292,22 @@ class ClaimAmounts {
 	}
 
 	protected function validatePercentageCovered($percentageCovered) {
+		if ( $percentageCovered === FALSE ) {
+			$this->_overrides['percentageCovered'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $percentageCovered instanceof \com\microsoft\wc\thing\types\Percentage  && ! is_null($percentageCovered) ) {
 			$percentageCovered = new \com\microsoft\wc\thing\types\Percentage ($percentageCovered);
 		}
+
+		unset ($this->_overrides['percentageCovered']);
 	
 		return $percentageCovered;
 	}
 
-	public function getCoinsurance() {
-		if ($this->coinsurance===NULL) {
+	public function getCoinsurance($autoCreate = TRUE) {
+		if ($this->coinsurance===NULL && $autoCreate && ! isset($this->_overrides['coinsurance']) ) {
 			$this->coinsurance = $this->createCoinsurance();
 		}
 		return $this->coinsurance;
@@ -323,8 +337,8 @@ class ClaimAmounts {
 		return $coinsurance;
 	}
 
-	public function getMiscellaneousAdjustments() {
-		if ($this->miscellaneousAdjustments===NULL) {
+	public function getMiscellaneousAdjustments($autoCreate = TRUE) {
+		if ($this->miscellaneousAdjustments===NULL && $autoCreate && ! isset($this->_overrides['miscellaneousAdjustments']) ) {
 			$this->miscellaneousAdjustments = $this->createMiscellaneousAdjustments();
 		}
 		return $this->miscellaneousAdjustments;
@@ -354,8 +368,8 @@ class ClaimAmounts {
 		return $miscellaneousAdjustments;
 	}
 
-	public function getBenefitsPaid() {
-		if ($this->benefitsPaid===NULL) {
+	public function getBenefitsPaid($autoCreate = TRUE) {
+		if ($this->benefitsPaid===NULL && $autoCreate && ! isset($this->_overrides['benefitsPaid']) ) {
 			$this->benefitsPaid = $this->createBenefitsPaid();
 		}
 		return $this->benefitsPaid;
@@ -385,8 +399,8 @@ class ClaimAmounts {
 		return $benefitsPaid;
 	}
 
-	public function getPatientResponsibility() {
-		if ($this->patientResponsibility===NULL) {
+	public function getPatientResponsibility($autoCreate = TRUE) {
+		if ($this->patientResponsibility===NULL && $autoCreate && ! isset($this->_overrides['patientResponsibility']) ) {
 			$this->patientResponsibility = $this->createPatientResponsibility();
 		}
 		return $this->patientResponsibility;

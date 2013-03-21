@@ -14,6 +14,13 @@ class POCDMT000040.AssignedCustodian {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -52,8 +59,8 @@ class POCDMT000040.AssignedCustodian {
 		$this->classCode = ($classCode===NULL) ? NULL : $this->validateClassCode($classCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -87,8 +94,8 @@ class POCDMT000040.AssignedCustodian {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -107,8 +114,8 @@ class POCDMT000040.AssignedCustodian {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -142,8 +149,8 @@ class POCDMT000040.AssignedCustodian {
 		return $templateId;
 	}
 
-	public function getRepresentedCustodianOrganization() {
-		if ($this->representedCustodianOrganization===NULL) {
+	public function getRepresentedCustodianOrganization($autoCreate = TRUE) {
+		if ($this->representedCustodianOrganization===NULL && $autoCreate && ! isset($this->_overrides['representedCustodianOrganization']) ) {
 			$this->representedCustodianOrganization = $this->createRepresentedCustodianOrganization();
 		}
 		return $this->representedCustodianOrganization;
@@ -162,8 +169,8 @@ class POCDMT000040.AssignedCustodian {
 		return $representedCustodianOrganization;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -182,8 +189,8 @@ class POCDMT000040.AssignedCustodian {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;

@@ -14,6 +14,13 @@ class POCDMT000040.ClinicalDocument {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -196,8 +203,8 @@ class POCDMT000040.ClinicalDocument {
 		$this->moodCode = ($moodCode===NULL) ? NULL : $this->validateMoodCode($moodCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -231,8 +238,8 @@ class POCDMT000040.ClinicalDocument {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -251,8 +258,8 @@ class POCDMT000040.ClinicalDocument {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -286,8 +293,8 @@ class POCDMT000040.ClinicalDocument {
 		return $templateId;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -306,8 +313,8 @@ class POCDMT000040.ClinicalDocument {
 		return $id;
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -326,8 +333,8 @@ class POCDMT000040.ClinicalDocument {
 		return $code;
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -346,8 +353,8 @@ class POCDMT000040.ClinicalDocument {
 		return $title;
 	}
 
-	public function getEffectiveTime() {
-		if ($this->effectiveTime===NULL) {
+	public function getEffectiveTime($autoCreate = TRUE) {
+		if ($this->effectiveTime===NULL && $autoCreate && ! isset($this->_overrides['effectiveTime']) ) {
 			$this->effectiveTime = $this->createEffectiveTime();
 		}
 		return $this->effectiveTime;
@@ -366,8 +373,8 @@ class POCDMT000040.ClinicalDocument {
 		return $effectiveTime;
 	}
 
-	public function getConfidentialityCode() {
-		if ($this->confidentialityCode===NULL) {
+	public function getConfidentialityCode($autoCreate = TRUE) {
+		if ($this->confidentialityCode===NULL && $autoCreate && ! isset($this->_overrides['confidentialityCode']) ) {
 			$this->confidentialityCode = $this->createConfidentialityCode();
 		}
 		return $this->confidentialityCode;
@@ -386,8 +393,8 @@ class POCDMT000040.ClinicalDocument {
 		return $confidentialityCode;
 	}
 
-	public function getLanguageCode() {
-		if ($this->languageCode===NULL) {
+	public function getLanguageCode($autoCreate = TRUE) {
+		if ($this->languageCode===NULL && $autoCreate && ! isset($this->_overrides['languageCode']) ) {
 			$this->languageCode = $this->createLanguageCode();
 		}
 		return $this->languageCode;
@@ -406,8 +413,8 @@ class POCDMT000040.ClinicalDocument {
 		return $languageCode;
 	}
 
-	public function getSetId() {
-		if ($this->setId===NULL) {
+	public function getSetId($autoCreate = TRUE) {
+		if ($this->setId===NULL && $autoCreate && ! isset($this->_overrides['setId']) ) {
 			$this->setId = $this->createSetId();
 		}
 		return $this->setId;
@@ -426,8 +433,8 @@ class POCDMT000040.ClinicalDocument {
 		return $setId;
 	}
 
-	public function getVersionNumber() {
-		if ($this->versionNumber===NULL) {
+	public function getVersionNumber($autoCreate = TRUE) {
+		if ($this->versionNumber===NULL && $autoCreate && ! isset($this->_overrides['versionNumber']) ) {
 			$this->versionNumber = $this->createVersionNumber();
 		}
 		return $this->versionNumber;
@@ -446,8 +453,8 @@ class POCDMT000040.ClinicalDocument {
 		return $versionNumber;
 	}
 
-	public function getCopyTime() {
-		if ($this->copyTime===NULL) {
+	public function getCopyTime($autoCreate = TRUE) {
+		if ($this->copyTime===NULL && $autoCreate && ! isset($this->_overrides['copyTime']) ) {
 			$this->copyTime = $this->createCopyTime();
 		}
 		return $this->copyTime;
@@ -466,8 +473,8 @@ class POCDMT000040.ClinicalDocument {
 		return $copyTime;
 	}
 
-	public function getRecordTarget() {
-		if ($this->recordTarget===NULL) {
+	public function getRecordTarget($autoCreate = TRUE) {
+		if ($this->recordTarget===NULL && $autoCreate && ! isset($this->_overrides['recordTarget']) ) {
 			$this->recordTarget = $this->createRecordTarget();
 		}
 		return $this->recordTarget;
@@ -501,8 +508,8 @@ class POCDMT000040.ClinicalDocument {
 		return $recordTarget;
 	}
 
-	public function getAuthor() {
-		if ($this->author===NULL) {
+	public function getAuthor($autoCreate = TRUE) {
+		if ($this->author===NULL && $autoCreate && ! isset($this->_overrides['author']) ) {
 			$this->author = $this->createAuthor();
 		}
 		return $this->author;
@@ -536,8 +543,8 @@ class POCDMT000040.ClinicalDocument {
 		return $author;
 	}
 
-	public function getDataEnterer() {
-		if ($this->dataEnterer===NULL) {
+	public function getDataEnterer($autoCreate = TRUE) {
+		if ($this->dataEnterer===NULL && $autoCreate && ! isset($this->_overrides['dataEnterer']) ) {
 			$this->dataEnterer = $this->createDataEnterer();
 		}
 		return $this->dataEnterer;
@@ -556,8 +563,8 @@ class POCDMT000040.ClinicalDocument {
 		return $dataEnterer;
 	}
 
-	public function getInformant() {
-		if ($this->informant===NULL) {
+	public function getInformant($autoCreate = TRUE) {
+		if ($this->informant===NULL && $autoCreate && ! isset($this->_overrides['informant']) ) {
 			$this->informant = $this->createInformant();
 		}
 		return $this->informant;
@@ -591,8 +598,8 @@ class POCDMT000040.ClinicalDocument {
 		return $informant;
 	}
 
-	public function getCustodian() {
-		if ($this->custodian===NULL) {
+	public function getCustodian($autoCreate = TRUE) {
+		if ($this->custodian===NULL && $autoCreate && ! isset($this->_overrides['custodian']) ) {
 			$this->custodian = $this->createCustodian();
 		}
 		return $this->custodian;
@@ -611,8 +618,8 @@ class POCDMT000040.ClinicalDocument {
 		return $custodian;
 	}
 
-	public function getInformationRecipient() {
-		if ($this->informationRecipient===NULL) {
+	public function getInformationRecipient($autoCreate = TRUE) {
+		if ($this->informationRecipient===NULL && $autoCreate && ! isset($this->_overrides['informationRecipient']) ) {
 			$this->informationRecipient = $this->createInformationRecipient();
 		}
 		return $this->informationRecipient;
@@ -646,8 +653,8 @@ class POCDMT000040.ClinicalDocument {
 		return $informationRecipient;
 	}
 
-	public function getLegalAuthenticator() {
-		if ($this->legalAuthenticator===NULL) {
+	public function getLegalAuthenticator($autoCreate = TRUE) {
+		if ($this->legalAuthenticator===NULL && $autoCreate && ! isset($this->_overrides['legalAuthenticator']) ) {
 			$this->legalAuthenticator = $this->createLegalAuthenticator();
 		}
 		return $this->legalAuthenticator;
@@ -666,8 +673,8 @@ class POCDMT000040.ClinicalDocument {
 		return $legalAuthenticator;
 	}
 
-	public function getAuthenticator() {
-		if ($this->authenticator===NULL) {
+	public function getAuthenticator($autoCreate = TRUE) {
+		if ($this->authenticator===NULL && $autoCreate && ! isset($this->_overrides['authenticator']) ) {
 			$this->authenticator = $this->createAuthenticator();
 		}
 		return $this->authenticator;
@@ -701,8 +708,8 @@ class POCDMT000040.ClinicalDocument {
 		return $authenticator;
 	}
 
-	public function getParticipant() {
-		if ($this->participant===NULL) {
+	public function getParticipant($autoCreate = TRUE) {
+		if ($this->participant===NULL && $autoCreate && ! isset($this->_overrides['participant']) ) {
 			$this->participant = $this->createParticipant();
 		}
 		return $this->participant;
@@ -736,8 +743,8 @@ class POCDMT000040.ClinicalDocument {
 		return $participant;
 	}
 
-	public function getInFulfillmentOf() {
-		if ($this->inFulfillmentOf===NULL) {
+	public function getInFulfillmentOf($autoCreate = TRUE) {
+		if ($this->inFulfillmentOf===NULL && $autoCreate && ! isset($this->_overrides['inFulfillmentOf']) ) {
 			$this->inFulfillmentOf = $this->createInFulfillmentOf();
 		}
 		return $this->inFulfillmentOf;
@@ -771,8 +778,8 @@ class POCDMT000040.ClinicalDocument {
 		return $inFulfillmentOf;
 	}
 
-	public function getDocumentationOf() {
-		if ($this->documentationOf===NULL) {
+	public function getDocumentationOf($autoCreate = TRUE) {
+		if ($this->documentationOf===NULL && $autoCreate && ! isset($this->_overrides['documentationOf']) ) {
 			$this->documentationOf = $this->createDocumentationOf();
 		}
 		return $this->documentationOf;
@@ -806,8 +813,8 @@ class POCDMT000040.ClinicalDocument {
 		return $documentationOf;
 	}
 
-	public function getRelatedDocument() {
-		if ($this->relatedDocument===NULL) {
+	public function getRelatedDocument($autoCreate = TRUE) {
+		if ($this->relatedDocument===NULL && $autoCreate && ! isset($this->_overrides['relatedDocument']) ) {
 			$this->relatedDocument = $this->createRelatedDocument();
 		}
 		return $this->relatedDocument;
@@ -841,8 +848,8 @@ class POCDMT000040.ClinicalDocument {
 		return $relatedDocument;
 	}
 
-	public function getAuthorization() {
-		if ($this->authorization===NULL) {
+	public function getAuthorization($autoCreate = TRUE) {
+		if ($this->authorization===NULL && $autoCreate && ! isset($this->_overrides['authorization']) ) {
 			$this->authorization = $this->createAuthorization();
 		}
 		return $this->authorization;
@@ -876,8 +883,8 @@ class POCDMT000040.ClinicalDocument {
 		return $authorization;
 	}
 
-	public function getComponentOf() {
-		if ($this->componentOf===NULL) {
+	public function getComponentOf($autoCreate = TRUE) {
+		if ($this->componentOf===NULL && $autoCreate && ! isset($this->_overrides['componentOf']) ) {
 			$this->componentOf = $this->createComponentOf();
 		}
 		return $this->componentOf;
@@ -896,8 +903,8 @@ class POCDMT000040.ClinicalDocument {
 		return $componentOf;
 	}
 
-	public function getComponent() {
-		if ($this->component===NULL) {
+	public function getComponent($autoCreate = TRUE) {
+		if ($this->component===NULL && $autoCreate && ! isset($this->_overrides['component']) ) {
 			$this->component = $this->createComponent();
 		}
 		return $this->component;
@@ -916,8 +923,8 @@ class POCDMT000040.ClinicalDocument {
 		return $component;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -936,8 +943,8 @@ class POCDMT000040.ClinicalDocument {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;
@@ -956,8 +963,8 @@ class POCDMT000040.ClinicalDocument {
 		return $classCode;
 	}
 
-	public function getMoodCode() {
-		if ($this->moodCode===NULL) {
+	public function getMoodCode($autoCreate = TRUE) {
+		if ($this->moodCode===NULL && $autoCreate && ! isset($this->_overrides['moodCode']) ) {
 			$this->moodCode = $this->createMoodCode();
 		}
 		return $this->moodCode;

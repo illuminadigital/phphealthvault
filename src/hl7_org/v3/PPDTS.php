@@ -14,6 +14,13 @@ class PPDTS extends \org\w3\www\_2001\XMLSchema\TS {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\PQ", name="standardDeviation")
 	 */
 	protected $standardDeviation;
@@ -28,8 +35,8 @@ class PPDTS extends \org\w3\www\_2001\XMLSchema\TS {
 		$this->distributionType = ($distributionType===NULL) ? NULL : $this->validateDistributionType($distributionType);
 	}
 
-	public function getStandardDeviation() {
-		if ($this->standardDeviation===NULL) {
+	public function getStandardDeviation($autoCreate = TRUE) {
+		if ($this->standardDeviation===NULL && $autoCreate && ! isset($this->_overrides['standardDeviation']) ) {
 			$this->standardDeviation = $this->createStandardDeviation();
 		}
 		return $this->standardDeviation;
@@ -48,8 +55,8 @@ class PPDTS extends \org\w3\www\_2001\XMLSchema\TS {
 		return $standardDeviation;
 	}
 
-	public function getDistributionType() {
-		if ($this->distributionType===NULL) {
+	public function getDistributionType($autoCreate = TRUE) {
+		if ($this->distributionType===NULL && $autoCreate && ! isset($this->_overrides['distributionType']) ) {
 			$this->distributionType = $this->createDistributionType();
 		}
 		return $this->distributionType;

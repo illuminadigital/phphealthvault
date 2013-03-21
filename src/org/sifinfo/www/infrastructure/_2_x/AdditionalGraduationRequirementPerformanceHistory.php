@@ -14,6 +14,13 @@ class AdditionalGraduationRequirementPerformanceHistory {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Requirement", collection="true", name="Requirement")
 	 */
 	protected $requirement;
@@ -22,8 +29,8 @@ class AdditionalGraduationRequirementPerformanceHistory {
 		$this->requirement = ($requirement===NULL) ? NULL : $this->validateRequirement($requirement);
 	}
 
-	public function getRequirement() {
-		if ($this->requirement===NULL) {
+	public function getRequirement($autoCreate = TRUE) {
+		if ($this->requirement===NULL && $autoCreate && ! isset($this->_overrides['requirement']) ) {
 			$this->requirement = $this->createRequirement();
 		}
 		return $this->requirement;

@@ -15,6 +15,13 @@ class IndirectTime {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="UnitOfMeasure")
 	 */
 	protected $unitOfMeasure;
@@ -23,8 +30,8 @@ class IndirectTime {
 		$this->unitOfMeasure = ($unitOfMeasure===NULL) ? NULL : $this->validateUnitOfMeasure($unitOfMeasure);
 	}
 
-	public function getUnitOfMeasure() {
-		if ($this->unitOfMeasure===NULL) {
+	public function getUnitOfMeasure($autoCreate = TRUE) {
+		if ($this->unitOfMeasure===NULL && $autoCreate && ! isset($this->_overrides['unitOfMeasure']) ) {
 			$this->unitOfMeasure = $this->createUnitOfMeasure();
 		}
 		return $this->unitOfMeasure;

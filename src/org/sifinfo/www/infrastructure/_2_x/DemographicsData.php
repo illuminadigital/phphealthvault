@@ -14,6 +14,13 @@ class DemographicsData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\RaceListType", name="RaceList")
 	 */
 	protected $raceList;
@@ -64,8 +71,8 @@ class DemographicsData {
 		$this->dwellingArrangement = ($dwellingArrangement===NULL) ? NULL : $this->validateDwellingArrangement($dwellingArrangement);
 	}
 
-	public function getRaceList() {
-		if ($this->raceList===NULL) {
+	public function getRaceList($autoCreate = TRUE) {
+		if ($this->raceList===NULL && $autoCreate && ! isset($this->_overrides['raceList']) ) {
 			$this->raceList = $this->createRaceList();
 		}
 		return $this->raceList;
@@ -80,15 +87,22 @@ class DemographicsData {
 	}
 
 	protected function validateRaceList($raceList) {
+		if ( $raceList === FALSE ) {
+			$this->_overrides['raceList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $raceList instanceof \org\sifinfo\www\infrastructure\_2_x\RaceListType  && ! is_null($raceList) ) {
 			$raceList = new \org\sifinfo\www\infrastructure\_2_x\RaceListType ($raceList);
 		}
+
+		unset ($this->_overrides['raceList']);
 	
 		return $raceList;
 	}
 
-	public function getGender() {
-		if ($this->gender===NULL) {
+	public function getGender($autoCreate = TRUE) {
+		if ($this->gender===NULL && $autoCreate && ! isset($this->_overrides['gender']) ) {
 			$this->gender = $this->createGender();
 		}
 		return $this->gender;
@@ -107,8 +121,8 @@ class DemographicsData {
 		return $gender;
 	}
 
-	public function getBirthDate() {
-		if ($this->birthDate===NULL) {
+	public function getBirthDate($autoCreate = TRUE) {
+		if ($this->birthDate===NULL && $autoCreate && ! isset($this->_overrides['birthDate']) ) {
 			$this->birthDate = $this->createBirthDate();
 		}
 		return $this->birthDate;
@@ -127,8 +141,8 @@ class DemographicsData {
 		return $birthDate;
 	}
 
-	public function getEnglishProficiency() {
-		if ($this->englishProficiency===NULL) {
+	public function getEnglishProficiency($autoCreate = TRUE) {
+		if ($this->englishProficiency===NULL && $autoCreate && ! isset($this->_overrides['englishProficiency']) ) {
 			$this->englishProficiency = $this->createEnglishProficiency();
 		}
 		return $this->englishProficiency;
@@ -143,15 +157,22 @@ class DemographicsData {
 	}
 
 	protected function validateEnglishProficiency($englishProficiency) {
+		if ( $englishProficiency === FALSE ) {
+			$this->_overrides['englishProficiency'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $englishProficiency instanceof \org\sifinfo\www\infrastructure\_2_x\EnglishProficiencyType  && ! is_null($englishProficiency) ) {
 			$englishProficiency = new \org\sifinfo\www\infrastructure\_2_x\EnglishProficiencyType ($englishProficiency);
 		}
+
+		unset ($this->_overrides['englishProficiency']);
 	
 		return $englishProficiency;
 	}
 
-	public function getLanguageList() {
-		if ($this->languageList===NULL) {
+	public function getLanguageList($autoCreate = TRUE) {
+		if ($this->languageList===NULL && $autoCreate && ! isset($this->_overrides['languageList']) ) {
 			$this->languageList = $this->createLanguageList();
 		}
 		return $this->languageList;
@@ -166,15 +187,22 @@ class DemographicsData {
 	}
 
 	protected function validateLanguageList($languageList) {
+		if ( $languageList === FALSE ) {
+			$this->_overrides['languageList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $languageList instanceof \org\sifinfo\www\infrastructure\_2_x\LanguageListType  && ! is_null($languageList) ) {
 			$languageList = new \org\sifinfo\www\infrastructure\_2_x\LanguageListType ($languageList);
 		}
+
+		unset ($this->_overrides['languageList']);
 	
 		return $languageList;
 	}
 
-	public function getHispanicLatino() {
-		if ($this->hispanicLatino===NULL) {
+	public function getHispanicLatino($autoCreate = TRUE) {
+		if ($this->hispanicLatino===NULL && $autoCreate && ! isset($this->_overrides['hispanicLatino']) ) {
 			$this->hispanicLatino = $this->createHispanicLatino();
 		}
 		return $this->hispanicLatino;
@@ -193,8 +221,8 @@ class DemographicsData {
 		return $hispanicLatino;
 	}
 
-	public function getCountryOfBirth() {
-		if ($this->countryOfBirth===NULL) {
+	public function getCountryOfBirth($autoCreate = TRUE) {
+		if ($this->countryOfBirth===NULL && $autoCreate && ! isset($this->_overrides['countryOfBirth']) ) {
 			$this->countryOfBirth = $this->createCountryOfBirth();
 		}
 		return $this->countryOfBirth;
@@ -213,8 +241,8 @@ class DemographicsData {
 		return $countryOfBirth;
 	}
 
-	public function getDwellingArrangement() {
-		if ($this->dwellingArrangement===NULL) {
+	public function getDwellingArrangement($autoCreate = TRUE) {
+		if ($this->dwellingArrangement===NULL && $autoCreate && ! isset($this->_overrides['dwellingArrangement']) ) {
 			$this->dwellingArrangement = $this->createDwellingArrangement();
 		}
 		return $this->dwellingArrangement;
@@ -229,9 +257,16 @@ class DemographicsData {
 	}
 
 	protected function validateDwellingArrangement($dwellingArrangement) {
+		if ( $dwellingArrangement === FALSE ) {
+			$this->_overrides['dwellingArrangement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dwellingArrangement instanceof \org\sifinfo\www\infrastructure\_2_x\DwellingArrangement  && ! is_null($dwellingArrangement) ) {
 			$dwellingArrangement = new \org\sifinfo\www\infrastructure\_2_x\DwellingArrangement ($dwellingArrangement);
 		}
+
+		unset ($this->_overrides['dwellingArrangement']);
 	
 		return $dwellingArrangement;
 	}

@@ -14,6 +14,13 @@ class DateRange {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="date-min")
 	 */
 	protected $dateMin;
@@ -28,8 +35,8 @@ class DateRange {
 		$this->dateMax = ($dateMax===NULL) ? NULL : $this->validateDateMax($dateMax);
 	}
 
-	public function getDateMin() {
-		if ($this->dateMin===NULL) {
+	public function getDateMin($autoCreate = TRUE) {
+		if ($this->dateMin===NULL && $autoCreate && ! isset($this->_overrides['dateMin']) ) {
 			$this->dateMin = $this->createDateMin();
 		}
 		return $this->dateMin;
@@ -51,8 +58,8 @@ class DateRange {
 		return $dateMin;
 	}
 
-	public function getDateMax() {
-		if ($this->dateMax===NULL) {
+	public function getDateMax($autoCreate = TRUE) {
+		if ($this->dateMax===NULL && $autoCreate && ! isset($this->_overrides['dateMax']) ) {
 			$this->dateMax = $this->createDateMax();
 		}
 		return $this->dateMax;

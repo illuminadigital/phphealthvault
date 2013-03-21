@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\auth\Token", collection="true", name="token")
 	 */
 	protected $token;
@@ -30,8 +37,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->tokenAbsenceReason = ($tokenAbsenceReason===NULL) ? NULL : $this->validateTokenAbsenceReason($tokenAbsenceReason);
 	}
 
-	public function getToken() {
-		if ($this->token===NULL) {
+	public function getToken($autoCreate = TRUE) {
+		if ($this->token===NULL && $autoCreate && ! isset($this->_overrides['token']) ) {
 			$this->token = $this->createToken();
 		}
 		return $this->token;
@@ -66,8 +73,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->token[] = $token;
 	}
 
-	public function getTokenAbsenceReason() {
-		if ($this->tokenAbsenceReason===NULL) {
+	public function getTokenAbsenceReason($autoCreate = TRUE) {
+		if ($this->tokenAbsenceReason===NULL && $autoCreate && ! isset($this->_overrides['tokenAbsenceReason']) ) {
 			$this->tokenAbsenceReason = $this->createTokenAbsenceReason();
 		}
 		return $this->tokenAbsenceReason;

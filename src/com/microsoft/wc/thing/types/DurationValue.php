@@ -17,6 +17,13 @@ class DurationValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="start-date")
 	 */
 	protected $startDate;
@@ -31,8 +38,8 @@ class DurationValue {
 		$this->endDate = ($endDate===NULL) ? NULL : $this->validateEndDate($endDate);
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -54,8 +61,8 @@ class DurationValue {
 		return $startDate;
 	}
 
-	public function getEndDate() {
-		if ($this->endDate===NULL) {
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
 			$this->endDate = $this->createEndDate();
 		}
 		return $this->endDate;
@@ -70,9 +77,16 @@ class DurationValue {
 	}
 
 	protected function validateEndDate($endDate) {
+		if ( $endDate === FALSE ) {
+			$this->_overrides['endDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $endDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($endDate) ) {
 			$endDate = new \com\microsoft\wc\dates\ApproxDateTime ($endDate);
 		}
+
+		unset ($this->_overrides['endDate']);
 	
 		return $endDate;
 	}

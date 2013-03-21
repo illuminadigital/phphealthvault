@@ -14,6 +14,13 @@ class SignatureData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\HealthVaultThingSignatureMethod", name="hv-signature-method")
 	 */
 	protected $hvSignatureMethod;
@@ -34,8 +41,8 @@ class SignatureData {
 		$this->algorithmTag = ($algorithmTag===NULL) ? NULL : $this->validateAlgorithmTag($algorithmTag);
 	}
 
-	public function getHvSignatureMethod() {
-		if ($this->hvSignatureMethod===NULL) {
+	public function getHvSignatureMethod($autoCreate = TRUE) {
+		if ($this->hvSignatureMethod===NULL && $autoCreate && ! isset($this->_overrides['hvSignatureMethod']) ) {
 			$this->hvSignatureMethod = $this->createHvSignatureMethod();
 		}
 		return $this->hvSignatureMethod;
@@ -57,8 +64,8 @@ class SignatureData {
 		return $hvSignatureMethod;
 	}
 
-	public function getBlobSignatureInfo() {
-		if ($this->blobSignatureInfo===NULL) {
+	public function getBlobSignatureInfo($autoCreate = TRUE) {
+		if ($this->blobSignatureInfo===NULL && $autoCreate && ! isset($this->_overrides['blobSignatureInfo']) ) {
 			$this->blobSignatureInfo = $this->createBlobSignatureInfo();
 		}
 		return $this->blobSignatureInfo;
@@ -73,15 +80,22 @@ class SignatureData {
 	}
 
 	protected function validateBlobSignatureInfo($blobSignatureInfo) {
+		if ( $blobSignatureInfo === FALSE ) {
+			$this->_overrides['blobSignatureInfo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $blobSignatureInfo instanceof \com\microsoft\wc\thing\BlobSignatureInfo  && ! is_null($blobSignatureInfo) ) {
 			$blobSignatureInfo = new \com\microsoft\wc\thing\BlobSignatureInfo ($blobSignatureInfo);
 		}
+
+		unset ($this->_overrides['blobSignatureInfo']);
 	
 		return $blobSignatureInfo;
 	}
 
-	public function getAlgorithmTag() {
-		if ($this->algorithmTag===NULL) {
+	public function getAlgorithmTag($autoCreate = TRUE) {
+		if ($this->algorithmTag===NULL && $autoCreate && ! isset($this->_overrides['algorithmTag']) ) {
 			$this->algorithmTag = $this->createAlgorithmTag();
 		}
 		return $this->algorithmTag;

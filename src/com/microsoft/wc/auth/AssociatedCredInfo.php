@@ -15,6 +15,13 @@ class AssociatedCredInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="simple-encrypted")
 	 */
 	protected $simpleEncrypted;
@@ -89,8 +96,8 @@ class AssociatedCredInfo {
 		$this->dateLastUsed = ($dateLastUsed===NULL) ? NULL : $this->validateDateLastUsed($dateLastUsed);
 	}
 
-	public function getSimpleEncrypted() {
-		if ($this->simpleEncrypted===NULL) {
+	public function getSimpleEncrypted($autoCreate = TRUE) {
+		if ($this->simpleEncrypted===NULL && $autoCreate && ! isset($this->_overrides['simpleEncrypted']) ) {
 			$this->simpleEncrypted = $this->createSimpleEncrypted();
 		}
 		return $this->simpleEncrypted;
@@ -112,8 +119,8 @@ class AssociatedCredInfo {
 		return $simpleEncrypted;
 	}
 
-	public function getSimpleUserpass() {
-		if ($this->simpleUserpass===NULL) {
+	public function getSimpleUserpass($autoCreate = TRUE) {
+		if ($this->simpleUserpass===NULL && $autoCreate && ! isset($this->_overrides['simpleUserpass']) ) {
 			$this->simpleUserpass = $this->createSimpleUserpass();
 		}
 		return $this->simpleUserpass;
@@ -135,8 +142,8 @@ class AssociatedCredInfo {
 		return $simpleUserpass;
 	}
 
-	public function getSimplePassport() {
-		if ($this->simplePassport===NULL) {
+	public function getSimplePassport($autoCreate = TRUE) {
+		if ($this->simplePassport===NULL && $autoCreate && ! isset($this->_overrides['simplePassport']) ) {
 			$this->simplePassport = $this->createSimplePassport();
 		}
 		return $this->simplePassport;
@@ -158,8 +165,8 @@ class AssociatedCredInfo {
 		return $simplePassport;
 	}
 
-	public function getSimpleOpenid() {
-		if ($this->simpleOpenid===NULL) {
+	public function getSimpleOpenid($autoCreate = TRUE) {
+		if ($this->simpleOpenid===NULL && $autoCreate && ! isset($this->_overrides['simpleOpenid']) ) {
 			$this->simpleOpenid = $this->createSimpleOpenid();
 		}
 		return $this->simpleOpenid;
@@ -181,8 +188,8 @@ class AssociatedCredInfo {
 		return $simpleOpenid;
 	}
 
-	public function getSimpleFacebook() {
-		if ($this->simpleFacebook===NULL) {
+	public function getSimpleFacebook($autoCreate = TRUE) {
+		if ($this->simpleFacebook===NULL && $autoCreate && ! isset($this->_overrides['simpleFacebook']) ) {
 			$this->simpleFacebook = $this->createSimpleFacebook();
 		}
 		return $this->simpleFacebook;
@@ -204,8 +211,8 @@ class AssociatedCredInfo {
 		return $simpleFacebook;
 	}
 
-	public function getSimpleEmergencyAccess() {
-		if ($this->simpleEmergencyAccess===NULL) {
+	public function getSimpleEmergencyAccess($autoCreate = TRUE) {
+		if ($this->simpleEmergencyAccess===NULL && $autoCreate && ! isset($this->_overrides['simpleEmergencyAccess']) ) {
 			$this->simpleEmergencyAccess = $this->createSimpleEmergencyAccess();
 		}
 		return $this->simpleEmergencyAccess;
@@ -227,8 +234,8 @@ class AssociatedCredInfo {
 		return $simpleEmergencyAccess;
 	}
 
-	public function getSimplePhoneFactor() {
-		if ($this->simplePhoneFactor===NULL) {
+	public function getSimplePhoneFactor($autoCreate = TRUE) {
+		if ($this->simplePhoneFactor===NULL && $autoCreate && ! isset($this->_overrides['simplePhoneFactor']) ) {
 			$this->simplePhoneFactor = $this->createSimplePhoneFactor();
 		}
 		return $this->simplePhoneFactor;
@@ -250,8 +257,8 @@ class AssociatedCredInfo {
 		return $simplePhoneFactor;
 	}
 
-	public function getIntegratedWindows() {
-		if ($this->integratedWindows===NULL) {
+	public function getIntegratedWindows($autoCreate = TRUE) {
+		if ($this->integratedWindows===NULL && $autoCreate && ! isset($this->_overrides['integratedWindows']) ) {
 			$this->integratedWindows = $this->createIntegratedWindows();
 		}
 		return $this->integratedWindows;
@@ -273,8 +280,8 @@ class AssociatedCredInfo {
 		return $integratedWindows;
 	}
 
-	public function getCredentialMetadata() {
-		if ($this->credentialMetadata===NULL) {
+	public function getCredentialMetadata($autoCreate = TRUE) {
+		if ($this->credentialMetadata===NULL && $autoCreate && ! isset($this->_overrides['credentialMetadata']) ) {
 			$this->credentialMetadata = $this->createCredentialMetadata();
 		}
 		return $this->credentialMetadata;
@@ -289,15 +296,22 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateCredentialMetadata($credentialMetadata) {
+		if ( $credentialMetadata === FALSE ) {
+			$this->_overrides['credentialMetadata'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $credentialMetadata instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($credentialMetadata) ) {
 			$credentialMetadata = new \com\microsoft\wc\types\Stringnz ($credentialMetadata);
 		}
+
+		unset ($this->_overrides['credentialMetadata']);
 	
 		return $credentialMetadata;
 	}
 
-	public function getCredentialName() {
-		if ($this->credentialName===NULL) {
+	public function getCredentialName($autoCreate = TRUE) {
+		if ($this->credentialName===NULL && $autoCreate && ! isset($this->_overrides['credentialName']) ) {
 			$this->credentialName = $this->createCredentialName();
 		}
 		return $this->credentialName;
@@ -312,15 +326,22 @@ class AssociatedCredInfo {
 	}
 
 	protected function validateCredentialName($credentialName) {
+		if ( $credentialName === FALSE ) {
+			$this->_overrides['credentialName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $credentialName instanceof \com\microsoft\wc\types\String64  && ! is_null($credentialName) ) {
 			$credentialName = new \com\microsoft\wc\types\String64 ($credentialName);
 		}
+
+		unset ($this->_overrides['credentialName']);
 	
 		return $credentialName;
 	}
 
-	public function getDateCreated() {
-		if ($this->dateCreated===NULL) {
+	public function getDateCreated($autoCreate = TRUE) {
+		if ($this->dateCreated===NULL && $autoCreate && ! isset($this->_overrides['dateCreated']) ) {
 			$this->dateCreated = $this->createDateCreated();
 		}
 		return $this->dateCreated;
@@ -342,8 +363,8 @@ class AssociatedCredInfo {
 		return $dateCreated;
 	}
 
-	public function getDateLastUsed() {
-		if ($this->dateLastUsed===NULL) {
+	public function getDateLastUsed($autoCreate = TRUE) {
+		if ($this->dateLastUsed===NULL && $autoCreate && ! isset($this->_overrides['dateLastUsed']) ) {
 			$this->dateLastUsed = $this->createDateLastUsed();
 		}
 		return $this->dateLastUsed;

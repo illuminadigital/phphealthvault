@@ -15,6 +15,13 @@ class CarePlanTasks {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\CarePlanTask", collection="true", name="task")
 	 */
 	protected $task;
@@ -23,8 +30,8 @@ class CarePlanTasks {
 		$this->task = ($task===NULL) ? NULL : $this->validateTask($task);
 	}
 
-	public function getTask() {
-		if ($this->task===NULL) {
+	public function getTask($autoCreate = TRUE) {
+		if ($this->task===NULL && $autoCreate && ! isset($this->_overrides['task']) ) {
 			$this->task = $this->createTask();
 		}
 		return $this->task;

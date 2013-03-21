@@ -16,6 +16,13 @@ class RecordItemChangedEvent {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\subscription\RecordItemChangedEventFilters", name="filters")
 	 */
 	protected $filters;
@@ -24,8 +31,8 @@ class RecordItemChangedEvent {
 		$this->filters = ($filters===NULL) ? NULL : $this->validateFilters($filters);
 	}
 
-	public function getFilters() {
-		if ($this->filters===NULL) {
+	public function getFilters($autoCreate = TRUE) {
+		if ($this->filters===NULL && $autoCreate && ! isset($this->_overrides['filters']) ) {
 			$this->filters = $this->createFilters();
 		}
 		return $this->filters;

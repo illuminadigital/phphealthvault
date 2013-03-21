@@ -15,6 +15,13 @@ class CarePlanGoalGroup {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -35,8 +42,8 @@ class CarePlanGoalGroup {
 		$this->goals = ($goals===NULL) ? NULL : $this->validateGoals($goals);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -58,8 +65,8 @@ class CarePlanGoalGroup {
 		return $name;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -81,8 +88,8 @@ class CarePlanGoalGroup {
 		return $description;
 	}
 
-	public function getGoals() {
-		if ($this->goals===NULL) {
+	public function getGoals($autoCreate = TRUE) {
+		if ($this->goals===NULL && $autoCreate && ! isset($this->_overrides['goals']) ) {
 			$this->goals = $this->createGoals();
 		}
 		return $this->goals;

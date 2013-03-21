@@ -15,6 +15,13 @@ class Status {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="integer", name="code")
 	 */
 	protected $code;
@@ -29,8 +36,8 @@ class Status {
 		$this->error = ($error===NULL) ? NULL : $this->validateError($error);
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -60,8 +67,8 @@ class Status {
 		return $code;
 	}
 
-	public function getError() {
-		if ($this->error===NULL) {
+	public function getError($autoCreate = TRUE) {
+		if ($this->error===NULL && $autoCreate && ! isset($this->_overrides['error']) ) {
 			$this->error = $this->createError();
 		}
 		return $this->error;
@@ -76,9 +83,16 @@ class Status {
 	}
 
 	protected function validateError($error) {
+		if ( $error === FALSE ) {
+			$this->_overrides['error'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $error instanceof \com\microsoft\wc\methods\response\Error  && ! is_null($error) ) {
 			$error = new \com\microsoft\wc\methods\response\Error ($error);
 		}
+
+		unset ($this->_overrides['error']);
 	
 		return $error;
 	}

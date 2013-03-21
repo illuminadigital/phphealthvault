@@ -15,6 +15,13 @@ class ThingTypeInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="id")
 	 */
 	protected $id;
@@ -89,8 +96,8 @@ class ThingTypeInfo {
 		$this->effectiveDateXpath = ($effectiveDateXpath===NULL) ? NULL : $this->validateEffectiveDateXpath($effectiveDateXpath);
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -112,8 +119,8 @@ class ThingTypeInfo {
 		return $id;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -135,8 +142,8 @@ class ThingTypeInfo {
 		return $name;
 	}
 
-	public function getUncreatable() {
-		if ($this->uncreatable===NULL) {
+	public function getUncreatable($autoCreate = TRUE) {
+		if ($this->uncreatable===NULL && $autoCreate && ! isset($this->_overrides['uncreatable']) ) {
 			$this->uncreatable = $this->createUncreatable();
 		}
 		return $this->uncreatable;
@@ -158,8 +165,8 @@ class ThingTypeInfo {
 		return $uncreatable;
 	}
 
-	public function getImmutable() {
-		if ($this->immutable===NULL) {
+	public function getImmutable($autoCreate = TRUE) {
+		if ($this->immutable===NULL && $autoCreate && ! isset($this->_overrides['immutable']) ) {
 			$this->immutable = $this->createImmutable();
 		}
 		return $this->immutable;
@@ -181,8 +188,8 @@ class ThingTypeInfo {
 		return $immutable;
 	}
 
-	public function getSingleton() {
-		if ($this->singleton===NULL) {
+	public function getSingleton($autoCreate = TRUE) {
+		if ($this->singleton===NULL && $autoCreate && ! isset($this->_overrides['singleton']) ) {
 			$this->singleton = $this->createSingleton();
 		}
 		return $this->singleton;
@@ -204,8 +211,8 @@ class ThingTypeInfo {
 		return $singleton;
 	}
 
-	public function getXsd() {
-		if ($this->xsd===NULL) {
+	public function getXsd($autoCreate = TRUE) {
+		if ($this->xsd===NULL && $autoCreate && ! isset($this->_overrides['xsd']) ) {
 			$this->xsd = $this->createXsd();
 		}
 		return $this->xsd;
@@ -227,8 +234,8 @@ class ThingTypeInfo {
 		return $xsd;
 	}
 
-	public function getColumns() {
-		if ($this->columns===NULL) {
+	public function getColumns($autoCreate = TRUE) {
+		if ($this->columns===NULL && $autoCreate && ! isset($this->_overrides['columns']) ) {
 			$this->columns = $this->createColumns();
 		}
 		return $this->columns;
@@ -243,15 +250,22 @@ class ThingTypeInfo {
 	}
 
 	protected function validateColumns($columns) {
+		if ( $columns === FALSE ) {
+			$this->_overrides['columns'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $columns instanceof \com\microsoft\wc\methods\response\GetThingType\Columns  && ! is_null($columns) ) {
 			$columns = new \com\microsoft\wc\methods\response\GetThingType\Columns ($columns);
 		}
+
+		unset ($this->_overrides['columns']);
 	
 		return $columns;
 	}
 
-	public function getTransforms() {
-		if ($this->transforms===NULL) {
+	public function getTransforms($autoCreate = TRUE) {
+		if ($this->transforms===NULL && $autoCreate && ! isset($this->_overrides['transforms']) ) {
 			$this->transforms = $this->createTransforms();
 		}
 		return $this->transforms;
@@ -266,15 +280,22 @@ class ThingTypeInfo {
 	}
 
 	protected function validateTransforms($transforms) {
+		if ( $transforms === FALSE ) {
+			$this->_overrides['transforms'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $transforms instanceof \com\microsoft\wc\methods\response\GetThingType\Transforms  && ! is_null($transforms) ) {
 			$transforms = new \com\microsoft\wc\methods\response\GetThingType\Transforms ($transforms);
 		}
+
+		unset ($this->_overrides['transforms']);
 	
 		return $transforms;
 	}
 
-	public function getTransformSource() {
-		if ($this->transformSource===NULL) {
+	public function getTransformSource($autoCreate = TRUE) {
+		if ($this->transformSource===NULL && $autoCreate && ! isset($this->_overrides['transformSource']) ) {
 			$this->transformSource = $this->createTransformSource();
 		}
 		return $this->transformSource;
@@ -289,9 +310,16 @@ class ThingTypeInfo {
 	}
 
 	protected function validateTransformSource($transformSource) {
+		if ( $transformSource === FALSE ) {
+			$this->_overrides['transformSource'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($transformSource) && ! is_null($transformSource) ) {
 			$transformSource = array($transformSource);
 		}
+
+		unset ($this->_overrides['transformSource']);
 		$count = count($transformSource);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'transformSource', 0));
@@ -309,8 +337,8 @@ class ThingTypeInfo {
 		$this->transformSource[] = $transformSource;
 	}
 
-	public function getImage() {
-		if ($this->image===NULL) {
+	public function getImage($autoCreate = TRUE) {
+		if ($this->image===NULL && $autoCreate && ! isset($this->_overrides['image']) ) {
 			$this->image = $this->createImage();
 		}
 		return $this->image;
@@ -325,9 +353,16 @@ class ThingTypeInfo {
 	}
 
 	protected function validateImage($image) {
+		if ( $image === FALSE ) {
+			$this->_overrides['image'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($image) && ! is_null($image) ) {
 			$image = array($image);
 		}
+
+		unset ($this->_overrides['image']);
 		$count = count($image);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'image', 0));
@@ -345,8 +380,8 @@ class ThingTypeInfo {
 		$this->image[] = $image;
 	}
 
-	public function getVersions() {
-		if ($this->versions===NULL) {
+	public function getVersions($autoCreate = TRUE) {
+		if ($this->versions===NULL && $autoCreate && ! isset($this->_overrides['versions']) ) {
 			$this->versions = $this->createVersions();
 		}
 		return $this->versions;
@@ -361,15 +396,22 @@ class ThingTypeInfo {
 	}
 
 	protected function validateVersions($versions) {
+		if ( $versions === FALSE ) {
+			$this->_overrides['versions'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $versions instanceof \com\microsoft\wc\methods\response\GetThingType\Versions  && ! is_null($versions) ) {
 			$versions = new \com\microsoft\wc\methods\response\GetThingType\Versions ($versions);
 		}
+
+		unset ($this->_overrides['versions']);
 	
 		return $versions;
 	}
 
-	public function getEffectiveDateXpath() {
-		if ($this->effectiveDateXpath===NULL) {
+	public function getEffectiveDateXpath($autoCreate = TRUE) {
+		if ($this->effectiveDateXpath===NULL && $autoCreate && ! isset($this->_overrides['effectiveDateXpath']) ) {
 			$this->effectiveDateXpath = $this->createEffectiveDateXpath();
 		}
 		return $this->effectiveDateXpath;

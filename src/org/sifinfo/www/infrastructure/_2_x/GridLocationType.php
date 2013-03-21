@@ -15,6 +15,13 @@ class GridLocationType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Latitude", name="Latitude")
 	 */
 	protected $latitude;
@@ -29,8 +36,8 @@ class GridLocationType {
 		$this->longitude = ($longitude===NULL) ? NULL : $this->validateLongitude($longitude);
 	}
 
-	public function getLatitude() {
-		if ($this->latitude===NULL) {
+	public function getLatitude($autoCreate = TRUE) {
+		if ($this->latitude===NULL && $autoCreate && ! isset($this->_overrides['latitude']) ) {
 			$this->latitude = $this->createLatitude();
 		}
 		return $this->latitude;
@@ -52,8 +59,8 @@ class GridLocationType {
 		return $latitude;
 	}
 
-	public function getLongitude() {
-		if ($this->longitude===NULL) {
+	public function getLongitude($autoCreate = TRUE) {
+		if ($this->longitude===NULL && $autoCreate && ! isset($this->_overrides['longitude']) ) {
 			$this->longitude = $this->createLongitude();
 		}
 		return $this->longitude;

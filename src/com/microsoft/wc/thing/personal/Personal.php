@@ -19,6 +19,13 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Personal Demographic Information';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Name", name="name")
 	 */
 	protected $name;
@@ -105,8 +112,8 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 		$this->organDonor = ($organDonor===NULL) ? NULL : $this->validateOrganDonor($organDonor);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -121,15 +128,22 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateName($name) {
+		if ( $name === FALSE ) {
+			$this->_overrides['name'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $name instanceof \com\microsoft\wc\thing\types\Name  && ! is_null($name) ) {
 			$name = new \com\microsoft\wc\thing\types\Name ($name);
 		}
+
+		unset ($this->_overrides['name']);
 	
 		return $name;
 	}
 
-	public function getBirthdate() {
-		if ($this->birthdate===NULL) {
+	public function getBirthdate($autoCreate = TRUE) {
+		if ($this->birthdate===NULL && $autoCreate && ! isset($this->_overrides['birthdate']) ) {
 			$this->birthdate = $this->createBirthdate();
 		}
 		return $this->birthdate;
@@ -144,15 +158,22 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateBirthdate($birthdate) {
+		if ( $birthdate === FALSE ) {
+			$this->_overrides['birthdate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $birthdate instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($birthdate) ) {
 			$birthdate = new \com\microsoft\wc\dates\DateTime ($birthdate);
 		}
+
+		unset ($this->_overrides['birthdate']);
 	
 		return $birthdate;
 	}
 
-	public function getBloodType() {
-		if ($this->bloodType===NULL) {
+	public function getBloodType($autoCreate = TRUE) {
+		if ($this->bloodType===NULL && $autoCreate && ! isset($this->_overrides['bloodType']) ) {
 			$this->bloodType = $this->createBloodType();
 		}
 		return $this->bloodType;
@@ -167,15 +188,22 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateBloodType($bloodType) {
+		if ( $bloodType === FALSE ) {
+			$this->_overrides['bloodType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $bloodType instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($bloodType) ) {
 			$bloodType = new \com\microsoft\wc\types\CodableValue ($bloodType);
 		}
+
+		unset ($this->_overrides['bloodType']);
 	
 		return $bloodType;
 	}
 
-	public function getEthnicity() {
-		if ($this->ethnicity===NULL) {
+	public function getEthnicity($autoCreate = TRUE) {
+		if ($this->ethnicity===NULL && $autoCreate && ! isset($this->_overrides['ethnicity']) ) {
 			$this->ethnicity = $this->createEthnicity();
 		}
 		return $this->ethnicity;
@@ -190,15 +218,22 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateEthnicity($ethnicity) {
+		if ( $ethnicity === FALSE ) {
+			$this->_overrides['ethnicity'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $ethnicity instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($ethnicity) ) {
 			$ethnicity = new \com\microsoft\wc\types\CodableValue ($ethnicity);
 		}
+
+		unset ($this->_overrides['ethnicity']);
 	
 		return $ethnicity;
 	}
 
-	public function getSsn() {
-		if ($this->ssn===NULL) {
+	public function getSsn($autoCreate = TRUE) {
+		if ($this->ssn===NULL && $autoCreate && ! isset($this->_overrides['ssn']) ) {
 			$this->ssn = $this->createSsn();
 		}
 		return $this->ssn;
@@ -220,8 +255,8 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 		return $ssn;
 	}
 
-	public function getMaritalStatus() {
-		if ($this->maritalStatus===NULL) {
+	public function getMaritalStatus($autoCreate = TRUE) {
+		if ($this->maritalStatus===NULL && $autoCreate && ! isset($this->_overrides['maritalStatus']) ) {
 			$this->maritalStatus = $this->createMaritalStatus();
 		}
 		return $this->maritalStatus;
@@ -236,15 +271,22 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMaritalStatus($maritalStatus) {
+		if ( $maritalStatus === FALSE ) {
+			$this->_overrides['maritalStatus'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $maritalStatus instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($maritalStatus) ) {
 			$maritalStatus = new \com\microsoft\wc\types\CodableValue ($maritalStatus);
 		}
+
+		unset ($this->_overrides['maritalStatus']);
 	
 		return $maritalStatus;
 	}
 
-	public function getEmploymentStatus() {
-		if ($this->employmentStatus===NULL) {
+	public function getEmploymentStatus($autoCreate = TRUE) {
+		if ($this->employmentStatus===NULL && $autoCreate && ! isset($this->_overrides['employmentStatus']) ) {
 			$this->employmentStatus = $this->createEmploymentStatus();
 		}
 		return $this->employmentStatus;
@@ -266,8 +308,8 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 		return $employmentStatus;
 	}
 
-	public function getIsDeceased() {
-		if ($this->isDeceased===NULL) {
+	public function getIsDeceased($autoCreate = TRUE) {
+		if ($this->isDeceased===NULL && $autoCreate && ! isset($this->_overrides['isDeceased']) ) {
 			$this->isDeceased = $this->createIsDeceased();
 		}
 		return $this->isDeceased;
@@ -289,8 +331,8 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 		return $isDeceased;
 	}
 
-	public function getDateOfDeath() {
-		if ($this->dateOfDeath===NULL) {
+	public function getDateOfDeath($autoCreate = TRUE) {
+		if ($this->dateOfDeath===NULL && $autoCreate && ! isset($this->_overrides['dateOfDeath']) ) {
 			$this->dateOfDeath = $this->createDateOfDeath();
 		}
 		return $this->dateOfDeath;
@@ -305,15 +347,22 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDateOfDeath($dateOfDeath) {
+		if ( $dateOfDeath === FALSE ) {
+			$this->_overrides['dateOfDeath'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dateOfDeath instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($dateOfDeath) ) {
 			$dateOfDeath = new \com\microsoft\wc\dates\ApproxDateTime ($dateOfDeath);
 		}
+
+		unset ($this->_overrides['dateOfDeath']);
 	
 		return $dateOfDeath;
 	}
 
-	public function getReligion() {
-		if ($this->religion===NULL) {
+	public function getReligion($autoCreate = TRUE) {
+		if ($this->religion===NULL && $autoCreate && ! isset($this->_overrides['religion']) ) {
 			$this->religion = $this->createReligion();
 		}
 		return $this->religion;
@@ -328,15 +377,22 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateReligion($religion) {
+		if ( $religion === FALSE ) {
+			$this->_overrides['religion'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $religion instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($religion) ) {
 			$religion = new \com\microsoft\wc\types\CodableValue ($religion);
 		}
+
+		unset ($this->_overrides['religion']);
 	
 		return $religion;
 	}
 
-	public function getIsVeteran() {
-		if ($this->isVeteran===NULL) {
+	public function getIsVeteran($autoCreate = TRUE) {
+		if ($this->isVeteran===NULL && $autoCreate && ! isset($this->_overrides['isVeteran']) ) {
 			$this->isVeteran = $this->createIsVeteran();
 		}
 		return $this->isVeteran;
@@ -358,8 +414,8 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 		return $isVeteran;
 	}
 
-	public function getHighestEducationLevel() {
-		if ($this->highestEducationLevel===NULL) {
+	public function getHighestEducationLevel($autoCreate = TRUE) {
+		if ($this->highestEducationLevel===NULL && $autoCreate && ! isset($this->_overrides['highestEducationLevel']) ) {
 			$this->highestEducationLevel = $this->createHighestEducationLevel();
 		}
 		return $this->highestEducationLevel;
@@ -374,15 +430,22 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateHighestEducationLevel($highestEducationLevel) {
+		if ( $highestEducationLevel === FALSE ) {
+			$this->_overrides['highestEducationLevel'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $highestEducationLevel instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($highestEducationLevel) ) {
 			$highestEducationLevel = new \com\microsoft\wc\types\CodableValue ($highestEducationLevel);
 		}
+
+		unset ($this->_overrides['highestEducationLevel']);
 	
 		return $highestEducationLevel;
 	}
 
-	public function getIsDisabled() {
-		if ($this->isDisabled===NULL) {
+	public function getIsDisabled($autoCreate = TRUE) {
+		if ($this->isDisabled===NULL && $autoCreate && ! isset($this->_overrides['isDisabled']) ) {
 			$this->isDisabled = $this->createIsDisabled();
 		}
 		return $this->isDisabled;
@@ -404,8 +467,8 @@ class Personal extends \com\microsoft\wc\thing\AnyMixed {
 		return $isDisabled;
 	}
 
-	public function getOrganDonor() {
-		if ($this->organDonor===NULL) {
+	public function getOrganDonor($autoCreate = TRUE) {
+		if ($this->organDonor===NULL && $autoCreate && ! isset($this->_overrides['organDonor']) ) {
 			$this->organDonor = $this->createOrganDonor();
 		}
 		return $this->organDonor;

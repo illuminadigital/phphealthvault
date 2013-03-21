@@ -18,6 +18,13 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Insurance Plan';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="plan-name")
 	 */
 	protected $planName;
@@ -92,8 +99,8 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 		$this->contact = ($contact===NULL) ? NULL : $this->validateContact($contact);
 	}
 
-	public function getPlanName() {
-		if ($this->planName===NULL) {
+	public function getPlanName($autoCreate = TRUE) {
+		if ($this->planName===NULL && $autoCreate && ! isset($this->_overrides['planName']) ) {
 			$this->planName = $this->createPlanName();
 		}
 		return $this->planName;
@@ -115,8 +122,8 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 		return $planName;
 	}
 
-	public function getCoverageType() {
-		if ($this->coverageType===NULL) {
+	public function getCoverageType($autoCreate = TRUE) {
+		if ($this->coverageType===NULL && $autoCreate && ! isset($this->_overrides['coverageType']) ) {
 			$this->coverageType = $this->createCoverageType();
 		}
 		return $this->coverageType;
@@ -131,15 +138,22 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCoverageType($coverageType) {
+		if ( $coverageType === FALSE ) {
+			$this->_overrides['coverageType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $coverageType instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($coverageType) ) {
 			$coverageType = new \com\microsoft\wc\types\CodableValue ($coverageType);
 		}
+
+		unset ($this->_overrides['coverageType']);
 	
 		return $coverageType;
 	}
 
-	public function getCarrierId() {
-		if ($this->carrierId===NULL) {
+	public function getCarrierId($autoCreate = TRUE) {
+		if ($this->carrierId===NULL && $autoCreate && ! isset($this->_overrides['carrierId']) ) {
 			$this->carrierId = $this->createCarrierId();
 		}
 		return $this->carrierId;
@@ -161,8 +175,8 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 		return $carrierId;
 	}
 
-	public function getGroupNum() {
-		if ($this->groupNum===NULL) {
+	public function getGroupNum($autoCreate = TRUE) {
+		if ($this->groupNum===NULL && $autoCreate && ! isset($this->_overrides['groupNum']) ) {
 			$this->groupNum = $this->createGroupNum();
 		}
 		return $this->groupNum;
@@ -184,8 +198,8 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 		return $groupNum;
 	}
 
-	public function getPlanCode() {
-		if ($this->planCode===NULL) {
+	public function getPlanCode($autoCreate = TRUE) {
+		if ($this->planCode===NULL && $autoCreate && ! isset($this->_overrides['planCode']) ) {
 			$this->planCode = $this->createPlanCode();
 		}
 		return $this->planCode;
@@ -207,8 +221,8 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 		return $planCode;
 	}
 
-	public function getSubscriberId() {
-		if ($this->subscriberId===NULL) {
+	public function getSubscriberId($autoCreate = TRUE) {
+		if ($this->subscriberId===NULL && $autoCreate && ! isset($this->_overrides['subscriberId']) ) {
 			$this->subscriberId = $this->createSubscriberId();
 		}
 		return $this->subscriberId;
@@ -230,8 +244,8 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 		return $subscriberId;
 	}
 
-	public function getPersonCode() {
-		if ($this->personCode===NULL) {
+	public function getPersonCode($autoCreate = TRUE) {
+		if ($this->personCode===NULL && $autoCreate && ! isset($this->_overrides['personCode']) ) {
 			$this->personCode = $this->createPersonCode();
 		}
 		return $this->personCode;
@@ -253,8 +267,8 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 		return $personCode;
 	}
 
-	public function getSubscriberName() {
-		if ($this->subscriberName===NULL) {
+	public function getSubscriberName($autoCreate = TRUE) {
+		if ($this->subscriberName===NULL && $autoCreate && ! isset($this->_overrides['subscriberName']) ) {
 			$this->subscriberName = $this->createSubscriberName();
 		}
 		return $this->subscriberName;
@@ -276,8 +290,8 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 		return $subscriberName;
 	}
 
-	public function getSubscriberDob() {
-		if ($this->subscriberDob===NULL) {
+	public function getSubscriberDob($autoCreate = TRUE) {
+		if ($this->subscriberDob===NULL && $autoCreate && ! isset($this->_overrides['subscriberDob']) ) {
 			$this->subscriberDob = $this->createSubscriberDob();
 		}
 		return $this->subscriberDob;
@@ -292,15 +306,22 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSubscriberDob($subscriberDob) {
+		if ( $subscriberDob === FALSE ) {
+			$this->_overrides['subscriberDob'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $subscriberDob instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($subscriberDob) ) {
 			$subscriberDob = new \com\microsoft\wc\dates\DateTime ($subscriberDob);
 		}
+
+		unset ($this->_overrides['subscriberDob']);
 	
 		return $subscriberDob;
 	}
 
-	public function getIsPrimary() {
-		if ($this->isPrimary===NULL) {
+	public function getIsPrimary($autoCreate = TRUE) {
+		if ($this->isPrimary===NULL && $autoCreate && ! isset($this->_overrides['isPrimary']) ) {
 			$this->isPrimary = $this->createIsPrimary();
 		}
 		return $this->isPrimary;
@@ -322,8 +343,8 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 		return $isPrimary;
 	}
 
-	public function getExpirationDate() {
-		if ($this->expirationDate===NULL) {
+	public function getExpirationDate($autoCreate = TRUE) {
+		if ($this->expirationDate===NULL && $autoCreate && ! isset($this->_overrides['expirationDate']) ) {
 			$this->expirationDate = $this->createExpirationDate();
 		}
 		return $this->expirationDate;
@@ -338,15 +359,22 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExpirationDate($expirationDate) {
+		if ( $expirationDate === FALSE ) {
+			$this->_overrides['expirationDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $expirationDate instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($expirationDate) ) {
 			$expirationDate = new \com\microsoft\wc\dates\DateTime ($expirationDate);
 		}
+
+		unset ($this->_overrides['expirationDate']);
 	
 		return $expirationDate;
 	}
 
-	public function getContact() {
-		if ($this->contact===NULL) {
+	public function getContact($autoCreate = TRUE) {
+		if ($this->contact===NULL && $autoCreate && ! isset($this->_overrides['contact']) ) {
 			$this->contact = $this->createContact();
 		}
 		return $this->contact;
@@ -361,9 +389,16 @@ class Payer extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateContact($contact) {
+		if ( $contact === FALSE ) {
+			$this->_overrides['contact'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $contact instanceof \com\microsoft\wc\thing\types\Contact  && ! is_null($contact) ) {
 			$contact = new \com\microsoft\wc\thing\types\Contact ($contact);
 		}
+
+		unset ($this->_overrides['contact']);
 	
 		return $contact;
 	}

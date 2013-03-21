@@ -14,6 +14,13 @@ class SchoolAttended {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\LEAInfoData", name="LEAInfoData")
 	 */
 	protected $lEAInfoData;
@@ -46,8 +53,8 @@ class SchoolAttended {
 		$this->refId = ($refId===NULL) ? NULL : $this->validateRefId($refId);
 	}
 
-	public function getLEAInfoData() {
-		if ($this->lEAInfoData===NULL) {
+	public function getLEAInfoData($autoCreate = TRUE) {
+		if ($this->lEAInfoData===NULL && $autoCreate && ! isset($this->_overrides['lEAInfoData']) ) {
 			$this->lEAInfoData = $this->createLEAInfoData();
 		}
 		return $this->lEAInfoData;
@@ -62,15 +69,22 @@ class SchoolAttended {
 	}
 
 	protected function validateLEAInfoData($lEAInfoData) {
+		if ( $lEAInfoData === FALSE ) {
+			$this->_overrides['lEAInfoData'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $lEAInfoData instanceof \org\sifinfo\www\infrastructure\_2_x\LEAInfoData  && ! is_null($lEAInfoData) ) {
 			$lEAInfoData = new \org\sifinfo\www\infrastructure\_2_x\LEAInfoData ($lEAInfoData);
 		}
+
+		unset ($this->_overrides['lEAInfoData']);
 	
 		return $lEAInfoData;
 	}
 
-	public function getSchoolInfoData() {
-		if ($this->schoolInfoData===NULL) {
+	public function getSchoolInfoData($autoCreate = TRUE) {
+		if ($this->schoolInfoData===NULL && $autoCreate && ! isset($this->_overrides['schoolInfoData']) ) {
 			$this->schoolInfoData = $this->createSchoolInfoData();
 		}
 		return $this->schoolInfoData;
@@ -92,8 +106,8 @@ class SchoolAttended {
 		return $schoolInfoData;
 	}
 
-	public function getAccreditingBody() {
-		if ($this->accreditingBody===NULL) {
+	public function getAccreditingBody($autoCreate = TRUE) {
+		if ($this->accreditingBody===NULL && $autoCreate && ! isset($this->_overrides['accreditingBody']) ) {
 			$this->accreditingBody = $this->createAccreditingBody();
 		}
 		return $this->accreditingBody;
@@ -115,8 +129,8 @@ class SchoolAttended {
 		return $accreditingBody;
 	}
 
-	public function getMarkingSystems() {
-		if ($this->markingSystems===NULL) {
+	public function getMarkingSystems($autoCreate = TRUE) {
+		if ($this->markingSystems===NULL && $autoCreate && ! isset($this->_overrides['markingSystems']) ) {
 			$this->markingSystems = $this->createMarkingSystems();
 		}
 		return $this->markingSystems;
@@ -131,15 +145,22 @@ class SchoolAttended {
 	}
 
 	protected function validateMarkingSystems($markingSystems) {
+		if ( $markingSystems === FALSE ) {
+			$this->_overrides['markingSystems'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $markingSystems instanceof \org\sifinfo\www\infrastructure\_2_x\MarkingSystems  && ! is_null($markingSystems) ) {
 			$markingSystems = new \org\sifinfo\www\infrastructure\_2_x\MarkingSystems ($markingSystems);
 		}
+
+		unset ($this->_overrides['markingSystems']);
 	
 		return $markingSystems;
 	}
 
-	public function getRefId() {
-		if ($this->refId===NULL) {
+	public function getRefId($autoCreate = TRUE) {
+		if ($this->refId===NULL && $autoCreate && ! isset($this->_overrides['refId']) ) {
 			$this->refId = $this->createRefId();
 		}
 		return $this->refId;

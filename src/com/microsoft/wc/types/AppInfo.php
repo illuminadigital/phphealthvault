@@ -16,6 +16,13 @@ class AppInfo extends \com\microsoft\wc\types\Guid {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="boolean", name="is-multi-record-app")
 	 */
 	protected $isMultiRecordApp;
@@ -24,8 +31,8 @@ class AppInfo extends \com\microsoft\wc\types\Guid {
 		$this->isMultiRecordApp = ($isMultiRecordApp===NULL) ? NULL : $this->validateIsMultiRecordApp($isMultiRecordApp);
 	}
 
-	public function getIsMultiRecordApp() {
-		if ($this->isMultiRecordApp===NULL) {
+	public function getIsMultiRecordApp($autoCreate = TRUE) {
+		if ($this->isMultiRecordApp===NULL && $autoCreate && ! isset($this->_overrides['isMultiRecordApp']) ) {
 			$this->isMultiRecordApp = $this->createIsMultiRecordApp();
 		}
 		return $this->isMultiRecordApp;

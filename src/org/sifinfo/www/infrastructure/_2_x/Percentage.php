@@ -14,6 +14,13 @@ class Percentage {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="float", name="Minimum")
 	 */
 	protected $minimum;
@@ -28,8 +35,8 @@ class Percentage {
 		$this->maximum = ($maximum===NULL) ? NULL : $this->validateMaximum($maximum);
 	}
 
-	public function getMinimum() {
-		if ($this->minimum===NULL) {
+	public function getMinimum($autoCreate = TRUE) {
+		if ($this->minimum===NULL && $autoCreate && ! isset($this->_overrides['minimum']) ) {
 			$this->minimum = $this->createMinimum();
 		}
 		return $this->minimum;
@@ -62,8 +69,8 @@ class Percentage {
 		return $minimum;
 	}
 
-	public function getMaximum() {
-		if ($this->maximum===NULL) {
+	public function getMaximum($autoCreate = TRUE) {
+		if ($this->maximum===NULL && $autoCreate && ! isset($this->_overrides['maximum']) ) {
 			$this->maximum = $this->createMaximum();
 		}
 		return $this->maximum;

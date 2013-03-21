@@ -19,6 +19,13 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Aerobic Profile';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -57,8 +64,8 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 		$this->heartrateZoneGroup = ($heartrateZoneGroup===NULL) ? NULL : $this->validateHeartrateZoneGroup($heartrateZoneGroup);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -80,8 +87,8 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getMaxHeartrate() {
-		if ($this->maxHeartrate===NULL) {
+	public function getMaxHeartrate($autoCreate = TRUE) {
+		if ($this->maxHeartrate===NULL && $autoCreate && ! isset($this->_overrides['maxHeartrate']) ) {
 			$this->maxHeartrate = $this->createMaxHeartrate();
 		}
 		return $this->maxHeartrate;
@@ -96,15 +103,22 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMaxHeartrate($maxHeartrate) {
+		if ( $maxHeartrate === FALSE ) {
+			$this->_overrides['maxHeartrate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $maxHeartrate instanceof \com\microsoft\wc\thing\types\PositiveInt  && ! is_null($maxHeartrate) ) {
 			$maxHeartrate = new \com\microsoft\wc\thing\types\PositiveInt ($maxHeartrate);
 		}
+
+		unset ($this->_overrides['maxHeartrate']);
 	
 		return $maxHeartrate;
 	}
 
-	public function getRestingHeartrate() {
-		if ($this->restingHeartrate===NULL) {
+	public function getRestingHeartrate($autoCreate = TRUE) {
+		if ($this->restingHeartrate===NULL && $autoCreate && ! isset($this->_overrides['restingHeartrate']) ) {
 			$this->restingHeartrate = $this->createRestingHeartrate();
 		}
 		return $this->restingHeartrate;
@@ -119,15 +133,22 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateRestingHeartrate($restingHeartrate) {
+		if ( $restingHeartrate === FALSE ) {
+			$this->_overrides['restingHeartrate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $restingHeartrate instanceof \com\microsoft\wc\thing\types\PositiveInt  && ! is_null($restingHeartrate) ) {
 			$restingHeartrate = new \com\microsoft\wc\thing\types\PositiveInt ($restingHeartrate);
 		}
+
+		unset ($this->_overrides['restingHeartrate']);
 	
 		return $restingHeartrate;
 	}
 
-	public function getAnaerobicThreshold() {
-		if ($this->anaerobicThreshold===NULL) {
+	public function getAnaerobicThreshold($autoCreate = TRUE) {
+		if ($this->anaerobicThreshold===NULL && $autoCreate && ! isset($this->_overrides['anaerobicThreshold']) ) {
 			$this->anaerobicThreshold = $this->createAnaerobicThreshold();
 		}
 		return $this->anaerobicThreshold;
@@ -142,15 +163,22 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAnaerobicThreshold($anaerobicThreshold) {
+		if ( $anaerobicThreshold === FALSE ) {
+			$this->_overrides['anaerobicThreshold'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $anaerobicThreshold instanceof \com\microsoft\wc\thing\types\PositiveInt  && ! is_null($anaerobicThreshold) ) {
 			$anaerobicThreshold = new \com\microsoft\wc\thing\types\PositiveInt ($anaerobicThreshold);
 		}
+
+		unset ($this->_overrides['anaerobicThreshold']);
 	
 		return $anaerobicThreshold;
 	}
 
-	public function getVo2Max() {
-		if ($this->vo2Max===NULL) {
+	public function getVo2Max($autoCreate = TRUE) {
+		if ($this->vo2Max===NULL && $autoCreate && ! isset($this->_overrides['vo2Max']) ) {
 			$this->vo2Max = $this->createVo2Max();
 		}
 		return $this->vo2Max;
@@ -165,15 +193,22 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateVo2Max($vo2Max) {
+		if ( $vo2Max === FALSE ) {
+			$this->_overrides['vo2Max'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vo2Max instanceof \com\microsoft\wc\thing\aerobic_profile\MaxVO2  && ! is_null($vo2Max) ) {
 			$vo2Max = new \com\microsoft\wc\thing\aerobic_profile\MaxVO2 ($vo2Max);
 		}
+
+		unset ($this->_overrides['vo2Max']);
 	
 		return $vo2Max;
 	}
 
-	public function getHeartrateZoneGroup() {
-		if ($this->heartrateZoneGroup===NULL) {
+	public function getHeartrateZoneGroup($autoCreate = TRUE) {
+		if ($this->heartrateZoneGroup===NULL && $autoCreate && ! isset($this->_overrides['heartrateZoneGroup']) ) {
 			$this->heartrateZoneGroup = $this->createHeartrateZoneGroup();
 		}
 		return $this->heartrateZoneGroup;
@@ -188,9 +223,16 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateHeartrateZoneGroup($heartrateZoneGroup) {
+		if ( $heartrateZoneGroup === FALSE ) {
+			$this->_overrides['heartrateZoneGroup'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($heartrateZoneGroup) && ! is_null($heartrateZoneGroup) ) {
 			$heartrateZoneGroup = array($heartrateZoneGroup);
 		}
+
+		unset ($this->_overrides['heartrateZoneGroup']);
 		$count = count($heartrateZoneGroup);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'heartrateZoneGroup', 0));

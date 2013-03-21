@@ -14,6 +14,13 @@ class AssessmentPerformanceHistory {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Assessment", collection="true", name="Assessment")
 	 */
 	protected $assessment;
@@ -22,8 +29,8 @@ class AssessmentPerformanceHistory {
 		$this->assessment = ($assessment===NULL) ? NULL : $this->validateAssessment($assessment);
 	}
 
-	public function getAssessment() {
-		if ($this->assessment===NULL) {
+	public function getAssessment($autoCreate = TRUE) {
+		if ($this->assessment===NULL && $autoCreate && ! isset($this->_overrides['assessment']) ) {
 			$this->assessment = $this->createAssessment();
 		}
 		return $this->assessment;

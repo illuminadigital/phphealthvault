@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="integer", name="expires")
 	 */
 	protected $expires;
@@ -78,8 +85,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->info = ($info===NULL) ? NULL : $this->validateInfo($info);
 	}
 
-	public function getExpires() {
-		if ($this->expires===NULL) {
+	public function getExpires($autoCreate = TRUE) {
+		if ($this->expires===NULL && $autoCreate && ! isset($this->_overrides['expires']) ) {
 			$this->expires = $this->createExpires();
 		}
 		return $this->expires;
@@ -112,8 +119,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $expires;
 	}
 
-	public function getPinCode() {
-		if ($this->pinCode===NULL) {
+	public function getPinCode($autoCreate = TRUE) {
+		if ($this->pinCode===NULL && $autoCreate && ! isset($this->_overrides['pinCode']) ) {
 			$this->pinCode = $this->createPinCode();
 		}
 		return $this->pinCode;
@@ -128,15 +135,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validatePinCode($pinCode) {
+		if ( $pinCode === FALSE ) {
+			$this->_overrides['pinCode'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $pinCode instanceof \com\microsoft\wc\types\String128  && ! is_null($pinCode) ) {
 			$pinCode = new \com\microsoft\wc\types\String128 ($pinCode);
 		}
+
+		unset ($this->_overrides['pinCode']);
 	
 		return $pinCode;
 	}
 
-	public function getNote() {
-		if ($this->note===NULL) {
+	public function getNote($autoCreate = TRUE) {
+		if ($this->note===NULL && $autoCreate && ! isset($this->_overrides['note']) ) {
 			$this->note = $this->createNote();
 		}
 		return $this->note;
@@ -151,15 +165,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateNote($note) {
+		if ( $note === FALSE ) {
+			$this->_overrides['note'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $note instanceof \com\microsoft\wc\types\String128  && ! is_null($note) ) {
 			$note = new \com\microsoft\wc\types\String128 ($note);
 		}
+
+		unset ($this->_overrides['note']);
 	
 		return $note;
 	}
 
-	public function getMethod() {
-		if ($this->method===NULL) {
+	public function getMethod($autoCreate = TRUE) {
+		if ($this->method===NULL && $autoCreate && ! isset($this->_overrides['method']) ) {
 			$this->method = $this->createMethod();
 		}
 		return $this->method;
@@ -181,8 +202,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $method;
 	}
 
-	public function getMethodVersion() {
-		if ($this->methodVersion===NULL) {
+	public function getMethodVersion($autoCreate = TRUE) {
+		if ($this->methodVersion===NULL && $autoCreate && ! isset($this->_overrides['methodVersion']) ) {
 			$this->methodVersion = $this->createMethodVersion();
 		}
 		return $this->methodVersion;
@@ -212,8 +233,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $methodVersion;
 	}
 
-	public function getRecordId() {
-		if ($this->recordId===NULL) {
+	public function getRecordId($autoCreate = TRUE) {
+		if ($this->recordId===NULL && $autoCreate && ! isset($this->_overrides['recordId']) ) {
 			$this->recordId = $this->createRecordId();
 		}
 		return $this->recordId;
@@ -228,15 +249,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRecordId($recordId) {
+		if ( $recordId === FALSE ) {
+			$this->_overrides['recordId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $recordId instanceof \com\microsoft\wc\types\Guid  && ! is_null($recordId) ) {
 			$recordId = new \com\microsoft\wc\types\Guid ($recordId);
 		}
+
+		unset ($this->_overrides['recordId']);
 	
 		return $recordId;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -251,15 +279,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateLanguage($language) {
+		if ( $language === FALSE ) {
+			$this->_overrides['language'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
 			$language = new \com\microsoft\wc\types\Iso6391 ($language);
 		}
+
+		unset ($this->_overrides['language']);
 	
 		return $language;
 	}
 
-	public function getCountry() {
-		if ($this->country===NULL) {
+	public function getCountry($autoCreate = TRUE) {
+		if ($this->country===NULL && $autoCreate && ! isset($this->_overrides['country']) ) {
 			$this->country = $this->createCountry();
 		}
 		return $this->country;
@@ -274,15 +309,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateCountry($country) {
+		if ( $country === FALSE ) {
+			$this->_overrides['country'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $country instanceof \com\microsoft\wc\types\Iso3166  && ! is_null($country) ) {
 			$country = new \com\microsoft\wc\types\Iso3166 ($country);
 		}
+
+		unset ($this->_overrides['country']);
 	
 		return $country;
 	}
 
-	public function getFinalXsl() {
-		if ($this->finalXsl===NULL) {
+	public function getFinalXsl($autoCreate = TRUE) {
+		if ($this->finalXsl===NULL && $autoCreate && ! isset($this->_overrides['finalXsl']) ) {
 			$this->finalXsl = $this->createFinalXsl();
 		}
 		return $this->finalXsl;
@@ -304,8 +346,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $finalXsl;
 	}
 
-	public function getInfo() {
-		if ($this->info===NULL) {
+	public function getInfo($autoCreate = TRUE) {
+		if ($this->info===NULL && $autoCreate && ! isset($this->_overrides['info']) ) {
 			$this->info = $this->createInfo();
 		}
 		return $this->info;

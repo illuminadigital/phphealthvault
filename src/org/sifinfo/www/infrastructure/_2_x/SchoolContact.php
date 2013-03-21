@@ -14,6 +14,13 @@ class SchoolContact {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\PublishInDirectoryType", name="PublishInDirectory")
 	 */
 	protected $publishInDirectory;
@@ -28,8 +35,8 @@ class SchoolContact {
 		$this->contactInfo = ($contactInfo===NULL) ? NULL : $this->validateContactInfo($contactInfo);
 	}
 
-	public function getPublishInDirectory() {
-		if ($this->publishInDirectory===NULL) {
+	public function getPublishInDirectory($autoCreate = TRUE) {
+		if ($this->publishInDirectory===NULL && $autoCreate && ! isset($this->_overrides['publishInDirectory']) ) {
 			$this->publishInDirectory = $this->createPublishInDirectory();
 		}
 		return $this->publishInDirectory;
@@ -48,8 +55,8 @@ class SchoolContact {
 		return $publishInDirectory;
 	}
 
-	public function getContactInfo() {
-		if ($this->contactInfo===NULL) {
+	public function getContactInfo($autoCreate = TRUE) {
+		if ($this->contactInfo===NULL && $autoCreate && ! isset($this->_overrides['contactInfo']) ) {
 			$this->contactInfo = $this->createContactInfo();
 		}
 		return $this->contactInfo;

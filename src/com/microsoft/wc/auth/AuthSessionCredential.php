@@ -16,6 +16,13 @@ class AuthSessionCredential {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\auth\AuthSessionSubCredential", name="sub-credential")
 	 */
 	protected $subCredential;
@@ -30,8 +37,8 @@ class AuthSessionCredential {
 		$this->sharedSecret = ($sharedSecret===NULL) ? NULL : $this->validateSharedSecret($sharedSecret);
 	}
 
-	public function getSubCredential() {
-		if ($this->subCredential===NULL) {
+	public function getSubCredential($autoCreate = TRUE) {
+		if ($this->subCredential===NULL && $autoCreate && ! isset($this->_overrides['subCredential']) ) {
 			$this->subCredential = $this->createSubCredential();
 		}
 		return $this->subCredential;
@@ -53,8 +60,8 @@ class AuthSessionCredential {
 		return $subCredential;
 	}
 
-	public function getSharedSecret() {
-		if ($this->sharedSecret===NULL) {
+	public function getSharedSecret($autoCreate = TRUE) {
+		if ($this->sharedSecret===NULL && $autoCreate && ! isset($this->_overrides['sharedSecret']) ) {
 			$this->sharedSecret = $this->createSharedSecret();
 		}
 		return $this->sharedSecret;

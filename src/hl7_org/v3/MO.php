@@ -15,6 +15,13 @@ class MO extends \org\w3\www\_2001\XMLSchema\QTY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="value")
 	 */
 	protected $value;
@@ -29,8 +36,8 @@ class MO extends \org\w3\www\_2001\XMLSchema\QTY {
 		$this->currency = ($currency===NULL) ? NULL : $this->validateCurrency($currency);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -49,8 +56,8 @@ class MO extends \org\w3\www\_2001\XMLSchema\QTY {
 		return $value;
 	}
 
-	public function getCurrency() {
-		if ($this->currency===NULL) {
+	public function getCurrency($autoCreate = TRUE) {
+		if ($this->currency===NULL && $autoCreate && ! isset($this->_overrides['currency']) ) {
 			$this->currency = $this->createCurrency();
 		}
 		return $this->currency;

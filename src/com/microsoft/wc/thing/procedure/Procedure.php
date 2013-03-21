@@ -19,6 +19,13 @@ class Procedure extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Procedure';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -51,8 +58,8 @@ class Procedure extends \com\microsoft\wc\thing\AnyMixed {
 		$this->secondaryProvider = ($secondaryProvider===NULL) ? NULL : $this->validateSecondaryProvider($secondaryProvider);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -74,8 +81,8 @@ class Procedure extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -90,15 +97,22 @@ class Procedure extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTitle($title) {
+		if ( $title === FALSE ) {
+			$this->_overrides['title'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $title instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($title) ) {
 			$title = new \com\microsoft\wc\types\CodableValue ($title);
 		}
+
+		unset ($this->_overrides['title']);
 	
 		return $title;
 	}
 
-	public function getPrimaryProvider() {
-		if ($this->primaryProvider===NULL) {
+	public function getPrimaryProvider($autoCreate = TRUE) {
+		if ($this->primaryProvider===NULL && $autoCreate && ! isset($this->_overrides['primaryProvider']) ) {
 			$this->primaryProvider = $this->createPrimaryProvider();
 		}
 		return $this->primaryProvider;
@@ -113,15 +127,22 @@ class Procedure extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePrimaryProvider($primaryProvider) {
+		if ( $primaryProvider === FALSE ) {
+			$this->_overrides['primaryProvider'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $primaryProvider instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($primaryProvider) ) {
 			$primaryProvider = new \com\microsoft\wc\thing\types\Person ($primaryProvider);
 		}
+
+		unset ($this->_overrides['primaryProvider']);
 	
 		return $primaryProvider;
 	}
 
-	public function getAnatomicLocation() {
-		if ($this->anatomicLocation===NULL) {
+	public function getAnatomicLocation($autoCreate = TRUE) {
+		if ($this->anatomicLocation===NULL && $autoCreate && ! isset($this->_overrides['anatomicLocation']) ) {
 			$this->anatomicLocation = $this->createAnatomicLocation();
 		}
 		return $this->anatomicLocation;
@@ -136,15 +157,22 @@ class Procedure extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAnatomicLocation($anatomicLocation) {
+		if ( $anatomicLocation === FALSE ) {
+			$this->_overrides['anatomicLocation'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $anatomicLocation instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($anatomicLocation) ) {
 			$anatomicLocation = new \com\microsoft\wc\types\CodableValue ($anatomicLocation);
 		}
+
+		unset ($this->_overrides['anatomicLocation']);
 	
 		return $anatomicLocation;
 	}
 
-	public function getSecondaryProvider() {
-		if ($this->secondaryProvider===NULL) {
+	public function getSecondaryProvider($autoCreate = TRUE) {
+		if ($this->secondaryProvider===NULL && $autoCreate && ! isset($this->_overrides['secondaryProvider']) ) {
 			$this->secondaryProvider = $this->createSecondaryProvider();
 		}
 		return $this->secondaryProvider;
@@ -159,9 +187,16 @@ class Procedure extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSecondaryProvider($secondaryProvider) {
+		if ( $secondaryProvider === FALSE ) {
+			$this->_overrides['secondaryProvider'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $secondaryProvider instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($secondaryProvider) ) {
 			$secondaryProvider = new \com\microsoft\wc\thing\types\Person ($secondaryProvider);
 		}
+
+		unset ($this->_overrides['secondaryProvider']);
 	
 		return $secondaryProvider;
 	}

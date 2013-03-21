@@ -15,6 +15,13 @@ class StudentPlacementTitleIServicesType {
 	static protected $enumValue = array('S001' => 'Reading / language program', 'S002' => 'Mathematics program', 'S003' => 'Science program', 'S004' => 'Social studies program', 'S005' => 'Economics program', 'S006' => 'Computers program', 'S007' => 'Vocational / career program', 'S008' => 'Support guidance / advocacy program', 'S009' => 'Study skills program', 'S010' => 'After-school tutoring program', 'S011' => 'Summer school program', 'S012' => '4-year-old program', 'S013' => '3-year-old program', 'S014' => 'Extended kindergarten program (beyond half day)', 'S015' => 'Health / dental / eye care service', 'S016' => 'Extended instruction time program', 'S017' => 'Supplemental outside provider instructional services');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="StudentPlacementTitleIServicesType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class StudentPlacementTitleIServicesType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

@@ -14,6 +14,13 @@ class VitalSignResultType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="title")
 	 */
 	protected $title;
@@ -58,8 +65,8 @@ class VitalSignResultType {
 		$this->flag = ($flag===NULL) ? NULL : $this->validateFlag($flag);
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -81,8 +88,8 @@ class VitalSignResultType {
 		return $title;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -115,8 +122,8 @@ class VitalSignResultType {
 		return $value;
 	}
 
-	public function getUnit() {
-		if ($this->unit===NULL) {
+	public function getUnit($autoCreate = TRUE) {
+		if ($this->unit===NULL && $autoCreate && ! isset($this->_overrides['unit']) ) {
 			$this->unit = $this->createUnit();
 		}
 		return $this->unit;
@@ -131,15 +138,22 @@ class VitalSignResultType {
 	}
 
 	protected function validateUnit($unit) {
+		if ( $unit === FALSE ) {
+			$this->_overrides['unit'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $unit instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($unit) ) {
 			$unit = new \com\microsoft\wc\types\CodableValue ($unit);
 		}
+
+		unset ($this->_overrides['unit']);
 	
 		return $unit;
 	}
 
-	public function getReferenceMinimum() {
-		if ($this->referenceMinimum===NULL) {
+	public function getReferenceMinimum($autoCreate = TRUE) {
+		if ($this->referenceMinimum===NULL && $autoCreate && ! isset($this->_overrides['referenceMinimum']) ) {
 			$this->referenceMinimum = $this->createReferenceMinimum();
 		}
 		return $this->referenceMinimum;
@@ -172,8 +186,8 @@ class VitalSignResultType {
 		return $referenceMinimum;
 	}
 
-	public function getReferenceMaximum() {
-		if ($this->referenceMaximum===NULL) {
+	public function getReferenceMaximum($autoCreate = TRUE) {
+		if ($this->referenceMaximum===NULL && $autoCreate && ! isset($this->_overrides['referenceMaximum']) ) {
 			$this->referenceMaximum = $this->createReferenceMaximum();
 		}
 		return $this->referenceMaximum;
@@ -206,8 +220,8 @@ class VitalSignResultType {
 		return $referenceMaximum;
 	}
 
-	public function getTextValue() {
-		if ($this->textValue===NULL) {
+	public function getTextValue($autoCreate = TRUE) {
+		if ($this->textValue===NULL && $autoCreate && ! isset($this->_overrides['textValue']) ) {
 			$this->textValue = $this->createTextValue();
 		}
 		return $this->textValue;
@@ -229,8 +243,8 @@ class VitalSignResultType {
 		return $textValue;
 	}
 
-	public function getFlag() {
-		if ($this->flag===NULL) {
+	public function getFlag($autoCreate = TRUE) {
+		if ($this->flag===NULL && $autoCreate && ! isset($this->_overrides['flag']) ) {
 			$this->flag = $this->createFlag();
 		}
 		return $this->flag;
@@ -245,9 +259,16 @@ class VitalSignResultType {
 	}
 
 	protected function validateFlag($flag) {
+		if ( $flag === FALSE ) {
+			$this->_overrides['flag'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $flag instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($flag) ) {
 			$flag = new \com\microsoft\wc\types\CodableValue ($flag);
 		}
+
+		unset ($this->_overrides['flag']);
 	
 		return $flag;
 	}

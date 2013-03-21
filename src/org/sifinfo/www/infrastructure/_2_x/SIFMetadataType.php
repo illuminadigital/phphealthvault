@@ -15,6 +15,13 @@ class SIFMetadataType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\TimeElements", name="TimeElements")
 	 */
 	protected $timeElements;
@@ -41,8 +48,8 @@ class SIFMetadataType {
 		$this->educationFilter = ($educationFilter===NULL) ? NULL : $this->validateEducationFilter($educationFilter);
 	}
 
-	public function getTimeElements() {
-		if ($this->timeElements===NULL) {
+	public function getTimeElements($autoCreate = TRUE) {
+		if ($this->timeElements===NULL && $autoCreate && ! isset($this->_overrides['timeElements']) ) {
 			$this->timeElements = $this->createTimeElements();
 		}
 		return $this->timeElements;
@@ -57,15 +64,22 @@ class SIFMetadataType {
 	}
 
 	protected function validateTimeElements($timeElements) {
+		if ( $timeElements === FALSE ) {
+			$this->_overrides['timeElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $timeElements instanceof \org\sifinfo\www\infrastructure\_2_x\TimeElements  && ! is_null($timeElements) ) {
 			$timeElements = new \org\sifinfo\www\infrastructure\_2_x\TimeElements ($timeElements);
 		}
+
+		unset ($this->_overrides['timeElements']);
 	
 		return $timeElements;
 	}
 
-	public function getLifeCycle() {
-		if ($this->lifeCycle===NULL) {
+	public function getLifeCycle($autoCreate = TRUE) {
+		if ($this->lifeCycle===NULL && $autoCreate && ! isset($this->_overrides['lifeCycle']) ) {
 			$this->lifeCycle = $this->createLifeCycle();
 		}
 		return $this->lifeCycle;
@@ -80,15 +94,22 @@ class SIFMetadataType {
 	}
 
 	protected function validateLifeCycle($lifeCycle) {
+		if ( $lifeCycle === FALSE ) {
+			$this->_overrides['lifeCycle'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $lifeCycle instanceof \org\sifinfo\www\infrastructure\_2_x\LifeCycleType  && ! is_null($lifeCycle) ) {
 			$lifeCycle = new \org\sifinfo\www\infrastructure\_2_x\LifeCycleType ($lifeCycle);
 		}
+
+		unset ($this->_overrides['lifeCycle']);
 	
 		return $lifeCycle;
 	}
 
-	public function getRightsElements() {
-		if ($this->rightsElements===NULL) {
+	public function getRightsElements($autoCreate = TRUE) {
+		if ($this->rightsElements===NULL && $autoCreate && ! isset($this->_overrides['rightsElements']) ) {
 			$this->rightsElements = $this->createRightsElements();
 		}
 		return $this->rightsElements;
@@ -103,15 +124,22 @@ class SIFMetadataType {
 	}
 
 	protected function validateRightsElements($rightsElements) {
+		if ( $rightsElements === FALSE ) {
+			$this->_overrides['rightsElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $rightsElements instanceof \org\sifinfo\www\infrastructure\_2_x\RightsElements  && ! is_null($rightsElements) ) {
 			$rightsElements = new \org\sifinfo\www\infrastructure\_2_x\RightsElements ($rightsElements);
 		}
+
+		unset ($this->_overrides['rightsElements']);
 	
 		return $rightsElements;
 	}
 
-	public function getEducationFilter() {
-		if ($this->educationFilter===NULL) {
+	public function getEducationFilter($autoCreate = TRUE) {
+		if ($this->educationFilter===NULL && $autoCreate && ! isset($this->_overrides['educationFilter']) ) {
 			$this->educationFilter = $this->createEducationFilter();
 		}
 		return $this->educationFilter;
@@ -126,9 +154,16 @@ class SIFMetadataType {
 	}
 
 	protected function validateEducationFilter($educationFilter) {
+		if ( $educationFilter === FALSE ) {
+			$this->_overrides['educationFilter'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $educationFilter instanceof \org\sifinfo\www\infrastructure\_2_x\EducationFilterType  && ! is_null($educationFilter) ) {
 			$educationFilter = new \org\sifinfo\www\infrastructure\_2_x\EducationFilterType ($educationFilter);
 		}
+
+		unset ($this->_overrides['educationFilter']);
 	
 		return $educationFilter;
 	}

@@ -16,6 +16,13 @@ class TestResultRangeValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="float", name="minimum-range")
 	 */
 	protected $minimumRange;
@@ -30,8 +37,8 @@ class TestResultRangeValue {
 		$this->maximumRange = ($maximumRange===NULL) ? NULL : $this->validateMaximumRange($maximumRange);
 	}
 
-	public function getMinimumRange() {
-		if ($this->minimumRange===NULL) {
+	public function getMinimumRange($autoCreate = TRUE) {
+		if ($this->minimumRange===NULL && $autoCreate && ! isset($this->_overrides['minimumRange']) ) {
 			$this->minimumRange = $this->createMinimumRange();
 		}
 		return $this->minimumRange;
@@ -64,8 +71,8 @@ class TestResultRangeValue {
 		return $minimumRange;
 	}
 
-	public function getMaximumRange() {
-		if ($this->maximumRange===NULL) {
+	public function getMaximumRange($autoCreate = TRUE) {
+		if ($this->maximumRange===NULL && $autoCreate && ! isset($this->_overrides['maximumRange']) ) {
 			$this->maximumRange = $this->createMaximumRange();
 		}
 		return $this->maximumRange;

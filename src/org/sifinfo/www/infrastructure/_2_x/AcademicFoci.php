@@ -14,6 +14,13 @@ class AcademicFoci {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\AcademicFocus", collection="true", name="AcademicFocus")
 	 */
 	protected $academicFocus;
@@ -22,8 +29,8 @@ class AcademicFoci {
 		$this->academicFocus = ($academicFocus===NULL) ? NULL : $this->validateAcademicFocus($academicFocus);
 	}
 
-	public function getAcademicFocus() {
-		if ($this->academicFocus===NULL) {
+	public function getAcademicFocus($autoCreate = TRUE) {
+		if ($this->academicFocus===NULL && $autoCreate && ! isset($this->_overrides['academicFocus']) ) {
 			$this->academicFocus = $this->createAcademicFocus();
 		}
 		return $this->academicFocus;
@@ -38,9 +45,16 @@ class AcademicFoci {
 	}
 
 	protected function validateAcademicFocus($academicFocus) {
+		if ( $academicFocus === FALSE ) {
+			$this->_overrides['academicFocus'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($academicFocus) && ! is_null($academicFocus) ) {
 			$academicFocus = array($academicFocus);
 		}
+
+		unset ($this->_overrides['academicFocus']);
 		$count = count($academicFocus);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'academicFocus', 0));

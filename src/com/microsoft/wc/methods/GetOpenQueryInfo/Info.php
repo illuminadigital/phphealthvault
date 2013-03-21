@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="query-id")
 	 */
 	protected $queryId;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->queryId = ($queryId===NULL) ? NULL : $this->validateQueryId($queryId);
 	}
 
-	public function getQueryId() {
-		if ($this->queryId===NULL) {
+	public function getQueryId($autoCreate = TRUE) {
+		if ($this->queryId===NULL && $autoCreate && ! isset($this->_overrides['queryId']) ) {
 			$this->queryId = $this->createQueryId();
 		}
 		return $this->queryId;

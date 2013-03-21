@@ -16,6 +16,13 @@ class HeartrateZoneGroup {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\aerobic_profile\HeartrateZone", collection="true", name="heartrate-zone")
 	 */
 	protected $heartrateZone;
@@ -30,8 +37,8 @@ class HeartrateZoneGroup {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 	}
 
-	public function getHeartrateZone() {
-		if ($this->heartrateZone===NULL) {
+	public function getHeartrateZone($autoCreate = TRUE) {
+		if ($this->heartrateZone===NULL && $autoCreate && ! isset($this->_overrides['heartrateZone']) ) {
 			$this->heartrateZone = $this->createHeartrateZone();
 		}
 		return $this->heartrateZone;
@@ -46,9 +53,16 @@ class HeartrateZoneGroup {
 	}
 
 	protected function validateHeartrateZone($heartrateZone) {
+		if ( $heartrateZone === FALSE ) {
+			$this->_overrides['heartrateZone'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($heartrateZone) && ! is_null($heartrateZone) ) {
 			$heartrateZone = array($heartrateZone);
 		}
+
+		unset ($this->_overrides['heartrateZone']);
 		$count = count($heartrateZone);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'heartrateZone', 0));
@@ -66,8 +80,8 @@ class HeartrateZoneGroup {
 		$this->heartrateZone[] = $heartrateZone;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;

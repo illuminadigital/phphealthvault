@@ -17,6 +17,13 @@ class CodedValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="value")
 	 */
 	protected $value;
@@ -43,8 +50,8 @@ class CodedValue {
 		$this->version = ($version===NULL) ? NULL : $this->validateVersion($version);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -66,8 +73,8 @@ class CodedValue {
 		return $value;
 	}
 
-	public function getFamily() {
-		if ($this->family===NULL) {
+	public function getFamily($autoCreate = TRUE) {
+		if ($this->family===NULL && $autoCreate && ! isset($this->_overrides['family']) ) {
 			$this->family = $this->createFamily();
 		}
 		return $this->family;
@@ -89,8 +96,8 @@ class CodedValue {
 		return $family;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -112,8 +119,8 @@ class CodedValue {
 		return $type;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;

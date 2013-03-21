@@ -14,6 +14,13 @@ class POCDMT000040.Organization {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -88,8 +95,8 @@ class POCDMT000040.Organization {
 		$this->determinerCode = ($determinerCode===NULL) ? NULL : $this->validateDeterminerCode($determinerCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -123,8 +130,8 @@ class POCDMT000040.Organization {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -143,8 +150,8 @@ class POCDMT000040.Organization {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -178,8 +185,8 @@ class POCDMT000040.Organization {
 		return $templateId;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -213,8 +220,8 @@ class POCDMT000040.Organization {
 		return $id;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -248,8 +255,8 @@ class POCDMT000040.Organization {
 		return $name;
 	}
 
-	public function getTelecom() {
-		if ($this->telecom===NULL) {
+	public function getTelecom($autoCreate = TRUE) {
+		if ($this->telecom===NULL && $autoCreate && ! isset($this->_overrides['telecom']) ) {
 			$this->telecom = $this->createTelecom();
 		}
 		return $this->telecom;
@@ -283,8 +290,8 @@ class POCDMT000040.Organization {
 		return $telecom;
 	}
 
-	public function getAddr() {
-		if ($this->addr===NULL) {
+	public function getAddr($autoCreate = TRUE) {
+		if ($this->addr===NULL && $autoCreate && ! isset($this->_overrides['addr']) ) {
 			$this->addr = $this->createAddr();
 		}
 		return $this->addr;
@@ -318,8 +325,8 @@ class POCDMT000040.Organization {
 		return $addr;
 	}
 
-	public function getStandardIndustryClassCode() {
-		if ($this->standardIndustryClassCode===NULL) {
+	public function getStandardIndustryClassCode($autoCreate = TRUE) {
+		if ($this->standardIndustryClassCode===NULL && $autoCreate && ! isset($this->_overrides['standardIndustryClassCode']) ) {
 			$this->standardIndustryClassCode = $this->createStandardIndustryClassCode();
 		}
 		return $this->standardIndustryClassCode;
@@ -338,8 +345,8 @@ class POCDMT000040.Organization {
 		return $standardIndustryClassCode;
 	}
 
-	public function getAsOrganizationPartOf() {
-		if ($this->asOrganizationPartOf===NULL) {
+	public function getAsOrganizationPartOf($autoCreate = TRUE) {
+		if ($this->asOrganizationPartOf===NULL && $autoCreate && ! isset($this->_overrides['asOrganizationPartOf']) ) {
 			$this->asOrganizationPartOf = $this->createAsOrganizationPartOf();
 		}
 		return $this->asOrganizationPartOf;
@@ -358,8 +365,8 @@ class POCDMT000040.Organization {
 		return $asOrganizationPartOf;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -378,8 +385,8 @@ class POCDMT000040.Organization {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;
@@ -398,8 +405,8 @@ class POCDMT000040.Organization {
 		return $classCode;
 	}
 
-	public function getDeterminerCode() {
-		if ($this->determinerCode===NULL) {
+	public function getDeterminerCode($autoCreate = TRUE) {
+		if ($this->determinerCode===NULL && $autoCreate && ! isset($this->_overrides['determinerCode']) ) {
 			$this->determinerCode = $this->createDeterminerCode();
 		}
 		return $this->determinerCode;

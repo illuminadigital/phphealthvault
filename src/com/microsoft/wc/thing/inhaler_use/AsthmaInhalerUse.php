@@ -19,6 +19,13 @@ class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Asthma Inhaler Usage';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -57,8 +64,8 @@ class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 		$this->dosePurpose = ($dosePurpose===NULL) ? NULL : $this->validateDosePurpose($dosePurpose);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -80,8 +87,8 @@ class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getDrug() {
-		if ($this->drug===NULL) {
+	public function getDrug($autoCreate = TRUE) {
+		if ($this->drug===NULL && $autoCreate && ! isset($this->_overrides['drug']) ) {
 			$this->drug = $this->createDrug();
 		}
 		return $this->drug;
@@ -103,8 +110,8 @@ class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 		return $drug;
 	}
 
-	public function getStrength() {
-		if ($this->strength===NULL) {
+	public function getStrength($autoCreate = TRUE) {
+		if ($this->strength===NULL && $autoCreate && ! isset($this->_overrides['strength']) ) {
 			$this->strength = $this->createStrength();
 		}
 		return $this->strength;
@@ -119,15 +126,22 @@ class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStrength($strength) {
+		if ( $strength === FALSE ) {
+			$this->_overrides['strength'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $strength instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($strength) ) {
 			$strength = new \com\microsoft\wc\types\CodableValue ($strength);
 		}
+
+		unset ($this->_overrides['strength']);
 	
 		return $strength;
 	}
 
-	public function getDoseCount() {
-		if ($this->doseCount===NULL) {
+	public function getDoseCount($autoCreate = TRUE) {
+		if ($this->doseCount===NULL && $autoCreate && ! isset($this->_overrides['doseCount']) ) {
 			$this->doseCount = $this->createDoseCount();
 		}
 		return $this->doseCount;
@@ -160,8 +174,8 @@ class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 		return $doseCount;
 	}
 
-	public function getDeviceId() {
-		if ($this->deviceId===NULL) {
+	public function getDeviceId($autoCreate = TRUE) {
+		if ($this->deviceId===NULL && $autoCreate && ! isset($this->_overrides['deviceId']) ) {
 			$this->deviceId = $this->createDeviceId();
 		}
 		return $this->deviceId;
@@ -183,8 +197,8 @@ class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 		return $deviceId;
 	}
 
-	public function getDosePurpose() {
-		if ($this->dosePurpose===NULL) {
+	public function getDosePurpose($autoCreate = TRUE) {
+		if ($this->dosePurpose===NULL && $autoCreate && ! isset($this->_overrides['dosePurpose']) ) {
 			$this->dosePurpose = $this->createDosePurpose();
 		}
 		return $this->dosePurpose;
@@ -199,9 +213,16 @@ class AsthmaInhalerUse extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDosePurpose($dosePurpose) {
+		if ( $dosePurpose === FALSE ) {
+			$this->_overrides['dosePurpose'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dosePurpose instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($dosePurpose) ) {
 			$dosePurpose = new \com\microsoft\wc\types\CodableValue ($dosePurpose);
 		}
+
+		unset ($this->_overrides['dosePurpose']);
 	
 		return $dosePurpose;
 	}

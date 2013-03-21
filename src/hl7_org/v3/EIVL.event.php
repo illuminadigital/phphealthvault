@@ -14,6 +14,13 @@ class EIVL.event extends \org\w3\www\_2001\XMLSchema\CE {
 	 * A code for a common (periodical) activity of daily living based on which the event related periodic interval is specified.
 	 */
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class EIVL.event

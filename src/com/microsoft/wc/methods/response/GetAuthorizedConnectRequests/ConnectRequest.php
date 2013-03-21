@@ -15,6 +15,13 @@ class ConnectRequest {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="person-id")
 	 */
 	protected $personId;
@@ -41,8 +48,8 @@ class ConnectRequest {
 		$this->externalId = ($externalId===NULL) ? NULL : $this->validateExternalId($externalId);
 	}
 
-	public function getPersonId() {
-		if ($this->personId===NULL) {
+	public function getPersonId($autoCreate = TRUE) {
+		if ($this->personId===NULL && $autoCreate && ! isset($this->_overrides['personId']) ) {
 			$this->personId = $this->createPersonId();
 		}
 		return $this->personId;
@@ -64,8 +71,8 @@ class ConnectRequest {
 		return $personId;
 	}
 
-	public function getRecordId() {
-		if ($this->recordId===NULL) {
+	public function getRecordId($autoCreate = TRUE) {
+		if ($this->recordId===NULL && $autoCreate && ! isset($this->_overrides['recordId']) ) {
 			$this->recordId = $this->createRecordId();
 		}
 		return $this->recordId;
@@ -87,8 +94,8 @@ class ConnectRequest {
 		return $recordId;
 	}
 
-	public function getAppId() {
-		if ($this->appId===NULL) {
+	public function getAppId($autoCreate = TRUE) {
+		if ($this->appId===NULL && $autoCreate && ! isset($this->_overrides['appId']) ) {
 			$this->appId = $this->createAppId();
 		}
 		return $this->appId;
@@ -110,8 +117,8 @@ class ConnectRequest {
 		return $appId;
 	}
 
-	public function getExternalId() {
-		if ($this->externalId===NULL) {
+	public function getExternalId($autoCreate = TRUE) {
+		if ($this->externalId===NULL && $autoCreate && ! isset($this->_overrides['externalId']) ) {
 			$this->externalId = $this->createExternalId();
 		}
 		return $this->externalId;

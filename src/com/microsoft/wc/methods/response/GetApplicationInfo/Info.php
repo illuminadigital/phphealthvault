@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\application\AppWithLogos", name="application")
 	 */
 	protected $application;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->application = ($application===NULL) ? NULL : $this->validateApplication($application);
 	}
 
-	public function getApplication() {
-		if ($this->application===NULL) {
+	public function getApplication($autoCreate = TRUE) {
+		if ($this->application===NULL && $autoCreate && ! isset($this->_overrides['application']) ) {
 			$this->application = $this->createApplication();
 		}
 		return $this->application;

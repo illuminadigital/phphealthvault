@@ -17,6 +17,13 @@ class Person {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Name", name="name")
 	 */
 	protected $name;
@@ -55,8 +62,8 @@ class Person {
 		$this->type = ($type===NULL) ? NULL : $this->validateType($type);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -78,8 +85,8 @@ class Person {
 		return $name;
 	}
 
-	public function getOrganization() {
-		if ($this->organization===NULL) {
+	public function getOrganization($autoCreate = TRUE) {
+		if ($this->organization===NULL && $autoCreate && ! isset($this->_overrides['organization']) ) {
 			$this->organization = $this->createOrganization();
 		}
 		return $this->organization;
@@ -101,8 +108,8 @@ class Person {
 		return $organization;
 	}
 
-	public function getProfessionalTraining() {
-		if ($this->professionalTraining===NULL) {
+	public function getProfessionalTraining($autoCreate = TRUE) {
+		if ($this->professionalTraining===NULL && $autoCreate && ! isset($this->_overrides['professionalTraining']) ) {
 			$this->professionalTraining = $this->createProfessionalTraining();
 		}
 		return $this->professionalTraining;
@@ -124,8 +131,8 @@ class Person {
 		return $professionalTraining;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -147,8 +154,8 @@ class Person {
 		return $id;
 	}
 
-	public function getContact() {
-		if ($this->contact===NULL) {
+	public function getContact($autoCreate = TRUE) {
+		if ($this->contact===NULL && $autoCreate && ! isset($this->_overrides['contact']) ) {
 			$this->contact = $this->createContact();
 		}
 		return $this->contact;
@@ -163,15 +170,22 @@ class Person {
 	}
 
 	protected function validateContact($contact) {
+		if ( $contact === FALSE ) {
+			$this->_overrides['contact'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $contact instanceof \com\microsoft\wc\thing\types\Contact  && ! is_null($contact) ) {
 			$contact = new \com\microsoft\wc\thing\types\Contact ($contact);
 		}
+
+		unset ($this->_overrides['contact']);
 	
 		return $contact;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -186,9 +200,16 @@ class Person {
 	}
 
 	protected function validateType($type) {
+		if ( $type === FALSE ) {
+			$this->_overrides['type'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $type instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($type) ) {
 			$type = new \com\microsoft\wc\types\CodableValue ($type);
 		}
+
+		unset ($this->_overrides['type']);
 	
 		return $type;
 	}

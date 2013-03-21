@@ -15,6 +15,13 @@ class NCES0171ReceivingLocationOfInstructionServiceType {
 	static protected $enumValue = array('0997' => 'Business', '0752' => 'Community facility', '2192' => 'Home', '0754' => 'Hospital', '0340' => 'In school', '3018' => 'Library/media center', '3506' => 'Mobile', '9999' => 'Other', '0341' => 'Other K-12 educational institution', '0342' => 'Postsecondary facility');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0171ReceivingLocationOfInstructionServiceType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0171ReceivingLocationOfInstructionServiceType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

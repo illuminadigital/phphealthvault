@@ -14,6 +14,13 @@ class AppPersistentTokens {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="boolean", name="enabled")
 	 */
 	protected $enabled;
@@ -28,8 +35,8 @@ class AppPersistentTokens {
 		$this->tokenTtlSeconds = ($tokenTtlSeconds===NULL) ? NULL : $this->validateTokenTtlSeconds($tokenTtlSeconds);
 	}
 
-	public function getEnabled() {
-		if ($this->enabled===NULL) {
+	public function getEnabled($autoCreate = TRUE) {
+		if ($this->enabled===NULL && $autoCreate && ! isset($this->_overrides['enabled']) ) {
 			$this->enabled = $this->createEnabled();
 		}
 		return $this->enabled;
@@ -51,8 +58,8 @@ class AppPersistentTokens {
 		return $enabled;
 	}
 
-	public function getTokenTtlSeconds() {
-		if ($this->tokenTtlSeconds===NULL) {
+	public function getTokenTtlSeconds($autoCreate = TRUE) {
+		if ($this->tokenTtlSeconds===NULL && $autoCreate && ! isset($this->_overrides['tokenTtlSeconds']) ) {
 			$this->tokenTtlSeconds = $this->createTokenTtlSeconds();
 		}
 		return $this->tokenTtlSeconds;

@@ -15,6 +15,13 @@ class NCES0322CitizenshipStatusType {
 	static protected $enumValue = array('1014' => 'Dual national', '1015' => 'Non-resident alien', '9999' => 'Other', '1016' => 'Resident alien', '1017' => 'United States Citizen');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0322CitizenshipStatusType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0322CitizenshipStatusType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

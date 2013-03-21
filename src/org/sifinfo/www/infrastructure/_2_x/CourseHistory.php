@@ -14,6 +14,13 @@ class CourseHistory {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Term", collection="true", name="Term")
 	 */
 	protected $term;
@@ -22,8 +29,8 @@ class CourseHistory {
 		$this->term = ($term===NULL) ? NULL : $this->validateTerm($term);
 	}
 
-	public function getTerm() {
-		if ($this->term===NULL) {
+	public function getTerm($autoCreate = TRUE) {
+		if ($this->term===NULL && $autoCreate && ! isset($this->_overrides['term']) ) {
 			$this->term = $this->createTerm();
 		}
 		return $this->term;
@@ -38,9 +45,16 @@ class CourseHistory {
 	}
 
 	protected function validateTerm($term) {
+		if ( $term === FALSE ) {
+			$this->_overrides['term'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($term) && ! is_null($term) ) {
 			$term = array($term);
 		}
+
+		unset ($this->_overrides['term']);
 		$count = count($term);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'term', 0));

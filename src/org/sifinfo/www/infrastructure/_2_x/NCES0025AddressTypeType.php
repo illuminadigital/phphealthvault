@@ -15,6 +15,13 @@ class NCES0025AddressTypeType {
 	static protected $enumValue = array('1074' => 'Employer\'s address', '1075' => 'Employment address', '0123' => 'Mailing address', '1073' => 'Other home address', '2382' => 'Other organization address', '0765' => 'Physical location address', '0124' => 'Shipping address');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0025AddressTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0025AddressTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

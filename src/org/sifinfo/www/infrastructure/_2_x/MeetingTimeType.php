@@ -15,6 +15,13 @@ class MeetingTimeType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="TimetableDay")
 	 */
 	protected $timetableDay;
@@ -29,8 +36,8 @@ class MeetingTimeType {
 		$this->timetablePeriod = ($timetablePeriod===NULL) ? NULL : $this->validateTimetablePeriod($timetablePeriod);
 	}
 
-	public function getTimetableDay() {
-		if ($this->timetableDay===NULL) {
+	public function getTimetableDay($autoCreate = TRUE) {
+		if ($this->timetableDay===NULL && $autoCreate && ! isset($this->_overrides['timetableDay']) ) {
 			$this->timetableDay = $this->createTimetableDay();
 		}
 		return $this->timetableDay;
@@ -52,8 +59,8 @@ class MeetingTimeType {
 		return $timetableDay;
 	}
 
-	public function getTimetablePeriod() {
-		if ($this->timetablePeriod===NULL) {
+	public function getTimetablePeriod($autoCreate = TRUE) {
+		if ($this->timetablePeriod===NULL && $autoCreate && ! isset($this->_overrides['timetablePeriod']) ) {
 			$this->timetablePeriod = $this->createTimetablePeriod();
 		}
 		return $this->timetablePeriod;

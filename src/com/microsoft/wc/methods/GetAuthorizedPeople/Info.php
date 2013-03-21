@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\GetAuthorizedPeople\GetAuthorizedPeopleParameters", name="parameters")
 	 */
 	protected $parameters;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->parameters = ($parameters===NULL) ? NULL : $this->validateParameters($parameters);
 	}
 
-	public function getParameters() {
-		if ($this->parameters===NULL) {
+	public function getParameters($autoCreate = TRUE) {
+		if ($this->parameters===NULL && $autoCreate && ! isset($this->_overrides['parameters']) ) {
 			$this->parameters = $this->createParameters();
 		}
 		return $this->parameters;

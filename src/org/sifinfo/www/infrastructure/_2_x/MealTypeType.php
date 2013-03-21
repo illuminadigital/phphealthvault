@@ -15,6 +15,13 @@ class MealTypeType {
 	static protected $enumValue = array('FirstMeal' => 'FirstMeal', 'SecondMeal' => 'SecondMeal', 'StaffMeal' => 'StaffMeal', 'AdultMeal' => 'AdultMeal', 'AlaCarte' => 'AlaCarte');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="MealTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class MealTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

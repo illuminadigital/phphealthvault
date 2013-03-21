@@ -14,6 +14,13 @@ class Course {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\IdRefType", name="SchoolAttendedRefId")
 	 */
 	protected $schoolAttendedRefId;
@@ -52,8 +59,8 @@ class Course {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getSchoolAttendedRefId() {
-		if ($this->schoolAttendedRefId===NULL) {
+	public function getSchoolAttendedRefId($autoCreate = TRUE) {
+		if ($this->schoolAttendedRefId===NULL && $autoCreate && ! isset($this->_overrides['schoolAttendedRefId']) ) {
 			$this->schoolAttendedRefId = $this->createSchoolAttendedRefId();
 		}
 		return $this->schoolAttendedRefId;
@@ -72,8 +79,8 @@ class Course {
 		return $schoolAttendedRefId;
 	}
 
-	public function getSchoolCourseInfoData() {
-		if ($this->schoolCourseInfoData===NULL) {
+	public function getSchoolCourseInfoData($autoCreate = TRUE) {
+		if ($this->schoolCourseInfoData===NULL && $autoCreate && ! isset($this->_overrides['schoolCourseInfoData']) ) {
 			$this->schoolCourseInfoData = $this->createSchoolCourseInfoData();
 		}
 		return $this->schoolCourseInfoData;
@@ -95,8 +102,8 @@ class Course {
 		return $schoolCourseInfoData;
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -115,8 +122,8 @@ class Course {
 		return $startDate;
 	}
 
-	public function getEndDate() {
-		if ($this->endDate===NULL) {
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
 			$this->endDate = $this->createEndDate();
 		}
 		return $this->endDate;
@@ -135,8 +142,8 @@ class Course {
 		return $endDate;
 	}
 
-	public function getMarkingPeriod() {
-		if ($this->markingPeriod===NULL) {
+	public function getMarkingPeriod($autoCreate = TRUE) {
+		if ($this->markingPeriod===NULL && $autoCreate && ! isset($this->_overrides['markingPeriod']) ) {
 			$this->markingPeriod = $this->createMarkingPeriod();
 		}
 		return $this->markingPeriod;
@@ -158,8 +165,8 @@ class Course {
 		return $markingPeriod;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -174,9 +181,16 @@ class Course {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

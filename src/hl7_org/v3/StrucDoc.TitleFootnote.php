@@ -14,6 +14,13 @@ class StrucDoc.TitleFootnote {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.TitleContent", collection="true", name="content")
 	 */
 	protected $content;
@@ -58,8 +65,8 @@ class StrucDoc.TitleFootnote {
 		$this->styleCode = ($styleCode===NULL) ? NULL : $this->validateStyleCode($styleCode);
 	}
 
-	public function getContent() {
-		if ($this->content===NULL) {
+	public function getContent($autoCreate = TRUE) {
+		if ($this->content===NULL && $autoCreate && ! isset($this->_overrides['content']) ) {
 			$this->content = $this->createContent();
 		}
 		return $this->content;
@@ -93,8 +100,8 @@ class StrucDoc.TitleFootnote {
 		return $content;
 	}
 
-	public function getSub() {
-		if ($this->sub===NULL) {
+	public function getSub($autoCreate = TRUE) {
+		if ($this->sub===NULL && $autoCreate && ! isset($this->_overrides['sub']) ) {
 			$this->sub = $this->createSub();
 		}
 		return $this->sub;
@@ -128,8 +135,8 @@ class StrucDoc.TitleFootnote {
 		return $sub;
 	}
 
-	public function getSup() {
-		if ($this->sup===NULL) {
+	public function getSup($autoCreate = TRUE) {
+		if ($this->sup===NULL && $autoCreate && ! isset($this->_overrides['sup']) ) {
 			$this->sup = $this->createSup();
 		}
 		return $this->sup;
@@ -163,8 +170,8 @@ class StrucDoc.TitleFootnote {
 		return $sup;
 	}
 
-	public function getBr() {
-		if ($this->br===NULL) {
+	public function getBr($autoCreate = TRUE) {
+		if ($this->br===NULL && $autoCreate && ! isset($this->_overrides['br']) ) {
 			$this->br = $this->createBr();
 		}
 		return $this->br;
@@ -198,8 +205,8 @@ class StrucDoc.TitleFootnote {
 		return $br;
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -221,8 +228,8 @@ class StrucDoc.TitleFootnote {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -244,8 +251,8 @@ class StrucDoc.TitleFootnote {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;

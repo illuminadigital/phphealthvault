@@ -15,6 +15,13 @@ class CarePlanGoalRanges {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\CarePlanGoalRange", collection="true", name="goal-range")
 	 */
 	protected $goalRange;
@@ -23,8 +30,8 @@ class CarePlanGoalRanges {
 		$this->goalRange = ($goalRange===NULL) ? NULL : $this->validateGoalRange($goalRange);
 	}
 
-	public function getGoalRange() {
-		if ($this->goalRange===NULL) {
+	public function getGoalRange($autoCreate = TRUE) {
+		if ($this->goalRange===NULL && $autoCreate && ! isset($this->_overrides['goalRange']) ) {
 			$this->goalRange = $this->createGoalRange();
 		}
 		return $this->goalRange;

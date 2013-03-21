@@ -14,6 +14,13 @@ class MarkingSystems {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\MarkValueInfoData", collection="true", name="MarkValueInfoData")
 	 */
 	protected $markValueInfoData;
@@ -22,8 +29,8 @@ class MarkingSystems {
 		$this->markValueInfoData = ($markValueInfoData===NULL) ? NULL : $this->validateMarkValueInfoData($markValueInfoData);
 	}
 
-	public function getMarkValueInfoData() {
-		if ($this->markValueInfoData===NULL) {
+	public function getMarkValueInfoData($autoCreate = TRUE) {
+		if ($this->markValueInfoData===NULL && $autoCreate && ! isset($this->_overrides['markValueInfoData']) ) {
 			$this->markValueInfoData = $this->createMarkValueInfoData();
 		}
 		return $this->markValueInfoData;

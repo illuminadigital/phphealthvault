@@ -15,6 +15,13 @@ class ThingTypeSectionSpec {
 	static protected $enumValue = array('core' => 'The essential information about the thing type should be returned.', 'xsd' => 'The schema of the thing type should be returned.', 'columns' => 'Columns used by the thing type should be returned.', 'transforms' => 'The transforms supported by the thing type should be returned.', 'transformsource' => 'The transforms and their XSL source supported by the thing type should be returned.', 'versions' => 'The versions of the thing type should be returned.', 'effectivedatexpath' => 'The effective date XPath of the thing type should be returned. The effective date XPath allows obtaining the node which will contain the thing\'s effective date value, since this is different for each thing type.');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="ThingTypeSectionSpec")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class ThingTypeSectionSpec {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

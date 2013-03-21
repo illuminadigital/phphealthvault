@@ -18,6 +18,13 @@ class Link extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Link';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="url")
 	 */
 	protected $url;
@@ -32,8 +39,8 @@ class Link extends \com\microsoft\wc\thing\AnyMixed {
 		$this->title = ($title===NULL) ? NULL : $this->validateTitle($title);
 	}
 
-	public function getUrl() {
-		if ($this->url===NULL) {
+	public function getUrl($autoCreate = TRUE) {
+		if ($this->url===NULL && $autoCreate && ! isset($this->_overrides['url']) ) {
 			$this->url = $this->createUrl();
 		}
 		return $this->url;
@@ -55,8 +62,8 @@ class Link extends \com\microsoft\wc\thing\AnyMixed {
 		return $url;
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;

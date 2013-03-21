@@ -17,6 +17,13 @@ class PowerValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\PositiveDouble", name="watts")
 	 */
 	protected $watts;
@@ -31,8 +38,8 @@ class PowerValue {
 		$this->display = ($display===NULL) ? NULL : $this->validateDisplay($display);
 	}
 
-	public function getWatts() {
-		if ($this->watts===NULL) {
+	public function getWatts($autoCreate = TRUE) {
+		if ($this->watts===NULL && $autoCreate && ! isset($this->_overrides['watts']) ) {
 			$this->watts = $this->createWatts();
 		}
 		return $this->watts;
@@ -54,8 +61,8 @@ class PowerValue {
 		return $watts;
 	}
 
-	public function getDisplay() {
-		if ($this->display===NULL) {
+	public function getDisplay($autoCreate = TRUE) {
+		if ($this->display===NULL && $autoCreate && ! isset($this->_overrides['display']) ) {
 			$this->display = $this->createDisplay();
 		}
 		return $this->display;
@@ -70,9 +77,16 @@ class PowerValue {
 	}
 
 	protected function validateDisplay($display) {
+		if ( $display === FALSE ) {
+			$this->_overrides['display'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $display instanceof \com\microsoft\wc\thing\types\DisplayValue  && ! is_null($display) ) {
 			$display = new \com\microsoft\wc\thing\types\DisplayValue ($display);
 		}
+
+		unset ($this->_overrides['display']);
 	
 		return $display;
 	}

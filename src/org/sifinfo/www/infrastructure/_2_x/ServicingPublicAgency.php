@@ -15,6 +15,13 @@ class ServicingPublicAgency {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="SIF_RefObject")
 	 */
 	protected $sifRefObject;
@@ -23,8 +30,8 @@ class ServicingPublicAgency {
 		$this->sifRefObject = ($sifRefObject===NULL) ? NULL : $this->validateSifRefObject($sifRefObject);
 	}
 
-	public function getSifRefObject() {
-		if ($this->sifRefObject===NULL) {
+	public function getSifRefObject($autoCreate = TRUE) {
+		if ($this->sifRefObject===NULL && $autoCreate && ! isset($this->_overrides['sifRefObject']) ) {
 			$this->sifRefObject = $this->createSifRefObject();
 		}
 		return $this->sifRefObject;

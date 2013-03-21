@@ -19,6 +19,13 @@ class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Allergy';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -69,8 +76,8 @@ class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 		$this->isNegated = ($isNegated===NULL) ? NULL : $this->validateIsNegated($isNegated);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -92,8 +99,8 @@ class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getReaction() {
-		if ($this->reaction===NULL) {
+	public function getReaction($autoCreate = TRUE) {
+		if ($this->reaction===NULL && $autoCreate && ! isset($this->_overrides['reaction']) ) {
 			$this->reaction = $this->createReaction();
 		}
 		return $this->reaction;
@@ -108,15 +115,22 @@ class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateReaction($reaction) {
+		if ( $reaction === FALSE ) {
+			$this->_overrides['reaction'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $reaction instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($reaction) ) {
 			$reaction = new \com\microsoft\wc\types\CodableValue ($reaction);
 		}
+
+		unset ($this->_overrides['reaction']);
 	
 		return $reaction;
 	}
 
-	public function getFirstObserved() {
-		if ($this->firstObserved===NULL) {
+	public function getFirstObserved($autoCreate = TRUE) {
+		if ($this->firstObserved===NULL && $autoCreate && ! isset($this->_overrides['firstObserved']) ) {
 			$this->firstObserved = $this->createFirstObserved();
 		}
 		return $this->firstObserved;
@@ -131,15 +145,22 @@ class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFirstObserved($firstObserved) {
+		if ( $firstObserved === FALSE ) {
+			$this->_overrides['firstObserved'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $firstObserved instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($firstObserved) ) {
 			$firstObserved = new \com\microsoft\wc\dates\ApproxDateTime ($firstObserved);
 		}
+
+		unset ($this->_overrides['firstObserved']);
 	
 		return $firstObserved;
 	}
 
-	public function getAllergenType() {
-		if ($this->allergenType===NULL) {
+	public function getAllergenType($autoCreate = TRUE) {
+		if ($this->allergenType===NULL && $autoCreate && ! isset($this->_overrides['allergenType']) ) {
 			$this->allergenType = $this->createAllergenType();
 		}
 		return $this->allergenType;
@@ -154,15 +175,22 @@ class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAllergenType($allergenType) {
+		if ( $allergenType === FALSE ) {
+			$this->_overrides['allergenType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $allergenType instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($allergenType) ) {
 			$allergenType = new \com\microsoft\wc\types\CodableValue ($allergenType);
 		}
+
+		unset ($this->_overrides['allergenType']);
 	
 		return $allergenType;
 	}
 
-	public function getAllergenCode() {
-		if ($this->allergenCode===NULL) {
+	public function getAllergenCode($autoCreate = TRUE) {
+		if ($this->allergenCode===NULL && $autoCreate && ! isset($this->_overrides['allergenCode']) ) {
 			$this->allergenCode = $this->createAllergenCode();
 		}
 		return $this->allergenCode;
@@ -177,15 +205,22 @@ class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAllergenCode($allergenCode) {
+		if ( $allergenCode === FALSE ) {
+			$this->_overrides['allergenCode'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $allergenCode instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($allergenCode) ) {
 			$allergenCode = new \com\microsoft\wc\types\CodableValue ($allergenCode);
 		}
+
+		unset ($this->_overrides['allergenCode']);
 	
 		return $allergenCode;
 	}
 
-	public function getTreatmentProvider() {
-		if ($this->treatmentProvider===NULL) {
+	public function getTreatmentProvider($autoCreate = TRUE) {
+		if ($this->treatmentProvider===NULL && $autoCreate && ! isset($this->_overrides['treatmentProvider']) ) {
 			$this->treatmentProvider = $this->createTreatmentProvider();
 		}
 		return $this->treatmentProvider;
@@ -200,15 +235,22 @@ class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTreatmentProvider($treatmentProvider) {
+		if ( $treatmentProvider === FALSE ) {
+			$this->_overrides['treatmentProvider'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $treatmentProvider instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($treatmentProvider) ) {
 			$treatmentProvider = new \com\microsoft\wc\thing\types\Person ($treatmentProvider);
 		}
+
+		unset ($this->_overrides['treatmentProvider']);
 	
 		return $treatmentProvider;
 	}
 
-	public function getTreatment() {
-		if ($this->treatment===NULL) {
+	public function getTreatment($autoCreate = TRUE) {
+		if ($this->treatment===NULL && $autoCreate && ! isset($this->_overrides['treatment']) ) {
 			$this->treatment = $this->createTreatment();
 		}
 		return $this->treatment;
@@ -223,15 +265,22 @@ class Allergy extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateTreatment($treatment) {
+		if ( $treatment === FALSE ) {
+			$this->_overrides['treatment'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $treatment instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($treatment) ) {
 			$treatment = new \com\microsoft\wc\types\CodableValue ($treatment);
 		}
+
+		unset ($this->_overrides['treatment']);
 	
 		return $treatment;
 	}
 
-	public function getIsNegated() {
-		if ($this->isNegated===NULL) {
+	public function getIsNegated($autoCreate = TRUE) {
+		if ($this->isNegated===NULL && $autoCreate && ! isset($this->_overrides['isNegated']) ) {
 			$this->isNegated = $this->createIsNegated();
 		}
 		return $this->isNegated;

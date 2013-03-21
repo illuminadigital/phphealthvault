@@ -19,6 +19,13 @@ class BodyComposition extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Body Composition';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -51,8 +58,8 @@ class BodyComposition extends \com\microsoft\wc\thing\AnyMixed {
 		$this->site = ($site===NULL) ? NULL : $this->validateSite($site);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -74,8 +81,8 @@ class BodyComposition extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getMeasurementName() {
-		if ($this->measurementName===NULL) {
+	public function getMeasurementName($autoCreate = TRUE) {
+		if ($this->measurementName===NULL && $autoCreate && ! isset($this->_overrides['measurementName']) ) {
 			$this->measurementName = $this->createMeasurementName();
 		}
 		return $this->measurementName;
@@ -97,8 +104,8 @@ class BodyComposition extends \com\microsoft\wc\thing\AnyMixed {
 		return $measurementName;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -120,8 +127,8 @@ class BodyComposition extends \com\microsoft\wc\thing\AnyMixed {
 		return $value;
 	}
 
-	public function getMeasurementMethod() {
-		if ($this->measurementMethod===NULL) {
+	public function getMeasurementMethod($autoCreate = TRUE) {
+		if ($this->measurementMethod===NULL && $autoCreate && ! isset($this->_overrides['measurementMethod']) ) {
 			$this->measurementMethod = $this->createMeasurementMethod();
 		}
 		return $this->measurementMethod;
@@ -136,15 +143,22 @@ class BodyComposition extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMeasurementMethod($measurementMethod) {
+		if ( $measurementMethod === FALSE ) {
+			$this->_overrides['measurementMethod'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $measurementMethod instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($measurementMethod) ) {
 			$measurementMethod = new \com\microsoft\wc\types\CodableValue ($measurementMethod);
 		}
+
+		unset ($this->_overrides['measurementMethod']);
 	
 		return $measurementMethod;
 	}
 
-	public function getSite() {
-		if ($this->site===NULL) {
+	public function getSite($autoCreate = TRUE) {
+		if ($this->site===NULL && $autoCreate && ! isset($this->_overrides['site']) ) {
 			$this->site = $this->createSite();
 		}
 		return $this->site;
@@ -159,9 +173,16 @@ class BodyComposition extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSite($site) {
+		if ( $site === FALSE ) {
+			$this->_overrides['site'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $site instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($site) ) {
 			$site = new \com\microsoft\wc\types\CodableValue ($site);
 		}
+
+		unset ($this->_overrides['site']);
 	
 		return $site;
 	}

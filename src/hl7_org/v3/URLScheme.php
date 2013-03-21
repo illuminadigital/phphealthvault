@@ -15,6 +15,13 @@ class URLScheme {
 	static protected $enumValue = array('fax' => 'fax', 'file' => 'file', 'ftp' => 'ftp', 'http' => 'http', 'mailto' => 'mailto', 'mllp' => 'mllp', 'modem' => 'modem', 'nfs' => 'nfs', 'tel' => 'tel', 'telnet' => 'telnet');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\hl7_org\v3\Cs", name="value")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class URLScheme {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

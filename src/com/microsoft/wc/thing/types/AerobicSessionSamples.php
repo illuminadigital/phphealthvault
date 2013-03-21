@@ -16,6 +16,13 @@ class AerobicSessionSamples {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\SampleSet", name="heartrate-samples")
 	 */
 	protected $heartrateSamples;
@@ -102,8 +109,8 @@ class AerobicSessionSamples {
 		$this->aerobicStepMinutesSamples = ($aerobicStepMinutesSamples===NULL) ? NULL : $this->validateAerobicStepMinutesSamples($aerobicStepMinutesSamples);
 	}
 
-	public function getHeartrateSamples() {
-		if ($this->heartrateSamples===NULL) {
+	public function getHeartrateSamples($autoCreate = TRUE) {
+		if ($this->heartrateSamples===NULL && $autoCreate && ! isset($this->_overrides['heartrateSamples']) ) {
 			$this->heartrateSamples = $this->createHeartrateSamples();
 		}
 		return $this->heartrateSamples;
@@ -118,15 +125,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateHeartrateSamples($heartrateSamples) {
+		if ( $heartrateSamples === FALSE ) {
+			$this->_overrides['heartrateSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $heartrateSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($heartrateSamples) ) {
 			$heartrateSamples = new \com\microsoft\wc\thing\types\SampleSet ($heartrateSamples);
 		}
+
+		unset ($this->_overrides['heartrateSamples']);
 	
 		return $heartrateSamples;
 	}
 
-	public function getDistanceSamples() {
-		if ($this->distanceSamples===NULL) {
+	public function getDistanceSamples($autoCreate = TRUE) {
+		if ($this->distanceSamples===NULL && $autoCreate && ! isset($this->_overrides['distanceSamples']) ) {
 			$this->distanceSamples = $this->createDistanceSamples();
 		}
 		return $this->distanceSamples;
@@ -141,15 +155,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateDistanceSamples($distanceSamples) {
+		if ( $distanceSamples === FALSE ) {
+			$this->_overrides['distanceSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $distanceSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($distanceSamples) ) {
 			$distanceSamples = new \com\microsoft\wc\thing\types\SampleSet ($distanceSamples);
 		}
+
+		unset ($this->_overrides['distanceSamples']);
 	
 		return $distanceSamples;
 	}
 
-	public function getPositionSamples() {
-		if ($this->positionSamples===NULL) {
+	public function getPositionSamples($autoCreate = TRUE) {
+		if ($this->positionSamples===NULL && $autoCreate && ! isset($this->_overrides['positionSamples']) ) {
 			$this->positionSamples = $this->createPositionSamples();
 		}
 		return $this->positionSamples;
@@ -164,15 +185,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validatePositionSamples($positionSamples) {
+		if ( $positionSamples === FALSE ) {
+			$this->_overrides['positionSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $positionSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($positionSamples) ) {
 			$positionSamples = new \com\microsoft\wc\thing\types\SampleSet ($positionSamples);
 		}
+
+		unset ($this->_overrides['positionSamples']);
 	
 		return $positionSamples;
 	}
 
-	public function getSpeedSamples() {
-		if ($this->speedSamples===NULL) {
+	public function getSpeedSamples($autoCreate = TRUE) {
+		if ($this->speedSamples===NULL && $autoCreate && ! isset($this->_overrides['speedSamples']) ) {
 			$this->speedSamples = $this->createSpeedSamples();
 		}
 		return $this->speedSamples;
@@ -187,15 +215,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateSpeedSamples($speedSamples) {
+		if ( $speedSamples === FALSE ) {
+			$this->_overrides['speedSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $speedSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($speedSamples) ) {
 			$speedSamples = new \com\microsoft\wc\thing\types\SampleSet ($speedSamples);
 		}
+
+		unset ($this->_overrides['speedSamples']);
 	
 		return $speedSamples;
 	}
 
-	public function getPaceSamples() {
-		if ($this->paceSamples===NULL) {
+	public function getPaceSamples($autoCreate = TRUE) {
+		if ($this->paceSamples===NULL && $autoCreate && ! isset($this->_overrides['paceSamples']) ) {
 			$this->paceSamples = $this->createPaceSamples();
 		}
 		return $this->paceSamples;
@@ -210,15 +245,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validatePaceSamples($paceSamples) {
+		if ( $paceSamples === FALSE ) {
+			$this->_overrides['paceSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $paceSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($paceSamples) ) {
 			$paceSamples = new \com\microsoft\wc\thing\types\SampleSet ($paceSamples);
 		}
+
+		unset ($this->_overrides['paceSamples']);
 	
 		return $paceSamples;
 	}
 
-	public function getPowerSamples() {
-		if ($this->powerSamples===NULL) {
+	public function getPowerSamples($autoCreate = TRUE) {
+		if ($this->powerSamples===NULL && $autoCreate && ! isset($this->_overrides['powerSamples']) ) {
 			$this->powerSamples = $this->createPowerSamples();
 		}
 		return $this->powerSamples;
@@ -233,15 +275,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validatePowerSamples($powerSamples) {
+		if ( $powerSamples === FALSE ) {
+			$this->_overrides['powerSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $powerSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($powerSamples) ) {
 			$powerSamples = new \com\microsoft\wc\thing\types\SampleSet ($powerSamples);
 		}
+
+		unset ($this->_overrides['powerSamples']);
 	
 		return $powerSamples;
 	}
 
-	public function getTorqueSamples() {
-		if ($this->torqueSamples===NULL) {
+	public function getTorqueSamples($autoCreate = TRUE) {
+		if ($this->torqueSamples===NULL && $autoCreate && ! isset($this->_overrides['torqueSamples']) ) {
 			$this->torqueSamples = $this->createTorqueSamples();
 		}
 		return $this->torqueSamples;
@@ -256,15 +305,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateTorqueSamples($torqueSamples) {
+		if ( $torqueSamples === FALSE ) {
+			$this->_overrides['torqueSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $torqueSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($torqueSamples) ) {
 			$torqueSamples = new \com\microsoft\wc\thing\types\SampleSet ($torqueSamples);
 		}
+
+		unset ($this->_overrides['torqueSamples']);
 	
 		return $torqueSamples;
 	}
 
-	public function getCadenceSamples() {
-		if ($this->cadenceSamples===NULL) {
+	public function getCadenceSamples($autoCreate = TRUE) {
+		if ($this->cadenceSamples===NULL && $autoCreate && ! isset($this->_overrides['cadenceSamples']) ) {
 			$this->cadenceSamples = $this->createCadenceSamples();
 		}
 		return $this->cadenceSamples;
@@ -279,15 +335,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateCadenceSamples($cadenceSamples) {
+		if ( $cadenceSamples === FALSE ) {
+			$this->_overrides['cadenceSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $cadenceSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($cadenceSamples) ) {
 			$cadenceSamples = new \com\microsoft\wc\thing\types\SampleSet ($cadenceSamples);
 		}
+
+		unset ($this->_overrides['cadenceSamples']);
 	
 		return $cadenceSamples;
 	}
 
-	public function getTemperatureSamples() {
-		if ($this->temperatureSamples===NULL) {
+	public function getTemperatureSamples($autoCreate = TRUE) {
+		if ($this->temperatureSamples===NULL && $autoCreate && ! isset($this->_overrides['temperatureSamples']) ) {
 			$this->temperatureSamples = $this->createTemperatureSamples();
 		}
 		return $this->temperatureSamples;
@@ -302,15 +365,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateTemperatureSamples($temperatureSamples) {
+		if ( $temperatureSamples === FALSE ) {
+			$this->_overrides['temperatureSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $temperatureSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($temperatureSamples) ) {
 			$temperatureSamples = new \com\microsoft\wc\thing\types\SampleSet ($temperatureSamples);
 		}
+
+		unset ($this->_overrides['temperatureSamples']);
 	
 		return $temperatureSamples;
 	}
 
-	public function getAltitudeSamples() {
-		if ($this->altitudeSamples===NULL) {
+	public function getAltitudeSamples($autoCreate = TRUE) {
+		if ($this->altitudeSamples===NULL && $autoCreate && ! isset($this->_overrides['altitudeSamples']) ) {
 			$this->altitudeSamples = $this->createAltitudeSamples();
 		}
 		return $this->altitudeSamples;
@@ -325,15 +395,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateAltitudeSamples($altitudeSamples) {
+		if ( $altitudeSamples === FALSE ) {
+			$this->_overrides['altitudeSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $altitudeSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($altitudeSamples) ) {
 			$altitudeSamples = new \com\microsoft\wc\thing\types\SampleSet ($altitudeSamples);
 		}
+
+		unset ($this->_overrides['altitudeSamples']);
 	
 		return $altitudeSamples;
 	}
 
-	public function getAirPressureSamples() {
-		if ($this->airPressureSamples===NULL) {
+	public function getAirPressureSamples($autoCreate = TRUE) {
+		if ($this->airPressureSamples===NULL && $autoCreate && ! isset($this->_overrides['airPressureSamples']) ) {
 			$this->airPressureSamples = $this->createAirPressureSamples();
 		}
 		return $this->airPressureSamples;
@@ -348,15 +425,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateAirPressureSamples($airPressureSamples) {
+		if ( $airPressureSamples === FALSE ) {
+			$this->_overrides['airPressureSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $airPressureSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($airPressureSamples) ) {
 			$airPressureSamples = new \com\microsoft\wc\thing\types\SampleSet ($airPressureSamples);
 		}
+
+		unset ($this->_overrides['airPressureSamples']);
 	
 		return $airPressureSamples;
 	}
 
-	public function getNumberOfStepsSamples() {
-		if ($this->numberOfStepsSamples===NULL) {
+	public function getNumberOfStepsSamples($autoCreate = TRUE) {
+		if ($this->numberOfStepsSamples===NULL && $autoCreate && ! isset($this->_overrides['numberOfStepsSamples']) ) {
 			$this->numberOfStepsSamples = $this->createNumberOfStepsSamples();
 		}
 		return $this->numberOfStepsSamples;
@@ -371,15 +455,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateNumberOfStepsSamples($numberOfStepsSamples) {
+		if ( $numberOfStepsSamples === FALSE ) {
+			$this->_overrides['numberOfStepsSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $numberOfStepsSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($numberOfStepsSamples) ) {
 			$numberOfStepsSamples = new \com\microsoft\wc\thing\types\SampleSet ($numberOfStepsSamples);
 		}
+
+		unset ($this->_overrides['numberOfStepsSamples']);
 	
 		return $numberOfStepsSamples;
 	}
 
-	public function getNumberOfAerobicStepsSamples() {
-		if ($this->numberOfAerobicStepsSamples===NULL) {
+	public function getNumberOfAerobicStepsSamples($autoCreate = TRUE) {
+		if ($this->numberOfAerobicStepsSamples===NULL && $autoCreate && ! isset($this->_overrides['numberOfAerobicStepsSamples']) ) {
 			$this->numberOfAerobicStepsSamples = $this->createNumberOfAerobicStepsSamples();
 		}
 		return $this->numberOfAerobicStepsSamples;
@@ -394,15 +485,22 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateNumberOfAerobicStepsSamples($numberOfAerobicStepsSamples) {
+		if ( $numberOfAerobicStepsSamples === FALSE ) {
+			$this->_overrides['numberOfAerobicStepsSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $numberOfAerobicStepsSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($numberOfAerobicStepsSamples) ) {
 			$numberOfAerobicStepsSamples = new \com\microsoft\wc\thing\types\SampleSet ($numberOfAerobicStepsSamples);
 		}
+
+		unset ($this->_overrides['numberOfAerobicStepsSamples']);
 	
 		return $numberOfAerobicStepsSamples;
 	}
 
-	public function getAerobicStepMinutesSamples() {
-		if ($this->aerobicStepMinutesSamples===NULL) {
+	public function getAerobicStepMinutesSamples($autoCreate = TRUE) {
+		if ($this->aerobicStepMinutesSamples===NULL && $autoCreate && ! isset($this->_overrides['aerobicStepMinutesSamples']) ) {
 			$this->aerobicStepMinutesSamples = $this->createAerobicStepMinutesSamples();
 		}
 		return $this->aerobicStepMinutesSamples;
@@ -417,9 +515,16 @@ class AerobicSessionSamples {
 	}
 
 	protected function validateAerobicStepMinutesSamples($aerobicStepMinutesSamples) {
+		if ( $aerobicStepMinutesSamples === FALSE ) {
+			$this->_overrides['aerobicStepMinutesSamples'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $aerobicStepMinutesSamples instanceof \com\microsoft\wc\thing\types\SampleSet  && ! is_null($aerobicStepMinutesSamples) ) {
 			$aerobicStepMinutesSamples = new \com\microsoft\wc\thing\types\SampleSet ($aerobicStepMinutesSamples);
 		}
+
+		unset ($this->_overrides['aerobicStepMinutesSamples']);
 	
 		return $aerobicStepMinutesSamples;
 	}

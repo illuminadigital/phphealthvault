@@ -19,6 +19,13 @@ class LifeGoal extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Life Goal';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="description")
 	 */
 	protected $description;
@@ -33,8 +40,8 @@ class LifeGoal extends \com\microsoft\wc\thing\AnyMixed {
 		$this->goalInfo = ($goalInfo===NULL) ? NULL : $this->validateGoalInfo($goalInfo);
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -56,8 +63,8 @@ class LifeGoal extends \com\microsoft\wc\thing\AnyMixed {
 		return $description;
 	}
 
-	public function getGoalInfo() {
-		if ($this->goalInfo===NULL) {
+	public function getGoalInfo($autoCreate = TRUE) {
+		if ($this->goalInfo===NULL && $autoCreate && ! isset($this->_overrides['goalInfo']) ) {
 			$this->goalInfo = $this->createGoalInfo();
 		}
 		return $this->goalInfo;
@@ -72,9 +79,16 @@ class LifeGoal extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateGoalInfo($goalInfo) {
+		if ( $goalInfo === FALSE ) {
+			$this->_overrides['goalInfo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $goalInfo instanceof \com\microsoft\wc\thing\types\Goal  && ! is_null($goalInfo) ) {
 			$goalInfo = new \com\microsoft\wc\thing\types\Goal ($goalInfo);
 		}
+
+		unset ($this->_overrides['goalInfo']);
 	
 		return $goalInfo;
 	}

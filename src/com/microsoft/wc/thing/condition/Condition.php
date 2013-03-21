@@ -19,6 +19,13 @@ class Condition extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Condition';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -51,8 +58,8 @@ class Condition extends \com\microsoft\wc\thing\AnyMixed {
 		$this->stopReason = ($stopReason===NULL) ? NULL : $this->validateStopReason($stopReason);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -74,8 +81,8 @@ class Condition extends \com\microsoft\wc\thing\AnyMixed {
 		return $name;
 	}
 
-	public function getOnsetDate() {
-		if ($this->onsetDate===NULL) {
+	public function getOnsetDate($autoCreate = TRUE) {
+		if ($this->onsetDate===NULL && $autoCreate && ! isset($this->_overrides['onsetDate']) ) {
 			$this->onsetDate = $this->createOnsetDate();
 		}
 		return $this->onsetDate;
@@ -90,15 +97,22 @@ class Condition extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateOnsetDate($onsetDate) {
+		if ( $onsetDate === FALSE ) {
+			$this->_overrides['onsetDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $onsetDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($onsetDate) ) {
 			$onsetDate = new \com\microsoft\wc\dates\ApproxDateTime ($onsetDate);
 		}
+
+		unset ($this->_overrides['onsetDate']);
 	
 		return $onsetDate;
 	}
 
-	public function getStatus() {
-		if ($this->status===NULL) {
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
 			$this->status = $this->createStatus();
 		}
 		return $this->status;
@@ -113,15 +127,22 @@ class Condition extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStatus($status) {
+		if ( $status === FALSE ) {
+			$this->_overrides['status'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $status instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($status) ) {
 			$status = new \com\microsoft\wc\types\CodableValue ($status);
 		}
+
+		unset ($this->_overrides['status']);
 	
 		return $status;
 	}
 
-	public function getStopDate() {
-		if ($this->stopDate===NULL) {
+	public function getStopDate($autoCreate = TRUE) {
+		if ($this->stopDate===NULL && $autoCreate && ! isset($this->_overrides['stopDate']) ) {
 			$this->stopDate = $this->createStopDate();
 		}
 		return $this->stopDate;
@@ -136,15 +157,22 @@ class Condition extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateStopDate($stopDate) {
+		if ( $stopDate === FALSE ) {
+			$this->_overrides['stopDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $stopDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($stopDate) ) {
 			$stopDate = new \com\microsoft\wc\dates\ApproxDateTime ($stopDate);
 		}
+
+		unset ($this->_overrides['stopDate']);
 	
 		return $stopDate;
 	}
 
-	public function getStopReason() {
-		if ($this->stopReason===NULL) {
+	public function getStopReason($autoCreate = TRUE) {
+		if ($this->stopReason===NULL && $autoCreate && ! isset($this->_overrides['stopReason']) ) {
 			$this->stopReason = $this->createStopReason();
 		}
 		return $this->stopReason;

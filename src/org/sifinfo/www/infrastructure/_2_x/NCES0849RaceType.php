@@ -15,6 +15,13 @@ class NCES0849RaceType {
 	static protected $enumValue = array('0998' => 'American Indian or Alaska Native', '0999' => 'Asian', '1000' => 'Black or African American', '1001' => 'Native Hawaiian or Other Pacific Islander', '1002' => 'White');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0849RaceType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0849RaceType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

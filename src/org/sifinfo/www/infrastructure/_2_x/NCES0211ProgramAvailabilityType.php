@@ -15,6 +15,13 @@ class NCES0211ProgramAvailabilityType {
 	static protected $enumValue = array('0236' => 'After school', '0235' => 'Before school', '0231' => 'During school', '0239' => 'Evenings', '0238' => 'In-school service day', '9999' => 'Other', '0237' => 'Summer', '0234' => 'Weekend');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0211ProgramAvailabilityType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0211ProgramAvailabilityType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

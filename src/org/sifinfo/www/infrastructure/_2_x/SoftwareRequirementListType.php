@@ -15,6 +15,13 @@ class SoftwareRequirementListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SoftwareRequirement", collection="true", name="SoftwareRequirement")
 	 */
 	protected $softwareRequirement;
@@ -23,8 +30,8 @@ class SoftwareRequirementListType {
 		$this->softwareRequirement = ($softwareRequirement===NULL) ? NULL : $this->validateSoftwareRequirement($softwareRequirement);
 	}
 
-	public function getSoftwareRequirement() {
-		if ($this->softwareRequirement===NULL) {
+	public function getSoftwareRequirement($autoCreate = TRUE) {
+		if ($this->softwareRequirement===NULL && $autoCreate && ! isset($this->_overrides['softwareRequirement']) ) {
 			$this->softwareRequirement = $this->createSoftwareRequirement();
 		}
 		return $this->softwareRequirement;
@@ -39,9 +46,16 @@ class SoftwareRequirementListType {
 	}
 
 	protected function validateSoftwareRequirement($softwareRequirement) {
+		if ( $softwareRequirement === FALSE ) {
+			$this->_overrides['softwareRequirement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($softwareRequirement) && ! is_null($softwareRequirement) ) {
 			$softwareRequirement = array($softwareRequirement);
 		}
+
+		unset ($this->_overrides['softwareRequirement']);
 		$count = count($softwareRequirement);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'softwareRequirement', 0));

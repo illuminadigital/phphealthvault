@@ -17,6 +17,13 @@ class LabResultType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="float", name="value")
 	 */
 	protected $value;
@@ -55,8 +62,8 @@ class LabResultType {
 		$this->flag = ($flag===NULL) ? NULL : $this->validateFlag($flag);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -89,8 +96,8 @@ class LabResultType {
 		return $value;
 	}
 
-	public function getUnit() {
-		if ($this->unit===NULL) {
+	public function getUnit($autoCreate = TRUE) {
+		if ($this->unit===NULL && $autoCreate && ! isset($this->_overrides['unit']) ) {
 			$this->unit = $this->createUnit();
 		}
 		return $this->unit;
@@ -105,15 +112,22 @@ class LabResultType {
 	}
 
 	protected function validateUnit($unit) {
+		if ( $unit === FALSE ) {
+			$this->_overrides['unit'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $unit instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($unit) ) {
 			$unit = new \com\microsoft\wc\types\CodableValue ($unit);
 		}
+
+		unset ($this->_overrides['unit']);
 	
 		return $unit;
 	}
 
-	public function getReferenceRange() {
-		if ($this->referenceRange===NULL) {
+	public function getReferenceRange($autoCreate = TRUE) {
+		if ($this->referenceRange===NULL && $autoCreate && ! isset($this->_overrides['referenceRange']) ) {
 			$this->referenceRange = $this->createReferenceRange();
 		}
 		return $this->referenceRange;
@@ -128,15 +142,22 @@ class LabResultType {
 	}
 
 	protected function validateReferenceRange($referenceRange) {
+		if ( $referenceRange === FALSE ) {
+			$this->_overrides['referenceRange'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $referenceRange instanceof \com\microsoft\wc\thing\types\DoubleRange  && ! is_null($referenceRange) ) {
 			$referenceRange = new \com\microsoft\wc\thing\types\DoubleRange ($referenceRange);
 		}
+
+		unset ($this->_overrides['referenceRange']);
 	
 		return $referenceRange;
 	}
 
-	public function getToxicRange() {
-		if ($this->toxicRange===NULL) {
+	public function getToxicRange($autoCreate = TRUE) {
+		if ($this->toxicRange===NULL && $autoCreate && ! isset($this->_overrides['toxicRange']) ) {
 			$this->toxicRange = $this->createToxicRange();
 		}
 		return $this->toxicRange;
@@ -151,15 +172,22 @@ class LabResultType {
 	}
 
 	protected function validateToxicRange($toxicRange) {
+		if ( $toxicRange === FALSE ) {
+			$this->_overrides['toxicRange'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $toxicRange instanceof \com\microsoft\wc\thing\types\DoubleRange  && ! is_null($toxicRange) ) {
 			$toxicRange = new \com\microsoft\wc\thing\types\DoubleRange ($toxicRange);
 		}
+
+		unset ($this->_overrides['toxicRange']);
 	
 		return $toxicRange;
 	}
 
-	public function getTextValue() {
-		if ($this->textValue===NULL) {
+	public function getTextValue($autoCreate = TRUE) {
+		if ($this->textValue===NULL && $autoCreate && ! isset($this->_overrides['textValue']) ) {
 			$this->textValue = $this->createTextValue();
 		}
 		return $this->textValue;
@@ -181,8 +209,8 @@ class LabResultType {
 		return $textValue;
 	}
 
-	public function getFlag() {
-		if ($this->flag===NULL) {
+	public function getFlag($autoCreate = TRUE) {
+		if ($this->flag===NULL && $autoCreate && ! isset($this->_overrides['flag']) ) {
 			$this->flag = $this->createFlag();
 		}
 		return $this->flag;
@@ -197,9 +225,16 @@ class LabResultType {
 	}
 
 	protected function validateFlag($flag) {
+		if ( $flag === FALSE ) {
+			$this->_overrides['flag'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($flag) && ! is_null($flag) ) {
 			$flag = array($flag);
 		}
+
+		unset ($this->_overrides['flag']);
 		$count = count($flag);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'flag', 0));

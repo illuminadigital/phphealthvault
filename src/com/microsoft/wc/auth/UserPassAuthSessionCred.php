@@ -16,6 +16,13 @@ class UserPassAuthSessionCred {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\String128", name="username")
 	 */
 	protected $username;
@@ -36,8 +43,8 @@ class UserPassAuthSessionCred {
 		$this->sharedSecret = ($sharedSecret===NULL) ? NULL : $this->validateSharedSecret($sharedSecret);
 	}
 
-	public function getUsername() {
-		if ($this->username===NULL) {
+	public function getUsername($autoCreate = TRUE) {
+		if ($this->username===NULL && $autoCreate && ! isset($this->_overrides['username']) ) {
 			$this->username = $this->createUsername();
 		}
 		return $this->username;
@@ -59,8 +66,8 @@ class UserPassAuthSessionCred {
 		return $username;
 	}
 
-	public function getPassword() {
-		if ($this->password===NULL) {
+	public function getPassword($autoCreate = TRUE) {
+		if ($this->password===NULL && $autoCreate && ! isset($this->_overrides['password']) ) {
 			$this->password = $this->createPassword();
 		}
 		return $this->password;
@@ -82,8 +89,8 @@ class UserPassAuthSessionCred {
 		return $password;
 	}
 
-	public function getSharedSecret() {
-		if ($this->sharedSecret===NULL) {
+	public function getSharedSecret($autoCreate = TRUE) {
+		if ($this->sharedSecret===NULL && $autoCreate && ! isset($this->_overrides['sharedSecret']) ) {
 			$this->sharedSecret = $this->createSharedSecret();
 		}
 		return $this->sharedSecret;

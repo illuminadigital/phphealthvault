@@ -19,6 +19,13 @@ class Annotation extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Medical Annotation';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -57,8 +64,8 @@ class Annotation extends \com\microsoft\wc\thing\AnyMixed {
 		$this->version = ($version===NULL) ? NULL : $this->validateVersion($version);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -80,8 +87,8 @@ class Annotation extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getContent() {
-		if ($this->content===NULL) {
+	public function getContent($autoCreate = TRUE) {
+		if ($this->content===NULL && $autoCreate && ! isset($this->_overrides['content']) ) {
 			$this->content = $this->createContent();
 		}
 		return $this->content;
@@ -103,8 +110,8 @@ class Annotation extends \com\microsoft\wc\thing\AnyMixed {
 		return $content;
 	}
 
-	public function getAuthor() {
-		if ($this->author===NULL) {
+	public function getAuthor($autoCreate = TRUE) {
+		if ($this->author===NULL && $autoCreate && ! isset($this->_overrides['author']) ) {
 			$this->author = $this->createAuthor();
 		}
 		return $this->author;
@@ -119,15 +126,22 @@ class Annotation extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAuthor($author) {
+		if ( $author === FALSE ) {
+			$this->_overrides['author'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $author instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($author) ) {
 			$author = new \com\microsoft\wc\thing\types\Person ($author);
 		}
+
+		unset ($this->_overrides['author']);
 	
 		return $author;
 	}
 
-	public function getClassification() {
-		if ($this->classification===NULL) {
+	public function getClassification($autoCreate = TRUE) {
+		if ($this->classification===NULL && $autoCreate && ! isset($this->_overrides['classification']) ) {
 			$this->classification = $this->createClassification();
 		}
 		return $this->classification;
@@ -149,8 +163,8 @@ class Annotation extends \com\microsoft\wc\thing\AnyMixed {
 		return $classification;
 	}
 
-	public function getIndex() {
-		if ($this->index===NULL) {
+	public function getIndex($autoCreate = TRUE) {
+		if ($this->index===NULL && $autoCreate && ! isset($this->_overrides['index']) ) {
 			$this->index = $this->createIndex();
 		}
 		return $this->index;
@@ -172,8 +186,8 @@ class Annotation extends \com\microsoft\wc\thing\AnyMixed {
 		return $index;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;

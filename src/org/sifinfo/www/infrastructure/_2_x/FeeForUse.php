@@ -14,6 +14,13 @@ class FeeForUse {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="UseType")
 	 */
 	protected $useType;
@@ -40,8 +47,8 @@ class FeeForUse {
 		$this->perUseCharge = ($perUseCharge===NULL) ? NULL : $this->validatePerUseCharge($perUseCharge);
 	}
 
-	public function getUseType() {
-		if ($this->useType===NULL) {
+	public function getUseType($autoCreate = TRUE) {
+		if ($this->useType===NULL && $autoCreate && ! isset($this->_overrides['useType']) ) {
 			$this->useType = $this->createUseType();
 		}
 		return $this->useType;
@@ -63,8 +70,8 @@ class FeeForUse {
 		return $useType;
 	}
 
-	public function getMeteringType() {
-		if ($this->meteringType===NULL) {
+	public function getMeteringType($autoCreate = TRUE) {
+		if ($this->meteringType===NULL && $autoCreate && ! isset($this->_overrides['meteringType']) ) {
 			$this->meteringType = $this->createMeteringType();
 		}
 		return $this->meteringType;
@@ -86,8 +93,8 @@ class FeeForUse {
 		return $meteringType;
 	}
 
-	public function getMeteringURL() {
-		if ($this->meteringURL===NULL) {
+	public function getMeteringURL($autoCreate = TRUE) {
+		if ($this->meteringURL===NULL && $autoCreate && ! isset($this->_overrides['meteringURL']) ) {
 			$this->meteringURL = $this->createMeteringURL();
 		}
 		return $this->meteringURL;
@@ -109,8 +116,8 @@ class FeeForUse {
 		return $meteringURL;
 	}
 
-	public function getPerUseCharge() {
-		if ($this->perUseCharge===NULL) {
+	public function getPerUseCharge($autoCreate = TRUE) {
+		if ($this->perUseCharge===NULL && $autoCreate && ! isset($this->_overrides['perUseCharge']) ) {
 			$this->perUseCharge = $this->createPerUseCharge();
 		}
 		return $this->perUseCharge;
@@ -125,9 +132,16 @@ class FeeForUse {
 	}
 
 	protected function validatePerUseCharge($perUseCharge) {
+		if ( $perUseCharge === FALSE ) {
+			$this->_overrides['perUseCharge'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $perUseCharge instanceof \org\sifinfo\www\infrastructure\_2_x\MonetaryAmountType  && ! is_null($perUseCharge) ) {
 			$perUseCharge = new \org\sifinfo\www\infrastructure\_2_x\MonetaryAmountType ($perUseCharge);
 		}
+
+		unset ($this->_overrides['perUseCharge']);
 	
 		return $perUseCharge;
 	}

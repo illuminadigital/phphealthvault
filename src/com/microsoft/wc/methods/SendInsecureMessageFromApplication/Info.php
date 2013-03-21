@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\SendInsecureMessageFromApplication\FromMailbox", name="from-mailbox")
 	 */
 	protected $fromMailbox;
@@ -60,8 +67,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->htmlBody = ($htmlBody===NULL) ? NULL : $this->validateHtmlBody($htmlBody);
 	}
 
-	public function getFromMailbox() {
-		if ($this->fromMailbox===NULL) {
+	public function getFromMailbox($autoCreate = TRUE) {
+		if ($this->fromMailbox===NULL && $autoCreate && ! isset($this->_overrides['fromMailbox']) ) {
 			$this->fromMailbox = $this->createFromMailbox();
 		}
 		return $this->fromMailbox;
@@ -83,8 +90,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $fromMailbox;
 	}
 
-	public function getRcptAddress() {
-		if ($this->rcptAddress===NULL) {
+	public function getRcptAddress($autoCreate = TRUE) {
+		if ($this->rcptAddress===NULL && $autoCreate && ! isset($this->_overrides['rcptAddress']) ) {
 			$this->rcptAddress = $this->createRcptAddress();
 		}
 		return $this->rcptAddress;
@@ -99,9 +106,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptAddress($rcptAddress) {
+		if ( $rcptAddress === FALSE ) {
+			$this->_overrides['rcptAddress'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($rcptAddress) && ! is_null($rcptAddress) ) {
 			$rcptAddress = array($rcptAddress);
 		}
+
+		unset ($this->_overrides['rcptAddress']);
 		$count = count($rcptAddress);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'rcptAddress', 0));
@@ -119,8 +133,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->rcptAddress[] = $rcptAddress;
 	}
 
-	public function getRcptPerson() {
-		if ($this->rcptPerson===NULL) {
+	public function getRcptPerson($autoCreate = TRUE) {
+		if ($this->rcptPerson===NULL && $autoCreate && ! isset($this->_overrides['rcptPerson']) ) {
 			$this->rcptPerson = $this->createRcptPerson();
 		}
 		return $this->rcptPerson;
@@ -135,9 +149,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptPerson($rcptPerson) {
+		if ( $rcptPerson === FALSE ) {
+			$this->_overrides['rcptPerson'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($rcptPerson) && ! is_null($rcptPerson) ) {
 			$rcptPerson = array($rcptPerson);
 		}
+
+		unset ($this->_overrides['rcptPerson']);
 		$count = count($rcptPerson);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'rcptPerson', 0));
@@ -155,8 +176,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->rcptPerson[] = $rcptPerson;
 	}
 
-	public function getRcptRecord() {
-		if ($this->rcptRecord===NULL) {
+	public function getRcptRecord($autoCreate = TRUE) {
+		if ($this->rcptRecord===NULL && $autoCreate && ! isset($this->_overrides['rcptRecord']) ) {
 			$this->rcptRecord = $this->createRcptRecord();
 		}
 		return $this->rcptRecord;
@@ -171,15 +192,22 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateRcptRecord($rcptRecord) {
+		if ( $rcptRecord === FALSE ) {
+			$this->_overrides['rcptRecord'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $rcptRecord instanceof \com\microsoft\wc\types\RcptRecord  && ! is_null($rcptRecord) ) {
 			$rcptRecord = new \com\microsoft\wc\types\RcptRecord ($rcptRecord);
 		}
+
+		unset ($this->_overrides['rcptRecord']);
 	
 		return $rcptRecord;
 	}
 
-	public function getSubject() {
-		if ($this->subject===NULL) {
+	public function getSubject($autoCreate = TRUE) {
+		if ($this->subject===NULL && $autoCreate && ! isset($this->_overrides['subject']) ) {
 			$this->subject = $this->createSubject();
 		}
 		return $this->subject;
@@ -201,8 +229,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $subject;
 	}
 
-	public function getTextBody() {
-		if ($this->textBody===NULL) {
+	public function getTextBody($autoCreate = TRUE) {
+		if ($this->textBody===NULL && $autoCreate && ! isset($this->_overrides['textBody']) ) {
 			$this->textBody = $this->createTextBody();
 		}
 		return $this->textBody;
@@ -224,8 +252,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $textBody;
 	}
 
-	public function getHtmlBody() {
-		if ($this->htmlBody===NULL) {
+	public function getHtmlBody($autoCreate = TRUE) {
+		if ($this->htmlBody===NULL && $autoCreate && ! isset($this->_overrides['htmlBody']) ) {
 			$this->htmlBody = $this->createHtmlBody();
 		}
 		return $this->htmlBody;

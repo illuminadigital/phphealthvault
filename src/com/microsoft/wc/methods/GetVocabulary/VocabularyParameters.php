@@ -15,6 +15,13 @@ class VocabularyParameters {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyKey", collection="true", name="vocabulary-key")
 	 */
 	protected $vocabularyKey;
@@ -29,8 +36,8 @@ class VocabularyParameters {
 		$this->fixedCulture = ($fixedCulture===NULL) ? NULL : $this->validateFixedCulture($fixedCulture);
 	}
 
-	public function getVocabularyKey() {
-		if ($this->vocabularyKey===NULL) {
+	public function getVocabularyKey($autoCreate = TRUE) {
+		if ($this->vocabularyKey===NULL && $autoCreate && ! isset($this->_overrides['vocabularyKey']) ) {
 			$this->vocabularyKey = $this->createVocabularyKey();
 		}
 		return $this->vocabularyKey;
@@ -65,8 +72,8 @@ class VocabularyParameters {
 		$this->vocabularyKey[] = $vocabularyKey;
 	}
 
-	public function getFixedCulture() {
-		if ($this->fixedCulture===NULL) {
+	public function getFixedCulture($autoCreate = TRUE) {
+		if ($this->fixedCulture===NULL && $autoCreate && ! isset($this->_overrides['fixedCulture']) ) {
 			$this->fixedCulture = $this->createFixedCulture();
 		}
 		return $this->fixedCulture;

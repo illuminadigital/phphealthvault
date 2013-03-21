@@ -16,6 +16,13 @@ class ThingRequestGroup2 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", collection="true", name="id")
 	 */
 	protected $id;
@@ -72,8 +79,8 @@ class ThingRequestGroup2 {
 		$this->maxFull = ($maxFull===NULL) ? NULL : $this->validateMaxFull($maxFull);
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -88,9 +95,16 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateId($id) {
+		if ( $id === FALSE ) {
+			$this->_overrides['id'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($id) && ! is_null($id) ) {
 			$id = array($id);
 		}
+
+		unset ($this->_overrides['id']);
 		$count = count($id);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
@@ -108,8 +122,8 @@ class ThingRequestGroup2 {
 		$this->id[] = $id;
 	}
 
-	public function getKey() {
-		if ($this->key===NULL) {
+	public function getKey($autoCreate = TRUE) {
+		if ($this->key===NULL && $autoCreate && ! isset($this->_overrides['key']) ) {
 			$this->key = $this->createKey();
 		}
 		return $this->key;
@@ -124,9 +138,16 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateKey($key) {
+		if ( $key === FALSE ) {
+			$this->_overrides['key'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($key) && ! is_null($key) ) {
 			$key = array($key);
 		}
+
+		unset ($this->_overrides['key']);
 		$count = count($key);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'key', 0));
@@ -144,8 +165,8 @@ class ThingRequestGroup2 {
 		$this->key[] = $key;
 	}
 
-	public function getClientThingId() {
-		if ($this->clientThingId===NULL) {
+	public function getClientThingId($autoCreate = TRUE) {
+		if ($this->clientThingId===NULL && $autoCreate && ! isset($this->_overrides['clientThingId']) ) {
 			$this->clientThingId = $this->createClientThingId();
 		}
 		return $this->clientThingId;
@@ -160,9 +181,16 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateClientThingId($clientThingId) {
+		if ( $clientThingId === FALSE ) {
+			$this->_overrides['clientThingId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($clientThingId) && ! is_null($clientThingId) ) {
 			$clientThingId = array($clientThingId);
 		}
+
+		unset ($this->_overrides['clientThingId']);
 		$count = count($clientThingId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'clientThingId', 0));
@@ -180,8 +208,8 @@ class ThingRequestGroup2 {
 		$this->clientThingId[] = $clientThingId;
 	}
 
-	public function getFilter() {
-		if ($this->filter===NULL) {
+	public function getFilter($autoCreate = TRUE) {
+		if ($this->filter===NULL && $autoCreate && ! isset($this->_overrides['filter']) ) {
 			$this->filter = $this->createFilter();
 		}
 		return $this->filter;
@@ -196,9 +224,16 @@ class ThingRequestGroup2 {
 	}
 
 	protected function validateFilter($filter) {
+		if ( $filter === FALSE ) {
+			$this->_overrides['filter'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($filter) && ! is_null($filter) ) {
 			$filter = array($filter);
 		}
+
+		unset ($this->_overrides['filter']);
 		$count = count($filter);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'filter', 0));
@@ -216,8 +251,8 @@ class ThingRequestGroup2 {
 		$this->filter[] = $filter;
 	}
 
-	public function getFormat() {
-		if ($this->format===NULL) {
+	public function getFormat($autoCreate = TRUE) {
+		if ($this->format===NULL && $autoCreate && ! isset($this->_overrides['format']) ) {
 			$this->format = $this->createFormat();
 		}
 		return $this->format;
@@ -239,8 +274,8 @@ class ThingRequestGroup2 {
 		return $format;
 	}
 
-	public function getCurrentVersionOnly() {
-		if ($this->currentVersionOnly===NULL) {
+	public function getCurrentVersionOnly($autoCreate = TRUE) {
+		if ($this->currentVersionOnly===NULL && $autoCreate && ! isset($this->_overrides['currentVersionOnly']) ) {
 			$this->currentVersionOnly = $this->createCurrentVersionOnly();
 		}
 		return $this->currentVersionOnly;
@@ -262,8 +297,8 @@ class ThingRequestGroup2 {
 		return $currentVersionOnly;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -285,8 +320,8 @@ class ThingRequestGroup2 {
 		return $name;
 	}
 
-	public function getMax() {
-		if ($this->max===NULL) {
+	public function getMax($autoCreate = TRUE) {
+		if ($this->max===NULL && $autoCreate && ! isset($this->_overrides['max']) ) {
 			$this->max = $this->createMax();
 		}
 		return $this->max;
@@ -319,8 +354,8 @@ class ThingRequestGroup2 {
 		return $max;
 	}
 
-	public function getMaxFull() {
-		if ($this->maxFull===NULL) {
+	public function getMaxFull($autoCreate = TRUE) {
+		if ($this->maxFull===NULL && $autoCreate && ! isset($this->_overrides['maxFull']) ) {
 			$this->maxFull = $this->createMaxFull();
 		}
 		return $this->maxFull;

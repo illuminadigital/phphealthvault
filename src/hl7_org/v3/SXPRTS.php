@@ -14,6 +14,13 @@ class SXPRTS extends \org\w3\www\_2001\XMLSchema\SXCMTS {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\SXCMTS", collection="true", name="comp")
 	 */
 	protected $comp;
@@ -22,8 +29,8 @@ class SXPRTS extends \org\w3\www\_2001\XMLSchema\SXCMTS {
 		$this->comp = ($comp===NULL) ? NULL : $this->validateComp($comp);
 	}
 
-	public function getComp() {
-		if ($this->comp===NULL) {
+	public function getComp($autoCreate = TRUE) {
+		if ($this->comp===NULL && $autoCreate && ! isset($this->_overrides['comp']) ) {
 			$this->comp = $this->createComp();
 		}
 		return $this->comp;

@@ -14,6 +14,13 @@ class InterestLevels {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\GradeLevelType", collection="true", name="InterestLevel")
 	 */
 	protected $interestLevel;
@@ -22,8 +29,8 @@ class InterestLevels {
 		$this->interestLevel = ($interestLevel===NULL) ? NULL : $this->validateInterestLevel($interestLevel);
 	}
 
-	public function getInterestLevel() {
-		if ($this->interestLevel===NULL) {
+	public function getInterestLevel($autoCreate = TRUE) {
+		if ($this->interestLevel===NULL && $autoCreate && ! isset($this->_overrides['interestLevel']) ) {
 			$this->interestLevel = $this->createInterestLevel();
 		}
 		return $this->interestLevel;

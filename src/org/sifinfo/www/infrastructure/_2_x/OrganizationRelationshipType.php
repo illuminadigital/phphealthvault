@@ -15,6 +15,13 @@ class OrganizationRelationshipType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ResidencyStatus", name="ResidencyStatus")
 	 */
 	protected $residencyStatus;
@@ -41,8 +48,8 @@ class OrganizationRelationshipType {
 		$this->financiallyResponsible = ($financiallyResponsible===NULL) ? NULL : $this->validateFinanciallyResponsible($financiallyResponsible);
 	}
 
-	public function getResidencyStatus() {
-		if ($this->residencyStatus===NULL) {
+	public function getResidencyStatus($autoCreate = TRUE) {
+		if ($this->residencyStatus===NULL && $autoCreate && ! isset($this->_overrides['residencyStatus']) ) {
 			$this->residencyStatus = $this->createResidencyStatus();
 		}
 		return $this->residencyStatus;
@@ -64,8 +71,8 @@ class OrganizationRelationshipType {
 		return $residencyStatus;
 	}
 
-	public function getProvidingInstruction() {
-		if ($this->providingInstruction===NULL) {
+	public function getProvidingInstruction($autoCreate = TRUE) {
+		if ($this->providingInstruction===NULL && $autoCreate && ! isset($this->_overrides['providingInstruction']) ) {
 			$this->providingInstruction = $this->createProvidingInstruction();
 		}
 		return $this->providingInstruction;
@@ -87,8 +94,8 @@ class OrganizationRelationshipType {
 		return $providingInstruction;
 	}
 
-	public function getProvidingServices() {
-		if ($this->providingServices===NULL) {
+	public function getProvidingServices($autoCreate = TRUE) {
+		if ($this->providingServices===NULL && $autoCreate && ! isset($this->_overrides['providingServices']) ) {
 			$this->providingServices = $this->createProvidingServices();
 		}
 		return $this->providingServices;
@@ -110,8 +117,8 @@ class OrganizationRelationshipType {
 		return $providingServices;
 	}
 
-	public function getFinanciallyResponsible() {
-		if ($this->financiallyResponsible===NULL) {
+	public function getFinanciallyResponsible($autoCreate = TRUE) {
+		if ($this->financiallyResponsible===NULL && $autoCreate && ! isset($this->_overrides['financiallyResponsible']) ) {
 			$this->financiallyResponsible = $this->createFinanciallyResponsible();
 		}
 		return $this->financiallyResponsible;

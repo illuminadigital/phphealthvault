@@ -14,6 +14,13 @@ class StrucDoc.List {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Caption", name="caption")
 	 */
 	protected $caption;
@@ -52,8 +59,8 @@ class StrucDoc.List {
 		$this->listType = ($listType===NULL) ? NULL : $this->validateListType($listType);
 	}
 
-	public function getCaption() {
-		if ($this->caption===NULL) {
+	public function getCaption($autoCreate = TRUE) {
+		if ($this->caption===NULL && $autoCreate && ! isset($this->_overrides['caption']) ) {
 			$this->caption = $this->createCaption();
 		}
 		return $this->caption;
@@ -72,8 +79,8 @@ class StrucDoc.List {
 		return $caption;
 	}
 
-	public function getItem() {
-		if ($this->item===NULL) {
+	public function getItem($autoCreate = TRUE) {
+		if ($this->item===NULL && $autoCreate && ! isset($this->_overrides['item']) ) {
 			$this->item = $this->createItem();
 		}
 		return $this->item;
@@ -107,8 +114,8 @@ class StrucDoc.List {
 		return $item;
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -130,8 +137,8 @@ class StrucDoc.List {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -153,8 +160,8 @@ class StrucDoc.List {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;
@@ -176,8 +183,8 @@ class StrucDoc.List {
 		return $styleCode;
 	}
 
-	public function getListType() {
-		if ($this->listType===NULL) {
+	public function getListType($autoCreate = TRUE) {
+		if ($this->listType===NULL && $autoCreate && ! isset($this->_overrides['listType']) ) {
 			$this->listType = $this->createListType();
 		}
 		return $this->listType;

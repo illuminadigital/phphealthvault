@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\record\ActivePersonAuthorizationNoIds", collection="true", name="active-person-authorization")
 	 */
 	protected $activePersonAuthorization;
@@ -30,8 +37,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->nonActiveAuthorization = ($nonActiveAuthorization===NULL) ? NULL : $this->validateNonActiveAuthorization($nonActiveAuthorization);
 	}
 
-	public function getActivePersonAuthorization() {
-		if ($this->activePersonAuthorization===NULL) {
+	public function getActivePersonAuthorization($autoCreate = TRUE) {
+		if ($this->activePersonAuthorization===NULL && $autoCreate && ! isset($this->_overrides['activePersonAuthorization']) ) {
 			$this->activePersonAuthorization = $this->createActivePersonAuthorization();
 		}
 		return $this->activePersonAuthorization;
@@ -66,8 +73,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->activePersonAuthorization[] = $activePersonAuthorization;
 	}
 
-	public function getNonActiveAuthorization() {
-		if ($this->nonActiveAuthorization===NULL) {
+	public function getNonActiveAuthorization($autoCreate = TRUE) {
+		if ($this->nonActiveAuthorization===NULL && $autoCreate && ! isset($this->_overrides['nonActiveAuthorization']) ) {
 			$this->nonActiveAuthorization = $this->createNonActiveAuthorization();
 		}
 		return $this->nonActiveAuthorization;
@@ -82,9 +89,16 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateNonActiveAuthorization($nonActiveAuthorization) {
+		if ( $nonActiveAuthorization === FALSE ) {
+			$this->_overrides['nonActiveAuthorization'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($nonActiveAuthorization) && ! is_null($nonActiveAuthorization) ) {
 			$nonActiveAuthorization = array($nonActiveAuthorization);
 		}
+
+		unset ($this->_overrides['nonActiveAuthorization']);
 		$count = count($nonActiveAuthorization);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'nonActiveAuthorization', 0));

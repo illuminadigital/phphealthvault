@@ -14,6 +14,13 @@ class Date {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\Year", name="y")
 	 */
 	protected $y;
@@ -34,8 +41,8 @@ class Date {
 		$this->d = ($d===NULL) ? NULL : $this->validateD($d);
 	}
 
-	public function getY() {
-		if ($this->y===NULL) {
+	public function getY($autoCreate = TRUE) {
+		if ($this->y===NULL && $autoCreate && ! isset($this->_overrides['y']) ) {
 			$this->y = $this->createY();
 		}
 		return $this->y;
@@ -57,8 +64,8 @@ class Date {
 		return $y;
 	}
 
-	public function getM() {
-		if ($this->m===NULL) {
+	public function getM($autoCreate = TRUE) {
+		if ($this->m===NULL && $autoCreate && ! isset($this->_overrides['m']) ) {
 			$this->m = $this->createM();
 		}
 		return $this->m;
@@ -80,8 +87,8 @@ class Date {
 		return $m;
 	}
 
-	public function getD() {
-		if ($this->d===NULL) {
+	public function getD($autoCreate = TRUE) {
+		if ($this->d===NULL && $autoCreate && ! isset($this->_overrides['d']) ) {
 			$this->d = $this->createD();
 		}
 		return $this->d;

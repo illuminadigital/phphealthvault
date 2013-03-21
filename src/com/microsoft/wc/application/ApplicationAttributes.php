@@ -14,6 +14,13 @@ class ApplicationAttributes {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", collection="true", name="app-attribute")
 	 */
 	protected $appAttribute;
@@ -22,8 +29,8 @@ class ApplicationAttributes {
 		$this->appAttribute = ($appAttribute===NULL) ? NULL : $this->validateAppAttribute($appAttribute);
 	}
 
-	public function getAppAttribute() {
-		if ($this->appAttribute===NULL) {
+	public function getAppAttribute($autoCreate = TRUE) {
+		if ($this->appAttribute===NULL && $autoCreate && ! isset($this->_overrides['appAttribute']) ) {
 			$this->appAttribute = $this->createAppAttribute();
 		}
 		return $this->appAttribute;

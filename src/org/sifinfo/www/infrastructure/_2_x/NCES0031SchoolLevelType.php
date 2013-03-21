@@ -15,6 +15,13 @@ class NCES0031SchoolLevelType {
 	static protected $enumValue = array('0013' => 'Adult', '1302' => 'All levels', '1304' => 'Elementary', '2402' => 'High school', '0787' => 'Infant/toddler', '2399' => 'Intermediate', '2602' => 'Junior high school', '2400' => 'Middle', '0789' => 'Pre-kindergarten', '1981' => 'Preschool/early childhood', '2397' => 'Primary', '2403' => 'Secondary');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0031SchoolLevelType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0031SchoolLevelType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

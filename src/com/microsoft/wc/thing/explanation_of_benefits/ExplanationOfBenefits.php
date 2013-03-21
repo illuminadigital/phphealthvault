@@ -18,6 +18,13 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Explanation of Benefits';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="date-submitted")
 	 */
 	protected $dateSubmitted;
@@ -98,8 +105,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		$this->services = ($services===NULL) ? NULL : $this->validateServices($services);
 	}
 
-	public function getDateSubmitted() {
-		if ($this->dateSubmitted===NULL) {
+	public function getDateSubmitted($autoCreate = TRUE) {
+		if ($this->dateSubmitted===NULL && $autoCreate && ! isset($this->_overrides['dateSubmitted']) ) {
 			$this->dateSubmitted = $this->createDateSubmitted();
 		}
 		return $this->dateSubmitted;
@@ -121,8 +128,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $dateSubmitted;
 	}
 
-	public function getPatient() {
-		if ($this->patient===NULL) {
+	public function getPatient($autoCreate = TRUE) {
+		if ($this->patient===NULL && $autoCreate && ! isset($this->_overrides['patient']) ) {
 			$this->patient = $this->createPatient();
 		}
 		return $this->patient;
@@ -144,8 +151,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $patient;
 	}
 
-	public function getRelationshipToMember() {
-		if ($this->relationshipToMember===NULL) {
+	public function getRelationshipToMember($autoCreate = TRUE) {
+		if ($this->relationshipToMember===NULL && $autoCreate && ! isset($this->_overrides['relationshipToMember']) ) {
 			$this->relationshipToMember = $this->createRelationshipToMember();
 		}
 		return $this->relationshipToMember;
@@ -160,15 +167,22 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateRelationshipToMember($relationshipToMember) {
+		if ( $relationshipToMember === FALSE ) {
+			$this->_overrides['relationshipToMember'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $relationshipToMember instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($relationshipToMember) ) {
 			$relationshipToMember = new \com\microsoft\wc\types\CodableValue ($relationshipToMember);
 		}
+
+		unset ($this->_overrides['relationshipToMember']);
 	
 		return $relationshipToMember;
 	}
 
-	public function getPlan() {
-		if ($this->plan===NULL) {
+	public function getPlan($autoCreate = TRUE) {
+		if ($this->plan===NULL && $autoCreate && ! isset($this->_overrides['plan']) ) {
 			$this->plan = $this->createPlan();
 		}
 		return $this->plan;
@@ -190,8 +204,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $plan;
 	}
 
-	public function getGroupId() {
-		if ($this->groupId===NULL) {
+	public function getGroupId($autoCreate = TRUE) {
+		if ($this->groupId===NULL && $autoCreate && ! isset($this->_overrides['groupId']) ) {
 			$this->groupId = $this->createGroupId();
 		}
 		return $this->groupId;
@@ -206,15 +220,22 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateGroupId($groupId) {
+		if ( $groupId === FALSE ) {
+			$this->_overrides['groupId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $groupId instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($groupId) ) {
 			$groupId = new \com\microsoft\wc\types\Stringnznw ($groupId);
 		}
+
+		unset ($this->_overrides['groupId']);
 	
 		return $groupId;
 	}
 
-	public function getMemberId() {
-		if ($this->memberId===NULL) {
+	public function getMemberId($autoCreate = TRUE) {
+		if ($this->memberId===NULL && $autoCreate && ! isset($this->_overrides['memberId']) ) {
 			$this->memberId = $this->createMemberId();
 		}
 		return $this->memberId;
@@ -236,8 +257,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $memberId;
 	}
 
-	public function getClaimType() {
-		if ($this->claimType===NULL) {
+	public function getClaimType($autoCreate = TRUE) {
+		if ($this->claimType===NULL && $autoCreate && ! isset($this->_overrides['claimType']) ) {
 			$this->claimType = $this->createClaimType();
 		}
 		return $this->claimType;
@@ -259,8 +280,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $claimType;
 	}
 
-	public function getClaimId() {
-		if ($this->claimId===NULL) {
+	public function getClaimId($autoCreate = TRUE) {
+		if ($this->claimId===NULL && $autoCreate && ! isset($this->_overrides['claimId']) ) {
 			$this->claimId = $this->createClaimId();
 		}
 		return $this->claimId;
@@ -282,8 +303,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $claimId;
 	}
 
-	public function getSubmittedBy() {
-		if ($this->submittedBy===NULL) {
+	public function getSubmittedBy($autoCreate = TRUE) {
+		if ($this->submittedBy===NULL && $autoCreate && ! isset($this->_overrides['submittedBy']) ) {
 			$this->submittedBy = $this->createSubmittedBy();
 		}
 		return $this->submittedBy;
@@ -305,8 +326,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $submittedBy;
 	}
 
-	public function getProvider() {
-		if ($this->provider===NULL) {
+	public function getProvider($autoCreate = TRUE) {
+		if ($this->provider===NULL && $autoCreate && ! isset($this->_overrides['provider']) ) {
 			$this->provider = $this->createProvider();
 		}
 		return $this->provider;
@@ -328,8 +349,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $provider;
 	}
 
-	public function getCurrency() {
-		if ($this->currency===NULL) {
+	public function getCurrency($autoCreate = TRUE) {
+		if ($this->currency===NULL && $autoCreate && ! isset($this->_overrides['currency']) ) {
 			$this->currency = $this->createCurrency();
 		}
 		return $this->currency;
@@ -351,8 +372,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $currency;
 	}
 
-	public function getClaimTotals() {
-		if ($this->claimTotals===NULL) {
+	public function getClaimTotals($autoCreate = TRUE) {
+		if ($this->claimTotals===NULL && $autoCreate && ! isset($this->_overrides['claimTotals']) ) {
 			$this->claimTotals = $this->createClaimTotals();
 		}
 		return $this->claimTotals;
@@ -374,8 +395,8 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 		return $claimTotals;
 	}
 
-	public function getServices() {
-		if ($this->services===NULL) {
+	public function getServices($autoCreate = TRUE) {
+		if ($this->services===NULL && $autoCreate && ! isset($this->_overrides['services']) ) {
 			$this->services = $this->createServices();
 		}
 		return $this->services;

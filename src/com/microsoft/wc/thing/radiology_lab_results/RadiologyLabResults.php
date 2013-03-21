@@ -19,6 +19,13 @@ class RadiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Radiology Lab Result';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -45,8 +52,8 @@ class RadiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		$this->resultText = ($resultText===NULL) ? NULL : $this->validateResultText($resultText);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -68,8 +75,8 @@ class RadiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getTitle() {
-		if ($this->title===NULL) {
+	public function getTitle($autoCreate = TRUE) {
+		if ($this->title===NULL && $autoCreate && ! isset($this->_overrides['title']) ) {
 			$this->title = $this->createTitle();
 		}
 		return $this->title;
@@ -91,8 +98,8 @@ class RadiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $title;
 	}
 
-	public function getAnatomicSite() {
-		if ($this->anatomicSite===NULL) {
+	public function getAnatomicSite($autoCreate = TRUE) {
+		if ($this->anatomicSite===NULL && $autoCreate && ! isset($this->_overrides['anatomicSite']) ) {
 			$this->anatomicSite = $this->createAnatomicSite();
 		}
 		return $this->anatomicSite;
@@ -114,8 +121,8 @@ class RadiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		return $anatomicSite;
 	}
 
-	public function getResultText() {
-		if ($this->resultText===NULL) {
+	public function getResultText($autoCreate = TRUE) {
+		if ($this->resultText===NULL && $autoCreate && ! isset($this->_overrides['resultText']) ) {
 			$this->resultText = $this->createResultText();
 		}
 		return $this->resultText;

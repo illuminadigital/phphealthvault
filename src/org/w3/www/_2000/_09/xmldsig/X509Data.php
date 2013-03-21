@@ -13,6 +13,13 @@ class X509Data extends \org\w3\www\_2000\_09\xmldsig\X509DataType {
 	/**
 	 */
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class X509Data

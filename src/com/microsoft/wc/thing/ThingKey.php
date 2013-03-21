@@ -14,6 +14,13 @@ class ThingKey extends \com\microsoft\wc\types\Guid {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="version-stamp")
 	 */
 	protected $versionStamp;
@@ -22,8 +29,8 @@ class ThingKey extends \com\microsoft\wc\types\Guid {
 		$this->versionStamp = ($versionStamp===NULL) ? NULL : $this->validateVersionStamp($versionStamp);
 	}
 
-	public function getVersionStamp() {
-		if ($this->versionStamp===NULL) {
+	public function getVersionStamp($autoCreate = TRUE) {
+		if ($this->versionStamp===NULL && $autoCreate && ! isset($this->_overrides['versionStamp']) ) {
 			$this->versionStamp = $this->createVersionStamp();
 		}
 		return $this->versionStamp;

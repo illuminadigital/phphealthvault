@@ -15,6 +15,13 @@ class SIFExtendedElement {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="Name")
 	 */
 	protected $name;
@@ -29,8 +36,8 @@ class SIFExtendedElement {
 		$this->sifAction = ($sifAction===NULL) ? NULL : $this->validateSifAction($sifAction);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -52,8 +59,8 @@ class SIFExtendedElement {
 		return $name;
 	}
 
-	public function getSifAction() {
-		if ($this->sifAction===NULL) {
+	public function getSifAction($autoCreate = TRUE) {
+		if ($this->sifAction===NULL && $autoCreate && ! isset($this->_overrides['sifAction']) ) {
 			$this->sifAction = $this->createSifAction();
 		}
 		return $this->sifAction;

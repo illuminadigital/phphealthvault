@@ -15,6 +15,13 @@ class GetAuthorizedPeopleResponse {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\PersonInfo", collection="true", name="person-info")
 	 */
 	protected $personInfo;
@@ -29,8 +36,8 @@ class GetAuthorizedPeopleResponse {
 		$this->moreResults = ($moreResults===NULL) ? NULL : $this->validateMoreResults($moreResults);
 	}
 
-	public function getPersonInfo() {
-		if ($this->personInfo===NULL) {
+	public function getPersonInfo($autoCreate = TRUE) {
+		if ($this->personInfo===NULL && $autoCreate && ! isset($this->_overrides['personInfo']) ) {
 			$this->personInfo = $this->createPersonInfo();
 		}
 		return $this->personInfo;
@@ -45,9 +52,16 @@ class GetAuthorizedPeopleResponse {
 	}
 
 	protected function validatePersonInfo($personInfo) {
+		if ( $personInfo === FALSE ) {
+			$this->_overrides['personInfo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($personInfo) && ! is_null($personInfo) ) {
 			$personInfo = array($personInfo);
 		}
+
+		unset ($this->_overrides['personInfo']);
 		$count = count($personInfo);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'personInfo', 0));
@@ -65,8 +79,8 @@ class GetAuthorizedPeopleResponse {
 		$this->personInfo[] = $personInfo;
 	}
 
-	public function getMoreResults() {
-		if ($this->moreResults===NULL) {
+	public function getMoreResults($autoCreate = TRUE) {
+		if ($this->moreResults===NULL && $autoCreate && ! isset($this->_overrides['moreResults']) ) {
 			$this->moreResults = $this->createMoreResults();
 		}
 		return $this->moreResults;

@@ -14,6 +14,13 @@ class Language {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\NISOZ3953LanguageCodesType", name="Code")
 	 */
 	protected $code;
@@ -40,8 +47,8 @@ class Language {
 		$this->dialect = ($dialect===NULL) ? NULL : $this->validateDialect($dialect);
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -60,8 +67,8 @@ class Language {
 		return $code;
 	}
 
-	public function getOtherCodeList() {
-		if ($this->otherCodeList===NULL) {
+	public function getOtherCodeList($autoCreate = TRUE) {
+		if ($this->otherCodeList===NULL && $autoCreate && ! isset($this->_overrides['otherCodeList']) ) {
 			$this->otherCodeList = $this->createOtherCodeList();
 		}
 		return $this->otherCodeList;
@@ -76,15 +83,22 @@ class Language {
 	}
 
 	protected function validateOtherCodeList($otherCodeList) {
+		if ( $otherCodeList === FALSE ) {
+			$this->_overrides['otherCodeList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $otherCodeList instanceof \org\sifinfo\www\infrastructure\_2_x\OtherCodeListType  && ! is_null($otherCodeList) ) {
 			$otherCodeList = new \org\sifinfo\www\infrastructure\_2_x\OtherCodeListType ($otherCodeList);
 		}
+
+		unset ($this->_overrides['otherCodeList']);
 	
 		return $otherCodeList;
 	}
 
-	public function getLanguageType() {
-		if ($this->languageType===NULL) {
+	public function getLanguageType($autoCreate = TRUE) {
+		if ($this->languageType===NULL && $autoCreate && ! isset($this->_overrides['languageType']) ) {
 			$this->languageType = $this->createLanguageType();
 		}
 		return $this->languageType;
@@ -103,8 +117,8 @@ class Language {
 		return $languageType;
 	}
 
-	public function getDialect() {
-		if ($this->dialect===NULL) {
+	public function getDialect($autoCreate = TRUE) {
+		if ($this->dialect===NULL && $autoCreate && ! isset($this->_overrides['dialect']) ) {
 			$this->dialect = $this->createDialect();
 		}
 		return $this->dialect;

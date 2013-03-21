@@ -16,6 +16,13 @@ class Sample {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeDouble", name="time-offset")
 	 */
 	protected $timeOffset;
@@ -36,8 +43,8 @@ class Sample {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getTimeOffset() {
-		if ($this->timeOffset===NULL) {
+	public function getTimeOffset($autoCreate = TRUE) {
+		if ($this->timeOffset===NULL && $autoCreate && ! isset($this->_overrides['timeOffset']) ) {
 			$this->timeOffset = $this->createTimeOffset();
 		}
 		return $this->timeOffset;
@@ -59,8 +66,8 @@ class Sample {
 		return $timeOffset;
 	}
 
-	public function getNote() {
-		if ($this->note===NULL) {
+	public function getNote($autoCreate = TRUE) {
+		if ($this->note===NULL && $autoCreate && ! isset($this->_overrides['note']) ) {
 			$this->note = $this->createNote();
 		}
 		return $this->note;
@@ -82,8 +89,8 @@ class Sample {
 		return $note;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

@@ -14,6 +14,13 @@ class CS extends \org\w3\www\_2001\XMLSchema\CV {
 	 * Coded data, consists of a code, display name, code system, and original text. Used when a single code value must be sent.
 	 */
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class CS

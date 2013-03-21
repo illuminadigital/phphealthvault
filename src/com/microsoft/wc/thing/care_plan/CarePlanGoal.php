@@ -15,6 +15,13 @@ class CarePlanGoal {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
@@ -83,8 +90,8 @@ class CarePlanGoal {
 		$this->referenceId = ($referenceId===NULL) ? NULL : $this->validateReferenceId($referenceId);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -106,8 +113,8 @@ class CarePlanGoal {
 		return $name;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -129,8 +136,8 @@ class CarePlanGoal {
 		return $description;
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -145,15 +152,22 @@ class CarePlanGoal {
 	}
 
 	protected function validateStartDate($startDate) {
+		if ( $startDate === FALSE ) {
+			$this->_overrides['startDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $startDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($startDate) ) {
 			$startDate = new \com\microsoft\wc\dates\ApproxDateTime ($startDate);
 		}
+
+		unset ($this->_overrides['startDate']);
 	
 		return $startDate;
 	}
 
-	public function getEndDate() {
-		if ($this->endDate===NULL) {
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
 			$this->endDate = $this->createEndDate();
 		}
 		return $this->endDate;
@@ -168,15 +182,22 @@ class CarePlanGoal {
 	}
 
 	protected function validateEndDate($endDate) {
+		if ( $endDate === FALSE ) {
+			$this->_overrides['endDate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $endDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($endDate) ) {
 			$endDate = new \com\microsoft\wc\dates\ApproxDateTime ($endDate);
 		}
+
+		unset ($this->_overrides['endDate']);
 	
 		return $endDate;
 	}
 
-	public function getThingTypeVersionId() {
-		if ($this->thingTypeVersionId===NULL) {
+	public function getThingTypeVersionId($autoCreate = TRUE) {
+		if ($this->thingTypeVersionId===NULL && $autoCreate && ! isset($this->_overrides['thingTypeVersionId']) ) {
 			$this->thingTypeVersionId = $this->createThingTypeVersionId();
 		}
 		return $this->thingTypeVersionId;
@@ -191,15 +212,22 @@ class CarePlanGoal {
 	}
 
 	protected function validateThingTypeVersionId($thingTypeVersionId) {
+		if ( $thingTypeVersionId === FALSE ) {
+			$this->_overrides['thingTypeVersionId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $thingTypeVersionId instanceof \com\microsoft\wc\types\Guid  && ! is_null($thingTypeVersionId) ) {
 			$thingTypeVersionId = new \com\microsoft\wc\types\Guid ($thingTypeVersionId);
 		}
+
+		unset ($this->_overrides['thingTypeVersionId']);
 	
 		return $thingTypeVersionId;
 	}
 
-	public function getThingTypeValueXpath() {
-		if ($this->thingTypeValueXpath===NULL) {
+	public function getThingTypeValueXpath($autoCreate = TRUE) {
+		if ($this->thingTypeValueXpath===NULL && $autoCreate && ! isset($this->_overrides['thingTypeValueXpath']) ) {
 			$this->thingTypeValueXpath = $this->createThingTypeValueXpath();
 		}
 		return $this->thingTypeValueXpath;
@@ -221,8 +249,8 @@ class CarePlanGoal {
 		return $thingTypeValueXpath;
 	}
 
-	public function getThingTypeDisplayXpath() {
-		if ($this->thingTypeDisplayXpath===NULL) {
+	public function getThingTypeDisplayXpath($autoCreate = TRUE) {
+		if ($this->thingTypeDisplayXpath===NULL && $autoCreate && ! isset($this->_overrides['thingTypeDisplayXpath']) ) {
 			$this->thingTypeDisplayXpath = $this->createThingTypeDisplayXpath();
 		}
 		return $this->thingTypeDisplayXpath;
@@ -244,8 +272,8 @@ class CarePlanGoal {
 		return $thingTypeDisplayXpath;
 	}
 
-	public function getValueUnit() {
-		if ($this->valueUnit===NULL) {
+	public function getValueUnit($autoCreate = TRUE) {
+		if ($this->valueUnit===NULL && $autoCreate && ! isset($this->_overrides['valueUnit']) ) {
 			$this->valueUnit = $this->createValueUnit();
 		}
 		return $this->valueUnit;
@@ -260,15 +288,22 @@ class CarePlanGoal {
 	}
 
 	protected function validateValueUnit($valueUnit) {
+		if ( $valueUnit === FALSE ) {
+			$this->_overrides['valueUnit'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $valueUnit instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($valueUnit) ) {
 			$valueUnit = new \com\microsoft\wc\types\CodableValue ($valueUnit);
 		}
+
+		unset ($this->_overrides['valueUnit']);
 	
 		return $valueUnit;
 	}
 
-	public function getUnitConversion() {
-		if ($this->unitConversion===NULL) {
+	public function getUnitConversion($autoCreate = TRUE) {
+		if ($this->unitConversion===NULL && $autoCreate && ! isset($this->_overrides['unitConversion']) ) {
 			$this->unitConversion = $this->createUnitConversion();
 		}
 		return $this->unitConversion;
@@ -283,15 +318,22 @@ class CarePlanGoal {
 	}
 
 	protected function validateUnitConversion($unitConversion) {
+		if ( $unitConversion === FALSE ) {
+			$this->_overrides['unitConversion'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $unitConversion instanceof \com\microsoft\wc\thing\care_plan\UnitConversion  && ! is_null($unitConversion) ) {
 			$unitConversion = new \com\microsoft\wc\thing\care_plan\UnitConversion ($unitConversion);
 		}
+
+		unset ($this->_overrides['unitConversion']);
 	
 		return $unitConversion;
 	}
 
-	public function getGoalRanges() {
-		if ($this->goalRanges===NULL) {
+	public function getGoalRanges($autoCreate = TRUE) {
+		if ($this->goalRanges===NULL && $autoCreate && ! isset($this->_overrides['goalRanges']) ) {
 			$this->goalRanges = $this->createGoalRanges();
 		}
 		return $this->goalRanges;
@@ -306,15 +348,22 @@ class CarePlanGoal {
 	}
 
 	protected function validateGoalRanges($goalRanges) {
+		if ( $goalRanges === FALSE ) {
+			$this->_overrides['goalRanges'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $goalRanges instanceof \com\microsoft\wc\thing\care_plan\CarePlanGoalRanges  && ! is_null($goalRanges) ) {
 			$goalRanges = new \com\microsoft\wc\thing\care_plan\CarePlanGoalRanges ($goalRanges);
 		}
+
+		unset ($this->_overrides['goalRanges']);
 	
 		return $goalRanges;
 	}
 
-	public function getReferenceId() {
-		if ($this->referenceId===NULL) {
+	public function getReferenceId($autoCreate = TRUE) {
+		if ($this->referenceId===NULL && $autoCreate && ! isset($this->_overrides['referenceId']) ) {
 			$this->referenceId = $this->createReferenceId();
 		}
 		return $this->referenceId;

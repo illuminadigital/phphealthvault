@@ -16,6 +16,13 @@ class Token extends \com\microsoft\wc\types\Stringz1024 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="app-id")
 	 */
 	protected $appId;
@@ -30,8 +37,8 @@ class Token extends \com\microsoft\wc\types\Stringz1024 {
 		$this->appRecordAuthAction = ($appRecordAuthAction===NULL) ? NULL : $this->validateAppRecordAuthAction($appRecordAuthAction);
 	}
 
-	public function getAppId() {
-		if ($this->appId===NULL) {
+	public function getAppId($autoCreate = TRUE) {
+		if ($this->appId===NULL && $autoCreate && ! isset($this->_overrides['appId']) ) {
 			$this->appId = $this->createAppId();
 		}
 		return $this->appId;
@@ -53,8 +60,8 @@ class Token extends \com\microsoft\wc\types\Stringz1024 {
 		return $appId;
 	}
 
-	public function getAppRecordAuthAction() {
-		if ($this->appRecordAuthAction===NULL) {
+	public function getAppRecordAuthAction($autoCreate = TRUE) {
+		if ($this->appRecordAuthAction===NULL && $autoCreate && ! isset($this->_overrides['appRecordAuthAction']) ) {
 			$this->appRecordAuthAction = $this->createAppRecordAuthAction();
 		}
 		return $this->appRecordAuthAction;

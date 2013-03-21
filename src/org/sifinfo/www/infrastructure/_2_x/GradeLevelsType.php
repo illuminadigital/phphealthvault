@@ -15,6 +15,13 @@ class GradeLevelsType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\GradeLevel", collection="true", name="GradeLevel")
 	 */
 	protected $gradeLevel;
@@ -23,8 +30,8 @@ class GradeLevelsType {
 		$this->gradeLevel = ($gradeLevel===NULL) ? NULL : $this->validateGradeLevel($gradeLevel);
 	}
 
-	public function getGradeLevel() {
-		if ($this->gradeLevel===NULL) {
+	public function getGradeLevel($autoCreate = TRUE) {
+		if ($this->gradeLevel===NULL && $autoCreate && ! isset($this->_overrides['gradeLevel']) ) {
 			$this->gradeLevel = $this->createGradeLevel();
 		}
 		return $this->gradeLevel;

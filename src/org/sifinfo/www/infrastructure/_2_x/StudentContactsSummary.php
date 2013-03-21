@@ -14,6 +14,13 @@ class StudentContactsSummary {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ParentGuardian1", name="ParentGuardian1")
 	 */
 	protected $parentGuardian1;
@@ -28,8 +35,8 @@ class StudentContactsSummary {
 		$this->parentGuardian2 = ($parentGuardian2===NULL) ? NULL : $this->validateParentGuardian2($parentGuardian2);
 	}
 
-	public function getParentGuardian1() {
-		if ($this->parentGuardian1===NULL) {
+	public function getParentGuardian1($autoCreate = TRUE) {
+		if ($this->parentGuardian1===NULL && $autoCreate && ! isset($this->_overrides['parentGuardian1']) ) {
 			$this->parentGuardian1 = $this->createParentGuardian1();
 		}
 		return $this->parentGuardian1;
@@ -51,8 +58,8 @@ class StudentContactsSummary {
 		return $parentGuardian1;
 	}
 
-	public function getParentGuardian2() {
-		if ($this->parentGuardian2===NULL) {
+	public function getParentGuardian2($autoCreate = TRUE) {
+		if ($this->parentGuardian2===NULL && $autoCreate && ! isset($this->_overrides['parentGuardian2']) ) {
 			$this->parentGuardian2 = $this->createParentGuardian2();
 		}
 		return $this->parentGuardian2;
@@ -67,9 +74,16 @@ class StudentContactsSummary {
 	}
 
 	protected function validateParentGuardian2($parentGuardian2) {
+		if ( $parentGuardian2 === FALSE ) {
+			$this->_overrides['parentGuardian2'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $parentGuardian2 instanceof \org\sifinfo\www\infrastructure\_2_x\ParentGuardian2  && ! is_null($parentGuardian2) ) {
 			$parentGuardian2 = new \org\sifinfo\www\infrastructure\_2_x\ParentGuardian2 ($parentGuardian2);
 		}
+
+		unset ($this->_overrides['parentGuardian2']);
 	
 		return $parentGuardian2;
 	}

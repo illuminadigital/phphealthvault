@@ -14,6 +14,13 @@ class Street {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="Line1")
 	 */
 	protected $line1;
@@ -94,8 +101,8 @@ class Street {
 		$this->apartmentNumberSuffix = ($apartmentNumberSuffix===NULL) ? NULL : $this->validateApartmentNumberSuffix($apartmentNumberSuffix);
 	}
 
-	public function getLine1() {
-		if ($this->line1===NULL) {
+	public function getLine1($autoCreate = TRUE) {
+		if ($this->line1===NULL && $autoCreate && ! isset($this->_overrides['line1']) ) {
 			$this->line1 = $this->createLine1();
 		}
 		return $this->line1;
@@ -117,8 +124,8 @@ class Street {
 		return $line1;
 	}
 
-	public function getLine2() {
-		if ($this->line2===NULL) {
+	public function getLine2($autoCreate = TRUE) {
+		if ($this->line2===NULL && $autoCreate && ! isset($this->_overrides['line2']) ) {
 			$this->line2 = $this->createLine2();
 		}
 		return $this->line2;
@@ -140,8 +147,8 @@ class Street {
 		return $line2;
 	}
 
-	public function getLine3() {
-		if ($this->line3===NULL) {
+	public function getLine3($autoCreate = TRUE) {
+		if ($this->line3===NULL && $autoCreate && ! isset($this->_overrides['line3']) ) {
 			$this->line3 = $this->createLine3();
 		}
 		return $this->line3;
@@ -163,8 +170,8 @@ class Street {
 		return $line3;
 	}
 
-	public function getComplex() {
-		if ($this->complex===NULL) {
+	public function getComplex($autoCreate = TRUE) {
+		if ($this->complex===NULL && $autoCreate && ! isset($this->_overrides['complex']) ) {
 			$this->complex = $this->createComplex();
 		}
 		return $this->complex;
@@ -186,8 +193,8 @@ class Street {
 		return $complex;
 	}
 
-	public function getStreetNumber() {
-		if ($this->streetNumber===NULL) {
+	public function getStreetNumber($autoCreate = TRUE) {
+		if ($this->streetNumber===NULL && $autoCreate && ! isset($this->_overrides['streetNumber']) ) {
 			$this->streetNumber = $this->createStreetNumber();
 		}
 		return $this->streetNumber;
@@ -209,8 +216,8 @@ class Street {
 		return $streetNumber;
 	}
 
-	public function getStreetPrefix() {
-		if ($this->streetPrefix===NULL) {
+	public function getStreetPrefix($autoCreate = TRUE) {
+		if ($this->streetPrefix===NULL && $autoCreate && ! isset($this->_overrides['streetPrefix']) ) {
 			$this->streetPrefix = $this->createStreetPrefix();
 		}
 		return $this->streetPrefix;
@@ -232,8 +239,8 @@ class Street {
 		return $streetPrefix;
 	}
 
-	public function getStreetName() {
-		if ($this->streetName===NULL) {
+	public function getStreetName($autoCreate = TRUE) {
+		if ($this->streetName===NULL && $autoCreate && ! isset($this->_overrides['streetName']) ) {
 			$this->streetName = $this->createStreetName();
 		}
 		return $this->streetName;
@@ -255,8 +262,8 @@ class Street {
 		return $streetName;
 	}
 
-	public function getStreetType() {
-		if ($this->streetType===NULL) {
+	public function getStreetType($autoCreate = TRUE) {
+		if ($this->streetType===NULL && $autoCreate && ! isset($this->_overrides['streetType']) ) {
 			$this->streetType = $this->createStreetType();
 		}
 		return $this->streetType;
@@ -278,8 +285,8 @@ class Street {
 		return $streetType;
 	}
 
-	public function getStreetSuffix() {
-		if ($this->streetSuffix===NULL) {
+	public function getStreetSuffix($autoCreate = TRUE) {
+		if ($this->streetSuffix===NULL && $autoCreate && ! isset($this->_overrides['streetSuffix']) ) {
 			$this->streetSuffix = $this->createStreetSuffix();
 		}
 		return $this->streetSuffix;
@@ -301,8 +308,8 @@ class Street {
 		return $streetSuffix;
 	}
 
-	public function getApartmentType() {
-		if ($this->apartmentType===NULL) {
+	public function getApartmentType($autoCreate = TRUE) {
+		if ($this->apartmentType===NULL && $autoCreate && ! isset($this->_overrides['apartmentType']) ) {
 			$this->apartmentType = $this->createApartmentType();
 		}
 		return $this->apartmentType;
@@ -324,8 +331,8 @@ class Street {
 		return $apartmentType;
 	}
 
-	public function getApartmentNumberPrefix() {
-		if ($this->apartmentNumberPrefix===NULL) {
+	public function getApartmentNumberPrefix($autoCreate = TRUE) {
+		if ($this->apartmentNumberPrefix===NULL && $autoCreate && ! isset($this->_overrides['apartmentNumberPrefix']) ) {
 			$this->apartmentNumberPrefix = $this->createApartmentNumberPrefix();
 		}
 		return $this->apartmentNumberPrefix;
@@ -347,8 +354,8 @@ class Street {
 		return $apartmentNumberPrefix;
 	}
 
-	public function getApartmentNumber() {
-		if ($this->apartmentNumber===NULL) {
+	public function getApartmentNumber($autoCreate = TRUE) {
+		if ($this->apartmentNumber===NULL && $autoCreate && ! isset($this->_overrides['apartmentNumber']) ) {
 			$this->apartmentNumber = $this->createApartmentNumber();
 		}
 		return $this->apartmentNumber;
@@ -370,8 +377,8 @@ class Street {
 		return $apartmentNumber;
 	}
 
-	public function getApartmentNumberSuffix() {
-		if ($this->apartmentNumberSuffix===NULL) {
+	public function getApartmentNumberSuffix($autoCreate = TRUE) {
+		if ($this->apartmentNumberSuffix===NULL && $autoCreate && ! isset($this->_overrides['apartmentNumberSuffix']) ) {
 			$this->apartmentNumberSuffix = $this->createApartmentNumberSuffix();
 		}
 		return $this->apartmentNumberSuffix;

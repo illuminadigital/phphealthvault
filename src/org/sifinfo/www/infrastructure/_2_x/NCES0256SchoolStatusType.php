@@ -15,6 +15,13 @@ class NCES0256SchoolStatusType {
 	static protected $enumValue = array('2383' => 'Added school', '0118' => 'Changed agency', '0105' => 'Future school', '0104' => 'New school', '0821' => 'School closed', '0822' => 'School inactive', '0820' => 'School open');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0256SchoolStatusType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0256SchoolStatusType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

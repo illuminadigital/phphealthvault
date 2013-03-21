@@ -14,6 +14,13 @@ class Transforms {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", collection="true", name="tag")
 	 */
 	protected $tag;
@@ -22,8 +29,8 @@ class Transforms {
 		$this->tag = ($tag===NULL) ? NULL : $this->validateTag($tag);
 	}
 
-	public function getTag() {
-		if ($this->tag===NULL) {
+	public function getTag($autoCreate = TRUE) {
+		if ($this->tag===NULL && $autoCreate && ! isset($this->_overrides['tag']) ) {
 			$this->tag = $this->createTag();
 		}
 		return $this->tag;

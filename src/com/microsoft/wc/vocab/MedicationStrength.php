@@ -16,6 +16,13 @@ class MedicationStrength {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="display-text")
 	 */
 	protected $displayText;
@@ -36,8 +43,8 @@ class MedicationStrength {
 		$this->unit = ($unit===NULL) ? NULL : $this->validateUnit($unit);
 	}
 
-	public function getDisplayText() {
-		if ($this->displayText===NULL) {
+	public function getDisplayText($autoCreate = TRUE) {
+		if ($this->displayText===NULL && $autoCreate && ! isset($this->_overrides['displayText']) ) {
 			$this->displayText = $this->createDisplayText();
 		}
 		return $this->displayText;
@@ -59,8 +66,8 @@ class MedicationStrength {
 		return $displayText;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -75,15 +82,22 @@ class MedicationStrength {
 	}
 
 	protected function validateValue($value) {
+		if ( $value === FALSE ) {
+			$this->_overrides['value'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $value instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($value) ) {
 			$value = new \com\microsoft\wc\types\Stringnz ($value);
 		}
+
+		unset ($this->_overrides['value']);
 	
 		return $value;
 	}
 
-	public function getUnit() {
-		if ($this->unit===NULL) {
+	public function getUnit($autoCreate = TRUE) {
+		if ($this->unit===NULL && $autoCreate && ! isset($this->_overrides['unit']) ) {
 			$this->unit = $this->createUnit();
 		}
 		return $this->unit;
@@ -98,9 +112,16 @@ class MedicationStrength {
 	}
 
 	protected function validateUnit($unit) {
+		if ( $unit === FALSE ) {
+			$this->_overrides['unit'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $unit instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($unit) ) {
 			$unit = new \com\microsoft\wc\types\CodableValue ($unit);
 		}
+
+		unset ($this->_overrides['unit']);
 	
 		return $unit;
 	}

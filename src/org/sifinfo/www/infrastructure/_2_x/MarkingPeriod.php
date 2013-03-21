@@ -14,6 +14,13 @@ class MarkingPeriod {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\TermInfoData", name="TermInfoData")
 	 */
 	protected $termInfoData;
@@ -46,8 +53,8 @@ class MarkingPeriod {
 		$this->sifExtendedElements = ($sifExtendedElements===NULL) ? NULL : $this->validateSifExtendedElements($sifExtendedElements);
 	}
 
-	public function getTermInfoData() {
-		if ($this->termInfoData===NULL) {
+	public function getTermInfoData($autoCreate = TRUE) {
+		if ($this->termInfoData===NULL && $autoCreate && ! isset($this->_overrides['termInfoData']) ) {
 			$this->termInfoData = $this->createTermInfoData();
 		}
 		return $this->termInfoData;
@@ -62,15 +69,22 @@ class MarkingPeriod {
 	}
 
 	protected function validateTermInfoData($termInfoData) {
+		if ( $termInfoData === FALSE ) {
+			$this->_overrides['termInfoData'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $termInfoData instanceof \org\sifinfo\www\infrastructure\_2_x\TermInfoData  && ! is_null($termInfoData) ) {
 			$termInfoData = new \org\sifinfo\www\infrastructure\_2_x\TermInfoData ($termInfoData);
 		}
+
+		unset ($this->_overrides['termInfoData']);
 	
 		return $termInfoData;
 	}
 
-	public function getGradeLevelWhenTaken() {
-		if ($this->gradeLevelWhenTaken===NULL) {
+	public function getGradeLevelWhenTaken($autoCreate = TRUE) {
+		if ($this->gradeLevelWhenTaken===NULL && $autoCreate && ! isset($this->_overrides['gradeLevelWhenTaken']) ) {
 			$this->gradeLevelWhenTaken = $this->createGradeLevelWhenTaken();
 		}
 		return $this->gradeLevelWhenTaken;
@@ -85,15 +99,22 @@ class MarkingPeriod {
 	}
 
 	protected function validateGradeLevelWhenTaken($gradeLevelWhenTaken) {
+		if ( $gradeLevelWhenTaken === FALSE ) {
+			$this->_overrides['gradeLevelWhenTaken'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $gradeLevelWhenTaken instanceof \org\sifinfo\www\infrastructure\_2_x\GradeLevelType  && ! is_null($gradeLevelWhenTaken) ) {
 			$gradeLevelWhenTaken = new \org\sifinfo\www\infrastructure\_2_x\GradeLevelType ($gradeLevelWhenTaken);
 		}
+
+		unset ($this->_overrides['gradeLevelWhenTaken']);
 	
 		return $gradeLevelWhenTaken;
 	}
 
-	public function getMarkData() {
-		if ($this->markData===NULL) {
+	public function getMarkData($autoCreate = TRUE) {
+		if ($this->markData===NULL && $autoCreate && ! isset($this->_overrides['markData']) ) {
 			$this->markData = $this->createMarkData();
 		}
 		return $this->markData;
@@ -108,15 +129,22 @@ class MarkingPeriod {
 	}
 
 	protected function validateMarkData($markData) {
+		if ( $markData === FALSE ) {
+			$this->_overrides['markData'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $markData instanceof \org\sifinfo\www\infrastructure\_2_x\MarkData  && ! is_null($markData) ) {
 			$markData = new \org\sifinfo\www\infrastructure\_2_x\MarkData ($markData);
 		}
+
+		unset ($this->_overrides['markData']);
 	
 		return $markData;
 	}
 
-	public function getCourseCreditsAttempted() {
-		if ($this->courseCreditsAttempted===NULL) {
+	public function getCourseCreditsAttempted($autoCreate = TRUE) {
+		if ($this->courseCreditsAttempted===NULL && $autoCreate && ! isset($this->_overrides['courseCreditsAttempted']) ) {
 			$this->courseCreditsAttempted = $this->createCourseCreditsAttempted();
 		}
 		return $this->courseCreditsAttempted;
@@ -149,8 +177,8 @@ class MarkingPeriod {
 		return $courseCreditsAttempted;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -165,9 +193,16 @@ class MarkingPeriod {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}

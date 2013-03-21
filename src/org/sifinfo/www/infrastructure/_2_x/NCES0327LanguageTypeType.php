@@ -15,6 +15,13 @@ class NCES0327LanguageTypeType {
 	static protected $enumValue = array('1035' => 'Correspondence language', '1036' => 'Dominant language', '1037' => 'Home language', '1038' => 'Native language', '9999' => 'Other', '1039' => 'Other language proficiency');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0327LanguageTypeType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0327LanguageTypeType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

@@ -15,6 +15,13 @@ class OtherNamesType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Name", collection="true", name="Name")
 	 */
 	protected $name;
@@ -23,8 +30,8 @@ class OtherNamesType {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;

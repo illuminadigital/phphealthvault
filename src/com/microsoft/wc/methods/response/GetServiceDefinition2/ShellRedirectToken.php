@@ -15,6 +15,13 @@ class ShellRedirectToken {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="token")
 	 */
 	protected $token;
@@ -35,8 +42,8 @@ class ShellRedirectToken {
 		$this->querystringParameters = ($querystringParameters===NULL) ? NULL : $this->validateQuerystringParameters($querystringParameters);
 	}
 
-	public function getToken() {
-		if ($this->token===NULL) {
+	public function getToken($autoCreate = TRUE) {
+		if ($this->token===NULL && $autoCreate && ! isset($this->_overrides['token']) ) {
 			$this->token = $this->createToken();
 		}
 		return $this->token;
@@ -58,8 +65,8 @@ class ShellRedirectToken {
 		return $token;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -81,8 +88,8 @@ class ShellRedirectToken {
 		return $description;
 	}
 
-	public function getQuerystringParameters() {
-		if ($this->querystringParameters===NULL) {
+	public function getQuerystringParameters($autoCreate = TRUE) {
+		if ($this->querystringParameters===NULL && $autoCreate && ! isset($this->_overrides['querystringParameters']) ) {
 			$this->querystringParameters = $this->createQuerystringParameters();
 		}
 		return $this->querystringParameters;

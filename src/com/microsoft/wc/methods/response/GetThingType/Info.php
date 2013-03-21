@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\response\GetThingType\ThingTypeInfo", collection="true", name="thing-type")
 	 */
 	protected $thingType;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->thingType = ($thingType===NULL) ? NULL : $this->validateThingType($thingType);
 	}
 
-	public function getThingType() {
-		if ($this->thingType===NULL) {
+	public function getThingType($autoCreate = TRUE) {
+		if ($this->thingType===NULL && $autoCreate && ! isset($this->_overrides['thingType']) ) {
 			$this->thingType = $this->createThingType();
 		}
 		return $this->thingType;
@@ -40,9 +47,16 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateThingType($thingType) {
+		if ( $thingType === FALSE ) {
+			$this->_overrides['thingType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($thingType) && ! is_null($thingType) ) {
 			$thingType = array($thingType);
 		}
+
+		unset ($this->_overrides['thingType']);
 		$count = count($thingType);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'thingType', 0));

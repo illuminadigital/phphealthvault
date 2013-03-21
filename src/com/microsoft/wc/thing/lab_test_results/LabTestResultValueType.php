@@ -16,6 +16,13 @@ class LabTestResultValueType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\GeneralMeasurement", name="measurement")
 	 */
 	protected $measurement;
@@ -36,8 +43,8 @@ class LabTestResultValueType {
 		$this->flag = ($flag===NULL) ? NULL : $this->validateFlag($flag);
 	}
 
-	public function getMeasurement() {
-		if ($this->measurement===NULL) {
+	public function getMeasurement($autoCreate = TRUE) {
+		if ($this->measurement===NULL && $autoCreate && ! isset($this->_overrides['measurement']) ) {
 			$this->measurement = $this->createMeasurement();
 		}
 		return $this->measurement;
@@ -59,8 +66,8 @@ class LabTestResultValueType {
 		return $measurement;
 	}
 
-	public function getRanges() {
-		if ($this->ranges===NULL) {
+	public function getRanges($autoCreate = TRUE) {
+		if ($this->ranges===NULL && $autoCreate && ! isset($this->_overrides['ranges']) ) {
 			$this->ranges = $this->createRanges();
 		}
 		return $this->ranges;
@@ -75,9 +82,16 @@ class LabTestResultValueType {
 	}
 
 	protected function validateRanges($ranges) {
+		if ( $ranges === FALSE ) {
+			$this->_overrides['ranges'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($ranges) && ! is_null($ranges) ) {
 			$ranges = array($ranges);
 		}
+
+		unset ($this->_overrides['ranges']);
 		$count = count($ranges);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'ranges', 0));
@@ -95,8 +109,8 @@ class LabTestResultValueType {
 		$this->ranges[] = $ranges;
 	}
 
-	public function getFlag() {
-		if ($this->flag===NULL) {
+	public function getFlag($autoCreate = TRUE) {
+		if ($this->flag===NULL && $autoCreate && ! isset($this->_overrides['flag']) ) {
 			$this->flag = $this->createFlag();
 		}
 		return $this->flag;
@@ -111,9 +125,16 @@ class LabTestResultValueType {
 	}
 
 	protected function validateFlag($flag) {
+		if ( $flag === FALSE ) {
+			$this->_overrides['flag'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($flag) && ! is_null($flag) ) {
 			$flag = array($flag);
 		}
+
+		unset ($this->_overrides['flag']);
 		$count = count($flag);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'flag', 0));

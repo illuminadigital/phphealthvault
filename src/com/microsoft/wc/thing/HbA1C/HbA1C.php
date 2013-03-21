@@ -19,6 +19,13 @@ class HbA1C extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'HbA1C Measurement';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -45,8 +52,8 @@ class HbA1C extends \com\microsoft\wc\thing\AnyMixed {
 		$this->deviceId = ($deviceId===NULL) ? NULL : $this->validateDeviceId($deviceId);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -68,8 +75,8 @@ class HbA1C extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -91,8 +98,8 @@ class HbA1C extends \com\microsoft\wc\thing\AnyMixed {
 		return $value;
 	}
 
-	public function getHba1cAssayMethod() {
-		if ($this->hba1cAssayMethod===NULL) {
+	public function getHba1cAssayMethod($autoCreate = TRUE) {
+		if ($this->hba1cAssayMethod===NULL && $autoCreate && ! isset($this->_overrides['hba1cAssayMethod']) ) {
 			$this->hba1cAssayMethod = $this->createHba1cAssayMethod();
 		}
 		return $this->hba1cAssayMethod;
@@ -107,15 +114,22 @@ class HbA1C extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateHba1cAssayMethod($hba1cAssayMethod) {
+		if ( $hba1cAssayMethod === FALSE ) {
+			$this->_overrides['hba1cAssayMethod'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $hba1cAssayMethod instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($hba1cAssayMethod) ) {
 			$hba1cAssayMethod = new \com\microsoft\wc\types\CodableValue ($hba1cAssayMethod);
 		}
+
+		unset ($this->_overrides['hba1cAssayMethod']);
 	
 		return $hba1cAssayMethod;
 	}
 
-	public function getDeviceId() {
-		if ($this->deviceId===NULL) {
+	public function getDeviceId($autoCreate = TRUE) {
+		if ($this->deviceId===NULL && $autoCreate && ! isset($this->_overrides['deviceId']) ) {
 			$this->deviceId = $this->createDeviceId();
 		}
 		return $this->deviceId;

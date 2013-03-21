@@ -14,6 +14,13 @@ class ActiveAppAuthorization {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="record-id")
 	 */
 	protected $recordId;
@@ -82,8 +89,8 @@ class ActiveAppAuthorization {
 		$this->location = ($location===NULL) ? NULL : $this->validateLocation($location);
 	}
 
-	public function getRecordId() {
-		if ($this->recordId===NULL) {
+	public function getRecordId($autoCreate = TRUE) {
+		if ($this->recordId===NULL && $autoCreate && ! isset($this->_overrides['recordId']) ) {
 			$this->recordId = $this->createRecordId();
 		}
 		return $this->recordId;
@@ -105,8 +112,8 @@ class ActiveAppAuthorization {
 		return $recordId;
 	}
 
-	public function getApplicationId() {
-		if ($this->applicationId===NULL) {
+	public function getApplicationId($autoCreate = TRUE) {
+		if ($this->applicationId===NULL && $autoCreate && ! isset($this->_overrides['applicationId']) ) {
 			$this->applicationId = $this->createApplicationId();
 		}
 		return $this->applicationId;
@@ -128,8 +135,8 @@ class ActiveAppAuthorization {
 		return $applicationId;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -151,8 +158,8 @@ class ActiveAppAuthorization {
 		return $name;
 	}
 
-	public function getDateAuthExpires() {
-		if ($this->dateAuthExpires===NULL) {
+	public function getDateAuthExpires($autoCreate = TRUE) {
+		if ($this->dateAuthExpires===NULL && $autoCreate && ! isset($this->_overrides['dateAuthExpires']) ) {
 			$this->dateAuthExpires = $this->createDateAuthExpires();
 		}
 		return $this->dateAuthExpires;
@@ -174,8 +181,8 @@ class ActiveAppAuthorization {
 		return $dateAuthExpires;
 	}
 
-	public function getPersonOnlineAuthXml() {
-		if ($this->personOnlineAuthXml===NULL) {
+	public function getPersonOnlineAuthXml($autoCreate = TRUE) {
+		if ($this->personOnlineAuthXml===NULL && $autoCreate && ! isset($this->_overrides['personOnlineAuthXml']) ) {
 			$this->personOnlineAuthXml = $this->createPersonOnlineAuthXml();
 		}
 		return $this->personOnlineAuthXml;
@@ -190,15 +197,22 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validatePersonOnlineAuthXml($personOnlineAuthXml) {
+		if ( $personOnlineAuthXml === FALSE ) {
+			$this->_overrides['personOnlineAuthXml'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $personOnlineAuthXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($personOnlineAuthXml) ) {
 			$personOnlineAuthXml = new \com\microsoft\wc\auth\AuthXml ($personOnlineAuthXml);
 		}
+
+		unset ($this->_overrides['personOnlineAuthXml']);
 	
 		return $personOnlineAuthXml;
 	}
 
-	public function getPersonOfflineAuthXml() {
-		if ($this->personOfflineAuthXml===NULL) {
+	public function getPersonOfflineAuthXml($autoCreate = TRUE) {
+		if ($this->personOfflineAuthXml===NULL && $autoCreate && ! isset($this->_overrides['personOfflineAuthXml']) ) {
 			$this->personOfflineAuthXml = $this->createPersonOfflineAuthXml();
 		}
 		return $this->personOfflineAuthXml;
@@ -213,15 +227,22 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validatePersonOfflineAuthXml($personOfflineAuthXml) {
+		if ( $personOfflineAuthXml === FALSE ) {
+			$this->_overrides['personOfflineAuthXml'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $personOfflineAuthXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($personOfflineAuthXml) ) {
 			$personOfflineAuthXml = new \com\microsoft\wc\auth\AuthXml ($personOfflineAuthXml);
 		}
+
+		unset ($this->_overrides['personOfflineAuthXml']);
 	
 		return $personOfflineAuthXml;
 	}
 
-	public function getDateAuthCreated() {
-		if ($this->dateAuthCreated===NULL) {
+	public function getDateAuthCreated($autoCreate = TRUE) {
+		if ($this->dateAuthCreated===NULL && $autoCreate && ! isset($this->_overrides['dateAuthCreated']) ) {
 			$this->dateAuthCreated = $this->createDateAuthCreated();
 		}
 		return $this->dateAuthCreated;
@@ -243,8 +264,8 @@ class ActiveAppAuthorization {
 		return $dateAuthCreated;
 	}
 
-	public function getDateAuthUpdated() {
-		if ($this->dateAuthUpdated===NULL) {
+	public function getDateAuthUpdated($autoCreate = TRUE) {
+		if ($this->dateAuthUpdated===NULL && $autoCreate && ! isset($this->_overrides['dateAuthUpdated']) ) {
 			$this->dateAuthUpdated = $this->createDateAuthUpdated();
 		}
 		return $this->dateAuthUpdated;
@@ -266,8 +287,8 @@ class ActiveAppAuthorization {
 		return $dateAuthUpdated;
 	}
 
-	public function getRecordDisplayName() {
-		if ($this->recordDisplayName===NULL) {
+	public function getRecordDisplayName($autoCreate = TRUE) {
+		if ($this->recordDisplayName===NULL && $autoCreate && ! isset($this->_overrides['recordDisplayName']) ) {
 			$this->recordDisplayName = $this->createRecordDisplayName();
 		}
 		return $this->recordDisplayName;
@@ -289,8 +310,8 @@ class ActiveAppAuthorization {
 		return $recordDisplayName;
 	}
 
-	public function getAutoReconcileDocuments() {
-		if ($this->autoReconcileDocuments===NULL) {
+	public function getAutoReconcileDocuments($autoCreate = TRUE) {
+		if ($this->autoReconcileDocuments===NULL && $autoCreate && ! isset($this->_overrides['autoReconcileDocuments']) ) {
 			$this->autoReconcileDocuments = $this->createAutoReconcileDocuments();
 		}
 		return $this->autoReconcileDocuments;
@@ -312,8 +333,8 @@ class ActiveAppAuthorization {
 		return $autoReconcileDocuments;
 	}
 
-	public function getLocation() {
-		if ($this->location===NULL) {
+	public function getLocation($autoCreate = TRUE) {
+		if ($this->location===NULL && $autoCreate && ! isset($this->_overrides['location']) ) {
 			$this->location = $this->createLocation();
 		}
 		return $this->location;
@@ -328,9 +349,16 @@ class ActiveAppAuthorization {
 	}
 
 	protected function validateLocation($location) {
+		if ( $location === FALSE ) {
+			$this->_overrides['location'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $location instanceof \com\microsoft\wc\types\Location  && ! is_null($location) ) {
 			$location = new \com\microsoft\wc\types\Location ($location);
 		}
+
+		unset ($this->_overrides['location']);
 	
 		return $location;
 	}

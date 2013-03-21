@@ -14,6 +14,13 @@ class POCDMT000040.Observation {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -196,8 +203,8 @@ class POCDMT000040.Observation {
 		$this->negationInd = ($negationInd===NULL) ? NULL : $this->validateNegationInd($negationInd);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -231,8 +238,8 @@ class POCDMT000040.Observation {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -251,8 +258,8 @@ class POCDMT000040.Observation {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -286,8 +293,8 @@ class POCDMT000040.Observation {
 		return $templateId;
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -321,8 +328,8 @@ class POCDMT000040.Observation {
 		return $id;
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -341,8 +348,8 @@ class POCDMT000040.Observation {
 		return $code;
 	}
 
-	public function getDerivationExpr() {
-		if ($this->derivationExpr===NULL) {
+	public function getDerivationExpr($autoCreate = TRUE) {
+		if ($this->derivationExpr===NULL && $autoCreate && ! isset($this->_overrides['derivationExpr']) ) {
 			$this->derivationExpr = $this->createDerivationExpr();
 		}
 		return $this->derivationExpr;
@@ -361,8 +368,8 @@ class POCDMT000040.Observation {
 		return $derivationExpr;
 	}
 
-	public function getText() {
-		if ($this->text===NULL) {
+	public function getText($autoCreate = TRUE) {
+		if ($this->text===NULL && $autoCreate && ! isset($this->_overrides['text']) ) {
 			$this->text = $this->createText();
 		}
 		return $this->text;
@@ -381,8 +388,8 @@ class POCDMT000040.Observation {
 		return $text;
 	}
 
-	public function getStatusCode() {
-		if ($this->statusCode===NULL) {
+	public function getStatusCode($autoCreate = TRUE) {
+		if ($this->statusCode===NULL && $autoCreate && ! isset($this->_overrides['statusCode']) ) {
 			$this->statusCode = $this->createStatusCode();
 		}
 		return $this->statusCode;
@@ -401,8 +408,8 @@ class POCDMT000040.Observation {
 		return $statusCode;
 	}
 
-	public function getEffectiveTime() {
-		if ($this->effectiveTime===NULL) {
+	public function getEffectiveTime($autoCreate = TRUE) {
+		if ($this->effectiveTime===NULL && $autoCreate && ! isset($this->_overrides['effectiveTime']) ) {
 			$this->effectiveTime = $this->createEffectiveTime();
 		}
 		return $this->effectiveTime;
@@ -421,8 +428,8 @@ class POCDMT000040.Observation {
 		return $effectiveTime;
 	}
 
-	public function getPriorityCode() {
-		if ($this->priorityCode===NULL) {
+	public function getPriorityCode($autoCreate = TRUE) {
+		if ($this->priorityCode===NULL && $autoCreate && ! isset($this->_overrides['priorityCode']) ) {
 			$this->priorityCode = $this->createPriorityCode();
 		}
 		return $this->priorityCode;
@@ -441,8 +448,8 @@ class POCDMT000040.Observation {
 		return $priorityCode;
 	}
 
-	public function getRepeatNumber() {
-		if ($this->repeatNumber===NULL) {
+	public function getRepeatNumber($autoCreate = TRUE) {
+		if ($this->repeatNumber===NULL && $autoCreate && ! isset($this->_overrides['repeatNumber']) ) {
 			$this->repeatNumber = $this->createRepeatNumber();
 		}
 		return $this->repeatNumber;
@@ -461,8 +468,8 @@ class POCDMT000040.Observation {
 		return $repeatNumber;
 	}
 
-	public function getLanguageCode() {
-		if ($this->languageCode===NULL) {
+	public function getLanguageCode($autoCreate = TRUE) {
+		if ($this->languageCode===NULL && $autoCreate && ! isset($this->_overrides['languageCode']) ) {
 			$this->languageCode = $this->createLanguageCode();
 		}
 		return $this->languageCode;
@@ -481,8 +488,8 @@ class POCDMT000040.Observation {
 		return $languageCode;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -516,8 +523,8 @@ class POCDMT000040.Observation {
 		return $value;
 	}
 
-	public function getInterpretationCode() {
-		if ($this->interpretationCode===NULL) {
+	public function getInterpretationCode($autoCreate = TRUE) {
+		if ($this->interpretationCode===NULL && $autoCreate && ! isset($this->_overrides['interpretationCode']) ) {
 			$this->interpretationCode = $this->createInterpretationCode();
 		}
 		return $this->interpretationCode;
@@ -551,8 +558,8 @@ class POCDMT000040.Observation {
 		return $interpretationCode;
 	}
 
-	public function getMethodCode() {
-		if ($this->methodCode===NULL) {
+	public function getMethodCode($autoCreate = TRUE) {
+		if ($this->methodCode===NULL && $autoCreate && ! isset($this->_overrides['methodCode']) ) {
 			$this->methodCode = $this->createMethodCode();
 		}
 		return $this->methodCode;
@@ -586,8 +593,8 @@ class POCDMT000040.Observation {
 		return $methodCode;
 	}
 
-	public function getTargetSiteCode() {
-		if ($this->targetSiteCode===NULL) {
+	public function getTargetSiteCode($autoCreate = TRUE) {
+		if ($this->targetSiteCode===NULL && $autoCreate && ! isset($this->_overrides['targetSiteCode']) ) {
 			$this->targetSiteCode = $this->createTargetSiteCode();
 		}
 		return $this->targetSiteCode;
@@ -621,8 +628,8 @@ class POCDMT000040.Observation {
 		return $targetSiteCode;
 	}
 
-	public function getSubject() {
-		if ($this->subject===NULL) {
+	public function getSubject($autoCreate = TRUE) {
+		if ($this->subject===NULL && $autoCreate && ! isset($this->_overrides['subject']) ) {
 			$this->subject = $this->createSubject();
 		}
 		return $this->subject;
@@ -641,8 +648,8 @@ class POCDMT000040.Observation {
 		return $subject;
 	}
 
-	public function getSpecimen() {
-		if ($this->specimen===NULL) {
+	public function getSpecimen($autoCreate = TRUE) {
+		if ($this->specimen===NULL && $autoCreate && ! isset($this->_overrides['specimen']) ) {
 			$this->specimen = $this->createSpecimen();
 		}
 		return $this->specimen;
@@ -676,8 +683,8 @@ class POCDMT000040.Observation {
 		return $specimen;
 	}
 
-	public function getPerformer() {
-		if ($this->performer===NULL) {
+	public function getPerformer($autoCreate = TRUE) {
+		if ($this->performer===NULL && $autoCreate && ! isset($this->_overrides['performer']) ) {
 			$this->performer = $this->createPerformer();
 		}
 		return $this->performer;
@@ -711,8 +718,8 @@ class POCDMT000040.Observation {
 		return $performer;
 	}
 
-	public function getAuthor() {
-		if ($this->author===NULL) {
+	public function getAuthor($autoCreate = TRUE) {
+		if ($this->author===NULL && $autoCreate && ! isset($this->_overrides['author']) ) {
 			$this->author = $this->createAuthor();
 		}
 		return $this->author;
@@ -746,8 +753,8 @@ class POCDMT000040.Observation {
 		return $author;
 	}
 
-	public function getInformant() {
-		if ($this->informant===NULL) {
+	public function getInformant($autoCreate = TRUE) {
+		if ($this->informant===NULL && $autoCreate && ! isset($this->_overrides['informant']) ) {
 			$this->informant = $this->createInformant();
 		}
 		return $this->informant;
@@ -781,8 +788,8 @@ class POCDMT000040.Observation {
 		return $informant;
 	}
 
-	public function getParticipant() {
-		if ($this->participant===NULL) {
+	public function getParticipant($autoCreate = TRUE) {
+		if ($this->participant===NULL && $autoCreate && ! isset($this->_overrides['participant']) ) {
 			$this->participant = $this->createParticipant();
 		}
 		return $this->participant;
@@ -816,8 +823,8 @@ class POCDMT000040.Observation {
 		return $participant;
 	}
 
-	public function getEntryRelationship() {
-		if ($this->entryRelationship===NULL) {
+	public function getEntryRelationship($autoCreate = TRUE) {
+		if ($this->entryRelationship===NULL && $autoCreate && ! isset($this->_overrides['entryRelationship']) ) {
 			$this->entryRelationship = $this->createEntryRelationship();
 		}
 		return $this->entryRelationship;
@@ -851,8 +858,8 @@ class POCDMT000040.Observation {
 		return $entryRelationship;
 	}
 
-	public function getReference() {
-		if ($this->reference===NULL) {
+	public function getReference($autoCreate = TRUE) {
+		if ($this->reference===NULL && $autoCreate && ! isset($this->_overrides['reference']) ) {
 			$this->reference = $this->createReference();
 		}
 		return $this->reference;
@@ -886,8 +893,8 @@ class POCDMT000040.Observation {
 		return $reference;
 	}
 
-	public function getPrecondition() {
-		if ($this->precondition===NULL) {
+	public function getPrecondition($autoCreate = TRUE) {
+		if ($this->precondition===NULL && $autoCreate && ! isset($this->_overrides['precondition']) ) {
 			$this->precondition = $this->createPrecondition();
 		}
 		return $this->precondition;
@@ -921,8 +928,8 @@ class POCDMT000040.Observation {
 		return $precondition;
 	}
 
-	public function getReferenceRange() {
-		if ($this->referenceRange===NULL) {
+	public function getReferenceRange($autoCreate = TRUE) {
+		if ($this->referenceRange===NULL && $autoCreate && ! isset($this->_overrides['referenceRange']) ) {
 			$this->referenceRange = $this->createReferenceRange();
 		}
 		return $this->referenceRange;
@@ -956,8 +963,8 @@ class POCDMT000040.Observation {
 		return $referenceRange;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -976,8 +983,8 @@ class POCDMT000040.Observation {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;
@@ -996,8 +1003,8 @@ class POCDMT000040.Observation {
 		return $classCode;
 	}
 
-	public function getMoodCode() {
-		if ($this->moodCode===NULL) {
+	public function getMoodCode($autoCreate = TRUE) {
+		if ($this->moodCode===NULL && $autoCreate && ! isset($this->_overrides['moodCode']) ) {
 			$this->moodCode = $this->createMoodCode();
 		}
 		return $this->moodCode;
@@ -1016,8 +1023,8 @@ class POCDMT000040.Observation {
 		return $moodCode;
 	}
 
-	public function getNegationInd() {
-		if ($this->negationInd===NULL) {
+	public function getNegationInd($autoCreate = TRUE) {
+		if ($this->negationInd===NULL && $autoCreate && ! isset($this->_overrides['negationInd']) ) {
 			$this->negationInd = $this->createNegationInd();
 		}
 		return $this->negationInd;

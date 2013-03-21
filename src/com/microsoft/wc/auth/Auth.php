@@ -14,6 +14,13 @@ class Auth {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\auth\Rules", name="rules")
 	 */
 	protected $rules;
@@ -22,8 +29,8 @@ class Auth {
 		$this->rules = ($rules===NULL) ? NULL : $this->validateRules($rules);
 	}
 
-	public function getRules() {
-		if ($this->rules===NULL) {
+	public function getRules($autoCreate = TRUE) {
+		if ($this->rules===NULL && $autoCreate && ! isset($this->_overrides['rules']) ) {
 			$this->rules = $this->createRules();
 		}
 		return $this->rules;
@@ -38,9 +45,16 @@ class Auth {
 	}
 
 	protected function validateRules($rules) {
+		if ( $rules === FALSE ) {
+			$this->_overrides['rules'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $rules instanceof \com\microsoft\wc\auth\Rules  && ! is_null($rules) ) {
 			$rules = new \com\microsoft\wc\auth\Rules ($rules);
 		}
+
+		unset ($this->_overrides['rules']);
 	
 		return $rules;
 	}

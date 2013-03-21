@@ -15,6 +15,13 @@ class Common {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="id")
 	 */
 	protected $id;
@@ -35,8 +42,8 @@ class Common {
 		$this->notificationChannel = ($notificationChannel===NULL) ? NULL : $this->validateNotificationChannel($notificationChannel);
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -51,15 +58,22 @@ class Common {
 	}
 
 	protected function validateId($id) {
+		if ( $id === FALSE ) {
+			$this->_overrides['id'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $id instanceof \com\microsoft\wc\types\Guid  && ! is_null($id) ) {
 			$id = new \com\microsoft\wc\types\Guid ($id);
 		}
+
+		unset ($this->_overrides['id']);
 	
 		return $id;
 	}
 
-	public function getNotificationAuthenticationInfo() {
-		if ($this->notificationAuthenticationInfo===NULL) {
+	public function getNotificationAuthenticationInfo($autoCreate = TRUE) {
+		if ($this->notificationAuthenticationInfo===NULL && $autoCreate && ! isset($this->_overrides['notificationAuthenticationInfo']) ) {
 			$this->notificationAuthenticationInfo = $this->createNotificationAuthenticationInfo();
 		}
 		return $this->notificationAuthenticationInfo;
@@ -81,8 +95,8 @@ class Common {
 		return $notificationAuthenticationInfo;
 	}
 
-	public function getNotificationChannel() {
-		if ($this->notificationChannel===NULL) {
+	public function getNotificationChannel($autoCreate = TRUE) {
+		if ($this->notificationChannel===NULL && $autoCreate && ! isset($this->_overrides['notificationChannel']) ) {
 			$this->notificationChannel = $this->createNotificationChannel();
 		}
 		return $this->notificationChannel;

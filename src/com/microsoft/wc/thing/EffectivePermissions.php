@@ -14,6 +14,13 @@ class EffectivePermissions {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Permission", collection="true", name="permission")
 	 */
 	protected $permission;
@@ -28,8 +35,8 @@ class EffectivePermissions {
 		$this->immutable = ($immutable===NULL) ? NULL : $this->validateImmutable($immutable);
 	}
 
-	public function getPermission() {
-		if ($this->permission===NULL) {
+	public function getPermission($autoCreate = TRUE) {
+		if ($this->permission===NULL && $autoCreate && ! isset($this->_overrides['permission']) ) {
 			$this->permission = $this->createPermission();
 		}
 		return $this->permission;
@@ -67,8 +74,8 @@ class EffectivePermissions {
 		$this->permission[] = $permission;
 	}
 
-	public function getImmutable() {
-		if ($this->immutable===NULL) {
+	public function getImmutable($autoCreate = TRUE) {
+		if ($this->immutable===NULL && $autoCreate && ! isset($this->_overrides['immutable']) ) {
 			$this->immutable = $this->createImmutable();
 		}
 		return $this->immutable;

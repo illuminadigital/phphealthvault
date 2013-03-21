@@ -16,6 +16,13 @@ class Record extends \com\microsoft\wc\types\String255 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="id")
 	 */
 	protected $id;
@@ -120,8 +127,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		$this->dateUpdated = ($dateUpdated===NULL) ? NULL : $this->validateDateUpdated($dateUpdated);
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -143,8 +150,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		return $id;
 	}
 
-	public function getRecordCustodian() {
-		if ($this->recordCustodian===NULL) {
+	public function getRecordCustodian($autoCreate = TRUE) {
+		if ($this->recordCustodian===NULL && $autoCreate && ! isset($this->_overrides['recordCustodian']) ) {
 			$this->recordCustodian = $this->createRecordCustodian();
 		}
 		return $this->recordCustodian;
@@ -166,8 +173,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		return $recordCustodian;
 	}
 
-	public function getRelType() {
-		if ($this->relType===NULL) {
+	public function getRelType($autoCreate = TRUE) {
+		if ($this->relType===NULL && $autoCreate && ! isset($this->_overrides['relType']) ) {
 			$this->relType = $this->createRelType();
 		}
 		return $this->relType;
@@ -197,8 +204,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		return $relType;
 	}
 
-	public function getRelName() {
-		if ($this->relName===NULL) {
+	public function getRelName($autoCreate = TRUE) {
+		if ($this->relName===NULL && $autoCreate && ! isset($this->_overrides['relName']) ) {
 			$this->relName = $this->createRelName();
 		}
 		return $this->relName;
@@ -213,15 +220,22 @@ class Record extends \com\microsoft\wc\types\String255 {
 	}
 
 	protected function validateRelName($relName) {
+		if ( $relName === FALSE ) {
+			$this->_overrides['relName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $relName instanceof \com\microsoft\wc\types\String255  && ! is_null($relName) ) {
 			$relName = new \com\microsoft\wc\types\String255 ($relName);
 		}
+
+		unset ($this->_overrides['relName']);
 	
 		return $relName;
 	}
 
-	public function getAuthExpires() {
-		if ($this->authExpires===NULL) {
+	public function getAuthExpires($autoCreate = TRUE) {
+		if ($this->authExpires===NULL && $autoCreate && ! isset($this->_overrides['authExpires']) ) {
 			$this->authExpires = $this->createAuthExpires();
 		}
 		return $this->authExpires;
@@ -243,8 +257,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		return $authExpires;
 	}
 
-	public function getAuthExpired() {
-		if ($this->authExpired===NULL) {
+	public function getAuthExpired($autoCreate = TRUE) {
+		if ($this->authExpired===NULL && $autoCreate && ! isset($this->_overrides['authExpired']) ) {
 			$this->authExpired = $this->createAuthExpired();
 		}
 		return $this->authExpired;
@@ -266,8 +280,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		return $authExpired;
 	}
 
-	public function getDisplayName() {
-		if ($this->displayName===NULL) {
+	public function getDisplayName($autoCreate = TRUE) {
+		if ($this->displayName===NULL && $autoCreate && ! isset($this->_overrides['displayName']) ) {
 			$this->displayName = $this->createDisplayName();
 		}
 		return $this->displayName;
@@ -282,15 +296,22 @@ class Record extends \com\microsoft\wc\types\String255 {
 	}
 
 	protected function validateDisplayName($displayName) {
+		if ( $displayName === FALSE ) {
+			$this->_overrides['displayName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $displayName instanceof \com\microsoft\wc\types\String255  && ! is_null($displayName) ) {
 			$displayName = new \com\microsoft\wc\types\String255 ($displayName);
 		}
+
+		unset ($this->_overrides['displayName']);
 	
 		return $displayName;
 	}
 
-	public function getState() {
-		if ($this->state===NULL) {
+	public function getState($autoCreate = TRUE) {
+		if ($this->state===NULL && $autoCreate && ! isset($this->_overrides['state']) ) {
 			$this->state = $this->createState();
 		}
 		return $this->state;
@@ -312,8 +333,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		return $state;
 	}
 
-	public function getDateCreated() {
-		if ($this->dateCreated===NULL) {
+	public function getDateCreated($autoCreate = TRUE) {
+		if ($this->dateCreated===NULL && $autoCreate && ! isset($this->_overrides['dateCreated']) ) {
 			$this->dateCreated = $this->createDateCreated();
 		}
 		return $this->dateCreated;
@@ -335,8 +356,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		return $dateCreated;
 	}
 
-	public function getMaxSizeBytes() {
-		if ($this->maxSizeBytes===NULL) {
+	public function getMaxSizeBytes($autoCreate = TRUE) {
+		if ($this->maxSizeBytes===NULL && $autoCreate && ! isset($this->_overrides['maxSizeBytes']) ) {
 			$this->maxSizeBytes = $this->createMaxSizeBytes();
 		}
 		return $this->maxSizeBytes;
@@ -351,15 +372,22 @@ class Record extends \com\microsoft\wc\types\String255 {
 	}
 
 	protected function validateMaxSizeBytes($maxSizeBytes) {
+		if ( $maxSizeBytes === FALSE ) {
+			$this->_overrides['maxSizeBytes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $maxSizeBytes instanceof \com\microsoft\wc\types\PositiveLong  && ! is_null($maxSizeBytes) ) {
 			$maxSizeBytes = new \com\microsoft\wc\types\PositiveLong ($maxSizeBytes);
 		}
+
+		unset ($this->_overrides['maxSizeBytes']);
 	
 		return $maxSizeBytes;
 	}
 
-	public function getSizeBytes() {
-		if ($this->sizeBytes===NULL) {
+	public function getSizeBytes($autoCreate = TRUE) {
+		if ($this->sizeBytes===NULL && $autoCreate && ! isset($this->_overrides['sizeBytes']) ) {
 			$this->sizeBytes = $this->createSizeBytes();
 		}
 		return $this->sizeBytes;
@@ -374,15 +402,22 @@ class Record extends \com\microsoft\wc\types\String255 {
 	}
 
 	protected function validateSizeBytes($sizeBytes) {
+		if ( $sizeBytes === FALSE ) {
+			$this->_overrides['sizeBytes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sizeBytes instanceof \com\microsoft\wc\types\PositiveLong  && ! is_null($sizeBytes) ) {
 			$sizeBytes = new \com\microsoft\wc\types\PositiveLong ($sizeBytes);
 		}
+
+		unset ($this->_overrides['sizeBytes']);
 	
 		return $sizeBytes;
 	}
 
-	public function getAppRecordAuthAction() {
-		if ($this->appRecordAuthAction===NULL) {
+	public function getAppRecordAuthAction($autoCreate = TRUE) {
+		if ($this->appRecordAuthAction===NULL && $autoCreate && ! isset($this->_overrides['appRecordAuthAction']) ) {
 			$this->appRecordAuthAction = $this->createAppRecordAuthAction();
 		}
 		return $this->appRecordAuthAction;
@@ -397,15 +432,22 @@ class Record extends \com\microsoft\wc\types\String255 {
 	}
 
 	protected function validateAppRecordAuthAction($appRecordAuthAction) {
+		if ( $appRecordAuthAction === FALSE ) {
+			$this->_overrides['appRecordAuthAction'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $appRecordAuthAction instanceof \com\microsoft\wc\types\AppRecordAuthAction  && ! is_null($appRecordAuthAction) ) {
 			$appRecordAuthAction = new \com\microsoft\wc\types\AppRecordAuthAction ($appRecordAuthAction);
 		}
+
+		unset ($this->_overrides['appRecordAuthAction']);
 	
 		return $appRecordAuthAction;
 	}
 
-	public function getAutoReconcileDocuments() {
-		if ($this->autoReconcileDocuments===NULL) {
+	public function getAutoReconcileDocuments($autoCreate = TRUE) {
+		if ($this->autoReconcileDocuments===NULL && $autoCreate && ! isset($this->_overrides['autoReconcileDocuments']) ) {
 			$this->autoReconcileDocuments = $this->createAutoReconcileDocuments();
 		}
 		return $this->autoReconcileDocuments;
@@ -427,8 +469,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		return $autoReconcileDocuments;
 	}
 
-	public function getAppSpecificRecordId() {
-		if ($this->appSpecificRecordId===NULL) {
+	public function getAppSpecificRecordId($autoCreate = TRUE) {
+		if ($this->appSpecificRecordId===NULL && $autoCreate && ! isset($this->_overrides['appSpecificRecordId']) ) {
 			$this->appSpecificRecordId = $this->createAppSpecificRecordId();
 		}
 		return $this->appSpecificRecordId;
@@ -450,8 +492,8 @@ class Record extends \com\microsoft\wc\types\String255 {
 		return $appSpecificRecordId;
 	}
 
-	public function getLocationCountry() {
-		if ($this->locationCountry===NULL) {
+	public function getLocationCountry($autoCreate = TRUE) {
+		if ($this->locationCountry===NULL && $autoCreate && ! isset($this->_overrides['locationCountry']) ) {
 			$this->locationCountry = $this->createLocationCountry();
 		}
 		return $this->locationCountry;
@@ -466,15 +508,22 @@ class Record extends \com\microsoft\wc\types\String255 {
 	}
 
 	protected function validateLocationCountry($locationCountry) {
+		if ( $locationCountry === FALSE ) {
+			$this->_overrides['locationCountry'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $locationCountry instanceof \com\microsoft\wc\types\String3nw  && ! is_null($locationCountry) ) {
 			$locationCountry = new \com\microsoft\wc\types\String3nw ($locationCountry);
 		}
+
+		unset ($this->_overrides['locationCountry']);
 	
 		return $locationCountry;
 	}
 
-	public function getLocationStateProvince() {
-		if ($this->locationStateProvince===NULL) {
+	public function getLocationStateProvince($autoCreate = TRUE) {
+		if ($this->locationStateProvince===NULL && $autoCreate && ! isset($this->_overrides['locationStateProvince']) ) {
 			$this->locationStateProvince = $this->createLocationStateProvince();
 		}
 		return $this->locationStateProvince;
@@ -489,15 +538,22 @@ class Record extends \com\microsoft\wc\types\String255 {
 	}
 
 	protected function validateLocationStateProvince($locationStateProvince) {
+		if ( $locationStateProvince === FALSE ) {
+			$this->_overrides['locationStateProvince'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $locationStateProvince instanceof \com\microsoft\wc\types\String3nw  && ! is_null($locationStateProvince) ) {
 			$locationStateProvince = new \com\microsoft\wc\types\String3nw ($locationStateProvince);
 		}
+
+		unset ($this->_overrides['locationStateProvince']);
 	
 		return $locationStateProvince;
 	}
 
-	public function getDateUpdated() {
-		if ($this->dateUpdated===NULL) {
+	public function getDateUpdated($autoCreate = TRUE) {
+		if ($this->dateUpdated===NULL && $autoCreate && ! isset($this->_overrides['dateUpdated']) ) {
 			$this->dateUpdated = $this->createDateUpdated();
 		}
 		return $this->dateUpdated;

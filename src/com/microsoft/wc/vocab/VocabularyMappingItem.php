@@ -15,6 +15,13 @@ class VocabularyMappingItem {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodedValue", name="reference-id")
 	 */
 	protected $referenceId;
@@ -23,8 +30,8 @@ class VocabularyMappingItem {
 		$this->referenceId = ($referenceId===NULL) ? NULL : $this->validateReferenceId($referenceId);
 	}
 
-	public function getReferenceId() {
-		if ($this->referenceId===NULL) {
+	public function getReferenceId($autoCreate = TRUE) {
+		if ($this->referenceId===NULL && $autoCreate && ! isset($this->_overrides['referenceId']) ) {
 			$this->referenceId = $this->createReferenceId();
 		}
 		return $this->referenceId;

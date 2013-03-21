@@ -15,6 +15,13 @@ class Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\response\AnyMixed", collection="true", name="*")
 	 */
 	protected $any;
@@ -23,8 +30,8 @@ class Info {
 		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;

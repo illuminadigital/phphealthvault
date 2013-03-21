@@ -14,6 +14,13 @@ class MarkValueInfoData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="Name")
 	 */
 	protected $name;
@@ -58,8 +65,8 @@ class MarkValueInfoData {
 		$this->refId = ($refId===NULL) ? NULL : $this->validateRefId($refId);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -81,8 +88,8 @@ class MarkValueInfoData {
 		return $name;
 	}
 
-	public function getPercentage() {
-		if ($this->percentage===NULL) {
+	public function getPercentage($autoCreate = TRUE) {
+		if ($this->percentage===NULL && $autoCreate && ! isset($this->_overrides['percentage']) ) {
 			$this->percentage = $this->createPercentage();
 		}
 		return $this->percentage;
@@ -97,15 +104,22 @@ class MarkValueInfoData {
 	}
 
 	protected function validatePercentage($percentage) {
+		if ( $percentage === FALSE ) {
+			$this->_overrides['percentage'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $percentage instanceof \org\sifinfo\www\infrastructure\_2_x\Percentage  && ! is_null($percentage) ) {
 			$percentage = new \org\sifinfo\www\infrastructure\_2_x\Percentage ($percentage);
 		}
+
+		unset ($this->_overrides['percentage']);
 	
 		return $percentage;
 	}
 
-	public function getNumeric() {
-		if ($this->numeric===NULL) {
+	public function getNumeric($autoCreate = TRUE) {
+		if ($this->numeric===NULL && $autoCreate && ! isset($this->_overrides['numeric']) ) {
 			$this->numeric = $this->createNumeric();
 		}
 		return $this->numeric;
@@ -120,15 +134,22 @@ class MarkValueInfoData {
 	}
 
 	protected function validateNumeric($numeric) {
+		if ( $numeric === FALSE ) {
+			$this->_overrides['numeric'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $numeric instanceof \org\sifinfo\www\infrastructure\_2_x\Numeric  && ! is_null($numeric) ) {
 			$numeric = new \org\sifinfo\www\infrastructure\_2_x\Numeric ($numeric);
 		}
+
+		unset ($this->_overrides['numeric']);
 	
 		return $numeric;
 	}
 
-	public function getLetter() {
-		if ($this->letter===NULL) {
+	public function getLetter($autoCreate = TRUE) {
+		if ($this->letter===NULL && $autoCreate && ! isset($this->_overrides['letter']) ) {
 			$this->letter = $this->createLetter();
 		}
 		return $this->letter;
@@ -143,15 +164,22 @@ class MarkValueInfoData {
 	}
 
 	protected function validateLetter($letter) {
+		if ( $letter === FALSE ) {
+			$this->_overrides['letter'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $letter instanceof \org\sifinfo\www\infrastructure\_2_x\Letter  && ! is_null($letter) ) {
 			$letter = new \org\sifinfo\www\infrastructure\_2_x\Letter ($letter);
 		}
+
+		unset ($this->_overrides['letter']);
 	
 		return $letter;
 	}
 
-	public function getNarrative() {
-		if ($this->narrative===NULL) {
+	public function getNarrative($autoCreate = TRUE) {
+		if ($this->narrative===NULL && $autoCreate && ! isset($this->_overrides['narrative']) ) {
 			$this->narrative = $this->createNarrative();
 		}
 		return $this->narrative;
@@ -166,15 +194,22 @@ class MarkValueInfoData {
 	}
 
 	protected function validateNarrative($narrative) {
+		if ( $narrative === FALSE ) {
+			$this->_overrides['narrative'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $narrative instanceof \org\sifinfo\www\infrastructure\_2_x\Narrative  && ! is_null($narrative) ) {
 			$narrative = new \org\sifinfo\www\infrastructure\_2_x\Narrative ($narrative);
 		}
+
+		unset ($this->_overrides['narrative']);
 	
 		return $narrative;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -189,15 +224,22 @@ class MarkValueInfoData {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}
 
-	public function getRefId() {
-		if ($this->refId===NULL) {
+	public function getRefId($autoCreate = TRUE) {
+		if ($this->refId===NULL && $autoCreate && ! isset($this->_overrides['refId']) ) {
 			$this->refId = $this->createRefId();
 		}
 		return $this->refId;

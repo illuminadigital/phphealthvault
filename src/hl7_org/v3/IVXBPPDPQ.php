@@ -14,6 +14,13 @@ class IVXBPPDPQ extends \org\w3\www\_2001\XMLSchema\PPDPQ {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="inclusive")
 	 */
 	protected $inclusive;
@@ -22,8 +29,8 @@ class IVXBPPDPQ extends \org\w3\www\_2001\XMLSchema\PPDPQ {
 		$this->inclusive = ($inclusive===NULL) ? NULL : $this->validateInclusive($inclusive);
 	}
 
-	public function getInclusive() {
-		if ($this->inclusive===NULL) {
+	public function getInclusive($autoCreate = TRUE) {
+		if ($this->inclusive===NULL && $autoCreate && ! isset($this->_overrides['inclusive']) ) {
 			$this->inclusive = $this->createInclusive();
 		}
 		return $this->inclusive;

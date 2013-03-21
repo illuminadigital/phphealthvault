@@ -14,6 +14,13 @@ class MultipleIntelligences {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\MultipleIntelligence", collection="true", name="MultipleIntelligence")
 	 */
 	protected $multipleIntelligence;
@@ -22,8 +29,8 @@ class MultipleIntelligences {
 		$this->multipleIntelligence = ($multipleIntelligence===NULL) ? NULL : $this->validateMultipleIntelligence($multipleIntelligence);
 	}
 
-	public function getMultipleIntelligence() {
-		if ($this->multipleIntelligence===NULL) {
+	public function getMultipleIntelligence($autoCreate = TRUE) {
+		if ($this->multipleIntelligence===NULL && $autoCreate && ! isset($this->_overrides['multipleIntelligence']) ) {
 			$this->multipleIntelligence = $this->createMultipleIntelligence();
 		}
 		return $this->multipleIntelligence;
@@ -38,9 +45,16 @@ class MultipleIntelligences {
 	}
 
 	protected function validateMultipleIntelligence($multipleIntelligence) {
+		if ( $multipleIntelligence === FALSE ) {
+			$this->_overrides['multipleIntelligence'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($multipleIntelligence) && ! is_null($multipleIntelligence) ) {
 			$multipleIntelligence = array($multipleIntelligence);
 		}
+
+		unset ($this->_overrides['multipleIntelligence']);
 		$count = count($multipleIntelligence);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'multipleIntelligence', 0));

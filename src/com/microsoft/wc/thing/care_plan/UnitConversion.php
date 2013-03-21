@@ -15,6 +15,13 @@ class UnitConversion {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="float", name="multiplier")
 	 */
 	protected $multiplier;
@@ -29,8 +36,8 @@ class UnitConversion {
 		$this->offset = ($offset===NULL) ? NULL : $this->validateOffset($offset);
 	}
 
-	public function getMultiplier() {
-		if ($this->multiplier===NULL) {
+	public function getMultiplier($autoCreate = TRUE) {
+		if ($this->multiplier===NULL && $autoCreate && ! isset($this->_overrides['multiplier']) ) {
 			$this->multiplier = $this->createMultiplier();
 		}
 		return $this->multiplier;
@@ -63,8 +70,8 @@ class UnitConversion {
 		return $multiplier;
 	}
 
-	public function getOffset() {
-		if ($this->offset===NULL) {
+	public function getOffset($autoCreate = TRUE) {
+		if ($this->offset===NULL && $autoCreate && ! isset($this->_overrides['offset']) ) {
 			$this->offset = $this->createOffset();
 		}
 		return $this->offset;

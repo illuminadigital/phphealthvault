@@ -15,6 +15,13 @@ class FamilyHistoryRelative {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="relationship")
 	 */
 	protected $relationship;
@@ -47,8 +54,8 @@ class FamilyHistoryRelative {
 		$this->regionOfOrigin = ($regionOfOrigin===NULL) ? NULL : $this->validateRegionOfOrigin($regionOfOrigin);
 	}
 
-	public function getRelationship() {
-		if ($this->relationship===NULL) {
+	public function getRelationship($autoCreate = TRUE) {
+		if ($this->relationship===NULL && $autoCreate && ! isset($this->_overrides['relationship']) ) {
 			$this->relationship = $this->createRelationship();
 		}
 		return $this->relationship;
@@ -70,8 +77,8 @@ class FamilyHistoryRelative {
 		return $relationship;
 	}
 
-	public function getRelativeName() {
-		if ($this->relativeName===NULL) {
+	public function getRelativeName($autoCreate = TRUE) {
+		if ($this->relativeName===NULL && $autoCreate && ! isset($this->_overrides['relativeName']) ) {
 			$this->relativeName = $this->createRelativeName();
 		}
 		return $this->relativeName;
@@ -86,15 +93,22 @@ class FamilyHistoryRelative {
 	}
 
 	protected function validateRelativeName($relativeName) {
+		if ( $relativeName === FALSE ) {
+			$this->_overrides['relativeName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $relativeName instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($relativeName) ) {
 			$relativeName = new \com\microsoft\wc\thing\types\Person ($relativeName);
 		}
+
+		unset ($this->_overrides['relativeName']);
 	
 		return $relativeName;
 	}
 
-	public function getDateOfBirth() {
-		if ($this->dateOfBirth===NULL) {
+	public function getDateOfBirth($autoCreate = TRUE) {
+		if ($this->dateOfBirth===NULL && $autoCreate && ! isset($this->_overrides['dateOfBirth']) ) {
 			$this->dateOfBirth = $this->createDateOfBirth();
 		}
 		return $this->dateOfBirth;
@@ -109,15 +123,22 @@ class FamilyHistoryRelative {
 	}
 
 	protected function validateDateOfBirth($dateOfBirth) {
+		if ( $dateOfBirth === FALSE ) {
+			$this->_overrides['dateOfBirth'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dateOfBirth instanceof \com\microsoft\wc\dates\ApproxDate  && ! is_null($dateOfBirth) ) {
 			$dateOfBirth = new \com\microsoft\wc\dates\ApproxDate ($dateOfBirth);
 		}
+
+		unset ($this->_overrides['dateOfBirth']);
 	
 		return $dateOfBirth;
 	}
 
-	public function getDateOfDeath() {
-		if ($this->dateOfDeath===NULL) {
+	public function getDateOfDeath($autoCreate = TRUE) {
+		if ($this->dateOfDeath===NULL && $autoCreate && ! isset($this->_overrides['dateOfDeath']) ) {
 			$this->dateOfDeath = $this->createDateOfDeath();
 		}
 		return $this->dateOfDeath;
@@ -132,15 +153,22 @@ class FamilyHistoryRelative {
 	}
 
 	protected function validateDateOfDeath($dateOfDeath) {
+		if ( $dateOfDeath === FALSE ) {
+			$this->_overrides['dateOfDeath'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dateOfDeath instanceof \com\microsoft\wc\dates\ApproxDate  && ! is_null($dateOfDeath) ) {
 			$dateOfDeath = new \com\microsoft\wc\dates\ApproxDate ($dateOfDeath);
 		}
+
+		unset ($this->_overrides['dateOfDeath']);
 	
 		return $dateOfDeath;
 	}
 
-	public function getRegionOfOrigin() {
-		if ($this->regionOfOrigin===NULL) {
+	public function getRegionOfOrigin($autoCreate = TRUE) {
+		if ($this->regionOfOrigin===NULL && $autoCreate && ! isset($this->_overrides['regionOfOrigin']) ) {
 			$this->regionOfOrigin = $this->createRegionOfOrigin();
 		}
 		return $this->regionOfOrigin;
@@ -155,9 +183,16 @@ class FamilyHistoryRelative {
 	}
 
 	protected function validateRegionOfOrigin($regionOfOrigin) {
+		if ( $regionOfOrigin === FALSE ) {
+			$this->_overrides['regionOfOrigin'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $regionOfOrigin instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($regionOfOrigin) ) {
 			$regionOfOrigin = new \com\microsoft\wc\types\CodableValue ($regionOfOrigin);
 		}
+
+		unset ($this->_overrides['regionOfOrigin']);
 	
 		return $regionOfOrigin;
 	}

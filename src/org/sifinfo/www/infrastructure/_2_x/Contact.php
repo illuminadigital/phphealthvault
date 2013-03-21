@@ -14,6 +14,13 @@ class Contact {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Relationship", name="Relationship")
 	 */
 	protected $relationship;
@@ -40,8 +47,8 @@ class Contact {
 		$this->educationalLevel = ($educationalLevel===NULL) ? NULL : $this->validateEducationalLevel($educationalLevel);
 	}
 
-	public function getRelationship() {
-		if ($this->relationship===NULL) {
+	public function getRelationship($autoCreate = TRUE) {
+		if ($this->relationship===NULL && $autoCreate && ! isset($this->_overrides['relationship']) ) {
 			$this->relationship = $this->createRelationship();
 		}
 		return $this->relationship;
@@ -63,8 +70,8 @@ class Contact {
 		return $relationship;
 	}
 
-	public function getNames() {
-		if ($this->names===NULL) {
+	public function getNames($autoCreate = TRUE) {
+		if ($this->names===NULL && $autoCreate && ! isset($this->_overrides['names']) ) {
 			$this->names = $this->createNames();
 		}
 		return $this->names;
@@ -79,15 +86,22 @@ class Contact {
 	}
 
 	protected function validateNames($names) {
+		if ( $names === FALSE ) {
+			$this->_overrides['names'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $names instanceof \org\sifinfo\www\infrastructure\_2_x\Names  && ! is_null($names) ) {
 			$names = new \org\sifinfo\www\infrastructure\_2_x\Names ($names);
 		}
+
+		unset ($this->_overrides['names']);
 	
 		return $names;
 	}
 
-	public function getOtherIdList() {
-		if ($this->otherIdList===NULL) {
+	public function getOtherIdList($autoCreate = TRUE) {
+		if ($this->otherIdList===NULL && $autoCreate && ! isset($this->_overrides['otherIdList']) ) {
 			$this->otherIdList = $this->createOtherIdList();
 		}
 		return $this->otherIdList;
@@ -102,15 +116,22 @@ class Contact {
 	}
 
 	protected function validateOtherIdList($otherIdList) {
+		if ( $otherIdList === FALSE ) {
+			$this->_overrides['otherIdList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $otherIdList instanceof \org\sifinfo\www\infrastructure\_2_x\OtherIdListType  && ! is_null($otherIdList) ) {
 			$otherIdList = new \org\sifinfo\www\infrastructure\_2_x\OtherIdListType ($otherIdList);
 		}
+
+		unset ($this->_overrides['otherIdList']);
 	
 		return $otherIdList;
 	}
 
-	public function getEducationalLevel() {
-		if ($this->educationalLevel===NULL) {
+	public function getEducationalLevel($autoCreate = TRUE) {
+		if ($this->educationalLevel===NULL && $autoCreate && ! isset($this->_overrides['educationalLevel']) ) {
 			$this->educationalLevel = $this->createEducationalLevel();
 		}
 		return $this->educationalLevel;

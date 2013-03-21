@@ -15,6 +15,13 @@ class GoalAssociatedTypeInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="thing-type-version-id")
 	 */
 	protected $thingTypeVersionId;
@@ -35,8 +42,8 @@ class GoalAssociatedTypeInfo {
 		$this->thingTypeDisplayXpath = ($thingTypeDisplayXpath===NULL) ? NULL : $this->validateThingTypeDisplayXpath($thingTypeDisplayXpath);
 	}
 
-	public function getThingTypeVersionId() {
-		if ($this->thingTypeVersionId===NULL) {
+	public function getThingTypeVersionId($autoCreate = TRUE) {
+		if ($this->thingTypeVersionId===NULL && $autoCreate && ! isset($this->_overrides['thingTypeVersionId']) ) {
 			$this->thingTypeVersionId = $this->createThingTypeVersionId();
 		}
 		return $this->thingTypeVersionId;
@@ -58,8 +65,8 @@ class GoalAssociatedTypeInfo {
 		return $thingTypeVersionId;
 	}
 
-	public function getThingTypeValueXpath() {
-		if ($this->thingTypeValueXpath===NULL) {
+	public function getThingTypeValueXpath($autoCreate = TRUE) {
+		if ($this->thingTypeValueXpath===NULL && $autoCreate && ! isset($this->_overrides['thingTypeValueXpath']) ) {
 			$this->thingTypeValueXpath = $this->createThingTypeValueXpath();
 		}
 		return $this->thingTypeValueXpath;
@@ -81,8 +88,8 @@ class GoalAssociatedTypeInfo {
 		return $thingTypeValueXpath;
 	}
 
-	public function getThingTypeDisplayXpath() {
-		if ($this->thingTypeDisplayXpath===NULL) {
+	public function getThingTypeDisplayXpath($autoCreate = TRUE) {
+		if ($this->thingTypeDisplayXpath===NULL && $autoCreate && ! isset($this->_overrides['thingTypeDisplayXpath']) ) {
 			$this->thingTypeDisplayXpath = $this->createThingTypeDisplayXpath();
 		}
 		return $this->thingTypeDisplayXpath;

@@ -15,6 +15,13 @@ class LifeCycleType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Created", name="Created")
 	 */
 	protected $created;
@@ -35,8 +42,8 @@ class LifeCycleType {
 		$this->timeElements = ($timeElements===NULL) ? NULL : $this->validateTimeElements($timeElements);
 	}
 
-	public function getCreated() {
-		if ($this->created===NULL) {
+	public function getCreated($autoCreate = TRUE) {
+		if ($this->created===NULL && $autoCreate && ! isset($this->_overrides['created']) ) {
 			$this->created = $this->createCreated();
 		}
 		return $this->created;
@@ -51,15 +58,22 @@ class LifeCycleType {
 	}
 
 	protected function validateCreated($created) {
+		if ( $created === FALSE ) {
+			$this->_overrides['created'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $created instanceof \org\sifinfo\www\infrastructure\_2_x\Created  && ! is_null($created) ) {
 			$created = new \org\sifinfo\www\infrastructure\_2_x\Created ($created);
 		}
+
+		unset ($this->_overrides['created']);
 	
 		return $created;
 	}
 
-	public function getModificationHistory() {
-		if ($this->modificationHistory===NULL) {
+	public function getModificationHistory($autoCreate = TRUE) {
+		if ($this->modificationHistory===NULL && $autoCreate && ! isset($this->_overrides['modificationHistory']) ) {
 			$this->modificationHistory = $this->createModificationHistory();
 		}
 		return $this->modificationHistory;
@@ -74,15 +88,22 @@ class LifeCycleType {
 	}
 
 	protected function validateModificationHistory($modificationHistory) {
+		if ( $modificationHistory === FALSE ) {
+			$this->_overrides['modificationHistory'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $modificationHistory instanceof \org\sifinfo\www\infrastructure\_2_x\ModificationHistory  && ! is_null($modificationHistory) ) {
 			$modificationHistory = new \org\sifinfo\www\infrastructure\_2_x\ModificationHistory ($modificationHistory);
 		}
+
+		unset ($this->_overrides['modificationHistory']);
 	
 		return $modificationHistory;
 	}
 
-	public function getTimeElements() {
-		if ($this->timeElements===NULL) {
+	public function getTimeElements($autoCreate = TRUE) {
+		if ($this->timeElements===NULL && $autoCreate && ! isset($this->_overrides['timeElements']) ) {
 			$this->timeElements = $this->createTimeElements();
 		}
 		return $this->timeElements;
@@ -97,9 +118,16 @@ class LifeCycleType {
 	}
 
 	protected function validateTimeElements($timeElements) {
+		if ( $timeElements === FALSE ) {
+			$this->_overrides['timeElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $timeElements instanceof \org\sifinfo\www\infrastructure\_2_x\TimeElements  && ! is_null($timeElements) ) {
 			$timeElements = new \org\sifinfo\www\infrastructure\_2_x\TimeElements ($timeElements);
 		}
+
+		unset ($this->_overrides['timeElements']);
 	
 		return $timeElements;
 	}

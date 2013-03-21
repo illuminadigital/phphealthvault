@@ -18,6 +18,13 @@ class WakeState extends \com\microsoft\wc\thing\AnyMixed {
 	const ID = '11C52484-7F1A-11DB-AEAC-87D355D89593';
 	const NAME = 'Sleep Session';
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class WakeState

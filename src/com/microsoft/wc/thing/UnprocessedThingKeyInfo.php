@@ -16,6 +16,13 @@ class UnprocessedThingKeyInfo {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\ThingKey", name="thing-id")
 	 */
 	protected $thingId;
@@ -36,8 +43,8 @@ class UnprocessedThingKeyInfo {
 		$this->effDate = ($effDate===NULL) ? NULL : $this->validateEffDate($effDate);
 	}
 
-	public function getThingId() {
-		if ($this->thingId===NULL) {
+	public function getThingId($autoCreate = TRUE) {
+		if ($this->thingId===NULL && $autoCreate && ! isset($this->_overrides['thingId']) ) {
 			$this->thingId = $this->createThingId();
 		}
 		return $this->thingId;
@@ -59,8 +66,8 @@ class UnprocessedThingKeyInfo {
 		return $thingId;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -82,8 +89,8 @@ class UnprocessedThingKeyInfo {
 		return $typeId;
 	}
 
-	public function getEffDate() {
-		if ($this->effDate===NULL) {
+	public function getEffDate($autoCreate = TRUE) {
+		if ($this->effDate===NULL && $autoCreate && ! isset($this->_overrides['effDate']) ) {
 			$this->effDate = $this->createEffDate();
 		}
 		return $this->effDate;

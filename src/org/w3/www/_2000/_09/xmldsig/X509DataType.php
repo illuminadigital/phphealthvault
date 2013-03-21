@@ -14,6 +14,13 @@ class X509DataType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\X509IssuerSerialType", name="X509IssuerSerial")
 	 */
 	protected $x509IssuerSerial;
@@ -52,8 +59,8 @@ class X509DataType {
 		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 	}
 
-	public function getX509IssuerSerial() {
-		if ($this->x509IssuerSerial===NULL) {
+	public function getX509IssuerSerial($autoCreate = TRUE) {
+		if ($this->x509IssuerSerial===NULL && $autoCreate && ! isset($this->_overrides['x509IssuerSerial']) ) {
 			$this->x509IssuerSerial = $this->createX509IssuerSerial();
 		}
 		return $this->x509IssuerSerial;
@@ -75,8 +82,8 @@ class X509DataType {
 		return $x509IssuerSerial;
 	}
 
-	public function getX509SKI() {
-		if ($this->x509SKI===NULL) {
+	public function getX509SKI($autoCreate = TRUE) {
+		if ($this->x509SKI===NULL && $autoCreate && ! isset($this->_overrides['x509SKI']) ) {
 			$this->x509SKI = $this->createX509SKI();
 		}
 		return $this->x509SKI;
@@ -98,8 +105,8 @@ class X509DataType {
 		return $x509SKI;
 	}
 
-	public function getX509SubjectName() {
-		if ($this->x509SubjectName===NULL) {
+	public function getX509SubjectName($autoCreate = TRUE) {
+		if ($this->x509SubjectName===NULL && $autoCreate && ! isset($this->_overrides['x509SubjectName']) ) {
 			$this->x509SubjectName = $this->createX509SubjectName();
 		}
 		return $this->x509SubjectName;
@@ -121,8 +128,8 @@ class X509DataType {
 		return $x509SubjectName;
 	}
 
-	public function getX509Certificate() {
-		if ($this->x509Certificate===NULL) {
+	public function getX509Certificate($autoCreate = TRUE) {
+		if ($this->x509Certificate===NULL && $autoCreate && ! isset($this->_overrides['x509Certificate']) ) {
 			$this->x509Certificate = $this->createX509Certificate();
 		}
 		return $this->x509Certificate;
@@ -144,8 +151,8 @@ class X509DataType {
 		return $x509Certificate;
 	}
 
-	public function getX509CRL() {
-		if ($this->x509CRL===NULL) {
+	public function getX509CRL($autoCreate = TRUE) {
+		if ($this->x509CRL===NULL && $autoCreate && ! isset($this->_overrides['x509CRL']) ) {
 			$this->x509CRL = $this->createX509CRL();
 		}
 		return $this->x509CRL;
@@ -167,8 +174,8 @@ class X509DataType {
 		return $x509CRL;
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;

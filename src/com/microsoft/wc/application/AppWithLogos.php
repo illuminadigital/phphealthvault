@@ -14,6 +14,13 @@ class AppWithLogos {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="id")
 	 */
 	protected $id;
@@ -178,8 +185,8 @@ class AppWithLogos {
 		$this->methods = ($methods===NULL) ? NULL : $this->validateMethods($methods);
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -201,8 +208,8 @@ class AppWithLogos {
 		return $id;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -237,8 +244,8 @@ class AppWithLogos {
 		$this->name[] = $name;
 	}
 
-	public function getAppAuthRequired() {
-		if ($this->appAuthRequired===NULL) {
+	public function getAppAuthRequired($autoCreate = TRUE) {
+		if ($this->appAuthRequired===NULL && $autoCreate && ! isset($this->_overrides['appAuthRequired']) ) {
 			$this->appAuthRequired = $this->createAppAuthRequired();
 		}
 		return $this->appAuthRequired;
@@ -260,8 +267,8 @@ class AppWithLogos {
 		return $appAuthRequired;
 	}
 
-	public function getIsPublished() {
-		if ($this->isPublished===NULL) {
+	public function getIsPublished($autoCreate = TRUE) {
+		if ($this->isPublished===NULL && $autoCreate && ! isset($this->_overrides['isPublished']) ) {
 			$this->isPublished = $this->createIsPublished();
 		}
 		return $this->isPublished;
@@ -283,8 +290,8 @@ class AppWithLogos {
 		return $isPublished;
 	}
 
-	public function getActionUrl() {
-		if ($this->actionUrl===NULL) {
+	public function getActionUrl($autoCreate = TRUE) {
+		if ($this->actionUrl===NULL && $autoCreate && ! isset($this->_overrides['actionUrl']) ) {
 			$this->actionUrl = $this->createActionUrl();
 		}
 		return $this->actionUrl;
@@ -306,8 +313,8 @@ class AppWithLogos {
 		return $actionUrl;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -322,9 +329,16 @@ class AppWithLogos {
 	}
 
 	protected function validateDescription($description) {
+		if ( $description === FALSE ) {
+			$this->_overrides['description'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($description) && ! is_null($description) ) {
 			$description = array($description);
 		}
+
+		unset ($this->_overrides['description']);
 		$count = count($description);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'description', 0));
@@ -342,8 +356,8 @@ class AppWithLogos {
 		$this->description[] = $description;
 	}
 
-	public function getAuthReason() {
-		if ($this->authReason===NULL) {
+	public function getAuthReason($autoCreate = TRUE) {
+		if ($this->authReason===NULL && $autoCreate && ! isset($this->_overrides['authReason']) ) {
 			$this->authReason = $this->createAuthReason();
 		}
 		return $this->authReason;
@@ -358,9 +372,16 @@ class AppWithLogos {
 	}
 
 	protected function validateAuthReason($authReason) {
+		if ( $authReason === FALSE ) {
+			$this->_overrides['authReason'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($authReason) && ! is_null($authReason) ) {
 			$authReason = array($authReason);
 		}
+
+		unset ($this->_overrides['authReason']);
 		$count = count($authReason);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'authReason', 0));
@@ -378,8 +399,8 @@ class AppWithLogos {
 		$this->authReason[] = $authReason;
 	}
 
-	public function getDomainName() {
-		if ($this->domainName===NULL) {
+	public function getDomainName($autoCreate = TRUE) {
+		if ($this->domainName===NULL && $autoCreate && ! isset($this->_overrides['domainName']) ) {
 			$this->domainName = $this->createDomainName();
 		}
 		return $this->domainName;
@@ -394,15 +415,22 @@ class AppWithLogos {
 	}
 
 	protected function validateDomainName($domainName) {
+		if ( $domainName === FALSE ) {
+			$this->_overrides['domainName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $domainName instanceof \com\microsoft\wc\types\String255  && ! is_null($domainName) ) {
 			$domainName = new \com\microsoft\wc\types\String255 ($domainName);
 		}
+
+		unset ($this->_overrides['domainName']);
 	
 		return $domainName;
 	}
 
-	public function getClientServiceToken() {
-		if ($this->clientServiceToken===NULL) {
+	public function getClientServiceToken($autoCreate = TRUE) {
+		if ($this->clientServiceToken===NULL && $autoCreate && ! isset($this->_overrides['clientServiceToken']) ) {
 			$this->clientServiceToken = $this->createClientServiceToken();
 		}
 		return $this->clientServiceToken;
@@ -417,15 +445,22 @@ class AppWithLogos {
 	}
 
 	protected function validateClientServiceToken($clientServiceToken) {
+		if ( $clientServiceToken === FALSE ) {
+			$this->_overrides['clientServiceToken'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $clientServiceToken instanceof \com\microsoft\wc\types\Guid  && ! is_null($clientServiceToken) ) {
 			$clientServiceToken = new \com\microsoft\wc\types\Guid ($clientServiceToken);
 		}
+
+		unset ($this->_overrides['clientServiceToken']);
 	
 		return $clientServiceToken;
 	}
 
-	public function getLargeLogo() {
-		if ($this->largeLogo===NULL) {
+	public function getLargeLogo($autoCreate = TRUE) {
+		if ($this->largeLogo===NULL && $autoCreate && ! isset($this->_overrides['largeLogo']) ) {
 			$this->largeLogo = $this->createLargeLogo();
 		}
 		return $this->largeLogo;
@@ -440,15 +475,22 @@ class AppWithLogos {
 	}
 
 	protected function validateLargeLogo($largeLogo) {
+		if ( $largeLogo === FALSE ) {
+			$this->_overrides['largeLogo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $largeLogo instanceof \com\microsoft\wc\application\AppLargeLogoInfo  && ! is_null($largeLogo) ) {
 			$largeLogo = new \com\microsoft\wc\application\AppLargeLogoInfo ($largeLogo);
 		}
+
+		unset ($this->_overrides['largeLogo']);
 	
 		return $largeLogo;
 	}
 
-	public function getSmallLogo() {
-		if ($this->smallLogo===NULL) {
+	public function getSmallLogo($autoCreate = TRUE) {
+		if ($this->smallLogo===NULL && $autoCreate && ! isset($this->_overrides['smallLogo']) ) {
 			$this->smallLogo = $this->createSmallLogo();
 		}
 		return $this->smallLogo;
@@ -463,15 +505,22 @@ class AppWithLogos {
 	}
 
 	protected function validateSmallLogo($smallLogo) {
+		if ( $smallLogo === FALSE ) {
+			$this->_overrides['smallLogo'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $smallLogo instanceof \com\microsoft\wc\application\AppSmallLogoInfo  && ! is_null($smallLogo) ) {
 			$smallLogo = new \com\microsoft\wc\application\AppSmallLogoInfo ($smallLogo);
 		}
+
+		unset ($this->_overrides['smallLogo']);
 	
 		return $smallLogo;
 	}
 
-	public function getPersistentTokens() {
-		if ($this->persistentTokens===NULL) {
+	public function getPersistentTokens($autoCreate = TRUE) {
+		if ($this->persistentTokens===NULL && $autoCreate && ! isset($this->_overrides['persistentTokens']) ) {
 			$this->persistentTokens = $this->createPersistentTokens();
 		}
 		return $this->persistentTokens;
@@ -486,15 +535,22 @@ class AppWithLogos {
 	}
 
 	protected function validatePersistentTokens($persistentTokens) {
+		if ( $persistentTokens === FALSE ) {
+			$this->_overrides['persistentTokens'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $persistentTokens instanceof \com\microsoft\wc\application\AppPersistentTokens  && ! is_null($persistentTokens) ) {
 			$persistentTokens = new \com\microsoft\wc\application\AppPersistentTokens ($persistentTokens);
 		}
+
+		unset ($this->_overrides['persistentTokens']);
 	
 		return $persistentTokens;
 	}
 
-	public function getPersonOnlineBaseAuthXml() {
-		if ($this->personOnlineBaseAuthXml===NULL) {
+	public function getPersonOnlineBaseAuthXml($autoCreate = TRUE) {
+		if ($this->personOnlineBaseAuthXml===NULL && $autoCreate && ! isset($this->_overrides['personOnlineBaseAuthXml']) ) {
 			$this->personOnlineBaseAuthXml = $this->createPersonOnlineBaseAuthXml();
 		}
 		return $this->personOnlineBaseAuthXml;
@@ -516,8 +572,8 @@ class AppWithLogos {
 		return $personOnlineBaseAuthXml;
 	}
 
-	public function getPersonOfflineBaseAuthXml() {
-		if ($this->personOfflineBaseAuthXml===NULL) {
+	public function getPersonOfflineBaseAuthXml($autoCreate = TRUE) {
+		if ($this->personOfflineBaseAuthXml===NULL && $autoCreate && ! isset($this->_overrides['personOfflineBaseAuthXml']) ) {
 			$this->personOfflineBaseAuthXml = $this->createPersonOfflineBaseAuthXml();
 		}
 		return $this->personOfflineBaseAuthXml;
@@ -532,15 +588,22 @@ class AppWithLogos {
 	}
 
 	protected function validatePersonOfflineBaseAuthXml($personOfflineBaseAuthXml) {
+		if ( $personOfflineBaseAuthXml === FALSE ) {
+			$this->_overrides['personOfflineBaseAuthXml'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $personOfflineBaseAuthXml instanceof \com\microsoft\wc\auth\AuthXml  && ! is_null($personOfflineBaseAuthXml) ) {
 			$personOfflineBaseAuthXml = new \com\microsoft\wc\auth\AuthXml ($personOfflineBaseAuthXml);
 		}
+
+		unset ($this->_overrides['personOfflineBaseAuthXml']);
 	
 		return $personOfflineBaseAuthXml;
 	}
 
-	public function getPrivacyStatement() {
-		if ($this->privacyStatement===NULL) {
+	public function getPrivacyStatement($autoCreate = TRUE) {
+		if ($this->privacyStatement===NULL && $autoCreate && ! isset($this->_overrides['privacyStatement']) ) {
 			$this->privacyStatement = $this->createPrivacyStatement();
 		}
 		return $this->privacyStatement;
@@ -555,15 +618,22 @@ class AppWithLogos {
 	}
 
 	protected function validatePrivacyStatement($privacyStatement) {
+		if ( $privacyStatement === FALSE ) {
+			$this->_overrides['privacyStatement'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $privacyStatement instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($privacyStatement) ) {
 			$privacyStatement = new \com\microsoft\wc\application\StatementInfo ($privacyStatement);
 		}
+
+		unset ($this->_overrides['privacyStatement']);
 	
 		return $privacyStatement;
 	}
 
-	public function getTermsOfUse() {
-		if ($this->termsOfUse===NULL) {
+	public function getTermsOfUse($autoCreate = TRUE) {
+		if ($this->termsOfUse===NULL && $autoCreate && ! isset($this->_overrides['termsOfUse']) ) {
 			$this->termsOfUse = $this->createTermsOfUse();
 		}
 		return $this->termsOfUse;
@@ -578,15 +648,22 @@ class AppWithLogos {
 	}
 
 	protected function validateTermsOfUse($termsOfUse) {
+		if ( $termsOfUse === FALSE ) {
+			$this->_overrides['termsOfUse'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $termsOfUse instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($termsOfUse) ) {
 			$termsOfUse = new \com\microsoft\wc\application\StatementInfo ($termsOfUse);
 		}
+
+		unset ($this->_overrides['termsOfUse']);
 	
 		return $termsOfUse;
 	}
 
-	public function getDtcSuccessMessage() {
-		if ($this->dtcSuccessMessage===NULL) {
+	public function getDtcSuccessMessage($autoCreate = TRUE) {
+		if ($this->dtcSuccessMessage===NULL && $autoCreate && ! isset($this->_overrides['dtcSuccessMessage']) ) {
 			$this->dtcSuccessMessage = $this->createDtcSuccessMessage();
 		}
 		return $this->dtcSuccessMessage;
@@ -601,15 +678,22 @@ class AppWithLogos {
 	}
 
 	protected function validateDtcSuccessMessage($dtcSuccessMessage) {
+		if ( $dtcSuccessMessage === FALSE ) {
+			$this->_overrides['dtcSuccessMessage'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $dtcSuccessMessage instanceof \com\microsoft\wc\application\StatementInfo  && ! is_null($dtcSuccessMessage) ) {
 			$dtcSuccessMessage = new \com\microsoft\wc\application\StatementInfo ($dtcSuccessMessage);
 		}
+
+		unset ($this->_overrides['dtcSuccessMessage']);
 	
 		return $dtcSuccessMessage;
 	}
 
-	public function getAppAttributes() {
-		if ($this->appAttributes===NULL) {
+	public function getAppAttributes($autoCreate = TRUE) {
+		if ($this->appAttributes===NULL && $autoCreate && ! isset($this->_overrides['appAttributes']) ) {
 			$this->appAttributes = $this->createAppAttributes();
 		}
 		return $this->appAttributes;
@@ -624,15 +708,22 @@ class AppWithLogos {
 	}
 
 	protected function validateAppAttributes($appAttributes) {
+		if ( $appAttributes === FALSE ) {
+			$this->_overrides['appAttributes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $appAttributes instanceof \com\microsoft\wc\application\ApplicationAttributes  && ! is_null($appAttributes) ) {
 			$appAttributes = new \com\microsoft\wc\application\ApplicationAttributes ($appAttributes);
 		}
+
+		unset ($this->_overrides['appAttributes']);
 	
 		return $appAttributes;
 	}
 
-	public function getAppType() {
-		if ($this->appType===NULL) {
+	public function getAppType($autoCreate = TRUE) {
+		if ($this->appType===NULL && $autoCreate && ! isset($this->_overrides['appType']) ) {
 			$this->appType = $this->createAppType();
 		}
 		return $this->appType;
@@ -654,8 +745,8 @@ class AppWithLogos {
 		return $appType;
 	}
 
-	public function getMasterAppId() {
-		if ($this->masterAppId===NULL) {
+	public function getMasterAppId($autoCreate = TRUE) {
+		if ($this->masterAppId===NULL && $autoCreate && ! isset($this->_overrides['masterAppId']) ) {
 			$this->masterAppId = $this->createMasterAppId();
 		}
 		return $this->masterAppId;
@@ -670,15 +761,22 @@ class AppWithLogos {
 	}
 
 	protected function validateMasterAppId($masterAppId) {
+		if ( $masterAppId === FALSE ) {
+			$this->_overrides['masterAppId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $masterAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($masterAppId) ) {
 			$masterAppId = new \com\microsoft\wc\types\Guid ($masterAppId);
 		}
+
+		unset ($this->_overrides['masterAppId']);
 	
 		return $masterAppId;
 	}
 
-	public function getMasterAppName() {
-		if ($this->masterAppName===NULL) {
+	public function getMasterAppName($autoCreate = TRUE) {
+		if ($this->masterAppName===NULL && $autoCreate && ! isset($this->_overrides['masterAppName']) ) {
 			$this->masterAppName = $this->createMasterAppName();
 		}
 		return $this->masterAppName;
@@ -693,15 +791,22 @@ class AppWithLogos {
 	}
 
 	protected function validateMasterAppName($masterAppName) {
+		if ( $masterAppName === FALSE ) {
+			$this->_overrides['masterAppName'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $masterAppName instanceof \com\microsoft\wc\types\CultureSpecificString255  && ! is_null($masterAppName) ) {
 			$masterAppName = new \com\microsoft\wc\types\CultureSpecificString255 ($masterAppName);
 		}
+
+		unset ($this->_overrides['masterAppName']);
 	
 		return $masterAppName;
 	}
 
-	public function getCreatedDate() {
-		if ($this->createdDate===NULL) {
+	public function getCreatedDate($autoCreate = TRUE) {
+		if ($this->createdDate===NULL && $autoCreate && ! isset($this->_overrides['createdDate']) ) {
 			$this->createdDate = $this->createCreatedDate();
 		}
 		return $this->createdDate;
@@ -723,8 +828,8 @@ class AppWithLogos {
 		return $createdDate;
 	}
 
-	public function getUpdatedDate() {
-		if ($this->updatedDate===NULL) {
+	public function getUpdatedDate($autoCreate = TRUE) {
+		if ($this->updatedDate===NULL && $autoCreate && ! isset($this->_overrides['updatedDate']) ) {
 			$this->updatedDate = $this->createUpdatedDate();
 		}
 		return $this->updatedDate;
@@ -746,8 +851,8 @@ class AppWithLogos {
 		return $updatedDate;
 	}
 
-	public function getValidIpPrefixes() {
-		if ($this->validIpPrefixes===NULL) {
+	public function getValidIpPrefixes($autoCreate = TRUE) {
+		if ($this->validIpPrefixes===NULL && $autoCreate && ! isset($this->_overrides['validIpPrefixes']) ) {
 			$this->validIpPrefixes = $this->createValidIpPrefixes();
 		}
 		return $this->validIpPrefixes;
@@ -762,15 +867,22 @@ class AppWithLogos {
 	}
 
 	protected function validateValidIpPrefixes($validIpPrefixes) {
+		if ( $validIpPrefixes === FALSE ) {
+			$this->_overrides['validIpPrefixes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $validIpPrefixes instanceof \com\microsoft\wc\types\String255nw  && ! is_null($validIpPrefixes) ) {
 			$validIpPrefixes = new \com\microsoft\wc\types\String255nw ($validIpPrefixes);
 		}
+
+		unset ($this->_overrides['validIpPrefixes']);
 	
 		return $validIpPrefixes;
 	}
 
-	public function getVocabularyAuthorizations() {
-		if ($this->vocabularyAuthorizations===NULL) {
+	public function getVocabularyAuthorizations($autoCreate = TRUE) {
+		if ($this->vocabularyAuthorizations===NULL && $autoCreate && ! isset($this->_overrides['vocabularyAuthorizations']) ) {
 			$this->vocabularyAuthorizations = $this->createVocabularyAuthorizations();
 		}
 		return $this->vocabularyAuthorizations;
@@ -785,15 +897,22 @@ class AppWithLogos {
 	}
 
 	protected function validateVocabularyAuthorizations($vocabularyAuthorizations) {
+		if ( $vocabularyAuthorizations === FALSE ) {
+			$this->_overrides['vocabularyAuthorizations'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vocabularyAuthorizations instanceof \com\microsoft\wc\vocab\VocabularyAuthorizations  && ! is_null($vocabularyAuthorizations) ) {
 			$vocabularyAuthorizations = new \com\microsoft\wc\vocab\VocabularyAuthorizations ($vocabularyAuthorizations);
 		}
+
+		unset ($this->_overrides['vocabularyAuthorizations']);
 	
 		return $vocabularyAuthorizations;
 	}
 
-	public function getChildVocabularyAuthorizationsCeiling() {
-		if ($this->childVocabularyAuthorizationsCeiling===NULL) {
+	public function getChildVocabularyAuthorizationsCeiling($autoCreate = TRUE) {
+		if ($this->childVocabularyAuthorizationsCeiling===NULL && $autoCreate && ! isset($this->_overrides['childVocabularyAuthorizationsCeiling']) ) {
 			$this->childVocabularyAuthorizationsCeiling = $this->createChildVocabularyAuthorizationsCeiling();
 		}
 		return $this->childVocabularyAuthorizationsCeiling;
@@ -808,15 +927,22 @@ class AppWithLogos {
 	}
 
 	protected function validateChildVocabularyAuthorizationsCeiling($childVocabularyAuthorizationsCeiling) {
+		if ( $childVocabularyAuthorizationsCeiling === FALSE ) {
+			$this->_overrides['childVocabularyAuthorizationsCeiling'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $childVocabularyAuthorizationsCeiling instanceof \com\microsoft\wc\vocab\VocabularyAuthorizations  && ! is_null($childVocabularyAuthorizationsCeiling) ) {
 			$childVocabularyAuthorizationsCeiling = new \com\microsoft\wc\vocab\VocabularyAuthorizations ($childVocabularyAuthorizationsCeiling);
 		}
+
+		unset ($this->_overrides['childVocabularyAuthorizationsCeiling']);
 	
 		return $childVocabularyAuthorizationsCeiling;
 	}
 
-	public function getMethods() {
-		if ($this->methods===NULL) {
+	public function getMethods($autoCreate = TRUE) {
+		if ($this->methods===NULL && $autoCreate && ! isset($this->_overrides['methods']) ) {
 			$this->methods = $this->createMethods();
 		}
 		return $this->methods;
@@ -831,9 +957,16 @@ class AppWithLogos {
 	}
 
 	protected function validateMethods($methods) {
+		if ( $methods === FALSE ) {
+			$this->_overrides['methods'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $methods instanceof \com\microsoft\wc\types\Stringnz  && ! is_null($methods) ) {
 			$methods = new \com\microsoft\wc\types\Stringnz ($methods);
 		}
+
+		unset ($this->_overrides['methods']);
 	
 		return $methods;
 	}

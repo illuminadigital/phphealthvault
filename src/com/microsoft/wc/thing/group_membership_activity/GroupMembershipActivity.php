@@ -18,6 +18,13 @@ class GroupMembershipActivity extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Group Membership Activity';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -38,8 +45,8 @@ class GroupMembershipActivity extends \com\microsoft\wc\thing\AnyMixed {
 		$this->activityInfo = ($activityInfo===NULL) ? NULL : $this->validateActivityInfo($activityInfo);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -61,8 +68,8 @@ class GroupMembershipActivity extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getActivity() {
-		if ($this->activity===NULL) {
+	public function getActivity($autoCreate = TRUE) {
+		if ($this->activity===NULL && $autoCreate && ! isset($this->_overrides['activity']) ) {
 			$this->activity = $this->createActivity();
 		}
 		return $this->activity;
@@ -84,8 +91,8 @@ class GroupMembershipActivity extends \com\microsoft\wc\thing\AnyMixed {
 		return $activity;
 	}
 
-	public function getActivityInfo() {
-		if ($this->activityInfo===NULL) {
+	public function getActivityInfo($autoCreate = TRUE) {
+		if ($this->activityInfo===NULL && $autoCreate && ! isset($this->_overrides['activityInfo']) ) {
 			$this->activityInfo = $this->createActivityInfo();
 		}
 		return $this->activityInfo;

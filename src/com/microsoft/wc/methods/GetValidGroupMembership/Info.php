@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", collection="true", name="application-id")
 	 */
 	protected $applicationId;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->applicationId = ($applicationId===NULL) ? NULL : $this->validateApplicationId($applicationId);
 	}
 
-	public function getApplicationId() {
-		if ($this->applicationId===NULL) {
+	public function getApplicationId($autoCreate = TRUE) {
+		if ($this->applicationId===NULL && $autoCreate && ! isset($this->_overrides['applicationId']) ) {
 			$this->applicationId = $this->createApplicationId();
 		}
 		return $this->applicationId;
@@ -40,9 +47,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateApplicationId($applicationId) {
+		if ( $applicationId === FALSE ) {
+			$this->_overrides['applicationId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($applicationId) && ! is_null($applicationId) ) {
 			$applicationId = array($applicationId);
 		}
+
+		unset ($this->_overrides['applicationId']);
 		$count = count($applicationId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'applicationId', 0));

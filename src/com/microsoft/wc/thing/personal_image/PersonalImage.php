@@ -18,6 +18,13 @@ class PersonalImage extends \com\microsoft\wc\thing\AnyMixed {
 	const ID = 'a5294488-f865-4ce3-92fa-187cd3b58930';
 	const NAME = 'Personal Image';
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class PersonalImage

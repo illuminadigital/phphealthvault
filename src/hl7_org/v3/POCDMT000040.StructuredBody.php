@@ -14,6 +14,13 @@ class POCDMT000040.StructuredBody {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -70,8 +77,8 @@ class POCDMT000040.StructuredBody {
 		$this->moodCode = ($moodCode===NULL) ? NULL : $this->validateMoodCode($moodCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -105,8 +112,8 @@ class POCDMT000040.StructuredBody {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -125,8 +132,8 @@ class POCDMT000040.StructuredBody {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -160,8 +167,8 @@ class POCDMT000040.StructuredBody {
 		return $templateId;
 	}
 
-	public function getConfidentialityCode() {
-		if ($this->confidentialityCode===NULL) {
+	public function getConfidentialityCode($autoCreate = TRUE) {
+		if ($this->confidentialityCode===NULL && $autoCreate && ! isset($this->_overrides['confidentialityCode']) ) {
 			$this->confidentialityCode = $this->createConfidentialityCode();
 		}
 		return $this->confidentialityCode;
@@ -180,8 +187,8 @@ class POCDMT000040.StructuredBody {
 		return $confidentialityCode;
 	}
 
-	public function getLanguageCode() {
-		if ($this->languageCode===NULL) {
+	public function getLanguageCode($autoCreate = TRUE) {
+		if ($this->languageCode===NULL && $autoCreate && ! isset($this->_overrides['languageCode']) ) {
 			$this->languageCode = $this->createLanguageCode();
 		}
 		return $this->languageCode;
@@ -200,8 +207,8 @@ class POCDMT000040.StructuredBody {
 		return $languageCode;
 	}
 
-	public function getComponent() {
-		if ($this->component===NULL) {
+	public function getComponent($autoCreate = TRUE) {
+		if ($this->component===NULL && $autoCreate && ! isset($this->_overrides['component']) ) {
 			$this->component = $this->createComponent();
 		}
 		return $this->component;
@@ -235,8 +242,8 @@ class POCDMT000040.StructuredBody {
 		return $component;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -255,8 +262,8 @@ class POCDMT000040.StructuredBody {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;
@@ -275,8 +282,8 @@ class POCDMT000040.StructuredBody {
 		return $classCode;
 	}
 
-	public function getMoodCode() {
-		if ($this->moodCode===NULL) {
+	public function getMoodCode($autoCreate = TRUE) {
+		if ($this->moodCode===NULL && $autoCreate && ! isset($this->_overrides['moodCode']) ) {
 			$this->moodCode = $this->createMoodCode();
 		}
 		return $this->moodCode;

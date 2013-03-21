@@ -15,6 +15,13 @@ class StudentPlacementType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="StudentPlacementAsOfDate")
 	 */
 	protected $studentPlacementAsOfDate;
@@ -185,8 +192,8 @@ class StudentPlacementType {
 		$this->studentPersonalRefId = ($studentPersonalRefId===NULL) ? NULL : $this->validateStudentPersonalRefId($studentPersonalRefId);
 	}
 
-	public function getStudentPlacementAsOfDate() {
-		if ($this->studentPlacementAsOfDate===NULL) {
+	public function getStudentPlacementAsOfDate($autoCreate = TRUE) {
+		if ($this->studentPlacementAsOfDate===NULL && $autoCreate && ! isset($this->_overrides['studentPlacementAsOfDate']) ) {
 			$this->studentPlacementAsOfDate = $this->createStudentPlacementAsOfDate();
 		}
 		return $this->studentPlacementAsOfDate;
@@ -208,8 +215,8 @@ class StudentPlacementType {
 		return $studentPlacementAsOfDate;
 	}
 
-	public function getService() {
-		if ($this->service===NULL) {
+	public function getService($autoCreate = TRUE) {
+		if ($this->service===NULL && $autoCreate && ! isset($this->_overrides['service']) ) {
 			$this->service = $this->createService();
 		}
 		return $this->service;
@@ -231,8 +238,8 @@ class StudentPlacementType {
 		return $service;
 	}
 
-	public function getServiceCategory() {
-		if ($this->serviceCategory===NULL) {
+	public function getServiceCategory($autoCreate = TRUE) {
+		if ($this->serviceCategory===NULL && $autoCreate && ! isset($this->_overrides['serviceCategory']) ) {
 			$this->serviceCategory = $this->createServiceCategory();
 		}
 		return $this->serviceCategory;
@@ -247,15 +254,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateServiceCategory($serviceCategory) {
+		if ( $serviceCategory === FALSE ) {
+			$this->_overrides['serviceCategory'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $serviceCategory instanceof \org\sifinfo\www\infrastructure\_2_x\ServiceCategory  && ! is_null($serviceCategory) ) {
 			$serviceCategory = new \org\sifinfo\www\infrastructure\_2_x\ServiceCategory ($serviceCategory);
 		}
+
+		unset ($this->_overrides['serviceCategory']);
 	
 		return $serviceCategory;
 	}
 
-	public function getServiceFundingSources() {
-		if ($this->serviceFundingSources===NULL) {
+	public function getServiceFundingSources($autoCreate = TRUE) {
+		if ($this->serviceFundingSources===NULL && $autoCreate && ! isset($this->_overrides['serviceFundingSources']) ) {
 			$this->serviceFundingSources = $this->createServiceFundingSources();
 		}
 		return $this->serviceFundingSources;
@@ -270,15 +284,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateServiceFundingSources($serviceFundingSources) {
+		if ( $serviceFundingSources === FALSE ) {
+			$this->_overrides['serviceFundingSources'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $serviceFundingSources instanceof \org\sifinfo\www\infrastructure\_2_x\ServiceFundingSources  && ! is_null($serviceFundingSources) ) {
 			$serviceFundingSources = new \org\sifinfo\www\infrastructure\_2_x\ServiceFundingSources ($serviceFundingSources);
 		}
+
+		unset ($this->_overrides['serviceFundingSources']);
 	
 		return $serviceFundingSources;
 	}
 
-	public function getServicingPublicAgency() {
-		if ($this->servicingPublicAgency===NULL) {
+	public function getServicingPublicAgency($autoCreate = TRUE) {
+		if ($this->servicingPublicAgency===NULL && $autoCreate && ! isset($this->_overrides['servicingPublicAgency']) ) {
 			$this->servicingPublicAgency = $this->createServicingPublicAgency();
 		}
 		return $this->servicingPublicAgency;
@@ -293,15 +314,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateServicingPublicAgency($servicingPublicAgency) {
+		if ( $servicingPublicAgency === FALSE ) {
+			$this->_overrides['servicingPublicAgency'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $servicingPublicAgency instanceof \org\sifinfo\www\infrastructure\_2_x\ServicingPublicAgency  && ! is_null($servicingPublicAgency) ) {
 			$servicingPublicAgency = new \org\sifinfo\www\infrastructure\_2_x\ServicingPublicAgency ($servicingPublicAgency);
 		}
+
+		unset ($this->_overrides['servicingPublicAgency']);
 	
 		return $servicingPublicAgency;
 	}
 
-	public function getServicingSchool() {
-		if ($this->servicingSchool===NULL) {
+	public function getServicingSchool($autoCreate = TRUE) {
+		if ($this->servicingSchool===NULL && $autoCreate && ! isset($this->_overrides['servicingSchool']) ) {
 			$this->servicingSchool = $this->createServicingSchool();
 		}
 		return $this->servicingSchool;
@@ -316,15 +344,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateServicingSchool($servicingSchool) {
+		if ( $servicingSchool === FALSE ) {
+			$this->_overrides['servicingSchool'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $servicingSchool instanceof \org\sifinfo\www\infrastructure\_2_x\ServicingSchool  && ! is_null($servicingSchool) ) {
 			$servicingSchool = new \org\sifinfo\www\infrastructure\_2_x\ServicingSchool ($servicingSchool);
 		}
+
+		unset ($this->_overrides['servicingSchool']);
 	
 		return $servicingSchool;
 	}
 
-	public function getSchoolWhereServiceDelivered() {
-		if ($this->schoolWhereServiceDelivered===NULL) {
+	public function getSchoolWhereServiceDelivered($autoCreate = TRUE) {
+		if ($this->schoolWhereServiceDelivered===NULL && $autoCreate && ! isset($this->_overrides['schoolWhereServiceDelivered']) ) {
 			$this->schoolWhereServiceDelivered = $this->createSchoolWhereServiceDelivered();
 		}
 		return $this->schoolWhereServiceDelivered;
@@ -339,15 +374,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateSchoolWhereServiceDelivered($schoolWhereServiceDelivered) {
+		if ( $schoolWhereServiceDelivered === FALSE ) {
+			$this->_overrides['schoolWhereServiceDelivered'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $schoolWhereServiceDelivered instanceof \org\sifinfo\www\infrastructure\_2_x\SchoolWhereServiceDelivered  && ! is_null($schoolWhereServiceDelivered) ) {
 			$schoolWhereServiceDelivered = new \org\sifinfo\www\infrastructure\_2_x\SchoolWhereServiceDelivered ($schoolWhereServiceDelivered);
 		}
+
+		unset ($this->_overrides['schoolWhereServiceDelivered']);
 	
 		return $schoolWhereServiceDelivered;
 	}
 
-	public function getServiceProviderType() {
-		if ($this->serviceProviderType===NULL) {
+	public function getServiceProviderType($autoCreate = TRUE) {
+		if ($this->serviceProviderType===NULL && $autoCreate && ! isset($this->_overrides['serviceProviderType']) ) {
 			$this->serviceProviderType = $this->createServiceProviderType();
 		}
 		return $this->serviceProviderType;
@@ -362,15 +404,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateServiceProviderType($serviceProviderType) {
+		if ( $serviceProviderType === FALSE ) {
+			$this->_overrides['serviceProviderType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $serviceProviderType instanceof \org\sifinfo\www\infrastructure\_2_x\ServiceProviderType  && ! is_null($serviceProviderType) ) {
 			$serviceProviderType = new \org\sifinfo\www\infrastructure\_2_x\ServiceProviderType ($serviceProviderType);
 		}
+
+		unset ($this->_overrides['serviceProviderType']);
 	
 		return $serviceProviderType;
 	}
 
-	public function getAgencyType() {
-		if ($this->agencyType===NULL) {
+	public function getAgencyType($autoCreate = TRUE) {
+		if ($this->agencyType===NULL && $autoCreate && ! isset($this->_overrides['agencyType']) ) {
 			$this->agencyType = $this->createAgencyType();
 		}
 		return $this->agencyType;
@@ -392,8 +441,8 @@ class StudentPlacementType {
 		return $agencyType;
 	}
 
-	public function getServiceProviderName() {
-		if ($this->serviceProviderName===NULL) {
+	public function getServiceProviderName($autoCreate = TRUE) {
+		if ($this->serviceProviderName===NULL && $autoCreate && ! isset($this->_overrides['serviceProviderName']) ) {
 			$this->serviceProviderName = $this->createServiceProviderName();
 		}
 		return $this->serviceProviderName;
@@ -415,8 +464,8 @@ class StudentPlacementType {
 		return $serviceProviderName;
 	}
 
-	public function getServiceSetting() {
-		if ($this->serviceSetting===NULL) {
+	public function getServiceSetting($autoCreate = TRUE) {
+		if ($this->serviceSetting===NULL && $autoCreate && ! isset($this->_overrides['serviceSetting']) ) {
 			$this->serviceSetting = $this->createServiceSetting();
 		}
 		return $this->serviceSetting;
@@ -431,15 +480,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateServiceSetting($serviceSetting) {
+		if ( $serviceSetting === FALSE ) {
+			$this->_overrides['serviceSetting'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $serviceSetting instanceof \org\sifinfo\www\infrastructure\_2_x\ServiceSetting  && ! is_null($serviceSetting) ) {
 			$serviceSetting = new \org\sifinfo\www\infrastructure\_2_x\ServiceSetting ($serviceSetting);
 		}
+
+		unset ($this->_overrides['serviceSetting']);
 	
 		return $serviceSetting;
 	}
 
-	public function getWhenServiceProvided() {
-		if ($this->whenServiceProvided===NULL) {
+	public function getWhenServiceProvided($autoCreate = TRUE) {
+		if ($this->whenServiceProvided===NULL && $autoCreate && ! isset($this->_overrides['whenServiceProvided']) ) {
 			$this->whenServiceProvided = $this->createWhenServiceProvided();
 		}
 		return $this->whenServiceProvided;
@@ -454,15 +510,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateWhenServiceProvided($whenServiceProvided) {
+		if ( $whenServiceProvided === FALSE ) {
+			$this->_overrides['whenServiceProvided'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $whenServiceProvided instanceof \org\sifinfo\www\infrastructure\_2_x\WhenServiceProvided  && ! is_null($whenServiceProvided) ) {
 			$whenServiceProvided = new \org\sifinfo\www\infrastructure\_2_x\WhenServiceProvided ($whenServiceProvided);
 		}
+
+		unset ($this->_overrides['whenServiceProvided']);
 	
 		return $whenServiceProvided;
 	}
 
-	public function getLatestStartDate() {
-		if ($this->latestStartDate===NULL) {
+	public function getLatestStartDate($autoCreate = TRUE) {
+		if ($this->latestStartDate===NULL && $autoCreate && ! isset($this->_overrides['latestStartDate']) ) {
 			$this->latestStartDate = $this->createLatestStartDate();
 		}
 		return $this->latestStartDate;
@@ -484,8 +547,8 @@ class StudentPlacementType {
 		return $latestStartDate;
 	}
 
-	public function getStartDate() {
-		if ($this->startDate===NULL) {
+	public function getStartDate($autoCreate = TRUE) {
+		if ($this->startDate===NULL && $autoCreate && ! isset($this->_overrides['startDate']) ) {
 			$this->startDate = $this->createStartDate();
 		}
 		return $this->startDate;
@@ -507,8 +570,8 @@ class StudentPlacementType {
 		return $startDate;
 	}
 
-	public function getEndDate() {
-		if ($this->endDate===NULL) {
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
 			$this->endDate = $this->createEndDate();
 		}
 		return $this->endDate;
@@ -530,8 +593,8 @@ class StudentPlacementType {
 		return $endDate;
 	}
 
-	public function getFrequencyTime() {
-		if ($this->frequencyTime===NULL) {
+	public function getFrequencyTime($autoCreate = TRUE) {
+		if ($this->frequencyTime===NULL && $autoCreate && ! isset($this->_overrides['frequencyTime']) ) {
 			$this->frequencyTime = $this->createFrequencyTime();
 		}
 		return $this->frequencyTime;
@@ -546,15 +609,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateFrequencyTime($frequencyTime) {
+		if ( $frequencyTime === FALSE ) {
+			$this->_overrides['frequencyTime'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $frequencyTime instanceof \org\sifinfo\www\infrastructure\_2_x\FrequencyTime  && ! is_null($frequencyTime) ) {
 			$frequencyTime = new \org\sifinfo\www\infrastructure\_2_x\FrequencyTime ($frequencyTime);
 		}
+
+		unset ($this->_overrides['frequencyTime']);
 	
 		return $frequencyTime;
 	}
 
-	public function getDirectTime() {
-		if ($this->directTime===NULL) {
+	public function getDirectTime($autoCreate = TRUE) {
+		if ($this->directTime===NULL && $autoCreate && ! isset($this->_overrides['directTime']) ) {
 			$this->directTime = $this->createDirectTime();
 		}
 		return $this->directTime;
@@ -569,15 +639,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateDirectTime($directTime) {
+		if ( $directTime === FALSE ) {
+			$this->_overrides['directTime'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $directTime instanceof \org\sifinfo\www\infrastructure\_2_x\DirectTime  && ! is_null($directTime) ) {
 			$directTime = new \org\sifinfo\www\infrastructure\_2_x\DirectTime ($directTime);
 		}
+
+		unset ($this->_overrides['directTime']);
 	
 		return $directTime;
 	}
 
-	public function getIndirectTime() {
-		if ($this->indirectTime===NULL) {
+	public function getIndirectTime($autoCreate = TRUE) {
+		if ($this->indirectTime===NULL && $autoCreate && ! isset($this->_overrides['indirectTime']) ) {
 			$this->indirectTime = $this->createIndirectTime();
 		}
 		return $this->indirectTime;
@@ -592,15 +669,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateIndirectTime($indirectTime) {
+		if ( $indirectTime === FALSE ) {
+			$this->_overrides['indirectTime'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $indirectTime instanceof \org\sifinfo\www\infrastructure\_2_x\IndirectTime  && ! is_null($indirectTime) ) {
 			$indirectTime = new \org\sifinfo\www\infrastructure\_2_x\IndirectTime ($indirectTime);
 		}
+
+		unset ($this->_overrides['indirectTime']);
 	
 		return $indirectTime;
 	}
 
-	public function getTotalServiceDuration() {
-		if ($this->totalServiceDuration===NULL) {
+	public function getTotalServiceDuration($autoCreate = TRUE) {
+		if ($this->totalServiceDuration===NULL && $autoCreate && ! isset($this->_overrides['totalServiceDuration']) ) {
 			$this->totalServiceDuration = $this->createTotalServiceDuration();
 		}
 		return $this->totalServiceDuration;
@@ -615,15 +699,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateTotalServiceDuration($totalServiceDuration) {
+		if ( $totalServiceDuration === FALSE ) {
+			$this->_overrides['totalServiceDuration'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $totalServiceDuration instanceof \org\sifinfo\www\infrastructure\_2_x\TotalServiceDuration  && ! is_null($totalServiceDuration) ) {
 			$totalServiceDuration = new \org\sifinfo\www\infrastructure\_2_x\TotalServiceDuration ($totalServiceDuration);
 		}
+
+		unset ($this->_overrides['totalServiceDuration']);
 	
 		return $totalServiceDuration;
 	}
 
-	public function getIncludedInSpecialEducationFTE() {
-		if ($this->includedInSpecialEducationFTE===NULL) {
+	public function getIncludedInSpecialEducationFTE($autoCreate = TRUE) {
+		if ($this->includedInSpecialEducationFTE===NULL && $autoCreate && ! isset($this->_overrides['includedInSpecialEducationFTE']) ) {
 			$this->includedInSpecialEducationFTE = $this->createIncludedInSpecialEducationFTE();
 		}
 		return $this->includedInSpecialEducationFTE;
@@ -645,8 +736,8 @@ class StudentPlacementType {
 		return $includedInSpecialEducationFTE;
 	}
 
-	public function getSpecialNeedsTransportation() {
-		if ($this->specialNeedsTransportation===NULL) {
+	public function getSpecialNeedsTransportation($autoCreate = TRUE) {
+		if ($this->specialNeedsTransportation===NULL && $autoCreate && ! isset($this->_overrides['specialNeedsTransportation']) ) {
 			$this->specialNeedsTransportation = $this->createSpecialNeedsTransportation();
 		}
 		return $this->specialNeedsTransportation;
@@ -668,8 +759,8 @@ class StudentPlacementType {
 		return $specialNeedsTransportation;
 	}
 
-	public function getAssistiveTechnology() {
-		if ($this->assistiveTechnology===NULL) {
+	public function getAssistiveTechnology($autoCreate = TRUE) {
+		if ($this->assistiveTechnology===NULL && $autoCreate && ! isset($this->_overrides['assistiveTechnology']) ) {
 			$this->assistiveTechnology = $this->createAssistiveTechnology();
 		}
 		return $this->assistiveTechnology;
@@ -691,8 +782,8 @@ class StudentPlacementType {
 		return $assistiveTechnology;
 	}
 
-	public function getEntryPerson() {
-		if ($this->entryPerson===NULL) {
+	public function getEntryPerson($autoCreate = TRUE) {
+		if ($this->entryPerson===NULL && $autoCreate && ! isset($this->_overrides['entryPerson']) ) {
 			$this->entryPerson = $this->createEntryPerson();
 		}
 		return $this->entryPerson;
@@ -714,8 +805,8 @@ class StudentPlacementType {
 		return $entryPerson;
 	}
 
-	public function getSifMetadata() {
-		if ($this->sifMetadata===NULL) {
+	public function getSifMetadata($autoCreate = TRUE) {
+		if ($this->sifMetadata===NULL && $autoCreate && ! isset($this->_overrides['sifMetadata']) ) {
 			$this->sifMetadata = $this->createSifMetadata();
 		}
 		return $this->sifMetadata;
@@ -730,15 +821,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateSifMetadata($sifMetadata) {
+		if ( $sifMetadata === FALSE ) {
+			$this->_overrides['sifMetadata'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifMetadata instanceof \org\sifinfo\www\infrastructure\_2_x\SIFMetadataType  && ! is_null($sifMetadata) ) {
 			$sifMetadata = new \org\sifinfo\www\infrastructure\_2_x\SIFMetadataType ($sifMetadata);
 		}
+
+		unset ($this->_overrides['sifMetadata']);
 	
 		return $sifMetadata;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -753,15 +851,22 @@ class StudentPlacementType {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}
 
-	public function getRefId() {
-		if ($this->refId===NULL) {
+	public function getRefId($autoCreate = TRUE) {
+		if ($this->refId===NULL && $autoCreate && ! isset($this->_overrides['refId']) ) {
 			$this->refId = $this->createRefId();
 		}
 		return $this->refId;
@@ -780,8 +885,8 @@ class StudentPlacementType {
 		return $refId;
 	}
 
-	public function getStudentParticipationRefId() {
-		if ($this->studentParticipationRefId===NULL) {
+	public function getStudentParticipationRefId($autoCreate = TRUE) {
+		if ($this->studentParticipationRefId===NULL && $autoCreate && ! isset($this->_overrides['studentParticipationRefId']) ) {
 			$this->studentParticipationRefId = $this->createStudentParticipationRefId();
 		}
 		return $this->studentParticipationRefId;
@@ -800,8 +905,8 @@ class StudentPlacementType {
 		return $studentParticipationRefId;
 	}
 
-	public function getStudentPersonalRefId() {
-		if ($this->studentPersonalRefId===NULL) {
+	public function getStudentPersonalRefId($autoCreate = TRUE) {
+		if ($this->studentPersonalRefId===NULL && $autoCreate && ! isset($this->_overrides['studentPersonalRefId']) ) {
 			$this->studentPersonalRefId = $this->createStudentPersonalRefId();
 		}
 		return $this->studentPersonalRefId;

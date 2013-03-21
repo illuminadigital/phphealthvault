@@ -15,6 +15,13 @@ class NCES0720StateTransportationAidQualificationType {
 	static protected $enumValue = array('2067' => 'Does not qualify', '9999' => 'Other', '2065' => 'Qualifies for regular aid', '2066' => 'Qualifies for special education aid');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0720StateTransportationAidQualificationType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0720StateTransportationAidQualificationType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

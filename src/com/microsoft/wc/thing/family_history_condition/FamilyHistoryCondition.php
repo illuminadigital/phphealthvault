@@ -19,6 +19,13 @@ class FamilyHistoryCondition extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Family History Condition';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Condition", name="condition")
 	 */
 	protected $condition;
@@ -27,8 +34,8 @@ class FamilyHistoryCondition extends \com\microsoft\wc\thing\AnyMixed {
 		$this->condition = ($condition===NULL) ? NULL : $this->validateCondition($condition);
 	}
 
-	public function getCondition() {
-		if ($this->condition===NULL) {
+	public function getCondition($autoCreate = TRUE) {
+		if ($this->condition===NULL && $autoCreate && ! isset($this->_overrides['condition']) ) {
 			$this->condition = $this->createCondition();
 		}
 		return $this->condition;

@@ -14,6 +14,13 @@ class RetrievalMethodType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\Transforms", name="Transforms")
 	 */
 	protected $transforms;
@@ -34,8 +41,8 @@ class RetrievalMethodType {
 		$this->type = ($type===NULL) ? NULL : $this->validateType($type);
 	}
 
-	public function getTransforms() {
-		if ($this->transforms===NULL) {
+	public function getTransforms($autoCreate = TRUE) {
+		if ($this->transforms===NULL && $autoCreate && ! isset($this->_overrides['transforms']) ) {
 			$this->transforms = $this->createTransforms();
 		}
 		return $this->transforms;
@@ -50,15 +57,22 @@ class RetrievalMethodType {
 	}
 
 	protected function validateTransforms($transforms) {
+		if ( $transforms === FALSE ) {
+			$this->_overrides['transforms'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $transforms instanceof \org\w3\www\_2000\_09\xmldsig\Transforms  && ! is_null($transforms) ) {
 			$transforms = new \org\w3\www\_2000\_09\xmldsig\Transforms ($transforms);
 		}
+
+		unset ($this->_overrides['transforms']);
 	
 		return $transforms;
 	}
 
-	public function getURI() {
-		if ($this->uRI===NULL) {
+	public function getURI($autoCreate = TRUE) {
+		if ($this->uRI===NULL && $autoCreate && ! isset($this->_overrides['uRI']) ) {
 			$this->uRI = $this->createURI();
 		}
 		return $this->uRI;
@@ -80,8 +94,8 @@ class RetrievalMethodType {
 		return $uRI;
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;

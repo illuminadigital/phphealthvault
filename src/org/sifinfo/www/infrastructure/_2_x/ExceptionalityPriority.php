@@ -14,6 +14,13 @@ class ExceptionalityPriority {
 	 * Identifies priority of the exceptionality. "Primary" is the first and is required even if only one exceptionality is specified. "Secondary", etc. are of lower priority. Primary, Secondary, and Tertiary must be specified before "Additional" is used.
 	 */
 
+	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
 	public function __construct() {
 	}
 } // end class ExceptionalityPriority

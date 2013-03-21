@@ -14,6 +14,13 @@ class StrucDoc.Paragraph {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Caption", name="caption")
 	 */
 	protected $caption;
@@ -88,8 +95,8 @@ class StrucDoc.Paragraph {
 		$this->styleCode = ($styleCode===NULL) ? NULL : $this->validateStyleCode($styleCode);
 	}
 
-	public function getCaption() {
-		if ($this->caption===NULL) {
+	public function getCaption($autoCreate = TRUE) {
+		if ($this->caption===NULL && $autoCreate && ! isset($this->_overrides['caption']) ) {
 			$this->caption = $this->createCaption();
 		}
 		return $this->caption;
@@ -108,8 +115,8 @@ class StrucDoc.Paragraph {
 		return $caption;
 	}
 
-	public function getContent() {
-		if ($this->content===NULL) {
+	public function getContent($autoCreate = TRUE) {
+		if ($this->content===NULL && $autoCreate && ! isset($this->_overrides['content']) ) {
 			$this->content = $this->createContent();
 		}
 		return $this->content;
@@ -143,8 +150,8 @@ class StrucDoc.Paragraph {
 		return $content;
 	}
 
-	public function getLinkHtml() {
-		if ($this->linkHtml===NULL) {
+	public function getLinkHtml($autoCreate = TRUE) {
+		if ($this->linkHtml===NULL && $autoCreate && ! isset($this->_overrides['linkHtml']) ) {
 			$this->linkHtml = $this->createLinkHtml();
 		}
 		return $this->linkHtml;
@@ -178,8 +185,8 @@ class StrucDoc.Paragraph {
 		return $linkHtml;
 	}
 
-	public function getSub() {
-		if ($this->sub===NULL) {
+	public function getSub($autoCreate = TRUE) {
+		if ($this->sub===NULL && $autoCreate && ! isset($this->_overrides['sub']) ) {
 			$this->sub = $this->createSub();
 		}
 		return $this->sub;
@@ -213,8 +220,8 @@ class StrucDoc.Paragraph {
 		return $sub;
 	}
 
-	public function getSup() {
-		if ($this->sup===NULL) {
+	public function getSup($autoCreate = TRUE) {
+		if ($this->sup===NULL && $autoCreate && ! isset($this->_overrides['sup']) ) {
 			$this->sup = $this->createSup();
 		}
 		return $this->sup;
@@ -248,8 +255,8 @@ class StrucDoc.Paragraph {
 		return $sup;
 	}
 
-	public function getBr() {
-		if ($this->br===NULL) {
+	public function getBr($autoCreate = TRUE) {
+		if ($this->br===NULL && $autoCreate && ! isset($this->_overrides['br']) ) {
 			$this->br = $this->createBr();
 		}
 		return $this->br;
@@ -283,8 +290,8 @@ class StrucDoc.Paragraph {
 		return $br;
 	}
 
-	public function getFootnote() {
-		if ($this->footnote===NULL) {
+	public function getFootnote($autoCreate = TRUE) {
+		if ($this->footnote===NULL && $autoCreate && ! isset($this->_overrides['footnote']) ) {
 			$this->footnote = $this->createFootnote();
 		}
 		return $this->footnote;
@@ -318,8 +325,8 @@ class StrucDoc.Paragraph {
 		return $footnote;
 	}
 
-	public function getFootnoteRef() {
-		if ($this->footnoteRef===NULL) {
+	public function getFootnoteRef($autoCreate = TRUE) {
+		if ($this->footnoteRef===NULL && $autoCreate && ! isset($this->_overrides['footnoteRef']) ) {
 			$this->footnoteRef = $this->createFootnoteRef();
 		}
 		return $this->footnoteRef;
@@ -353,8 +360,8 @@ class StrucDoc.Paragraph {
 		return $footnoteRef;
 	}
 
-	public function getRenderMultiMedia() {
-		if ($this->renderMultiMedia===NULL) {
+	public function getRenderMultiMedia($autoCreate = TRUE) {
+		if ($this->renderMultiMedia===NULL && $autoCreate && ! isset($this->_overrides['renderMultiMedia']) ) {
 			$this->renderMultiMedia = $this->createRenderMultiMedia();
 		}
 		return $this->renderMultiMedia;
@@ -388,8 +395,8 @@ class StrucDoc.Paragraph {
 		return $renderMultiMedia;
 	}
 
-	public function getID() {
-		if ($this->iD===NULL) {
+	public function getID($autoCreate = TRUE) {
+		if ($this->iD===NULL && $autoCreate && ! isset($this->_overrides['iD']) ) {
 			$this->iD = $this->createID();
 		}
 		return $this->iD;
@@ -411,8 +418,8 @@ class StrucDoc.Paragraph {
 		return $iD;
 	}
 
-	public function getLanguage() {
-		if ($this->language===NULL) {
+	public function getLanguage($autoCreate = TRUE) {
+		if ($this->language===NULL && $autoCreate && ! isset($this->_overrides['language']) ) {
 			$this->language = $this->createLanguage();
 		}
 		return $this->language;
@@ -434,8 +441,8 @@ class StrucDoc.Paragraph {
 		return $language;
 	}
 
-	public function getStyleCode() {
-		if ($this->styleCode===NULL) {
+	public function getStyleCode($autoCreate = TRUE) {
+		if ($this->styleCode===NULL && $autoCreate && ! isset($this->_overrides['styleCode']) ) {
 			$this->styleCode = $this->createStyleCode();
 		}
 		return $this->styleCode;

@@ -17,6 +17,13 @@ class DisplayValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="float", name="display-value")
 	 */
 	protected $value;
@@ -43,8 +50,8 @@ class DisplayValue {
 		$this->text = ($text===NULL) ? NULL : $this->validateText($text);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -74,8 +81,8 @@ class DisplayValue {
 		return $value;
 	}
 
-	public function getUnits() {
-		if ($this->units===NULL) {
+	public function getUnits($autoCreate = TRUE) {
+		if ($this->units===NULL && $autoCreate && ! isset($this->_overrides['units']) ) {
 			$this->units = $this->createUnits();
 		}
 		return $this->units;
@@ -97,8 +104,8 @@ class DisplayValue {
 		return $units;
 	}
 
-	public function getUnitsCode() {
-		if ($this->unitsCode===NULL) {
+	public function getUnitsCode($autoCreate = TRUE) {
+		if ($this->unitsCode===NULL && $autoCreate && ! isset($this->_overrides['unitsCode']) ) {
 			$this->unitsCode = $this->createUnitsCode();
 		}
 		return $this->unitsCode;
@@ -120,8 +127,8 @@ class DisplayValue {
 		return $unitsCode;
 	}
 
-	public function getText() {
-		if ($this->text===NULL) {
+	public function getText($autoCreate = TRUE) {
+		if ($this->text===NULL && $autoCreate && ! isset($this->_overrides['text']) ) {
 			$this->text = $this->createText();
 		}
 		return $this->text;

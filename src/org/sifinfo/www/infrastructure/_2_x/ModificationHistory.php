@@ -14,6 +14,13 @@ class ModificationHistory {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\Modified", collection="true", name="Modified")
 	 */
 	protected $modified;
@@ -22,8 +29,8 @@ class ModificationHistory {
 		$this->modified = ($modified===NULL) ? NULL : $this->validateModified($modified);
 	}
 
-	public function getModified() {
-		if ($this->modified===NULL) {
+	public function getModified($autoCreate = TRUE) {
+		if ($this->modified===NULL && $autoCreate && ! isset($this->_overrides['modified']) ) {
 			$this->modified = $this->createModified();
 		}
 		return $this->modified;
@@ -38,9 +45,16 @@ class ModificationHistory {
 	}
 
 	protected function validateModified($modified) {
+		if ( $modified === FALSE ) {
+			$this->_overrides['modified'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($modified) && ! is_null($modified) ) {
 			$modified = array($modified);
 		}
+
+		unset ($this->_overrides['modified']);
 		$count = count($modified);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'modified', 0));

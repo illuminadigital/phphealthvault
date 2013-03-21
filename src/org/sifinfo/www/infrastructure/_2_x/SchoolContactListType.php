@@ -15,6 +15,13 @@ class SchoolContactListType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SchoolContact", collection="true", name="SchoolContact")
 	 */
 	protected $schoolContact;
@@ -23,8 +30,8 @@ class SchoolContactListType {
 		$this->schoolContact = ($schoolContact===NULL) ? NULL : $this->validateSchoolContact($schoolContact);
 	}
 
-	public function getSchoolContact() {
-		if ($this->schoolContact===NULL) {
+	public function getSchoolContact($autoCreate = TRUE) {
+		if ($this->schoolContact===NULL && $autoCreate && ! isset($this->_overrides['schoolContact']) ) {
 			$this->schoolContact = $this->createSchoolContact();
 		}
 		return $this->schoolContact;

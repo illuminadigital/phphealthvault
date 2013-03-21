@@ -15,6 +15,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\vocab\VocabularyKeyInfo", collection="true", name="vocabulary-key")
 	 */
 	protected $vocabularyKey;
@@ -29,8 +36,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->codeSetResult = ($codeSetResult===NULL) ? NULL : $this->validateCodeSetResult($codeSetResult);
 	}
 
-	public function getVocabularyKey() {
-		if ($this->vocabularyKey===NULL) {
+	public function getVocabularyKey($autoCreate = TRUE) {
+		if ($this->vocabularyKey===NULL && $autoCreate && ! isset($this->_overrides['vocabularyKey']) ) {
 			$this->vocabularyKey = $this->createVocabularyKey();
 		}
 		return $this->vocabularyKey;
@@ -45,9 +52,16 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	}
 
 	protected function validateVocabularyKey($vocabularyKey) {
+		if ( $vocabularyKey === FALSE ) {
+			$this->_overrides['vocabularyKey'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($vocabularyKey) && ! is_null($vocabularyKey) ) {
 			$vocabularyKey = array($vocabularyKey);
 		}
+
+		unset ($this->_overrides['vocabularyKey']);
 		$count = count($vocabularyKey);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularyKey', 0));
@@ -65,8 +79,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->vocabularyKey[] = $vocabularyKey;
 	}
 
-	public function getCodeSetResult() {
-		if ($this->codeSetResult===NULL) {
+	public function getCodeSetResult($autoCreate = TRUE) {
+		if ($this->codeSetResult===NULL && $autoCreate && ! isset($this->_overrides['codeSetResult']) ) {
 			$this->codeSetResult = $this->createCodeSetResult();
 		}
 		return $this->codeSetResult;

@@ -16,6 +16,13 @@ class HashFinalized {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\HashFinalizedData", name="hash-data")
 	 */
 	protected $hashData;
@@ -24,8 +31,8 @@ class HashFinalized {
 		$this->hashData = ($hashData===NULL) ? NULL : $this->validateHashData($hashData);
 	}
 
-	public function getHashData() {
-		if ($this->hashData===NULL) {
+	public function getHashData($autoCreate = TRUE) {
+		if ($this->hashData===NULL && $autoCreate && ! isset($this->_overrides['hashData']) ) {
 			$this->hashData = $this->createHashData();
 		}
 		return $this->hashData;

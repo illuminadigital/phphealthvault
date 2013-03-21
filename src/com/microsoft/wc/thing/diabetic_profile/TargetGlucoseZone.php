@@ -16,6 +16,13 @@ class TargetGlucoseZone {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\diabetic_profile\ZoneBoundary", name="lower-bound")
 	 */
 	protected $lowerBound;
@@ -36,8 +43,8 @@ class TargetGlucoseZone {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 	}
 
-	public function getLowerBound() {
-		if ($this->lowerBound===NULL) {
+	public function getLowerBound($autoCreate = TRUE) {
+		if ($this->lowerBound===NULL && $autoCreate && ! isset($this->_overrides['lowerBound']) ) {
 			$this->lowerBound = $this->createLowerBound();
 		}
 		return $this->lowerBound;
@@ -59,8 +66,8 @@ class TargetGlucoseZone {
 		return $lowerBound;
 	}
 
-	public function getUpperBound() {
-		if ($this->upperBound===NULL) {
+	public function getUpperBound($autoCreate = TRUE) {
+		if ($this->upperBound===NULL && $autoCreate && ! isset($this->_overrides['upperBound']) ) {
 			$this->upperBound = $this->createUpperBound();
 		}
 		return $this->upperBound;
@@ -82,8 +89,8 @@ class TargetGlucoseZone {
 		return $upperBound;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;

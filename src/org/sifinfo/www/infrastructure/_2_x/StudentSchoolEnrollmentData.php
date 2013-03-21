@@ -14,6 +14,13 @@ class StudentSchoolEnrollmentData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\GradeLevel", name="GradeLevel")
 	 */
 	protected $gradeLevel;
@@ -46,8 +53,8 @@ class StudentSchoolEnrollmentData {
 		$this->schoolAttendedRefId = ($schoolAttendedRefId===NULL) ? NULL : $this->validateSchoolAttendedRefId($schoolAttendedRefId);
 	}
 
-	public function getGradeLevel() {
-		if ($this->gradeLevel===NULL) {
+	public function getGradeLevel($autoCreate = TRUE) {
+		if ($this->gradeLevel===NULL && $autoCreate && ! isset($this->_overrides['gradeLevel']) ) {
 			$this->gradeLevel = $this->createGradeLevel();
 		}
 		return $this->gradeLevel;
@@ -69,8 +76,8 @@ class StudentSchoolEnrollmentData {
 		return $gradeLevel;
 	}
 
-	public function getAdvisor() {
-		if ($this->advisor===NULL) {
+	public function getAdvisor($autoCreate = TRUE) {
+		if ($this->advisor===NULL && $autoCreate && ! isset($this->_overrides['advisor']) ) {
 			$this->advisor = $this->createAdvisor();
 		}
 		return $this->advisor;
@@ -85,15 +92,22 @@ class StudentSchoolEnrollmentData {
 	}
 
 	protected function validateAdvisor($advisor) {
+		if ( $advisor === FALSE ) {
+			$this->_overrides['advisor'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $advisor instanceof \org\sifinfo\www\infrastructure\_2_x\Advisor  && ! is_null($advisor) ) {
 			$advisor = new \org\sifinfo\www\infrastructure\_2_x\Advisor ($advisor);
 		}
+
+		unset ($this->_overrides['advisor']);
 	
 		return $advisor;
 	}
 
-	public function getCounselor() {
-		if ($this->counselor===NULL) {
+	public function getCounselor($autoCreate = TRUE) {
+		if ($this->counselor===NULL && $autoCreate && ! isset($this->_overrides['counselor']) ) {
 			$this->counselor = $this->createCounselor();
 		}
 		return $this->counselor;
@@ -108,15 +122,22 @@ class StudentSchoolEnrollmentData {
 	}
 
 	protected function validateCounselor($counselor) {
+		if ( $counselor === FALSE ) {
+			$this->_overrides['counselor'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $counselor instanceof \org\sifinfo\www\infrastructure\_2_x\Counselor  && ! is_null($counselor) ) {
 			$counselor = new \org\sifinfo\www\infrastructure\_2_x\Counselor ($counselor);
 		}
+
+		unset ($this->_overrides['counselor']);
 	
 		return $counselor;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -131,15 +152,22 @@ class StudentSchoolEnrollmentData {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}
 
-	public function getSchoolAttendedRefId() {
-		if ($this->schoolAttendedRefId===NULL) {
+	public function getSchoolAttendedRefId($autoCreate = TRUE) {
+		if ($this->schoolAttendedRefId===NULL && $autoCreate && ! isset($this->_overrides['schoolAttendedRefId']) ) {
 			$this->schoolAttendedRefId = $this->createSchoolAttendedRefId();
 		}
 		return $this->schoolAttendedRefId;

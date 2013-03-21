@@ -17,6 +17,13 @@ class AerobicLapSession {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="name")
 	 */
 	protected $name;
@@ -37,8 +44,8 @@ class AerobicLapSession {
 		$this->lapSession = ($lapSession===NULL) ? NULL : $this->validateLapSession($lapSession);
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -60,8 +67,8 @@ class AerobicLapSession {
 		return $name;
 	}
 
-	public function getSecondsIntoSession() {
-		if ($this->secondsIntoSession===NULL) {
+	public function getSecondsIntoSession($autoCreate = TRUE) {
+		if ($this->secondsIntoSession===NULL && $autoCreate && ! isset($this->_overrides['secondsIntoSession']) ) {
 			$this->secondsIntoSession = $this->createSecondsIntoSession();
 		}
 		return $this->secondsIntoSession;
@@ -76,15 +83,22 @@ class AerobicLapSession {
 	}
 
 	protected function validateSecondsIntoSession($secondsIntoSession) {
+		if ( $secondsIntoSession === FALSE ) {
+			$this->_overrides['secondsIntoSession'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $secondsIntoSession instanceof \com\microsoft\wc\thing\types\NonNegativeDouble  && ! is_null($secondsIntoSession) ) {
 			$secondsIntoSession = new \com\microsoft\wc\thing\types\NonNegativeDouble ($secondsIntoSession);
 		}
+
+		unset ($this->_overrides['secondsIntoSession']);
 	
 		return $secondsIntoSession;
 	}
 
-	public function getLapSession() {
-		if ($this->lapSession===NULL) {
+	public function getLapSession($autoCreate = TRUE) {
+		if ($this->lapSession===NULL && $autoCreate && ! isset($this->_overrides['lapSession']) ) {
 			$this->lapSession = $this->createLapSession();
 		}
 		return $this->lapSession;
@@ -99,9 +113,16 @@ class AerobicLapSession {
 	}
 
 	protected function validateLapSession($lapSession) {
+		if ( $lapSession === FALSE ) {
+			$this->_overrides['lapSession'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $lapSession instanceof \com\microsoft\wc\thing\types\AerobicSession  && ! is_null($lapSession) ) {
 			$lapSession = new \com\microsoft\wc\thing\types\AerobicSession ($lapSession);
 		}
+
+		unset ($this->_overrides['lapSession']);
 	
 		return $lapSession;
 	}

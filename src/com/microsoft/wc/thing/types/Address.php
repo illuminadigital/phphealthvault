@@ -17,6 +17,13 @@ class Address {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="description")
 	 */
 	protected $description;
@@ -67,8 +74,8 @@ class Address {
 		$this->county = ($county===NULL) ? NULL : $this->validateCounty($county);
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
@@ -90,8 +97,8 @@ class Address {
 		return $description;
 	}
 
-	public function getIsPrimary() {
-		if ($this->isPrimary===NULL) {
+	public function getIsPrimary($autoCreate = TRUE) {
+		if ($this->isPrimary===NULL && $autoCreate && ! isset($this->_overrides['isPrimary']) ) {
 			$this->isPrimary = $this->createIsPrimary();
 		}
 		return $this->isPrimary;
@@ -113,8 +120,8 @@ class Address {
 		return $isPrimary;
 	}
 
-	public function getStreet() {
-		if ($this->street===NULL) {
+	public function getStreet($autoCreate = TRUE) {
+		if ($this->street===NULL && $autoCreate && ! isset($this->_overrides['street']) ) {
 			$this->street = $this->createStreet();
 		}
 		return $this->street;
@@ -154,8 +161,8 @@ class Address {
 		return $street;
 	}
 
-	public function getCity() {
-		if ($this->city===NULL) {
+	public function getCity($autoCreate = TRUE) {
+		if ($this->city===NULL && $autoCreate && ! isset($this->_overrides['city']) ) {
 			$this->city = $this->createCity();
 		}
 		return $this->city;
@@ -177,8 +184,8 @@ class Address {
 		return $city;
 	}
 
-	public function getState() {
-		if ($this->state===NULL) {
+	public function getState($autoCreate = TRUE) {
+		if ($this->state===NULL && $autoCreate && ! isset($this->_overrides['state']) ) {
 			$this->state = $this->createState();
 		}
 		return $this->state;
@@ -200,8 +207,8 @@ class Address {
 		return $state;
 	}
 
-	public function getPostcode() {
-		if ($this->postcode===NULL) {
+	public function getPostcode($autoCreate = TRUE) {
+		if ($this->postcode===NULL && $autoCreate && ! isset($this->_overrides['postcode']) ) {
 			$this->postcode = $this->createPostcode();
 		}
 		return $this->postcode;
@@ -223,8 +230,8 @@ class Address {
 		return $postcode;
 	}
 
-	public function getCountry() {
-		if ($this->country===NULL) {
+	public function getCountry($autoCreate = TRUE) {
+		if ($this->country===NULL && $autoCreate && ! isset($this->_overrides['country']) ) {
 			$this->country = $this->createCountry();
 		}
 		return $this->country;
@@ -246,8 +253,8 @@ class Address {
 		return $country;
 	}
 
-	public function getCounty() {
-		if ($this->county===NULL) {
+	public function getCounty($autoCreate = TRUE) {
+		if ($this->county===NULL && $autoCreate && ! isset($this->_overrides['county']) ) {
 			$this->county = $this->createCounty();
 		}
 		return $this->county;

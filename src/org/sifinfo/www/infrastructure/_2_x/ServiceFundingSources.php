@@ -14,6 +14,13 @@ class ServiceFundingSources {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ServiceFundingSource", collection="true", name="ServiceFundingSource")
 	 */
 	protected $serviceFundingSource;
@@ -22,8 +29,8 @@ class ServiceFundingSources {
 		$this->serviceFundingSource = ($serviceFundingSource===NULL) ? NULL : $this->validateServiceFundingSource($serviceFundingSource);
 	}
 
-	public function getServiceFundingSource() {
-		if ($this->serviceFundingSource===NULL) {
+	public function getServiceFundingSource($autoCreate = TRUE) {
+		if ($this->serviceFundingSource===NULL && $autoCreate && ! isset($this->_overrides['serviceFundingSource']) ) {
 			$this->serviceFundingSource = $this->createServiceFundingSource();
 		}
 		return $this->serviceFundingSource;

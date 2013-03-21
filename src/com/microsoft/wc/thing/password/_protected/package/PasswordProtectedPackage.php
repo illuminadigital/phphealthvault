@@ -18,6 +18,13 @@ class PasswordProtectedPackage extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Password Protected Package';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\password\_protected\package\PackageEncryptionType", name="encrypt-algorithm")
 	 */
 	protected $encryptAlgorithm;
@@ -26,8 +33,8 @@ class PasswordProtectedPackage extends \com\microsoft\wc\thing\AnyMixed {
 		$this->encryptAlgorithm = ($encryptAlgorithm===NULL) ? NULL : $this->validateEncryptAlgorithm($encryptAlgorithm);
 	}
 
-	public function getEncryptAlgorithm() {
-		if ($this->encryptAlgorithm===NULL) {
+	public function getEncryptAlgorithm($autoCreate = TRUE) {
+		if ($this->encryptAlgorithm===NULL && $autoCreate && ! isset($this->_overrides['encryptAlgorithm']) ) {
 			$this->encryptAlgorithm = $this->createEncryptAlgorithm();
 		}
 		return $this->encryptAlgorithm;

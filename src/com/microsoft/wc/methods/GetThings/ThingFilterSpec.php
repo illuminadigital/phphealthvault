@@ -15,6 +15,13 @@ class ThingFilterSpec {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", collection="true", name="type-id")
 	 */
 	protected $typeId;
@@ -95,8 +102,8 @@ class ThingFilterSpec {
 		$this->xpath = ($xpath===NULL) ? NULL : $this->validateXpath($xpath);
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -111,9 +118,16 @@ class ThingFilterSpec {
 	}
 
 	protected function validateTypeId($typeId) {
+		if ( $typeId === FALSE ) {
+			$this->_overrides['typeId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($typeId) && ! is_null($typeId) ) {
 			$typeId = array($typeId);
 		}
+
+		unset ($this->_overrides['typeId']);
 		$count = count($typeId);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'typeId', 0));
@@ -131,8 +145,8 @@ class ThingFilterSpec {
 		$this->typeId[] = $typeId;
 	}
 
-	public function getThingState() {
-		if ($this->thingState===NULL) {
+	public function getThingState($autoCreate = TRUE) {
+		if ($this->thingState===NULL && $autoCreate && ! isset($this->_overrides['thingState']) ) {
 			$this->thingState = $this->createThingState();
 		}
 		return $this->thingState;
@@ -147,9 +161,16 @@ class ThingFilterSpec {
 	}
 
 	protected function validateThingState($thingState) {
+		if ( $thingState === FALSE ) {
+			$this->_overrides['thingState'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($thingState) && ! is_null($thingState) ) {
 			$thingState = array($thingState);
 		}
+
+		unset ($this->_overrides['thingState']);
 		$count = count($thingState);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'thingState', 0));
@@ -170,8 +191,8 @@ class ThingFilterSpec {
 		$this->thingState[] = $thingState;
 	}
 
-	public function getEffDateMin() {
-		if ($this->effDateMin===NULL) {
+	public function getEffDateMin($autoCreate = TRUE) {
+		if ($this->effDateMin===NULL && $autoCreate && ! isset($this->_overrides['effDateMin']) ) {
 			$this->effDateMin = $this->createEffDateMin();
 		}
 		return $this->effDateMin;
@@ -193,8 +214,8 @@ class ThingFilterSpec {
 		return $effDateMin;
 	}
 
-	public function getEffDateMax() {
-		if ($this->effDateMax===NULL) {
+	public function getEffDateMax($autoCreate = TRUE) {
+		if ($this->effDateMax===NULL && $autoCreate && ! isset($this->_overrides['effDateMax']) ) {
 			$this->effDateMax = $this->createEffDateMax();
 		}
 		return $this->effDateMax;
@@ -216,8 +237,8 @@ class ThingFilterSpec {
 		return $effDateMax;
 	}
 
-	public function getCreatedAppId() {
-		if ($this->createdAppId===NULL) {
+	public function getCreatedAppId($autoCreate = TRUE) {
+		if ($this->createdAppId===NULL && $autoCreate && ! isset($this->_overrides['createdAppId']) ) {
 			$this->createdAppId = $this->createCreatedAppId();
 		}
 		return $this->createdAppId;
@@ -232,15 +253,22 @@ class ThingFilterSpec {
 	}
 
 	protected function validateCreatedAppId($createdAppId) {
+		if ( $createdAppId === FALSE ) {
+			$this->_overrides['createdAppId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $createdAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($createdAppId) ) {
 			$createdAppId = new \com\microsoft\wc\types\Guid ($createdAppId);
 		}
+
+		unset ($this->_overrides['createdAppId']);
 	
 		return $createdAppId;
 	}
 
-	public function getCreatedPersonId() {
-		if ($this->createdPersonId===NULL) {
+	public function getCreatedPersonId($autoCreate = TRUE) {
+		if ($this->createdPersonId===NULL && $autoCreate && ! isset($this->_overrides['createdPersonId']) ) {
 			$this->createdPersonId = $this->createCreatedPersonId();
 		}
 		return $this->createdPersonId;
@@ -255,15 +283,22 @@ class ThingFilterSpec {
 	}
 
 	protected function validateCreatedPersonId($createdPersonId) {
+		if ( $createdPersonId === FALSE ) {
+			$this->_overrides['createdPersonId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $createdPersonId instanceof \com\microsoft\wc\types\Guid  && ! is_null($createdPersonId) ) {
 			$createdPersonId = new \com\microsoft\wc\types\Guid ($createdPersonId);
 		}
+
+		unset ($this->_overrides['createdPersonId']);
 	
 		return $createdPersonId;
 	}
 
-	public function getUpdatedAppId() {
-		if ($this->updatedAppId===NULL) {
+	public function getUpdatedAppId($autoCreate = TRUE) {
+		if ($this->updatedAppId===NULL && $autoCreate && ! isset($this->_overrides['updatedAppId']) ) {
 			$this->updatedAppId = $this->createUpdatedAppId();
 		}
 		return $this->updatedAppId;
@@ -278,15 +313,22 @@ class ThingFilterSpec {
 	}
 
 	protected function validateUpdatedAppId($updatedAppId) {
+		if ( $updatedAppId === FALSE ) {
+			$this->_overrides['updatedAppId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $updatedAppId instanceof \com\microsoft\wc\types\Guid  && ! is_null($updatedAppId) ) {
 			$updatedAppId = new \com\microsoft\wc\types\Guid ($updatedAppId);
 		}
+
+		unset ($this->_overrides['updatedAppId']);
 	
 		return $updatedAppId;
 	}
 
-	public function getUpdatedPersonId() {
-		if ($this->updatedPersonId===NULL) {
+	public function getUpdatedPersonId($autoCreate = TRUE) {
+		if ($this->updatedPersonId===NULL && $autoCreate && ! isset($this->_overrides['updatedPersonId']) ) {
 			$this->updatedPersonId = $this->createUpdatedPersonId();
 		}
 		return $this->updatedPersonId;
@@ -301,15 +343,22 @@ class ThingFilterSpec {
 	}
 
 	protected function validateUpdatedPersonId($updatedPersonId) {
+		if ( $updatedPersonId === FALSE ) {
+			$this->_overrides['updatedPersonId'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $updatedPersonId instanceof \com\microsoft\wc\types\Guid  && ! is_null($updatedPersonId) ) {
 			$updatedPersonId = new \com\microsoft\wc\types\Guid ($updatedPersonId);
 		}
+
+		unset ($this->_overrides['updatedPersonId']);
 	
 		return $updatedPersonId;
 	}
 
-	public function getCreatedDateMin() {
-		if ($this->createdDateMin===NULL) {
+	public function getCreatedDateMin($autoCreate = TRUE) {
+		if ($this->createdDateMin===NULL && $autoCreate && ! isset($this->_overrides['createdDateMin']) ) {
 			$this->createdDateMin = $this->createCreatedDateMin();
 		}
 		return $this->createdDateMin;
@@ -331,8 +380,8 @@ class ThingFilterSpec {
 		return $createdDateMin;
 	}
 
-	public function getCreatedDateMax() {
-		if ($this->createdDateMax===NULL) {
+	public function getCreatedDateMax($autoCreate = TRUE) {
+		if ($this->createdDateMax===NULL && $autoCreate && ! isset($this->_overrides['createdDateMax']) ) {
 			$this->createdDateMax = $this->createCreatedDateMax();
 		}
 		return $this->createdDateMax;
@@ -354,8 +403,8 @@ class ThingFilterSpec {
 		return $createdDateMax;
 	}
 
-	public function getUpdatedDateMin() {
-		if ($this->updatedDateMin===NULL) {
+	public function getUpdatedDateMin($autoCreate = TRUE) {
+		if ($this->updatedDateMin===NULL && $autoCreate && ! isset($this->_overrides['updatedDateMin']) ) {
 			$this->updatedDateMin = $this->createUpdatedDateMin();
 		}
 		return $this->updatedDateMin;
@@ -377,8 +426,8 @@ class ThingFilterSpec {
 		return $updatedDateMin;
 	}
 
-	public function getUpdatedDateMax() {
-		if ($this->updatedDateMax===NULL) {
+	public function getUpdatedDateMax($autoCreate = TRUE) {
+		if ($this->updatedDateMax===NULL && $autoCreate && ! isset($this->_overrides['updatedDateMax']) ) {
 			$this->updatedDateMax = $this->createUpdatedDateMax();
 		}
 		return $this->updatedDateMax;
@@ -400,8 +449,8 @@ class ThingFilterSpec {
 		return $updatedDateMax;
 	}
 
-	public function getXpath() {
-		if ($this->xpath===NULL) {
+	public function getXpath($autoCreate = TRUE) {
+		if ($this->xpath===NULL && $autoCreate && ! isset($this->_overrides['xpath']) ) {
 			$this->xpath = $this->createXpath();
 		}
 		return $this->xpath;

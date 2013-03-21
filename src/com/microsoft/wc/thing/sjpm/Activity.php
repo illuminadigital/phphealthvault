@@ -15,6 +15,13 @@ class Activity {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\Time", name="when")
 	 */
 	protected $when;
@@ -29,8 +36,8 @@ class Activity {
 		$this->minutes = ($minutes===NULL) ? NULL : $this->validateMinutes($minutes);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -52,8 +59,8 @@ class Activity {
 		return $when;
 	}
 
-	public function getMinutes() {
-		if ($this->minutes===NULL) {
+	public function getMinutes($autoCreate = TRUE) {
+		if ($this->minutes===NULL && $autoCreate && ! isset($this->_overrides['minutes']) ) {
 			$this->minutes = $this->createMinutes();
 		}
 		return $this->minutes;

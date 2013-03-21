@@ -15,6 +15,13 @@ class NCES0585EnglishProficiencyType {
 	static protected $enumValue = array('1634' => 'Fluent English speaker', '2349' => 'Limited English proficient/English language learner', '1633' => 'Native English speaker', '1635' => 'Non-English speaking', '1636' => 'Redesignated as fluent English proficient', '9997' => 'Unknown');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0585EnglishProficiencyType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0585EnglishProficiencyType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

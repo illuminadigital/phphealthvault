@@ -19,6 +19,13 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Peak Flow Measurement';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -51,8 +58,8 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 		$this->measurementFlags = ($measurementFlags===NULL) ? NULL : $this->validateMeasurementFlags($measurementFlags);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -74,8 +81,8 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getPef() {
-		if ($this->pef===NULL) {
+	public function getPef($autoCreate = TRUE) {
+		if ($this->pef===NULL && $autoCreate && ! isset($this->_overrides['pef']) ) {
 			$this->pef = $this->createPef();
 		}
 		return $this->pef;
@@ -90,15 +97,22 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePef($pef) {
+		if ( $pef === FALSE ) {
+			$this->_overrides['pef'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $pef instanceof \com\microsoft\wc\thing\types\FlowValue  && ! is_null($pef) ) {
 			$pef = new \com\microsoft\wc\thing\types\FlowValue ($pef);
 		}
+
+		unset ($this->_overrides['pef']);
 	
 		return $pef;
 	}
 
-	public function getFev1() {
-		if ($this->fev1===NULL) {
+	public function getFev1($autoCreate = TRUE) {
+		if ($this->fev1===NULL && $autoCreate && ! isset($this->_overrides['fev1']) ) {
 			$this->fev1 = $this->createFev1();
 		}
 		return $this->fev1;
@@ -113,15 +127,22 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFev1($fev1) {
+		if ( $fev1 === FALSE ) {
+			$this->_overrides['fev1'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fev1 instanceof \com\microsoft\wc\thing\types\VolumeValue  && ! is_null($fev1) ) {
 			$fev1 = new \com\microsoft\wc\thing\types\VolumeValue ($fev1);
 		}
+
+		unset ($this->_overrides['fev1']);
 	
 		return $fev1;
 	}
 
-	public function getFev6() {
-		if ($this->fev6===NULL) {
+	public function getFev6($autoCreate = TRUE) {
+		if ($this->fev6===NULL && $autoCreate && ! isset($this->_overrides['fev6']) ) {
 			$this->fev6 = $this->createFev6();
 		}
 		return $this->fev6;
@@ -136,15 +157,22 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFev6($fev6) {
+		if ( $fev6 === FALSE ) {
+			$this->_overrides['fev6'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $fev6 instanceof \com\microsoft\wc\thing\types\VolumeValue  && ! is_null($fev6) ) {
 			$fev6 = new \com\microsoft\wc\thing\types\VolumeValue ($fev6);
 		}
+
+		unset ($this->_overrides['fev6']);
 	
 		return $fev6;
 	}
 
-	public function getMeasurementFlags() {
-		if ($this->measurementFlags===NULL) {
+	public function getMeasurementFlags($autoCreate = TRUE) {
+		if ($this->measurementFlags===NULL && $autoCreate && ! isset($this->_overrides['measurementFlags']) ) {
 			$this->measurementFlags = $this->createMeasurementFlags();
 		}
 		return $this->measurementFlags;
@@ -159,9 +187,16 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMeasurementFlags($measurementFlags) {
+		if ( $measurementFlags === FALSE ) {
+			$this->_overrides['measurementFlags'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($measurementFlags) && ! is_null($measurementFlags) ) {
 			$measurementFlags = array($measurementFlags);
 		}
+
+		unset ($this->_overrides['measurementFlags']);
 		$count = count($measurementFlags);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'measurementFlags', 0));

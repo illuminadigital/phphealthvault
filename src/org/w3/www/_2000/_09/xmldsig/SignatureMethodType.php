@@ -14,6 +14,13 @@ class SignatureMethodType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2000\_09\xmldsig\HMACOutputLengthType", name="HMACOutputLength")
 	 */
 	protected $hMACOutputLength;
@@ -34,8 +41,8 @@ class SignatureMethodType {
 		$this->algorithm = ($algorithm===NULL) ? NULL : $this->validateAlgorithm($algorithm);
 	}
 
-	public function getHMACOutputLength() {
-		if ($this->hMACOutputLength===NULL) {
+	public function getHMACOutputLength($autoCreate = TRUE) {
+		if ($this->hMACOutputLength===NULL && $autoCreate && ! isset($this->_overrides['hMACOutputLength']) ) {
 			$this->hMACOutputLength = $this->createHMACOutputLength();
 		}
 		return $this->hMACOutputLength;
@@ -50,15 +57,22 @@ class SignatureMethodType {
 	}
 
 	protected function validateHMACOutputLength($hMACOutputLength) {
+		if ( $hMACOutputLength === FALSE ) {
+			$this->_overrides['hMACOutputLength'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $hMACOutputLength instanceof \org\w3\www\_2000\_09\xmldsig\HMACOutputLengthType  && ! is_null($hMACOutputLength) ) {
 			$hMACOutputLength = new \org\w3\www\_2000\_09\xmldsig\HMACOutputLengthType ($hMACOutputLength);
 		}
+
+		unset ($this->_overrides['hMACOutputLength']);
 	
 		return $hMACOutputLength;
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;
@@ -98,8 +112,8 @@ class SignatureMethodType {
 		return $any;
 	}
 
-	public function getAlgorithm() {
-		if ($this->algorithm===NULL) {
+	public function getAlgorithm($autoCreate = TRUE) {
+		if ($this->algorithm===NULL && $autoCreate && ! isset($this->_overrides['algorithm']) ) {
 			$this->algorithm = $this->createAlgorithm();
 		}
 		return $this->algorithm;

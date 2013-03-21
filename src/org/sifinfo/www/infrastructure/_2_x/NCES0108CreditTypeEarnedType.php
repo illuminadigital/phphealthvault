@@ -15,6 +15,13 @@ class NCES0108CreditTypeEarnedType {
 	static protected $enumValue = array('0598' => 'Adult education credit', '0585' => 'Carnegie unit', '0601' => 'Converted occupational experience credit', '0600' => 'Correspondence credit', '0599' => 'Credit by examination', '0592' => 'Intersession hour credit', '0595' => 'Long session hour credit', '0590' => 'Mini-term hour credit', '9998' => 'None', '9999' => 'Other', '0588' => 'Quarter hour credit', '0589' => 'Quinmester hour credit', '0586' => 'Semester hour credit', '0591' => 'Summer term hour credit', '0587' => 'Trimester hour credit', '0596' => 'Twelve month hour credit', '0597' => 'Vocational credit');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="NCES0108CreditTypeEarnedType")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class NCES0108CreditTypeEarnedType {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

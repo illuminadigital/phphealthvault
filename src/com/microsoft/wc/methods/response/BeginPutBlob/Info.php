@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="blob-ref-url")
 	 */
 	protected $blobRefUrl;
@@ -48,8 +55,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->blobHashParameters = ($blobHashParameters===NULL) ? NULL : $this->validateBlobHashParameters($blobHashParameters);
 	}
 
-	public function getBlobRefUrl() {
-		if ($this->blobRefUrl===NULL) {
+	public function getBlobRefUrl($autoCreate = TRUE) {
+		if ($this->blobRefUrl===NULL && $autoCreate && ! isset($this->_overrides['blobRefUrl']) ) {
 			$this->blobRefUrl = $this->createBlobRefUrl();
 		}
 		return $this->blobRefUrl;
@@ -71,8 +78,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		return $blobRefUrl;
 	}
 
-	public function getBlobChunkSize() {
-		if ($this->blobChunkSize===NULL) {
+	public function getBlobChunkSize($autoCreate = TRUE) {
+		if ($this->blobChunkSize===NULL && $autoCreate && ! isset($this->_overrides['blobChunkSize']) ) {
 			$this->blobChunkSize = $this->createBlobChunkSize();
 		}
 		return $this->blobChunkSize;
@@ -102,8 +109,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		return $blobChunkSize;
 	}
 
-	public function getMaxBlobSize() {
-		if ($this->maxBlobSize===NULL) {
+	public function getMaxBlobSize($autoCreate = TRUE) {
+		if ($this->maxBlobSize===NULL && $autoCreate && ! isset($this->_overrides['maxBlobSize']) ) {
 			$this->maxBlobSize = $this->createMaxBlobSize();
 		}
 		return $this->maxBlobSize;
@@ -133,8 +140,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		return $maxBlobSize;
 	}
 
-	public function getBlobHashAlgorithm() {
-		if ($this->blobHashAlgorithm===NULL) {
+	public function getBlobHashAlgorithm($autoCreate = TRUE) {
+		if ($this->blobHashAlgorithm===NULL && $autoCreate && ! isset($this->_overrides['blobHashAlgorithm']) ) {
 			$this->blobHashAlgorithm = $this->createBlobHashAlgorithm();
 		}
 		return $this->blobHashAlgorithm;
@@ -156,8 +163,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		return $blobHashAlgorithm;
 	}
 
-	public function getBlobHashParameters() {
-		if ($this->blobHashParameters===NULL) {
+	public function getBlobHashParameters($autoCreate = TRUE) {
+		if ($this->blobHashParameters===NULL && $autoCreate && ! isset($this->_overrides['blobHashParameters']) ) {
 			$this->blobHashParameters = $this->createBlobHashParameters();
 		}
 		return $this->blobHashParameters;

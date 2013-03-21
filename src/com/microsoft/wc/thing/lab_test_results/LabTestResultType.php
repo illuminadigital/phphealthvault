@@ -15,6 +15,13 @@ class LabTestResultType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="when")
 	 */
 	protected $when;
@@ -65,8 +72,8 @@ class LabTestResultType {
 		$this->note = ($note===NULL) ? NULL : $this->validateNote($note);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -81,15 +88,22 @@ class LabTestResultType {
 	}
 
 	protected function validateWhen($when) {
+		if ( $when === FALSE ) {
+			$this->_overrides['when'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $when instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($when) ) {
 			$when = new \com\microsoft\wc\dates\ApproxDateTime ($when);
 		}
+
+		unset ($this->_overrides['when']);
 	
 		return $when;
 	}
 
-	public function getName() {
-		if ($this->name===NULL) {
+	public function getName($autoCreate = TRUE) {
+		if ($this->name===NULL && $autoCreate && ! isset($this->_overrides['name']) ) {
 			$this->name = $this->createName();
 		}
 		return $this->name;
@@ -111,8 +125,8 @@ class LabTestResultType {
 		return $name;
 	}
 
-	public function getSubstance() {
-		if ($this->substance===NULL) {
+	public function getSubstance($autoCreate = TRUE) {
+		if ($this->substance===NULL && $autoCreate && ! isset($this->_overrides['substance']) ) {
 			$this->substance = $this->createSubstance();
 		}
 		return $this->substance;
@@ -127,15 +141,22 @@ class LabTestResultType {
 	}
 
 	protected function validateSubstance($substance) {
+		if ( $substance === FALSE ) {
+			$this->_overrides['substance'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $substance instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($substance) ) {
 			$substance = new \com\microsoft\wc\types\CodableValue ($substance);
 		}
+
+		unset ($this->_overrides['substance']);
 	
 		return $substance;
 	}
 
-	public function getCollectionMethod() {
-		if ($this->collectionMethod===NULL) {
+	public function getCollectionMethod($autoCreate = TRUE) {
+		if ($this->collectionMethod===NULL && $autoCreate && ! isset($this->_overrides['collectionMethod']) ) {
 			$this->collectionMethod = $this->createCollectionMethod();
 		}
 		return $this->collectionMethod;
@@ -150,15 +171,22 @@ class LabTestResultType {
 	}
 
 	protected function validateCollectionMethod($collectionMethod) {
+		if ( $collectionMethod === FALSE ) {
+			$this->_overrides['collectionMethod'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $collectionMethod instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($collectionMethod) ) {
 			$collectionMethod = new \com\microsoft\wc\types\CodableValue ($collectionMethod);
 		}
+
+		unset ($this->_overrides['collectionMethod']);
 	
 		return $collectionMethod;
 	}
 
-	public function getClinicalCode() {
-		if ($this->clinicalCode===NULL) {
+	public function getClinicalCode($autoCreate = TRUE) {
+		if ($this->clinicalCode===NULL && $autoCreate && ! isset($this->_overrides['clinicalCode']) ) {
 			$this->clinicalCode = $this->createClinicalCode();
 		}
 		return $this->clinicalCode;
@@ -173,15 +201,22 @@ class LabTestResultType {
 	}
 
 	protected function validateClinicalCode($clinicalCode) {
+		if ( $clinicalCode === FALSE ) {
+			$this->_overrides['clinicalCode'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $clinicalCode instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($clinicalCode) ) {
 			$clinicalCode = new \com\microsoft\wc\types\CodableValue ($clinicalCode);
 		}
+
+		unset ($this->_overrides['clinicalCode']);
 	
 		return $clinicalCode;
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -196,15 +231,22 @@ class LabTestResultType {
 	}
 
 	protected function validateValue($value) {
+		if ( $value === FALSE ) {
+			$this->_overrides['value'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $value instanceof \com\microsoft\wc\thing\lab_test_results\LabTestResultValueType  && ! is_null($value) ) {
 			$value = new \com\microsoft\wc\thing\lab_test_results\LabTestResultValueType ($value);
 		}
+
+		unset ($this->_overrides['value']);
 	
 		return $value;
 	}
 
-	public function getStatus() {
-		if ($this->status===NULL) {
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
 			$this->status = $this->createStatus();
 		}
 		return $this->status;
@@ -219,15 +261,22 @@ class LabTestResultType {
 	}
 
 	protected function validateStatus($status) {
+		if ( $status === FALSE ) {
+			$this->_overrides['status'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $status instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($status) ) {
 			$status = new \com\microsoft\wc\types\CodableValue ($status);
 		}
+
+		unset ($this->_overrides['status']);
 	
 		return $status;
 	}
 
-	public function getNote() {
-		if ($this->note===NULL) {
+	public function getNote($autoCreate = TRUE) {
+		if ($this->note===NULL && $autoCreate && ! isset($this->_overrides['note']) ) {
 			$this->note = $this->createNote();
 		}
 		return $this->note;

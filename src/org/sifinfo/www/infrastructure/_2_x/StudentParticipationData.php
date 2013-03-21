@@ -14,6 +14,13 @@ class StudentParticipationData {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ProgramType", name="ProgramType")
 	 */
 	protected $programType;
@@ -88,8 +95,8 @@ class StudentParticipationData {
 		$this->studentSpecialEducationFTE = ($studentSpecialEducationFTE===NULL) ? NULL : $this->validateStudentSpecialEducationFTE($studentSpecialEducationFTE);
 	}
 
-	public function getProgramType() {
-		if ($this->programType===NULL) {
+	public function getProgramType($autoCreate = TRUE) {
+		if ($this->programType===NULL && $autoCreate && ! isset($this->_overrides['programType']) ) {
 			$this->programType = $this->createProgramType();
 		}
 		return $this->programType;
@@ -111,8 +118,8 @@ class StudentParticipationData {
 		return $programType;
 	}
 
-	public function getLEAInfoData() {
-		if ($this->lEAInfoData===NULL) {
+	public function getLEAInfoData($autoCreate = TRUE) {
+		if ($this->lEAInfoData===NULL && $autoCreate && ! isset($this->_overrides['lEAInfoData']) ) {
 			$this->lEAInfoData = $this->createLEAInfoData();
 		}
 		return $this->lEAInfoData;
@@ -127,15 +134,22 @@ class StudentParticipationData {
 	}
 
 	protected function validateLEAInfoData($lEAInfoData) {
+		if ( $lEAInfoData === FALSE ) {
+			$this->_overrides['lEAInfoData'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $lEAInfoData instanceof \org\sifinfo\www\infrastructure\_2_x\LEAInfoData  && ! is_null($lEAInfoData) ) {
 			$lEAInfoData = new \org\sifinfo\www\infrastructure\_2_x\LEAInfoData ($lEAInfoData);
 		}
+
+		unset ($this->_overrides['lEAInfoData']);
 	
 		return $lEAInfoData;
 	}
 
-	public function getSchoolInfoData() {
-		if ($this->schoolInfoData===NULL) {
+	public function getSchoolInfoData($autoCreate = TRUE) {
+		if ($this->schoolInfoData===NULL && $autoCreate && ! isset($this->_overrides['schoolInfoData']) ) {
 			$this->schoolInfoData = $this->createSchoolInfoData();
 		}
 		return $this->schoolInfoData;
@@ -157,8 +171,8 @@ class StudentParticipationData {
 		return $schoolInfoData;
 	}
 
-	public function getReferralDate() {
-		if ($this->referralDate===NULL) {
+	public function getReferralDate($autoCreate = TRUE) {
+		if ($this->referralDate===NULL && $autoCreate && ! isset($this->_overrides['referralDate']) ) {
 			$this->referralDate = $this->createReferralDate();
 		}
 		return $this->referralDate;
@@ -177,8 +191,8 @@ class StudentParticipationData {
 		return $referralDate;
 	}
 
-	public function getProgramStatus() {
-		if ($this->programStatus===NULL) {
+	public function getProgramStatus($autoCreate = TRUE) {
+		if ($this->programStatus===NULL && $autoCreate && ! isset($this->_overrides['programStatus']) ) {
 			$this->programStatus = $this->createProgramStatus();
 		}
 		return $this->programStatus;
@@ -193,15 +207,22 @@ class StudentParticipationData {
 	}
 
 	protected function validateProgramStatus($programStatus) {
+		if ( $programStatus === FALSE ) {
+			$this->_overrides['programStatus'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $programStatus instanceof \org\sifinfo\www\infrastructure\_2_x\ProgramStatusType  && ! is_null($programStatus) ) {
 			$programStatus = new \org\sifinfo\www\infrastructure\_2_x\ProgramStatusType ($programStatus);
 		}
+
+		unset ($this->_overrides['programStatus']);
 	
 		return $programStatus;
 	}
 
-	public function getEvaluationDate() {
-		if ($this->evaluationDate===NULL) {
+	public function getEvaluationDate($autoCreate = TRUE) {
+		if ($this->evaluationDate===NULL && $autoCreate && ! isset($this->_overrides['evaluationDate']) ) {
 			$this->evaluationDate = $this->createEvaluationDate();
 		}
 		return $this->evaluationDate;
@@ -220,8 +241,8 @@ class StudentParticipationData {
 		return $evaluationDate;
 	}
 
-	public function getReevaluationDate() {
-		if ($this->reevaluationDate===NULL) {
+	public function getReevaluationDate($autoCreate = TRUE) {
+		if ($this->reevaluationDate===NULL && $autoCreate && ! isset($this->_overrides['reevaluationDate']) ) {
 			$this->reevaluationDate = $this->createReevaluationDate();
 		}
 		return $this->reevaluationDate;
@@ -240,8 +261,8 @@ class StudentParticipationData {
 		return $reevaluationDate;
 	}
 
-	public function getExceptionalityCategories() {
-		if ($this->exceptionalityCategories===NULL) {
+	public function getExceptionalityCategories($autoCreate = TRUE) {
+		if ($this->exceptionalityCategories===NULL && $autoCreate && ! isset($this->_overrides['exceptionalityCategories']) ) {
 			$this->exceptionalityCategories = $this->createExceptionalityCategories();
 		}
 		return $this->exceptionalityCategories;
@@ -256,15 +277,22 @@ class StudentParticipationData {
 	}
 
 	protected function validateExceptionalityCategories($exceptionalityCategories) {
+		if ( $exceptionalityCategories === FALSE ) {
+			$this->_overrides['exceptionalityCategories'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $exceptionalityCategories instanceof \org\sifinfo\www\infrastructure\_2_x\ExceptionalityCategoriesType  && ! is_null($exceptionalityCategories) ) {
 			$exceptionalityCategories = new \org\sifinfo\www\infrastructure\_2_x\ExceptionalityCategoriesType ($exceptionalityCategories);
 		}
+
+		unset ($this->_overrides['exceptionalityCategories']);
 	
 		return $exceptionalityCategories;
 	}
 
-	public function getProgramPlanDate() {
-		if ($this->programPlanDate===NULL) {
+	public function getProgramPlanDate($autoCreate = TRUE) {
+		if ($this->programPlanDate===NULL && $autoCreate && ! isset($this->_overrides['programPlanDate']) ) {
 			$this->programPlanDate = $this->createProgramPlanDate();
 		}
 		return $this->programPlanDate;
@@ -283,8 +311,8 @@ class StudentParticipationData {
 		return $programPlanDate;
 	}
 
-	public function getProgramPlanEffectiveDate() {
-		if ($this->programPlanEffectiveDate===NULL) {
+	public function getProgramPlanEffectiveDate($autoCreate = TRUE) {
+		if ($this->programPlanEffectiveDate===NULL && $autoCreate && ! isset($this->_overrides['programPlanEffectiveDate']) ) {
 			$this->programPlanEffectiveDate = $this->createProgramPlanEffectiveDate();
 		}
 		return $this->programPlanEffectiveDate;
@@ -303,8 +331,8 @@ class StudentParticipationData {
 		return $programPlanEffectiveDate;
 	}
 
-	public function getPlannedAssessmentParticipation() {
-		if ($this->plannedAssessmentParticipation===NULL) {
+	public function getPlannedAssessmentParticipation($autoCreate = TRUE) {
+		if ($this->plannedAssessmentParticipation===NULL && $autoCreate && ! isset($this->_overrides['plannedAssessmentParticipation']) ) {
 			$this->plannedAssessmentParticipation = $this->createPlannedAssessmentParticipation();
 		}
 		return $this->plannedAssessmentParticipation;
@@ -319,15 +347,22 @@ class StudentParticipationData {
 	}
 
 	protected function validatePlannedAssessmentParticipation($plannedAssessmentParticipation) {
+		if ( $plannedAssessmentParticipation === FALSE ) {
+			$this->_overrides['plannedAssessmentParticipation'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $plannedAssessmentParticipation instanceof \org\sifinfo\www\infrastructure\_2_x\PlannedAssessmentParticipationType  && ! is_null($plannedAssessmentParticipation) ) {
 			$plannedAssessmentParticipation = new \org\sifinfo\www\infrastructure\_2_x\PlannedAssessmentParticipationType ($plannedAssessmentParticipation);
 		}
+
+		unset ($this->_overrides['plannedAssessmentParticipation']);
 	
 		return $plannedAssessmentParticipation;
 	}
 
-	public function getStudentSpecialEducationFTE() {
-		if ($this->studentSpecialEducationFTE===NULL) {
+	public function getStudentSpecialEducationFTE($autoCreate = TRUE) {
+		if ($this->studentSpecialEducationFTE===NULL && $autoCreate && ! isset($this->_overrides['studentSpecialEducationFTE']) ) {
 			$this->studentSpecialEducationFTE = $this->createStudentSpecialEducationFTE();
 		}
 		return $this->studentSpecialEducationFTE;
@@ -342,9 +377,16 @@ class StudentParticipationData {
 	}
 
 	protected function validateStudentSpecialEducationFTE($studentSpecialEducationFTE) {
+		if ( $studentSpecialEducationFTE === FALSE ) {
+			$this->_overrides['studentSpecialEducationFTE'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $studentSpecialEducationFTE instanceof \org\sifinfo\www\infrastructure\_2_x\StudentSpecialEducationFTE  && ! is_null($studentSpecialEducationFTE) ) {
 			$studentSpecialEducationFTE = new \org\sifinfo\www\infrastructure\_2_x\StudentSpecialEducationFTE ($studentSpecialEducationFTE);
 		}
+
+		unset ($this->_overrides['studentSpecialEducationFTE']);
 	
 		return $studentSpecialEducationFTE;
 	}

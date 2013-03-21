@@ -14,6 +14,13 @@ class POCDMT000040.RegionOfInterest.value extends \org\w3\www\_2001\XMLSchema\IN
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="boolean", name="unsorted")
 	 */
 	protected $unsorted;
@@ -22,8 +29,8 @@ class POCDMT000040.RegionOfInterest.value extends \org\w3\www\_2001\XMLSchema\IN
 		$this->unsorted = ($unsorted===NULL) ? NULL : $this->validateUnsorted($unsorted);
 	}
 
-	public function getUnsorted() {
-		if ($this->unsorted===NULL) {
+	public function getUnsorted($autoCreate = TRUE) {
+		if ($this->unsorted===NULL && $autoCreate && ! isset($this->_overrides['unsorted']) ) {
 			$this->unsorted = $this->createUnsorted();
 		}
 		return $this->unsorted;

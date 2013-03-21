@@ -15,6 +15,13 @@ class Groups {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Group", collection="true", name="group")
 	 */
 	protected $group;
@@ -23,8 +30,8 @@ class Groups {
 		$this->group = ($group===NULL) ? NULL : $this->validateGroup($group);
 	}
 
-	public function getGroup() {
-		if ($this->group===NULL) {
+	public function getGroup($autoCreate = TRUE) {
+		if ($this->group===NULL && $autoCreate && ! isset($this->_overrides['group']) ) {
 			$this->group = $this->createGroup();
 		}
 		return $this->group;

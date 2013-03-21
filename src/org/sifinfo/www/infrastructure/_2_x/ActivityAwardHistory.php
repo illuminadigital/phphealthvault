@@ -14,6 +14,13 @@ class ActivityAwardHistory {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\ActivityAward", collection="true", name="ActivityAward")
 	 */
 	protected $activityAward;
@@ -22,8 +29,8 @@ class ActivityAwardHistory {
 		$this->activityAward = ($activityAward===NULL) ? NULL : $this->validateActivityAward($activityAward);
 	}
 
-	public function getActivityAward() {
-		if ($this->activityAward===NULL) {
+	public function getActivityAward($autoCreate = TRUE) {
+		if ($this->activityAward===NULL && $autoCreate && ! isset($this->_overrides['activityAward']) ) {
 			$this->activityAward = $this->createActivityAward();
 		}
 		return $this->activityAward;

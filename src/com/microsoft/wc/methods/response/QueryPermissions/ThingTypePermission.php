@@ -15,6 +15,13 @@ class ThingTypePermission {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="thing-type-id")
 	 */
 	protected $thingTypeId;
@@ -35,8 +42,8 @@ class ThingTypePermission {
 		$this->offlineAccessPermissions = ($offlineAccessPermissions===NULL) ? NULL : $this->validateOfflineAccessPermissions($offlineAccessPermissions);
 	}
 
-	public function getThingTypeId() {
-		if ($this->thingTypeId===NULL) {
+	public function getThingTypeId($autoCreate = TRUE) {
+		if ($this->thingTypeId===NULL && $autoCreate && ! isset($this->_overrides['thingTypeId']) ) {
 			$this->thingTypeId = $this->createThingTypeId();
 		}
 		return $this->thingTypeId;
@@ -58,8 +65,8 @@ class ThingTypePermission {
 		return $thingTypeId;
 	}
 
-	public function getOnlineAccessPermissions() {
-		if ($this->onlineAccessPermissions===NULL) {
+	public function getOnlineAccessPermissions($autoCreate = TRUE) {
+		if ($this->onlineAccessPermissions===NULL && $autoCreate && ! isset($this->_overrides['onlineAccessPermissions']) ) {
 			$this->onlineAccessPermissions = $this->createOnlineAccessPermissions();
 		}
 		return $this->onlineAccessPermissions;
@@ -74,15 +81,22 @@ class ThingTypePermission {
 	}
 
 	protected function validateOnlineAccessPermissions($onlineAccessPermissions) {
+		if ( $onlineAccessPermissions === FALSE ) {
+			$this->_overrides['onlineAccessPermissions'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $onlineAccessPermissions instanceof \com\microsoft\wc\methods\response\QueryPermissions\Permissions  && ! is_null($onlineAccessPermissions) ) {
 			$onlineAccessPermissions = new \com\microsoft\wc\methods\response\QueryPermissions\Permissions ($onlineAccessPermissions);
 		}
+
+		unset ($this->_overrides['onlineAccessPermissions']);
 	
 		return $onlineAccessPermissions;
 	}
 
-	public function getOfflineAccessPermissions() {
-		if ($this->offlineAccessPermissions===NULL) {
+	public function getOfflineAccessPermissions($autoCreate = TRUE) {
+		if ($this->offlineAccessPermissions===NULL && $autoCreate && ! isset($this->_overrides['offlineAccessPermissions']) ) {
 			$this->offlineAccessPermissions = $this->createOfflineAccessPermissions();
 		}
 		return $this->offlineAccessPermissions;
@@ -97,9 +111,16 @@ class ThingTypePermission {
 	}
 
 	protected function validateOfflineAccessPermissions($offlineAccessPermissions) {
+		if ( $offlineAccessPermissions === FALSE ) {
+			$this->_overrides['offlineAccessPermissions'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $offlineAccessPermissions instanceof \com\microsoft\wc\methods\response\QueryPermissions\Permissions  && ! is_null($offlineAccessPermissions) ) {
 			$offlineAccessPermissions = new \com\microsoft\wc\methods\response\QueryPermissions\Permissions ($offlineAccessPermissions);
 		}
+
+		unset ($this->_overrides['offlineAccessPermissions']);
 	
 		return $offlineAccessPermissions;
 	}

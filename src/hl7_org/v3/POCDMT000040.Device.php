@@ -14,6 +14,13 @@ class POCDMT000040.Device {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -70,8 +77,8 @@ class POCDMT000040.Device {
 		$this->determinerCode = ($determinerCode===NULL) ? NULL : $this->validateDeterminerCode($determinerCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -105,8 +112,8 @@ class POCDMT000040.Device {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -125,8 +132,8 @@ class POCDMT000040.Device {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -160,8 +167,8 @@ class POCDMT000040.Device {
 		return $templateId;
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -180,8 +187,8 @@ class POCDMT000040.Device {
 		return $code;
 	}
 
-	public function getManufacturerModelName() {
-		if ($this->manufacturerModelName===NULL) {
+	public function getManufacturerModelName($autoCreate = TRUE) {
+		if ($this->manufacturerModelName===NULL && $autoCreate && ! isset($this->_overrides['manufacturerModelName']) ) {
 			$this->manufacturerModelName = $this->createManufacturerModelName();
 		}
 		return $this->manufacturerModelName;
@@ -200,8 +207,8 @@ class POCDMT000040.Device {
 		return $manufacturerModelName;
 	}
 
-	public function getSoftwareName() {
-		if ($this->softwareName===NULL) {
+	public function getSoftwareName($autoCreate = TRUE) {
+		if ($this->softwareName===NULL && $autoCreate && ! isset($this->_overrides['softwareName']) ) {
 			$this->softwareName = $this->createSoftwareName();
 		}
 		return $this->softwareName;
@@ -220,8 +227,8 @@ class POCDMT000040.Device {
 		return $softwareName;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -240,8 +247,8 @@ class POCDMT000040.Device {
 		return $nullFlavor;
 	}
 
-	public function getClassCode() {
-		if ($this->classCode===NULL) {
+	public function getClassCode($autoCreate = TRUE) {
+		if ($this->classCode===NULL && $autoCreate && ! isset($this->_overrides['classCode']) ) {
 			$this->classCode = $this->createClassCode();
 		}
 		return $this->classCode;
@@ -260,8 +267,8 @@ class POCDMT000040.Device {
 		return $classCode;
 	}
 
-	public function getDeterminerCode() {
-		if ($this->determinerCode===NULL) {
+	public function getDeterminerCode($autoCreate = TRUE) {
+		if ($this->determinerCode===NULL && $autoCreate && ! isset($this->_overrides['determinerCode']) ) {
 			$this->determinerCode = $this->createDeterminerCode();
 		}
 		return $this->determinerCode;

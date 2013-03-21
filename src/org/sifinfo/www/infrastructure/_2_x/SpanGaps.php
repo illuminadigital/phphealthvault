@@ -14,6 +14,13 @@ class SpanGaps {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\sifinfo\www\infrastructure\_2_x\SpanGap", collection="true", name="SpanGap")
 	 */
 	protected $spanGap;
@@ -22,8 +29,8 @@ class SpanGaps {
 		$this->spanGap = ($spanGap===NULL) ? NULL : $this->validateSpanGap($spanGap);
 	}
 
-	public function getSpanGap() {
-		if ($this->spanGap===NULL) {
+	public function getSpanGap($autoCreate = TRUE) {
+		if ($this->spanGap===NULL && $autoCreate && ! isset($this->_overrides['spanGap']) ) {
 			$this->spanGap = $this->createSpanGap();
 		}
 		return $this->spanGap;
@@ -38,9 +45,16 @@ class SpanGaps {
 	}
 
 	protected function validateSpanGap($spanGap) {
+		if ( $spanGap === FALSE ) {
+			$this->_overrides['spanGap'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($spanGap) && ! is_null($spanGap) ) {
 			$spanGap = array($spanGap);
 		}
+
+		unset ($this->_overrides['spanGap']);
 		$count = count($spanGap);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'spanGap', 0));

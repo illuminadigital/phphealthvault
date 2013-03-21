@@ -18,6 +18,13 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Daily Medication Usage';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\Date", name="when")
 	 */
 	protected $when;
@@ -74,8 +81,8 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 		$this->singleDoseDescription = ($singleDoseDescription===NULL) ? NULL : $this->validateSingleDoseDescription($singleDoseDescription);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -97,8 +104,8 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getDrugName() {
-		if ($this->drugName===NULL) {
+	public function getDrugName($autoCreate = TRUE) {
+		if ($this->drugName===NULL && $autoCreate && ! isset($this->_overrides['drugName']) ) {
 			$this->drugName = $this->createDrugName();
 		}
 		return $this->drugName;
@@ -120,8 +127,8 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 		return $drugName;
 	}
 
-	public function getNumberDosesConsumedInDay() {
-		if ($this->numberDosesConsumedInDay===NULL) {
+	public function getNumberDosesConsumedInDay($autoCreate = TRUE) {
+		if ($this->numberDosesConsumedInDay===NULL && $autoCreate && ! isset($this->_overrides['numberDosesConsumedInDay']) ) {
 			$this->numberDosesConsumedInDay = $this->createNumberDosesConsumedInDay();
 		}
 		return $this->numberDosesConsumedInDay;
@@ -151,8 +158,8 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 		return $numberDosesConsumedInDay;
 	}
 
-	public function getPurposeOfUse() {
-		if ($this->purposeOfUse===NULL) {
+	public function getPurposeOfUse($autoCreate = TRUE) {
+		if ($this->purposeOfUse===NULL && $autoCreate && ! isset($this->_overrides['purposeOfUse']) ) {
 			$this->purposeOfUse = $this->createPurposeOfUse();
 		}
 		return $this->purposeOfUse;
@@ -167,15 +174,22 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePurposeOfUse($purposeOfUse) {
+		if ( $purposeOfUse === FALSE ) {
+			$this->_overrides['purposeOfUse'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $purposeOfUse instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($purposeOfUse) ) {
 			$purposeOfUse = new \com\microsoft\wc\types\CodableValue ($purposeOfUse);
 		}
+
+		unset ($this->_overrides['purposeOfUse']);
 	
 		return $purposeOfUse;
 	}
 
-	public function getNumberDosesIntendedInDay() {
-		if ($this->numberDosesIntendedInDay===NULL) {
+	public function getNumberDosesIntendedInDay($autoCreate = TRUE) {
+		if ($this->numberDosesIntendedInDay===NULL && $autoCreate && ! isset($this->_overrides['numberDosesIntendedInDay']) ) {
 			$this->numberDosesIntendedInDay = $this->createNumberDosesIntendedInDay();
 		}
 		return $this->numberDosesIntendedInDay;
@@ -208,8 +222,8 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 		return $numberDosesIntendedInDay;
 	}
 
-	public function getMedicationUsageSchedule() {
-		if ($this->medicationUsageSchedule===NULL) {
+	public function getMedicationUsageSchedule($autoCreate = TRUE) {
+		if ($this->medicationUsageSchedule===NULL && $autoCreate && ! isset($this->_overrides['medicationUsageSchedule']) ) {
 			$this->medicationUsageSchedule = $this->createMedicationUsageSchedule();
 		}
 		return $this->medicationUsageSchedule;
@@ -224,15 +238,22 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateMedicationUsageSchedule($medicationUsageSchedule) {
+		if ( $medicationUsageSchedule === FALSE ) {
+			$this->_overrides['medicationUsageSchedule'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $medicationUsageSchedule instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($medicationUsageSchedule) ) {
 			$medicationUsageSchedule = new \com\microsoft\wc\types\CodableValue ($medicationUsageSchedule);
 		}
+
+		unset ($this->_overrides['medicationUsageSchedule']);
 	
 		return $medicationUsageSchedule;
 	}
 
-	public function getDrugForm() {
-		if ($this->drugForm===NULL) {
+	public function getDrugForm($autoCreate = TRUE) {
+		if ($this->drugForm===NULL && $autoCreate && ! isset($this->_overrides['drugForm']) ) {
 			$this->drugForm = $this->createDrugForm();
 		}
 		return $this->drugForm;
@@ -247,15 +268,22 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateDrugForm($drugForm) {
+		if ( $drugForm === FALSE ) {
+			$this->_overrides['drugForm'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $drugForm instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($drugForm) ) {
 			$drugForm = new \com\microsoft\wc\types\CodableValue ($drugForm);
 		}
+
+		unset ($this->_overrides['drugForm']);
 	
 		return $drugForm;
 	}
 
-	public function getPrescriptionType() {
-		if ($this->prescriptionType===NULL) {
+	public function getPrescriptionType($autoCreate = TRUE) {
+		if ($this->prescriptionType===NULL && $autoCreate && ! isset($this->_overrides['prescriptionType']) ) {
 			$this->prescriptionType = $this->createPrescriptionType();
 		}
 		return $this->prescriptionType;
@@ -270,15 +298,22 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validatePrescriptionType($prescriptionType) {
+		if ( $prescriptionType === FALSE ) {
+			$this->_overrides['prescriptionType'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $prescriptionType instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($prescriptionType) ) {
 			$prescriptionType = new \com\microsoft\wc\types\CodableValue ($prescriptionType);
 		}
+
+		unset ($this->_overrides['prescriptionType']);
 	
 		return $prescriptionType;
 	}
 
-	public function getSingleDoseDescription() {
-		if ($this->singleDoseDescription===NULL) {
+	public function getSingleDoseDescription($autoCreate = TRUE) {
+		if ($this->singleDoseDescription===NULL && $autoCreate && ! isset($this->_overrides['singleDoseDescription']) ) {
 			$this->singleDoseDescription = $this->createSingleDoseDescription();
 		}
 		return $this->singleDoseDescription;
@@ -293,9 +328,16 @@ class DailyMedicationUsage extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSingleDoseDescription($singleDoseDescription) {
+		if ( $singleDoseDescription === FALSE ) {
+			$this->_overrides['singleDoseDescription'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $singleDoseDescription instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($singleDoseDescription) ) {
 			$singleDoseDescription = new \com\microsoft\wc\types\CodableValue ($singleDoseDescription);
 		}
+
+		unset ($this->_overrides['singleDoseDescription']);
 	
 		return $singleDoseDescription;
 	}

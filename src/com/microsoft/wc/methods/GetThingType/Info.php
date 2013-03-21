@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", collection="true", name="id")
 	 */
 	protected $id;
@@ -42,8 +49,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->lastClientRefresh = ($lastClientRefresh===NULL) ? NULL : $this->validateLastClientRefresh($lastClientRefresh);
 	}
 
-	public function getId() {
-		if ($this->id===NULL) {
+	public function getId($autoCreate = TRUE) {
+		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
 			$this->id = $this->createId();
 		}
 		return $this->id;
@@ -58,9 +65,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateId($id) {
+		if ( $id === FALSE ) {
+			$this->_overrides['id'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($id) && ! is_null($id) ) {
 			$id = array($id);
 		}
+
+		unset ($this->_overrides['id']);
 		$count = count($id);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
@@ -78,8 +92,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->id[] = $id;
 	}
 
-	public function getSection() {
-		if ($this->section===NULL) {
+	public function getSection($autoCreate = TRUE) {
+		if ($this->section===NULL && $autoCreate && ! isset($this->_overrides['section']) ) {
 			$this->section = $this->createSection();
 		}
 		return $this->section;
@@ -116,8 +130,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $section;
 	}
 
-	public function getImageType() {
-		if ($this->imageType===NULL) {
+	public function getImageType($autoCreate = TRUE) {
+		if ($this->imageType===NULL && $autoCreate && ! isset($this->_overrides['imageType']) ) {
 			$this->imageType = $this->createImageType();
 		}
 		return $this->imageType;
@@ -157,8 +171,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $imageType;
 	}
 
-	public function getLastClientRefresh() {
-		if ($this->lastClientRefresh===NULL) {
+	public function getLastClientRefresh($autoCreate = TRUE) {
+		if ($this->lastClientRefresh===NULL && $autoCreate && ! isset($this->_overrides['lastClientRefresh']) ) {
 			$this->lastClientRefresh = $this->createLastClientRefresh();
 		}
 		return $this->lastClientRefresh;

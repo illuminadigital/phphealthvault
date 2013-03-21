@@ -16,6 +16,13 @@ class Image {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="Image")
 	 */
 	protected $value;
@@ -30,8 +37,8 @@ class Image {
 		$this->mimeType = ($mimeType===NULL) ? NULL : $this->validateMimeType($mimeType);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -53,8 +60,8 @@ class Image {
 		return $value;
 	}
 
-	public function getMimeType() {
-		if ($this->mimeType===NULL) {
+	public function getMimeType($autoCreate = TRUE) {
+		if ($this->mimeType===NULL && $autoCreate && ! isset($this->_overrides['mimeType']) ) {
 			$this->mimeType = $this->createMimeType();
 		}
 		return $this->mimeType;

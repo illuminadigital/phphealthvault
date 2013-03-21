@@ -14,6 +14,13 @@ class POCDMT000040.Reference {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -76,8 +83,8 @@ class POCDMT000040.Reference {
 		$this->typeCode = ($typeCode===NULL) ? NULL : $this->validateTypeCode($typeCode);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -111,8 +118,8 @@ class POCDMT000040.Reference {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -131,8 +138,8 @@ class POCDMT000040.Reference {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -166,8 +173,8 @@ class POCDMT000040.Reference {
 		return $templateId;
 	}
 
-	public function getSeperatableInd() {
-		if ($this->seperatableInd===NULL) {
+	public function getSeperatableInd($autoCreate = TRUE) {
+		if ($this->seperatableInd===NULL && $autoCreate && ! isset($this->_overrides['seperatableInd']) ) {
 			$this->seperatableInd = $this->createSeperatableInd();
 		}
 		return $this->seperatableInd;
@@ -186,8 +193,8 @@ class POCDMT000040.Reference {
 		return $seperatableInd;
 	}
 
-	public function getExternalAct() {
-		if ($this->externalAct===NULL) {
+	public function getExternalAct($autoCreate = TRUE) {
+		if ($this->externalAct===NULL && $autoCreate && ! isset($this->_overrides['externalAct']) ) {
 			$this->externalAct = $this->createExternalAct();
 		}
 		return $this->externalAct;
@@ -206,8 +213,8 @@ class POCDMT000040.Reference {
 		return $externalAct;
 	}
 
-	public function getExternalObservation() {
-		if ($this->externalObservation===NULL) {
+	public function getExternalObservation($autoCreate = TRUE) {
+		if ($this->externalObservation===NULL && $autoCreate && ! isset($this->_overrides['externalObservation']) ) {
 			$this->externalObservation = $this->createExternalObservation();
 		}
 		return $this->externalObservation;
@@ -226,8 +233,8 @@ class POCDMT000040.Reference {
 		return $externalObservation;
 	}
 
-	public function getExternalProcedure() {
-		if ($this->externalProcedure===NULL) {
+	public function getExternalProcedure($autoCreate = TRUE) {
+		if ($this->externalProcedure===NULL && $autoCreate && ! isset($this->_overrides['externalProcedure']) ) {
 			$this->externalProcedure = $this->createExternalProcedure();
 		}
 		return $this->externalProcedure;
@@ -246,8 +253,8 @@ class POCDMT000040.Reference {
 		return $externalProcedure;
 	}
 
-	public function getExternalDocument() {
-		if ($this->externalDocument===NULL) {
+	public function getExternalDocument($autoCreate = TRUE) {
+		if ($this->externalDocument===NULL && $autoCreate && ! isset($this->_overrides['externalDocument']) ) {
 			$this->externalDocument = $this->createExternalDocument();
 		}
 		return $this->externalDocument;
@@ -266,8 +273,8 @@ class POCDMT000040.Reference {
 		return $externalDocument;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -286,8 +293,8 @@ class POCDMT000040.Reference {
 		return $nullFlavor;
 	}
 
-	public function getTypeCode() {
-		if ($this->typeCode===NULL) {
+	public function getTypeCode($autoCreate = TRUE) {
+		if ($this->typeCode===NULL && $autoCreate && ! isset($this->_overrides['typeCode']) ) {
 			$this->typeCode = $this->createTypeCode();
 		}
 		return $this->typeCode;

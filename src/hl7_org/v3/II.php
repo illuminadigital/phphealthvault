@@ -15,6 +15,13 @@ class II extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="root")
 	 */
 	protected $root;
@@ -41,8 +48,8 @@ class II extends \org\w3\www\_2001\XMLSchema\ANY {
 		$this->displayable = ($displayable===NULL) ? NULL : $this->validateDisplayable($displayable);
 	}
 
-	public function getRoot() {
-		if ($this->root===NULL) {
+	public function getRoot($autoCreate = TRUE) {
+		if ($this->root===NULL && $autoCreate && ! isset($this->_overrides['root']) ) {
 			$this->root = $this->createRoot();
 		}
 		return $this->root;
@@ -61,8 +68,8 @@ class II extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $root;
 	}
 
-	public function getExtension() {
-		if ($this->extension===NULL) {
+	public function getExtension($autoCreate = TRUE) {
+		if ($this->extension===NULL && $autoCreate && ! isset($this->_overrides['extension']) ) {
 			$this->extension = $this->createExtension();
 		}
 		return $this->extension;
@@ -81,8 +88,8 @@ class II extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $extension;
 	}
 
-	public function getAssigningAuthorityName() {
-		if ($this->assigningAuthorityName===NULL) {
+	public function getAssigningAuthorityName($autoCreate = TRUE) {
+		if ($this->assigningAuthorityName===NULL && $autoCreate && ! isset($this->_overrides['assigningAuthorityName']) ) {
 			$this->assigningAuthorityName = $this->createAssigningAuthorityName();
 		}
 		return $this->assigningAuthorityName;
@@ -101,8 +108,8 @@ class II extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $assigningAuthorityName;
 	}
 
-	public function getDisplayable() {
-		if ($this->displayable===NULL) {
+	public function getDisplayable($autoCreate = TRUE) {
+		if ($this->displayable===NULL && $autoCreate && ! isset($this->_overrides['displayable']) ) {
 			$this->displayable = $this->createDisplayable();
 		}
 		return $this->displayable;

@@ -15,6 +15,13 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\En.delimiter", collection="true", name="delimiter")
 	 */
 	protected $delimiter;
@@ -59,8 +66,8 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		$this->use = ($use===NULL) ? NULL : $this->validateUse($use);
 	}
 
-	public function getDelimiter() {
-		if ($this->delimiter===NULL) {
+	public function getDelimiter($autoCreate = TRUE) {
+		if ($this->delimiter===NULL && $autoCreate && ! isset($this->_overrides['delimiter']) ) {
 			$this->delimiter = $this->createDelimiter();
 		}
 		return $this->delimiter;
@@ -94,8 +101,8 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $delimiter;
 	}
 
-	public function getFamily() {
-		if ($this->family===NULL) {
+	public function getFamily($autoCreate = TRUE) {
+		if ($this->family===NULL && $autoCreate && ! isset($this->_overrides['family']) ) {
 			$this->family = $this->createFamily();
 		}
 		return $this->family;
@@ -129,8 +136,8 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $family;
 	}
 
-	public function getGiven() {
-		if ($this->given===NULL) {
+	public function getGiven($autoCreate = TRUE) {
+		if ($this->given===NULL && $autoCreate && ! isset($this->_overrides['given']) ) {
 			$this->given = $this->createGiven();
 		}
 		return $this->given;
@@ -164,8 +171,8 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $given;
 	}
 
-	public function getPrefix() {
-		if ($this->prefix===NULL) {
+	public function getPrefix($autoCreate = TRUE) {
+		if ($this->prefix===NULL && $autoCreate && ! isset($this->_overrides['prefix']) ) {
 			$this->prefix = $this->createPrefix();
 		}
 		return $this->prefix;
@@ -199,8 +206,8 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $prefix;
 	}
 
-	public function getSuffix() {
-		if ($this->suffix===NULL) {
+	public function getSuffix($autoCreate = TRUE) {
+		if ($this->suffix===NULL && $autoCreate && ! isset($this->_overrides['suffix']) ) {
 			$this->suffix = $this->createSuffix();
 		}
 		return $this->suffix;
@@ -234,8 +241,8 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $suffix;
 	}
 
-	public function getValidTime() {
-		if ($this->validTime===NULL) {
+	public function getValidTime($autoCreate = TRUE) {
+		if ($this->validTime===NULL && $autoCreate && ! isset($this->_overrides['validTime']) ) {
 			$this->validTime = $this->createValidTime();
 		}
 		return $this->validTime;
@@ -254,8 +261,8 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		return $validTime;
 	}
 
-	public function getUse() {
-		if ($this->use===NULL) {
+	public function getUse($autoCreate = TRUE) {
+		if ($this->use===NULL && $autoCreate && ! isset($this->_overrides['use']) ) {
 			$this->use = $this->createUse();
 		}
 		return $this->use;

@@ -14,6 +14,13 @@ class BXITCD extends \org\w3\www\_2001\XMLSchema\CD {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="integer", name="qty")
 	 */
 	protected $qty;
@@ -22,8 +29,8 @@ class BXITCD extends \org\w3\www\_2001\XMLSchema\CD {
 		$this->qty = ($qty===NULL) ? NULL : $this->validateQty($qty);
 	}
 
-	public function getQty() {
-		if ($this->qty===NULL) {
+	public function getQty($autoCreate = TRUE) {
+		if ($this->qty===NULL && $autoCreate && ! isset($this->_overrides['qty']) ) {
 			$this->qty = $this->createQty();
 		}
 		return $this->qty;

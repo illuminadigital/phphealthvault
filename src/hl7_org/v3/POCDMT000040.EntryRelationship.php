@@ -14,6 +14,13 @@ class POCDMT000040.EntryRelationship {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CS", collection="true", name="realmCode")
 	 */
 	protected $realmCode;
@@ -130,8 +137,8 @@ class POCDMT000040.EntryRelationship {
 		$this->negationInd = ($negationInd===NULL) ? NULL : $this->validateNegationInd($negationInd);
 	}
 
-	public function getRealmCode() {
-		if ($this->realmCode===NULL) {
+	public function getRealmCode($autoCreate = TRUE) {
+		if ($this->realmCode===NULL && $autoCreate && ! isset($this->_overrides['realmCode']) ) {
 			$this->realmCode = $this->createRealmCode();
 		}
 		return $this->realmCode;
@@ -165,8 +172,8 @@ class POCDMT000040.EntryRelationship {
 		return $realmCode;
 	}
 
-	public function getTypeId() {
-		if ($this->typeId===NULL) {
+	public function getTypeId($autoCreate = TRUE) {
+		if ($this->typeId===NULL && $autoCreate && ! isset($this->_overrides['typeId']) ) {
 			$this->typeId = $this->createTypeId();
 		}
 		return $this->typeId;
@@ -185,8 +192,8 @@ class POCDMT000040.EntryRelationship {
 		return $typeId;
 	}
 
-	public function getTemplateId() {
-		if ($this->templateId===NULL) {
+	public function getTemplateId($autoCreate = TRUE) {
+		if ($this->templateId===NULL && $autoCreate && ! isset($this->_overrides['templateId']) ) {
 			$this->templateId = $this->createTemplateId();
 		}
 		return $this->templateId;
@@ -220,8 +227,8 @@ class POCDMT000040.EntryRelationship {
 		return $templateId;
 	}
 
-	public function getSequenceNumber() {
-		if ($this->sequenceNumber===NULL) {
+	public function getSequenceNumber($autoCreate = TRUE) {
+		if ($this->sequenceNumber===NULL && $autoCreate && ! isset($this->_overrides['sequenceNumber']) ) {
 			$this->sequenceNumber = $this->createSequenceNumber();
 		}
 		return $this->sequenceNumber;
@@ -240,8 +247,8 @@ class POCDMT000040.EntryRelationship {
 		return $sequenceNumber;
 	}
 
-	public function getSeperatableInd() {
-		if ($this->seperatableInd===NULL) {
+	public function getSeperatableInd($autoCreate = TRUE) {
+		if ($this->seperatableInd===NULL && $autoCreate && ! isset($this->_overrides['seperatableInd']) ) {
 			$this->seperatableInd = $this->createSeperatableInd();
 		}
 		return $this->seperatableInd;
@@ -260,8 +267,8 @@ class POCDMT000040.EntryRelationship {
 		return $seperatableInd;
 	}
 
-	public function getAct() {
-		if ($this->act===NULL) {
+	public function getAct($autoCreate = TRUE) {
+		if ($this->act===NULL && $autoCreate && ! isset($this->_overrides['act']) ) {
 			$this->act = $this->createAct();
 		}
 		return $this->act;
@@ -280,8 +287,8 @@ class POCDMT000040.EntryRelationship {
 		return $act;
 	}
 
-	public function getEncounter() {
-		if ($this->encounter===NULL) {
+	public function getEncounter($autoCreate = TRUE) {
+		if ($this->encounter===NULL && $autoCreate && ! isset($this->_overrides['encounter']) ) {
 			$this->encounter = $this->createEncounter();
 		}
 		return $this->encounter;
@@ -300,8 +307,8 @@ class POCDMT000040.EntryRelationship {
 		return $encounter;
 	}
 
-	public function getObservation() {
-		if ($this->observation===NULL) {
+	public function getObservation($autoCreate = TRUE) {
+		if ($this->observation===NULL && $autoCreate && ! isset($this->_overrides['observation']) ) {
 			$this->observation = $this->createObservation();
 		}
 		return $this->observation;
@@ -320,8 +327,8 @@ class POCDMT000040.EntryRelationship {
 		return $observation;
 	}
 
-	public function getObservationMedia() {
-		if ($this->observationMedia===NULL) {
+	public function getObservationMedia($autoCreate = TRUE) {
+		if ($this->observationMedia===NULL && $autoCreate && ! isset($this->_overrides['observationMedia']) ) {
 			$this->observationMedia = $this->createObservationMedia();
 		}
 		return $this->observationMedia;
@@ -340,8 +347,8 @@ class POCDMT000040.EntryRelationship {
 		return $observationMedia;
 	}
 
-	public function getOrganizer() {
-		if ($this->organizer===NULL) {
+	public function getOrganizer($autoCreate = TRUE) {
+		if ($this->organizer===NULL && $autoCreate && ! isset($this->_overrides['organizer']) ) {
 			$this->organizer = $this->createOrganizer();
 		}
 		return $this->organizer;
@@ -360,8 +367,8 @@ class POCDMT000040.EntryRelationship {
 		return $organizer;
 	}
 
-	public function getProcedure() {
-		if ($this->procedure===NULL) {
+	public function getProcedure($autoCreate = TRUE) {
+		if ($this->procedure===NULL && $autoCreate && ! isset($this->_overrides['procedure']) ) {
 			$this->procedure = $this->createProcedure();
 		}
 		return $this->procedure;
@@ -380,8 +387,8 @@ class POCDMT000040.EntryRelationship {
 		return $procedure;
 	}
 
-	public function getRegionOfInterest() {
-		if ($this->regionOfInterest===NULL) {
+	public function getRegionOfInterest($autoCreate = TRUE) {
+		if ($this->regionOfInterest===NULL && $autoCreate && ! isset($this->_overrides['regionOfInterest']) ) {
 			$this->regionOfInterest = $this->createRegionOfInterest();
 		}
 		return $this->regionOfInterest;
@@ -400,8 +407,8 @@ class POCDMT000040.EntryRelationship {
 		return $regionOfInterest;
 	}
 
-	public function getSubstanceAdministration() {
-		if ($this->substanceAdministration===NULL) {
+	public function getSubstanceAdministration($autoCreate = TRUE) {
+		if ($this->substanceAdministration===NULL && $autoCreate && ! isset($this->_overrides['substanceAdministration']) ) {
 			$this->substanceAdministration = $this->createSubstanceAdministration();
 		}
 		return $this->substanceAdministration;
@@ -420,8 +427,8 @@ class POCDMT000040.EntryRelationship {
 		return $substanceAdministration;
 	}
 
-	public function getSupply() {
-		if ($this->supply===NULL) {
+	public function getSupply($autoCreate = TRUE) {
+		if ($this->supply===NULL && $autoCreate && ! isset($this->_overrides['supply']) ) {
 			$this->supply = $this->createSupply();
 		}
 		return $this->supply;
@@ -440,8 +447,8 @@ class POCDMT000040.EntryRelationship {
 		return $supply;
 	}
 
-	public function getNullFlavor() {
-		if ($this->nullFlavor===NULL) {
+	public function getNullFlavor($autoCreate = TRUE) {
+		if ($this->nullFlavor===NULL && $autoCreate && ! isset($this->_overrides['nullFlavor']) ) {
 			$this->nullFlavor = $this->createNullFlavor();
 		}
 		return $this->nullFlavor;
@@ -460,8 +467,8 @@ class POCDMT000040.EntryRelationship {
 		return $nullFlavor;
 	}
 
-	public function getTypeCode() {
-		if ($this->typeCode===NULL) {
+	public function getTypeCode($autoCreate = TRUE) {
+		if ($this->typeCode===NULL && $autoCreate && ! isset($this->_overrides['typeCode']) ) {
 			$this->typeCode = $this->createTypeCode();
 		}
 		return $this->typeCode;
@@ -480,8 +487,8 @@ class POCDMT000040.EntryRelationship {
 		return $typeCode;
 	}
 
-	public function getInversionInd() {
-		if ($this->inversionInd===NULL) {
+	public function getInversionInd($autoCreate = TRUE) {
+		if ($this->inversionInd===NULL && $autoCreate && ! isset($this->_overrides['inversionInd']) ) {
 			$this->inversionInd = $this->createInversionInd();
 		}
 		return $this->inversionInd;
@@ -500,8 +507,8 @@ class POCDMT000040.EntryRelationship {
 		return $inversionInd;
 	}
 
-	public function getContextConductionInd() {
-		if ($this->contextConductionInd===NULL) {
+	public function getContextConductionInd($autoCreate = TRUE) {
+		if ($this->contextConductionInd===NULL && $autoCreate && ! isset($this->_overrides['contextConductionInd']) ) {
 			$this->contextConductionInd = $this->createContextConductionInd();
 		}
 		return $this->contextConductionInd;
@@ -520,8 +527,8 @@ class POCDMT000040.EntryRelationship {
 		return $contextConductionInd;
 	}
 
-	public function getNegationInd() {
-		if ($this->negationInd===NULL) {
+	public function getNegationInd($autoCreate = TRUE) {
+		if ($this->negationInd===NULL && $autoCreate && ! isset($this->_overrides['negationInd']) ) {
 			$this->negationInd = $this->createNegationInd();
 		}
 		return $this->negationInd;

@@ -16,6 +16,13 @@ class AerobicSession {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="mode")
 	 */
 	protected $mode;
@@ -234,8 +241,8 @@ class AerobicSession {
 		$this->aerobicStepMinutes = ($aerobicStepMinutes===NULL) ? NULL : $this->validateAerobicStepMinutes($aerobicStepMinutes);
 	}
 
-	public function getMode() {
-		if ($this->mode===NULL) {
+	public function getMode($autoCreate = TRUE) {
+		if ($this->mode===NULL && $autoCreate && ! isset($this->_overrides['mode']) ) {
 			$this->mode = $this->createMode();
 		}
 		return $this->mode;
@@ -250,15 +257,22 @@ class AerobicSession {
 	}
 
 	protected function validateMode($mode) {
+		if ( $mode === FALSE ) {
+			$this->_overrides['mode'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $mode instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($mode) ) {
 			$mode = new \com\microsoft\wc\types\CodableValue ($mode);
 		}
+
+		unset ($this->_overrides['mode']);
 	
 		return $mode;
 	}
 
-	public function getDistance() {
-		if ($this->distance===NULL) {
+	public function getDistance($autoCreate = TRUE) {
+		if ($this->distance===NULL && $autoCreate && ! isset($this->_overrides['distance']) ) {
 			$this->distance = $this->createDistance();
 		}
 		return $this->distance;
@@ -273,15 +287,22 @@ class AerobicSession {
 	}
 
 	protected function validateDistance($distance) {
+		if ( $distance === FALSE ) {
+			$this->_overrides['distance'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $distance instanceof \com\microsoft\wc\thing\types\LengthValue  && ! is_null($distance) ) {
 			$distance = new \com\microsoft\wc\thing\types\LengthValue ($distance);
 		}
+
+		unset ($this->_overrides['distance']);
 	
 		return $distance;
 	}
 
-	public function getMinutes() {
-		if ($this->minutes===NULL) {
+	public function getMinutes($autoCreate = TRUE) {
+		if ($this->minutes===NULL && $autoCreate && ! isset($this->_overrides['minutes']) ) {
 			$this->minutes = $this->createMinutes();
 		}
 		return $this->minutes;
@@ -296,15 +317,22 @@ class AerobicSession {
 	}
 
 	protected function validateMinutes($minutes) {
+		if ( $minutes === FALSE ) {
+			$this->_overrides['minutes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minutes instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($minutes) ) {
 			$minutes = new \com\microsoft\wc\thing\types\PositiveDouble ($minutes);
 		}
+
+		unset ($this->_overrides['minutes']);
 	
 		return $minutes;
 	}
 
-	public function getIntensity() {
-		if ($this->intensity===NULL) {
+	public function getIntensity($autoCreate = TRUE) {
+		if ($this->intensity===NULL && $autoCreate && ! isset($this->_overrides['intensity']) ) {
 			$this->intensity = $this->createIntensity();
 		}
 		return $this->intensity;
@@ -319,15 +347,22 @@ class AerobicSession {
 	}
 
 	protected function validateIntensity($intensity) {
+		if ( $intensity === FALSE ) {
+			$this->_overrides['intensity'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $intensity instanceof \com\microsoft\wc\thing\types\OneToFive  && ! is_null($intensity) ) {
 			$intensity = new \com\microsoft\wc\thing\types\OneToFive ($intensity);
 		}
+
+		unset ($this->_overrides['intensity']);
 	
 		return $intensity;
 	}
 
-	public function getPeakHeartrate() {
-		if ($this->peakHeartrate===NULL) {
+	public function getPeakHeartrate($autoCreate = TRUE) {
+		if ($this->peakHeartrate===NULL && $autoCreate && ! isset($this->_overrides['peakHeartrate']) ) {
 			$this->peakHeartrate = $this->createPeakHeartrate();
 		}
 		return $this->peakHeartrate;
@@ -342,15 +377,22 @@ class AerobicSession {
 	}
 
 	protected function validatePeakHeartrate($peakHeartrate) {
+		if ( $peakHeartrate === FALSE ) {
+			$this->_overrides['peakHeartrate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $peakHeartrate instanceof \com\microsoft\wc\thing\types\PositiveInt  && ! is_null($peakHeartrate) ) {
 			$peakHeartrate = new \com\microsoft\wc\thing\types\PositiveInt ($peakHeartrate);
 		}
+
+		unset ($this->_overrides['peakHeartrate']);
 	
 		return $peakHeartrate;
 	}
 
-	public function getAvgHeartrate() {
-		if ($this->avgHeartrate===NULL) {
+	public function getAvgHeartrate($autoCreate = TRUE) {
+		if ($this->avgHeartrate===NULL && $autoCreate && ! isset($this->_overrides['avgHeartrate']) ) {
 			$this->avgHeartrate = $this->createAvgHeartrate();
 		}
 		return $this->avgHeartrate;
@@ -365,15 +407,22 @@ class AerobicSession {
 	}
 
 	protected function validateAvgHeartrate($avgHeartrate) {
+		if ( $avgHeartrate === FALSE ) {
+			$this->_overrides['avgHeartrate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $avgHeartrate instanceof \com\microsoft\wc\thing\types\PositiveInt  && ! is_null($avgHeartrate) ) {
 			$avgHeartrate = new \com\microsoft\wc\thing\types\PositiveInt ($avgHeartrate);
 		}
+
+		unset ($this->_overrides['avgHeartrate']);
 	
 		return $avgHeartrate;
 	}
 
-	public function getMinHeartrate() {
-		if ($this->minHeartrate===NULL) {
+	public function getMinHeartrate($autoCreate = TRUE) {
+		if ($this->minHeartrate===NULL && $autoCreate && ! isset($this->_overrides['minHeartrate']) ) {
 			$this->minHeartrate = $this->createMinHeartrate();
 		}
 		return $this->minHeartrate;
@@ -388,15 +437,22 @@ class AerobicSession {
 	}
 
 	protected function validateMinHeartrate($minHeartrate) {
+		if ( $minHeartrate === FALSE ) {
+			$this->_overrides['minHeartrate'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minHeartrate instanceof \com\microsoft\wc\thing\types\PositiveInt  && ! is_null($minHeartrate) ) {
 			$minHeartrate = new \com\microsoft\wc\thing\types\PositiveInt ($minHeartrate);
 		}
+
+		unset ($this->_overrides['minHeartrate']);
 	
 		return $minHeartrate;
 	}
 
-	public function getEnergy() {
-		if ($this->energy===NULL) {
+	public function getEnergy($autoCreate = TRUE) {
+		if ($this->energy===NULL && $autoCreate && ! isset($this->_overrides['energy']) ) {
 			$this->energy = $this->createEnergy();
 		}
 		return $this->energy;
@@ -411,15 +467,22 @@ class AerobicSession {
 	}
 
 	protected function validateEnergy($energy) {
+		if ( $energy === FALSE ) {
+			$this->_overrides['energy'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $energy instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($energy) ) {
 			$energy = new \com\microsoft\wc\thing\types\PositiveDouble ($energy);
 		}
+
+		unset ($this->_overrides['energy']);
 	
 		return $energy;
 	}
 
-	public function getEnergyFromFat() {
-		if ($this->energyFromFat===NULL) {
+	public function getEnergyFromFat($autoCreate = TRUE) {
+		if ($this->energyFromFat===NULL && $autoCreate && ! isset($this->_overrides['energyFromFat']) ) {
 			$this->energyFromFat = $this->createEnergyFromFat();
 		}
 		return $this->energyFromFat;
@@ -434,15 +497,22 @@ class AerobicSession {
 	}
 
 	protected function validateEnergyFromFat($energyFromFat) {
+		if ( $energyFromFat === FALSE ) {
+			$this->_overrides['energyFromFat'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $energyFromFat instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($energyFromFat) ) {
 			$energyFromFat = new \com\microsoft\wc\thing\types\PositiveDouble ($energyFromFat);
 		}
+
+		unset ($this->_overrides['energyFromFat']);
 	
 		return $energyFromFat;
 	}
 
-	public function getPeakSpeed() {
-		if ($this->peakSpeed===NULL) {
+	public function getPeakSpeed($autoCreate = TRUE) {
+		if ($this->peakSpeed===NULL && $autoCreate && ! isset($this->_overrides['peakSpeed']) ) {
 			$this->peakSpeed = $this->createPeakSpeed();
 		}
 		return $this->peakSpeed;
@@ -457,15 +527,22 @@ class AerobicSession {
 	}
 
 	protected function validatePeakSpeed($peakSpeed) {
+		if ( $peakSpeed === FALSE ) {
+			$this->_overrides['peakSpeed'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $peakSpeed instanceof \com\microsoft\wc\thing\types\SpeedValue  && ! is_null($peakSpeed) ) {
 			$peakSpeed = new \com\microsoft\wc\thing\types\SpeedValue ($peakSpeed);
 		}
+
+		unset ($this->_overrides['peakSpeed']);
 	
 		return $peakSpeed;
 	}
 
-	public function getAvgSpeed() {
-		if ($this->avgSpeed===NULL) {
+	public function getAvgSpeed($autoCreate = TRUE) {
+		if ($this->avgSpeed===NULL && $autoCreate && ! isset($this->_overrides['avgSpeed']) ) {
 			$this->avgSpeed = $this->createAvgSpeed();
 		}
 		return $this->avgSpeed;
@@ -480,15 +557,22 @@ class AerobicSession {
 	}
 
 	protected function validateAvgSpeed($avgSpeed) {
+		if ( $avgSpeed === FALSE ) {
+			$this->_overrides['avgSpeed'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $avgSpeed instanceof \com\microsoft\wc\thing\types\SpeedValue  && ! is_null($avgSpeed) ) {
 			$avgSpeed = new \com\microsoft\wc\thing\types\SpeedValue ($avgSpeed);
 		}
+
+		unset ($this->_overrides['avgSpeed']);
 	
 		return $avgSpeed;
 	}
 
-	public function getMinSpeed() {
-		if ($this->minSpeed===NULL) {
+	public function getMinSpeed($autoCreate = TRUE) {
+		if ($this->minSpeed===NULL && $autoCreate && ! isset($this->_overrides['minSpeed']) ) {
 			$this->minSpeed = $this->createMinSpeed();
 		}
 		return $this->minSpeed;
@@ -503,15 +587,22 @@ class AerobicSession {
 	}
 
 	protected function validateMinSpeed($minSpeed) {
+		if ( $minSpeed === FALSE ) {
+			$this->_overrides['minSpeed'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minSpeed instanceof \com\microsoft\wc\thing\types\SpeedValue  && ! is_null($minSpeed) ) {
 			$minSpeed = new \com\microsoft\wc\thing\types\SpeedValue ($minSpeed);
 		}
+
+		unset ($this->_overrides['minSpeed']);
 	
 		return $minSpeed;
 	}
 
-	public function getPeakPace() {
-		if ($this->peakPace===NULL) {
+	public function getPeakPace($autoCreate = TRUE) {
+		if ($this->peakPace===NULL && $autoCreate && ! isset($this->_overrides['peakPace']) ) {
 			$this->peakPace = $this->createPeakPace();
 		}
 		return $this->peakPace;
@@ -526,15 +617,22 @@ class AerobicSession {
 	}
 
 	protected function validatePeakPace($peakPace) {
+		if ( $peakPace === FALSE ) {
+			$this->_overrides['peakPace'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $peakPace instanceof \com\microsoft\wc\thing\types\PaceValue  && ! is_null($peakPace) ) {
 			$peakPace = new \com\microsoft\wc\thing\types\PaceValue ($peakPace);
 		}
+
+		unset ($this->_overrides['peakPace']);
 	
 		return $peakPace;
 	}
 
-	public function getAvgPace() {
-		if ($this->avgPace===NULL) {
+	public function getAvgPace($autoCreate = TRUE) {
+		if ($this->avgPace===NULL && $autoCreate && ! isset($this->_overrides['avgPace']) ) {
 			$this->avgPace = $this->createAvgPace();
 		}
 		return $this->avgPace;
@@ -549,15 +647,22 @@ class AerobicSession {
 	}
 
 	protected function validateAvgPace($avgPace) {
+		if ( $avgPace === FALSE ) {
+			$this->_overrides['avgPace'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $avgPace instanceof \com\microsoft\wc\thing\types\PaceValue  && ! is_null($avgPace) ) {
 			$avgPace = new \com\microsoft\wc\thing\types\PaceValue ($avgPace);
 		}
+
+		unset ($this->_overrides['avgPace']);
 	
 		return $avgPace;
 	}
 
-	public function getMinPace() {
-		if ($this->minPace===NULL) {
+	public function getMinPace($autoCreate = TRUE) {
+		if ($this->minPace===NULL && $autoCreate && ! isset($this->_overrides['minPace']) ) {
 			$this->minPace = $this->createMinPace();
 		}
 		return $this->minPace;
@@ -572,15 +677,22 @@ class AerobicSession {
 	}
 
 	protected function validateMinPace($minPace) {
+		if ( $minPace === FALSE ) {
+			$this->_overrides['minPace'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minPace instanceof \com\microsoft\wc\thing\types\PaceValue  && ! is_null($minPace) ) {
 			$minPace = new \com\microsoft\wc\thing\types\PaceValue ($minPace);
 		}
+
+		unset ($this->_overrides['minPace']);
 	
 		return $minPace;
 	}
 
-	public function getPeakPower() {
-		if ($this->peakPower===NULL) {
+	public function getPeakPower($autoCreate = TRUE) {
+		if ($this->peakPower===NULL && $autoCreate && ! isset($this->_overrides['peakPower']) ) {
 			$this->peakPower = $this->createPeakPower();
 		}
 		return $this->peakPower;
@@ -595,15 +707,22 @@ class AerobicSession {
 	}
 
 	protected function validatePeakPower($peakPower) {
+		if ( $peakPower === FALSE ) {
+			$this->_overrides['peakPower'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $peakPower instanceof \com\microsoft\wc\thing\types\PowerValue  && ! is_null($peakPower) ) {
 			$peakPower = new \com\microsoft\wc\thing\types\PowerValue ($peakPower);
 		}
+
+		unset ($this->_overrides['peakPower']);
 	
 		return $peakPower;
 	}
 
-	public function getAvgPower() {
-		if ($this->avgPower===NULL) {
+	public function getAvgPower($autoCreate = TRUE) {
+		if ($this->avgPower===NULL && $autoCreate && ! isset($this->_overrides['avgPower']) ) {
 			$this->avgPower = $this->createAvgPower();
 		}
 		return $this->avgPower;
@@ -618,15 +737,22 @@ class AerobicSession {
 	}
 
 	protected function validateAvgPower($avgPower) {
+		if ( $avgPower === FALSE ) {
+			$this->_overrides['avgPower'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $avgPower instanceof \com\microsoft\wc\thing\types\PowerValue  && ! is_null($avgPower) ) {
 			$avgPower = new \com\microsoft\wc\thing\types\PowerValue ($avgPower);
 		}
+
+		unset ($this->_overrides['avgPower']);
 	
 		return $avgPower;
 	}
 
-	public function getMinPower() {
-		if ($this->minPower===NULL) {
+	public function getMinPower($autoCreate = TRUE) {
+		if ($this->minPower===NULL && $autoCreate && ! isset($this->_overrides['minPower']) ) {
 			$this->minPower = $this->createMinPower();
 		}
 		return $this->minPower;
@@ -641,15 +767,22 @@ class AerobicSession {
 	}
 
 	protected function validateMinPower($minPower) {
+		if ( $minPower === FALSE ) {
+			$this->_overrides['minPower'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minPower instanceof \com\microsoft\wc\thing\types\PowerValue  && ! is_null($minPower) ) {
 			$minPower = new \com\microsoft\wc\thing\types\PowerValue ($minPower);
 		}
+
+		unset ($this->_overrides['minPower']);
 	
 		return $minPower;
 	}
 
-	public function getPeakTorque() {
-		if ($this->peakTorque===NULL) {
+	public function getPeakTorque($autoCreate = TRUE) {
+		if ($this->peakTorque===NULL && $autoCreate && ! isset($this->_overrides['peakTorque']) ) {
 			$this->peakTorque = $this->createPeakTorque();
 		}
 		return $this->peakTorque;
@@ -664,15 +797,22 @@ class AerobicSession {
 	}
 
 	protected function validatePeakTorque($peakTorque) {
+		if ( $peakTorque === FALSE ) {
+			$this->_overrides['peakTorque'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $peakTorque instanceof \com\microsoft\wc\thing\types\TorqueValue  && ! is_null($peakTorque) ) {
 			$peakTorque = new \com\microsoft\wc\thing\types\TorqueValue ($peakTorque);
 		}
+
+		unset ($this->_overrides['peakTorque']);
 	
 		return $peakTorque;
 	}
 
-	public function getAvgTorque() {
-		if ($this->avgTorque===NULL) {
+	public function getAvgTorque($autoCreate = TRUE) {
+		if ($this->avgTorque===NULL && $autoCreate && ! isset($this->_overrides['avgTorque']) ) {
 			$this->avgTorque = $this->createAvgTorque();
 		}
 		return $this->avgTorque;
@@ -687,15 +827,22 @@ class AerobicSession {
 	}
 
 	protected function validateAvgTorque($avgTorque) {
+		if ( $avgTorque === FALSE ) {
+			$this->_overrides['avgTorque'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $avgTorque instanceof \com\microsoft\wc\thing\types\TorqueValue  && ! is_null($avgTorque) ) {
 			$avgTorque = new \com\microsoft\wc\thing\types\TorqueValue ($avgTorque);
 		}
+
+		unset ($this->_overrides['avgTorque']);
 	
 		return $avgTorque;
 	}
 
-	public function getMinTorque() {
-		if ($this->minTorque===NULL) {
+	public function getMinTorque($autoCreate = TRUE) {
+		if ($this->minTorque===NULL && $autoCreate && ! isset($this->_overrides['minTorque']) ) {
 			$this->minTorque = $this->createMinTorque();
 		}
 		return $this->minTorque;
@@ -710,15 +857,22 @@ class AerobicSession {
 	}
 
 	protected function validateMinTorque($minTorque) {
+		if ( $minTorque === FALSE ) {
+			$this->_overrides['minTorque'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minTorque instanceof \com\microsoft\wc\thing\types\TorqueValue  && ! is_null($minTorque) ) {
 			$minTorque = new \com\microsoft\wc\thing\types\TorqueValue ($minTorque);
 		}
+
+		unset ($this->_overrides['minTorque']);
 	
 		return $minTorque;
 	}
 
-	public function getLeftRightBalance() {
-		if ($this->leftRightBalance===NULL) {
+	public function getLeftRightBalance($autoCreate = TRUE) {
+		if ($this->leftRightBalance===NULL && $autoCreate && ! isset($this->_overrides['leftRightBalance']) ) {
 			$this->leftRightBalance = $this->createLeftRightBalance();
 		}
 		return $this->leftRightBalance;
@@ -733,15 +887,22 @@ class AerobicSession {
 	}
 
 	protected function validateLeftRightBalance($leftRightBalance) {
+		if ( $leftRightBalance === FALSE ) {
+			$this->_overrides['leftRightBalance'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $leftRightBalance instanceof \com\microsoft\wc\thing\types\Percentage  && ! is_null($leftRightBalance) ) {
 			$leftRightBalance = new \com\microsoft\wc\thing\types\Percentage ($leftRightBalance);
 		}
+
+		unset ($this->_overrides['leftRightBalance']);
 	
 		return $leftRightBalance;
 	}
 
-	public function getPeakCadence() {
-		if ($this->peakCadence===NULL) {
+	public function getPeakCadence($autoCreate = TRUE) {
+		if ($this->peakCadence===NULL && $autoCreate && ! isset($this->_overrides['peakCadence']) ) {
 			$this->peakCadence = $this->createPeakCadence();
 		}
 		return $this->peakCadence;
@@ -756,15 +917,22 @@ class AerobicSession {
 	}
 
 	protected function validatePeakCadence($peakCadence) {
+		if ( $peakCadence === FALSE ) {
+			$this->_overrides['peakCadence'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $peakCadence instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($peakCadence) ) {
 			$peakCadence = new \com\microsoft\wc\thing\types\PositiveDouble ($peakCadence);
 		}
+
+		unset ($this->_overrides['peakCadence']);
 	
 		return $peakCadence;
 	}
 
-	public function getAvgCadence() {
-		if ($this->avgCadence===NULL) {
+	public function getAvgCadence($autoCreate = TRUE) {
+		if ($this->avgCadence===NULL && $autoCreate && ! isset($this->_overrides['avgCadence']) ) {
 			$this->avgCadence = $this->createAvgCadence();
 		}
 		return $this->avgCadence;
@@ -779,15 +947,22 @@ class AerobicSession {
 	}
 
 	protected function validateAvgCadence($avgCadence) {
+		if ( $avgCadence === FALSE ) {
+			$this->_overrides['avgCadence'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $avgCadence instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($avgCadence) ) {
 			$avgCadence = new \com\microsoft\wc\thing\types\PositiveDouble ($avgCadence);
 		}
+
+		unset ($this->_overrides['avgCadence']);
 	
 		return $avgCadence;
 	}
 
-	public function getMinCadence() {
-		if ($this->minCadence===NULL) {
+	public function getMinCadence($autoCreate = TRUE) {
+		if ($this->minCadence===NULL && $autoCreate && ! isset($this->_overrides['minCadence']) ) {
 			$this->minCadence = $this->createMinCadence();
 		}
 		return $this->minCadence;
@@ -802,15 +977,22 @@ class AerobicSession {
 	}
 
 	protected function validateMinCadence($minCadence) {
+		if ( $minCadence === FALSE ) {
+			$this->_overrides['minCadence'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minCadence instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($minCadence) ) {
 			$minCadence = new \com\microsoft\wc\thing\types\PositiveDouble ($minCadence);
 		}
+
+		unset ($this->_overrides['minCadence']);
 	
 		return $minCadence;
 	}
 
-	public function getPeakTemperature() {
-		if ($this->peakTemperature===NULL) {
+	public function getPeakTemperature($autoCreate = TRUE) {
+		if ($this->peakTemperature===NULL && $autoCreate && ! isset($this->_overrides['peakTemperature']) ) {
 			$this->peakTemperature = $this->createPeakTemperature();
 		}
 		return $this->peakTemperature;
@@ -825,15 +1007,22 @@ class AerobicSession {
 	}
 
 	protected function validatePeakTemperature($peakTemperature) {
+		if ( $peakTemperature === FALSE ) {
+			$this->_overrides['peakTemperature'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $peakTemperature instanceof \com\microsoft\wc\thing\types\TemperatureValue  && ! is_null($peakTemperature) ) {
 			$peakTemperature = new \com\microsoft\wc\thing\types\TemperatureValue ($peakTemperature);
 		}
+
+		unset ($this->_overrides['peakTemperature']);
 	
 		return $peakTemperature;
 	}
 
-	public function getAvgTemperature() {
-		if ($this->avgTemperature===NULL) {
+	public function getAvgTemperature($autoCreate = TRUE) {
+		if ($this->avgTemperature===NULL && $autoCreate && ! isset($this->_overrides['avgTemperature']) ) {
 			$this->avgTemperature = $this->createAvgTemperature();
 		}
 		return $this->avgTemperature;
@@ -848,15 +1037,22 @@ class AerobicSession {
 	}
 
 	protected function validateAvgTemperature($avgTemperature) {
+		if ( $avgTemperature === FALSE ) {
+			$this->_overrides['avgTemperature'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $avgTemperature instanceof \com\microsoft\wc\thing\types\TemperatureValue  && ! is_null($avgTemperature) ) {
 			$avgTemperature = new \com\microsoft\wc\thing\types\TemperatureValue ($avgTemperature);
 		}
+
+		unset ($this->_overrides['avgTemperature']);
 	
 		return $avgTemperature;
 	}
 
-	public function getMinTemperature() {
-		if ($this->minTemperature===NULL) {
+	public function getMinTemperature($autoCreate = TRUE) {
+		if ($this->minTemperature===NULL && $autoCreate && ! isset($this->_overrides['minTemperature']) ) {
 			$this->minTemperature = $this->createMinTemperature();
 		}
 		return $this->minTemperature;
@@ -871,15 +1067,22 @@ class AerobicSession {
 	}
 
 	protected function validateMinTemperature($minTemperature) {
+		if ( $minTemperature === FALSE ) {
+			$this->_overrides['minTemperature'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minTemperature instanceof \com\microsoft\wc\thing\types\TemperatureValue  && ! is_null($minTemperature) ) {
 			$minTemperature = new \com\microsoft\wc\thing\types\TemperatureValue ($minTemperature);
 		}
+
+		unset ($this->_overrides['minTemperature']);
 	
 		return $minTemperature;
 	}
 
-	public function getPeakAltitude() {
-		if ($this->peakAltitude===NULL) {
+	public function getPeakAltitude($autoCreate = TRUE) {
+		if ($this->peakAltitude===NULL && $autoCreate && ! isset($this->_overrides['peakAltitude']) ) {
 			$this->peakAltitude = $this->createPeakAltitude();
 		}
 		return $this->peakAltitude;
@@ -894,15 +1097,22 @@ class AerobicSession {
 	}
 
 	protected function validatePeakAltitude($peakAltitude) {
+		if ( $peakAltitude === FALSE ) {
+			$this->_overrides['peakAltitude'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $peakAltitude instanceof \com\microsoft\wc\thing\types\AltitudeValue  && ! is_null($peakAltitude) ) {
 			$peakAltitude = new \com\microsoft\wc\thing\types\AltitudeValue ($peakAltitude);
 		}
+
+		unset ($this->_overrides['peakAltitude']);
 	
 		return $peakAltitude;
 	}
 
-	public function getAvgAltitude() {
-		if ($this->avgAltitude===NULL) {
+	public function getAvgAltitude($autoCreate = TRUE) {
+		if ($this->avgAltitude===NULL && $autoCreate && ! isset($this->_overrides['avgAltitude']) ) {
 			$this->avgAltitude = $this->createAvgAltitude();
 		}
 		return $this->avgAltitude;
@@ -917,15 +1127,22 @@ class AerobicSession {
 	}
 
 	protected function validateAvgAltitude($avgAltitude) {
+		if ( $avgAltitude === FALSE ) {
+			$this->_overrides['avgAltitude'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $avgAltitude instanceof \com\microsoft\wc\thing\types\AltitudeValue  && ! is_null($avgAltitude) ) {
 			$avgAltitude = new \com\microsoft\wc\thing\types\AltitudeValue ($avgAltitude);
 		}
+
+		unset ($this->_overrides['avgAltitude']);
 	
 		return $avgAltitude;
 	}
 
-	public function getMinAltitude() {
-		if ($this->minAltitude===NULL) {
+	public function getMinAltitude($autoCreate = TRUE) {
+		if ($this->minAltitude===NULL && $autoCreate && ! isset($this->_overrides['minAltitude']) ) {
 			$this->minAltitude = $this->createMinAltitude();
 		}
 		return $this->minAltitude;
@@ -940,15 +1157,22 @@ class AerobicSession {
 	}
 
 	protected function validateMinAltitude($minAltitude) {
+		if ( $minAltitude === FALSE ) {
+			$this->_overrides['minAltitude'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $minAltitude instanceof \com\microsoft\wc\thing\types\AltitudeValue  && ! is_null($minAltitude) ) {
 			$minAltitude = new \com\microsoft\wc\thing\types\AltitudeValue ($minAltitude);
 		}
+
+		unset ($this->_overrides['minAltitude']);
 	
 		return $minAltitude;
 	}
 
-	public function getElevationGain() {
-		if ($this->elevationGain===NULL) {
+	public function getElevationGain($autoCreate = TRUE) {
+		if ($this->elevationGain===NULL && $autoCreate && ! isset($this->_overrides['elevationGain']) ) {
 			$this->elevationGain = $this->createElevationGain();
 		}
 		return $this->elevationGain;
@@ -963,15 +1187,22 @@ class AerobicSession {
 	}
 
 	protected function validateElevationGain($elevationGain) {
+		if ( $elevationGain === FALSE ) {
+			$this->_overrides['elevationGain'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $elevationGain instanceof \com\microsoft\wc\thing\types\LengthValue  && ! is_null($elevationGain) ) {
 			$elevationGain = new \com\microsoft\wc\thing\types\LengthValue ($elevationGain);
 		}
+
+		unset ($this->_overrides['elevationGain']);
 	
 		return $elevationGain;
 	}
 
-	public function getElevationLoss() {
-		if ($this->elevationLoss===NULL) {
+	public function getElevationLoss($autoCreate = TRUE) {
+		if ($this->elevationLoss===NULL && $autoCreate && ! isset($this->_overrides['elevationLoss']) ) {
 			$this->elevationLoss = $this->createElevationLoss();
 		}
 		return $this->elevationLoss;
@@ -986,15 +1217,22 @@ class AerobicSession {
 	}
 
 	protected function validateElevationLoss($elevationLoss) {
+		if ( $elevationLoss === FALSE ) {
+			$this->_overrides['elevationLoss'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $elevationLoss instanceof \com\microsoft\wc\thing\types\LengthValue  && ! is_null($elevationLoss) ) {
 			$elevationLoss = new \com\microsoft\wc\thing\types\LengthValue ($elevationLoss);
 		}
+
+		unset ($this->_overrides['elevationLoss']);
 	
 		return $elevationLoss;
 	}
 
-	public function getNumberOfSteps() {
-		if ($this->numberOfSteps===NULL) {
+	public function getNumberOfSteps($autoCreate = TRUE) {
+		if ($this->numberOfSteps===NULL && $autoCreate && ! isset($this->_overrides['numberOfSteps']) ) {
 			$this->numberOfSteps = $this->createNumberOfSteps();
 		}
 		return $this->numberOfSteps;
@@ -1009,15 +1247,22 @@ class AerobicSession {
 	}
 
 	protected function validateNumberOfSteps($numberOfSteps) {
+		if ( $numberOfSteps === FALSE ) {
+			$this->_overrides['numberOfSteps'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $numberOfSteps instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($numberOfSteps) ) {
 			$numberOfSteps = new \com\microsoft\wc\thing\types\NonNegativeInt ($numberOfSteps);
 		}
+
+		unset ($this->_overrides['numberOfSteps']);
 	
 		return $numberOfSteps;
 	}
 
-	public function getNumberOfAerobicSteps() {
-		if ($this->numberOfAerobicSteps===NULL) {
+	public function getNumberOfAerobicSteps($autoCreate = TRUE) {
+		if ($this->numberOfAerobicSteps===NULL && $autoCreate && ! isset($this->_overrides['numberOfAerobicSteps']) ) {
 			$this->numberOfAerobicSteps = $this->createNumberOfAerobicSteps();
 		}
 		return $this->numberOfAerobicSteps;
@@ -1032,15 +1277,22 @@ class AerobicSession {
 	}
 
 	protected function validateNumberOfAerobicSteps($numberOfAerobicSteps) {
+		if ( $numberOfAerobicSteps === FALSE ) {
+			$this->_overrides['numberOfAerobicSteps'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $numberOfAerobicSteps instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($numberOfAerobicSteps) ) {
 			$numberOfAerobicSteps = new \com\microsoft\wc\thing\types\NonNegativeInt ($numberOfAerobicSteps);
 		}
+
+		unset ($this->_overrides['numberOfAerobicSteps']);
 	
 		return $numberOfAerobicSteps;
 	}
 
-	public function getAerobicStepMinutes() {
-		if ($this->aerobicStepMinutes===NULL) {
+	public function getAerobicStepMinutes($autoCreate = TRUE) {
+		if ($this->aerobicStepMinutes===NULL && $autoCreate && ! isset($this->_overrides['aerobicStepMinutes']) ) {
 			$this->aerobicStepMinutes = $this->createAerobicStepMinutes();
 		}
 		return $this->aerobicStepMinutes;
@@ -1055,9 +1307,16 @@ class AerobicSession {
 	}
 
 	protected function validateAerobicStepMinutes($aerobicStepMinutes) {
+		if ( $aerobicStepMinutes === FALSE ) {
+			$this->_overrides['aerobicStepMinutes'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $aerobicStepMinutes instanceof \com\microsoft\wc\thing\types\NonNegativeDouble  && ! is_null($aerobicStepMinutes) ) {
 			$aerobicStepMinutes = new \com\microsoft\wc\thing\types\NonNegativeDouble ($aerobicStepMinutes);
 		}
+
+		unset ($this->_overrides['aerobicStepMinutes']);
 	
 		return $aerobicStepMinutes;
 	}

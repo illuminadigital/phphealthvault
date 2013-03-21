@@ -15,6 +15,13 @@ class PIVLPPDTS extends \org\w3\www\_2001\XMLSchema\SXCMPPDTS {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\IVLPPDTS", name="phase")
 	 */
 	protected $phase;
@@ -41,8 +48,8 @@ class PIVLPPDTS extends \org\w3\www\_2001\XMLSchema\SXCMPPDTS {
 		$this->institutionSpecified = ($institutionSpecified===NULL) ? NULL : $this->validateInstitutionSpecified($institutionSpecified);
 	}
 
-	public function getPhase() {
-		if ($this->phase===NULL) {
+	public function getPhase($autoCreate = TRUE) {
+		if ($this->phase===NULL && $autoCreate && ! isset($this->_overrides['phase']) ) {
 			$this->phase = $this->createPhase();
 		}
 		return $this->phase;
@@ -61,8 +68,8 @@ class PIVLPPDTS extends \org\w3\www\_2001\XMLSchema\SXCMPPDTS {
 		return $phase;
 	}
 
-	public function getPeriod() {
-		if ($this->period===NULL) {
+	public function getPeriod($autoCreate = TRUE) {
+		if ($this->period===NULL && $autoCreate && ! isset($this->_overrides['period']) ) {
 			$this->period = $this->createPeriod();
 		}
 		return $this->period;
@@ -81,8 +88,8 @@ class PIVLPPDTS extends \org\w3\www\_2001\XMLSchema\SXCMPPDTS {
 		return $period;
 	}
 
-	public function getAlignment() {
-		if ($this->alignment===NULL) {
+	public function getAlignment($autoCreate = TRUE) {
+		if ($this->alignment===NULL && $autoCreate && ! isset($this->_overrides['alignment']) ) {
 			$this->alignment = $this->createAlignment();
 		}
 		return $this->alignment;
@@ -101,8 +108,8 @@ class PIVLPPDTS extends \org\w3\www\_2001\XMLSchema\SXCMPPDTS {
 		return $alignment;
 	}
 
-	public function getInstitutionSpecified() {
-		if ($this->institutionSpecified===NULL) {
+	public function getInstitutionSpecified($autoCreate = TRUE) {
+		if ($this->institutionSpecified===NULL && $autoCreate && ! isset($this->_overrides['institutionSpecified']) ) {
 			$this->institutionSpecified = $this->createInstitutionSpecified();
 		}
 		return $this->institutionSpecified;

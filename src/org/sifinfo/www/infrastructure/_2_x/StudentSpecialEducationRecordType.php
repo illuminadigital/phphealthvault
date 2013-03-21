@@ -15,6 +15,13 @@ class StudentSpecialEducationRecordType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="ReportingDate")
 	 */
 	protected $reportingDate;
@@ -83,8 +90,8 @@ class StudentSpecialEducationRecordType {
 		$this->sifRefObject = ($sifRefObject===NULL) ? NULL : $this->validateSifRefObject($sifRefObject);
 	}
 
-	public function getReportingDate() {
-		if ($this->reportingDate===NULL) {
+	public function getReportingDate($autoCreate = TRUE) {
+		if ($this->reportingDate===NULL && $autoCreate && ! isset($this->_overrides['reportingDate']) ) {
 			$this->reportingDate = $this->createReportingDate();
 		}
 		return $this->reportingDate;
@@ -106,8 +113,8 @@ class StudentSpecialEducationRecordType {
 		return $reportingDate;
 	}
 
-	public function getLEAInfoData() {
-		if ($this->lEAInfoData===NULL) {
+	public function getLEAInfoData($autoCreate = TRUE) {
+		if ($this->lEAInfoData===NULL && $autoCreate && ! isset($this->_overrides['lEAInfoData']) ) {
 			$this->lEAInfoData = $this->createLEAInfoData();
 		}
 		return $this->lEAInfoData;
@@ -129,8 +136,8 @@ class StudentSpecialEducationRecordType {
 		return $lEAInfoData;
 	}
 
-	public function getSchoolInfoData() {
-		if ($this->schoolInfoData===NULL) {
+	public function getSchoolInfoData($autoCreate = TRUE) {
+		if ($this->schoolInfoData===NULL && $autoCreate && ! isset($this->_overrides['schoolInfoData']) ) {
 			$this->schoolInfoData = $this->createSchoolInfoData();
 		}
 		return $this->schoolInfoData;
@@ -152,8 +159,8 @@ class StudentSpecialEducationRecordType {
 		return $schoolInfoData;
 	}
 
-	public function getStudentParticipationData() {
-		if ($this->studentParticipationData===NULL) {
+	public function getStudentParticipationData($autoCreate = TRUE) {
+		if ($this->studentParticipationData===NULL && $autoCreate && ! isset($this->_overrides['studentParticipationData']) ) {
 			$this->studentParticipationData = $this->createStudentParticipationData();
 		}
 		return $this->studentParticipationData;
@@ -175,8 +182,8 @@ class StudentSpecialEducationRecordType {
 		return $studentParticipationData;
 	}
 
-	public function getStudentParticipationList() {
-		if ($this->studentParticipationList===NULL) {
+	public function getStudentParticipationList($autoCreate = TRUE) {
+		if ($this->studentParticipationList===NULL && $autoCreate && ! isset($this->_overrides['studentParticipationList']) ) {
 			$this->studentParticipationList = $this->createStudentParticipationList();
 		}
 		return $this->studentParticipationList;
@@ -191,15 +198,22 @@ class StudentSpecialEducationRecordType {
 	}
 
 	protected function validateStudentParticipationList($studentParticipationList) {
+		if ( $studentParticipationList === FALSE ) {
+			$this->_overrides['studentParticipationList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $studentParticipationList instanceof \org\sifinfo\www\infrastructure\_2_x\StudentParticipationList  && ! is_null($studentParticipationList) ) {
 			$studentParticipationList = new \org\sifinfo\www\infrastructure\_2_x\StudentParticipationList ($studentParticipationList);
 		}
+
+		unset ($this->_overrides['studentParticipationList']);
 	
 		return $studentParticipationList;
 	}
 
-	public function getStudentPlacementList() {
-		if ($this->studentPlacementList===NULL) {
+	public function getStudentPlacementList($autoCreate = TRUE) {
+		if ($this->studentPlacementList===NULL && $autoCreate && ! isset($this->_overrides['studentPlacementList']) ) {
 			$this->studentPlacementList = $this->createStudentPlacementList();
 		}
 		return $this->studentPlacementList;
@@ -214,15 +228,22 @@ class StudentSpecialEducationRecordType {
 	}
 
 	protected function validateStudentPlacementList($studentPlacementList) {
+		if ( $studentPlacementList === FALSE ) {
+			$this->_overrides['studentPlacementList'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $studentPlacementList instanceof \org\sifinfo\www\infrastructure\_2_x\StudentPlacementList  && ! is_null($studentPlacementList) ) {
 			$studentPlacementList = new \org\sifinfo\www\infrastructure\_2_x\StudentPlacementList ($studentPlacementList);
 		}
+
+		unset ($this->_overrides['studentPlacementList']);
 	
 		return $studentPlacementList;
 	}
 
-	public function getSifMetadata() {
-		if ($this->sifMetadata===NULL) {
+	public function getSifMetadata($autoCreate = TRUE) {
+		if ($this->sifMetadata===NULL && $autoCreate && ! isset($this->_overrides['sifMetadata']) ) {
 			$this->sifMetadata = $this->createSifMetadata();
 		}
 		return $this->sifMetadata;
@@ -237,15 +258,22 @@ class StudentSpecialEducationRecordType {
 	}
 
 	protected function validateSifMetadata($sifMetadata) {
+		if ( $sifMetadata === FALSE ) {
+			$this->_overrides['sifMetadata'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifMetadata instanceof \org\sifinfo\www\infrastructure\_2_x\SIFMetadataType  && ! is_null($sifMetadata) ) {
 			$sifMetadata = new \org\sifinfo\www\infrastructure\_2_x\SIFMetadataType ($sifMetadata);
 		}
+
+		unset ($this->_overrides['sifMetadata']);
 	
 		return $sifMetadata;
 	}
 
-	public function getSifExtendedElements() {
-		if ($this->sifExtendedElements===NULL) {
+	public function getSifExtendedElements($autoCreate = TRUE) {
+		if ($this->sifExtendedElements===NULL && $autoCreate && ! isset($this->_overrides['sifExtendedElements']) ) {
 			$this->sifExtendedElements = $this->createSifExtendedElements();
 		}
 		return $this->sifExtendedElements;
@@ -260,15 +288,22 @@ class StudentSpecialEducationRecordType {
 	}
 
 	protected function validateSifExtendedElements($sifExtendedElements) {
+		if ( $sifExtendedElements === FALSE ) {
+			$this->_overrides['sifExtendedElements'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $sifExtendedElements instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType  && ! is_null($sifExtendedElements) ) {
 			$sifExtendedElements = new \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElementsType ($sifExtendedElements);
 		}
+
+		unset ($this->_overrides['sifExtendedElements']);
 	
 		return $sifExtendedElements;
 	}
 
-	public function getRefId() {
-		if ($this->refId===NULL) {
+	public function getRefId($autoCreate = TRUE) {
+		if ($this->refId===NULL && $autoCreate && ! isset($this->_overrides['refId']) ) {
 			$this->refId = $this->createRefId();
 		}
 		return $this->refId;
@@ -287,8 +322,8 @@ class StudentSpecialEducationRecordType {
 		return $refId;
 	}
 
-	public function getSifRefId() {
-		if ($this->sifRefId===NULL) {
+	public function getSifRefId($autoCreate = TRUE) {
+		if ($this->sifRefId===NULL && $autoCreate && ! isset($this->_overrides['sifRefId']) ) {
 			$this->sifRefId = $this->createSifRefId();
 		}
 		return $this->sifRefId;
@@ -307,8 +342,8 @@ class StudentSpecialEducationRecordType {
 		return $sifRefId;
 	}
 
-	public function getSifRefObject() {
-		if ($this->sifRefObject===NULL) {
+	public function getSifRefObject($autoCreate = TRUE) {
+		if ($this->sifRefObject===NULL && $autoCreate && ! isset($this->_overrides['sifRefObject']) ) {
 			$this->sifRefObject = $this->createSifRefObject();
 		}
 		return $this->sifRefObject;

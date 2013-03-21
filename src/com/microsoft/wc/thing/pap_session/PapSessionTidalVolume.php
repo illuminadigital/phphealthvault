@@ -14,6 +14,13 @@ class PapSessionTidalVolume {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\VolumeValue", name="mean")
 	 */
 	protected $mean;
@@ -46,8 +53,8 @@ class PapSessionTidalVolume {
 		$this->percentile90th = ($percentile90th===NULL) ? NULL : $this->validatePercentile90th($percentile90th);
 	}
 
-	public function getMean() {
-		if ($this->mean===NULL) {
+	public function getMean($autoCreate = TRUE) {
+		if ($this->mean===NULL && $autoCreate && ! isset($this->_overrides['mean']) ) {
 			$this->mean = $this->createMean();
 		}
 		return $this->mean;
@@ -62,15 +69,22 @@ class PapSessionTidalVolume {
 	}
 
 	protected function validateMean($mean) {
+		if ( $mean === FALSE ) {
+			$this->_overrides['mean'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $mean instanceof \com\microsoft\wc\thing\types\VolumeValue  && ! is_null($mean) ) {
 			$mean = new \com\microsoft\wc\thing\types\VolumeValue ($mean);
 		}
+
+		unset ($this->_overrides['mean']);
 	
 		return $mean;
 	}
 
-	public function getMedian() {
-		if ($this->median===NULL) {
+	public function getMedian($autoCreate = TRUE) {
+		if ($this->median===NULL && $autoCreate && ! isset($this->_overrides['median']) ) {
 			$this->median = $this->createMedian();
 		}
 		return $this->median;
@@ -85,15 +99,22 @@ class PapSessionTidalVolume {
 	}
 
 	protected function validateMedian($median) {
+		if ( $median === FALSE ) {
+			$this->_overrides['median'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $median instanceof \com\microsoft\wc\thing\types\VolumeValue  && ! is_null($median) ) {
 			$median = new \com\microsoft\wc\thing\types\VolumeValue ($median);
 		}
+
+		unset ($this->_overrides['median']);
 	
 		return $median;
 	}
 
-	public function getMaximum() {
-		if ($this->maximum===NULL) {
+	public function getMaximum($autoCreate = TRUE) {
+		if ($this->maximum===NULL && $autoCreate && ! isset($this->_overrides['maximum']) ) {
 			$this->maximum = $this->createMaximum();
 		}
 		return $this->maximum;
@@ -108,15 +129,22 @@ class PapSessionTidalVolume {
 	}
 
 	protected function validateMaximum($maximum) {
+		if ( $maximum === FALSE ) {
+			$this->_overrides['maximum'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $maximum instanceof \com\microsoft\wc\thing\types\VolumeValue  && ! is_null($maximum) ) {
 			$maximum = new \com\microsoft\wc\thing\types\VolumeValue ($maximum);
 		}
+
+		unset ($this->_overrides['maximum']);
 	
 		return $maximum;
 	}
 
-	public function getPercentile95th() {
-		if ($this->percentile95th===NULL) {
+	public function getPercentile95th($autoCreate = TRUE) {
+		if ($this->percentile95th===NULL && $autoCreate && ! isset($this->_overrides['percentile95th']) ) {
 			$this->percentile95th = $this->createPercentile95th();
 		}
 		return $this->percentile95th;
@@ -131,15 +159,22 @@ class PapSessionTidalVolume {
 	}
 
 	protected function validatePercentile95th($percentile95th) {
+		if ( $percentile95th === FALSE ) {
+			$this->_overrides['percentile95th'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $percentile95th instanceof \com\microsoft\wc\thing\types\VolumeValue  && ! is_null($percentile95th) ) {
 			$percentile95th = new \com\microsoft\wc\thing\types\VolumeValue ($percentile95th);
 		}
+
+		unset ($this->_overrides['percentile95th']);
 	
 		return $percentile95th;
 	}
 
-	public function getPercentile90th() {
-		if ($this->percentile90th===NULL) {
+	public function getPercentile90th($autoCreate = TRUE) {
+		if ($this->percentile90th===NULL && $autoCreate && ! isset($this->_overrides['percentile90th']) ) {
 			$this->percentile90th = $this->createPercentile90th();
 		}
 		return $this->percentile90th;
@@ -154,9 +189,16 @@ class PapSessionTidalVolume {
 	}
 
 	protected function validatePercentile90th($percentile90th) {
+		if ( $percentile90th === FALSE ) {
+			$this->_overrides['percentile90th'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $percentile90th instanceof \com\microsoft\wc\thing\types\VolumeValue  && ! is_null($percentile90th) ) {
 			$percentile90th = new \com\microsoft\wc\thing\types\VolumeValue ($percentile90th);
 		}
+
+		unset ($this->_overrides['percentile90th']);
 	
 		return $percentile90th;
 	}

@@ -14,6 +14,13 @@ class Time {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\Hour", name="h")
 	 */
 	protected $h;
@@ -40,8 +47,8 @@ class Time {
 		$this->f = ($f===NULL) ? NULL : $this->validateF($f);
 	}
 
-	public function getH() {
-		if ($this->h===NULL) {
+	public function getH($autoCreate = TRUE) {
+		if ($this->h===NULL && $autoCreate && ! isset($this->_overrides['h']) ) {
 			$this->h = $this->createH();
 		}
 		return $this->h;
@@ -63,8 +70,8 @@ class Time {
 		return $h;
 	}
 
-	public function getM() {
-		if ($this->m===NULL) {
+	public function getM($autoCreate = TRUE) {
+		if ($this->m===NULL && $autoCreate && ! isset($this->_overrides['m']) ) {
 			$this->m = $this->createM();
 		}
 		return $this->m;
@@ -86,8 +93,8 @@ class Time {
 		return $m;
 	}
 
-	public function getS() {
-		if ($this->s===NULL) {
+	public function getS($autoCreate = TRUE) {
+		if ($this->s===NULL && $autoCreate && ! isset($this->_overrides['s']) ) {
 			$this->s = $this->createS();
 		}
 		return $this->s;
@@ -102,15 +109,22 @@ class Time {
 	}
 
 	protected function validateS($s) {
+		if ( $s === FALSE ) {
+			$this->_overrides['s'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $s instanceof \com\microsoft\wc\dates\Second  && ! is_null($s) ) {
 			$s = new \com\microsoft\wc\dates\Second ($s);
 		}
+
+		unset ($this->_overrides['s']);
 	
 		return $s;
 	}
 
-	public function getF() {
-		if ($this->f===NULL) {
+	public function getF($autoCreate = TRUE) {
+		if ($this->f===NULL && $autoCreate && ! isset($this->_overrides['f']) ) {
 			$this->f = $this->createF();
 		}
 		return $this->f;
@@ -125,9 +139,16 @@ class Time {
 	}
 
 	protected function validateF($f) {
+		if ( $f === FALSE ) {
+			$this->_overrides['f'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $f instanceof \com\microsoft\wc\dates\Millisecond  && ! is_null($f) ) {
 			$f = new \com\microsoft\wc\dates\Millisecond ($f);
 		}
+
+		unset ($this->_overrides['f']);
 	
 		return $f;
 	}

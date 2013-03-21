@@ -16,6 +16,13 @@ class ZoneBoundary {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\PositiveInt", name="absolute-heartrate")
 	 */
 	protected $absoluteHeartrate;
@@ -30,8 +37,8 @@ class ZoneBoundary {
 		$this->percentMaxHeartrate = ($percentMaxHeartrate===NULL) ? NULL : $this->validatePercentMaxHeartrate($percentMaxHeartrate);
 	}
 
-	public function getAbsoluteHeartrate() {
-		if ($this->absoluteHeartrate===NULL) {
+	public function getAbsoluteHeartrate($autoCreate = TRUE) {
+		if ($this->absoluteHeartrate===NULL && $autoCreate && ! isset($this->_overrides['absoluteHeartrate']) ) {
 			$this->absoluteHeartrate = $this->createAbsoluteHeartrate();
 		}
 		return $this->absoluteHeartrate;
@@ -53,8 +60,8 @@ class ZoneBoundary {
 		return $absoluteHeartrate;
 	}
 
-	public function getPercentMaxHeartrate() {
-		if ($this->percentMaxHeartrate===NULL) {
+	public function getPercentMaxHeartrate($autoCreate = TRUE) {
+		if ($this->percentMaxHeartrate===NULL && $autoCreate && ! isset($this->_overrides['percentMaxHeartrate']) ) {
 			$this->percentMaxHeartrate = $this->createPercentMaxHeartrate();
 		}
 		return $this->percentMaxHeartrate;

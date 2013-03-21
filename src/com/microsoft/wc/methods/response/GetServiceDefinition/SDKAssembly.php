@@ -16,6 +16,13 @@ class SDKAssembly {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="url")
 	 */
 	protected $url;
@@ -36,8 +43,8 @@ class SDKAssembly {
 		$this->docUrl = ($docUrl===NULL) ? NULL : $this->validateDocUrl($docUrl);
 	}
 
-	public function getUrl() {
-		if ($this->url===NULL) {
+	public function getUrl($autoCreate = TRUE) {
+		if ($this->url===NULL && $autoCreate && ! isset($this->_overrides['url']) ) {
 			$this->url = $this->createUrl();
 		}
 		return $this->url;
@@ -59,8 +66,8 @@ class SDKAssembly {
 		return $url;
 	}
 
-	public function getVersion() {
-		if ($this->version===NULL) {
+	public function getVersion($autoCreate = TRUE) {
+		if ($this->version===NULL && $autoCreate && ! isset($this->_overrides['version']) ) {
 			$this->version = $this->createVersion();
 		}
 		return $this->version;
@@ -82,8 +89,8 @@ class SDKAssembly {
 		return $version;
 	}
 
-	public function getDocUrl() {
-		if ($this->docUrl===NULL) {
+	public function getDocUrl($autoCreate = TRUE) {
+		if ($this->docUrl===NULL && $autoCreate && ! isset($this->_overrides['docUrl']) ) {
 			$this->docUrl = $this->createDocUrl();
 		}
 		return $this->docUrl;

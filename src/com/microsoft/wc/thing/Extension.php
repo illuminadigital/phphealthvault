@@ -14,6 +14,13 @@ class Extension {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\AnyMixed", collection="true", name="*")
 	 */
 	protected $any;
@@ -46,8 +53,8 @@ class Extension {
 		$this->xsl = ($xsl===NULL) ? NULL : $this->validateXsl($xsl);
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;
@@ -87,8 +94,8 @@ class Extension {
 		return $any;
 	}
 
-	public function getSource() {
-		if ($this->source===NULL) {
+	public function getSource($autoCreate = TRUE) {
+		if ($this->source===NULL && $autoCreate && ! isset($this->_overrides['source']) ) {
 			$this->source = $this->createSource();
 		}
 		return $this->source;
@@ -110,8 +117,8 @@ class Extension {
 		return $source;
 	}
 
-	public function getVer() {
-		if ($this->ver===NULL) {
+	public function getVer($autoCreate = TRUE) {
+		if ($this->ver===NULL && $autoCreate && ! isset($this->_overrides['ver']) ) {
 			$this->ver = $this->createVer();
 		}
 		return $this->ver;
@@ -133,8 +140,8 @@ class Extension {
 		return $ver;
 	}
 
-	public function getLogo() {
-		if ($this->logo===NULL) {
+	public function getLogo($autoCreate = TRUE) {
+		if ($this->logo===NULL && $autoCreate && ! isset($this->_overrides['logo']) ) {
 			$this->logo = $this->createLogo();
 		}
 		return $this->logo;
@@ -156,8 +163,8 @@ class Extension {
 		return $logo;
 	}
 
-	public function getXsl() {
-		if ($this->xsl===NULL) {
+	public function getXsl($autoCreate = TRUE) {
+		if ($this->xsl===NULL && $autoCreate && ! isset($this->_overrides['xsl']) ) {
 			$this->xsl = $this->createXsl();
 		}
 		return $this->xsl;

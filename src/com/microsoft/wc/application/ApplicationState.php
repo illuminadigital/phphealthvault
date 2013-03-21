@@ -15,6 +15,13 @@ class ApplicationState {
 	static protected $enumValue = array('Active' => 'The application is active and can be used to perform health data related activities, such as get and put of things, request authorization etc.', 'NeedsVerification' => 'NeedsVerification', 'Suspended' => 'The application was used in a fraudulent manor and can no longer be used.', 'Deleted' => 'The application has been deleted and can no longer be used to access any records.');
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="ApplicationState")
 	 */
 	protected $value;
@@ -23,8 +30,8 @@ class ApplicationState {
 		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;

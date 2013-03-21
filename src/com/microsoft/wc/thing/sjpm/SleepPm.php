@@ -19,6 +19,13 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	const NAME = 'Sleep Related Activity';
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\dates\DateTime", name="when")
 	 */
 	protected $when;
@@ -57,8 +64,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		$this->sleepiness = ($sleepiness===NULL) ? NULL : $this->validateSleepiness($sleepiness);
 	}
 
-	public function getWhen() {
-		if ($this->when===NULL) {
+	public function getWhen($autoCreate = TRUE) {
+		if ($this->when===NULL && $autoCreate && ! isset($this->_overrides['when']) ) {
 			$this->when = $this->createWhen();
 		}
 		return $this->when;
@@ -80,8 +87,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		return $when;
 	}
 
-	public function getCaffeine() {
-		if ($this->caffeine===NULL) {
+	public function getCaffeine($autoCreate = TRUE) {
+		if ($this->caffeine===NULL && $autoCreate && ! isset($this->_overrides['caffeine']) ) {
 			$this->caffeine = $this->createCaffeine();
 		}
 		return $this->caffeine;
@@ -96,9 +103,16 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateCaffeine($caffeine) {
+		if ( $caffeine === FALSE ) {
+			$this->_overrides['caffeine'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($caffeine) && ! is_null($caffeine) ) {
 			$caffeine = array($caffeine);
 		}
+
+		unset ($this->_overrides['caffeine']);
 		$count = count($caffeine);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'caffeine', 0));
@@ -116,8 +130,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		$this->caffeine[] = $caffeine;
 	}
 
-	public function getAlcohol() {
-		if ($this->alcohol===NULL) {
+	public function getAlcohol($autoCreate = TRUE) {
+		if ($this->alcohol===NULL && $autoCreate && ! isset($this->_overrides['alcohol']) ) {
 			$this->alcohol = $this->createAlcohol();
 		}
 		return $this->alcohol;
@@ -132,9 +146,16 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAlcohol($alcohol) {
+		if ( $alcohol === FALSE ) {
+			$this->_overrides['alcohol'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($alcohol) && ! is_null($alcohol) ) {
 			$alcohol = array($alcohol);
 		}
+
+		unset ($this->_overrides['alcohol']);
 		$count = count($alcohol);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'alcohol', 0));
@@ -152,8 +173,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		$this->alcohol[] = $alcohol;
 	}
 
-	public function getNap() {
-		if ($this->nap===NULL) {
+	public function getNap($autoCreate = TRUE) {
+		if ($this->nap===NULL && $autoCreate && ! isset($this->_overrides['nap']) ) {
 			$this->nap = $this->createNap();
 		}
 		return $this->nap;
@@ -168,9 +189,16 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateNap($nap) {
+		if ( $nap === FALSE ) {
+			$this->_overrides['nap'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($nap) && ! is_null($nap) ) {
 			$nap = array($nap);
 		}
+
+		unset ($this->_overrides['nap']);
 		$count = count($nap);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'nap', 0));
@@ -188,8 +216,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		$this->nap[] = $nap;
 	}
 
-	public function getExercise() {
-		if ($this->exercise===NULL) {
+	public function getExercise($autoCreate = TRUE) {
+		if ($this->exercise===NULL && $autoCreate && ! isset($this->_overrides['exercise']) ) {
 			$this->exercise = $this->createExercise();
 		}
 		return $this->exercise;
@@ -204,9 +232,16 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateExercise($exercise) {
+		if ( $exercise === FALSE ) {
+			$this->_overrides['exercise'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! is_array ($exercise) && ! is_null($exercise) ) {
 			$exercise = array($exercise);
 		}
+
+		unset ($this->_overrides['exercise']);
 		$count = count($exercise);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'exercise', 0));
@@ -224,8 +259,8 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		$this->exercise[] = $exercise;
 	}
 
-	public function getSleepiness() {
-		if ($this->sleepiness===NULL) {
+	public function getSleepiness($autoCreate = TRUE) {
+		if ($this->sleepiness===NULL && $autoCreate && ! isset($this->_overrides['sleepiness']) ) {
 			$this->sleepiness = $this->createSleepiness();
 		}
 		return $this->sleepiness;

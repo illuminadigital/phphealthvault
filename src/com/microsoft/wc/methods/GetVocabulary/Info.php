@@ -16,6 +16,13 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\methods\GetVocabulary\VocabularyParameters", name="vocabulary-parameters")
 	 */
 	protected $vocabularyParameters;
@@ -24,8 +31,8 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->vocabularyParameters = ($vocabularyParameters===NULL) ? NULL : $this->validateVocabularyParameters($vocabularyParameters);
 	}
 
-	public function getVocabularyParameters() {
-		if ($this->vocabularyParameters===NULL) {
+	public function getVocabularyParameters($autoCreate = TRUE) {
+		if ($this->vocabularyParameters===NULL && $autoCreate && ! isset($this->_overrides['vocabularyParameters']) ) {
 			$this->vocabularyParameters = $this->createVocabularyParameters();
 		}
 		return $this->vocabularyParameters;
@@ -40,9 +47,16 @@ class Info extends \com\microsoft\wc\request\Info {
 	}
 
 	protected function validateVocabularyParameters($vocabularyParameters) {
+		if ( $vocabularyParameters === FALSE ) {
+			$this->_overrides['vocabularyParameters'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $vocabularyParameters instanceof \com\microsoft\wc\methods\GetVocabulary\VocabularyParameters  && ! is_null($vocabularyParameters) ) {
 			$vocabularyParameters = new \com\microsoft\wc\methods\GetVocabulary\VocabularyParameters ($vocabularyParameters);
 		}
+
+		unset ($this->_overrides['vocabularyParameters']);
 	
 		return $vocabularyParameters;
 	}

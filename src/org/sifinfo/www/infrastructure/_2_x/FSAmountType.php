@@ -14,6 +14,13 @@ class FSAmountType extends MonetaryAmountType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlAttribute	(type="string", name="Type")
 	 */
 	protected $type;
@@ -28,8 +35,8 @@ class FSAmountType extends MonetaryAmountType {
 		$this->credits = ($credits===NULL) ? NULL : $this->validateCredits($credits);
 	}
 
-	public function getType() {
-		if ($this->type===NULL) {
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
 			$this->type = $this->createType();
 		}
 		return $this->type;
@@ -51,8 +58,8 @@ class FSAmountType extends MonetaryAmountType {
 		return $type;
 	}
 
-	public function getCredits() {
-		if ($this->credits===NULL) {
+	public function getCredits($autoCreate = TRUE) {
+		if ($this->credits===NULL && $autoCreate && ! isset($this->_overrides['credits']) ) {
 			$this->credits = $this->createCredits();
 		}
 		return $this->credits;

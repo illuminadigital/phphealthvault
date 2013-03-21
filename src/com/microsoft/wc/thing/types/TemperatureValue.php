@@ -17,6 +17,13 @@ class TemperatureValue {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="float", name="celsius")
 	 */
 	protected $celsius;
@@ -31,8 +38,8 @@ class TemperatureValue {
 		$this->display = ($display===NULL) ? NULL : $this->validateDisplay($display);
 	}
 
-	public function getCelsius() {
-		if ($this->celsius===NULL) {
+	public function getCelsius($autoCreate = TRUE) {
+		if ($this->celsius===NULL && $autoCreate && ! isset($this->_overrides['celsius']) ) {
 			$this->celsius = $this->createCelsius();
 		}
 		return $this->celsius;
@@ -62,8 +69,8 @@ class TemperatureValue {
 		return $celsius;
 	}
 
-	public function getDisplay() {
-		if ($this->display===NULL) {
+	public function getDisplay($autoCreate = TRUE) {
+		if ($this->display===NULL && $autoCreate && ! isset($this->_overrides['display']) ) {
 			$this->display = $this->createDisplay();
 		}
 		return $this->display;
@@ -78,9 +85,16 @@ class TemperatureValue {
 	}
 
 	protected function validateDisplay($display) {
+		if ( $display === FALSE ) {
+			$this->_overrides['display'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $display instanceof \com\microsoft\wc\thing\types\DisplayValue  && ! is_null($display) ) {
 			$display = new \com\microsoft\wc\thing\types\DisplayValue ($display);
 		}
+
+		unset ($this->_overrides['display']);
 	
 		return $display;
 	}

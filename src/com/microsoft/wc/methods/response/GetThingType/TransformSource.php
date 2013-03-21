@@ -16,6 +16,13 @@ class TransformSource {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlValue	(type="string", name="TransformSource")
 	 */
 	protected $value;
@@ -30,8 +37,8 @@ class TransformSource {
 		$this->tag = ($tag===NULL) ? NULL : $this->validateTag($tag);
 	}
 
-	public function getValue() {
-		if ($this->value===NULL) {
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
 			$this->value = $this->createValue();
 		}
 		return $this->value;
@@ -53,8 +60,8 @@ class TransformSource {
 		return $value;
 	}
 
-	public function getTag() {
-		if ($this->tag===NULL) {
+	public function getTag($autoCreate = TRUE) {
+		if ($this->tag===NULL && $autoCreate && ! isset($this->_overrides['tag']) ) {
 			$this->tag = $this->createTag();
 		}
 		return $this->tag;

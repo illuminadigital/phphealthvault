@@ -14,6 +14,13 @@ class SPKIDataType {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="SPKISexp")
 	 */
 	protected $sPKISexp;
@@ -28,8 +35,8 @@ class SPKIDataType {
 		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
 	}
 
-	public function getSPKISexp() {
-		if ($this->sPKISexp===NULL) {
+	public function getSPKISexp($autoCreate = TRUE) {
+		if ($this->sPKISexp===NULL && $autoCreate && ! isset($this->_overrides['sPKISexp']) ) {
 			$this->sPKISexp = $this->createSPKISexp();
 		}
 		return $this->sPKISexp;
@@ -51,8 +58,8 @@ class SPKIDataType {
 		return $sPKISexp;
 	}
 
-	public function getAny() {
-		if ($this->any===NULL) {
+	public function getAny($autoCreate = TRUE) {
+		if ($this->any===NULL && $autoCreate && ! isset($this->_overrides['any']) ) {
 			$this->any = $this->createAny();
 		}
 		return $this->any;

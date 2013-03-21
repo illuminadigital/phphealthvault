@@ -15,6 +15,13 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="app-id")
 	 */
 	protected $appId;
@@ -35,8 +42,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		$this->appToken = ($appToken===NULL) ? NULL : $this->validateAppToken($appToken);
 	}
 
-	public function getAppId() {
-		if ($this->appId===NULL) {
+	public function getAppId($autoCreate = TRUE) {
+		if ($this->appId===NULL && $autoCreate && ! isset($this->_overrides['appId']) ) {
 			$this->appId = $this->createAppId();
 		}
 		return $this->appId;
@@ -58,8 +65,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		return $appId;
 	}
 
-	public function getSharedSecret() {
-		if ($this->sharedSecret===NULL) {
+	public function getSharedSecret($autoCreate = TRUE) {
+		if ($this->sharedSecret===NULL && $autoCreate && ! isset($this->_overrides['sharedSecret']) ) {
 			$this->sharedSecret = $this->createSharedSecret();
 		}
 		return $this->sharedSecret;
@@ -81,8 +88,8 @@ class Info extends \com\microsoft\wc\methods\response\Info {
 		return $sharedSecret;
 	}
 
-	public function getAppToken() {
-		if ($this->appToken===NULL) {
+	public function getAppToken($autoCreate = TRUE) {
+		if ($this->appToken===NULL && $autoCreate && ! isset($this->_overrides['appToken']) ) {
 			$this->appToken = $this->createAppToken();
 		}
 		return $this->appToken;

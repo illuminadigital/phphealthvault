@@ -16,6 +16,13 @@ class MaxVO2 {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\PositiveDouble", name="absolute")
 	 */
 	protected $absolute;
@@ -30,8 +37,8 @@ class MaxVO2 {
 		$this->relative = ($relative===NULL) ? NULL : $this->validateRelative($relative);
 	}
 
-	public function getAbsolute() {
-		if ($this->absolute===NULL) {
+	public function getAbsolute($autoCreate = TRUE) {
+		if ($this->absolute===NULL && $autoCreate && ! isset($this->_overrides['absolute']) ) {
 			$this->absolute = $this->createAbsolute();
 		}
 		return $this->absolute;
@@ -46,15 +53,22 @@ class MaxVO2 {
 	}
 
 	protected function validateAbsolute($absolute) {
+		if ( $absolute === FALSE ) {
+			$this->_overrides['absolute'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $absolute instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($absolute) ) {
 			$absolute = new \com\microsoft\wc\thing\types\PositiveDouble ($absolute);
 		}
+
+		unset ($this->_overrides['absolute']);
 	
 		return $absolute;
 	}
 
-	public function getRelative() {
-		if ($this->relative===NULL) {
+	public function getRelative($autoCreate = TRUE) {
+		if ($this->relative===NULL && $autoCreate && ! isset($this->_overrides['relative']) ) {
 			$this->relative = $this->createRelative();
 		}
 		return $this->relative;
@@ -69,9 +83,16 @@ class MaxVO2 {
 	}
 
 	protected function validateRelative($relative) {
+		if ( $relative === FALSE ) {
+			$this->_overrides['relative'] = TRUE;
+			return NULL;
+		}
+
 		if ( ! $relative instanceof \com\microsoft\wc\thing\types\PositiveDouble  && ! is_null($relative) ) {
 			$relative = new \com\microsoft\wc\thing\types\PositiveDouble ($relative);
 		}
+
+		unset ($this->_overrides['relative']);
 	
 		return $relative;
 	}

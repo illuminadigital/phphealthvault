@@ -16,6 +16,13 @@ class HMACAlgorithm {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\HMACAlgorithmData", name="hmac-alg")
 	 */
 	protected $hmacAlg;
@@ -24,8 +31,8 @@ class HMACAlgorithm {
 		$this->hmacAlg = ($hmacAlg===NULL) ? NULL : $this->validateHmacAlg($hmacAlg);
 	}
 
-	public function getHmacAlg() {
-		if ($this->hmacAlg===NULL) {
+	public function getHmacAlg($autoCreate = TRUE) {
+		if ($this->hmacAlg===NULL && $autoCreate && ! isset($this->_overrides['hmacAlg']) ) {
 			$this->hmacAlg = $this->createHmacAlg();
 		}
 		return $this->hmacAlg;

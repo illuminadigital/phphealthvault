@@ -14,6 +14,13 @@ class TextualPermissions {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\auth\TextualPermissionsType", name="textual-permissions-type")
 	 */
 	protected $textualPermissionsType;
@@ -28,8 +35,8 @@ class TextualPermissions {
 		$this->textualRule = ($textualRule===NULL) ? NULL : $this->validateTextualRule($textualRule);
 	}
 
-	public function getTextualPermissionsType() {
-		if ($this->textualPermissionsType===NULL) {
+	public function getTextualPermissionsType($autoCreate = TRUE) {
+		if ($this->textualPermissionsType===NULL && $autoCreate && ! isset($this->_overrides['textualPermissionsType']) ) {
 			$this->textualPermissionsType = $this->createTextualPermissionsType();
 		}
 		return $this->textualPermissionsType;
@@ -51,8 +58,8 @@ class TextualPermissions {
 		return $textualPermissionsType;
 	}
 
-	public function getTextualRule() {
-		if ($this->textualRule===NULL) {
+	public function getTextualRule($autoCreate = TRUE) {
+		if ($this->textualRule===NULL && $autoCreate && ! isset($this->_overrides['textualRule']) ) {
 			$this->textualRule = $this->createTextualRule();
 		}
 		return $this->textualRule;

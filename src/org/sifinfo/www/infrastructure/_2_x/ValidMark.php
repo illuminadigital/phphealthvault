@@ -14,6 +14,13 @@ class ValidMark {
 	 */
 
 	/**
+	 * List of manually overridden properties that should not be re-generated automatically
+	 * @var array
+	 */
+	protected $_overrides = array();
+
+
+	/**
 	 * @XmlText	(type="string", name="Code")
 	 */
 	protected $code;
@@ -34,8 +41,8 @@ class ValidMark {
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
 	}
 
-	public function getCode() {
-		if ($this->code===NULL) {
+	public function getCode($autoCreate = TRUE) {
+		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
 			$this->code = $this->createCode();
 		}
 		return $this->code;
@@ -57,8 +64,8 @@ class ValidMark {
 		return $code;
 	}
 
-	public function getNumericEquivalent() {
-		if ($this->numericEquivalent===NULL) {
+	public function getNumericEquivalent($autoCreate = TRUE) {
+		if ($this->numericEquivalent===NULL && $autoCreate && ! isset($this->_overrides['numericEquivalent']) ) {
 			$this->numericEquivalent = $this->createNumericEquivalent();
 		}
 		return $this->numericEquivalent;
@@ -91,8 +98,8 @@ class ValidMark {
 		return $numericEquivalent;
 	}
 
-	public function getDescription() {
-		if ($this->description===NULL) {
+	public function getDescription($autoCreate = TRUE) {
+		if ($this->description===NULL && $autoCreate && ! isset($this->_overrides['description']) ) {
 			$this->description = $this->createDescription();
 		}
 		return $this->description;
