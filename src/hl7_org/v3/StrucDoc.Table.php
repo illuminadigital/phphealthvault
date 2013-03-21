@@ -19,12 +19,12 @@ class StrucDoc.Table {
 	protected $caption;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Col", name="col")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Col", collection="true", name="col")
 	 */
 	protected $col;
 
 	/**
-	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Colgroup", name="colgroup")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\StrucDoc.Colgroup", collection="true", name="colgroup")
 	 */
 	protected $colgroup;
 
@@ -140,7 +140,7 @@ class StrucDoc.Table {
 	}
 	
 	protected function createCol() {
-		return NULL;
+		return array();
 	}
 
 	public function setCol($col) {
@@ -148,6 +148,21 @@ class StrucDoc.Table {
 	}
 
 	protected function validateCol($col) {
+		$count = count($col);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'col', 0));
+		}
+		foreach ($col as $entry) {
+		}
+	
+		return $col;
+	}
+
+	public function addCol($col) {
+		$this->col[] = $this->validateColType($col);
+	}
+
+	protected function validateColType($col) {
 	
 		return $col;
 	}
@@ -160,7 +175,7 @@ class StrucDoc.Table {
 	}
 	
 	protected function createColgroup() {
-		return NULL;
+		return array();
 	}
 
 	public function setColgroup($colgroup) {
@@ -168,6 +183,21 @@ class StrucDoc.Table {
 	}
 
 	protected function validateColgroup($colgroup) {
+		$count = count($colgroup);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'colgroup', 0));
+		}
+		foreach ($colgroup as $entry) {
+		}
+	
+		return $colgroup;
+	}
+
+	public function addColgroup($colgroup) {
+		$this->colgroup[] = $this->validateColgroupType($colgroup);
+	}
+
+	protected function validateColgroupType($colgroup) {
 	
 		return $colgroup;
 	}
