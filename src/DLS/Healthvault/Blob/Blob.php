@@ -16,6 +16,8 @@ class Blob
     protected $reference;
 
     protected $data = NULL;
+    
+    protected $filename = NULL;
 
     protected $isDeleted = FALSE;
 
@@ -72,35 +74,56 @@ class Blob
 
     public function getData($fetchIfEmpty = TRUE)
     {
-        if (empty($this->data) && $fetchIfEmpty && !empty($this->reference)) {
-            $conn = curl_init($this->reference);
-            curl_setopt($conn, CURLOPT_HEADER, FALSE);
-            curl_setopt($conn, CURLOPT_RETURNTRANSFER, TRUE);
-
-            $response = curl_exec($conn);
-
-            curl_close($conn);
-
-            if ($response === FALSE) {
-                throw new \NetworkIOException(
-                        sprintf('Failed to retrieve blob content from %s',
-                                $this->reference));
+        if (empty($this->data) && $fetchIfEmpty) {
+            if ( ! empty($this->reference) ) {
+                $conn = curl_init($this->reference);
+                curl_setopt($conn, CURLOPT_HEADER, FALSE);
+                curl_setopt($conn, CURLOPT_RETURNTRANSFER, TRUE);
+    
+                $response = curl_exec($conn);
+    
+                curl_close($conn);
+    
+                if ($response === FALSE) {
+                    throw new \NetworkIOException(
+                            sprintf('Failed to retrieve blob content from %s',
+                                    $this->reference));
+                }
+                
+                $this->data = $response;
+                $this->size = self::safeStrlen($response);
+    
+                $this->isNew = FALSE;
+                $this->isUploaded = TRUE;
+                
+            } else if ( ! empty($this->filename) ) {
+                $this->data = file_get_contents($this->filename);
+                
+                $this->size = self::safeStrlen($this->data);
+    
+                $this->isNew = FALSE;
+                $this->isUploaded = FALSE;
             }
-
-            $this->data = $response;
-            $this->size = self::safeStrlen($response);
-
-            $this->isNew = FALSE;
-            $this->isUploaded = TRUE;
         }
 
         return $this->data;
     }
 
-    public function setData($data)
+    public function setData($data, $updateOtherFields = TRUE)
     {
+        if ( ! is_string($data) ) {
+            $this->data = NULL;
+            
+            return $this;
+        }
+        
         $this->data = $data;
-
+        
+        if ($updateOtherFields) {
+            $this->size = self::safeStrlen($this->data);
+            $this->contentType = self::determineContentType($data, TRUE);
+        }
+        
         return $this;
     }
 
@@ -181,6 +204,18 @@ class Blob
         return $this;
     }
 
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
     public function delete()
     {
         $this->isDeleted = TRUE;
@@ -203,5 +238,24 @@ class Blob
         } else {
             return strlen($data);
         }
+    }
+    
+    public static function determineContentType($file, $isString = FALSE)
+    {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+
+        if ( ! $isString ) {
+            $contentType = finfo_file($finfo, $file);
+        } else {
+            $contentType = finfo_buffer($finfo, $file);
+        }
+        
+        finfo_close($finfo);
+        
+        if ( empty($contentType) ) {
+            $contentType = 'application/data'; // Fallback
+        }
+        
+        return $contentType;
     }
 }

@@ -317,7 +317,7 @@ class PlatformMethod
         	curl_setopt($conn, CURLOPT_HEADER, FALSE);
         	
         	curl_setopt($conn, CURLOPT_HTTPHEADER, array(
-        		'Content-Type' => 'text/xml'
+        		'Content-Type: text/xml'
         	));
         }
     	

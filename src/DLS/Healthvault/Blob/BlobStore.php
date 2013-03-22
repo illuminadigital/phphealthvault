@@ -38,7 +38,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         fclose($handle);
         
         if ( empty($contentType) ) {
-            $contentType = $this->determineContentType($file);
+            $contentType = Blob::determineContentType($file);
         }
         
         $blob = new Blob($name, $data['size'], $contentType);
@@ -56,25 +56,6 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
     }
     
-    protected function determineContentType($file, $isString = FALSE)
-    {
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-
-        if ( ! $isString ) {
-            $contentType = finfo_file($finfo, $file);
-        } else {
-            $contentType = finfo_buffer($finfo, $file);
-        }
-        
-        finfo_close($finfo);
-        
-        if ( empty($contentType) ) {
-            $contentType = 'application/data'; // Fallback
-        }
-        
-        return $contentType;
-    }
-    
     public function addBlob(Blob $blob, $skipResync = FALSE)
     {
         $fileUrl = 'data://text/plain;base64,' . base64_encode($blob->getData());
@@ -85,14 +66,14 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
 
         $blob->setSize($uploadData['size']);
         $blob->setReference($uploadData['ref']);
-        $blob->setHashParams($data['hashParameters']);
-        $blob->setHashAlgorithm($data['hashAlgorithm']);
+        $blob->setHashParams($uploadData['hashParameters']);
+        $blob->setHashAlgorithm($uploadData['hashAlgorithm']);
         $blob->setUploaded();
         
         $contentType = $blob->getContentType();
         
         if (empty($contentType)) {
-            $contentType = $this->determineContentType($blob->getData(), TRUE);
+            $contentType = Blob::determineContentType($blob->getData(), TRUE);
         }
         
         $blob->setContentType($contentType);
@@ -175,10 +156,6 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $conn = curl_init($blobRefUrl);
         
-        curl_setopt($conn, CURLOPT_POST, TRUE);
-        curl_setopt($conn, CURLOPT_HEADER, FALSE);
-        curl_setopt($conn, CURLOPT_USERAGENT, 'PHPHV');
-        
         $completed = FALSE;
         
         $sentBytes = 0;
@@ -192,7 +169,6 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
         
         while (($nextChunk = fread($file, $chunkSize)) !== FALSE && ! $completed) {
-            error_log('sentBytes: ' . $sentBytes .' of ' . $totalLength);
             if (feof($file)) {
                 $completed = TRUE;
             }
@@ -218,23 +194,42 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $chunkLength = Blob::safeStrlen($data);
 
         $extraHeaders = array(
-            'Content-Range' => sprintf('bytes %d-%d/%s', $sentBytes, $sentBytes + $chunkLength, $totalLength),
+            'Expect:', // Disable the Expect logic
+            'Content-Range: ' . sprintf('bytes %d-%d/%s', $sentBytes, $sentBytes + $chunkLength, $totalLength),
         );
         
         if ($isComplete) {
             $extraHeaders['x-hv-blob-complete'] = 1;
         }
         
-        curl_setopt($conn, CURLOPT_HTTPHEADER, $extraHeaders);
+/*
+        $dataStream = fopen('data://text/plain,' . urlencode($data), 'r');
         
-        curl_setopt($conn, CURLOPT_POSTFIELDS, $data);
+        error_log('Datastream:');
+        error_log(print_r($dataStream, TRUE));
+        
+        curl_setopt($conn, CURLOPT_PUT, TRUE);
+        curl_setopt($conn, CURLOPT_HEADER, FALSE);
+        curl_setopt($conn, CURLOPT_USERAGENT, 'PHPHV');
+        curl_setopt($conn, CURLOPT_INFILE, $dataStream);
+        curl_setopt($conn, CURLOPT_INFILESIZE, $chunkLength);
+        curl_setopt($conn, CURLOPT_HTTPHEADER, $extraHeaders);
+*/
+        curl_setopt($conn, CURLOPT_POST, TRUE);
+        curl_setopt($conn, CURLOPT_HEADER, TRUE);
+        curl_setopt($conn, CURLOPT_USERAGENT, 'PHPHV');
+        curl_setopt($conn, CURLOPT_POSTFIELDS, urlencode($data));
+        curl_setopt($conn, CURLOPT_HTTPHEADER, $extraHeaders);
+        curl_setopt($conn, CURLOPT_RETURNTRANSFER, TRUE);
         
         $response = curl_exec($conn);
         
+//        fclose($dataStream);
+
         if ($response === FALSE) {
-            throw new \NetworkIOException(sprintf('Failed to send request to %s', $blobRefUrl));
+            throw new \NetworkIOException('Failed to PUT data into HealthVault');
         }
-        
+                
         $sentBytes += $chunkLength;
         
         return TRUE;
@@ -305,7 +300,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $thisBlobInfo->setContentType($storedBlob->getContentType());
         
         $thisBlobHashInfo->setAlgorithm($storedBlob->getHashAlgorithm());
-        $thisBlobHashInfo->getParams()->setBlockSize($storedBlob->getHashParams());
+        $thisBlobHashInfo->getParams()->setBlockSize($storedBlob->getHashParams()->getBlockSize());
         $thisBlobHashInfo->setHash($storedBlob->getHash());
     }
     
@@ -384,13 +379,13 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $blob->setHashAlgorithm($hashAlgorithm);
         }
 
-        $hashParameters = $blob->getHashParameters();
+        $hashParameters = $blob->getHashParams();
         if ( is_object($hashParameters) ) {
             $chunkSize = $hashParameters->getBlockSize();
         }
         if ( empty($chunkSize) ) {
             $chunkSize = 102400;
-            $blob->getHashParameters()->setBlockSize($chunkSize);
+            $blob->getHashParams()->setBlockSize($chunkSize);
         }
         
         /*
@@ -404,17 +399,23 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $data = $blob->getData();
         $blobLength = Blob::safeStrlen($data);
         
-        $hashData = '';
         
-        for ($offset = 0; $offset < $blobLength; $offset += $chunkSize) {
-            $chunk = substr($data, $offset, $chunkSize);
+        if (substr($hashAlgorithm, -5) == 'Block') {
+            $hashAlgorithm = substr($hashAlgorithm, 0, -5);
+
+            $hashData = '';
+            for ($offset = 0; $offset < $blobLength; $offset += $chunkSize) {
+                $chunk = substr($data, $offset, $chunkSize);
+                
+                $hashData .= hash($hashAlgorithm, $chunk);
+            }
             
-            $hashData .= hash($hashAlgorithm, $chunk);
+            $hash = hash($hashAlgorithm, $hashData);
+        } else {
+            $hash = hash($hashAlgorithm, $data);
         }
         
-        $hash = hash($hashAlgorithm, $hashData);
-        
-        $this->hash = $hash;
+        $blob->setHash($hash);
         
         return $this;
     }
