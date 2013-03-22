@@ -214,8 +214,8 @@ class BloodPressure extends WhenThing
     public static function getDisplayFields() {
         return array(
             'when' => 'Date',
-            'diastolic' => 'Diastolic',
             'systolic' => 'Systolic',
+            'diastolic' => 'Diastolic',
             'pulse' => 'Pulse',
             'irregularHeartbeat' => 'Irregular?',
         );
