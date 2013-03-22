@@ -57,7 +57,7 @@ class Glucose extends WhenThing
         $this->value = $value;
 
         if ($this->thing) {
-            $this->setHealthvaultValue($value);
+            $this->setThingValue($value);
         }
         
         return $this;
@@ -79,7 +79,7 @@ class Glucose extends WhenThing
         $this->glucoseMeasurementType = $glucoseMeasurementType;
 
         if ($this->thing) {
-            $this->setHealthvaultGlucoseMeasurementType($glucoseMeasurementType);
+            $this->setThingGlucoseMeasurementType($glucoseMeasurementType);
         }
         
         return $this;
@@ -101,7 +101,7 @@ class Glucose extends WhenThing
         $this->normalcy = $normalcy;
 
         if ($this->thing) {
-            $this->setHealthvaultNormalcy($normalcy);
+            $this->setThingNormalcy($normalcy);
         }
         
         return $this;
@@ -123,7 +123,7 @@ class Glucose extends WhenThing
         $this->measurementContext = $measurementContext;
 
         if ($this->thing) {
-            $this->setHealthvaultMeasurementContext($measurementContext);
+            $this->setThingMeasurementContext($measurementContext);
         }
         
         return $this;
