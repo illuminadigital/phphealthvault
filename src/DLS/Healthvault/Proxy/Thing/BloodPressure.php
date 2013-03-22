@@ -217,7 +217,7 @@ class BloodPressure extends WhenThing
             'systolic' => 'Systolic',
             'diastolic' => 'Diastolic',
             'pulse' => 'Pulse',
-            'irregularHeartbeat' => 'Irregular?',
+            'irregularHeartbeat' => array('label' => 'Irregular?', 'type' => 'boolean'),
         );
     }
 }
