@@ -3,6 +3,12 @@ namespace DLS\Healthvault\Platform;
 
 use DLS\Healthvault\HealthvaultConfigurationInterface;
 
+use com\microsoft\wc\methods\GetThings\ThingFilterSpec;
+use com\microsoft\wc\types\Guid;
+use com\microsoft\wc\methods\GetThings3\ThingRequestGroup2;
+use com\microsoft\wc\methods\GetThings3\ThingFormatSpec2;
+use com\microsoft\wc\methods\GetThings3\BlobFormatSpec;
+
 class GetThingsMethod extends PlatformMethod
 {
     protected $methodName = 'GetThings';
@@ -16,22 +22,28 @@ class GetThingsMethod extends PlatformMethod
 
     protected function getInfoClassName()
     {
-        return sprintf('\com\microsoft\wc\methods\GetThings3\Info', $this->methodName);
+        return '\com\microsoft\wc\methods\GetThings3\Info';
     }
     
-    public function addBasicFilter($id) {
-        $lastGroup = $this->getLastGroup();
+    public function addBasicFilter($id, $newGroup = FALSE) {
+        if ( $newGroup ) {
+            $theGroup = $this->addGroup($this->createGroup());
+        } else {
+            $theGroup = $this->getLastGroup();
+        }
     	
-		$filterSpec = new \com\microsoft\wc\methods\GetThings\ThingFilterSpec();
-		$filterSpec->addTypeId(new \com\microsoft\wc\types\Guid($id));
+		$filterSpec = new ThingFilterSpec();
+		$filterSpec->addTypeId(new Guid($id));
 		
-		$lastGroup->addFilter($filterSpec);
+		$theGroup->addFilter($filterSpec);
+		
+		return $theGroup;
     }
     
     public function addBasicIdFilter($id) {
         $lastGroup = $this->getLastGroup();
         
-        $lastGroup->addId(new \com\microsoft\wc\types\Guid($id));
+        $lastGroup->addId(new Guid($id));
     }
     
     public function getLastGroup() {
@@ -39,8 +51,8 @@ class GetThingsMethod extends PlatformMethod
          
         if (empty($groups)) {
             $lastGroup = $this->createGroup();
-        
-            $this->requestData->getInfo()->addGroup($lastGroup);
+            
+            $this->addGroup($lastGroup);
         } else {
             $groupIndexes = array_keys($groups);
             $lastGroupIndex = array_pop($groupIndexes);
@@ -49,13 +61,19 @@ class GetThingsMethod extends PlatformMethod
         
         return $lastGroup;
     }
+
+    public function addGroup($group) {
+        $this->requestData->getInfo()->addGroup($group);
+        
+        return $group;
+    }
     
     public function createGroup($format = NULL) {
     	if ($format == NULL) {
     		$format = $this->getDefaultFormat();
     	}
     	
-    	$group = new \com\microsoft\wc\methods\GetThings3\ThingRequestGroup2();
+    	$group = new ThingRequestGroup2();
     	$group->setFormat($format);
     	
     	return $group;
@@ -81,7 +99,7 @@ class GetThingsMethod extends PlatformMethod
             }
         }
         
-        $section = new \com\microsoft\wc\methods\GetThings3\ThingSectionSpec2($sectionName);
+        $section = new ThingSectionSpec2($sectionName);
         $format->addSection($section);
         
         return $format;
@@ -106,9 +124,7 @@ class GetThingsMethod extends PlatformMethod
         
         $blobPayloadRequest = $format->getBlobPayloadRequest();
         $blobFormat = $blobPayloadRequest->getBlobFormat();
-        //$blobFormatSpec = $blobFormat->getBlobFormatSpec();
-        //$blobFormatSpec->setValue('streamed');
-        $blobFormatSpec = new \com\microsoft\wc\methods\GetThings3\BlobFormatSpec('streamed');
+        $blobFormatSpec = new BlobFormatSpec('streamed');
         $blobFormat->setBlobFormatSpec($blobFormatSpec);
     }
 }
