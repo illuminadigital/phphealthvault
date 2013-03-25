@@ -314,7 +314,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
             $thisBlobName = $blobInfo->getName()->getValue();
         
-            if (isset($this->blobs[$thisBlobName])) {
+            if (isset($this->blobs[$thisBlobName]) && $this->blobs[$thisblobName->isModified()]) {
                 // Resync existing
                 
                 $blob = $this->blobs[$thisBlobName];

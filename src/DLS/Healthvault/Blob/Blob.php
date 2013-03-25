@@ -21,7 +21,7 @@ class Blob
 
     protected $isDeleted = FALSE;
 
-    protected $isNew = FALSE;
+    protected $isModified = FALSE;
 
     protected $isUploaded = FALSE;
 
@@ -43,9 +43,9 @@ class Blob
         return $this->isDeleted;
     }
 
-    public function isNew()
+    public function isModified()
     {
-        return $this->isNew;
+        return $this->isModified;
     }
 
     public function isUploaded()
@@ -69,6 +69,8 @@ class Blob
     {
         $this->reference = $reference;
 
+        $this->isModified = TRUE;
+        
         return $this;
     }
 
@@ -93,7 +95,7 @@ class Blob
                 $this->data = $response;
                 $this->size = self::safeStrlen($response);
     
-                $this->isNew = FALSE;
+                $this->isModified = FALSE;
                 $this->isUploaded = TRUE;
                 
             } else if ( ! empty($this->filename) ) {
@@ -101,7 +103,7 @@ class Blob
                 
                 $this->size = self::safeStrlen($this->data);
     
-                $this->isNew = FALSE;
+                $this->isModified = FALSE;
                 $this->isUploaded = FALSE;
             }
         }
@@ -124,6 +126,8 @@ class Blob
             $this->contentType = self::determineContentType($data, TRUE);
         }
         
+        $this->isModified = TRUE;
+        
         return $this;
     }
 
@@ -141,6 +145,8 @@ class Blob
     {
         $this->name = $name;
         
+        $this->isModified = TRUE;
+        
         return $this;
     }
 
@@ -153,6 +159,8 @@ class Blob
     {
         $this->contentType = $contentType;
 
+        $this->isModified = TRUE;
+        
         return $this;
     }
 
@@ -165,6 +173,8 @@ class Blob
     {
         $this->size = $size;
 
+        $this->isModified = TRUE;
+        
         return $this;
     }
 
@@ -177,6 +187,8 @@ class Blob
     {
         $this->hashAlgorithm = $hashAlgorithm;
 
+        $this->isModified = TRUE;
+        
         return $this;
     }
 
@@ -189,6 +201,8 @@ class Blob
     {
         $this->hashParams = $hashParams;
 
+        $this->isModified = TRUE;
+        
         return $this;
     }
 
@@ -201,6 +215,8 @@ class Blob
     {
         $this->hash = $hash;
 
+        $this->isModified = TRUE;
+        
         return $this;
     }
 
@@ -219,6 +235,7 @@ class Blob
     public function delete()
     {
         $this->isDeleted = TRUE;
+        $this->isModified = TRUE;
     }
 
     /**
