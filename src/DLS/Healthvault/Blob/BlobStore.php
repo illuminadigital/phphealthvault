@@ -196,27 +196,14 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $chunkLength = Blob::safeStrlen($data);
 
         $extraHeaders = array(
-            'Expect:', // Disable the Expect logic
+            'Expect:', // Disable the Expect logic which would mean waiting for a response before sending
             'Content-Range: ' . sprintf('bytes %d-%d/%s', $sentBytes, $sentBytes + $chunkLength, $totalLength),
         );
         
         if ($isComplete) {
-            $extraHeaders['x-hv-blob-complete'] = 1;
+            $extraHeaders[] = 'x-hv-blob-complete: 1';
         }
         
-/*
-        $dataStream = fopen('data://text/plain,' . urlencode($data), 'r');
-        
-        error_log('Datastream:');
-        error_log(print_r($dataStream, TRUE));
-        
-        curl_setopt($conn, CURLOPT_PUT, TRUE);
-        curl_setopt($conn, CURLOPT_HEADER, FALSE);
-        curl_setopt($conn, CURLOPT_USERAGENT, 'PHPHV');
-        curl_setopt($conn, CURLOPT_INFILE, $dataStream);
-        curl_setopt($conn, CURLOPT_INFILESIZE, $chunkLength);
-        curl_setopt($conn, CURLOPT_HTTPHEADER, $extraHeaders);
-*/
         curl_setopt($conn, CURLOPT_POST, TRUE);
         curl_setopt($conn, CURLOPT_HEADER, TRUE);
         curl_setopt($conn, CURLOPT_USERAGENT, 'PHPHV');
@@ -226,8 +213,6 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $response = curl_exec($conn);
         
-//        fclose($dataStream);
-
         if ($response === FALSE) {
             throw new \NetworkIOException('Failed to PUT data into HealthVault');
         }
