@@ -197,12 +197,17 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
 
         $extraHeaders = array(
             'Expect:', // Disable the Expect logic which would mean waiting for a response before sending
-            'Content-Range: ' . sprintf('bytes %d-%d/%s', $sentBytes, $sentBytes + $chunkLength, $totalLength),
         );
+        
+        if ($chunkLength > 0) {
+            $extraHeaders[] = 'Content-Range: ' . sprintf('bytes %d-%d/%s', $sentBytes, $sentBytes + $chunkLength -1, $totalLength);
+        }
         
         if ($isComplete) {
             $extraHeaders[] = 'x-hv-blob-complete: 1';
         }
+        
+        error_log(print_r($extraHeaders, TRUE));
         
         curl_setopt($conn, CURLOPT_POST, TRUE);
         curl_setopt($conn, CURLOPT_HEADER, TRUE);
