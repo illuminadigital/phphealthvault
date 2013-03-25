@@ -5,9 +5,9 @@ use DLS\Healthvault\HealthvaultConfigurationInterface;
 
 use com\microsoft\wc\types\Guid;
 use com\microsoft\wc\methods\GetThings\ThingFilterSpec;
-use com\microsoft\wc\methods\GetThings\ThingSectionSpec;
 use com\microsoft\wc\methods\GetThings3\ThingRequestGroup2;
 use com\microsoft\wc\methods\GetThings3\ThingFormatSpec2;
+use com\microsoft\wc\methods\GetThings3\ThingSectionSpec2;
 use com\microsoft\wc\methods\GetThings3\BlobFormatSpec;
 
 class GetThingsMethod extends PlatformMethod
