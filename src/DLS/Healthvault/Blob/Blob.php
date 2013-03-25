@@ -237,6 +237,12 @@ class Blob
         $this->isDeleted = TRUE;
         $this->isModified = TRUE;
     }
+    
+    public function setClean($isClean = FALSE) {
+        if ($isClean) {
+            $this->isModified = FALSE;
+        }
+    }
 
     /**
      * @see http://www.php.net/manual/en/function.strlen.php#54906

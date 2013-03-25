@@ -52,7 +52,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $this->blobs[$name] = $blob;
         
         if ( ! $skipResync ) {
-            $this->syncToThing($name);
+            $this->syncToThing();
         }
     }
     
@@ -85,7 +85,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $this->blobs[$name] = $blob;
         
         if ( ! $skipResync ) {
-            $this->synctoThing($name);
+            $this->synctoThing();
         }
         
         return TRUE;
@@ -110,7 +110,9 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $addedNames[$name] = TRUE;
         }
         
-        $this->syncToThing($addedNames);
+        $this->syncToThing();
+        
+        return TRUE;
     }
     
     public function remove($name) {
@@ -129,7 +131,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $blob->delete();
         }
         
-        $this->syncToThing(array_flip($names));
+        $this->syncToThing();
     }
 
     public function get($name) {
@@ -235,18 +237,16 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         return TRUE;
     }
     
-    protected function syncToThing($names = NULL) {
-        if ( empty ($names) ) {
-            $names = $this->blobs;
-        } else if ( ! is_array($names) ) {
-            $names = array($names => TRUE);
-        }
+    protected function syncToThing() {
+		$names = $this->blobs;
         
         $blobPayload = $this->thing->getBlobPayload();
         
         $processed = array();
         
-        foreach ($blobPayload->getBlob() as $thisBlob) {
+        $blobData = $blobPayload->getBlob();
+        
+        foreach ($blobData as $index => $thisBlob) {
             $blobInfo = $thisBlob->getBlobInfo();
             
             $thisBlobName = $blobInfo->getName()->getValue();
@@ -260,24 +260,38 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                         ->setBase64data(FALSE)
                         ->setBlobRefUrl(FALSE)
                     ;
-                } else if ($this->blobs[$thisBlobName]->isNew()) {
+                } else if ($this->blobs[$thisBlobName]->isModified()) {
                     $this->updateThingBlob($thisBlob, $thisBlobName);
+                } else {
+                    // Remove unchanged items
+                    unset ($blobData[$index]);
                 }
                 
                 $processed[$thisBlobName] = TRUE;
             }
         }
         
+        // Don't use the internal mechanisms as they can't cope with creating an empty array of blobs. We will deal with that later.
+        
         foreach (array_keys($names) as $thisBlobName) {
-            if ( ! isset($processed[$thisBlobName]) ) {
+            $thisBlobData = $this->blobs[$thisBlobName];
+            
+            if ( ! isset($processed[$thisBlobName]) && ($thisBlobData->isModified() && ! $thisBlobData->isDeleted())) {
                 // New entry
                 
                 $thisBlob = new BlobPayloadItem();
                 
                 $this->updateThingBlob($thisBlob, $thisBlobName);
                 
-                $blobPayload->addBlob($thisBlob);
+                $blobData[] = $thisBlob;
             }
+        }
+        
+        if ( ! empty($blobData) ) {
+            // Write the changes back into the payload;
+            $blobPayload->setBlob($blobData);
+        } else {
+            $this->thing->setBlobPayload(FALSE);
         }
     }
     
@@ -314,7 +328,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
             $thisBlobName = $blobInfo->getName()->getValue();
         
-            if (isset($this->blobs[$thisBlobName]) && $this->blobs[$thisblobName->isModified()]) {
+            if (isset($this->blobs[$thisBlobName])) {
                 // Resync existing
                 
                 $blob = $this->blobs[$thisBlobName];
@@ -353,6 +367,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 ->setHashParams($hashInfo->getParams()->getBlockSize())
                 ->setHash($hashInfo->getHash()->getValue())
                 ->setReference($thisBlob->getBlobRefUrl(FALSE))
+                ->setClean(TRUE)
             ;
         }
         
@@ -384,9 +399,12 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $chunkSize = $hashParameters->getBlockSize();
         }
         if ( empty($chunkSize) ) {
-            $chunkSize = 102400;
+            $chunkSize = 1 << 21; // From the .NET code
             $blob->getHashParams()->setBlockSize($chunkSize);
         }
+        
+        // Convert from BITS to BYTES
+        $chunkSize = $chunkSize >> 3;
         
         /*
          * The procedure appears to be:
@@ -399,20 +417,20 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $data = $blob->getData();
         $blobLength = Blob::safeStrlen($data);
         
-        
         if (substr($hashAlgorithm, -5) == 'Block') {
             $hashAlgorithm = substr($hashAlgorithm, 0, -5);
 
             $hashData = '';
-            for ($offset = 0; $offset < $blobLength; $offset += $chunkSize) {
+            $count = 0;
+            for ($offset = 0; $offset < $blobLength; $offset += $chunkSize, $count++) {
                 $chunk = substr($data, $offset, $chunkSize);
                 
-                $hashData .= hash($hashAlgorithm, $chunk);
+                $hashData .= hash($hashAlgorithm, $chunk, TRUE);
             }
             
-            $hash = hash($hashAlgorithm, $hashData);
+            $hash = base64_encode(hash($hashAlgorithm, $hashData, TRUE));
         } else {
-            $hash = hash($hashAlgorithm, $data);
+            $hash = base64_encode(hash($hashAlgorithm, $data, TRUE));
         }
         
         $blob->setHash($hash);
