@@ -13,7 +13,7 @@ abstract class WhenThing extends BaseThing
 {
     /**
      * @Assert\NotBlank()
-     * @Assert\DateTime
+     * @Assert\DateTime()
      * @var date
      */
     protected $when;
