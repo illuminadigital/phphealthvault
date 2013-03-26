@@ -3,7 +3,9 @@ namespace DLS\Healthvault\Proxy\Type;
 
 use DLS\Healthvault\Utilities\VocabularyInterface;
 
-class CodableValue
+use DLS\Healthvault\Proxy\Type\VocabularyType;
+
+class CodableValue extends VocabularyType
 {
     /**
      * @var string

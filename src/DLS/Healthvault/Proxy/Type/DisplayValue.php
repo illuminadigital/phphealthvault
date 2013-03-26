@@ -1,6 +1,9 @@
 <?php
 namespace DLS\Healthvault\Proxy\Type;
-abstract class DisplayValue implements DisplayValueInterface
+
+use DLS\Healthvault\Proxy\Type\BaseType;
+
+abstract class DisplayValue extends BaseType implements DisplayValueInterface
 {
 
     /**
