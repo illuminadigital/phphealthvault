@@ -229,4 +229,9 @@ class LifeGoal extends BaseThing
     public static function getStatusOptions() {
         return array('Active' => 'The goal is actively being worked toward.', 'Achieved' => 'The goal has been achieved.', 'Abandoned' => 'The goal has been abandoned.');
     }
+    
+    public static function reallySupports(Thing2 $thing)
+    {
+        return ($thing->getTypeId()->getValue() == hvLifeGoal::ID);
+    }
 }
