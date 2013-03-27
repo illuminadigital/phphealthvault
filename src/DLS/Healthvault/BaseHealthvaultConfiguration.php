@@ -50,11 +50,6 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
             {
                 $this->marshallingService = $marshallingService;
             } 
-            else if (empty($this->marshallingService) )
-            {
-                // Set up the default marshalling
-                $this->marshallingService = $this->getDefaultMarshallingService();
-            }
     
             if ( ! empty($seed) ) {
                 $this->setSeed($seed);
@@ -65,6 +60,12 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
             if ( ! empty($appAuthtoken) ) {
                 $this->appAuthToken = $appAuthtoken;
             }
+        }
+        
+        if (empty($this->marshallingService) )
+        {
+            // Set up the default marshalling
+            $this->marshallingService = $this->getDefaultMarshallingService();
         }
         
         $this->checkConfiguration();
