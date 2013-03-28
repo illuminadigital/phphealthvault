@@ -197,6 +197,8 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
 
         $extraHeaders = array(
             'Expect:', // Disable the Expect logic which would mean waiting for a response before sending
+            'Content-Type:', // No Content Type
+            'Transfer-Encoding: chunked', // Sending it in bits
         );
         
         if ($chunkLength > 0) {
@@ -207,12 +209,10 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $extraHeaders[] = 'x-hv-blob-complete: 1';
         }
         
-        error_log(print_r($extraHeaders, TRUE));
-        
         curl_setopt($conn, CURLOPT_POST, TRUE);
         curl_setopt($conn, CURLOPT_HEADER, TRUE);
         curl_setopt($conn, CURLOPT_USERAGENT, 'PHPHV');
-        curl_setopt($conn, CURLOPT_POSTFIELDS, urlencode($data));
+        curl_setopt($conn, CURLOPT_POSTFIELDS, $data);
         curl_setopt($conn, CURLOPT_HTTPHEADER, $extraHeaders);
         curl_setopt($conn, CURLOPT_RETURNTRANSFER, TRUE);
         
@@ -221,7 +221,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         if ($response === FALSE) {
             throw new \NetworkIOException('Failed to PUT data into HealthVault');
         }
-                
+        
         $sentBytes += $chunkLength;
         
         return TRUE;
