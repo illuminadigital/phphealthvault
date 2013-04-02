@@ -11,7 +11,7 @@ namespace com\microsoft\wc\thing\care_plan;
  */
 class CarePlanTasks {
 	/**
-	 * List of care plan tasks
+	 * List of care plan tasks.
 	 */
 
 	/**

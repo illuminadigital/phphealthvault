@@ -66,6 +66,11 @@ class POCDMT000040.AssociatedEntity {
 	protected $scopingOrganization;
 
 	/**
+	 * @XmlElement	(type="\hl7_org\v3\Patient", name="patient")
+	 */
+	protected $patient;
+
+	/**
 	 * @XmlAttribute	(type="string", name="nullFlavor")
 	 */
 	protected $nullFlavor;
@@ -75,7 +80,7 @@ class POCDMT000040.AssociatedEntity {
 	 */
 	protected $classCode;
 
-	public function __construct($realmCode = NULL, $typeId = NULL, $templateId = NULL, $id = NULL, $code = NULL, $addr = NULL, $telecom = NULL, $associatedPerson = NULL, $scopingOrganization = NULL, $nullFlavor = NULL, $classCode = NULL) {
+	public function __construct($realmCode = NULL, $typeId = NULL, $templateId = NULL, $id = NULL, $code = NULL, $addr = NULL, $telecom = NULL, $associatedPerson = NULL, $scopingOrganization = NULL, $patient = NULL, $nullFlavor = NULL, $classCode = NULL) {
 		$this->realmCode = ($realmCode===NULL) ? NULL : $this->validateRealmCode($realmCode);
 		$this->typeId = ($typeId===NULL) ? NULL : $this->validateTypeId($typeId);
 		$this->templateId = ($templateId===NULL) ? NULL : $this->validateTemplateId($templateId);
@@ -85,6 +90,7 @@ class POCDMT000040.AssociatedEntity {
 		$this->telecom = ($telecom===NULL) ? NULL : $this->validateTelecom($telecom);
 		$this->associatedPerson = ($associatedPerson===NULL) ? NULL : $this->validateAssociatedPerson($associatedPerson);
 		$this->scopingOrganization = ($scopingOrganization===NULL) ? NULL : $this->validateScopingOrganization($scopingOrganization);
+		$this->patient = ($patient===NULL) ? NULL : $this->validatePatient($patient);
 		$this->nullFlavor = ($nullFlavor===NULL) ? NULL : $this->validateNullFlavor($nullFlavor);
 		$this->classCode = ($classCode===NULL) ? NULL : $this->validateClassCode($classCode);
 	}
@@ -342,6 +348,29 @@ class POCDMT000040.AssociatedEntity {
 	protected function validateScopingOrganization($scopingOrganization) {
 	
 		return $scopingOrganization;
+	}
+
+	public function getPatient($autoCreate = TRUE) {
+		if ($this->patient===NULL && $autoCreate && ! isset($this->_overrides['patient']) ) {
+			$this->patient = $this->createPatient();
+		}
+		return $this->patient;
+	}
+	
+	protected function createPatient() {
+		return NULL;
+	}
+
+	public function setPatient($patient) {
+		$this->patient = $this->validatePatient($patient);
+	}
+
+	protected function validatePatient($patient) {
+		if ( ! is_patient($patient) && ! is_null($patient) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'patient', 'patient'));
+		}
+	
+		return $patient;
 	}
 
 	public function getNullFlavor($autoCreate = TRUE) {

@@ -36,6 +36,11 @@ class AppWithLogos {
 	protected $appAuthRequired;
 
 	/**
+	 * @XmlText	(type="boolean", name="restrict-app-users")
+	 */
+	protected $restrictAppUsers;
+
+	/**
 	 * @XmlText	(type="boolean", name="is-published")
 	 */
 	protected $isPublished;
@@ -155,10 +160,16 @@ class AppWithLogos {
 	 */
 	protected $methods;
 
-	public function __construct($id = NULL, $name = NULL, $appAuthRequired = NULL, $isPublished = NULL, $actionUrl = NULL, $description = NULL, $authReason = NULL, $domainName = NULL, $clientServiceToken = NULL, $largeLogo = NULL, $smallLogo = NULL, $persistentTokens = NULL, $personOnlineBaseAuthXml = NULL, $personOfflineBaseAuthXml = NULL, $privacyStatement = NULL, $termsOfUse = NULL, $dtcSuccessMessage = NULL, $appAttributes = NULL, $appType = NULL, $masterAppId = NULL, $masterAppName = NULL, $createdDate = NULL, $updatedDate = NULL, $validIpPrefixes = NULL, $vocabularyAuthorizations = NULL, $childVocabularyAuthorizationsCeiling = NULL, $methods = NULL) {
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\location\SupportedLocationList", name="supported-record-locations")
+	 */
+	protected $supportedRecordLocations;
+
+	public function __construct($id = NULL, $name = NULL, $appAuthRequired = NULL, $restrictAppUsers = NULL, $isPublished = NULL, $actionUrl = NULL, $description = NULL, $authReason = NULL, $domainName = NULL, $clientServiceToken = NULL, $largeLogo = NULL, $smallLogo = NULL, $persistentTokens = NULL, $personOnlineBaseAuthXml = NULL, $personOfflineBaseAuthXml = NULL, $privacyStatement = NULL, $termsOfUse = NULL, $dtcSuccessMessage = NULL, $appAttributes = NULL, $appType = NULL, $masterAppId = NULL, $masterAppName = NULL, $createdDate = NULL, $updatedDate = NULL, $validIpPrefixes = NULL, $vocabularyAuthorizations = NULL, $childVocabularyAuthorizationsCeiling = NULL, $methods = NULL, $supportedRecordLocations = NULL) {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 		$this->appAuthRequired = ($appAuthRequired===NULL) ? NULL : $this->validateAppAuthRequired($appAuthRequired);
+		$this->restrictAppUsers = ($restrictAppUsers===NULL) ? NULL : $this->validateRestrictAppUsers($restrictAppUsers);
 		$this->isPublished = ($isPublished===NULL) ? NULL : $this->validateIsPublished($isPublished);
 		$this->actionUrl = ($actionUrl===NULL) ? NULL : $this->validateActionUrl($actionUrl);
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
@@ -183,6 +194,7 @@ class AppWithLogos {
 		$this->vocabularyAuthorizations = ($vocabularyAuthorizations===NULL) ? NULL : $this->validateVocabularyAuthorizations($vocabularyAuthorizations);
 		$this->childVocabularyAuthorizationsCeiling = ($childVocabularyAuthorizationsCeiling===NULL) ? NULL : $this->validateChildVocabularyAuthorizationsCeiling($childVocabularyAuthorizationsCeiling);
 		$this->methods = ($methods===NULL) ? NULL : $this->validateMethods($methods);
+		$this->supportedRecordLocations = ($supportedRecordLocations===NULL) ? NULL : $this->validateSupportedRecordLocations($supportedRecordLocations);
 	}
 
 	public function getId($autoCreate = TRUE) {
@@ -265,6 +277,29 @@ class AppWithLogos {
 		}
 	
 		return $appAuthRequired;
+	}
+
+	public function getRestrictAppUsers($autoCreate = TRUE) {
+		if ($this->restrictAppUsers===NULL && $autoCreate && ! isset($this->_overrides['restrictAppUsers']) ) {
+			$this->restrictAppUsers = $this->createRestrictAppUsers();
+		}
+		return $this->restrictAppUsers;
+	}
+	
+	protected function createRestrictAppUsers() {
+		return FALSE;
+	}
+
+	public function setRestrictAppUsers($restrictAppUsers) {
+		$this->restrictAppUsers = $this->validateRestrictAppUsers($restrictAppUsers);
+	}
+
+	protected function validateRestrictAppUsers($restrictAppUsers) {
+		if (!is_bool($restrictAppUsers)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'restrictAppUsers', 'boolean'));
+		}
+	
+		return $restrictAppUsers;
 	}
 
 	public function getIsPublished($autoCreate = TRUE) {
@@ -969,5 +1004,35 @@ class AppWithLogos {
 		unset ($this->_overrides['methods']);
 	
 		return $methods;
+	}
+
+	public function getSupportedRecordLocations($autoCreate = TRUE) {
+		if ($this->supportedRecordLocations===NULL && $autoCreate && ! isset($this->_overrides['supportedRecordLocations']) ) {
+			$this->supportedRecordLocations = $this->createSupportedRecordLocations();
+		}
+		return $this->supportedRecordLocations;
+	}
+	
+	protected function createSupportedRecordLocations() {
+		return new \com\microsoft\wc\location\SupportedLocationList();
+	}
+
+	public function setSupportedRecordLocations($supportedRecordLocations) {
+		$this->supportedRecordLocations = $this->validateSupportedRecordLocations($supportedRecordLocations);
+	}
+
+	protected function validateSupportedRecordLocations($supportedRecordLocations) {
+		if ( $supportedRecordLocations === FALSE ) {
+			$this->_overrides['supportedRecordLocations'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $supportedRecordLocations instanceof \com\microsoft\wc\location\SupportedLocationList  && ! is_null($supportedRecordLocations) ) {
+			$supportedRecordLocations = new \com\microsoft\wc\location\SupportedLocationList ($supportedRecordLocations);
+		}
+
+		unset ($this->_overrides['supportedRecordLocations']);
+	
+		return $supportedRecordLocations;
 	}
 } // end class AppWithLogos

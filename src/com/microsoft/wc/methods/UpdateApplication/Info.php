@@ -108,6 +108,11 @@ class Info extends \com\microsoft\wc\request\Info {
 	protected $appAuthRequired;
 
 	/**
+	 * @XmlText	(type="boolean", name="restrict-app-users")
+	 */
+	protected $restrictAppUsers;
+
+	/**
 	 * @XmlText	(type="boolean", name="is-published")
 	 */
 	protected $isPublished;
@@ -132,7 +137,12 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 	protected $vocabularyAuthorizations;
 
-	public function __construct($id = NULL, $name = NULL, $publicKeys = NULL, $personOnlineBaseAuth = NULL, $personOfflineBaseAuth = NULL, $methods = NULL, $actionUrl = NULL, $description = NULL, $authReason = NULL, $domainName = NULL, $largeLogo = NULL, $smallLogo = NULL, $persistentTokens = NULL, $appType = NULL, $privacyStatement = NULL, $termsOfUse = NULL, $appAuthRequired = NULL, $isPublished = NULL, $dtcSuccessMessage = NULL, $appAttributes = NULL, $validIpPrefixes = NULL, $vocabularyAuthorizations = NULL) {
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\location\SupportedLocationList", name="supported-record-locations")
+	 */
+	protected $supportedRecordLocations;
+
+	public function __construct($id = NULL, $name = NULL, $publicKeys = NULL, $personOnlineBaseAuth = NULL, $personOfflineBaseAuth = NULL, $methods = NULL, $actionUrl = NULL, $description = NULL, $authReason = NULL, $domainName = NULL, $largeLogo = NULL, $smallLogo = NULL, $persistentTokens = NULL, $appType = NULL, $privacyStatement = NULL, $termsOfUse = NULL, $appAuthRequired = NULL, $restrictAppUsers = NULL, $isPublished = NULL, $dtcSuccessMessage = NULL, $appAttributes = NULL, $validIpPrefixes = NULL, $vocabularyAuthorizations = NULL, $supportedRecordLocations = NULL) {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 		$this->publicKeys = ($publicKeys===NULL) ? NULL : $this->validatePublicKeys($publicKeys);
@@ -150,11 +160,13 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->privacyStatement = ($privacyStatement===NULL) ? NULL : $this->validatePrivacyStatement($privacyStatement);
 		$this->termsOfUse = ($termsOfUse===NULL) ? NULL : $this->validateTermsOfUse($termsOfUse);
 		$this->appAuthRequired = ($appAuthRequired===NULL) ? NULL : $this->validateAppAuthRequired($appAuthRequired);
+		$this->restrictAppUsers = ($restrictAppUsers===NULL) ? NULL : $this->validateRestrictAppUsers($restrictAppUsers);
 		$this->isPublished = ($isPublished===NULL) ? NULL : $this->validateIsPublished($isPublished);
 		$this->dtcSuccessMessage = ($dtcSuccessMessage===NULL) ? NULL : $this->validateDtcSuccessMessage($dtcSuccessMessage);
 		$this->appAttributes = ($appAttributes===NULL) ? NULL : $this->validateAppAttributes($appAttributes);
 		$this->validIpPrefixes = ($validIpPrefixes===NULL) ? NULL : $this->validateValidIpPrefixes($validIpPrefixes);
 		$this->vocabularyAuthorizations = ($vocabularyAuthorizations===NULL) ? NULL : $this->validateVocabularyAuthorizations($vocabularyAuthorizations);
+		$this->supportedRecordLocations = ($supportedRecordLocations===NULL) ? NULL : $this->validateSupportedRecordLocations($supportedRecordLocations);
 	}
 
 	public function getId($autoCreate = TRUE) {
@@ -692,6 +704,29 @@ class Info extends \com\microsoft\wc\request\Info {
 		return $appAuthRequired;
 	}
 
+	public function getRestrictAppUsers($autoCreate = TRUE) {
+		if ($this->restrictAppUsers===NULL && $autoCreate && ! isset($this->_overrides['restrictAppUsers']) ) {
+			$this->restrictAppUsers = $this->createRestrictAppUsers();
+		}
+		return $this->restrictAppUsers;
+	}
+	
+	protected function createRestrictAppUsers() {
+		return FALSE;
+	}
+
+	public function setRestrictAppUsers($restrictAppUsers) {
+		$this->restrictAppUsers = $this->validateRestrictAppUsers($restrictAppUsers);
+	}
+
+	protected function validateRestrictAppUsers($restrictAppUsers) {
+		if ( ! is_bool($restrictAppUsers) && ! is_null($restrictAppUsers) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'restrictAppUsers', 'boolean'));
+		}
+	
+		return $restrictAppUsers;
+	}
+
 	public function getIsPublished($autoCreate = TRUE) {
 		if ($this->isPublished===NULL && $autoCreate && ! isset($this->_overrides['isPublished']) ) {
 			$this->isPublished = $this->createIsPublished();
@@ -833,5 +868,35 @@ class Info extends \com\microsoft\wc\request\Info {
 		unset ($this->_overrides['vocabularyAuthorizations']);
 	
 		return $vocabularyAuthorizations;
+	}
+
+	public function getSupportedRecordLocations($autoCreate = TRUE) {
+		if ($this->supportedRecordLocations===NULL && $autoCreate && ! isset($this->_overrides['supportedRecordLocations']) ) {
+			$this->supportedRecordLocations = $this->createSupportedRecordLocations();
+		}
+		return $this->supportedRecordLocations;
+	}
+	
+	protected function createSupportedRecordLocations() {
+		return new \com\microsoft\wc\location\SupportedLocationList();
+	}
+
+	public function setSupportedRecordLocations($supportedRecordLocations) {
+		$this->supportedRecordLocations = $this->validateSupportedRecordLocations($supportedRecordLocations);
+	}
+
+	protected function validateSupportedRecordLocations($supportedRecordLocations) {
+		if ( $supportedRecordLocations === FALSE ) {
+			$this->_overrides['supportedRecordLocations'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $supportedRecordLocations instanceof \com\microsoft\wc\location\SupportedLocationList  && ! is_null($supportedRecordLocations) ) {
+			$supportedRecordLocations = new \com\microsoft\wc\location\SupportedLocationList ($supportedRecordLocations);
+		}
+
+		unset ($this->_overrides['supportedRecordLocations']);
+	
+		return $supportedRecordLocations;
 	}
 } // end class Info

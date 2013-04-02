@@ -27,7 +27,7 @@ class CarePlanGoal {
 	protected $name;
 
 	/**
-	 * @XmlText	(type="string", name="description")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnznw", name="description")
 	 */
 	protected $description;
 
@@ -42,51 +42,45 @@ class CarePlanGoal {
 	protected $endDate;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="thing-type-version-id")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="target-completion-date")
 	 */
-	protected $thingTypeVersionId;
+	protected $targetCompletionDate;
 
 	/**
-	 * @XmlText	(type="string", name="thing-type-value-xpath")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\AssociatedTypeInfo", name="associated-type-info")
 	 */
-	protected $thingTypeValueXpath;
+	protected $associatedTypeInfo;
 
 	/**
-	 * @XmlText	(type="string", name="thing-type-display-xpath")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\GoalRange", name="target-range")
 	 */
-	protected $thingTypeDisplayXpath;
+	protected $targetRange;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="value-unit")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\GoalRange", collection="true", name="goal-additional-ranges")
 	 */
-	protected $valueUnit;
+	protected $goalAdditionalRanges;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\UnitConversion", name="unit-conversion")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\GoalRecurrence", name="recurrence")
 	 */
-	protected $unitConversion;
+	protected $recurrence;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\CarePlanGoalRanges", name="goal-ranges")
-	 */
-	protected $goalRanges;
-
-	/**
-	 * @XmlText	(type="string", name="reference-id")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnznw", name="reference-id")
 	 */
 	protected $referenceId;
 
-	public function __construct($name = NULL, $description = NULL, $startDate = NULL, $endDate = NULL, $thingTypeVersionId = NULL, $thingTypeValueXpath = NULL, $thingTypeDisplayXpath = NULL, $valueUnit = NULL, $unitConversion = NULL, $goalRanges = NULL, $referenceId = NULL) {
+	public function __construct($name = NULL, $description = NULL, $startDate = NULL, $endDate = NULL, $targetCompletionDate = NULL, $associatedTypeInfo = NULL, $targetRange = NULL, $goalAdditionalRanges = NULL, $recurrence = NULL, $referenceId = NULL) {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
 		$this->startDate = ($startDate===NULL) ? NULL : $this->validateStartDate($startDate);
 		$this->endDate = ($endDate===NULL) ? NULL : $this->validateEndDate($endDate);
-		$this->thingTypeVersionId = ($thingTypeVersionId===NULL) ? NULL : $this->validateThingTypeVersionId($thingTypeVersionId);
-		$this->thingTypeValueXpath = ($thingTypeValueXpath===NULL) ? NULL : $this->validateThingTypeValueXpath($thingTypeValueXpath);
-		$this->thingTypeDisplayXpath = ($thingTypeDisplayXpath===NULL) ? NULL : $this->validateThingTypeDisplayXpath($thingTypeDisplayXpath);
-		$this->valueUnit = ($valueUnit===NULL) ? NULL : $this->validateValueUnit($valueUnit);
-		$this->unitConversion = ($unitConversion===NULL) ? NULL : $this->validateUnitConversion($unitConversion);
-		$this->goalRanges = ($goalRanges===NULL) ? NULL : $this->validateGoalRanges($goalRanges);
+		$this->targetCompletionDate = ($targetCompletionDate===NULL) ? NULL : $this->validateTargetCompletionDate($targetCompletionDate);
+		$this->associatedTypeInfo = ($associatedTypeInfo===NULL) ? NULL : $this->validateAssociatedTypeInfo($associatedTypeInfo);
+		$this->targetRange = ($targetRange===NULL) ? NULL : $this->validateTargetRange($targetRange);
+		$this->goalAdditionalRanges = ($goalAdditionalRanges===NULL) ? NULL : $this->validateGoalAdditionalRanges($goalAdditionalRanges);
+		$this->recurrence = ($recurrence===NULL) ? NULL : $this->validateRecurrence($recurrence);
 		$this->referenceId = ($referenceId===NULL) ? NULL : $this->validateReferenceId($referenceId);
 	}
 
@@ -121,7 +115,7 @@ class CarePlanGoal {
 	}
 	
 	protected function createDescription() {
-		return '';
+		return new \com\microsoft\wc\types\Stringnznw();
 	}
 
 	public function setDescription($description) {
@@ -129,9 +123,16 @@ class CarePlanGoal {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! is_string($description) && ! is_null($description) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'string'));
+		if ( $description === FALSE ) {
+			$this->_overrides['description'] = TRUE;
+			return NULL;
 		}
+
+		if ( ! $description instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($description) ) {
+			$description = new \com\microsoft\wc\types\Stringnznw ($description);
+		}
+
+		unset ($this->_overrides['description']);
 	
 		return $description;
 	}
@@ -196,170 +197,167 @@ class CarePlanGoal {
 		return $endDate;
 	}
 
-	public function getThingTypeVersionId($autoCreate = TRUE) {
-		if ($this->thingTypeVersionId===NULL && $autoCreate && ! isset($this->_overrides['thingTypeVersionId']) ) {
-			$this->thingTypeVersionId = $this->createThingTypeVersionId();
+	public function getTargetCompletionDate($autoCreate = TRUE) {
+		if ($this->targetCompletionDate===NULL && $autoCreate && ! isset($this->_overrides['targetCompletionDate']) ) {
+			$this->targetCompletionDate = $this->createTargetCompletionDate();
 		}
-		return $this->thingTypeVersionId;
+		return $this->targetCompletionDate;
 	}
 	
-	protected function createThingTypeVersionId() {
-		return new \com\microsoft\wc\types\Guid();
+	protected function createTargetCompletionDate() {
+		return new \com\microsoft\wc\dates\ApproxDateTime();
 	}
 
-	public function setThingTypeVersionId($thingTypeVersionId) {
-		$this->thingTypeVersionId = $this->validateThingTypeVersionId($thingTypeVersionId);
+	public function setTargetCompletionDate($targetCompletionDate) {
+		$this->targetCompletionDate = $this->validateTargetCompletionDate($targetCompletionDate);
 	}
 
-	protected function validateThingTypeVersionId($thingTypeVersionId) {
-		if ( $thingTypeVersionId === FALSE ) {
-			$this->_overrides['thingTypeVersionId'] = TRUE;
+	protected function validateTargetCompletionDate($targetCompletionDate) {
+		if ( $targetCompletionDate === FALSE ) {
+			$this->_overrides['targetCompletionDate'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $thingTypeVersionId instanceof \com\microsoft\wc\types\Guid  && ! is_null($thingTypeVersionId) ) {
-			$thingTypeVersionId = new \com\microsoft\wc\types\Guid ($thingTypeVersionId);
+		if ( ! $targetCompletionDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($targetCompletionDate) ) {
+			$targetCompletionDate = new \com\microsoft\wc\dates\ApproxDateTime ($targetCompletionDate);
 		}
 
-		unset ($this->_overrides['thingTypeVersionId']);
+		unset ($this->_overrides['targetCompletionDate']);
 	
-		return $thingTypeVersionId;
+		return $targetCompletionDate;
 	}
 
-	public function getThingTypeValueXpath($autoCreate = TRUE) {
-		if ($this->thingTypeValueXpath===NULL && $autoCreate && ! isset($this->_overrides['thingTypeValueXpath']) ) {
-			$this->thingTypeValueXpath = $this->createThingTypeValueXpath();
+	public function getAssociatedTypeInfo($autoCreate = TRUE) {
+		if ($this->associatedTypeInfo===NULL && $autoCreate && ! isset($this->_overrides['associatedTypeInfo']) ) {
+			$this->associatedTypeInfo = $this->createAssociatedTypeInfo();
 		}
-		return $this->thingTypeValueXpath;
+		return $this->associatedTypeInfo;
 	}
 	
-	protected function createThingTypeValueXpath() {
-		return '';
+	protected function createAssociatedTypeInfo() {
+		return new \com\microsoft\wc\thing\care_plan\AssociatedTypeInfo();
 	}
 
-	public function setThingTypeValueXpath($thingTypeValueXpath) {
-		$this->thingTypeValueXpath = $this->validateThingTypeValueXpath($thingTypeValueXpath);
+	public function setAssociatedTypeInfo($associatedTypeInfo) {
+		$this->associatedTypeInfo = $this->validateAssociatedTypeInfo($associatedTypeInfo);
 	}
 
-	protected function validateThingTypeValueXpath($thingTypeValueXpath) {
-		if ( ! is_string($thingTypeValueXpath) && ! is_null($thingTypeValueXpath) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'thingTypeValueXpath', 'string'));
-		}
-	
-		return $thingTypeValueXpath;
-	}
-
-	public function getThingTypeDisplayXpath($autoCreate = TRUE) {
-		if ($this->thingTypeDisplayXpath===NULL && $autoCreate && ! isset($this->_overrides['thingTypeDisplayXpath']) ) {
-			$this->thingTypeDisplayXpath = $this->createThingTypeDisplayXpath();
-		}
-		return $this->thingTypeDisplayXpath;
-	}
-	
-	protected function createThingTypeDisplayXpath() {
-		return '';
-	}
-
-	public function setThingTypeDisplayXpath($thingTypeDisplayXpath) {
-		$this->thingTypeDisplayXpath = $this->validateThingTypeDisplayXpath($thingTypeDisplayXpath);
-	}
-
-	protected function validateThingTypeDisplayXpath($thingTypeDisplayXpath) {
-		if ( ! is_string($thingTypeDisplayXpath) && ! is_null($thingTypeDisplayXpath) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'thingTypeDisplayXpath', 'string'));
-		}
-	
-		return $thingTypeDisplayXpath;
-	}
-
-	public function getValueUnit($autoCreate = TRUE) {
-		if ($this->valueUnit===NULL && $autoCreate && ! isset($this->_overrides['valueUnit']) ) {
-			$this->valueUnit = $this->createValueUnit();
-		}
-		return $this->valueUnit;
-	}
-	
-	protected function createValueUnit() {
-		return new \com\microsoft\wc\types\CodableValue();
-	}
-
-	public function setValueUnit($valueUnit) {
-		$this->valueUnit = $this->validateValueUnit($valueUnit);
-	}
-
-	protected function validateValueUnit($valueUnit) {
-		if ( $valueUnit === FALSE ) {
-			$this->_overrides['valueUnit'] = TRUE;
+	protected function validateAssociatedTypeInfo($associatedTypeInfo) {
+		if ( $associatedTypeInfo === FALSE ) {
+			$this->_overrides['associatedTypeInfo'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $valueUnit instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($valueUnit) ) {
-			$valueUnit = new \com\microsoft\wc\types\CodableValue ($valueUnit);
+		if ( ! $associatedTypeInfo instanceof \com\microsoft\wc\thing\care_plan\AssociatedTypeInfo  && ! is_null($associatedTypeInfo) ) {
+			$associatedTypeInfo = new \com\microsoft\wc\thing\care_plan\AssociatedTypeInfo ($associatedTypeInfo);
 		}
 
-		unset ($this->_overrides['valueUnit']);
+		unset ($this->_overrides['associatedTypeInfo']);
 	
-		return $valueUnit;
+		return $associatedTypeInfo;
 	}
 
-	public function getUnitConversion($autoCreate = TRUE) {
-		if ($this->unitConversion===NULL && $autoCreate && ! isset($this->_overrides['unitConversion']) ) {
-			$this->unitConversion = $this->createUnitConversion();
+	public function getTargetRange($autoCreate = TRUE) {
+		if ($this->targetRange===NULL && $autoCreate && ! isset($this->_overrides['targetRange']) ) {
+			$this->targetRange = $this->createTargetRange();
 		}
-		return $this->unitConversion;
+		return $this->targetRange;
 	}
 	
-	protected function createUnitConversion() {
-		return new \com\microsoft\wc\thing\care_plan\UnitConversion();
+	protected function createTargetRange() {
+		return new \com\microsoft\wc\thing\care_plan\GoalRange();
 	}
 
-	public function setUnitConversion($unitConversion) {
-		$this->unitConversion = $this->validateUnitConversion($unitConversion);
+	public function setTargetRange($targetRange) {
+		$this->targetRange = $this->validateTargetRange($targetRange);
 	}
 
-	protected function validateUnitConversion($unitConversion) {
-		if ( $unitConversion === FALSE ) {
-			$this->_overrides['unitConversion'] = TRUE;
+	protected function validateTargetRange($targetRange) {
+		if ( $targetRange === FALSE ) {
+			$this->_overrides['targetRange'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $unitConversion instanceof \com\microsoft\wc\thing\care_plan\UnitConversion  && ! is_null($unitConversion) ) {
-			$unitConversion = new \com\microsoft\wc\thing\care_plan\UnitConversion ($unitConversion);
+		if ( ! $targetRange instanceof \com\microsoft\wc\thing\care_plan\GoalRange  && ! is_null($targetRange) ) {
+			$targetRange = new \com\microsoft\wc\thing\care_plan\GoalRange ($targetRange);
 		}
 
-		unset ($this->_overrides['unitConversion']);
+		unset ($this->_overrides['targetRange']);
 	
-		return $unitConversion;
+		return $targetRange;
 	}
 
-	public function getGoalRanges($autoCreate = TRUE) {
-		if ($this->goalRanges===NULL && $autoCreate && ! isset($this->_overrides['goalRanges']) ) {
-			$this->goalRanges = $this->createGoalRanges();
+	public function getGoalAdditionalRanges($autoCreate = TRUE) {
+		if ($this->goalAdditionalRanges===NULL && $autoCreate && ! isset($this->_overrides['goalAdditionalRanges']) ) {
+			$this->goalAdditionalRanges = $this->createGoalAdditionalRanges();
 		}
-		return $this->goalRanges;
+		return $this->goalAdditionalRanges;
 	}
 	
-	protected function createGoalRanges() {
-		return new \com\microsoft\wc\thing\care_plan\CarePlanGoalRanges();
+	protected function createGoalAdditionalRanges() {
+		return array();
 	}
 
-	public function setGoalRanges($goalRanges) {
-		$this->goalRanges = $this->validateGoalRanges($goalRanges);
+	public function setGoalAdditionalRanges($goalAdditionalRanges) {
+		$this->goalAdditionalRanges = $this->validateGoalAdditionalRanges($goalAdditionalRanges);
 	}
 
-	protected function validateGoalRanges($goalRanges) {
-		if ( $goalRanges === FALSE ) {
-			$this->_overrides['goalRanges'] = TRUE;
+	protected function validateGoalAdditionalRanges($goalAdditionalRanges) {
+		if ( $goalAdditionalRanges === FALSE ) {
+			$this->_overrides['goalAdditionalRanges'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $goalRanges instanceof \com\microsoft\wc\thing\care_plan\CarePlanGoalRanges  && ! is_null($goalRanges) ) {
-			$goalRanges = new \com\microsoft\wc\thing\care_plan\CarePlanGoalRanges ($goalRanges);
+		if ( ! is_array ($goalAdditionalRanges) && ! is_null($goalAdditionalRanges) ) {
+			$goalAdditionalRanges = array($goalAdditionalRanges);
 		}
 
-		unset ($this->_overrides['goalRanges']);
+		unset ($this->_overrides['goalAdditionalRanges']);
+		$count = count($goalAdditionalRanges);
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'goalAdditionalRanges', 0));
+		}
+		foreach ($goalAdditionalRanges as $entry) {
+			if (!($entry instanceof GoalRange)) {
+				throw new \Exception(sprintf('Supplied %s value was not %s', 'goalAdditionalRanges', 'goal-range'));
+			}
+		}
 	
-		return $goalRanges;
+		return $goalAdditionalRanges;
+	}
+
+	public function addGoalAdditionalRanges($goalAdditionalRanges) {
+		$this->goalAdditionalRanges[] = $goalAdditionalRanges;
+	}
+
+	public function getRecurrence($autoCreate = TRUE) {
+		if ($this->recurrence===NULL && $autoCreate && ! isset($this->_overrides['recurrence']) ) {
+			$this->recurrence = $this->createRecurrence();
+		}
+		return $this->recurrence;
+	}
+	
+	protected function createRecurrence() {
+		return new \com\microsoft\wc\thing\care_plan\GoalRecurrence();
+	}
+
+	public function setRecurrence($recurrence) {
+		$this->recurrence = $this->validateRecurrence($recurrence);
+	}
+
+	protected function validateRecurrence($recurrence) {
+		if ( $recurrence === FALSE ) {
+			$this->_overrides['recurrence'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $recurrence instanceof \com\microsoft\wc\thing\care_plan\GoalRecurrence  && ! is_null($recurrence) ) {
+			$recurrence = new \com\microsoft\wc\thing\care_plan\GoalRecurrence ($recurrence);
+		}
+
+		unset ($this->_overrides['recurrence']);
+	
+		return $recurrence;
 	}
 
 	public function getReferenceId($autoCreate = TRUE) {
@@ -370,7 +368,7 @@ class CarePlanGoal {
 	}
 	
 	protected function createReferenceId() {
-		return '';
+		return new \com\microsoft\wc\types\Stringnznw();
 	}
 
 	public function setReferenceId($referenceId) {
@@ -378,9 +376,16 @@ class CarePlanGoal {
 	}
 
 	protected function validateReferenceId($referenceId) {
-		if ( ! is_string($referenceId) && ! is_null($referenceId) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'referenceId', 'string'));
+		if ( $referenceId === FALSE ) {
+			$this->_overrides['referenceId'] = TRUE;
+			return NULL;
 		}
+
+		if ( ! $referenceId instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($referenceId) ) {
+			$referenceId = new \com\microsoft\wc\types\Stringnznw ($referenceId);
+		}
+
+		unset ($this->_overrides['referenceId']);
 	
 		return $referenceId;
 	}

@@ -11,7 +11,7 @@ namespace com\microsoft\wc\thing\care_plan;
  */
 class CarePlanGoalGroup {
 	/**
-	 * Goal groups are used to group related measurement goals together.For example, blood pressure has two individual measurement goals (systolic and diastolic) but are grouped together under blood pressure.
+	 * Goal groups are used to group related measurement goals together.For example, blood pressure has two individual measurement goals (systolic and diastolic) but are grouped together underblood pressure.
 	 */
 
 	/**
@@ -27,7 +27,7 @@ class CarePlanGoalGroup {
 	protected $name;
 
 	/**
-	 * @XmlText	(type="string", name="description")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnznw", name="description")
 	 */
 	protected $description;
 
@@ -73,7 +73,7 @@ class CarePlanGoalGroup {
 	}
 	
 	protected function createDescription() {
-		return '';
+		return new \com\microsoft\wc\types\Stringnznw();
 	}
 
 	public function setDescription($description) {
@@ -81,9 +81,16 @@ class CarePlanGoalGroup {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! is_string($description) && ! is_null($description) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'string'));
+		if ( $description === FALSE ) {
+			$this->_overrides['description'] = TRUE;
+			return NULL;
 		}
+
+		if ( ! $description instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($description) ) {
+			$description = new \com\microsoft\wc\types\Stringnznw ($description);
+		}
+
+		unset ($this->_overrides['description']);
 	
 		return $description;
 	}

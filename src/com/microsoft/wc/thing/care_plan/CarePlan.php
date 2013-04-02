@@ -15,7 +15,7 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	 */
 
 	const ID = '415c95e0-0533-4d9c-ac73-91dc5031186c';
-	const NAME = 'CarePlan (Preview)';
+	const NAME = 'CarePlan';
 
 	/**
 	 * List of manually overridden properties that should not be re-generated automatically
@@ -33,6 +33,11 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="start-date")
 	 */
 	protected $startDate;
+
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="end-date")
+	 */
+	protected $endDate;
 
 	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="status")
@@ -59,9 +64,10 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 	 */
 	protected $goalGroups;
 
-	public function __construct($name = NULL, $startDate = NULL, $status = NULL, $careTeam = NULL, $carePlanManager = NULL, $tasks = NULL, $goalGroups = NULL) {
+	public function __construct($name = NULL, $startDate = NULL, $endDate = NULL, $status = NULL, $careTeam = NULL, $carePlanManager = NULL, $tasks = NULL, $goalGroups = NULL) {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 		$this->startDate = ($startDate===NULL) ? NULL : $this->validateStartDate($startDate);
+		$this->endDate = ($endDate===NULL) ? NULL : $this->validateEndDate($endDate);
 		$this->status = ($status===NULL) ? NULL : $this->validateStatus($status);
 		$this->careTeam = ($careTeam===NULL) ? NULL : $this->validateCareTeam($careTeam);
 		$this->carePlanManager = ($carePlanManager===NULL) ? NULL : $this->validateCarePlanManager($carePlanManager);
@@ -120,6 +126,36 @@ class CarePlan extends \com\microsoft\wc\thing\AnyMixed {
 		unset ($this->_overrides['startDate']);
 	
 		return $startDate;
+	}
+
+	public function getEndDate($autoCreate = TRUE) {
+		if ($this->endDate===NULL && $autoCreate && ! isset($this->_overrides['endDate']) ) {
+			$this->endDate = $this->createEndDate();
+		}
+		return $this->endDate;
+	}
+	
+	protected function createEndDate() {
+		return new \com\microsoft\wc\dates\ApproxDateTime();
+	}
+
+	public function setEndDate($endDate) {
+		$this->endDate = $this->validateEndDate($endDate);
+	}
+
+	protected function validateEndDate($endDate) {
+		if ( $endDate === FALSE ) {
+			$this->_overrides['endDate'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $endDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($endDate) ) {
+			$endDate = new \com\microsoft\wc\dates\ApproxDateTime ($endDate);
+		}
+
+		unset ($this->_overrides['endDate']);
+	
+		return $endDate;
 	}
 
 	public function getStatus($autoCreate = TRUE) {

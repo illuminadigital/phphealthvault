@@ -27,7 +27,7 @@ class CarePlanTask {
 	protected $name;
 
 	/**
-	 * @XmlText	(type="string", name="description")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnznw", name="description")
 	 */
 	protected $description;
 
@@ -42,14 +42,19 @@ class CarePlanTask {
 	protected $endDate;
 
 	/**
+	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="target-completion-date")
+	 */
+	protected $targetCompletionDate;
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeInt", name="sequence-number")
 	 */
 	protected $sequenceNumber;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Person", name="contact")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\AssociatedTypeInfo", name="associated-type-info")
 	 */
-	protected $contact;
+	protected $associatedTypeInfo;
 
 	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\care_plan\CarePlanTaskRecurrence", name="recurrence")
@@ -57,30 +62,19 @@ class CarePlanTask {
 	protected $recurrence;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="thing-type-version-id")
-	 */
-	protected $thingTypeVersionId;
-
-	/**
-	 * @XmlText	(type="string", name="thing-type-xpath")
-	 */
-	protected $thingTypeXpath;
-
-	/**
-	 * @XmlText	(type="string", name="reference-id")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnznw", name="reference-id")
 	 */
 	protected $referenceId;
 
-	public function __construct($name = NULL, $description = NULL, $startDate = NULL, $endDate = NULL, $sequenceNumber = NULL, $contact = NULL, $recurrence = NULL, $thingTypeVersionId = NULL, $thingTypeXpath = NULL, $referenceId = NULL) {
+	public function __construct($name = NULL, $description = NULL, $startDate = NULL, $endDate = NULL, $targetCompletionDate = NULL, $sequenceNumber = NULL, $associatedTypeInfo = NULL, $recurrence = NULL, $referenceId = NULL) {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 		$this->description = ($description===NULL) ? NULL : $this->validateDescription($description);
 		$this->startDate = ($startDate===NULL) ? NULL : $this->validateStartDate($startDate);
 		$this->endDate = ($endDate===NULL) ? NULL : $this->validateEndDate($endDate);
+		$this->targetCompletionDate = ($targetCompletionDate===NULL) ? NULL : $this->validateTargetCompletionDate($targetCompletionDate);
 		$this->sequenceNumber = ($sequenceNumber===NULL) ? NULL : $this->validateSequenceNumber($sequenceNumber);
-		$this->contact = ($contact===NULL) ? NULL : $this->validateContact($contact);
+		$this->associatedTypeInfo = ($associatedTypeInfo===NULL) ? NULL : $this->validateAssociatedTypeInfo($associatedTypeInfo);
 		$this->recurrence = ($recurrence===NULL) ? NULL : $this->validateRecurrence($recurrence);
-		$this->thingTypeVersionId = ($thingTypeVersionId===NULL) ? NULL : $this->validateThingTypeVersionId($thingTypeVersionId);
-		$this->thingTypeXpath = ($thingTypeXpath===NULL) ? NULL : $this->validateThingTypeXpath($thingTypeXpath);
 		$this->referenceId = ($referenceId===NULL) ? NULL : $this->validateReferenceId($referenceId);
 	}
 
@@ -115,7 +109,7 @@ class CarePlanTask {
 	}
 	
 	protected function createDescription() {
-		return '';
+		return new \com\microsoft\wc\types\Stringnznw();
 	}
 
 	public function setDescription($description) {
@@ -123,9 +117,16 @@ class CarePlanTask {
 	}
 
 	protected function validateDescription($description) {
-		if ( ! is_string($description) && ! is_null($description) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'string'));
+		if ( $description === FALSE ) {
+			$this->_overrides['description'] = TRUE;
+			return NULL;
 		}
+
+		if ( ! $description instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($description) ) {
+			$description = new \com\microsoft\wc\types\Stringnznw ($description);
+		}
+
+		unset ($this->_overrides['description']);
 	
 		return $description;
 	}
@@ -190,6 +191,36 @@ class CarePlanTask {
 		return $endDate;
 	}
 
+	public function getTargetCompletionDate($autoCreate = TRUE) {
+		if ($this->targetCompletionDate===NULL && $autoCreate && ! isset($this->_overrides['targetCompletionDate']) ) {
+			$this->targetCompletionDate = $this->createTargetCompletionDate();
+		}
+		return $this->targetCompletionDate;
+	}
+	
+	protected function createTargetCompletionDate() {
+		return new \com\microsoft\wc\dates\ApproxDateTime();
+	}
+
+	public function setTargetCompletionDate($targetCompletionDate) {
+		$this->targetCompletionDate = $this->validateTargetCompletionDate($targetCompletionDate);
+	}
+
+	protected function validateTargetCompletionDate($targetCompletionDate) {
+		if ( $targetCompletionDate === FALSE ) {
+			$this->_overrides['targetCompletionDate'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $targetCompletionDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($targetCompletionDate) ) {
+			$targetCompletionDate = new \com\microsoft\wc\dates\ApproxDateTime ($targetCompletionDate);
+		}
+
+		unset ($this->_overrides['targetCompletionDate']);
+	
+		return $targetCompletionDate;
+	}
+
 	public function getSequenceNumber($autoCreate = TRUE) {
 		if ($this->sequenceNumber===NULL && $autoCreate && ! isset($this->_overrides['sequenceNumber']) ) {
 			$this->sequenceNumber = $this->createSequenceNumber();
@@ -220,34 +251,34 @@ class CarePlanTask {
 		return $sequenceNumber;
 	}
 
-	public function getContact($autoCreate = TRUE) {
-		if ($this->contact===NULL && $autoCreate && ! isset($this->_overrides['contact']) ) {
-			$this->contact = $this->createContact();
+	public function getAssociatedTypeInfo($autoCreate = TRUE) {
+		if ($this->associatedTypeInfo===NULL && $autoCreate && ! isset($this->_overrides['associatedTypeInfo']) ) {
+			$this->associatedTypeInfo = $this->createAssociatedTypeInfo();
 		}
-		return $this->contact;
+		return $this->associatedTypeInfo;
 	}
 	
-	protected function createContact() {
-		return new \com\microsoft\wc\thing\types\Person();
+	protected function createAssociatedTypeInfo() {
+		return new \com\microsoft\wc\thing\care_plan\AssociatedTypeInfo();
 	}
 
-	public function setContact($contact) {
-		$this->contact = $this->validateContact($contact);
+	public function setAssociatedTypeInfo($associatedTypeInfo) {
+		$this->associatedTypeInfo = $this->validateAssociatedTypeInfo($associatedTypeInfo);
 	}
 
-	protected function validateContact($contact) {
-		if ( $contact === FALSE ) {
-			$this->_overrides['contact'] = TRUE;
+	protected function validateAssociatedTypeInfo($associatedTypeInfo) {
+		if ( $associatedTypeInfo === FALSE ) {
+			$this->_overrides['associatedTypeInfo'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $contact instanceof \com\microsoft\wc\thing\types\Person  && ! is_null($contact) ) {
-			$contact = new \com\microsoft\wc\thing\types\Person ($contact);
+		if ( ! $associatedTypeInfo instanceof \com\microsoft\wc\thing\care_plan\AssociatedTypeInfo  && ! is_null($associatedTypeInfo) ) {
+			$associatedTypeInfo = new \com\microsoft\wc\thing\care_plan\AssociatedTypeInfo ($associatedTypeInfo);
 		}
 
-		unset ($this->_overrides['contact']);
+		unset ($this->_overrides['associatedTypeInfo']);
 	
-		return $contact;
+		return $associatedTypeInfo;
 	}
 
 	public function getRecurrence($autoCreate = TRUE) {
@@ -280,59 +311,6 @@ class CarePlanTask {
 		return $recurrence;
 	}
 
-	public function getThingTypeVersionId($autoCreate = TRUE) {
-		if ($this->thingTypeVersionId===NULL && $autoCreate && ! isset($this->_overrides['thingTypeVersionId']) ) {
-			$this->thingTypeVersionId = $this->createThingTypeVersionId();
-		}
-		return $this->thingTypeVersionId;
-	}
-	
-	protected function createThingTypeVersionId() {
-		return new \com\microsoft\wc\types\Guid();
-	}
-
-	public function setThingTypeVersionId($thingTypeVersionId) {
-		$this->thingTypeVersionId = $this->validateThingTypeVersionId($thingTypeVersionId);
-	}
-
-	protected function validateThingTypeVersionId($thingTypeVersionId) {
-		if ( $thingTypeVersionId === FALSE ) {
-			$this->_overrides['thingTypeVersionId'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $thingTypeVersionId instanceof \com\microsoft\wc\types\Guid  && ! is_null($thingTypeVersionId) ) {
-			$thingTypeVersionId = new \com\microsoft\wc\types\Guid ($thingTypeVersionId);
-		}
-
-		unset ($this->_overrides['thingTypeVersionId']);
-	
-		return $thingTypeVersionId;
-	}
-
-	public function getThingTypeXpath($autoCreate = TRUE) {
-		if ($this->thingTypeXpath===NULL && $autoCreate && ! isset($this->_overrides['thingTypeXpath']) ) {
-			$this->thingTypeXpath = $this->createThingTypeXpath();
-		}
-		return $this->thingTypeXpath;
-	}
-	
-	protected function createThingTypeXpath() {
-		return '';
-	}
-
-	public function setThingTypeXpath($thingTypeXpath) {
-		$this->thingTypeXpath = $this->validateThingTypeXpath($thingTypeXpath);
-	}
-
-	protected function validateThingTypeXpath($thingTypeXpath) {
-		if ( ! is_string($thingTypeXpath) && ! is_null($thingTypeXpath) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'thingTypeXpath', 'string'));
-		}
-	
-		return $thingTypeXpath;
-	}
-
 	public function getReferenceId($autoCreate = TRUE) {
 		if ($this->referenceId===NULL && $autoCreate && ! isset($this->_overrides['referenceId']) ) {
 			$this->referenceId = $this->createReferenceId();
@@ -341,7 +319,7 @@ class CarePlanTask {
 	}
 	
 	protected function createReferenceId() {
-		return '';
+		return new \com\microsoft\wc\types\Stringnznw();
 	}
 
 	public function setReferenceId($referenceId) {
@@ -349,9 +327,16 @@ class CarePlanTask {
 	}
 
 	protected function validateReferenceId($referenceId) {
-		if ( ! is_string($referenceId) && ! is_null($referenceId) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'referenceId', 'string'));
+		if ( $referenceId === FALSE ) {
+			$this->_overrides['referenceId'] = TRUE;
+			return NULL;
 		}
+
+		if ( ! $referenceId instanceof \com\microsoft\wc\types\Stringnznw  && ! is_null($referenceId) ) {
+			$referenceId = new \com\microsoft\wc\types\Stringnznw ($referenceId);
+		}
+
+		unset ($this->_overrides['referenceId']);
 	
 		return $referenceId;
 	}

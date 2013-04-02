@@ -23,7 +23,7 @@ class CarePlanTaskRecurrence {
 
 
 	/**
-	 * @XmlText	(type="string", name="ical-recurrence")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnznw", name="ical-recurrence")
 	 */
 	protected $icalRecurrence;
 
@@ -51,7 +51,7 @@ class CarePlanTaskRecurrence {
 	}
 	
 	protected function createIcalRecurrence() {
-		return '';
+		return new \com\microsoft\wc\types\Stringnznw();
 	}
 
 	public function setIcalRecurrence($icalRecurrence) {
@@ -59,8 +59,8 @@ class CarePlanTaskRecurrence {
 	}
 
 	protected function validateIcalRecurrence($icalRecurrence) {
-		if (!is_string($icalRecurrence)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'icalRecurrence', 'string'));
+		if ( ! $icalRecurrence instanceof \com\microsoft\wc\types\Stringnznw ) {
+			$icalRecurrence = new \com\microsoft\wc\types\Stringnznw ($icalRecurrence);
 		}
 	
 		return $icalRecurrence;
