@@ -1,5 +1,5 @@
 <?php
-namespace com\microsoft\wc\methods\response;
+namespace com\microsoft\wc\response;
 
 /**
  * @XmlEntity(xml="*")

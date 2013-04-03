@@ -1,17 +1,16 @@
 <?php
-namespace com\microsoft\wc\methods\response;
+namespace com\microsoft\wc\response;
 
 
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response", prefix="")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.response", prefix="")
  * })
- * @XmlEntity	(xml="Info")
+ * @XmlEntity	(xml="response")
  */
-class Info {
+class Response {
 	/**
-	 * The actual response from the method
 	 */
 
 	/**
@@ -22,12 +21,41 @@ class Info {
 
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\response\AnyMixed", collection="true", name="*")
+	 * @XmlElement	(type="\com\microsoft\wc\response\Status", name="status")
+	 */
+	protected $status;
+
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\response\AnyMixed", collection="true", name="*")
 	 */
 	protected $any;
 
-	public function __construct($any = NULL) {
+	public function __construct($status = NULL, $any = NULL) {
+		$this->status = ($status===NULL) ? NULL : $this->validateStatus($status);
 		$this->any = ($any===NULL) ? NULL : $this->validateAny($any);
+	}
+
+	public function getStatus($autoCreate = TRUE) {
+		if ($this->status===NULL && $autoCreate && ! isset($this->_overrides['status']) ) {
+			$this->status = $this->createStatus();
+		}
+		return $this->status;
+	}
+	
+	protected function createStatus() {
+		return new \com\microsoft\wc\response\Status();
+	}
+
+	public function setStatus($status) {
+		$this->status = $this->validateStatus($status);
+	}
+
+	protected function validateStatus($status) {
+		if ( ! $status instanceof \com\microsoft\wc\response\Status ) {
+			$status = new \com\microsoft\wc\response\Status ($status);
+		}
+	
+		return $status;
 	}
 
 	public function getAny($autoCreate = TRUE) {
@@ -70,4 +98,4 @@ class Info {
 	
 		return $any;
 	}
-} // end class Info
+} // end class Response

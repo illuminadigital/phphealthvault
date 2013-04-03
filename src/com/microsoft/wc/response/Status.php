@@ -1,17 +1,16 @@
 <?php
-namespace com\microsoft\wc\methods\response;
+namespace com\microsoft\wc\response;
 
 
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response", prefix="")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.response", prefix="")
  * })
  * @XmlEntity	(xml="Status")
  */
 class Status {
 	/**
-	 * The status of the request
 	 */
 
 	/**
@@ -27,7 +26,7 @@ class Status {
 	protected $code;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\response\Error", name="error")
+	 * @XmlElement	(type="\com\microsoft\wc\response\Error", name="error")
 	 */
 	protected $error;
 
@@ -75,7 +74,7 @@ class Status {
 	}
 	
 	protected function createError() {
-		return new \com\microsoft\wc\methods\response\Error();
+		return new \com\microsoft\wc\response\Error();
 	}
 
 	public function setError($error) {
@@ -88,8 +87,8 @@ class Status {
 			return NULL;
 		}
 
-		if ( ! $error instanceof \com\microsoft\wc\methods\response\Error  && ! is_null($error) ) {
-			$error = new \com\microsoft\wc\methods\response\Error ($error);
+		if ( ! $error instanceof \com\microsoft\wc\response\Error  && ! is_null($error) ) {
+			$error = new \com\microsoft\wc\response\Error ($error);
 		}
 
 		unset ($this->_overrides['error']);
