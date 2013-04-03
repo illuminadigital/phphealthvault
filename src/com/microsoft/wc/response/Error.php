@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\response;
 
-
+if(0):
 
 /**
  * @XmlNamespaces ({
@@ -117,3 +117,5 @@ class Error {
 		return $errorInfo;
 	}
 } // end class Error
+
+endif;

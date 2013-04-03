@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\response;
 
-
+if(0):
 
 /**
  * @XmlNamespaces ({
@@ -96,3 +96,5 @@ class Status {
 		return $error;
 	}
 } // end class Status
+
+endif;

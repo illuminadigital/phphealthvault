@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\response;
 
-
+if(0):
 
 /**
  * @XmlNamespaces ({
@@ -99,3 +99,5 @@ class Response {
 		return $any;
 	}
 } // end class Response
+
+endif;

@@ -1,7 +1,7 @@
 <?php
 namespace com\microsoft\wc\response;
 
-
+if (0):
 
 /**
  * @XmlNamespaces ({
@@ -128,3 +128,5 @@ class ErrorContext {
 		return $exception;
 	}
 } // end class ErrorContext
+
+endif;
