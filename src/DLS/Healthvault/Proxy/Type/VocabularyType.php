@@ -11,13 +11,6 @@ abstract class VocabularyType extends BaseType
      */
     protected $vocabularyInterface;
     
-    public function __construct(VocabularyInterface $vocabularyInterface, $thingElement = NULL)
-    {
-        $this->vocabularyInterface = $vocabularyInterface;
-
-        parent::__construct($thingElement);
-    }
-    
     public function getVocabularyInterface()
     {
         return $this->vocabularyInterface;

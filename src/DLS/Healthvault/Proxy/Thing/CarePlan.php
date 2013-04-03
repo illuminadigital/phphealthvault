@@ -6,6 +6,11 @@ use com\microsoft\wc\thing\care_plan\CarePlan as hvCarePlan;
 
 use DLS\Healthvault\Proxy\Thing\BaseThing;
 
+use DLS\Healthvault\Proxy\Type\CodableValue;
+use DLS\Healthvault\Utilities\VocabularyInterface;
+
+use DLS\Healthvault\Blob\BlobStoreFactory;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CarePlan extends BaseThing
@@ -51,7 +56,10 @@ class CarePlan extends BaseThing
     
     public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL, BlobStoreFactory $factory = NULL) {
         
-        $this->status = new CodableValue($healthvaultVocabulary);
+        $this->status = new CodableValue('goal-status');
+        if ($healthvaultVocabulary) {
+            $this->status->setVocabularyInterface($healthvaultVocabulary);
+        }
         
         parent::__construct($thing, $healthvaultVocabulary, $factory);
     }
@@ -183,7 +191,7 @@ class CarePlan extends BaseThing
     {
         if ( is_empty($group) ) {
             if (empty($this->goals)) {
-                $group = $this->addGoalGroup('default', 'Main goals');
+                $group = $this->addGoalGroup('General', 'General');
             } else {
                 $group = array_pop(array_keys($this->goals));
             }
@@ -227,10 +235,26 @@ class CarePlan extends BaseThing
         return $startDate;
     }
     
-    public function setThingTargetDate(\DateTime $startDate)
+    public function setThingStartDate(\DateTime $startDate)
     {
         $payload = $this->getThingPayload();
         $this->setThingApproxDateTime($payload->getStartDate(), $startDate);
+    
+        return $this;
+    }
+    
+    public function getThingTargetDate()
+    {
+        $payload = $this->getThingPayload();
+        $targetDate = $this->getThingApproxDateTime($payload->getTargetDate());
+    
+        return $targetDate;
+    }
+    
+    public function setThingTargetDate(\DateTime $targetDate)
+    {
+        $payload = $this->getThingPayload();
+        $this->setThingApproxDateTime($payload->getTargetDate(), $targetDate);
     
         return $this;
     }
@@ -253,8 +277,22 @@ class CarePlan extends BaseThing
     
     public function getThing(Thing2 $thing = NULL) {
         $thing = parent::getThing($thing);
+
+        if ( ! empty ($this->startDate) ) {
+            $this->setThingStartDate($this->startDate);
+        }
         
+        if ( ! empty ($this->targetDate) ) {
+            $this->setThingTargetDate($this->targetDate);
+        }
         
+        $payload = $this->getThingPayload();
+        
+        $this->setThingName($this->name);
+        $this->status->setVocabularyInterface($this->healthvaultVocabulary);
+        $this->status->updateToThingElement($payload->getStatus());
+        
+        return $thing;
     }
     
     public function setThing(Thing2 $thing) {
@@ -264,7 +302,14 @@ class CarePlan extends BaseThing
         $this->endDate = $this->getThingEndDate();
         $this->name = $this->getThingName();
         
+        $payload = $this->getThingPayload();
+        
+        $this->status->setVocabularyInterface($this->healthvaultVocabulary);
+        $this->status->setFromThingElement($payload->getStatus());
+        
         // FIXME: Implement rest of the methods
+        
+        return $this;
     }
     /* End of Thing Methods */
     

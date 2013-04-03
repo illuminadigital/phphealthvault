@@ -88,17 +88,20 @@ abstract class CarePlanTargetType extends VocabularyType
 
     /* Construction */
 
-    public function __construct(VocabularyInterface $vocabularyInterface,
-            $thingElement = NULL)
+    public function __construct($thingElement = NULL, $vocabularyInterface = NULL)
     {
         $this->referenceId = Guid::getGuid();
 
         $this->associatedType = array();
 
-        $this->recurrenceInterval = new CodableValue($vocabularyInterface,
-                "recurrence-intervals");
-
-        parent::__construct($vocabularyInterface, $thingElement);
+        $this->recurrenceInterval = new CodableValue("recurrence-intervals");
+        $this->name = new CodableValue("recurrence-intervals");
+        
+        if ( isset($vocabularyInterface) ) {
+            $this->setVocabularyInterface($vocabularyInterface);
+        }
+        
+        parent::__construct($thingElement);
     }
 
     /* End of Construction */
@@ -265,11 +268,13 @@ abstract class CarePlanTargetType extends VocabularyType
 
     public function setFromThingElement($thingElement)
     {
+        $this->name->setVocabularyInterface($this->vocabularyInterface);
         $this->name->setFromThingElement($thingElement->getName());
     }
 
     public function updateToThingElement($thingElement)
     {
+        $this->name->setVocabularyInterface($this->vocabularyInterface);
         $this->name->updateToThingElement($thingElement->getName());
     }
 
