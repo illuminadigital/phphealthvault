@@ -151,8 +151,12 @@ abstract class CarePlanTargetType extends VocabularyType
     /**
      * @param \DateTime $startDate
      */
-    public function setStartDate(\DateTime $startDate)
+    public function setStartDate($startDate)
     {
+        if ( ! $startDate instanceof \DateTime ) {
+            $startDate = new \DateTime($startDate);
+        }
+        
         $this->startDate = $startDate;
     }
 
@@ -167,8 +171,12 @@ abstract class CarePlanTargetType extends VocabularyType
     /**
      * @param \DateTime $endDate
      */
-    public function setEndDate(\DateTime $endDate)
+    public function setEndDate($endDate)
     {
+        if ( ! $endDate instanceof \DateTime ) {
+            $endDate = new \DateTime($endDate);
+        }
+        
         $this->endDate = $endDate;
     }
 
@@ -183,8 +191,12 @@ abstract class CarePlanTargetType extends VocabularyType
     /**
      * @param \DateTime $targetCompletionDate
      */
-    public function setTargetCompletionDate(\DateTime $targetCompletionDate)
+    public function setTargetCompletionDate($targetCompletionDate)
     {
+        if ( ! $targetCompletionDate instanceof \DateTime ) {
+            $targetCompletionDate = new \DateTime($targetCompletionDate);
+        }
+        
         $this->targetCompletionDate = $targetCompletionDate;
     }
 
@@ -279,4 +291,9 @@ abstract class CarePlanTargetType extends VocabularyType
     }
 
     /* End of Thing Manipulation */
+    
+    public function isEmpty() 
+    {
+        return (empty($this->name) && empty($this->description));
+    }
 }
