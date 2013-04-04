@@ -189,7 +189,7 @@ class CarePlan extends BaseThing
     
     public function addGoal($goal, $group = NULL)
     {
-        if ( is_empty($group) ) {
+        if ( empty($group) ) {
             if (empty($this->goals)) {
                 $group = $this->addGoalGroup('General', 'General');
             } else {
@@ -230,7 +230,7 @@ class CarePlan extends BaseThing
     public function getThingStartDate()
     {
         $payload = $this->getThingPayload();
-        $startDate = $this->getThingApproxDateTime($payload->getStartDate());
+        $startDate = $this->getThingApproxDateTime($payload->getStartDate(FALSE));
     
         return $startDate;
     }
@@ -243,10 +243,26 @@ class CarePlan extends BaseThing
         return $this;
     }
     
+    public function getThingEndDate()
+    {
+        $payload = $this->getThingPayload();
+        $endDate = $this->getThingApproxDateTime($payload->getEndDate(FALSE));
+    
+        return $endDate;
+    }
+    
+    public function setThingEndDate(\DateTime $endDate)
+    {
+        $payload = $this->getThingPayload();
+        $this->setThingApproxDateTime($payload->getEndDate(), $endDate);
+    
+        return $this;
+    }
+    
     public function getThingTargetDate()
     {
         $payload = $this->getThingPayload();
-        $targetDate = $this->getThingApproxDateTime($payload->getTargetDate());
+        $targetDate = $this->getThingApproxDateTime($payload->getTargetDate(FALSE));
     
         return $targetDate;
     }
@@ -262,7 +278,7 @@ class CarePlan extends BaseThing
     public function getThingCompletionDate()
     {
         $payload = $this->getThingPayload();
-        $endDate = $this->getThingApproxDateTime($payload->getEndDate());
+        $endDate = $this->getThingApproxDateTime($payload->getEndDate(FALSE));
     
         return $endDate;
     }
@@ -273,6 +289,66 @@ class CarePlan extends BaseThing
         $this->setThingApproxDateTime($payload->getEndDate(), $endDate);
     
         return $this;
+    }
+    
+    public function getThingGoals()
+    {
+        $goals = array();
+        
+        $payload = $this->getThingPayload();
+        $goalGroups = $payload->getGoalGroups();
+        
+        if ( ! empty ($goalGroups) )
+        {
+            $groups = $goalGroups->getGoalGroup();
+            
+            if ( ! empty($groups) )
+            {
+                foreach ($groups as $goalGroup)
+                {
+                    $goals[$goalGroup->getName()] = array(
+                        'name' => $goalGroup->getName(),
+                        'description' => $goalGroup->getDescription(),
+                        'goals' => array(),
+                    );
+                    
+                    $thingGoals = $goalGroup->getGoals();
+                    
+                    if ( ! empty($thingGoals) )
+                    {
+                        foreach ($thingGoals as $thingGoal)
+                        {
+                            $goals[$goalGroup->getName()]['goals'][$thingGoal->getName()] = new CarePlanGoal($thingGoal, $this->vocabularyInterface); 
+                        }                            
+                    }
+                }
+            }
+        }
+        
+        return $goals;
+    }
+    
+    public function getThingTasks()
+    {
+        $tasks = array();
+        
+        $payload = $this->getThingPayload();
+        $goalTasks = $payload->getTasks();
+        
+        if ( ! empty ($goalTasks) )
+        {
+            $thingTasks = $goalTasks->getTask();
+            
+            if ( ! empty($thingTasks) )
+            {
+                foreach ($thingTasks as $thingTask)
+                {
+                    $tasks[$thingTask->getName()] = new CarePlanTask($thingTask, $this->vocabularyInterface); 
+                }                            
+            }
+        }
+        
+        return $tasks;
     }
     
     public function getThing(Thing2 $thing = NULL) {
@@ -291,6 +367,8 @@ class CarePlan extends BaseThing
         $this->setThingName($this->name);
         $this->status->setVocabularyInterface($this->healthvaultVocabulary);
         $this->status->updateToThingElement($payload->getStatus());
+
+        $this->synchroniseGoals();
         
         return $thing;
     }
@@ -306,6 +384,9 @@ class CarePlan extends BaseThing
         
         $this->status->setVocabularyInterface($this->healthvaultVocabulary);
         $this->status->setFromThingElement($payload->getStatus());
+        
+        $this->goals = $this->getThingGoals();
+        $this->tasks = $this->getThingTasks();
         
         // FIXME: Implement rest of the methods
         
@@ -332,4 +413,95 @@ class CarePlan extends BaseThing
         return ($thing->getTypeId()->getValue() == hvCarePlan::ID);
     }
     /* End of BaseThing Methods */
+    
+    protected function synchroniseGoals()
+    {
+        // Get the values that are in the current structure
+        // compare with what we think they should be
+        // adjust accordingly
+        
+        $goalGroups = $this->getThingGoals();
+        
+        $goalStatus = array(
+                'added' => array(),
+                'removed' => array(),
+                'kept' => array(),
+        );
+        
+        $seenGoals = array();
+        
+        foreach ($goalGroups as $thisGoalGroup)
+        {
+            if ( empty($thisGoalGroup['goals']) )
+            {
+                continue;
+            }
+        
+            foreach ($thisGoalGroup['goals'] as $thisGoal)
+            {
+                $key = $thisGoal->getReferenceId();
+        
+                if ( isset($seenGoals[$key]) )
+                {
+                    continue;
+                }
+        
+                $seenGoals[$key] = TRUE;
+                
+                if ($thisGoal->isEmpty()) {
+                    // Just in case it got blanked
+                    $goalStatus['removed'] = $thisGoal;
+                    
+                    continue;
+                }
+        
+                foreach ($this->goals as $entityGoalGroup )
+                {
+                    if (empty($entityGoalGroup['goals']))
+                    {
+                        continue;
+                    }
+        
+                    foreach ($entityGoalGroup['goals'] as $entityGoal)
+                    {
+                        if ($entityGoal->getReferenceId() == $key) {
+                            $goalStatus['kept'] = $entityGoal;
+                            continue 3;
+                        }
+                    }
+                }
+        
+                // Didn't find the thing's goal in the entity
+                $goalStatus['removed'] = $thisGoal;
+            }
+        }
+        
+        foreach ($this->goals as $entityGoalGroup )
+        {
+            if (empty($entityGoalGroup['goals']))
+            {
+                continue;
+            }
+        
+            foreach ($entityGoalGroup['goals'] as $entityGoal)
+            {
+                $key = $entityGoal->getReferenceId();
+        
+                if ( isset($seenGoals[$key]) )
+                {
+                    continue;
+                }
+        
+                $seenGoals[$key] = TRUE;
+                
+                if ($entityGoal->isEmpty()) {
+                    // Just in case it got blanked
+                    $goalStatus['removed'] = $entityGoal;
+                    
+                } else {
+                    $goalStatus['added'] = $entityGoal;
+                }
+            }
+        }
+    }
 }
