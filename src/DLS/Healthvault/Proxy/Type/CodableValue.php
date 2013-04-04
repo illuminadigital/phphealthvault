@@ -22,15 +22,8 @@ class CodableValue extends VocabularyType
      */
     protected $vocabularies;
 
-    /**
-     * @var \DLS\Healthvault\Utilities\VocabularyInterface
-     */
-    protected $vocabularyInterface;
-    
-    public function __construct(VocabularyInterface $vocabularyInterface, $vocabularies = NULL) 
+    public function __construct($vocabularies = NULL) 
     {
-        $this->vocabularyInterface = $vocabularyInterface;
-        
         if ( ! empty($vocabularies) ) {
             $this->setVocabularies($vocabularies);
         }
@@ -74,7 +67,13 @@ class CodableValue extends VocabularyType
 
     public function getVocabularies()
     {
-        return implode(',', array_keys($this->vocabularies));
+        if ( empty ($this->vocabularies) ) {
+            return '';
+        } else if ( ! is_array($this->vocabularies) ) {
+            return (string) $this->vocabularies;
+        } else {
+            return implode(',', array_keys($this->vocabularies));
+        }
     }
 
     public function getText()
@@ -102,6 +101,12 @@ class CodableValue extends VocabularyType
     }
     
     public function updateCodedValue() {
+        // short circuit this if we don't have the interface available
+        if ( empty($this->vocabularyInterface) ) {
+            $this->codedValue = NULL;
+            return FALSE;
+        }
+        
         foreach ($this->vocabularies as $thisVocabulary) {
             $codedValue = $this->vocabularyInterface->getEntry($this->text, $thisVocabulary['name'], $thisVocabulary['family']);
             
