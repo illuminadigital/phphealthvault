@@ -332,8 +332,12 @@ abstract class BaseThing
         );
     }
     
-    protected function getThingDate(Date $hvDate)
+    protected function getThingDate(Date $hvDate = NULL)
     {
+        if ( ! $hvDate ) {
+            return NULL;
+        }
+        
         $y = $hvDate->getY()->getValue();
         $m = $hvDate->getM()->getValue();
         $d = $hvDate->getD()->getValue();
@@ -364,8 +368,12 @@ abstract class BaseThing
         return $this;
     }
     
-    protected function getThingDatetime(DateTime $hvDatetime)
+    protected function getThingDatetime(DateTime $hvDatetime = NULL)
     {
+        if ( ! $hvDatetime ) {
+            return NULL;
+        }
+        
         $date = $hvDatetime->getDate();
         $time = $hvDatetime->getTime();
         
@@ -422,8 +430,12 @@ abstract class BaseThing
         */
     }
     
-    protected function getThingApproxDate(ApproxDateTime $hvDate)
+    protected function getThingApproxDate(ApproxDateTime $hvDate = NULL)
     {
+        if ( ! $hvDate ) {
+            return NULL;
+        }
+        
         $structuredDate = $hvDate->getStructured()->getDate();
     
         $y = $structuredDate->getY()->getValue();
@@ -470,8 +482,12 @@ abstract class BaseThing
         */
     }
     
-    protected function getThingApproxDateTime(ApproxDateTime $hvDate)
+    protected function getThingApproxDateTime(ApproxDateTime $hvDate = NULL)
     {
+        if ( ! $hvDate ) {
+            return NULL;
+        }
+        
         $structuredDate = $hvDate->getStructured()->getDate();
         $structuredTime = $hvDate->getStructured()->getTime();
         
