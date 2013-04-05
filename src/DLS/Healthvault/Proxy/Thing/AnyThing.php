@@ -1,8 +1,6 @@
 <?php
 namespace DLS\Healthvault\Proxy\Thing;
 
-use Illumina\PhphealthvaultBundle\Entity\BaseThing;
-
 use com\microsoft\wc\thing\Thing2;
 
 class AnyThing extends BaseThing
@@ -17,7 +15,7 @@ class AnyThing extends BaseThing
     }
     
     public static function getProxy($thingId, $version = NULL) {
-        $thing = new Thing();
+        $thing = new Thing2();
         
         $thingKey = $thing->getThingId();
         $thingKey->setValue($thingId);
