@@ -12,6 +12,8 @@ use com\microsoft\wc\types\CodableValue;
 use DLS\Healthvault\Utilities\VocabularyInterface;
 use DLS\Healthvault\Blob\BlobStoreFactory;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 abstract class BaseThing
 {
     /**
@@ -35,6 +37,7 @@ abstract class BaseThing
     protected $notes;
     
     /**
+     * @Assert\NotBlank
      * @var string;
      */
     protected $name;
