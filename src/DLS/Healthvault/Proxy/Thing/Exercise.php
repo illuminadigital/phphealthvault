@@ -56,7 +56,7 @@ class Exercise extends ApproxWhenThing {
             VocabularyInterface $healthvaultVocabulary = NULL)
     {
 		$this->distance = new LongLengthValue();
-        $this->activity = new CodableValue($healthvaultVocabulary, array('exercise-activities', 'aerobic-activities'));
+        $this->activity = new CodableValue(array('exercise-activities', 'aerobic-activities'));
         
 		parent::__construct($thing, $healthvaultVocabulary);
     }
