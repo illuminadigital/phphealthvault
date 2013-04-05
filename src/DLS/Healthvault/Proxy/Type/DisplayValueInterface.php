@@ -31,10 +31,6 @@ interface DisplayValueInterface
     
     public function setFromUnits($units);
     
-    public function setFromThingElement($thingElement);
-    
-    public function updateToThingElement($thingElement);
-    
     public function getSelectedUnitData($unitCode = NULL);
     
     public function getCodeForTypeName($name);    
