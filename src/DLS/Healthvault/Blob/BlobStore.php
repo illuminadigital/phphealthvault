@@ -133,6 +133,12 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $this->syncToThing();
     }
+    
+    public function removeBlob(Blob $blob) {
+        $name = $blob->getName();
+
+        return $this->remove($name);
+    }
 
     public function get($name) {
         if (isset($this->blobs[$name])) {

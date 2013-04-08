@@ -12,6 +12,8 @@ use com\microsoft\wc\types\CodableValue;
 use DLS\Healthvault\Utilities\VocabularyInterface;
 use DLS\Healthvault\Blob\BlobStoreFactory;
 
+use DLS\Healthvault\Blob\Blob;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class BaseThing
@@ -561,5 +563,23 @@ abstract class BaseThing
         }
         // else 
         return NULL;
+    }
+    
+    public function addBlob(Blob $blob) {
+        $blobStore = $this->getBlobStore();
+        
+        return $blobStore->addBlob($blob);
+    }
+    
+    public function removeBlob(Blob $blob) {
+        $blobStore = $this->getBlobStore();
+        
+        return $blobStore->removeBlob($blob);
+    }
+    
+    public function getBlobs() {
+        $blobStore = $this->getBlobStore();
+        
+        return $blobStore; // This is an iterable
     }
 }
