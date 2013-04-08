@@ -7,6 +7,10 @@ use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\BloodGlucose\BloodGlucose;
 
+use DLS\Healthvault\Utilities\VocabularyInterface;
+
+use DLS\Healthvault\Proxy\Type\CodableValue;
+
 class Glucose extends WhenThing
 {
     protected $name = 'Glucose Measurement';
@@ -20,7 +24,10 @@ class Glucose extends WhenThing
 
     /**
      * @Assert\NotBlank()
-     * @Validate\InHealthvaultVocabulary("glucose-measurement-type")
+     * 
+     * @var \DLS\Healthvault\Proxy\Type\CodableValue
+     */
+    /* @Validate\InHealthvaultVocabulary("glucose-measurement-type") 
      * @var string
      */
     protected $glucoseMeasurementType;
@@ -35,11 +42,27 @@ class Glucose extends WhenThing
     protected $normalcy;
 
     /**
+     * @var \DLS\Healthvault\Proxy\Type\CodableValue
+     */
+    /*
      * @Validate\InHealthvaultVocabulary(vocabulary="glucose-measurement-context", required=false)
-     * 
      * @var string
      */
     protected $measurementContext;
+    
+    public function __construct(Thing2 $thing = NULL,
+            VocabularyInterface $healthvaultVocabulary = NULL) {
+
+        $this->measurementContext = new CodableValue('glucose-measurement-context');
+        $this->glucoseMeasurementType = new CodableValue('glucose-measurement-type');
+        
+        if ($healthvaultVocabulary) {
+            $this->measurementContext->setVocabularyInterface($healthvaultVocabulary);
+            $this->glucoseMeasurementType->setVocabularyInterface($healthvaultVocabulary);
+        }
+        
+        parent::__construct($thing, $healthvaultVocabulary);
+    }
 
     /**
      * @return the double;
@@ -145,15 +168,21 @@ class Glucose extends WhenThing
         $payload = $this->getThingPayload();
         
         $this->value = $payload->getValue()->getMmolPerL()->getValue();
+        $this->normalcy = $payload->getNormalcy()->getValue();
+        
         $type = $payload->getGlucoseMeasurementType();
+        /*
         if ($type && is_object($type->getCode())) {
             $this->glucoseMeasurementType = $type->getCode()->getValue();
-        }
-        $this->normalcy = $payload->getNormalcy()->getValue();
+        }*/
         $context = $payload->getMeasurementContext();
+        /*
         if ($context && is_object($context->getCode())) {
             $this->measurementContext = $context->getCode()->getValue();
         }
+        */
+        $this->glucoseMeasurementType->setFromThingElement($type);
+        $this->measurementContext->setFromThingElement($context);
         
         return $this;
     }
@@ -179,8 +208,11 @@ class Glucose extends WhenThing
     
     protected function setThingGlucoseMeasurementType($type) {
         $payload = $this->getThingPayload();
-        
+
+        /*
         $this->setThingCodableValue($payload->getGlucoseMeasurementType(), $this->glucoseMeasurementType, array('glucose-measurement-type'));
+        */
+        $this->glucoseMeasurementType->updateToThingElement($payload->getGlucoseMeasurementType());
         
         return $this;
     }
@@ -200,7 +232,10 @@ class Glucose extends WhenThing
     protected function setThingMeasurementContext($context) {
         $payload = $this->getThingPayload();
         
+        /*
         $this->setThingCodableValue($payload->getMeasurementContext(), $this->measurementContext, array('glucose-measurement-context'));
+        */
+        $this->measurementContext->updateToThingElement($payload->getMeasurementContext());
         
         return $this;
     }
