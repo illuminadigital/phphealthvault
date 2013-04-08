@@ -136,13 +136,28 @@ class CodableValue extends VocabularyType
     {
         $this->text = $thingElement->getText();
 
-        $codedValue = $thingElement->getCode();
+        $codedValue = $thingElement->getCode(FALSE);
 
         if ( ! empty($codedValue) ) {
             $this->codedValue = sprintf('%s:%s:%s', $codedValue[0]->getType(),
                     $codedValue[0]->getFamily(), $codedValue[0]->getValue());
         } else {
             $this->codedValue = NULL;
+            
+            if ($this->text && $this->vocabularyInterface) {
+                // Try to handle the case where the coded value is the text
+                
+                foreach ($this->vocabularies as $thisVocabulary) {
+                    $vocabulary = $this->vocabularyInterface->get($thisVocabulary['name'], $thisVocabulary['family']);
+                    
+                    if ($vocabulary && isset($vocabulary[$this->text])) {
+                        $this->codedValue = sprintf('%s:%s:%s', $thisVocabulary['name'], $thisVocabulary['family'], $this->text);
+                        $this->text = $vocabulary[$this->text];
+                        
+                        break;
+                    }
+                }
+            }
         }
             
         return $thingElement;
@@ -150,8 +165,6 @@ class CodableValue extends VocabularyType
 
     public function updateToThingElement($thingElement)
     {
-        $thingElement->setText($this->text);
-
         if (empty($this->codedValue)) {
             $type = $family = $value = NULL;
         } else {
@@ -175,6 +188,13 @@ class CodableValue extends VocabularyType
         $codedValue->setType($type);
         $codedValue->setFamily($family);
         $codedValue->setValue($value);
+
+        if ( empty ($this->text) ) {
+            $vocabulary = $this->vocabularyInterface->get($type, $family);
+            $this->text = $vocabulary[$value];
+        }
+        
+        $thingElement->setText($this->text);
     }
     
     public function __toString() {
