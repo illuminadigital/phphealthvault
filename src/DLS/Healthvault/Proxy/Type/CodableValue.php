@@ -171,7 +171,7 @@ class CodableValue extends VocabularyType
             list($type, $family, $value) = explode(':', $this->codedValue);
         }
 
-        $codedValues = $thingElement->getCode();
+        $codedValues = $thingElement->getCode(FALSE);
         
         if (empty($codedValues)) {
             $codableType = get_class($thingElement);
@@ -179,21 +179,33 @@ class CodableValue extends VocabularyType
             
             $codedValue = new $codedType();
             
-            $codedValues[] = $codedValue;
-            $thingElement->setCode($codedValues);
+            $isNew = TRUE;
         } else {
 	        $codedValue = $codedValues[0];
+	        
+	        $isNew = FALSE;
         }
 
-        $codedValue->setType($type);
-        $codedValue->setFamily($family);
-        $codedValue->setValue($value);
-
-        if ( empty ($this->text) ) {
-            $vocabulary = $this->vocabularyInterface->get($type, $family);
-            $this->text = $vocabulary[$value];
+        if ($type && $family && $value) {
+            $codedValue->setType($type);
+            $codedValue->setFamily($family);
+            $codedValue->setValue($value);
+            
+            if ($isNew) {
+                $codedValues[] = $codedValue;
+                $thingElement->setCode($codedValues);
+            }
+    
+            if ( empty ($this->text) ) {
+                $vocabulary = $this->vocabularyInterface->get($type, $family);
+                $this->text = $vocabulary[$value];
+            }
         }
-        
+
+        if (empty($this->text)) {
+            $this->text = 'Unknown';
+        }
+
         $thingElement->setText($this->text);
     }
     
