@@ -14,6 +14,8 @@ use DLS\Healthvault\Blob\BlobStoreFactory;
 
 use DLS\Healthvault\Blob\Blob;
 
+use DLS\Healthvault\Proxy\Type\Extension;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class BaseThing
@@ -53,6 +55,13 @@ abstract class BaseThing
      * @var string
      */
     protected $version;
+
+    /**
+     * Extensions location
+     * 
+     * @var array
+     */
+    protected $extensions = array();
     
     public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL, BlobStoreFactory $factory = NULL)
     {
@@ -118,6 +127,8 @@ abstract class BaseThing
         
         $this->setThingNotes($this->notes);
         
+        $this->setThingExtensions($this->extensions);
+        
         return $this->thing;
     }
     
@@ -135,6 +146,8 @@ abstract class BaseThing
         $this->notes = $this->getThingNotes();
         $this->version = $this->getThingVersion();
         $this->id = $this->getThingId();
+        
+        $this->extensions = $this->getThingExtensions();
     
         return $this;
     }
@@ -175,6 +188,39 @@ abstract class BaseThing
         $thingKey->setVersionStamp($version);
         
         return $this;
+    }
+
+    protected function getThingExtensions()
+    {
+        $payloadArea = $this->getThingPayloadArea();
+        $hvExtensions = $payloadArea->getCommon()->getExtension();
+        
+        $extensions = array();
+        
+        if ( ! is_array($hvExtensions )) {
+            return $extensions;
+        }
+        
+        foreach ($hvExtensions as $thisHvExtension) {
+            $extensions[] = new Extension($thisHvExtension);
+        }
+        
+        return $extensions;
+    }
+    
+    protected function setThingExtensions($extensions)
+    {
+        $hvExtensions = array();
+        
+        foreach ($extensions as $thisExtension) {
+            $hvExtension = new hvExtension();
+            $thisExtension->updateToThingElement($hvExtension);
+            
+            $hvExtensions[] = $hvExtension;
+        }
+        
+        $payloadArea = $this->getThingPayloadArea();
+        $payloadArea->getCommon()->setExtension($hvExtensions);
     }
 
     protected function getThingId()
@@ -581,5 +627,35 @@ abstract class BaseThing
         $blobStore = $this->getBlobStore();
         
         return $blobStore; // This is an iterable
+    }
+    
+    public function getExtensions() {
+        return $this->extensions;
+    }
+    
+    public function addExtension(Extension $extension) {
+        $this->extensions[] = $extension;
+        
+        return $this;
+    }
+    
+    public function removeExtension(Extension $extension) {
+        foreach ($this->extensions as $index => $thisExtension) {
+            if ($thisExtension == $extension) {
+                unset($this->extensions[$index]);
+                
+                return;
+            }
+        }
+    }
+    
+    public function getExtension($source) {
+        foreach ($this->extensions as $thisExtension) {
+            if ($thisExtension->getSource() == $source) {
+                return $thisExtension;
+            }
+        }
+        
+        return NULL;
     }
 }
