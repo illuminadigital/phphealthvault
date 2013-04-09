@@ -128,4 +128,20 @@ class GetThingsMethod extends PlatformMethod
         $blobFormatSpec = new BlobFormatSpec('streamed');
         $blobFormat->setBlobFormatSpec($blobFormatSpec);
     }
+    
+    public function addStartFilter($startDate) {
+        $lastGroup = $this->getLastGroup();
+        
+        foreach ($lastGroup->getFilter() as $thisFilter) {
+            $thisFilter->setEffDateMin($startDate->format('Y-m-d\T00:00:00'));
+        }
+    }
+    
+    public function addEndFilter($endDate) {
+        $lastGroup = $this->getLastGroup();
+        
+        foreach ($lastGroup->getFilter() as $thisFilter) {
+            $thisFilter->setEffDateMax($endDate->format('Y-m-d\T00:00:00'));
+        }
+    }
 }
