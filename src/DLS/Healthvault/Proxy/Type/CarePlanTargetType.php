@@ -95,7 +95,7 @@ abstract class CarePlanTargetType extends VocabularyType
         $this->associatedType = array();
 
         $this->recurrenceInterval = new CodableValue("recurrence-intervals");
-        $this->name = new CodableValue("recurrence-intervals");
+        $this->name = new CodableValue("goal-type");
         
         if ( isset($vocabularyInterface) ) {
             $this->setVocabularyInterface($vocabularyInterface);

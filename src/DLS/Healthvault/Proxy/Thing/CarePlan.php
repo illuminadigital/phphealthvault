@@ -3,8 +3,12 @@ namespace DLS\Healthvault\Proxy\Thing;
 
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\care_plan\CarePlan as hvCarePlan;
+use com\microsoft\wc\thing\care_plan\CarePlanGoal as hvCarePlanGoal;
+use com\microsoft\wc\thing\care_plan\CarePlanGoalGroup as hvCarePlanGoalGroup;
 
 use DLS\Healthvault\Proxy\Thing\BaseThing;
+
+use DLS\Healthvault\Proxy\Type\CarePlanGoal;
 
 use DLS\Healthvault\Proxy\Type\CodableValue;
 use DLS\Healthvault\Utilities\VocabularyInterface;
@@ -193,7 +197,8 @@ class CarePlan extends BaseThing
             if (empty($this->goals)) {
                 $group = $this->addGoalGroup('General', 'General');
             } else {
-                $group = array_pop(array_keys($this->goals));
+                $groupNames = array_keys($this->goals);
+                $group = array_pop($groupNames);
             }
         }
         
@@ -306,9 +311,11 @@ class CarePlan extends BaseThing
             {
                 foreach ($groups as $goalGroup)
                 {
-                    $goals[$goalGroup->getName()] = array(
-                        'name' => $goalGroup->getName(),
-                        'description' => $goalGroup->getDescription(),
+                    $groupName = $goalGroup->getName()->getText();
+                    
+                    $goals[$groupName] = array(
+                        'name' => $groupName,
+                        'description' => $goalGroup->getDescription()->getValue(),
                         'goals' => array(),
                     );
                     
@@ -318,7 +325,7 @@ class CarePlan extends BaseThing
                     {
                         foreach ($thingGoals as $thingGoal)
                         {
-                            $goals[$goalGroup->getName()]['goals'][$thingGoal->getName()] = new CarePlanGoal($thingGoal, $this->vocabularyInterface); 
+                            $goals[$groupName]['goals'][$thingGoal->getName()->getValue()] = new CarePlanGoal($thingGoal, $this->vocabularyInterface); 
                         }                            
                     }
                 }
@@ -333,7 +340,7 @@ class CarePlan extends BaseThing
         $tasks = array();
         
         $payload = $this->getThingPayload();
-        $goalTasks = $payload->getTasks();
+        $goalTasks = $payload->getTasks(FALSE);
         
         if ( ! empty ($goalTasks) )
         {
@@ -343,7 +350,7 @@ class CarePlan extends BaseThing
             {
                 foreach ($thingTasks as $thingTask)
                 {
-                    $tasks[$thingTask->getName()] = new CarePlanTask($thingTask, $this->vocabularyInterface); 
+                    $tasks[$thingTask->getName()->getValue()] = new CarePlanTask($thingTask, $this->vocabularyInterface); 
                 }                            
             }
         }
@@ -414,94 +421,98 @@ class CarePlan extends BaseThing
     }
     /* End of BaseThing Methods */
     
+    /**
+     * Synchronise the goals into the thing
+     * 
+     * Returns an array of goals according to what happened to them
+     * 
+     * @return array  
+     */
     protected function synchroniseGoals()
     {
         // Get the values that are in the current structure
         // compare with what we think they should be
         // adjust accordingly
+
+        $payload = $this->getThingPayload();
+        $goalGroups = $payload->getGoalGroups()->getGoalgroup();
         
-        $goalGroups = $this->getThingGoals();
+        $ourGoals = array_merge($this->goals, array());
         
         $goalStatus = array(
-                'added' => array(),
-                'removed' => array(),
-                'kept' => array(),
+            'added' => array(),
+            'removed' => array(),
+            'kept' => array(),
         );
         
-        $seenGoals = array();
-        
-        foreach ($goalGroups as $thisGoalGroup)
-        {
-            if ( empty($thisGoalGroup['goals']) )
-            {
+        foreach ($goalGroups as $goalGroupIndex => $goalGroup) {
+            $goalGroupName = $goalGroup->getName()->getText();
+            if ( ! isset ($ourGoals[$goalGroupName]) || empty($ourGoals[$goalGroupName]['goals'])) {
+                unset($goalGroups[$goalGroupIndex]);
+                
+                foreach ($goalGroup->getGoals()->getGoal() as $thisGoal) {
+                    $goalStatus['removed'][] = new CarePlanGoal($thisGoal, $this->healthvaultVocabulary);
+                }
+                
                 continue;
             }
-        
-            foreach ($thisGoalGroup['goals'] as $thisGoal)
-            {
-                $key = $thisGoal->getReferenceId();
-        
-                if ( isset($seenGoals[$key]) )
-                {
-                    continue;
+            
+            $goalGroupGoals = $goalGroup->getGoals()->getGoal();
+            
+            foreach ($goalGroupGoals as $goalIndex => $goal) {
+                foreach ($ourGoals[$goalGroupName]['goals'] as $ourGoalIndex => $ourGoal) {
+                    if ($goal->getReferenceId() == $ourGoal->getReferenceId()) {
+                        $ourGoal->updateToThingElement($goalGroupGoals[$goalIndex]);
+                        $goalStatus['kept'][] = $ourGoal;
+                        
+                        unset ($ourGoals[$goalGroupName]['goals'][$ourGoalIndex]);
+                        
+                        continue 2;
+                    }
                 }
-        
-                $seenGoals[$key] = TRUE;
                 
-                if ($thisGoal->isEmpty()) {
-                    // Just in case it got blanked
-                    $goalStatus['removed'] = $thisGoal;
+                // Not found -- must be removed
+                $goalStatus['removed'] = new CarePlanGoal($goal, $this->healthvaultVocabulary);
+                
+                unset ($goalGroupGoals[$goalIndex]);
+            }
+            
+            if ( ! empty ($ourGoals[$goalGroupName]['goals'])) {
+                // Need to add these items
+                
+                foreach ($ourGoals[$goalGroupName]['goals'] as $thisGoal) {
+                    $newGoal = new hvCarePlanGoal();
+                    $thisGoal->updateToThingElement($newGoal);
+                    $goalGroup->getGoals()->addGoal($newGoal);
                     
-                    continue;
+                    $goalStatus['added'] = $thisGoal;
                 }
-        
-                foreach ($this->goals as $entityGoalGroup )
-                {
-                    if (empty($entityGoalGroup['goals']))
-                    {
-                        continue;
-                    }
-        
-                    foreach ($entityGoalGroup['goals'] as $entityGoal)
-                    {
-                        if ($entityGoal->getReferenceId() == $key) {
-                            $goalStatus['kept'] = $entityGoal;
-                            continue 3;
-                        }
-                    }
-                }
-        
-                // Didn't find the thing's goal in the entity
-                $goalStatus['removed'] = $thisGoal;
+                
+                unset($ourGoals[$goalGroupName]);
             }
         }
         
-        foreach ($this->goals as $entityGoalGroup )
-        {
-            if (empty($entityGoalGroup['goals']))
-            {
+        // ourGoals still contains a list of those groups added to the collection
+        foreach ($ourGoals as $groupName => $goalData) {
+            if ( empty($goalData['goals'])) {
                 continue;
             }
-        
-            foreach ($entityGoalGroup['goals'] as $entityGoal)
-            {
-                $key = $entityGoal->getReferenceId();
-        
-                if ( isset($seenGoals[$key]) )
-                {
-                    continue;
-                }
-        
-                $seenGoals[$key] = TRUE;
+            
+            $goalGroup = new hvCarePlanGoalGroup();
+            $goalGroup->setName($goalData['name']);
+            $goalGroup->setDescription($goalData['description']);
+            
+            foreach ($goalData['goals'] as $thisGoal) {
+                $newGoal = new hvCarePlanGoal();
+                $thisGoal->updateToThingElement($newGoal);
+                $goalGroup->getGoals()->addGoal($newGoal);
                 
-                if ($entityGoal->isEmpty()) {
-                    // Just in case it got blanked
-                    $goalStatus['removed'] = $entityGoal;
-                    
-                } else {
-                    $goalStatus['added'] = $entityGoal;
-                }
+                $goalStatus['added'] = $thisGoal;
             }
+            
+            $payload->getGoalGroups()->addGoalGroup($goalGroup);
         }
+        
+        return $goalStatus;
     }
 }
