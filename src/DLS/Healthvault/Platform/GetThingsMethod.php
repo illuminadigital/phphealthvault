@@ -141,7 +141,7 @@ class GetThingsMethod extends PlatformMethod
         $lastGroup = $this->getLastGroup();
         
         foreach ($lastGroup->getFilter() as $thisFilter) {
-            $thisFilter->setEffDateMax($endDate->format('Y-m-d\T00:00:00'));
+            $thisFilter->setEffDateMax($endDate->format('Y-m-d\T23:59:59'));
         }
     }
 }
