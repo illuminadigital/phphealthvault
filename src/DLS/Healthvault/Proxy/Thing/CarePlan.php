@@ -5,10 +5,12 @@ use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\care_plan\CarePlan as hvCarePlan;
 use com\microsoft\wc\thing\care_plan\CarePlanGoal as hvCarePlanGoal;
 use com\microsoft\wc\thing\care_plan\CarePlanGoalGroup as hvCarePlanGoalGroup;
+use com\microsoft\wc\thing\care_plan\CarePlanTask as hvCarePlanTask;
 
 use DLS\Healthvault\Proxy\Thing\BaseThing;
 
 use DLS\Healthvault\Proxy\Type\CarePlanGoal;
+use DLS\Healthvault\Proxy\Type\CarePlanTask;
 
 use DLS\Healthvault\Proxy\Type\CodableValue;
 use DLS\Healthvault\Utilities\VocabularyInterface;
@@ -169,10 +171,30 @@ class CarePlan extends BaseThing
     public function addTask($task, $sequence = NULL)
     {
         if (empty($sequence)) {
-            $sequence = count($this->tasks);
+            $this->tasks[] = $task;
+        } else {
+            $this->tasks[$sequence] = $task;
+        }
+    }
+    
+    public function replaceTask($task, $reference) {
+        if (strpos($reference, '-') === FALSE) {
+            if (isset($this->tasks[$reference])) {
+                $this->tasks[$reference] = $task;
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } else {
+            foreach ($this->tasks as $index => $theTask) {
+                if ($theTask->getReferenceId() == $task->getReferenceId()) {
+                    $this->tasks[$index] = $task;
+                    return TRUE;
+                }
+            }
         }
         
-        $this->tasks[$sequence][] = $task;
+        return FALSE;
     }
 
     /**
@@ -319,14 +341,18 @@ class CarePlan extends BaseThing
                         'goals' => array(),
                     );
                     
-                    $thingGoals = $goalGroup->getGoals();
+                    $thingGoalsWrapper = $goalGroup->getGoals();
                     
-                    if ( ! empty($thingGoals) )
-                    {
-                        foreach ($thingGoals as $thingGoal)
+                    if (isset($thingGoalsWrapper)) {
+                        $thingGoals = $thingGoalsWrapper->getGoal();
+                        
+                        if ( ! empty($thingGoals) )
                         {
-                            $goals[$groupName]['goals'][$thingGoal->getName()->getValue()] = new CarePlanGoal($thingGoal, $this->vocabularyInterface); 
-                        }                            
+                            foreach ($thingGoals as $thingGoal)
+                            {
+                                $goals[$groupName]['goals'][$thingGoal->getName()->getText()] = new CarePlanGoal($thingGoal, $this->healthvaultVocabulary);
+                            }
+                        }
                     }
                 }
             }
@@ -350,7 +376,7 @@ class CarePlan extends BaseThing
             {
                 foreach ($thingTasks as $thingTask)
                 {
-                    $tasks[$thingTask->getName()->getValue()] = new CarePlanTask($thingTask, $this->vocabularyInterface); 
+                    $tasks[] = new CarePlanTask($thingTask, $this->healthvaultVocabulary); 
                 }                            
             }
         }
@@ -376,6 +402,8 @@ class CarePlan extends BaseThing
         $this->status->updateToThingElement($payload->getStatus());
 
         $this->synchroniseGoals();
+        
+        $this->synchroniseTasks();
         
         return $thing;
     }
@@ -461,7 +489,7 @@ class CarePlan extends BaseThing
             
             foreach ($goalGroupGoals as $goalIndex => $goal) {
                 foreach ($ourGoals[$goalGroupName]['goals'] as $ourGoalIndex => $ourGoal) {
-                    if ($goal->getReferenceId() == $ourGoal->getReferenceId()) {
+                    if ($goal->getReferenceId(FALSE) == $ourGoal->getReferenceId()) {
                         $ourGoal->updateToThingElement($goalGroupGoals[$goalIndex]);
                         $goalStatus['kept'][] = $ourGoal;
                         
@@ -514,5 +542,47 @@ class CarePlan extends BaseThing
         }
         
         return $goalStatus;
+    }
+    
+    protected function synchroniseTasks() {
+        // We always have ReferenceIds in our tasks
+        
+        $payload = $this->getThingPayload();
+        $thingTasks = $payload->getTasks()->getTask();
+        $newTasks = array();
+        $extraTasks = array();
+        
+        foreach ($this->tasks as $theTaskReference => $theTask) {
+            if (is_numeric($theTaskReference)) {
+                // Must be an index
+                
+                if (isset($thingTasks[$theTaskReference])) {
+                    $newTasks[$theTaskReference] = $thingTasks[$theTaskReference];
+                    $theTask->updateToThingElement($newTasks[$theTaskReference]);
+                } else {
+                    $newTask = new hvCarePlanTask();
+                    $theTask->updateToThingElement($newTask);
+                    $newTasks[$theTaskReference] = $newTask;
+                }
+            } else {
+                foreach ($thingTasks as $thisThinTaskIndex => $thisThingTask) {
+                    if ($thisThingTask->getReferenceId() == $theTaskReference) {
+                        $newTasks[$theTaskReference] = $thisThingTask;
+                        $theTask->updateToThingElement($newTasks[$theTaskReference]);
+                        break;
+                    }
+                }
+                
+                $newTask = new hvCarePlanTask();
+                $theTask->updateToThingElement($newTask);
+                $extraTasks[] = $newTask;
+            }
+        }
+        
+        if ( ! empty ($extraTasks) ) {
+            $newTasks = array_merge($newTasks, $extraTasks);
+        }
+        
+        $payload->getTasks()->setTask($newTasks);
     }
 }

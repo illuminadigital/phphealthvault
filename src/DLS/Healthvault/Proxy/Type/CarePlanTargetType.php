@@ -4,6 +4,7 @@ use DLS\Healthvault\Proxy\Type\CodableValue;
 
 use DLS\Healthvault\Utilities\Guid;
 use DLS\Healthvault\Utilities\VocabularyInterface;
+use DLS\Healthvault\Utilities\DateTimeUtils;
 
 use DLS\Healthvault\Proxy\Type\VocabularyType;
 
@@ -275,6 +276,11 @@ abstract class CarePlanTargetType extends VocabularyType
     }
 
     /* End of Getters/Setters */
+    
+    /* Utility */
+    public function isComplete() {
+        return ( isset($this->endDate) );
+    }
 
     /* Thing Manipulation */
 
@@ -282,18 +288,56 @@ abstract class CarePlanTargetType extends VocabularyType
     {
         $this->name->setVocabularyInterface($this->vocabularyInterface);
         $this->name->setFromThingElement($thingElement->getName());
+        
+        $ref = $thingElement->getReferenceId(FALSE);
+        if ($ref) {
+            $this->referenceId = $ref->getValue();
+        }
+        
+        $desc = $thingElement->getDescription(FALSE);
+        if ($desc) {
+            $this->description = $desc->getValue();
+        }
+        
+        $this->startDate = DateTimeUtils::getThingApproxDateTime($thingElement->getStartDate(FALSE));
+        $this->endDate = DateTimeUtils::getThingApproxDateTime($thingElement->getEndDate(FALSE));
+        $this->targetCompletionDate = DateTimeUtils::getThingApproxDateTime($thingElement->getTargetCompletionDate(FALSE));
+        
+        // FIXME: Implement associatedTypeInfo
+        // FIXME: Implement recurrence
+                
     }
 
     public function updateToThingElement($thingElement)
     {
         $this->name->setVocabularyInterface($this->vocabularyInterface);
         $this->name->updateToThingElement($thingElement->getName());
+        
+        if ( ! empty($this->referenceId)) {
+            $thingElement->getReferenceId()->setValue($this->referenceId);
+        }
+        if ($this->description) {
+            $thingElement->getDescription()->setValue($this->description);
+        }
+        
+        if ( isset($this->startDate) || $thingElement->getStartDate(FALSE)) {
+            DateTimeUtils::setThingApproxDateTime($thingElement->getStartDate(), $this->startDate);
+        }
+        if ( isset($this->endDate) || $thingElement->getEndDate(FALSE)) {
+            DateTimeUtils::setThingApproxDateTime($thingElement->getEndDate(), $this->endDate);
+        }
+        if ( isset($this->targetCompletionDate) || $thingElement->getTargetCompletionDate(FALSE)) {
+            DateTimeUtils::setThingApproxDateTime($thingElement->getTargetCompletionDate(), $this->targetCompletionDate);
+        }
+        
+        // FIXME: Implement associatedTypeInfo
+        // FIXME: Implement recurrence
     }
 
     /* End of Thing Manipulation */
     
     public function isEmpty() 
     {
-        return (empty($this->name) && empty($this->description));
+        return ((empty($this->name) || $this->name->isEmpty()) && empty($this->description));
     }
 }
