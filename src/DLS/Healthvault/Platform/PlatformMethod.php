@@ -142,6 +142,13 @@ class PlatformMethod
             
             return $info;
         }
+
+        switch($responseObject->getStatus()->getCode()){
+            case 65:
+                throw new AuthenticatedSessionTokenExpiredException();
+                break;
+        }
+
         // else 
         // FIXME: Should thrown an exception
         error_log('Error executing method');
