@@ -9,12 +9,15 @@ use com\microsoft\wc\dates\ApproxDateTime;
 use com\microsoft\wc\dates\Date;
 use com\microsoft\wc\types\CodableValue;
 
+use DLS\Healthvault\Utilities\DateTimeUtils;
+
 use DLS\Healthvault\Utilities\VocabularyInterface;
 use DLS\Healthvault\Blob\BlobStoreFactory;
 
 use DLS\Healthvault\Blob\Blob;
 
 use DLS\Healthvault\Proxy\Type\Extension;
+use com\microsoft\wc\thing\Extension as hvExtension;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -378,186 +381,55 @@ abstract class BaseThing
     
     protected function getThingDateStr(Date $hvDate)
     {
-        return sprintf('%d-%02d-%02d',
-                $hvDate->getY()->getValue(), $hvDate->getM()->getValue(), $hvDate->getD()->getValue()
-        );
+        return DateTimeUtils::getThingDateStr($hvDate);
     }
     
     protected function getThingDate(Date $hvDate = NULL)
     {
-        if ( ! $hvDate ) {
-            return NULL;
-        }
-        
-        $y = $hvDate->getY()->getValue();
-        $m = $hvDate->getM()->getValue();
-        $d = $hvDate->getD()->getValue();
-    
-        if ( ! empty($y) && ! empty($m) && ! empty($d)) {
-            $dateObj = new \DateTime();
-            $dateObj->setDate($y, $m, $d);
-            return $dateObj;
-        }
-    
-        return NULL;
+        return DateTimeUtils::getThingDate($hvDate);
     }
     
     
     protected function setThingDate(Date $hvDate, $date) {
-        if ( ! $date instanceof \DateTime ) {
-            $date = new \DateTime($date);
-        }
+        $result = DateTimeUtils::setThingDate($hvDate, $date);
         
-        if ( ! $date instanceof \DateTime ) {
-            return FALSE;
-        }
-        
-        $hvDate->getY()->setValue((int)$date->format('Y'));
-        $hvDate->getM()->setValue((int)$date->format('m'));
-        $hvDate->getD()->setValue((int)$date->format('d'));
-        
-        return $this;
+        return ( $result ) ? $this : FALSE;
     }
     
     protected function getThingDatetime(DateTime $hvDatetime = NULL)
     {
-        if ( ! $hvDatetime ) {
-            return NULL;
-        }
-        
-        $date = $hvDatetime->getDate();
-        $time = $hvDatetime->getTime();
-        
-        return sprintf('%s %d:%02d:%02d', 
-                $this->getThingDateStr($date),
-                $time->getH()->getValue(), $time->getM()->getValue(), $time->getS()->getValue()
-        );
+        return DateTimeUtils::getThingDatetime($hvDatetime);
     }
     
     protected function setThingDatetime(DateTime $hvDatetime, $datetime)
     {
-        if ( ! $datetime instanceof \DateTime ) {
-            $datetime = new \DateTime($datetime);
-        }
+        $result = DateTimeUtils::setThingDatetime($hvDatetime, $datetime);
         
-        if ( ! $datetime instanceof \DateTime ) {
-            return FALSE;
-        }
-
-        $date = $hvDatetime->getDate();
-        $date->getY()->setValue((int)$datetime->format('Y'));
-        $date->getM()->setValue((int)$datetime->format('m'));
-        $date->getD()->setValue((int)$datetime->format('d'));
-        
-        $time = $hvDatetime->getTime();
-        $time->getH()->setValue((int)$datetime->format('H'));
-        $time->getM()->setValue((int)$datetime->format('i'));
-        $time->getS()->setValue((int)$datetime->format('s'));
-        
-        return $this;
+        return ( $result ) ? $this : FALSE;
     }
     
     protected function setThingApproxDate(ApproxDateTime $hvDate, $date)
     {
-        if ( ! empty($date) && ! $date instanceof \DateTime) {
-            try {
-                $date = new \DateTime($date);
-            }
-            catch (\Exception $e) {
-                error_log('Failed to convert date to DateTime: ' . print_r($date, TRUE));
-            }
-        }
-    
-        if ( ! empty($date) ) {
-            $structuredDate = $hvDate->getStructured()->getDate();
-            $structuredDate->getY()->setValue((int) $date->format('Y'));
-            $structuredDate->getM()->setValue((int) $date->format('m'));
-            $structuredDate->getD()->setValue((int) $date->format('d'));
-        }
-        /*
-         else if ( empty($date) ) {
-        $hvDate->getStructured()->setDate(NULL); // Will be rebuilt on next request
-        }
-        */
+        $result = DateTimeUtils::setThingApproxDate($hvDate, $date);
+        
+        return ( $result ) ? $this : FALSE;
     }
     
     protected function getThingApproxDate(ApproxDateTime $hvDate = NULL)
     {
-        if ( ! $hvDate ) {
-            return NULL;
-        }
-        
-        $structuredDate = $hvDate->getStructured()->getDate();
-    
-        $y = $structuredDate->getY()->getValue();
-        $m = $structuredDate->getM()->getValue();
-        $d = $structuredDate->getD()->getValue();
-    
-        if ( ! empty($y) && ! empty($m) && ! empty($d)) {
-            $dateObj = new \DateTime();
-            $dateObj->setDate($y, $m, $d);
-            return $dateObj;
-        }
-    
-        return NULL;
+        return DateTimeUtils::getThingApproxDate($hvDate);
     }
     
     protected function setThingApproxDateTime(ApproxDateTime $hvDate, $date)
     {
-        if ( ! empty($date) && ! $date instanceof \DateTime) {
-            try {
-                $date = new \DateTime($date);
-            }
-            catch (\Exception $e) {
-                error_log('Failed to convert date to DateTime: ' . print_r($date, TRUE));
-            }
-        }
-    
-        if ( ! empty($date) ) {
-            $structuredDate = $hvDate->getStructured()->getDate();
-            $structuredDate->getY()->setValue((int) $date->format('Y'));
-            $structuredDate->getM()->setValue((int) $date->format('m'));
-            $structuredDate->getD()->setValue((int) $date->format('d'));
-
+        $result = DateTimeUtils::setThingApproxDateTime($hvDate, $date);
         
-            $time = $hvDate->getStructured()->getTime();
-            $time->getH()->setValue( (int) $date->format('H'));
-            $time->getM()->setValue( (int) $date->format('i'));
-            $time->getS()->setValue( (int) $date->format('s'));
-        }
-        
-        /*
-         else if ( empty($date) ) {
-        $hvDate->getStructured()->setDate(NULL); // Will be rebuilt on next request
-        }
-        */
+        return ( $result ) ? $this : FALSE;
     }
     
     protected function getThingApproxDateTime(ApproxDateTime $hvDate = NULL)
     {
-        if ( ! $hvDate ) {
-            return NULL;
-        }
-        
-        $structuredDate = $hvDate->getStructured()->getDate();
-        $structuredTime = $hvDate->getStructured()->getTime();
-        
-        $y = $structuredDate->getY()->getValue();
-        $m = $structuredDate->getM()->getValue();
-        $d = $structuredDate->getD()->getValue();
-        
-        $h = $structuredTime->getH()->getValue();
-        $i = $structuredTime->getM()->getValue();
-        $s = $structuredTime->getS()->getValue();
-        
-        if ( ! empty($y) && ! empty($m) && ! empty($d)) {
-            $dateObj = new \DateTime();
-            $dateObj->setDate($y, $m, $d);
-            $dateObj->setTime($h, $i, $s);
-            return $dateObj;
-        }
-    
-        return NULL;
+        return DateTimeUtils::getThingApproxDateTime($hvDate);
     }
     
     /**
@@ -657,5 +529,23 @@ abstract class BaseThing
         }
         
         return NULL;
+    }
+    
+    public function replaceExtension($source, Extension $extension) {
+        $possibilities = array();
+
+        foreach ($this->extensions as $index => $thisExtension) {
+            if ($thisExtension->getSource() == $source) {
+                $possibilities[] = $index;
+            }
+        }
+        
+        if (count($possibilities) != 1) {
+            return FALSE;
+        }
+        
+        $this->extensions[$index] = $extension;
+        
+        return TRUE;
     }
 }

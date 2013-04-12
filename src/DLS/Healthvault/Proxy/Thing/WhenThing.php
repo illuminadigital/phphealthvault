@@ -14,7 +14,7 @@ abstract class WhenThing extends BaseThing
     /**
      * @Assert\NotBlank()
      * @Assert\DateTime()
-     * @var date
+     * @var \DateTime
      */
     protected $when;
     
@@ -24,7 +24,7 @@ abstract class WhenThing extends BaseThing
         parent::__construct($thing, $healthvaultVocabulary);
     
         if (empty($this->when)) {
-            $this->setWhen(date('Y-m-d H:i:s'));
+            $this->setWhen(new \DateTime());
         }
     }
     
