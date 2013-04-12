@@ -255,16 +255,51 @@ class DietaryIntakeDaily extends DayWhenThing
         $payload = $this->getThingPayload();
         
         $payload->getCalories()->setValue($this->calories);
-        $this->totalFat->updateToThingElement($payload->getTotalFat());
-        $this->saturatedFat->updateToThingElement($payload->getSaturatedFat());
-        $this->transFat->updateToThingElement($payload->getTransFat());
-        $this->protein->updateToThingElement($payload->getProtein());
-        $this->totalCarbohydrates->updateToThingElement($payload->getTotalCarbohydrates());
-        $this->dietaryFiber->updateToThingElement($payload->getDietaryFiber());
-        $this->sugars->updateToThingElement($payload->getSugars());
-        $this->sodium->updateToThingElement($payload->getSodium());
-        $this->cholesterol->updateToThingElement($payload->getCholesterol());
-        
+        if ($this->totalFat->isEmpty()) {
+            $payload->setTotalFat(FALSE);
+        } else {
+            $this->totalFat->updateToThingElement($payload->getTotalFat());
+        }
+        if ($this->saturatedFat->isEmpty()) {
+            $payload->setSaturatedFat(FALSE);
+        } else {
+            $this->saturatedFat->updateToThingElement($payload->getSaturatedFat());
+        }
+        if ($this->transFat->isEmpty()) {
+            $payload->setTransFat(FALSE);
+        } else {
+            $this->transFat->updateToThingElement($payload->getTransFat());
+        }
+        if ($this->protein->isEmpty()) {
+            $payload->setProtein(FALSE);
+        } else {
+            $this->protein->updateToThingElement($payload->getProtein());
+        }
+        if ($this->totalCarbohydrates->isEmpty()) {
+            $payload->setTotalCarbohydrates(FALSE);
+        } else {
+            $this->totalCarbohydrates->updateToThingElement($payload->getTotalCarbohydrates());
+        }
+        if ($this->dietaryFiber->isEmpty()) {
+            $payload->setDietaryFiber(FALSE);
+        } else {
+            $this->dietaryFiber->updateToThingElement($payload->getDietaryFiber());
+        }
+        if ($this->sugars->isEmpty()) {
+            $payload->setSugars(FALSE);
+        } else {
+            $this->sugars->updateToThingElement($payload->getSugars());
+        }
+        if ($this->sodium->isEmpty()) {
+            $payload->setSodium(FALSE);
+        } else {
+            $this->sodium->updateToThingElement($payload->getSodium());
+        }
+        if ($this->cholesterol->isEmpty()) {
+            $payload->setCholesterol(FALSE);
+        } else {
+            $this->cholesterol->updateToThingElement($payload->getCholesterol());
+        }    
         return $thing;
     }
     
