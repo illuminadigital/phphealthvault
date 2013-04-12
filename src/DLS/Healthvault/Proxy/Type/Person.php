@@ -239,4 +239,8 @@ class Person extends VocabularyType
     {
 
     }
+    
+    public function isEmpty() {
+        return empty($this->fullName);
+    }
 }

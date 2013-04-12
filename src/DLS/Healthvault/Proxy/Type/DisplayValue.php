@@ -311,4 +311,8 @@ abstract class DisplayValue extends BaseType implements DisplayValueInterface
     public function __toString() {
         return $this->getDisplayValue();
     }
+    
+    public function isEmpty() {
+        return (empty($this->minorValue) && empty($this->majorValue));
+    }
 }

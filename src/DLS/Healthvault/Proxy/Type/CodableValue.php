@@ -135,7 +135,6 @@ class CodableValue extends VocabularyType
     public function setFromThingElement($thingElement)
     {
         $this->text = $thingElement->getText();
-
         $codedValue = $thingElement->getCode(FALSE);
 
         if ( ! empty($codedValue) ) {
@@ -210,6 +209,17 @@ class CodableValue extends VocabularyType
     }
     
     public function __toString() {
-        return $this->text;
+        if (isset($this->text)) {
+            return $this->text;
+        } else if (isset($this->codedValue)) {
+            // Not ideal
+            return $this->codedValue;
+        } else {
+            return '';
+        }
+    }
+    
+    public function isEmpty() {
+        return (empty($this->text) && empty($this->codedValue));
     }
 }
