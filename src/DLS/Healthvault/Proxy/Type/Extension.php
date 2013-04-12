@@ -102,6 +102,12 @@ class Extension extends BaseType
         
         return $this;
     }
+    
+    public function __construct($thingElement = NULL, $source = NULL) {
+        $this->source = $source;
+        
+        parent::__construct($thingElement);
+    }
 
     public function setFromThingElement($thingElement)
     {
