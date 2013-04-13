@@ -13,7 +13,7 @@ use DLS\Healthvault\Proxy\Type\CodableValue;
 
 class Glucose extends WhenThing
 {
-    protected $name = 'Glucose Measurement';
+    protected $thingType = 'Glucose Measurement';
     
     /**
      * @Assert\NotBlank()

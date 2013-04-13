@@ -21,6 +21,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CarePlan extends BaseThing
 {
+    protected $thingType = 'CarePlan';
+    
     /**
      * The name of the care plan
      * @Assert\NotBlank()

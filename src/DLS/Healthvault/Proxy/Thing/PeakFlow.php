@@ -13,7 +13,7 @@ use com\microsoft\wc\thing\peak_flow\PeakFlow as hvPeakFlow;
  */
 class PeakFlow extends ApproxWhenThing
 {
-    protected $name = 'Peak Flow Measurement';
+    protected $thingType = 'Peak Flow Measurement';
 
     /**
      * @Assert\Type("double")

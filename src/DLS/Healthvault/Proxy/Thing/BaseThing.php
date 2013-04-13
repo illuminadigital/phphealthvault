@@ -47,7 +47,7 @@ abstract class BaseThing
      * @Assert\NotBlank
      * @var string;
      */
-    protected $name;
+    protected $thingType;
     
     /**
      * @var string
@@ -100,9 +100,9 @@ abstract class BaseThing
     /**
      * @return the name
      */
-    public function getName()
+    public function getThingType()
     {
-        return $this->name;
+        return $this->thingType;
     }
     
     /**

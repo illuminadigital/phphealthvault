@@ -13,7 +13,7 @@ class File extends BaseThing
     /**
      * @var string
      */
-    protected $name;
+    protected $thingType;
 
     public function setThing(Thing2 $thing)
     {

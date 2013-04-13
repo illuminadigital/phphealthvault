@@ -12,7 +12,7 @@ use com\microsoft\wc\thing\dietary_intake_daily\DietaryIntakeDaily as hvDietaryI
 
 class DietaryIntakeDaily extends DayWhenThing
 {
-    protected $name = 'DietaryIntakeDaily';
+    protected $thingType = 'DietaryIntakeDaily';
 
     /**
      * The total number of calories

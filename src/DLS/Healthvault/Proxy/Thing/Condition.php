@@ -14,6 +14,8 @@ use com\microsoft\wc\types\CodableValue;
 
 class Condition extends BaseThing
 {
+    protected $thingType = 'Condition';
+    
     /* @Assert\Choice(callback="getPossibleCategories") */
     /**
      * @Assert\NotBlank()
