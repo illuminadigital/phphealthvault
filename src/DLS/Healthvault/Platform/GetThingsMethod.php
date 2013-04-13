@@ -130,6 +130,11 @@ class GetThingsMethod extends PlatformMethod
     }
     
     public function addStartFilter($startDate) {
+        if ( empty($startDate) || ! $startDate instanceof \DateTime) {
+            error_log('Ignoring start filter because there is no valid date');
+            return;
+        }
+        
         $lastGroup = $this->getLastGroup();
         
         foreach ($lastGroup->getFilter() as $thisFilter) {
@@ -138,6 +143,11 @@ class GetThingsMethod extends PlatformMethod
     }
     
     public function addEndFilter($endDate) {
+        if ( empty($endDate) || ! $endDate instanceof \DateTime) {
+            error_log('Ignoring end filter because there is no valid date');
+            return;
+        }
+        
         $lastGroup = $this->getLastGroup();
         
         foreach ($lastGroup->getFilter() as $thisFilter) {
