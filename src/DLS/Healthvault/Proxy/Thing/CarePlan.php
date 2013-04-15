@@ -467,7 +467,11 @@ class CarePlan extends BaseThing
         $payload = $this->getThingPayload();
         $goalGroups = $payload->getGoalGroups()->getGoalgroup();
         
-        $ourGoals = array_merge($this->goals, array());
+        if ( ! empty($this->goals) && is_array($this->goals)) {
+            $ourGoals = array_merge($this->goals, array()); // Ensure we have a clone
+        } else {
+            $ourGoals = array();
+        }
         
         $goalStatus = array(
             'added' => array(),
