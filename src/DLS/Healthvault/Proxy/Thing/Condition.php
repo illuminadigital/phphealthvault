@@ -48,6 +48,11 @@ class Condition extends BaseThing
      */
     protected $stopReason;
     
+    /**
+     * @var string
+     */
+    protected $name;
+    
     public function getCategory()
     {
         return $this->category;
@@ -57,7 +62,7 @@ class Condition extends BaseThing
     {
         $this->category = $category;
 
-        if ($this->hvCondition) {
+        if ($this->thing) {
             $this->setThingCategory($category);
         }
 
@@ -73,7 +78,7 @@ class Condition extends BaseThing
     {
         $this->status = $status;
         
-        if ($this->hvCondition) {
+        if ($this->thing) {
             $this->setThingStatus($status);
         }
         
@@ -89,7 +94,7 @@ class Condition extends BaseThing
     {
         $this->onsetDate = $onsetDate;
         
-        if ($this->hvCondition) {
+        if ($this->thing) {
             $this->setThingOnsetDate($onsetDate);
         }
         
@@ -105,7 +110,7 @@ class Condition extends BaseThing
     {
         $this->stopDate = $stopDate;
         
-        if ($this->hvCondition) {
+        if ($this->thing) {
             $this->setThingStopDate($stopDate);
         }
         
@@ -121,8 +126,24 @@ class Condition extends BaseThing
     {
         $this->stopReason = $stopReason;
         
-        if ($this->hvCondition) {
+        if ($this->thing) {
             $this->setThingStopReason($stopReason);
+        }
+        
+        return $this;
+    }
+           
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    public function setName($name)
+    {
+        $this->name = $name;
+        
+        if ($this->thing) {
+            $this->setThingName($name);
         }
         
         return $this;
