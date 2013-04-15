@@ -527,24 +527,28 @@ class CarePlan extends BaseThing
         }
         
         // ourGoals still contains a list of those groups added to the collection
-        foreach ($ourGoals as $groupName => $goalData) {
-            if ( empty($goalData['goals'])) {
-                continue;
-            }
-            
-            $goalGroup = new hvCarePlanGoalGroup();
-            $goalGroup->setName($goalData['name']);
-            $goalGroup->setDescription($goalData['description']);
-            
-            foreach ($goalData['goals'] as $thisGoal) {
-                $newGoal = new hvCarePlanGoal();
-                $thisGoal->updateToThingElement($newGoal);
-                $goalGroup->getGoals()->addGoal($newGoal);
+        if ( ! empty($ourGoals) ) {
+            foreach ($ourGoals as $groupName => $goalData) {
+                if ( empty($goalData['goals'])) {
+                    continue;
+                }
                 
-                $goalStatus['added'] = $thisGoal;
+                $goalGroup = new hvCarePlanGoalGroup();
+                $goalGroup->setName($goalData['name']);
+                $goalGroup->setDescription($goalData['description']);
+                
+                foreach ($goalData['goals'] as $thisGoal) {
+                    $newGoal = new hvCarePlanGoal();
+                    $thisGoal->updateToThingElement($newGoal);
+                    $goalGroup->getGoals()->addGoal($newGoal);
+                    
+                    $goalStatus['added'] = $thisGoal;
+                }
+                
+                $payload->getGoalGroups()->addGoalGroup($goalGroup);
             }
-            
-            $payload->getGoalGroups()->addGoalGroup($goalGroup);
+        } else {
+            $payload->setGoalGroups(FALSE);
         }
         
         return $goalStatus;
@@ -557,38 +561,44 @@ class CarePlan extends BaseThing
         $thingTasks = $payload->getTasks()->getTask();
         $newTasks = array();
         $extraTasks = array();
-        
-        foreach ($this->tasks as $theTaskReference => $theTask) {
-            if (is_numeric($theTaskReference)) {
-                // Must be an index
-                
-                if (isset($thingTasks[$theTaskReference])) {
-                    $newTasks[$theTaskReference] = $thingTasks[$theTaskReference];
-                    $theTask->updateToThingElement($newTasks[$theTaskReference]);
+
+        if ( ! empty($this->tasks) && is_array($this->tasks)) {
+            foreach ($this->tasks as $theTaskReference => $theTask) {
+                if (is_numeric($theTaskReference)) {
+                    // Must be an index
+                    
+                    if (isset($thingTasks[$theTaskReference])) {
+                        $newTasks[$theTaskReference] = $thingTasks[$theTaskReference];
+                        $theTask->updateToThingElement($newTasks[$theTaskReference]);
+                    } else {
+                        $newTask = new hvCarePlanTask();
+                        $theTask->updateToThingElement($newTask);
+                        $newTasks[$theTaskReference] = $newTask;
+                    }
                 } else {
+                    foreach ($thingTasks as $thisThinTaskIndex => $thisThingTask) {
+                        if ($thisThingTask->getReferenceId() == $theTaskReference) {
+                            $newTasks[$theTaskReference] = $thisThingTask;
+                            $theTask->updateToThingElement($newTasks[$theTaskReference]);
+                            break;
+                        }
+                    }
+                    
                     $newTask = new hvCarePlanTask();
                     $theTask->updateToThingElement($newTask);
-                    $newTasks[$theTaskReference] = $newTask;
+                    $extraTasks[] = $newTask;
                 }
-            } else {
-                foreach ($thingTasks as $thisThinTaskIndex => $thisThingTask) {
-                    if ($thisThingTask->getReferenceId() == $theTaskReference) {
-                        $newTasks[$theTaskReference] = $thisThingTask;
-                        $theTask->updateToThingElement($newTasks[$theTaskReference]);
-                        break;
-                    }
-                }
-                
-                $newTask = new hvCarePlanTask();
-                $theTask->updateToThingElement($newTask);
-                $extraTasks[] = $newTask;
+            }
+            
+            if ( ! empty ($extraTasks) ) {
+                $newTasks = array_merge($newTasks, $extraTasks);
             }
         }
         
-        if ( ! empty ($extraTasks) ) {
-            $newTasks = array_merge($newTasks, $extraTasks);
+        if ( ! empty($newTasks) ) {
+            $payload->getTasks()->setTask($newTasks);
+        } else {
+            $payload->setTasks(FALSE);
         }
-        
-        $payload->getTasks()->setTask($newTasks);
     }
 }
