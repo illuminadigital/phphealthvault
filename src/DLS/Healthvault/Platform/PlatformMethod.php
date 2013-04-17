@@ -7,6 +7,7 @@ use com\microsoft\wc\types\HMACFinalized;
 use com\microsoft\wc\types\Stringnz;
 
 use DLS\Healthvault\HealthvaultConfigurationInterface;
+use DLS\Healthvault\Platform\Exceptions\AuthenticatedSessionTokenExpiredException;
 
 use com\microsoft\wc\request\Request;
 use com\microsoft\wc\request\Header;

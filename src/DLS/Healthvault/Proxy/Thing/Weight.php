@@ -8,7 +8,7 @@ use com\microsoft\wc\thing\weight\Weight as hvWeight;
 
 class Weight extends WhenThing
 {
-    protected $name = 'Weight';
+    protected $thingType = 'Weight';
     
     /**
      * @Assert\NotBlank()

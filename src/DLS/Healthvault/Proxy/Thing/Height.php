@@ -8,7 +8,7 @@ use com\microsoft\wc\thing\height\Height as hvHeight;
 
 class Height extends WhenThing
 {
-    protected $name = 'Height';
+    protected $thingType = 'Height';
     
     /**
      * @Assert\NotBlank()

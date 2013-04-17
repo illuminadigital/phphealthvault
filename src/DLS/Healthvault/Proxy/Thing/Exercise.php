@@ -14,7 +14,7 @@ use com\microsoft\wc\thing\exercise\Exercise as hvExercise;
 use com\microsoft\wc\thing\Thing2;
 
 class Exercise extends ApproxWhenThing {
-	protected $name = 'Exercise';
+	protected $thingType = 'Exercise';
 
 	/**
 	 * The type of activity

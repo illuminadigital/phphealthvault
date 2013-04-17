@@ -8,7 +8,7 @@ use com\microsoft\wc\thing\BloodPressure\BloodPressure as hvBloodPressure;
 
 class BloodPressure extends WhenThing
 {
-    protected $name = 'Blood Pressure';
+    protected $thingType = 'Blood Pressure';
 
     /**
      * @Assert\NotBlank()
