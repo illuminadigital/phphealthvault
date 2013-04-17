@@ -121,23 +121,10 @@ class PlatformMethod
 
             return $info;
         }
-        // else
 
-        try{
+        if( $responseObject ){
 
-            if(!is_null($responseObject)){
-
-                \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build($responseObject->getStatus()->getCode());
-
-            }else{
-
-                \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build(1);
-
-            }
-
-        }catch (Exception $exception){
-
-            switch($exception->getCode()){
+            switch($responseObject->getStatus()->getCode()){
 
                 //Expired Healthvault Token Exception Handling tries to delete the token and get a new one, then retries the request. If fails throws the exception
                 case 65:
@@ -146,20 +133,26 @@ class PlatformMethod
 
                     $this->getAuthToken();
 
+                    $responseObject = $this->makeRequest();
+
                     if ($responseObject && $responseObject->getStatus()->getCode() == 0) {
+
                         $info = $responseObject->getInfo();
 
                         return $info;
+
                     }else{
 
                         if(!is_null($responseObject)){
 
-                            \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build($responseObject->getStatus()->getCode());
+                            throw \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build($responseObject->getStatus()->getCode());
 
                         }else{
 
-                            \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build(1);
+                            //FIXME: add a handler for failed connection exception. (HealthvaultException::NO_RESPONSE)
+                            //throw \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build(0);
 
+                            return NULL;
                         }
 
                     }
@@ -168,7 +161,7 @@ class PlatformMethod
 
                 default:
 
-                    throw $exception;
+                    throw \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build($responseObject->getStatus()->getCode());
 
                     break;
             }
@@ -176,10 +169,11 @@ class PlatformMethod
         }
 
 
-        // FIXME: Should thrown an exception
+        //FIXME: add a handler for failed connection exception. (HealthvaultException::NO_RESPONSE)
+
         error_log('Error executing method');
-        error_log(print_r($request, TRUE));
-        error_log(print_r($response, TRUE));
+        //error_log(print_r($request, TRUE));
+        //error_log(print_r($response, TRUE));
         error_log(print_r($responseObject, TRUE));
 
         return NULL;
