@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\GetAuthorizedConnectRequests;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info extends \com\microsoft\wc\methods\response\Info {
+class Info extends \com\microsoft\wc\response\AnyMixed {
 	/**
 	 * Contains the list of ConnectRequests returned by GetAuthorizedConnectRequests.
 	 */

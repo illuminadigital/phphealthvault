@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\BeginPutBlob;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info extends \com\microsoft\wc\methods\response\Info {
+class Info extends \com\microsoft\wc\response\AnyMixed {
 	/**
 	 * The response for the request to indicate that the streaming put of a blob in to the Healthvault system is about to begin.
 	 * When a token is requested, if the request is a success then there will be a token. Otherwise, there will be an absence reason.

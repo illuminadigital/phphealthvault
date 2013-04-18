@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\NewApplicationCreationInfo;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info extends \com\microsoft\wc\methods\response\Info {
+class Info extends \com\microsoft\wc\response\AnyMixed {
 	/**
 	 * Contains the response to the NewApplicationCreationInfo method call.
 	 */

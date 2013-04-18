@@ -9,7 +9,7 @@ namespace com\microsoft\wc\methods\response\any;
  * })
  * @XmlEntity	(xml="info")
  */
-class Info extends \com\microsoft\wc\methods\response\Info {
+class Info extends \com\microsoft\wc\response\AnyMixed {
 	/**
 	 */
 
