@@ -139,7 +139,11 @@ class PlatformMethod
         
         
         if ($responseObject && $responseObject->getStatus()->getCode() == 0) {
-            $info = $responseObject->getInfo();
+            $info = $responseObject->getAny();
+            
+            if (is_array($info)) {
+                $info = array_shift($info);
+            }
             
             return $info;
         }
