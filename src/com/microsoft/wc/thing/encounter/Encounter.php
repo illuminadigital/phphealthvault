@@ -12,10 +12,10 @@ namespace com\microsoft\wc\thing\encounter;
 class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a medical encounter.
-	 * Note: Please use the new version of this data type instead of this version.This thing type describes the medical encounter a person has.
+	 * This thing type describes the medical encounter a person has.
 	 */
 
-	const ID = '3D4BDF01-1B3E-4AFC-B41C-BD3E641A6DA7';
+	const ID = '464083cc-13de-4f3e-a189-da8e47d5651b';
 	const NAME = 'Encounter';
 
 	/**
@@ -31,14 +31,14 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	protected $when;
 
 	/**
-	 * @XmlText	(type="string", name="type")
+	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="type")
 	 */
 	protected $type;
 
 	/**
-	 * @XmlText	(type="string", name="id")
+	 * @XmlText	(type="string", name="reason")
 	 */
-	protected $id;
+	protected $reason;
 
 	/**
 	 * @XmlElement	(type="\com\microsoft\wc\thing\types\DurationValue", name="duration")
@@ -46,22 +46,22 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	protected $duration;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Address", name="location")
-	 */
-	protected $location;
-
-	/**
 	 * @XmlText	(type="boolean", name="consent-granted")
 	 */
 	protected $consentGranted;
 
-	public function __construct($when = NULL, $type = NULL, $id = NULL, $duration = NULL, $location = NULL, $consentGranted = NULL) {
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Organization", name="facility")
+	 */
+	protected $facility;
+
+	public function __construct($when = NULL, $type = NULL, $reason = NULL, $duration = NULL, $consentGranted = NULL, $facility = NULL) {
 		$this->when = ($when===NULL) ? NULL : $this->validateWhen($when);
 		$this->type = ($type===NULL) ? NULL : $this->validateType($type);
-		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
+		$this->reason = ($reason===NULL) ? NULL : $this->validateReason($reason);
 		$this->duration = ($duration===NULL) ? NULL : $this->validateDuration($duration);
-		$this->location = ($location===NULL) ? NULL : $this->validateLocation($location);
 		$this->consentGranted = ($consentGranted===NULL) ? NULL : $this->validateConsentGranted($consentGranted);
+		$this->facility = ($facility===NULL) ? NULL : $this->validateFacility($facility);
 	}
 
 	public function getWhen($autoCreate = TRUE) {
@@ -80,9 +80,16 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateWhen($when) {
-		if ( ! $when instanceof \com\microsoft\wc\dates\DateTime ) {
+		if ( $when === FALSE ) {
+			$this->_overrides['when'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $when instanceof \com\microsoft\wc\dates\DateTime  && ! is_null($when) ) {
 			$when = new \com\microsoft\wc\dates\DateTime ($when);
 		}
+
+		unset ($this->_overrides['when']);
 	
 		return $when;
 	}
@@ -95,7 +102,7 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createType() {
-		return '';
+		return new \com\microsoft\wc\types\CodableValue();
 	}
 
 	public function setType($type) {
@@ -103,34 +110,41 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateType($type) {
-		if (!is_string($type)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'type', 'string'));
+		if ( $type === FALSE ) {
+			$this->_overrides['type'] = TRUE;
+			return NULL;
 		}
+
+		if ( ! $type instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($type) ) {
+			$type = new \com\microsoft\wc\types\CodableValue ($type);
+		}
+
+		unset ($this->_overrides['type']);
 	
 		return $type;
 	}
 
-	public function getId($autoCreate = TRUE) {
-		if ($this->id===NULL && $autoCreate && ! isset($this->_overrides['id']) ) {
-			$this->id = $this->createId();
+	public function getReason($autoCreate = TRUE) {
+		if ($this->reason===NULL && $autoCreate && ! isset($this->_overrides['reason']) ) {
+			$this->reason = $this->createReason();
 		}
-		return $this->id;
+		return $this->reason;
 	}
 	
-	protected function createId() {
+	protected function createReason() {
 		return '';
 	}
 
-	public function setId($id) {
-		$this->id = $this->validateId($id);
+	public function setReason($reason) {
+		$this->reason = $this->validateReason($reason);
 	}
 
-	protected function validateId($id) {
-		if ( ! is_string($id) && ! is_null($id) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'string'));
+	protected function validateReason($reason) {
+		if ( ! is_string($reason) && ! is_null($reason) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'reason', 'string'));
 		}
 	
-		return $id;
+		return $reason;
 	}
 
 	public function getDuration($autoCreate = TRUE) {
@@ -163,36 +177,6 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 		return $duration;
 	}
 
-	public function getLocation($autoCreate = TRUE) {
-		if ($this->location===NULL && $autoCreate && ! isset($this->_overrides['location']) ) {
-			$this->location = $this->createLocation();
-		}
-		return $this->location;
-	}
-	
-	protected function createLocation() {
-		return new \com\microsoft\wc\thing\types\Address();
-	}
-
-	public function setLocation($location) {
-		$this->location = $this->validateLocation($location);
-	}
-
-	protected function validateLocation($location) {
-		if ( $location === FALSE ) {
-			$this->_overrides['location'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $location instanceof \com\microsoft\wc\thing\types\Address  && ! is_null($location) ) {
-			$location = new \com\microsoft\wc\thing\types\Address ($location);
-		}
-
-		unset ($this->_overrides['location']);
-	
-		return $location;
-	}
-
 	public function getConsentGranted($autoCreate = TRUE) {
 		if ($this->consentGranted===NULL && $autoCreate && ! isset($this->_overrides['consentGranted']) ) {
 			$this->consentGranted = $this->createConsentGranted();
@@ -214,5 +198,35 @@ class Encounter extends \com\microsoft\wc\thing\AnyMixed {
 		}
 	
 		return $consentGranted;
+	}
+
+	public function getFacility($autoCreate = TRUE) {
+		if ($this->facility===NULL && $autoCreate && ! isset($this->_overrides['facility']) ) {
+			$this->facility = $this->createFacility();
+		}
+		return $this->facility;
+	}
+	
+	protected function createFacility() {
+		return new \com\microsoft\wc\thing\types\Organization();
+	}
+
+	public function setFacility($facility) {
+		$this->facility = $this->validateFacility($facility);
+	}
+
+	protected function validateFacility($facility) {
+		if ( $facility === FALSE ) {
+			$this->_overrides['facility'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $facility instanceof \com\microsoft\wc\thing\types\Organization  && ! is_null($facility) ) {
+			$facility = new \com\microsoft\wc\thing\types\Organization ($facility);
+		}
+
+		unset ($this->_overrides['facility']);
+	
+		return $facility;
 	}
 } // end class Encounter

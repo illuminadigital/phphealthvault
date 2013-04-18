@@ -25,8 +25,13 @@ cd /tmp/$$
 for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print -o -type f -name 'thingtype-*.xsd' -print -o -name response.xsd -print`
 do
 	echo $i
-	cd /tmp/$$/`dirname $i`
-	php $XSD2PHPBASE/src/tools/legko.php compile-schema --schema `basename $i` --dest $DESTBASE/src --binding hv
+	if grep "Note: Please use the new version" /tmp/$$/$i
+	then
+		echo "Skipping old thing"
+	else
+		cd /tmp/$$/`dirname $i`
+		php $XSD2PHPBASE/src/tools/legko.php compile-schema --schema `basename $i` --dest $DESTBASE/src --binding hv
+	fi
 done
 
 echo "Cleaning up"
