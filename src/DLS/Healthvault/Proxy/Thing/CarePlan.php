@@ -352,7 +352,8 @@ class CarePlan extends BaseThing
                         {
                             foreach ($thingGoals as $thingGoal)
                             {
-                                $goals[$groupName]['goals'][$thingGoal->getName()->getText()] = new CarePlanGoal($thingGoal, $this->healthvaultVocabulary);
+                                $goal = new CarePlanGoal($thingGoal, $this->healthvaultVocabulary);
+                                $goals[$groupName]['goals'][$goal->getReferenceId()] = $goal; 
                             }
                         }
                     }
@@ -465,7 +466,12 @@ class CarePlan extends BaseThing
         // adjust accordingly
 
         $payload = $this->getThingPayload();
-        $goalGroups = $payload->getGoalGroups()->getGoalgroup();
+        $goalGroupsWrapper = $payload->getGoalGroups();
+        if ($goalGroupsWrapper) {
+            $goalGroups = $goalGroupsWrapper->getGoalGroup();
+        } else {
+            $goalGroups = array();
+        }
         
         if ( ! empty($this->goals) && is_array($this->goals)) {
             $ourGoals = array_merge($this->goals, array()); // Ensure we have a clone
@@ -545,7 +551,14 @@ class CarePlan extends BaseThing
                     $goalStatus['added'] = $thisGoal;
                 }
                 
-                $payload->getGoalGroups()->addGoalGroup($goalGroup);
+                $goalGroupWrapper = $payload->getGoalGroups();
+                
+                if ( ! $goalGroupWrapper ) {
+                    $payload->setGoalGroups(NULL);
+                    $goalGroupWrapper = $payload->getGoalGroups();
+                }
+                
+                $goalGroupWrapper->addGoalGroup($goalGroup);
             }
         } else {
             $payload->setGoalGroups(FALSE);
@@ -558,7 +571,13 @@ class CarePlan extends BaseThing
         // We always have ReferenceIds in our tasks
         
         $payload = $this->getThingPayload();
-        $thingTasks = $payload->getTasks()->getTask();
+        $tasksWrapper = $payload->getTasks();
+        if ( $tasksWrapper ) { 
+            $thingTasks = $tasksWrapper->getTask();
+        } else {
+            $thingTasks = array();
+        }
+        
         $newTasks = array();
         $extraTasks = array();
 
@@ -596,7 +615,14 @@ class CarePlan extends BaseThing
         }
         
         if ( ! empty($newTasks) ) {
-            $payload->getTasks()->setTask($newTasks);
+            $tasksWrapper = $payload->getTasks();
+            
+            if ( ! $tasksWrapper ) {
+                $payload->setTasks(NULL);
+                $tasksWrapper = $payload->getTasks();
+            }
+            
+            $tasksWrapper->setTask($newTasks);
         } else {
             $payload->setTasks(FALSE);
         }

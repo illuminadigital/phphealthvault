@@ -12,10 +12,10 @@ namespace com\microsoft\wc\thing\medication;
 class Medication extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to a medication.
-	 * Note: Please use the new version of this data type instead of this version.This thing type describes a medication a person has.
+	 * This type contains information describing a medication, and is related to the medication fill type.Instances of the medication fill type are linked to instances of this type using related items. For example, if the medication is prescribed, the medication fill describes typical information that apharmacy would add.
 	 */
 
-	const ID = '5C5F1223-F63C-4464-870C-3E36BA471DEF';
+	const ID = '30cafccc-047d-4288-94ef-643571f7919d';
 	const NAME = 'Medication';
 
 	/**
@@ -26,67 +26,27 @@ class Medication extends \com\microsoft\wc\thing\AnyMixed {
 
 
 	/**
-	 * @XmlText	(type="string", name="name")
+	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="name")
 	 */
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeInt", collection="true", name="code")
+	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="generic-name")
 	 */
-	protected $code;
+	protected $genericName;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="date-discontinued")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\types\GeneralMeasurement", name="dose")
 	 */
-	protected $dateDiscontinued;
+	protected $dose;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="date-filled")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\types\GeneralMeasurement", name="strength")
 	 */
-	protected $dateFilled;
+	protected $strength;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="date-prescribed")
-	 */
-	protected $datePrescribed;
-
-	/**
-	 * @XmlText	(type="boolean", name="is-prescribed")
-	 */
-	protected $isPrescribed;
-
-	/**
-	 * @XmlText	(type="string", name="indication")
-	 */
-	protected $indication;
-
-	/**
-	 * @XmlText	(type="string", name="amount-prescribed")
-	 */
-	protected $amountPrescribed;
-
-	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\medication\DoseValue", name="dose-value")
-	 */
-	protected $doseValue;
-
-	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="dose-unit")
-	 */
-	protected $doseUnit;
-
-	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeInt", name="strength-value")
-	 */
-	protected $strengthValue;
-
-	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="strength-unit")
-	 */
-	protected $strengthUnit;
-
-	/**
-	 * @XmlText	(type="string", name="frequency")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\types\GeneralMeasurement", name="frequency")
 	 */
 	protected $frequency;
 
@@ -96,80 +56,42 @@ class Medication extends \com\microsoft\wc\thing\AnyMixed {
 	protected $route;
 
 	/**
-	 * @XmlText	(type="string", name="duration")
+	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="indication")
 	 */
-	protected $duration;
+	protected $indication;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="duration-unit")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="date-started")
 	 */
-	protected $durationUnit;
+	protected $dateStarted;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeInt", name="refills")
+	 * @XmlElement	(type="\com\microsoft\wc\dates\ApproxDateTime", name="date-discontinued")
 	 */
-	protected $refills;
+	protected $dateDiscontinued;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeInt", name="refills-left")
+	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="prescribed")
 	 */
-	protected $refillsLeft;
+	protected $prescribed;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeInt", name="days-supply")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\medication\Prescription", name="prescription")
 	 */
-	protected $daysSupply;
+	protected $prescription;
 
-	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\DurationValue", name="prescription-duration")
-	 */
-	protected $prescriptionDuration;
-
-	/**
-	 * @XmlText	(type="string", name="instructions")
-	 */
-	protected $instructions;
-
-	/**
-	 * @XmlText	(type="boolean", name="substitution-permitted")
-	 */
-	protected $substitutionPermitted;
-
-	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\types\Contact", name="pharmacy")
-	 */
-	protected $pharmacy;
-
-	/**
-	 * @XmlText	(type="string", name="prescription-number")
-	 */
-	protected $prescriptionNumber;
-
-	public function __construct($name = NULL, $code = NULL, $dateDiscontinued = NULL, $dateFilled = NULL, $datePrescribed = NULL, $isPrescribed = NULL, $indication = NULL, $amountPrescribed = NULL, $doseValue = NULL, $doseUnit = NULL, $strengthValue = NULL, $strengthUnit = NULL, $frequency = NULL, $route = NULL, $duration = NULL, $durationUnit = NULL, $refills = NULL, $refillsLeft = NULL, $daysSupply = NULL, $prescriptionDuration = NULL, $instructions = NULL, $substitutionPermitted = NULL, $pharmacy = NULL, $prescriptionNumber = NULL) {
+	public function __construct($name = NULL, $genericName = NULL, $dose = NULL, $strength = NULL, $frequency = NULL, $route = NULL, $indication = NULL, $dateStarted = NULL, $dateDiscontinued = NULL, $prescribed = NULL, $prescription = NULL) {
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
-		$this->code = ($code===NULL) ? NULL : $this->validateCode($code);
-		$this->dateDiscontinued = ($dateDiscontinued===NULL) ? NULL : $this->validateDateDiscontinued($dateDiscontinued);
-		$this->dateFilled = ($dateFilled===NULL) ? NULL : $this->validateDateFilled($dateFilled);
-		$this->datePrescribed = ($datePrescribed===NULL) ? NULL : $this->validateDatePrescribed($datePrescribed);
-		$this->isPrescribed = ($isPrescribed===NULL) ? NULL : $this->validateIsPrescribed($isPrescribed);
-		$this->indication = ($indication===NULL) ? NULL : $this->validateIndication($indication);
-		$this->amountPrescribed = ($amountPrescribed===NULL) ? NULL : $this->validateAmountPrescribed($amountPrescribed);
-		$this->doseValue = ($doseValue===NULL) ? NULL : $this->validateDoseValue($doseValue);
-		$this->doseUnit = ($doseUnit===NULL) ? NULL : $this->validateDoseUnit($doseUnit);
-		$this->strengthValue = ($strengthValue===NULL) ? NULL : $this->validateStrengthValue($strengthValue);
-		$this->strengthUnit = ($strengthUnit===NULL) ? NULL : $this->validateStrengthUnit($strengthUnit);
+		$this->genericName = ($genericName===NULL) ? NULL : $this->validateGenericName($genericName);
+		$this->dose = ($dose===NULL) ? NULL : $this->validateDose($dose);
+		$this->strength = ($strength===NULL) ? NULL : $this->validateStrength($strength);
 		$this->frequency = ($frequency===NULL) ? NULL : $this->validateFrequency($frequency);
 		$this->route = ($route===NULL) ? NULL : $this->validateRoute($route);
-		$this->duration = ($duration===NULL) ? NULL : $this->validateDuration($duration);
-		$this->durationUnit = ($durationUnit===NULL) ? NULL : $this->validateDurationUnit($durationUnit);
-		$this->refills = ($refills===NULL) ? NULL : $this->validateRefills($refills);
-		$this->refillsLeft = ($refillsLeft===NULL) ? NULL : $this->validateRefillsLeft($refillsLeft);
-		$this->daysSupply = ($daysSupply===NULL) ? NULL : $this->validateDaysSupply($daysSupply);
-		$this->prescriptionDuration = ($prescriptionDuration===NULL) ? NULL : $this->validatePrescriptionDuration($prescriptionDuration);
-		$this->instructions = ($instructions===NULL) ? NULL : $this->validateInstructions($instructions);
-		$this->substitutionPermitted = ($substitutionPermitted===NULL) ? NULL : $this->validateSubstitutionPermitted($substitutionPermitted);
-		$this->pharmacy = ($pharmacy===NULL) ? NULL : $this->validatePharmacy($pharmacy);
-		$this->prescriptionNumber = ($prescriptionNumber===NULL) ? NULL : $this->validatePrescriptionNumber($prescriptionNumber);
+		$this->indication = ($indication===NULL) ? NULL : $this->validateIndication($indication);
+		$this->dateStarted = ($dateStarted===NULL) ? NULL : $this->validateDateStarted($dateStarted);
+		$this->dateDiscontinued = ($dateDiscontinued===NULL) ? NULL : $this->validateDateDiscontinued($dateDiscontinued);
+		$this->prescribed = ($prescribed===NULL) ? NULL : $this->validatePrescribed($prescribed);
+		$this->prescription = ($prescription===NULL) ? NULL : $this->validatePrescription($prescription);
 	}
 
 	public function getName($autoCreate = TRUE) {
@@ -180,7 +102,7 @@ class Medication extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createName() {
-		return '';
+		return new \com\microsoft\wc\types\CodableValue();
 	}
 
 	public function setName($name) {
@@ -188,333 +110,101 @@ class Medication extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateName($name) {
-		if ( ! is_string($name) && ! is_null($name) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'string'));
+		if ( ! $name instanceof \com\microsoft\wc\types\CodableValue ) {
+			$name = new \com\microsoft\wc\types\CodableValue ($name);
 		}
 	
 		return $name;
 	}
 
-	public function getCode($autoCreate = TRUE) {
-		if ($this->code===NULL && $autoCreate && ! isset($this->_overrides['code']) ) {
-			$this->code = $this->createCode();
+	public function getGenericName($autoCreate = TRUE) {
+		if ($this->genericName===NULL && $autoCreate && ! isset($this->_overrides['genericName']) ) {
+			$this->genericName = $this->createGenericName();
 		}
-		return $this->code;
+		return $this->genericName;
 	}
 	
-	protected function createCode() {
-		return array();
-	}
-
-	public function setCode($code) {
-		$this->code = $this->validateCode($code);
-	}
-
-	protected function validateCode($code) {
-		if ( $code === FALSE ) {
-			$this->_overrides['code'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! is_array ($code) && ! is_null($code) ) {
-			$code = array($code);
-		}
-
-		unset ($this->_overrides['code']);
-		$count = count($code);
-		if ($count < 0) {
-			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'code', 0));
-		}
-		foreach ($code as $entry) {
-			if (!($entry instanceof NonNegativeInt)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'nonNegativeInt'));
-			}
-		}
-	
-		return $code;
-	}
-
-	public function addCode($code) {
-		$this->code[] = $code;
-	}
-
-	public function getDateDiscontinued($autoCreate = TRUE) {
-		if ($this->dateDiscontinued===NULL && $autoCreate && ! isset($this->_overrides['dateDiscontinued']) ) {
-			$this->dateDiscontinued = $this->createDateDiscontinued();
-		}
-		return $this->dateDiscontinued;
-	}
-	
-	protected function createDateDiscontinued() {
-		return new \com\microsoft\wc\dates\ApproxDateTime();
-	}
-
-	public function setDateDiscontinued($dateDiscontinued) {
-		$this->dateDiscontinued = $this->validateDateDiscontinued($dateDiscontinued);
-	}
-
-	protected function validateDateDiscontinued($dateDiscontinued) {
-		if ( $dateDiscontinued === FALSE ) {
-			$this->_overrides['dateDiscontinued'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $dateDiscontinued instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($dateDiscontinued) ) {
-			$dateDiscontinued = new \com\microsoft\wc\dates\ApproxDateTime ($dateDiscontinued);
-		}
-
-		unset ($this->_overrides['dateDiscontinued']);
-	
-		return $dateDiscontinued;
-	}
-
-	public function getDateFilled($autoCreate = TRUE) {
-		if ($this->dateFilled===NULL && $autoCreate && ! isset($this->_overrides['dateFilled']) ) {
-			$this->dateFilled = $this->createDateFilled();
-		}
-		return $this->dateFilled;
-	}
-	
-	protected function createDateFilled() {
-		return new \com\microsoft\wc\dates\ApproxDateTime();
-	}
-
-	public function setDateFilled($dateFilled) {
-		$this->dateFilled = $this->validateDateFilled($dateFilled);
-	}
-
-	protected function validateDateFilled($dateFilled) {
-		if ( $dateFilled === FALSE ) {
-			$this->_overrides['dateFilled'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $dateFilled instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($dateFilled) ) {
-			$dateFilled = new \com\microsoft\wc\dates\ApproxDateTime ($dateFilled);
-		}
-
-		unset ($this->_overrides['dateFilled']);
-	
-		return $dateFilled;
-	}
-
-	public function getDatePrescribed($autoCreate = TRUE) {
-		if ($this->datePrescribed===NULL && $autoCreate && ! isset($this->_overrides['datePrescribed']) ) {
-			$this->datePrescribed = $this->createDatePrescribed();
-		}
-		return $this->datePrescribed;
-	}
-	
-	protected function createDatePrescribed() {
-		return new \com\microsoft\wc\dates\ApproxDateTime();
-	}
-
-	public function setDatePrescribed($datePrescribed) {
-		$this->datePrescribed = $this->validateDatePrescribed($datePrescribed);
-	}
-
-	protected function validateDatePrescribed($datePrescribed) {
-		if ( $datePrescribed === FALSE ) {
-			$this->_overrides['datePrescribed'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $datePrescribed instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($datePrescribed) ) {
-			$datePrescribed = new \com\microsoft\wc\dates\ApproxDateTime ($datePrescribed);
-		}
-
-		unset ($this->_overrides['datePrescribed']);
-	
-		return $datePrescribed;
-	}
-
-	public function getIsPrescribed($autoCreate = TRUE) {
-		if ($this->isPrescribed===NULL && $autoCreate && ! isset($this->_overrides['isPrescribed']) ) {
-			$this->isPrescribed = $this->createIsPrescribed();
-		}
-		return $this->isPrescribed;
-	}
-	
-	protected function createIsPrescribed() {
-		return FALSE;
-	}
-
-	public function setIsPrescribed($isPrescribed) {
-		$this->isPrescribed = $this->validateIsPrescribed($isPrescribed);
-	}
-
-	protected function validateIsPrescribed($isPrescribed) {
-		if ( ! is_bool($isPrescribed) && ! is_null($isPrescribed) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'isPrescribed', 'boolean'));
-		}
-	
-		return $isPrescribed;
-	}
-
-	public function getIndication($autoCreate = TRUE) {
-		if ($this->indication===NULL && $autoCreate && ! isset($this->_overrides['indication']) ) {
-			$this->indication = $this->createIndication();
-		}
-		return $this->indication;
-	}
-	
-	protected function createIndication() {
-		return '';
-	}
-
-	public function setIndication($indication) {
-		$this->indication = $this->validateIndication($indication);
-	}
-
-	protected function validateIndication($indication) {
-		if ( ! is_string($indication) && ! is_null($indication) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'indication', 'string'));
-		}
-	
-		return $indication;
-	}
-
-	public function getAmountPrescribed($autoCreate = TRUE) {
-		if ($this->amountPrescribed===NULL && $autoCreate && ! isset($this->_overrides['amountPrescribed']) ) {
-			$this->amountPrescribed = $this->createAmountPrescribed();
-		}
-		return $this->amountPrescribed;
-	}
-	
-	protected function createAmountPrescribed() {
-		return '';
-	}
-
-	public function setAmountPrescribed($amountPrescribed) {
-		$this->amountPrescribed = $this->validateAmountPrescribed($amountPrescribed);
-	}
-
-	protected function validateAmountPrescribed($amountPrescribed) {
-		if ( ! is_string($amountPrescribed) && ! is_null($amountPrescribed) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'amountPrescribed', 'string'));
-		}
-	
-		return $amountPrescribed;
-	}
-
-	public function getDoseValue($autoCreate = TRUE) {
-		if ($this->doseValue===NULL && $autoCreate && ! isset($this->_overrides['doseValue']) ) {
-			$this->doseValue = $this->createDoseValue();
-		}
-		return $this->doseValue;
-	}
-	
-	protected function createDoseValue() {
-		return new \com\microsoft\wc\thing\medication\DoseValue();
-	}
-
-	public function setDoseValue($doseValue) {
-		$this->doseValue = $this->validateDoseValue($doseValue);
-	}
-
-	protected function validateDoseValue($doseValue) {
-		if ( $doseValue === FALSE ) {
-			$this->_overrides['doseValue'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $doseValue instanceof \com\microsoft\wc\thing\medication\DoseValue  && ! is_null($doseValue) ) {
-			$doseValue = new \com\microsoft\wc\thing\medication\DoseValue ($doseValue);
-		}
-
-		unset ($this->_overrides['doseValue']);
-	
-		return $doseValue;
-	}
-
-	public function getDoseUnit($autoCreate = TRUE) {
-		if ($this->doseUnit===NULL && $autoCreate && ! isset($this->_overrides['doseUnit']) ) {
-			$this->doseUnit = $this->createDoseUnit();
-		}
-		return $this->doseUnit;
-	}
-	
-	protected function createDoseUnit() {
+	protected function createGenericName() {
 		return new \com\microsoft\wc\types\CodableValue();
 	}
 
-	public function setDoseUnit($doseUnit) {
-		$this->doseUnit = $this->validateDoseUnit($doseUnit);
+	public function setGenericName($genericName) {
+		$this->genericName = $this->validateGenericName($genericName);
 	}
 
-	protected function validateDoseUnit($doseUnit) {
-		if ( $doseUnit === FALSE ) {
-			$this->_overrides['doseUnit'] = TRUE;
+	protected function validateGenericName($genericName) {
+		if ( $genericName === FALSE ) {
+			$this->_overrides['genericName'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $doseUnit instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($doseUnit) ) {
-			$doseUnit = new \com\microsoft\wc\types\CodableValue ($doseUnit);
+		if ( ! $genericName instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($genericName) ) {
+			$genericName = new \com\microsoft\wc\types\CodableValue ($genericName);
 		}
 
-		unset ($this->_overrides['doseUnit']);
+		unset ($this->_overrides['genericName']);
 	
-		return $doseUnit;
+		return $genericName;
 	}
 
-	public function getStrengthValue($autoCreate = TRUE) {
-		if ($this->strengthValue===NULL && $autoCreate && ! isset($this->_overrides['strengthValue']) ) {
-			$this->strengthValue = $this->createStrengthValue();
+	public function getDose($autoCreate = TRUE) {
+		if ($this->dose===NULL && $autoCreate && ! isset($this->_overrides['dose']) ) {
+			$this->dose = $this->createDose();
 		}
-		return $this->strengthValue;
+		return $this->dose;
 	}
 	
-	protected function createStrengthValue() {
-		return new \com\microsoft\wc\thing\types\NonNegativeInt();
+	protected function createDose() {
+		return new \com\microsoft\wc\thing\types\GeneralMeasurement();
 	}
 
-	public function setStrengthValue($strengthValue) {
-		$this->strengthValue = $this->validateStrengthValue($strengthValue);
+	public function setDose($dose) {
+		$this->dose = $this->validateDose($dose);
 	}
 
-	protected function validateStrengthValue($strengthValue) {
-		if ( $strengthValue === FALSE ) {
-			$this->_overrides['strengthValue'] = TRUE;
+	protected function validateDose($dose) {
+		if ( $dose === FALSE ) {
+			$this->_overrides['dose'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $strengthValue instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($strengthValue) ) {
-			$strengthValue = new \com\microsoft\wc\thing\types\NonNegativeInt ($strengthValue);
+		if ( ! $dose instanceof \com\microsoft\wc\thing\types\GeneralMeasurement  && ! is_null($dose) ) {
+			$dose = new \com\microsoft\wc\thing\types\GeneralMeasurement ($dose);
 		}
 
-		unset ($this->_overrides['strengthValue']);
+		unset ($this->_overrides['dose']);
 	
-		return $strengthValue;
+		return $dose;
 	}
 
-	public function getStrengthUnit($autoCreate = TRUE) {
-		if ($this->strengthUnit===NULL && $autoCreate && ! isset($this->_overrides['strengthUnit']) ) {
-			$this->strengthUnit = $this->createStrengthUnit();
+	public function getStrength($autoCreate = TRUE) {
+		if ($this->strength===NULL && $autoCreate && ! isset($this->_overrides['strength']) ) {
+			$this->strength = $this->createStrength();
 		}
-		return $this->strengthUnit;
+		return $this->strength;
 	}
 	
-	protected function createStrengthUnit() {
-		return new \com\microsoft\wc\types\CodableValue();
+	protected function createStrength() {
+		return new \com\microsoft\wc\thing\types\GeneralMeasurement();
 	}
 
-	public function setStrengthUnit($strengthUnit) {
-		$this->strengthUnit = $this->validateStrengthUnit($strengthUnit);
+	public function setStrength($strength) {
+		$this->strength = $this->validateStrength($strength);
 	}
 
-	protected function validateStrengthUnit($strengthUnit) {
-		if ( $strengthUnit === FALSE ) {
-			$this->_overrides['strengthUnit'] = TRUE;
+	protected function validateStrength($strength) {
+		if ( $strength === FALSE ) {
+			$this->_overrides['strength'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $strengthUnit instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($strengthUnit) ) {
-			$strengthUnit = new \com\microsoft\wc\types\CodableValue ($strengthUnit);
+		if ( ! $strength instanceof \com\microsoft\wc\thing\types\GeneralMeasurement  && ! is_null($strength) ) {
+			$strength = new \com\microsoft\wc\thing\types\GeneralMeasurement ($strength);
 		}
 
-		unset ($this->_overrides['strengthUnit']);
+		unset ($this->_overrides['strength']);
 	
-		return $strengthUnit;
+		return $strength;
 	}
 
 	public function getFrequency($autoCreate = TRUE) {
@@ -525,7 +215,7 @@ class Medication extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createFrequency() {
-		return '';
+		return new \com\microsoft\wc\thing\types\GeneralMeasurement();
 	}
 
 	public function setFrequency($frequency) {
@@ -533,9 +223,16 @@ class Medication extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFrequency($frequency) {
-		if ( ! is_string($frequency) && ! is_null($frequency) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'frequency', 'string'));
+		if ( $frequency === FALSE ) {
+			$this->_overrides['frequency'] = TRUE;
+			return NULL;
 		}
+
+		if ( ! $frequency instanceof \com\microsoft\wc\thing\types\GeneralMeasurement  && ! is_null($frequency) ) {
+			$frequency = new \com\microsoft\wc\thing\types\GeneralMeasurement ($frequency);
+		}
+
+		unset ($this->_overrides['frequency']);
 	
 		return $frequency;
 	}
@@ -570,275 +267,153 @@ class Medication extends \com\microsoft\wc\thing\AnyMixed {
 		return $route;
 	}
 
-	public function getDuration($autoCreate = TRUE) {
-		if ($this->duration===NULL && $autoCreate && ! isset($this->_overrides['duration']) ) {
-			$this->duration = $this->createDuration();
+	public function getIndication($autoCreate = TRUE) {
+		if ($this->indication===NULL && $autoCreate && ! isset($this->_overrides['indication']) ) {
+			$this->indication = $this->createIndication();
 		}
-		return $this->duration;
+		return $this->indication;
 	}
 	
-	protected function createDuration() {
-		return '';
-	}
-
-	public function setDuration($duration) {
-		$this->duration = $this->validateDuration($duration);
-	}
-
-	protected function validateDuration($duration) {
-		if ( ! is_string($duration) && ! is_null($duration) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'duration', 'string'));
-		}
-	
-		return $duration;
-	}
-
-	public function getDurationUnit($autoCreate = TRUE) {
-		if ($this->durationUnit===NULL && $autoCreate && ! isset($this->_overrides['durationUnit']) ) {
-			$this->durationUnit = $this->createDurationUnit();
-		}
-		return $this->durationUnit;
-	}
-	
-	protected function createDurationUnit() {
+	protected function createIndication() {
 		return new \com\microsoft\wc\types\CodableValue();
 	}
 
-	public function setDurationUnit($durationUnit) {
-		$this->durationUnit = $this->validateDurationUnit($durationUnit);
+	public function setIndication($indication) {
+		$this->indication = $this->validateIndication($indication);
 	}
 
-	protected function validateDurationUnit($durationUnit) {
-		if ( $durationUnit === FALSE ) {
-			$this->_overrides['durationUnit'] = TRUE;
+	protected function validateIndication($indication) {
+		if ( $indication === FALSE ) {
+			$this->_overrides['indication'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $durationUnit instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($durationUnit) ) {
-			$durationUnit = new \com\microsoft\wc\types\CodableValue ($durationUnit);
+		if ( ! $indication instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($indication) ) {
+			$indication = new \com\microsoft\wc\types\CodableValue ($indication);
 		}
 
-		unset ($this->_overrides['durationUnit']);
+		unset ($this->_overrides['indication']);
 	
-		return $durationUnit;
+		return $indication;
 	}
 
-	public function getRefills($autoCreate = TRUE) {
-		if ($this->refills===NULL && $autoCreate && ! isset($this->_overrides['refills']) ) {
-			$this->refills = $this->createRefills();
+	public function getDateStarted($autoCreate = TRUE) {
+		if ($this->dateStarted===NULL && $autoCreate && ! isset($this->_overrides['dateStarted']) ) {
+			$this->dateStarted = $this->createDateStarted();
 		}
-		return $this->refills;
+		return $this->dateStarted;
 	}
 	
-	protected function createRefills() {
-		return new \com\microsoft\wc\thing\types\NonNegativeInt();
+	protected function createDateStarted() {
+		return new \com\microsoft\wc\dates\ApproxDateTime();
 	}
 
-	public function setRefills($refills) {
-		$this->refills = $this->validateRefills($refills);
+	public function setDateStarted($dateStarted) {
+		$this->dateStarted = $this->validateDateStarted($dateStarted);
 	}
 
-	protected function validateRefills($refills) {
-		if ( $refills === FALSE ) {
-			$this->_overrides['refills'] = TRUE;
+	protected function validateDateStarted($dateStarted) {
+		if ( $dateStarted === FALSE ) {
+			$this->_overrides['dateStarted'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $refills instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($refills) ) {
-			$refills = new \com\microsoft\wc\thing\types\NonNegativeInt ($refills);
+		if ( ! $dateStarted instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($dateStarted) ) {
+			$dateStarted = new \com\microsoft\wc\dates\ApproxDateTime ($dateStarted);
 		}
 
-		unset ($this->_overrides['refills']);
+		unset ($this->_overrides['dateStarted']);
 	
-		return $refills;
+		return $dateStarted;
 	}
 
-	public function getRefillsLeft($autoCreate = TRUE) {
-		if ($this->refillsLeft===NULL && $autoCreate && ! isset($this->_overrides['refillsLeft']) ) {
-			$this->refillsLeft = $this->createRefillsLeft();
+	public function getDateDiscontinued($autoCreate = TRUE) {
+		if ($this->dateDiscontinued===NULL && $autoCreate && ! isset($this->_overrides['dateDiscontinued']) ) {
+			$this->dateDiscontinued = $this->createDateDiscontinued();
 		}
-		return $this->refillsLeft;
+		return $this->dateDiscontinued;
 	}
 	
-	protected function createRefillsLeft() {
-		return new \com\microsoft\wc\thing\types\NonNegativeInt();
+	protected function createDateDiscontinued() {
+		return new \com\microsoft\wc\dates\ApproxDateTime();
 	}
 
-	public function setRefillsLeft($refillsLeft) {
-		$this->refillsLeft = $this->validateRefillsLeft($refillsLeft);
+	public function setDateDiscontinued($dateDiscontinued) {
+		$this->dateDiscontinued = $this->validateDateDiscontinued($dateDiscontinued);
 	}
 
-	protected function validateRefillsLeft($refillsLeft) {
-		if ( $refillsLeft === FALSE ) {
-			$this->_overrides['refillsLeft'] = TRUE;
+	protected function validateDateDiscontinued($dateDiscontinued) {
+		if ( $dateDiscontinued === FALSE ) {
+			$this->_overrides['dateDiscontinued'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $refillsLeft instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($refillsLeft) ) {
-			$refillsLeft = new \com\microsoft\wc\thing\types\NonNegativeInt ($refillsLeft);
+		if ( ! $dateDiscontinued instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($dateDiscontinued) ) {
+			$dateDiscontinued = new \com\microsoft\wc\dates\ApproxDateTime ($dateDiscontinued);
 		}
 
-		unset ($this->_overrides['refillsLeft']);
+		unset ($this->_overrides['dateDiscontinued']);
 	
-		return $refillsLeft;
+		return $dateDiscontinued;
 	}
 
-	public function getDaysSupply($autoCreate = TRUE) {
-		if ($this->daysSupply===NULL && $autoCreate && ! isset($this->_overrides['daysSupply']) ) {
-			$this->daysSupply = $this->createDaysSupply();
+	public function getPrescribed($autoCreate = TRUE) {
+		if ($this->prescribed===NULL && $autoCreate && ! isset($this->_overrides['prescribed']) ) {
+			$this->prescribed = $this->createPrescribed();
 		}
-		return $this->daysSupply;
+		return $this->prescribed;
 	}
 	
-	protected function createDaysSupply() {
-		return new \com\microsoft\wc\thing\types\NonNegativeInt();
+	protected function createPrescribed() {
+		return new \com\microsoft\wc\types\CodableValue();
 	}
 
-	public function setDaysSupply($daysSupply) {
-		$this->daysSupply = $this->validateDaysSupply($daysSupply);
+	public function setPrescribed($prescribed) {
+		$this->prescribed = $this->validatePrescribed($prescribed);
 	}
 
-	protected function validateDaysSupply($daysSupply) {
-		if ( $daysSupply === FALSE ) {
-			$this->_overrides['daysSupply'] = TRUE;
+	protected function validatePrescribed($prescribed) {
+		if ( $prescribed === FALSE ) {
+			$this->_overrides['prescribed'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $daysSupply instanceof \com\microsoft\wc\thing\types\NonNegativeInt  && ! is_null($daysSupply) ) {
-			$daysSupply = new \com\microsoft\wc\thing\types\NonNegativeInt ($daysSupply);
+		if ( ! $prescribed instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($prescribed) ) {
+			$prescribed = new \com\microsoft\wc\types\CodableValue ($prescribed);
 		}
 
-		unset ($this->_overrides['daysSupply']);
+		unset ($this->_overrides['prescribed']);
 	
-		return $daysSupply;
+		return $prescribed;
 	}
 
-	public function getPrescriptionDuration($autoCreate = TRUE) {
-		if ($this->prescriptionDuration===NULL && $autoCreate && ! isset($this->_overrides['prescriptionDuration']) ) {
-			$this->prescriptionDuration = $this->createPrescriptionDuration();
+	public function getPrescription($autoCreate = TRUE) {
+		if ($this->prescription===NULL && $autoCreate && ! isset($this->_overrides['prescription']) ) {
+			$this->prescription = $this->createPrescription();
 		}
-		return $this->prescriptionDuration;
+		return $this->prescription;
 	}
 	
-	protected function createPrescriptionDuration() {
-		return new \com\microsoft\wc\thing\types\DurationValue();
+	protected function createPrescription() {
+		return new \com\microsoft\wc\thing\medication\Prescription();
 	}
 
-	public function setPrescriptionDuration($prescriptionDuration) {
-		$this->prescriptionDuration = $this->validatePrescriptionDuration($prescriptionDuration);
+	public function setPrescription($prescription) {
+		$this->prescription = $this->validatePrescription($prescription);
 	}
 
-	protected function validatePrescriptionDuration($prescriptionDuration) {
-		if ( $prescriptionDuration === FALSE ) {
-			$this->_overrides['prescriptionDuration'] = TRUE;
+	protected function validatePrescription($prescription) {
+		if ( $prescription === FALSE ) {
+			$this->_overrides['prescription'] = TRUE;
 			return NULL;
 		}
 
-		if ( ! $prescriptionDuration instanceof \com\microsoft\wc\thing\types\DurationValue  && ! is_null($prescriptionDuration) ) {
-			$prescriptionDuration = new \com\microsoft\wc\thing\types\DurationValue ($prescriptionDuration);
+		if ( ! $prescription instanceof \com\microsoft\wc\thing\medication\Prescription  && ! is_null($prescription) ) {
+			$prescription = new \com\microsoft\wc\thing\medication\Prescription ($prescription);
 		}
 
-		unset ($this->_overrides['prescriptionDuration']);
+		unset ($this->_overrides['prescription']);
 	
-		return $prescriptionDuration;
-	}
-
-	public function getInstructions($autoCreate = TRUE) {
-		if ($this->instructions===NULL && $autoCreate && ! isset($this->_overrides['instructions']) ) {
-			$this->instructions = $this->createInstructions();
-		}
-		return $this->instructions;
-	}
-	
-	protected function createInstructions() {
-		return '';
-	}
-
-	public function setInstructions($instructions) {
-		$this->instructions = $this->validateInstructions($instructions);
-	}
-
-	protected function validateInstructions($instructions) {
-		if ( ! is_string($instructions) && ! is_null($instructions) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'instructions', 'string'));
-		}
-	
-		return $instructions;
-	}
-
-	public function getSubstitutionPermitted($autoCreate = TRUE) {
-		if ($this->substitutionPermitted===NULL && $autoCreate && ! isset($this->_overrides['substitutionPermitted']) ) {
-			$this->substitutionPermitted = $this->createSubstitutionPermitted();
-		}
-		return $this->substitutionPermitted;
-	}
-	
-	protected function createSubstitutionPermitted() {
-		return FALSE;
-	}
-
-	public function setSubstitutionPermitted($substitutionPermitted) {
-		$this->substitutionPermitted = $this->validateSubstitutionPermitted($substitutionPermitted);
-	}
-
-	protected function validateSubstitutionPermitted($substitutionPermitted) {
-		if ( ! is_bool($substitutionPermitted) && ! is_null($substitutionPermitted) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'substitutionPermitted', 'boolean'));
-		}
-	
-		return $substitutionPermitted;
-	}
-
-	public function getPharmacy($autoCreate = TRUE) {
-		if ($this->pharmacy===NULL && $autoCreate && ! isset($this->_overrides['pharmacy']) ) {
-			$this->pharmacy = $this->createPharmacy();
-		}
-		return $this->pharmacy;
-	}
-	
-	protected function createPharmacy() {
-		return new \com\microsoft\wc\thing\types\Contact();
-	}
-
-	public function setPharmacy($pharmacy) {
-		$this->pharmacy = $this->validatePharmacy($pharmacy);
-	}
-
-	protected function validatePharmacy($pharmacy) {
-		if ( $pharmacy === FALSE ) {
-			$this->_overrides['pharmacy'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $pharmacy instanceof \com\microsoft\wc\thing\types\Contact  && ! is_null($pharmacy) ) {
-			$pharmacy = new \com\microsoft\wc\thing\types\Contact ($pharmacy);
-		}
-
-		unset ($this->_overrides['pharmacy']);
-	
-		return $pharmacy;
-	}
-
-	public function getPrescriptionNumber($autoCreate = TRUE) {
-		if ($this->prescriptionNumber===NULL && $autoCreate && ! isset($this->_overrides['prescriptionNumber']) ) {
-			$this->prescriptionNumber = $this->createPrescriptionNumber();
-		}
-		return $this->prescriptionNumber;
-	}
-	
-	protected function createPrescriptionNumber() {
-		return '';
-	}
-
-	public function setPrescriptionNumber($prescriptionNumber) {
-		$this->prescriptionNumber = $this->validatePrescriptionNumber($prescriptionNumber);
-	}
-
-	protected function validatePrescriptionNumber($prescriptionNumber) {
-		if ( ! is_string($prescriptionNumber) && ! is_null($prescriptionNumber) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'prescriptionNumber', 'string'));
-		}
-	
-		return $prescriptionNumber;
+		return $prescription;
 	}
 } // end class Medication

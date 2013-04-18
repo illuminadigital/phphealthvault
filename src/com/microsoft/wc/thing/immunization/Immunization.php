@@ -12,10 +12,9 @@ namespace com\microsoft\wc\thing\immunization;
 class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	/**
 	 * Information related to an immunization.
-	 * Note: Please use the new version of this data type instead of this version.
 	 */
 
-	const ID = '3d817dbe-af42-4a9d-a553-d1298b4d08fc';
+	const ID = 'cd3587b5-b6e1-4565-ab3b-1c3ad45eb04f';
 	const NAME = 'Immunization';
 
 	/**
@@ -41,7 +40,7 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	protected $administrator;
 
 	/**
-	 * @XmlText	(type="string", name="manufacturer")
+	 * @XmlElement	(type="\com\microsoft\wc\types\CodableValue", name="manufacturer")
 	 */
 	protected $manufacturer;
 
@@ -133,9 +132,16 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateAdministrationDate($administrationDate) {
-		if ( ! $administrationDate instanceof \com\microsoft\wc\dates\ApproxDateTime ) {
+		if ( $administrationDate === FALSE ) {
+			$this->_overrides['administrationDate'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $administrationDate instanceof \com\microsoft\wc\dates\ApproxDateTime  && ! is_null($administrationDate) ) {
 			$administrationDate = new \com\microsoft\wc\dates\ApproxDateTime ($administrationDate);
 		}
+
+		unset ($this->_overrides['administrationDate']);
 	
 		return $administrationDate;
 	}
@@ -178,7 +184,7 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createManufacturer() {
-		return '';
+		return new \com\microsoft\wc\types\CodableValue();
 	}
 
 	public function setManufacturer($manufacturer) {
@@ -186,9 +192,16 @@ class Immunization extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateManufacturer($manufacturer) {
-		if ( ! is_string($manufacturer) && ! is_null($manufacturer) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'manufacturer', 'string'));
+		if ( $manufacturer === FALSE ) {
+			$this->_overrides['manufacturer'] = TRUE;
+			return NULL;
 		}
+
+		if ( ! $manufacturer instanceof \com\microsoft\wc\types\CodableValue  && ! is_null($manufacturer) ) {
+			$manufacturer = new \com\microsoft\wc\types\CodableValue ($manufacturer);
+		}
+
+		unset ($this->_overrides['manufacturer']);
 	
 		return $manufacturer;
 	}
