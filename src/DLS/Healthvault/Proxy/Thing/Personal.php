@@ -5,12 +5,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
 
 use DLS\Healthvault\Utilities\VocabularyInterface;
+use DLS\Healthvault\Proxy\Type\CodableValue;
 
 use com\microsoft\wc\thing\personal\Personal as hvPersonal;
 use com\microsoft\wc\thing\Thing2;
-use com\microsoft\wc\thing\DataXml;
-use com\microsoft\wc\types\CodedValue;
-use com\microsoft\wc\types\CodableValue;
+
 
 class Personal extends BaseThing
 {
@@ -30,16 +29,18 @@ class Personal extends BaseThing
 
     /**
      * @Assert\NotBlank()
-     * @Validate\InHealthvaultVocabulary("blood-types")
-     * @var string
+     *
+     * @var \DLS\Healthvault\Proxy\Type\CodableValue
      */
+
     protected $bloodType;
 
     /**
      * @Assert\NotBlank()
-     * @Validate\InHealthvaultVocabulary("ethnicity")
-     * @var string
+     *
+     * @var \DLS\Healthvault\Proxy\Type\CodableValue
      */
+
     protected $ethnicity;
 
     /**
@@ -49,9 +50,10 @@ class Personal extends BaseThing
 
     /**
      * @Assert\NotBlank()
-     * @Validate\InHealthvaultVocabulary("marital-status")
-     * @var string
+     *
+     * @var \DLS\Healthvault\Proxy\Type\CodableValue
      */
+
     protected $maritalStatus;
 
     /**
@@ -70,12 +72,12 @@ class Personal extends BaseThing
      * @var date
      */
     protected $dateOfDeath;
-
     /**
      * @Assert\NotBlank()
-     * @Validate\InHealthvaultVocabulary("religion")
-     * @var string
+     *
+     * @var \DLS\Healthvault\Proxy\Type\CodableValue
      */
+
     protected $religion;
 
     /**
@@ -87,9 +89,10 @@ class Personal extends BaseThing
 
     /**
      * @Assert\NotBlank()
-     * @Validate\InHealthvaultVocabulary("education-level")
-     * @var string
+     *
+     * @var \DLS\Healthvault\Proxy\Type\CodableValue
      */
+
     protected $highestEducationLevel;
 
     /**
@@ -103,22 +106,26 @@ class Personal extends BaseThing
      */
     protected $organDonor;
 
-    /*
-        protected $name;
-        protected $birthdate;
-        protected $bloodType;
-        protected $ethnicity;
-        protected $ssn;
-        protected $maritalStatus;
-        protected $employmentStatus;
-        protected $isDeceased;
-        protected $dateOfDeath;
-        protected $religion;
-        protected $isVeteran;
-        protected $highestEducationLevel;
-        protected $isDisabled;
-        protected $organDonor;
-      */
+    public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL) {
+
+        $this->bloodType = new CodableValue('blood-types');
+        $this->ethnicity = new CodableValue('ethnicity');
+        $this->maritalStatus = new CodableValue('marital-status');
+        $this->religion = new CodableValue('religion');
+        $this->highestEducationLevel = new CodableValue('education-level');
+
+        if ($healthvaultVocabulary) {
+
+            $this->bloodType->setVocabularyInterface($healthvaultVocabulary);
+            $this->ethnicity->setVocabularyInterface($healthvaultVocabulary);
+            $this->maritalStatus->setVocabularyInterface($healthvaultVocabulary);
+            $this->religion->setVocabularyInterface($healthvaultVocabulary);
+            $this->highestEducationLevel->setVocabularyInterface($healthvaultVocabulary);
+
+        }
+
+        parent::__construct($thing, $healthvaultVocabulary);
+    }
 
     public function getName(){
 
@@ -172,20 +179,63 @@ class Personal extends BaseThing
         return $this->bloodType;
 
     }
-    public function setBloodType($bloodType){}
-    public function setThingBloodType($bloodType){}
+
+    public function setBloodType($bloodType){
+
+        $this->bloodType = $bloodType;
+
+        if($this->thing){
+
+            $this->setThingBloodType($bloodType);
+
+        }
+
+        return this;
+
+    }
+
+    public function setThingBloodType($bloodType){
+
+        $payload = $this->getThingPayload();
+
+        $this->bloodType->updateToThingElement($payload->getBloodType());
+
+    }
 
     public function getEthnicity(){
 
         return $this->ethnicity;
 
     }
-    public function setEthnicity($ethnicity){}
-    public function setThingEthnicity($ethnicity){}
+
+    public function setEthnicity($ethnicity){
+
+        $this->ethnicity = $ethnicity;
+
+        if($this->thing){
+
+            $this->setThingEthnicity($ethnicity);
+
+        }
+
+        return this;
+
+    }
+
+    public function setThingEthnicity($ethnicity){
+
+        $payload = $this->getThingPayload();
+
+        $this->ethnicity->updateToThingElement($payload->getSsn());
+
+    }
 
     public function getSsn(){
+
         return $this->ssn;
+
     }
+
     public function setSsn($ssn){
         $this->ssn = $ssn;
 
@@ -206,8 +256,28 @@ class Personal extends BaseThing
         return $this->maritalStatus;
 
     }
-    public function setMaritalStatus($martialStatus){}
-    public function setThingMaritalStatus($martialStatus){}
+
+    public function setMaritalStatus($martialStatus){
+
+        $this->maritalStatus = $martialStatus;
+
+        if($this->thing){
+
+            $this->setThingMaritalStatus($martialStatus);
+
+        }
+
+        return this;
+
+    }
+
+    public function setThingMaritalStatus($martialStatus){
+
+        $payload = $this->getThingPayload();
+
+        $this->maritalStatus->updateToThingElement($payload->getMaritalStatus());
+
+    }
 
     public function getEmploymentStatus(){
 
@@ -215,8 +285,27 @@ class Personal extends BaseThing
 
     }
 
-    public function setEmploymentStatus($employmentStatus){}
-    public function setThingEmploymentStatus($employmentStatus){}
+    public function setEmploymentStatus($employmentStatus){
+
+        $this->employmentStatus = $employmentStatus;
+
+        if($this->thing){
+
+            $this->setThingEmploymentStatus($employmentStatus);
+
+        }
+
+        return this;
+
+    }
+
+    public function setThingEmploymentStatus($employmentStatus){
+
+        $payload = $this->getThingPayload();
+
+        $this->employmentStatus->updateToThingElement($payload->getEmploymentStatus());
+
+    }
 
     public function getIsDeceased(){
 
@@ -224,15 +313,48 @@ class Personal extends BaseThing
 
     }
 
-    public function setIsDeceased($isDeceased){}
-    public function setThingIsDeceased($isDeceased){}
+    public function setIsDeceased($isDeceased){
+
+        $this->isDeceased = $isDeceased;
+
+        if($this->thing){
+
+            $this->setThingIsDeceased($isDeceased);
+
+        }
+
+        return this;
+
+    }
+
+    public function setThingIsDeceased($isDeceased){
+
+        $payload = $this->getThingPayload();
+
+        $this->isDeceased->updateToThingElement($payload->getIsDeceased());
+
+    }
 
     public function getDateOfDeath(){
 
         return $this->dateOfDeath;
 
     }
-    public function setDateOfDeath($dateOfDeath){}
+
+    public function setDateOfDeath($dateOfDeath){
+
+        $this->dateOfDeath = $dateOfDeath;
+
+        if($this->thing){
+
+            $this->setThingDateOfDeath($dateOfDeath);
+
+        }
+
+        return this;
+
+    }
+
     public function setThingDateOfDeath($dateOfDeath){
 
         if ( ! empty($dateOfDeath) )
@@ -252,32 +374,113 @@ class Personal extends BaseThing
         return $this->religion;
 
     }
-    public function setReligion($religion){}
-    public function setThingReligion($religion){}
+
+    public function setReligion($religion){
+
+        $this->religion = $religion;
+
+        if($this->thing){
+
+            $this->setThingReligion($religion);
+
+        }
+
+        return this;
+
+    }
+
+    public function setThingReligion($religion){
+
+        $payload = $this->getThingPayload();
+
+        $this->religion->updateToThingElement($payload->getReligion());
+
+    }
 
     public function getIsVeteran(){
 
         return $this->isVeteran;
 
     }
-    public function setIsVeteran($isVeteran){}
-    public function setThingIsVeteran($isVeteran){}
+
+    public function setIsVeteran($isVeteran){
+
+        $this->isVeteran = $isVeteran;
+
+        if($this->thing){
+
+            $this->setThingIsVeteran($isVeteran);
+
+        }
+
+        return this;
+
+
+    }
+
+    public function setThingIsVeteran($isVeteran){
+
+        $payload = $this->getThingPayload();
+
+        $this->isVeteran->updateToThingElement($payload->getIsVeteran());
+
+    }
 
     public function getHighestEducationLevel(){
 
         return $this->highestEducationLevel;
 
     }
-    public function setHighestEducationLevel($highestEducationLevel){}
-    public function setThingHighestEducationLevel($highestEducationLevel){}
+
+    public function setHighestEducationLevel($highestEducationLevel){
+
+        $this->highestEducationLevel = $highestEducationLevel;
+
+        if($this->thing){
+
+            $this->setThingHighestEducationLevel($highestEducationLevel);
+
+        }
+
+        return this;
+
+    }
+
+    public function setThingHighestEducationLevel($highestEducationLevel){
+
+        $payload = $this->getThingPayload();
+
+        $this->highestEducationLevel->updateToThingElement($payload->getHighestEducationLevel());
+
+    }
 
     public function getIsDisabled(){
 
         return $this->isDisabled;
 
     }
-    public function setIsDisabled($isDisabled){}
-    public function setThingIsDisabled($isDisabled){}
+
+    public function setIsDisabled($isDisabled){
+
+        $this->isDisabled = $isDisabled;
+
+        if($this->thing){
+
+            $this->setThingIsDisabled($isDisabled);
+
+        }
+
+        return this;
+
+    }
+
+    public function setThingIsDisabled($isDisabled){
+
+        $payload = $this->getThingPayload();
+
+        $this->isDisabled->updateToThingElement($payload->getIsDisabled());
+
+    }
 
     public function getOrganDonor(){
 
@@ -285,8 +488,27 @@ class Personal extends BaseThing
 
     }
 
-    public function setOrganDonor($organDonor){}
-    public function setThingOrganDonor($organDonor){}
+    public function setOrganDonor($organDonor){
+
+        $this->organDonor = $organDonor;
+
+        if($this->thing){
+
+            $this->setThingOrganDonor($organDonor);
+
+        }
+
+        return this;
+
+    }
+
+    public function setThingOrganDonor($organDonor){
+
+        $payload = $this->getThingPayload();
+
+        $this->organDonor->updateToThingElement($payload->getOrganDonor());
+
+    }
 
     public static function reallySupports(Thing2 $thing)
     {
@@ -295,12 +517,6 @@ class Personal extends BaseThing
 
     public function setThing(Thing2 $hvPersonal)
     {
-
-        if ( ! self::supports($hvPersonal) )
-        {
-            return FALSE;
-        }
-
         $result = parent::setThing($hvPersonal);
 
         if ( ! $result )
@@ -308,17 +524,16 @@ class Personal extends BaseThing
             return $result;
         }
 
-        $this->hvPersonal = $hvPersonal;
-
-        $payloadArea = $this->getThingPayloadArea();
 
         $payload = $this->getThingPayload();
 
-        //$this->name = $payload->getName()->getText();
 
         $this->name = $payload->getName()->getFull();
 
         $this->birthdate = $this->getThingDateTime($payload->getBirthdate());
+
+        //TODO: Finish the setter
+
 
         return $this;
     }
