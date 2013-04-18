@@ -66,6 +66,19 @@ class Extension extends BaseType
         
         return $this;
     }
+    
+    public function addElement($element)
+    {
+        if ( ! isset($this->elements) ) {
+            $this->elements = array($element);
+        } else if (! is_array($this->elements)) {
+            $this->elements = array($this->elements, $element);
+        } else {
+            $this->elements[] = $element;
+        }
+        
+        return $this;
+    }
 
     public function getVer()
     {

@@ -111,33 +111,11 @@ class PlatformMethod
     	
     	return $authObj;
     }
-    
+
     public function execute()
     {
-        $request = $this->getRequestXML();
-        
-        //file_put_contents(tempnam(sys_get_temp_dir(), 'rq'), $request);
-        
-        // echo '<h3>Request</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $request) . "\n";
-        
-        $response = $this->sendRequest($request);
-        
-        //file_put_contents(tempnam(sys_get_temp_dir(), 'rs'), $response);
-        
-        if ( ! empty($response) )
-        {
-            $unmarshaller = $this->configuration->getMarshallingService();
-            
-        // echo '<h3>Response</h3>' . str_replace(array('<', '>'), array('&lt;', '&gt;'), $response). "\n";
-        
-            $responseObject = $unmarshaller->unmarshalFromString($response);
-        }
-        else
-        {
-        	$responseObject = NULL;
-        }
-        
-        
+        $responseObject = $this->makeRequest();
+
         if ($responseObject && $responseObject->getStatus()->getCode() == 0) {
             $info = $responseObject->getAny();
             
@@ -148,22 +126,85 @@ class PlatformMethod
             return $info;
         }
 
-        switch($responseObject->getStatus()->getCode()){
-            case 65:
-                throw new AuthenticatedSessionTokenExpiredException();
-                break;
+        if( $responseObject ){
+
+            switch($responseObject->getStatus()->getCode()){
+
+                //Expired Healthvault Token Exception Handling tries to delete the token and get a new one, then retries the request. If fails throws the exception
+                case 65:
+
+                    $this->configuration->setAppAuthToken(null);
+
+                    $this->getAuthToken();
+
+                    $responseObject = $this->makeRequest();
+
+                    if ($responseObject && $responseObject->getStatus()->getCode() == 0) {
+
+                        $info = $responseObject->getInfo();
+
+                        return $info;
+
+                    }else{
+
+                        if(!is_null($responseObject)){
+
+                            throw \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build($responseObject->getStatus()->getCode());
+
+                        }else{
+
+                            //FIXME: add a handler for failed connection exception. (HealthvaultException::NO_RESPONSE)
+                            //throw \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build(0);
+
+                            return NULL;
+                        }
+
+                    }
+
+                    break;
+
+                default:
+
+                    throw \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build($responseObject->getStatus()->getCode());
+
+                    break;
+            }
+
         }
 
-        // else 
-        // FIXME: Should thrown an exception
+
+        //FIXME: add a handler for failed connection exception. (HealthvaultException::NO_RESPONSE)
+
         error_log('Error executing method');
-        error_log(print_r($request, TRUE));
-        error_log(print_r($response, TRUE));
+        //error_log(print_r($request, TRUE));
+        //error_log(print_r($response, TRUE));
         error_log(print_r($responseObject, TRUE));
-        
+
         return NULL;
     }
-    
+
+    protected function makeRequest(){
+
+        $request = $this->getRequestXML();
+
+        $response = $this->sendRequest($request);
+
+        if ( ! empty($response) )
+        {
+            $unmarshaller = $this->configuration->getMarshallingService();
+
+            $responseObject = $unmarshaller->unmarshalFromString($response);
+        }
+        else
+        {
+            $responseObject = NULL;
+        }
+
+        return $responseObject;
+
+    }
+
+
     protected function getRequestXML()
     {
     	$marshaller = $this->configuration->getMarshallingService();
