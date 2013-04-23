@@ -42,6 +42,26 @@ class Extension extends BaseType
      * @var string
      */
     protected $xsl;
+    
+    /**
+     * The proxy object (for reference)
+     * 
+     * @var object
+     */
+    protected $proxy;
+    
+    public function __construct($thingElement = NULL, $source = NULL, $thingProxy = NULL) {
+        if ( ! empty($source) ) {
+            $this->source = $source;
+        }
+        
+        if ( ! empty($thingProxy) ) {
+            $this->proxy = $thingProxy;
+        }
+        
+        parent::__construct($thingElement);
+    }
+    
 
     public function getSource()
     {
@@ -116,28 +136,42 @@ class Extension extends BaseType
         return $this;
     }
     
-    public function __construct($thingElement = NULL, $source = NULL) {
-        $this->source = $source;
-        
-        parent::__construct($thingElement);
+    public function getProxy() {
+        return $this->proxy;
     }
-
+    
+    public function setProxy($proxy) {
+        $this->proxy = $proxy;
+        
+        return $this;
+    }
+    
     public function setFromThingElement($thingElement)
     {
         $this->source = $thingElement->getSource();
-        $this->elements = $thingElement->getAny();
+        $this->elements = $this->getElementsFromThingElement($thingElement);
         $this->ver = $thingElement->getVer();
         $this->logo = $thingElement->getLogo();
         $this->xsl = $thingElement->getXsl();
+    }
+    
+    protected function getElementsFromThingElement($thingElement)
+    {
+        return $thingElement->getAny();
     }
 
     public function updateToThingElement($thingElement)
     {
         $thingElement->setSource($this->source);
-        $thingElement->setAny($this->elements);
+        $this->updateElementsForThingElement($thingElement);
         $thingElement->getVer($this->ver);
         $thingElement->getLogo($this->logo);
         $thingElement->getXsl($this->xsl);
+    }
+    
+    protected function updateElementsForThingElement($thingElement) 
+    {
+        $thingElement->setAny($this->elements);
     }
 
     public function __toString()

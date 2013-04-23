@@ -198,6 +198,26 @@ class CarePlan extends BaseThing
         
         return FALSE;
     }
+    
+    public function getTaskForReference($reference) {
+        if (strpos($reference, '-') === FALSE) {
+            if (isset($this->tasks[$reference])) {
+                return $this->tasks[$reference];
+            } else {
+                return NULL;
+            }
+        } else {
+            if ( is_array($this->tasks) ) {
+                foreach ($this->tasks as $index => $theTask) {
+                    if ($theTask->getReferenceId() == $reference) {
+                        return $this->tasks[$index];
+                    }
+                }
+            }
+        }
+        
+        return NULL;
+    }
 
     /**
      * @return the unknown_type
@@ -512,7 +532,7 @@ class CarePlan extends BaseThing
                 }
                 
                 // Not found -- must be removed
-                $goalStatus['removed'] = new CarePlanGoal($goal, $this->healthvaultVocabulary);
+                $goalStatus['removed'][] = new CarePlanGoal($goal, $this->healthvaultVocabulary);
                 
                 unset ($goalGroupGoals[$goalIndex]);
             }
@@ -525,7 +545,7 @@ class CarePlan extends BaseThing
                     $thisGoal->updateToThingElement($newGoal);
                     $goalGroup->getGoals()->addGoal($newGoal);
                     
-                    $goalStatus['added'] = $thisGoal;
+                    $goalStatus['added'][] = $thisGoal;
                 }
                 
                 unset($ourGoals[$goalGroupName]);
@@ -548,7 +568,7 @@ class CarePlan extends BaseThing
                     $thisGoal->updateToThingElement($newGoal);
                     $goalGroup->getGoals()->addGoal($newGoal);
                     
-                    $goalStatus['added'] = $thisGoal;
+                    $goalStatus['added'][] = $thisGoal;
                 }
                 
                 $goalGroupWrapper = $payload->getGoalGroups();
@@ -560,7 +580,11 @@ class CarePlan extends BaseThing
                 
                 $goalGroupWrapper->addGoalGroup($goalGroup);
             }
-        } else {
+        } 
+
+        // If the result would be an empty group, remove the wrapper completely.           
+        $goalGroupCheck = $payload->getGoalGroups();
+        if (empty($goalGroupCheck)) {
             $payload->setGoalGroups(FALSE);
         }
         
