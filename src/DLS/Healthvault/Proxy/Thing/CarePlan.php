@@ -259,6 +259,26 @@ class CarePlan extends BaseThing
         return $name;
     }
     
+    public function getGoalForReference($reference) {
+        if (strpos($reference, '-') === FALSE) {
+            return FALSE; // Makes no sense
+        }
+
+        if ( is_array($this->goals) ) {
+            foreach ($this->goals as $goalData) {
+                if ( ! empty($goalData['goals']) && is_array($goalData['goals'])) {
+                    foreach ($goalData['goals'] as $theGoal) {
+                        if ($theGoal->getReferenceId() == $reference) {
+                            return $theGoal;
+                        }
+                    }
+                }
+            }
+        }
+    
+        return NULL;
+    }
+    
     /* Thing Methods */
     public function getThingName()
     {
@@ -493,10 +513,21 @@ class CarePlan extends BaseThing
             $goalGroups = array();
         }
         
+        $ourGoals = array();
         if ( ! empty($this->goals) && is_array($this->goals)) {
-            $ourGoals = array_merge($this->goals, array()); // Ensure we have a clone
-        } else {
-            $ourGoals = array();
+            foreach ($this->goals as $thisGoalGroupName => $goalGroupData) {
+                $ourGoals[$thisGoalGroupName] = array(
+                    'name' => $goalGroupData['name'],
+                    'description' => $goalGroupData['description'],
+                    'goals' => array(),
+                );
+                
+                foreach ($goalGroupData['goals'] as $thisGoal) {
+                    if ( ! $thisGoal->isEmpty() ) {
+                        $ourGoals[$thisGoalGroupName]['goals'][] = $thisGoal;
+                    }
+                }
+            }
         }
         
         $goalStatus = array(
@@ -619,7 +650,7 @@ class CarePlan extends BaseThing
                         $newTasks[$theTaskReference] = $newTask;
                     }
                 } else {
-                    foreach ($thingTasks as $thisThinTaskIndex => $thisThingTask) {
+                    foreach ($thingTasks as $thisThingTaskIndex => $thisThingTask) {
                         if ($thisThingTask->getReferenceId() == $theTaskReference) {
                             $newTasks[$theTaskReference] = $thisThingTask;
                             $theTask->updateToThingElement($newTasks[$theTaskReference]);
