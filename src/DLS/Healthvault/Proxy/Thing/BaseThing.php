@@ -16,6 +16,7 @@ use DLS\Healthvault\Blob\BlobStoreFactory;
 
 use DLS\Healthvault\Blob\Blob;
 
+use DLS\Healthvault\Proxy\Type\ExtensionFactory;
 use DLS\Healthvault\Proxy\Type\Extension;
 use com\microsoft\wc\thing\Extension as hvExtension;
 
@@ -150,6 +151,11 @@ abstract class BaseThing
         $this->version = $this->getThingVersion();
         $this->id = $this->getThingId();
         
+        $callable = array($this, 'setThingPreExtension');
+        if (is_callable($callable)) {
+            call_user_func($callable, $thing);
+        }
+        
         $this->extensions = $this->getThingExtensions();
     
         return $this;
@@ -204,8 +210,10 @@ abstract class BaseThing
             return $extensions;
         }
         
+        $extensionFactory = ExtensionFactory::getExtensionFactory();
+        
         foreach ($hvExtensions as $thisHvExtension) {
-            $extensions[] = new Extension($thisHvExtension);
+            $extensions[] = $extensionFactory->getExtension($thisHvExtension->getSource(), $thisHvExtension, $this);
         }
         
         return $extensions;
