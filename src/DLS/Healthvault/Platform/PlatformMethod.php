@@ -141,7 +141,11 @@ class PlatformMethod
 
                     if ($responseObject && $responseObject->getStatus()->getCode() == 0) {
 
-                        $info = $responseObject->getInfo();
+                        $info = $responseObject->getAny();
+                        
+                        if (is_array($info)) {
+                            $info = array_shift($info);
+                        }
 
                         return $info;
 
@@ -383,7 +387,8 @@ class PlatformMethod
     	if ($response === FALSE)
     	{
     		//var_dump(sprintf('Failed to send request to %s', $this->getUrl()));
-    		throw new \NetworkIOException(sprintf('Failed to send request to %s', $this->getUrl()));
+    		// NetworkIO
+    		throw new \Exception(sprintf('Failed to send request to %s', $this->getUrl()));
     	}
     	
     	//print_r($response);
