@@ -25,7 +25,7 @@ cd /tmp/$$
 for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print -o -type f -name 'thingtype-*.xsd' -print -o -name response.xsd -print`
 do
 	echo $i
-	if grep "Note: Please use the new version" /tmp/$$/$i
+	if grep -q "Note: Please use the new version" /tmp/$$/$i
 	then
 		echo "Skipping old thing"
 	else
@@ -71,7 +71,7 @@ done
 for i in $DESTBASE/src/com/microsoft/wc/methods/response/*/Info.php
 do
 	echo $i
-	sed -i 's#class Info {#class Info extends \\com\\microsoft\\wc\\methods\\response\\Info {#' $i
+	sed -i 's#class Info {#class Info extends \\com\\microsoft\\wc\\response\\AnyMixed {#' $i
 done 
 
 for i in `find $DESTBASE/src/com/microsoft/wc/thing -type f -name '*.php' -print`

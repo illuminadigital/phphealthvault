@@ -6,6 +6,8 @@ use DLS\Healthvault\Exceptions\InvalidConfigurationException;
 use Doctrine\OXM\Marshaller\XmlMarshaller;
 use Doctrine\OXM\Marshaller\Marshaller;
 
+use Doctrine\OXM\Configuration;
+
 class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
 {
     protected $baseUrl;
@@ -218,7 +220,12 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     		__DIR__ . '/../../org',
     	);
     	
-    	$annotationDriver = $OXMConfiguration->newDefaultAnnotationDriver($paths);
+        $pathAltererCallable = array($this, 'alterAnnotationPaths');
+        if (is_callable($pathAltererCallable)) {
+            $paths = call_user_func($pathAltererCallable, $paths); // No call by reference
+        }
+        
+    	$annotationDriver = $this->getAnnotationDriver($OXMConfiguration, $paths);
     	
     	// Register the classes
     	$callable = array(get_class($annotationDriver), 'registerAnnotationClasses');
@@ -228,16 +235,32 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	
     	$OXMConfiguration->setMetadataDriverImpl($annotationDriver);
 
-    	$OXMConfiguration->setMetadataCacheImpl(/*new \Doctrine\Common\Cache\ArrayCache*/ new \Doctrine\Common\Cache\ApcCache());
+    	$OXMConfiguration->setMetadataCacheImpl($this->getMetadataCacheImpl());
     	
     	$metadataFactoryName = $OXMConfiguration->getClassMetadataFactoryName();
     	$metadataFactory = new $metadataFactoryName($OXMConfiguration);
     	
+    	$metadataFactoryAltererCallable = array($this, 'alterMetadataFactory');
+    	if (is_callable($metadataFactoryAltererCallable)) {
+    	    call_user_func($callable, $metadataFactory); // Objects are always be reference
+    	}
+    	
     	$marshaller = new XmlMarshaller($metadataFactory);
     	
     	$marshaller->setIndent(0); // Do not indent
-    	
+    	$marshaller->setAllowUnknownElements(TRUE); // Account for unknown elements
+    	 
     	return $marshaller;
+    }
+    
+    protected function getAnnotationDriver(Configuration $OXMConfiguration, array $paths) {
+        $annotationDriver = $OXMConfiguration->newDefaultAnnotationDriver($paths);
+        
+        return $annotationDriver;
+    }
+    
+    protected function getMetadataCacheImpl() {
+        return new \Doctrine\Common\Cache\ArrayCache();
     }
     
     public function getSharedSecret($base64Encode = FALSE)
