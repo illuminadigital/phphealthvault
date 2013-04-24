@@ -434,9 +434,11 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'alert', 0));
 		}
-		foreach ($alert as $entry) {
-			if (!($entry instanceof Alert)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'alert', 'alert'));
+		if ( ! empty($alert) ) {
+			foreach ($alert as $entry) {
+				if (!($entry instanceof Alert)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'alert', 'alert'));
+				}
 			}
 		}
 	

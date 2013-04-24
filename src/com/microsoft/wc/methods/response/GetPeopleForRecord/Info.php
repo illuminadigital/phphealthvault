@@ -103,9 +103,11 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'nonActiveAuthorization', 0));
 		}
-		foreach ($nonActiveAuthorization as $entry) {
-			if (!($entry instanceof NonActiveAuthorizationNoIds)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'nonActiveAuthorization', 'NonActiveAuthorizationNoIds'));
+		if ( ! empty($nonActiveAuthorization) ) {
+			foreach ($nonActiveAuthorization as $entry) {
+				if (!($entry instanceof NonActiveAuthorizationNoIds)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'nonActiveAuthorization', 'NonActiveAuthorizationNoIds'));
+				}
 			}
 		}
 	

@@ -67,9 +67,11 @@ class HeartrateZoneGroup {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'heartrateZone', 0));
 		}
-		foreach ($heartrateZone as $entry) {
-			if (!($entry instanceof HeartrateZone)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'heartrateZone', 'HeartrateZone'));
+		if ( ! empty($heartrateZone) ) {
+			foreach ($heartrateZone as $entry) {
+				if (!($entry instanceof HeartrateZone)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'heartrateZone', 'HeartrateZone'));
+				}
 			}
 		}
 	

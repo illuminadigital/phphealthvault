@@ -90,9 +90,11 @@ class CodableValue {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'code', 0));
 		}
-		foreach ($code as $entry) {
-			if (!($entry instanceof CodedValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'coded-value'));
+		if ( ! empty($code) ) {
+			foreach ($code as $entry) {
+				if (!($entry instanceof CodedValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'coded-value'));
+				}
 			}
 		}
 	

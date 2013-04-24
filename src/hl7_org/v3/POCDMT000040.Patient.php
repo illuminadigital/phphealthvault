@@ -145,7 +145,9 @@ class POCDMT000040.Patient {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
-		foreach ($realmCode as $entry) {
+		if ( ! empty($realmCode) ) {
+			foreach ($realmCode as $entry) {
+			}
 		}
 	
 		return $realmCode;
@@ -200,7 +202,9 @@ class POCDMT000040.Patient {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
-		foreach ($templateId as $entry) {
+		if ( ! empty($templateId) ) {
+			foreach ($templateId as $entry) {
+			}
 		}
 	
 		return $templateId;
@@ -255,7 +259,9 @@ class POCDMT000040.Patient {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 0));
 		}
-		foreach ($name as $entry) {
+		if ( ! empty($name) ) {
+			foreach ($name as $entry) {
+			}
 		}
 	
 		return $name;
@@ -370,9 +376,11 @@ class POCDMT000040.Patient {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'raceCode', 0));
 		}
-		foreach ($raceCode as $entry) {
-			if ( ! is_raceCode($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'raceCode', 'raceCode'));
+		if ( ! empty($raceCode) ) {
+			foreach ($raceCode as $entry) {
+				if ( ! is_raceCode($entry) && ! is_null($entry) ) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'raceCode', 'raceCode'));
+				}
 			}
 		}
 	
@@ -431,7 +439,9 @@ class POCDMT000040.Patient {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'guardian', 0));
 		}
-		foreach ($guardian as $entry) {
+		if ( ! empty($guardian) ) {
+			foreach ($guardian as $entry) {
+			}
 		}
 	
 		return $guardian;
@@ -486,7 +496,9 @@ class POCDMT000040.Patient {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'languageCommunication', 0));
 		}
-		foreach ($languageCommunication as $entry) {
+		if ( ! empty($languageCommunication) ) {
+			foreach ($languageCommunication as $entry) {
+			}
 		}
 	
 		return $languageCommunication;

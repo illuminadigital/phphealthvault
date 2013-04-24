@@ -69,7 +69,9 @@ class ThingFormatSpec2 {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'section', 0));
 		}
-		foreach ($section as $entry) {
+		if ( ! empty($section) ) {
+			foreach ($section as $entry) {
+			}
 		}
 	
 		return $section;
@@ -104,9 +106,11 @@ class ThingFormatSpec2 {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'xml', 0));
 		}
-		foreach ($xml as $entry) {
-			if ( ! is_string($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'xml', 'string'));
+		if ( ! empty($xml) ) {
+			foreach ($xml as $entry) {
+				if ( ! is_string($entry) && ! is_null($entry) ) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'xml', 'string'));
+				}
 			}
 		}
 	
@@ -155,9 +159,11 @@ class ThingFormatSpec2 {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'typeVersionFormat', 0));
 		}
-		foreach ($typeVersionFormat as $entry) {
-			if (!($entry instanceof Guid)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'typeVersionFormat', 'guid'));
+		if ( ! empty($typeVersionFormat) ) {
+			foreach ($typeVersionFormat as $entry) {
+				if (!($entry instanceof Guid)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'typeVersionFormat', 'guid'));
+				}
 			}
 		}
 	

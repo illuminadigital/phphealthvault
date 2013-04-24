@@ -246,9 +246,11 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'prohibitedInterventions', 0));
 		}
-		foreach ($prohibitedInterventions as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'prohibitedInterventions', 'codable-value'));
+		if ( ! empty($prohibitedInterventions) ) {
+			foreach ($prohibitedInterventions as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'prohibitedInterventions', 'codable-value'));
+				}
 			}
 		}
 	

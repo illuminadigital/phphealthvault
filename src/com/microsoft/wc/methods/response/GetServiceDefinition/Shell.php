@@ -118,9 +118,11 @@ class Shell {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'redirectToken', 0));
 		}
-		foreach ($redirectToken as $entry) {
-			if (!($entry instanceof ShellRedirectToken)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'redirectToken', 'ShellRedirectToken'));
+		if ( ! empty($redirectToken) ) {
+			foreach ($redirectToken as $entry) {
+				if (!($entry instanceof ShellRedirectToken)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'redirectToken', 'ShellRedirectToken'));
+				}
 			}
 		}
 	

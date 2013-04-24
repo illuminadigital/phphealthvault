@@ -65,9 +65,11 @@ class Set {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'dateRange', 0));
 		}
-		foreach ($dateRange as $entry) {
-			if (!($entry instanceof DateRange)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'dateRange', 'DateRange'));
+		if ( ! empty($dateRange) ) {
+			foreach ($dateRange as $entry) {
+				if (!($entry instanceof DateRange)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'dateRange', 'DateRange'));
+				}
 			}
 		}
 	
@@ -108,9 +110,11 @@ class Set {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'typeId', 0));
 		}
-		foreach ($typeId as $entry) {
-			if (!($entry instanceof Guid)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'typeId', 'guid'));
+		if ( ! empty($typeId) ) {
+			foreach ($typeId as $entry) {
+				if (!($entry instanceof Guid)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'typeId', 'guid'));
+				}
 			}
 		}
 	

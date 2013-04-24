@@ -222,9 +222,11 @@ class Info extends \com\microsoft\wc\request\Info {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 0));
 		}
-		foreach ($name as $entry) {
-			if (!($entry instanceof CultureSpecificString255)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'CultureSpecificString255'));
+		if ( ! empty($name) ) {
+			foreach ($name as $entry) {
+				if (!($entry instanceof CultureSpecificString255)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'CultureSpecificString255'));
+				}
 			}
 		}
 	
@@ -415,9 +417,11 @@ class Info extends \com\microsoft\wc\request\Info {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'description', 0));
 		}
-		foreach ($description as $entry) {
-			if (!($entry instanceof CultureSpecificStringnz)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'CultureSpecificStringnz'));
+		if ( ! empty($description) ) {
+			foreach ($description as $entry) {
+				if (!($entry instanceof CultureSpecificStringnz)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'CultureSpecificStringnz'));
+				}
 			}
 		}
 	
@@ -458,9 +462,11 @@ class Info extends \com\microsoft\wc\request\Info {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'authReason', 0));
 		}
-		foreach ($authReason as $entry) {
-			if (!($entry instanceof CultureSpecificStringnz)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'authReason', 'CultureSpecificStringnz'));
+		if ( ! empty($authReason) ) {
+			foreach ($authReason as $entry) {
+				if (!($entry instanceof CultureSpecificStringnz)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'authReason', 'CultureSpecificStringnz'));
+				}
 			}
 		}
 	

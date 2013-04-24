@@ -105,9 +105,11 @@ class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vitalSignsResults', 0));
 		}
-		foreach ($vitalSignsResults as $entry) {
-			if (!($entry instanceof VitalSignResultType)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'vitalSignsResults', 'vital-sign-result-type'));
+		if ( ! empty($vitalSignsResults) ) {
+			foreach ($vitalSignsResults as $entry) {
+				if (!($entry instanceof VitalSignResultType)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'vitalSignsResults', 'vital-sign-result-type'));
+				}
 			}
 		}
 	

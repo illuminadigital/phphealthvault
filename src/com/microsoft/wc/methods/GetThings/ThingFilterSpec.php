@@ -132,9 +132,11 @@ class ThingFilterSpec {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'typeId', 0));
 		}
-		foreach ($typeId as $entry) {
-			if (!($entry instanceof Guid)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'typeId', 'guid'));
+		if ( ! empty($typeId) ) {
+			foreach ($typeId as $entry) {
+				if (!($entry instanceof Guid)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'typeId', 'guid'));
+				}
 			}
 		}
 	
@@ -178,9 +180,11 @@ class ThingFilterSpec {
 		if ($count > 2) {
 			throw new \Exception(sprintf('Supplied %s array has more than the required number (%d) of entries.', 'thingState', 2));
 		}
-		foreach ($thingState as $entry) {
-			if (!($entry instanceof ThingState)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'thingState', 'ThingState'));
+		if ( ! empty($thingState) ) {
+			foreach ($thingState as $entry) {
+				if (!($entry instanceof ThingState)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'thingState', 'ThingState'));
+				}
 			}
 		}
 	

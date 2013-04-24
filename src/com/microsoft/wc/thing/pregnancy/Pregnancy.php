@@ -243,9 +243,11 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'delivery', 0));
 		}
-		foreach ($delivery as $entry) {
-			if (!($entry instanceof Delivery)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'delivery', 'Delivery'));
+		if ( ! empty($delivery) ) {
+			foreach ($delivery as $entry) {
+				if (!($entry instanceof Delivery)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'delivery', 'Delivery'));
+				}
 			}
 		}
 	

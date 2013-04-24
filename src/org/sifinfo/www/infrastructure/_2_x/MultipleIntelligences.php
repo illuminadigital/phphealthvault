@@ -59,9 +59,11 @@ class MultipleIntelligences {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'multipleIntelligence', 0));
 		}
-		foreach ($multipleIntelligence as $entry) {
-			if (!($entry instanceof MultipleIntelligence)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'multipleIntelligence', 'MultipleIntelligence'));
+		if ( ! empty($multipleIntelligence) ) {
+			foreach ($multipleIntelligence as $entry) {
+				if (!($entry instanceof MultipleIntelligence)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'multipleIntelligence', 'MultipleIntelligence'));
+				}
 			}
 		}
 	

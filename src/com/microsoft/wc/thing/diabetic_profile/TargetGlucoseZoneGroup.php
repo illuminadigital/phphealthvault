@@ -67,9 +67,11 @@ class TargetGlucoseZoneGroup {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'targetGlucoseZone', 0));
 		}
-		foreach ($targetGlucoseZone as $entry) {
-			if (!($entry instanceof TargetGlucoseZone)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'targetGlucoseZone', 'TargetGlucoseZone'));
+		if ( ! empty($targetGlucoseZone) ) {
+			foreach ($targetGlucoseZone as $entry) {
+				if (!($entry instanceof TargetGlucoseZone)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'targetGlucoseZone', 'TargetGlucoseZone'));
+				}
 			}
 		}
 	

@@ -166,9 +166,11 @@ class LabTestResultsGroupType {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'subGroups', 0));
 		}
-		foreach ($subGroups as $entry) {
-			if (!($entry instanceof LabTestResultsGroupType)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'subGroups', 'lab-test-results-group-type'));
+		if ( ! empty($subGroups) ) {
+			foreach ($subGroups as $entry) {
+				if (!($entry instanceof LabTestResultsGroupType)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'subGroups', 'lab-test-results-group-type'));
+				}
 			}
 		}
 	
@@ -209,9 +211,11 @@ class LabTestResultsGroupType {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'results', 0));
 		}
-		foreach ($results as $entry) {
-			if (!($entry instanceof LabTestResultType)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'results', 'lab-test-result-type'));
+		if ( ! empty($results) ) {
+			foreach ($results as $entry) {
+				if (!($entry instanceof LabTestResultType)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'results', 'lab-test-result-type'));
+				}
 			}
 		}
 	

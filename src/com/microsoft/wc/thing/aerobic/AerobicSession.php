@@ -158,9 +158,11 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'lapSession', 0));
 		}
-		foreach ($lapSession as $entry) {
-			if (!($entry instanceof AerobicLapSession)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'lapSession', 'aerobic-lap-session'));
+		if ( ! empty($lapSession) ) {
+			foreach ($lapSession as $entry) {
+				if (!($entry instanceof AerobicLapSession)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'lapSession', 'aerobic-lap-session'));
+				}
 			}
 		}
 	

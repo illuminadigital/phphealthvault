@@ -89,9 +89,11 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'connectRequest', 0));
 		}
-		foreach ($connectRequest as $entry) {
-			if (!($entry instanceof ConnectRequest)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'connectRequest', 'ConnectRequest'));
+		if ( ! empty($connectRequest) ) {
+			foreach ($connectRequest as $entry) {
+				if (!($entry instanceof ConnectRequest)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'connectRequest', 'ConnectRequest'));
+				}
 			}
 		}
 	

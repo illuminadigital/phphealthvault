@@ -59,9 +59,11 @@ class TimeElements {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'timeElement', 0));
 		}
-		foreach ($timeElement as $entry) {
-			if (!($entry instanceof TimeElement)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'timeElement', 'TimeElement'));
+		if ( ! empty($timeElement) ) {
+			foreach ($timeElement as $entry) {
+				if (!($entry instanceof TimeElement)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'timeElement', 'TimeElement'));
+				}
 			}
 		}
 	

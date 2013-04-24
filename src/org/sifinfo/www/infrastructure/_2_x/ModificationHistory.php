@@ -59,9 +59,11 @@ class ModificationHistory {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'modified', 0));
 		}
-		foreach ($modified as $entry) {
-			if (!($entry instanceof Modified)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'modified', 'Modified'));
+		if ( ! empty($modified) ) {
+			foreach ($modified as $entry) {
+				if (!($entry instanceof Modified)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'modified', 'Modified'));
+				}
 			}
 		}
 	

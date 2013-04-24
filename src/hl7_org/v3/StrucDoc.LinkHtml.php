@@ -103,7 +103,9 @@ class StrucDoc.LinkHtml {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnote', 0));
 		}
-		foreach ($footnote as $entry) {
+		if ( ! empty($footnote) ) {
+			foreach ($footnote as $entry) {
+			}
 		}
 	
 		return $footnote;
@@ -138,7 +140,9 @@ class StrucDoc.LinkHtml {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnoteRef', 0));
 		}
-		foreach ($footnoteRef as $entry) {
+		if ( ! empty($footnoteRef) ) {
+			foreach ($footnoteRef as $entry) {
+			}
 		}
 	
 		return $footnoteRef;

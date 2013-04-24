@@ -59,9 +59,11 @@ class AcademicFoci {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'academicFocus', 0));
 		}
-		foreach ($academicFocus as $entry) {
-			if (!($entry instanceof AcademicFocus)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'academicFocus', 'AcademicFocus'));
+		if ( ! empty($academicFocus) ) {
+			foreach ($academicFocus as $entry) {
+				if (!($entry instanceof AcademicFocus)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'academicFocus', 'AcademicFocus'));
+				}
 			}
 		}
 	

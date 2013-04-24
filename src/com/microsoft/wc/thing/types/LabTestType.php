@@ -262,9 +262,11 @@ class LabTestType {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'code', 0));
 		}
-		foreach ($code as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'codable-value'));
+		if ( ! empty($code) ) {
+			foreach ($code as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'codable-value'));
+				}
 			}
 		}
 	

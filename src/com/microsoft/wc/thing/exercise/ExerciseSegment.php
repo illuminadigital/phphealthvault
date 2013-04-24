@@ -227,9 +227,11 @@ class ExerciseSegment {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'detail', 0));
 		}
-		foreach ($detail as $entry) {
-			if (!($entry instanceof StructuredNameValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'detail', 'StructuredNameValue'));
+		if ( ! empty($detail) ) {
+			foreach ($detail as $entry) {
+				if (!($entry instanceof StructuredNameValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'detail', 'StructuredNameValue'));
+				}
 			}
 		}
 	

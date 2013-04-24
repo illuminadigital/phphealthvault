@@ -79,9 +79,11 @@ class ThingResponseGroup {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'thing', 0));
 		}
-		foreach ($thing as $entry) {
-			if (!($entry instanceof Thing)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'thing', 'Thing'));
+		if ( ! empty($thing) ) {
+			foreach ($thing as $entry) {
+				if (!($entry instanceof Thing)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'thing', 'Thing'));
+				}
 			}
 		}
 	
@@ -122,9 +124,11 @@ class ThingResponseGroup {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'unprocessedThingKeyInfo', 0));
 		}
-		foreach ($unprocessedThingKeyInfo as $entry) {
-			if (!($entry instanceof UnprocessedThingKeyInfo)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'unprocessedThingKeyInfo', 'UnprocessedThingKeyInfo'));
+		if ( ! empty($unprocessedThingKeyInfo) ) {
+			foreach ($unprocessedThingKeyInfo as $entry) {
+				if (!($entry instanceof UnprocessedThingKeyInfo)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'unprocessedThingKeyInfo', 'UnprocessedThingKeyInfo'));
+				}
 			}
 		}
 	

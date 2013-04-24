@@ -69,9 +69,11 @@ class GroupMembership extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'membership', 0));
 		}
-		foreach ($membership as $entry) {
-			if (!($entry instanceof GroupMembershipType)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'membership', 'group-membership-type'));
+		if ( ! empty($membership) ) {
+			foreach ($membership as $entry) {
+				if (!($entry instanceof GroupMembershipType)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'membership', 'group-membership-type'));
+				}
 			}
 		}
 	

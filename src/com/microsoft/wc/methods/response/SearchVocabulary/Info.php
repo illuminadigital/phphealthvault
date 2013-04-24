@@ -66,9 +66,11 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularyKey', 0));
 		}
-		foreach ($vocabularyKey as $entry) {
-			if (!($entry instanceof VocabularyKeyInfo)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyKey', 'VocabularyKeyInfo'));
+		if ( ! empty($vocabularyKey) ) {
+			foreach ($vocabularyKey as $entry) {
+				if (!($entry instanceof VocabularyKeyInfo)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyKey', 'VocabularyKeyInfo'));
+				}
 			}
 		}
 	

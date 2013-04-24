@@ -91,9 +91,11 @@ class GeneralMeasurement {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'structured', 0));
 		}
-		foreach ($structured as $entry) {
-			if (!($entry instanceof StructuredMeasurement)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'structured', 'structured-measurement'));
+		if ( ! empty($structured) ) {
+			foreach ($structured as $entry) {
+				if (!($entry instanceof StructuredMeasurement)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'structured', 'structured-measurement'));
+				}
 			}
 		}
 	

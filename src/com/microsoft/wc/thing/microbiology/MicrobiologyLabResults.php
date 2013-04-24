@@ -129,9 +129,11 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'labTests', 0));
 		}
-		foreach ($labTests as $entry) {
-			if (!($entry instanceof LabTestType)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'labTests', 'lab-test-type'));
+		if ( ! empty($labTests) ) {
+			foreach ($labTests as $entry) {
+				if (!($entry instanceof LabTestType)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'labTests', 'lab-test-type'));
+				}
 			}
 		}
 	

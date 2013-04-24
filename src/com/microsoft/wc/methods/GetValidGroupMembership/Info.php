@@ -61,9 +61,11 @@ class Info extends \com\microsoft\wc\request\Info {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'applicationId', 0));
 		}
-		foreach ($applicationId as $entry) {
-			if (!($entry instanceof Guid)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'applicationId', 'guid'));
+		if ( ! empty($applicationId) ) {
+			foreach ($applicationId as $entry) {
+				if (!($entry instanceof Guid)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'applicationId', 'guid'));
+				}
 			}
 		}
 	

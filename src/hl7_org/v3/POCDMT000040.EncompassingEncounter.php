@@ -121,7 +121,9 @@ class POCDMT000040.EncompassingEncounter {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
-		foreach ($realmCode as $entry) {
+		if ( ! empty($realmCode) ) {
+			foreach ($realmCode as $entry) {
+			}
 		}
 	
 		return $realmCode;
@@ -176,7 +178,9 @@ class POCDMT000040.EncompassingEncounter {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
-		foreach ($templateId as $entry) {
+		if ( ! empty($templateId) ) {
+			foreach ($templateId as $entry) {
+			}
 		}
 	
 		return $templateId;
@@ -211,7 +215,9 @@ class POCDMT000040.EncompassingEncounter {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
 		}
-		foreach ($id as $entry) {
+		if ( ! empty($id) ) {
+			foreach ($id as $entry) {
+			}
 		}
 	
 		return $id;
@@ -326,7 +332,9 @@ class POCDMT000040.EncompassingEncounter {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'encounterParticipant', 0));
 		}
-		foreach ($encounterParticipant as $entry) {
+		if ( ! empty($encounterParticipant) ) {
+			foreach ($encounterParticipant as $entry) {
+			}
 		}
 	
 		return $encounterParticipant;

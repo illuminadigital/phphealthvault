@@ -70,9 +70,11 @@ class FamilyHistory extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'condition', 0));
 		}
-		foreach ($condition as $entry) {
-			if (!($entry instanceof Condition)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'condition', 'condition'));
+		if ( ! empty($condition) ) {
+			foreach ($condition as $entry) {
+				if (!($entry instanceof Condition)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'condition', 'condition'));
+				}
 			}
 		}
 	

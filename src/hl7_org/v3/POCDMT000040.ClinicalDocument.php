@@ -223,7 +223,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
-		foreach ($realmCode as $entry) {
+		if ( ! empty($realmCode) ) {
+			foreach ($realmCode as $entry) {
+			}
 		}
 	
 		return $realmCode;
@@ -278,7 +280,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
-		foreach ($templateId as $entry) {
+		if ( ! empty($templateId) ) {
+			foreach ($templateId as $entry) {
+			}
 		}
 	
 		return $templateId;
@@ -583,7 +587,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'informant', 0));
 		}
-		foreach ($informant as $entry) {
+		if ( ! empty($informant) ) {
+			foreach ($informant as $entry) {
+			}
 		}
 	
 		return $informant;
@@ -638,7 +644,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'informationRecipient', 0));
 		}
-		foreach ($informationRecipient as $entry) {
+		if ( ! empty($informationRecipient) ) {
+			foreach ($informationRecipient as $entry) {
+			}
 		}
 	
 		return $informationRecipient;
@@ -693,7 +701,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'authenticator', 0));
 		}
-		foreach ($authenticator as $entry) {
+		if ( ! empty($authenticator) ) {
+			foreach ($authenticator as $entry) {
+			}
 		}
 	
 		return $authenticator;
@@ -728,7 +738,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'participant', 0));
 		}
-		foreach ($participant as $entry) {
+		if ( ! empty($participant) ) {
+			foreach ($participant as $entry) {
+			}
 		}
 	
 		return $participant;
@@ -763,7 +775,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'inFulfillmentOf', 0));
 		}
-		foreach ($inFulfillmentOf as $entry) {
+		if ( ! empty($inFulfillmentOf) ) {
+			foreach ($inFulfillmentOf as $entry) {
+			}
 		}
 	
 		return $inFulfillmentOf;
@@ -798,7 +812,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'documentationOf', 0));
 		}
-		foreach ($documentationOf as $entry) {
+		if ( ! empty($documentationOf) ) {
+			foreach ($documentationOf as $entry) {
+			}
 		}
 	
 		return $documentationOf;
@@ -833,7 +849,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'relatedDocument', 0));
 		}
-		foreach ($relatedDocument as $entry) {
+		if ( ! empty($relatedDocument) ) {
+			foreach ($relatedDocument as $entry) {
+			}
 		}
 	
 		return $relatedDocument;
@@ -868,7 +886,9 @@ class POCDMT000040.ClinicalDocument {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'authorization', 0));
 		}
-		foreach ($authorization as $entry) {
+		if ( ! empty($authorization) ) {
+			foreach ($authorization as $entry) {
+			}
 		}
 	
 		return $authorization;

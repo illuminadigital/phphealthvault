@@ -237,9 +237,11 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'heartrateZoneGroup', 0));
 		}
-		foreach ($heartrateZoneGroup as $entry) {
-			if (!($entry instanceof HeartrateZoneGroup)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'heartrateZoneGroup', 'HeartrateZoneGroup'));
+		if ( ! empty($heartrateZoneGroup) ) {
+			foreach ($heartrateZoneGroup as $entry) {
+				if (!($entry instanceof HeartrateZoneGroup)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'heartrateZoneGroup', 'HeartrateZoneGroup'));
+				}
 			}
 		}
 	

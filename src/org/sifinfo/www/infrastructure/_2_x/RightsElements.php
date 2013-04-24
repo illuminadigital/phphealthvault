@@ -59,9 +59,11 @@ class RightsElements {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'rightsElement', 0));
 		}
-		foreach ($rightsElement as $entry) {
-			if (!($entry instanceof RightsElement)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'rightsElement', 'RightsElement'));
+		if ( ! empty($rightsElement) ) {
+			foreach ($rightsElement as $entry) {
+				if (!($entry instanceof RightsElement)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'rightsElement', 'RightsElement'));
+				}
 			}
 		}
 	

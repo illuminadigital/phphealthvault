@@ -229,9 +229,11 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'detail', 0));
 		}
-		foreach ($detail as $entry) {
-			if (!($entry instanceof StructuredNameValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'detail', 'StructuredNameValue'));
+		if ( ! empty($detail) ) {
+			foreach ($detail as $entry) {
+				if (!($entry instanceof StructuredNameValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'detail', 'StructuredNameValue'));
+				}
 			}
 		}
 	
@@ -272,9 +274,11 @@ class Exercise extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'segment', 0));
 		}
-		foreach ($segment as $entry) {
-			if (!($entry instanceof ExerciseSegment)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'segment', 'ExerciseSegment'));
+		if ( ! empty($segment) ) {
+			foreach ($segment as $entry) {
+				if (!($entry instanceof ExerciseSegment)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'segment', 'ExerciseSegment'));
+				}
 			}
 		}
 	

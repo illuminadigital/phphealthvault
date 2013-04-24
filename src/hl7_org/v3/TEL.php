@@ -56,7 +56,9 @@ class TEL extends \org\w3\www\_2001\XMLSchema\URL {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'useablePeriod', 0));
 		}
-		foreach ($useablePeriod as $entry) {
+		if ( ! empty($useablePeriod) ) {
+			foreach ($useablePeriod as $entry) {
+			}
 		}
 	
 		return $useablePeriod;

@@ -302,9 +302,11 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'language', 0));
 		}
-		foreach ($language as $entry) {
-			if (!($entry instanceof Language)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'language', 'language'));
+		if ( ! empty($language) ) {
+			foreach ($language as $entry) {
+				if (!($entry instanceof Language)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'language', 'language'));
+				}
 			}
 		}
 	

@@ -59,9 +59,11 @@ class AcademicPerformanceHistory {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'termPerformance', 0));
 		}
-		foreach ($termPerformance as $entry) {
-			if (!($entry instanceof TermPerformance)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'termPerformance', 'TermPerformance'));
+		if ( ! empty($termPerformance) ) {
+			foreach ($termPerformance as $entry) {
+				if (!($entry instanceof TermPerformance)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'termPerformance', 'TermPerformance'));
+				}
 			}
 		}
 	

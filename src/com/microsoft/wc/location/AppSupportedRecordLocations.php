@@ -60,9 +60,11 @@ class AppSupportedRecordLocations {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'appSupportedRecordLocation', 0));
 		}
-		foreach ($appSupportedRecordLocation as $entry) {
-			if (!($entry instanceof AppSupportedRecordLocation)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'appSupportedRecordLocation', 'AppSupportedRecordLocation'));
+		if ( ! empty($appSupportedRecordLocation) ) {
+			foreach ($appSupportedRecordLocation as $entry) {
+				if (!($entry instanceof AppSupportedRecordLocation)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'appSupportedRecordLocation', 'AppSupportedRecordLocation'));
+				}
 			}
 		}
 	

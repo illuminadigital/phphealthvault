@@ -74,9 +74,11 @@ class Contact {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'address', 0));
 		}
-		foreach ($address as $entry) {
-			if (!($entry instanceof Address)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'address', 'address'));
+		if ( ! empty($address) ) {
+			foreach ($address as $entry) {
+				if (!($entry instanceof Address)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'address', 'address'));
+				}
 			}
 		}
 	
@@ -117,9 +119,11 @@ class Contact {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'phone', 0));
 		}
-		foreach ($phone as $entry) {
-			if (!($entry instanceof Phone)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'phone', 'phone'));
+		if ( ! empty($phone) ) {
+			foreach ($phone as $entry) {
+				if (!($entry instanceof Phone)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'phone', 'phone'));
+				}
 			}
 		}
 	
@@ -160,9 +164,11 @@ class Contact {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'email', 0));
 		}
-		foreach ($email as $entry) {
-			if (!($entry instanceof Email)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'email', 'email'));
+		if ( ! empty($email) ) {
+			foreach ($email as $entry) {
+				if (!($entry instanceof Email)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'email', 'email'));
+				}
 			}
 		}
 	

@@ -529,9 +529,11 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'additionalDiagnosis', 0));
 		}
-		foreach ($additionalDiagnosis as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'additionalDiagnosis', 'codable-value'));
+		if ( ! empty($additionalDiagnosis) ) {
+			foreach ($additionalDiagnosis as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'additionalDiagnosis', 'codable-value'));
+				}
 			}
 		}
 	
@@ -632,9 +634,11 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'additionalProcedure', 0));
 		}
-		foreach ($additionalProcedure as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'additionalProcedure', 'codable-value'));
+		if ( ! empty($additionalProcedure) ) {
+			foreach ($additionalProcedure as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'additionalProcedure', 'codable-value'));
+				}
 			}
 		}
 	

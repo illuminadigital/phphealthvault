@@ -59,9 +59,11 @@ class Names {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 0));
 		}
-		foreach ($name as $entry) {
-			if (!($entry instanceof Name)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'Name'));
+		if ( ! empty($name) ) {
+			foreach ($name as $entry) {
+				if (!($entry instanceof Name)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'Name'));
+				}
 			}
 		}
 	

@@ -97,7 +97,9 @@ class StrucDoc.TitleContent {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'content', 0));
 		}
-		foreach ($content as $entry) {
+		if ( ! empty($content) ) {
+			foreach ($content as $entry) {
+			}
 		}
 	
 		return $content;
@@ -132,7 +134,9 @@ class StrucDoc.TitleContent {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sub', 0));
 		}
-		foreach ($sub as $entry) {
+		if ( ! empty($sub) ) {
+			foreach ($sub as $entry) {
+			}
 		}
 	
 		return $sub;
@@ -167,7 +171,9 @@ class StrucDoc.TitleContent {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sup', 0));
 		}
-		foreach ($sup as $entry) {
+		if ( ! empty($sup) ) {
+			foreach ($sup as $entry) {
+			}
 		}
 	
 		return $sup;
@@ -202,7 +208,9 @@ class StrucDoc.TitleContent {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'br', 0));
 		}
-		foreach ($br as $entry) {
+		if ( ! empty($br) ) {
+			foreach ($br as $entry) {
+			}
 		}
 	
 		return $br;
@@ -237,7 +245,9 @@ class StrucDoc.TitleContent {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnote', 0));
 		}
-		foreach ($footnote as $entry) {
+		if ( ! empty($footnote) ) {
+			foreach ($footnote as $entry) {
+			}
 		}
 	
 		return $footnote;
@@ -272,7 +282,9 @@ class StrucDoc.TitleContent {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'footnoteRef', 0));
 		}
-		foreach ($footnoteRef as $entry) {
+		if ( ! empty($footnoteRef) ) {
+			foreach ($footnoteRef as $entry) {
+			}
 		}
 	
 		return $footnoteRef;

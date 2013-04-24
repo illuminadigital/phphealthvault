@@ -193,9 +193,11 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'commonSchema', 0));
 		}
-		foreach ($commonSchema as $entry) {
-			if ( ! is_string($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'commonSchema', 'string'));
+		if ( ! empty($commonSchema) ) {
+			foreach ($commonSchema as $entry) {
+				if ( ! is_string($entry) && ! is_null($entry) ) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'commonSchema', 'string'));
+				}
 			}
 		}
 	

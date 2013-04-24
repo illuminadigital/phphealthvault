@@ -60,9 +60,11 @@ class SIFExtendedElementsType {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sifExtendedElement', 0));
 		}
-		foreach ($sifExtendedElement as $entry) {
-			if (!($entry instanceof SIFExtendedElement)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'sifExtendedElement', 'SIF_ExtendedElement'));
+		if ( ! empty($sifExtendedElement) ) {
+			foreach ($sifExtendedElement as $entry) {
+				if (!($entry instanceof SIFExtendedElement)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'sifExtendedElement', 'SIF_ExtendedElement'));
+				}
 			}
 		}
 	

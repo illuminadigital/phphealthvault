@@ -317,9 +317,11 @@ class CarePlanGoal {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'goalAdditionalRanges', 0));
 		}
-		foreach ($goalAdditionalRanges as $entry) {
-			if (!($entry instanceof GoalRange)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'goalAdditionalRanges', 'goal-range'));
+		if ( ! empty($goalAdditionalRanges) ) {
+			foreach ($goalAdditionalRanges as $entry) {
+				if (!($entry instanceof GoalRange)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'goalAdditionalRanges', 'goal-range'));
+				}
 			}
 		}
 	

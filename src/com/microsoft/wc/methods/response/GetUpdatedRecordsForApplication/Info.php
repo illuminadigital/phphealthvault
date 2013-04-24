@@ -61,9 +61,11 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'recordId', 0));
 		}
-		foreach ($recordId as $entry) {
-			if (!($entry instanceof RecordId)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', 'record-id'));
+		if ( ! empty($recordId) ) {
+			foreach ($recordId as $entry) {
+				if (!($entry instanceof RecordId)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', 'record-id'));
+				}
 			}
 		}
 	

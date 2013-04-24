@@ -59,9 +59,11 @@ class CourseHistory {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'term', 0));
 		}
-		foreach ($term as $entry) {
-			if (!($entry instanceof Term)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'term', 'Term'));
+		if ( ! empty($term) ) {
+			foreach ($term as $entry) {
+				if (!($entry instanceof Term)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'term', 'Term'));
+				}
 			}
 		}
 	

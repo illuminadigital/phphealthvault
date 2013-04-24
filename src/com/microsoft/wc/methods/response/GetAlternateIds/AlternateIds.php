@@ -59,9 +59,11 @@ class AlternateIds {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'alternateId', 0));
 		}
-		foreach ($alternateId as $entry) {
-			if (!($entry instanceof String255nw)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'alternateId', 'string255nw'));
+		if ( ! empty($alternateId) ) {
+			foreach ($alternateId as $entry) {
+				if (!($entry instanceof String255nw)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'alternateId', 'string255nw'));
+				}
 			}
 		}
 	

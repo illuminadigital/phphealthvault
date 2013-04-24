@@ -60,9 +60,11 @@ class VocabularySynonyms {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularySynonym', 0));
 		}
-		foreach ($vocabularySynonym as $entry) {
-			if (!($entry instanceof VocabularySynonym)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularySynonym', 'vocabulary-synonym'));
+		if ( ! empty($vocabularySynonym) ) {
+			foreach ($vocabularySynonym as $entry) {
+				if (!($entry instanceof VocabularySynonym)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularySynonym', 'vocabulary-synonym'));
+				}
 			}
 		}
 	

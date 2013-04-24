@@ -109,9 +109,11 @@ class ThingRequestGroup {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
 		}
-		foreach ($id as $entry) {
-			if (!($entry instanceof Guid)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'guid'));
+		if ( ! empty($id) ) {
+			foreach ($id as $entry) {
+				if (!($entry instanceof Guid)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'guid'));
+				}
 			}
 		}
 	
@@ -152,9 +154,11 @@ class ThingRequestGroup {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'key', 0));
 		}
-		foreach ($key as $entry) {
-			if (!($entry instanceof ThingKey)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'key', 'ThingKey'));
+		if ( ! empty($key) ) {
+			foreach ($key as $entry) {
+				if (!($entry instanceof ThingKey)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'key', 'ThingKey'));
+				}
 			}
 		}
 	
@@ -195,9 +199,11 @@ class ThingRequestGroup {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'clientThingId', 0));
 		}
-		foreach ($clientThingId as $entry) {
-			if (!($entry instanceof String255)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'clientThingId', 'string255'));
+		if ( ! empty($clientThingId) ) {
+			foreach ($clientThingId as $entry) {
+				if (!($entry instanceof String255)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'clientThingId', 'string255'));
+				}
 			}
 		}
 	
@@ -238,9 +244,11 @@ class ThingRequestGroup {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'filter', 0));
 		}
-		foreach ($filter as $entry) {
-			if (!($entry instanceof ThingFilterSpec)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'filter', 'ThingFilterSpec'));
+		if ( ! empty($filter) ) {
+			foreach ($filter as $entry) {
+				if (!($entry instanceof ThingFilterSpec)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'filter', 'ThingFilterSpec'));
+				}
 			}
 		}
 	

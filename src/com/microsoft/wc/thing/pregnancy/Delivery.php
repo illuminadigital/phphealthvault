@@ -198,9 +198,11 @@ class Delivery {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'complications', 0));
 		}
-		foreach ($complications as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'complications', 'codable-value'));
+		if ( ! empty($complications) ) {
+			foreach ($complications as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'complications', 'codable-value'));
+				}
 			}
 		}
 	
@@ -241,9 +243,11 @@ class Delivery {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'anesthesia', 0));
 		}
-		foreach ($anesthesia as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'anesthesia', 'codable-value'));
+		if ( ! empty($anesthesia) ) {
+			foreach ($anesthesia as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'anesthesia', 'codable-value'));
+				}
 			}
 		}
 	

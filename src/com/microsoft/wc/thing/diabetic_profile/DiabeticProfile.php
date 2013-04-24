@@ -129,9 +129,11 @@ class DiabeticProfile extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'targetGlucoseZoneGroup', 0));
 		}
-		foreach ($targetGlucoseZoneGroup as $entry) {
-			if (!($entry instanceof TargetGlucoseZoneGroup)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'targetGlucoseZoneGroup', 'TargetGlucoseZoneGroup'));
+		if ( ! empty($targetGlucoseZoneGroup) ) {
+			foreach ($targetGlucoseZoneGroup as $entry) {
+				if (!($entry instanceof TargetGlucoseZoneGroup)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'targetGlucoseZoneGroup', 'TargetGlucoseZoneGroup'));
+				}
 			}
 		}
 	

@@ -84,9 +84,11 @@ class ErrorContext {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'serverIp', 0));
 		}
-		foreach ($serverIp as $entry) {
-			if ( ! is_string($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'serverIp', 'string'));
+		if ( ! empty($serverIp) ) {
+			foreach ($serverIp as $entry) {
+				if ( ! is_string($entry) && ! is_null($entry) ) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'serverIp', 'string'));
+				}
 			}
 		}
 	

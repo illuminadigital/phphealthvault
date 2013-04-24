@@ -165,9 +165,11 @@ class Common {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'extension', 0));
 		}
-		foreach ($extension as $entry) {
-			if (!($entry instanceof Extension)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'extension', 'extension'));
+		if ( ! empty($extension) ) {
+			foreach ($extension as $entry) {
+				if (!($entry instanceof Extension)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'extension', 'extension'));
+				}
 			}
 		}
 	
@@ -208,9 +210,11 @@ class Common {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'relatedThing', 0));
 		}
-		foreach ($relatedThing as $entry) {
-			if (!($entry instanceof RelatedThing)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'relatedThing', 'RelatedThing'));
+		if ( ! empty($relatedThing) ) {
+			foreach ($relatedThing as $entry) {
+				if (!($entry instanceof RelatedThing)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'relatedThing', 'RelatedThing'));
+				}
 			}
 		}
 	

@@ -159,9 +159,11 @@ class SignatureType {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'object', 0));
 		}
-		foreach ($object as $entry) {
-			if (!($entry instanceof Object)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'object', 'Object'));
+		if ( ! empty($object) ) {
+			foreach ($object as $entry) {
+				if (!($entry instanceof Object)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'object', 'Object'));
+				}
 			}
 		}
 	

@@ -159,7 +159,9 @@ class StrucDoc.Table {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'col', 0));
 		}
-		foreach ($col as $entry) {
+		if ( ! empty($col) ) {
+			foreach ($col as $entry) {
+			}
 		}
 	
 		return $col;
@@ -194,7 +196,9 @@ class StrucDoc.Table {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'colgroup', 0));
 		}
-		foreach ($colgroup as $entry) {
+		if ( ! empty($colgroup) ) {
+			foreach ($colgroup as $entry) {
+			}
 		}
 	
 		return $colgroup;

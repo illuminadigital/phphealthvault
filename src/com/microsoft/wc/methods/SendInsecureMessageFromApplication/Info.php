@@ -120,9 +120,11 @@ class Info extends \com\microsoft\wc\request\Info {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'rcptAddress', 0));
 		}
-		foreach ($rcptAddress as $entry) {
-			if (!($entry instanceof RcptAddress)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'rcptAddress', 'RcptAddress'));
+		if ( ! empty($rcptAddress) ) {
+			foreach ($rcptAddress as $entry) {
+				if (!($entry instanceof RcptAddress)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'rcptAddress', 'RcptAddress'));
+				}
 			}
 		}
 	
@@ -163,9 +165,11 @@ class Info extends \com\microsoft\wc\request\Info {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'rcptPerson', 0));
 		}
-		foreach ($rcptPerson as $entry) {
-			if (!($entry instanceof RcptPerson)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'rcptPerson', 'RcptPerson'));
+		if ( ! empty($rcptPerson) ) {
+			foreach ($rcptPerson as $entry) {
+				if (!($entry instanceof RcptPerson)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'rcptPerson', 'RcptPerson'));
+				}
 			}
 		}
 	

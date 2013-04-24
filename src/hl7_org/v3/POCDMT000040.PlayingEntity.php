@@ -109,7 +109,9 @@ class POCDMT000040.PlayingEntity {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
-		foreach ($realmCode as $entry) {
+		if ( ! empty($realmCode) ) {
+			foreach ($realmCode as $entry) {
+			}
 		}
 	
 		return $realmCode;
@@ -164,7 +166,9 @@ class POCDMT000040.PlayingEntity {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
-		foreach ($templateId as $entry) {
+		if ( ! empty($templateId) ) {
+			foreach ($templateId as $entry) {
+			}
 		}
 	
 		return $templateId;
@@ -219,7 +223,9 @@ class POCDMT000040.PlayingEntity {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'quantity', 0));
 		}
-		foreach ($quantity as $entry) {
+		if ( ! empty($quantity) ) {
+			foreach ($quantity as $entry) {
+			}
 		}
 	
 		return $quantity;
@@ -254,7 +260,9 @@ class POCDMT000040.PlayingEntity {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 0));
 		}
-		foreach ($name as $entry) {
+		if ( ! empty($name) ) {
+			foreach ($name as $entry) {
+			}
 		}
 	
 		return $name;

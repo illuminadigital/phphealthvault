@@ -223,7 +223,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
-		foreach ($realmCode as $entry) {
+		if ( ! empty($realmCode) ) {
+			foreach ($realmCode as $entry) {
+			}
 		}
 	
 		return $realmCode;
@@ -278,7 +280,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
-		foreach ($templateId as $entry) {
+		if ( ! empty($templateId) ) {
+			foreach ($templateId as $entry) {
+			}
 		}
 	
 		return $templateId;
@@ -313,7 +317,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
 		}
-		foreach ($id as $entry) {
+		if ( ! empty($id) ) {
+			foreach ($id as $entry) {
+			}
 		}
 	
 		return $id;
@@ -408,7 +414,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'effectiveTime', 0));
 		}
-		foreach ($effectiveTime as $entry) {
+		if ( ! empty($effectiveTime) ) {
+			foreach ($effectiveTime as $entry) {
+			}
 		}
 	
 		return $effectiveTime;
@@ -503,7 +511,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'approachSiteCode', 0));
 		}
-		foreach ($approachSiteCode as $entry) {
+		if ( ! empty($approachSiteCode) ) {
+			foreach ($approachSiteCode as $entry) {
+			}
 		}
 	
 		return $approachSiteCode;
@@ -638,7 +648,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'specimen', 0));
 		}
-		foreach ($specimen as $entry) {
+		if ( ! empty($specimen) ) {
+			foreach ($specimen as $entry) {
+			}
 		}
 	
 		return $specimen;
@@ -693,7 +705,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'performer', 0));
 		}
-		foreach ($performer as $entry) {
+		if ( ! empty($performer) ) {
+			foreach ($performer as $entry) {
+			}
 		}
 	
 		return $performer;
@@ -728,7 +742,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'author', 0));
 		}
-		foreach ($author as $entry) {
+		if ( ! empty($author) ) {
+			foreach ($author as $entry) {
+			}
 		}
 	
 		return $author;
@@ -763,7 +779,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'informant', 0));
 		}
-		foreach ($informant as $entry) {
+		if ( ! empty($informant) ) {
+			foreach ($informant as $entry) {
+			}
 		}
 	
 		return $informant;
@@ -798,7 +816,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'participant', 0));
 		}
-		foreach ($participant as $entry) {
+		if ( ! empty($participant) ) {
+			foreach ($participant as $entry) {
+			}
 		}
 	
 		return $participant;
@@ -833,7 +853,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'entryRelationship', 0));
 		}
-		foreach ($entryRelationship as $entry) {
+		if ( ! empty($entryRelationship) ) {
+			foreach ($entryRelationship as $entry) {
+			}
 		}
 	
 		return $entryRelationship;
@@ -868,7 +890,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'reference', 0));
 		}
-		foreach ($reference as $entry) {
+		if ( ! empty($reference) ) {
+			foreach ($reference as $entry) {
+			}
 		}
 	
 		return $reference;
@@ -903,7 +927,9 @@ class POCDMT000040.SubstanceAdministration {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'precondition', 0));
 		}
-		foreach ($precondition as $entry) {
+		if ( ! empty($precondition) ) {
+			foreach ($precondition as $entry) {
+			}
 		}
 	
 		return $precondition;

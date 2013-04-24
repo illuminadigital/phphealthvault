@@ -59,9 +59,11 @@ class BloomsTaxonomyLevels {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'bloomsTaxonomyLevel', 0));
 		}
-		foreach ($bloomsTaxonomyLevel as $entry) {
-			if (!($entry instanceof BloomsTaxonomyLevel)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'bloomsTaxonomyLevel', 'BloomsTaxonomyLevel'));
+		if ( ! empty($bloomsTaxonomyLevel) ) {
+			foreach ($bloomsTaxonomyLevel as $entry) {
+				if (!($entry instanceof BloomsTaxonomyLevel)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'bloomsTaxonomyLevel', 'BloomsTaxonomyLevel'));
+				}
 			}
 		}
 	

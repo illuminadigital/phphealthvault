@@ -59,9 +59,11 @@ class EnrollmentHistory {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'studentSchoolEnrollmentData', 0));
 		}
-		foreach ($studentSchoolEnrollmentData as $entry) {
-			if (!($entry instanceof StudentSchoolEnrollmentData)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'studentSchoolEnrollmentData', 'StudentSchoolEnrollmentData'));
+		if ( ! empty($studentSchoolEnrollmentData) ) {
+			foreach ($studentSchoolEnrollmentData as $entry) {
+				if (!($entry instanceof StudentSchoolEnrollmentData)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'studentSchoolEnrollmentData', 'StudentSchoolEnrollmentData'));
+				}
 			}
 		}
 	

@@ -332,9 +332,11 @@ class Thing2 {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'dataXml', 0));
 		}
-		foreach ($dataXml as $entry) {
-			if (!($entry instanceof DataXml)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'dataXml', 'DataXml'));
+		if ( ! empty($dataXml) ) {
+			foreach ($dataXml as $entry) {
+				if (!($entry instanceof DataXml)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'dataXml', 'DataXml'));
+				}
 			}
 		}
 	

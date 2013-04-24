@@ -89,9 +89,11 @@ class XmlMethod {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'version', 0));
 		}
-		foreach ($version as $entry) {
-			if (!($entry instanceof XmlMethodVersion)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'version', 'XmlMethodVersion'));
+		if ( ! empty($version) ) {
+			foreach ($version as $entry) {
+				if (!($entry instanceof XmlMethodVersion)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'version', 'XmlMethodVersion'));
+				}
 			}
 		}
 	

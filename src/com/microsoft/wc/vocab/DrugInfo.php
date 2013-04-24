@@ -65,9 +65,11 @@ class DrugInfo {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'strength', 0));
 		}
-		foreach ($strength as $entry) {
-			if (!($entry instanceof MedicationStrength)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'strength', 'medication-strength'));
+		if ( ! empty($strength) ) {
+			foreach ($strength as $entry) {
+				if (!($entry instanceof MedicationStrength)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'strength', 'medication-strength'));
+				}
 			}
 		}
 	

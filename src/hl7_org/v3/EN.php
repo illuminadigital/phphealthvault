@@ -86,7 +86,9 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'delimiter', 0));
 		}
-		foreach ($delimiter as $entry) {
+		if ( ! empty($delimiter) ) {
+			foreach ($delimiter as $entry) {
+			}
 		}
 	
 		return $delimiter;
@@ -121,7 +123,9 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'family', 0));
 		}
-		foreach ($family as $entry) {
+		if ( ! empty($family) ) {
+			foreach ($family as $entry) {
+			}
 		}
 	
 		return $family;
@@ -156,7 +160,9 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'given', 0));
 		}
-		foreach ($given as $entry) {
+		if ( ! empty($given) ) {
+			foreach ($given as $entry) {
+			}
 		}
 	
 		return $given;
@@ -191,7 +197,9 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'prefix', 0));
 		}
-		foreach ($prefix as $entry) {
+		if ( ! empty($prefix) ) {
+			foreach ($prefix as $entry) {
+			}
 		}
 	
 		return $prefix;
@@ -226,7 +234,9 @@ class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'suffix', 0));
 		}
-		foreach ($suffix as $entry) {
+		if ( ! empty($suffix) ) {
+			foreach ($suffix as $entry) {
+			}
 		}
 	
 		return $suffix;

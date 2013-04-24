@@ -96,9 +96,11 @@ class LabTestResultValueType {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'ranges', 0));
 		}
-		foreach ($ranges as $entry) {
-			if (!($entry instanceof TestResultRange)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'ranges', 'test-result-range'));
+		if ( ! empty($ranges) ) {
+			foreach ($ranges as $entry) {
+				if (!($entry instanceof TestResultRange)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'ranges', 'test-result-range'));
+				}
 			}
 		}
 	
@@ -139,9 +141,11 @@ class LabTestResultValueType {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'flag', 0));
 		}
-		foreach ($flag as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'flag', 'codable-value'));
+		if ( ! empty($flag) ) {
+			foreach ($flag as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'flag', 'codable-value'));
+				}
 			}
 		}
 	

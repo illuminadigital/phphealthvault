@@ -285,9 +285,11 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'keyImages', 0));
 		}
-		foreach ($keyImages as $entry) {
-			if (!($entry instanceof MedicalImageStudySeriesImage)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'keyImages', 'medical-image-study-series-image'));
+		if ( ! empty($keyImages) ) {
+			foreach ($keyImages as $entry) {
+				if (!($entry instanceof MedicalImageStudySeriesImage)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'keyImages', 'medical-image-study-series-image'));
+				}
 			}
 		}
 	

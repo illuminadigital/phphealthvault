@@ -177,9 +177,11 @@ class AppSpecific extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'any', 0));
 		}
-		foreach ($any as $entry) {
-			if ( ! is_object($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+		if ( ! empty($any) ) {
+			foreach ($any as $entry) {
+				if ( ! is_object($entry) && ! is_null($entry) ) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'any', 'AnyMixed'));
+				}
 			}
 		}
 	

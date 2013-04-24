@@ -60,9 +60,11 @@ class SoftwareRequirementListType {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'softwareRequirement', 0));
 		}
-		foreach ($softwareRequirement as $entry) {
-			if (!($entry instanceof SoftwareRequirement)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'softwareRequirement', 'SoftwareRequirement'));
+		if ( ! empty($softwareRequirement) ) {
+			foreach ($softwareRequirement as $entry) {
+				if (!($entry instanceof SoftwareRequirement)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'softwareRequirement', 'SoftwareRequirement'));
+				}
 			}
 		}
 	

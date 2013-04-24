@@ -244,9 +244,11 @@ class PersonInfo {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'record', 0));
 		}
-		foreach ($record as $entry) {
-			if (!($entry instanceof Record)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'record', 'Record'));
+		if ( ! empty($record) ) {
+			foreach ($record as $entry) {
+				if (!($entry instanceof Record)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'record', 'Record'));
+				}
 			}
 		}
 	

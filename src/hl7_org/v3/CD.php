@@ -112,7 +112,9 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'qualifier', 0));
 		}
-		foreach ($qualifier as $entry) {
+		if ( ! empty($qualifier) ) {
+			foreach ($qualifier as $entry) {
+			}
 		}
 	
 		return $qualifier;
@@ -147,7 +149,9 @@ class CD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'translation', 0));
 		}
-		foreach ($translation as $entry) {
+		if ( ! empty($translation) ) {
+			foreach ($translation as $entry) {
+			}
 		}
 	
 		return $translation;

@@ -159,9 +159,11 @@ class VocabularyCodeSet {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'codeItem', 0));
 		}
-		foreach ($codeItem as $entry) {
-			if (!($entry instanceof VocabularyCodeItem)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'codeItem', 'VocabularyCodeItem'));
+		if ( ! empty($codeItem) ) {
+			foreach ($codeItem as $entry) {
+				if (!($entry instanceof VocabularyCodeItem)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'codeItem', 'VocabularyCodeItem'));
+				}
 			}
 		}
 	

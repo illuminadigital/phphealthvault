@@ -196,9 +196,11 @@ class App {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 0));
 		}
-		foreach ($name as $entry) {
-			if (!($entry instanceof CultureSpecificString255)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'CultureSpecificString255'));
+		if ( ! empty($name) ) {
+			foreach ($name as $entry) {
+				if (!($entry instanceof CultureSpecificString255)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'CultureSpecificString255'));
+				}
 			}
 		}
 	
@@ -331,9 +333,11 @@ class App {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'description', 0));
 		}
-		foreach ($description as $entry) {
-			if (!($entry instanceof CultureSpecificString)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'CultureSpecificString'));
+		if ( ! empty($description) ) {
+			foreach ($description as $entry) {
+				if (!($entry instanceof CultureSpecificString)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'CultureSpecificString'));
+				}
 			}
 		}
 	
@@ -374,9 +378,11 @@ class App {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'authReason', 0));
 		}
-		foreach ($authReason as $entry) {
-			if (!($entry instanceof CultureSpecificString)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'authReason', 'CultureSpecificString'));
+		if ( ! empty($authReason) ) {
+			foreach ($authReason as $entry) {
+				if (!($entry instanceof CultureSpecificString)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'authReason', 'CultureSpecificString'));
+				}
 			}
 		}
 	

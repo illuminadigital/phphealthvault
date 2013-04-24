@@ -79,9 +79,11 @@ class Info extends \com\microsoft\wc\request\Info {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'id', 0));
 		}
-		foreach ($id as $entry) {
-			if (!($entry instanceof Guid)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'guid'));
+		if ( ! empty($id) ) {
+			foreach ($id as $entry) {
+				if (!($entry instanceof Guid)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'guid'));
+				}
 			}
 		}
 	
@@ -115,7 +117,9 @@ class Info extends \com\microsoft\wc\request\Info {
 		if ($count > 7) {
 			throw new \Exception(sprintf('Supplied %s array has more than the required number (%d) of entries.', 'section', 7));
 		}
-		foreach ($section as $entry) {
+		if ( ! empty($section) ) {
+			foreach ($section as $entry) {
+			}
 		}
 	
 		return $section;
@@ -150,9 +154,11 @@ class Info extends \com\microsoft\wc\request\Info {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'imageType', 0));
 		}
-		foreach ($imageType as $entry) {
-			if ( ! is_string($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'imageType', 'string'));
+		if ( ! empty($imageType) ) {
+			foreach ($imageType as $entry) {
+				if ( ! is_string($entry) && ! is_null($entry) ) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'imageType', 'string'));
+				}
 			}
 		}
 	

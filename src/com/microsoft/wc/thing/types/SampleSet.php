@@ -148,9 +148,11 @@ class SampleSet {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sample', 0));
 		}
-		foreach ($sample as $entry) {
-			if (!($entry instanceof Sample)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'sample', 'sample'));
+		if ( ! empty($sample) ) {
+			foreach ($sample as $entry) {
+				if (!($entry instanceof Sample)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'sample', 'sample'));
+				}
 			}
 		}
 	

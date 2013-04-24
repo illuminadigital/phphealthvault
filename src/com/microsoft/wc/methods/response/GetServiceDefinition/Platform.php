@@ -118,9 +118,11 @@ class Platform {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'configuration', 0));
 		}
-		foreach ($configuration as $entry) {
-			if (!($entry instanceof ConfigurationEntry)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'configuration', 'ConfigurationEntry'));
+		if ( ! empty($configuration) ) {
+			foreach ($configuration as $entry) {
+				if (!($entry instanceof ConfigurationEntry)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'configuration', 'ConfigurationEntry'));
+				}
 			}
 		}
 	

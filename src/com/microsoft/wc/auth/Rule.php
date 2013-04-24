@@ -101,9 +101,11 @@ class Rule {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'reason', 0));
 		}
-		foreach ($reason as $entry) {
-			if (!($entry instanceof CultureSpecificString1024)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'reason', 'CultureSpecificString1024'));
+		if ( ! empty($reason) ) {
+			foreach ($reason as $entry) {
+				if (!($entry instanceof CultureSpecificString1024)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'reason', 'CultureSpecificString1024'));
+				}
 			}
 		}
 	
@@ -217,9 +219,11 @@ class Rule {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'targetSet', 0));
 		}
-		foreach ($targetSet as $entry) {
-			if (!($entry instanceof Set)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'targetSet', 'Set'));
+		if ( ! empty($targetSet) ) {
+			foreach ($targetSet as $entry) {
+				if (!($entry instanceof Set)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'targetSet', 'Set'));
+				}
 			}
 		}
 	
@@ -260,9 +264,11 @@ class Rule {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'exceptionSet', 0));
 		}
-		foreach ($exceptionSet as $entry) {
-			if (!($entry instanceof Set)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'exceptionSet', 'Set'));
+		if ( ! empty($exceptionSet) ) {
+			foreach ($exceptionSet as $entry) {
+				if (!($entry instanceof Set)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'exceptionSet', 'Set'));
+				}
 			}
 		}
 	

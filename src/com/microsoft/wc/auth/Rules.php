@@ -59,9 +59,11 @@ class Rules {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'rule', 0));
 		}
-		foreach ($rule as $entry) {
-			if (!($entry instanceof Rule)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'rule', 'Rule'));
+		if ( ! empty($rule) ) {
+			foreach ($rule as $entry) {
+				if (!($entry instanceof Rule)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'rule', 'Rule'));
+				}
 			}
 		}
 	

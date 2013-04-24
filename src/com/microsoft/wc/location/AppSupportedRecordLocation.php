@@ -147,9 +147,11 @@ class AppSupportedRecordLocation {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'warningMsg', 0));
 		}
-		foreach ($warningMsg as $entry) {
-			if (!($entry instanceof CultureSpecificString)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'warningMsg', 'CultureSpecificString'));
+		if ( ! empty($warningMsg) ) {
+			foreach ($warningMsg as $entry) {
+				if (!($entry instanceof CultureSpecificString)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'warningMsg', 'CultureSpecificString'));
+				}
 			}
 		}
 	

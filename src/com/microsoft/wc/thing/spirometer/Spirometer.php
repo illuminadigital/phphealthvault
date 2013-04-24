@@ -215,9 +215,11 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'warning', 0));
 		}
-		foreach ($warning as $entry) {
-			if ( ! is_string($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'warning', 'string'));
+		if ( ! empty($warning) ) {
+			foreach ($warning as $entry) {
+				if ( ! is_string($entry) && ! is_null($entry) ) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'warning', 'string'));
+				}
 			}
 		}
 	
@@ -256,9 +258,11 @@ class Spirometer extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'problem', 0));
 		}
-		foreach ($problem as $entry) {
-			if ( ! is_string($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'problem', 'string'));
+		if ( ! empty($problem) ) {
+			foreach ($problem as $entry) {
+				if ( ! is_string($entry) && ! is_null($entry) ) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'problem', 'string'));
+				}
 			}
 		}
 	

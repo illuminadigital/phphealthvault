@@ -219,9 +219,11 @@ class Service {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'notes', 0));
 		}
-		foreach ($notes as $entry) {
-			if (!($entry instanceof Stringnznw)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'notes', 'stringnznw'));
+		if ( ! empty($notes) ) {
+			foreach ($notes as $entry) {
+				if (!($entry instanceof Stringnznw)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'notes', 'stringnznw'));
+				}
 			}
 		}
 	

@@ -59,9 +59,11 @@ class FeesForUse {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'feeForUse', 0));
 		}
-		foreach ($feeForUse as $entry) {
-			if (!($entry instanceof FeeForUse)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'feeForUse', 'FeeForUse'));
+		if ( ! empty($feeForUse) ) {
+			foreach ($feeForUse as $entry) {
+				if (!($entry instanceof FeeForUse)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'feeForUse', 'FeeForUse'));
+				}
 			}
 		}
 	

@@ -127,9 +127,11 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'answerChoice', 0));
 		}
-		foreach ($answerChoice as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'answerChoice', 'codable-value'));
+		if ( ! empty($answerChoice) ) {
+			foreach ($answerChoice as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'answerChoice', 'codable-value'));
+				}
 			}
 		}
 	
@@ -170,9 +172,11 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'answer', 0));
 		}
-		foreach ($answer as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'answer', 'codable-value'));
+		if ( ! empty($answer) ) {
+			foreach ($answer as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'answer', 'codable-value'));
+				}
 			}
 		}
 	

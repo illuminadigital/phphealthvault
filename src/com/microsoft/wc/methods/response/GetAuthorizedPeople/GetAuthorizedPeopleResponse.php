@@ -66,9 +66,11 @@ class GetAuthorizedPeopleResponse {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'personInfo', 0));
 		}
-		foreach ($personInfo as $entry) {
-			if (!($entry instanceof PersonInfo)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'personInfo', 'PersonInfo'));
+		if ( ! empty($personInfo) ) {
+			foreach ($personInfo as $entry) {
+				if (!($entry instanceof PersonInfo)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'personInfo', 'PersonInfo'));
+				}
 			}
 		}
 	

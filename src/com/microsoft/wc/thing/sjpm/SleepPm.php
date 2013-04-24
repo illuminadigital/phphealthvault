@@ -117,9 +117,11 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'caffeine', 0));
 		}
-		foreach ($caffeine as $entry) {
-			if (!($entry instanceof Time)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'caffeine', 'time'));
+		if ( ! empty($caffeine) ) {
+			foreach ($caffeine as $entry) {
+				if (!($entry instanceof Time)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'caffeine', 'time'));
+				}
 			}
 		}
 	
@@ -160,9 +162,11 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'alcohol', 0));
 		}
-		foreach ($alcohol as $entry) {
-			if (!($entry instanceof Time)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'alcohol', 'time'));
+		if ( ! empty($alcohol) ) {
+			foreach ($alcohol as $entry) {
+				if (!($entry instanceof Time)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'alcohol', 'time'));
+				}
 			}
 		}
 	
@@ -203,9 +207,11 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'nap', 0));
 		}
-		foreach ($nap as $entry) {
-			if (!($entry instanceof Activity)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'nap', 'Activity'));
+		if ( ! empty($nap) ) {
+			foreach ($nap as $entry) {
+				if (!($entry instanceof Activity)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'nap', 'Activity'));
+				}
 			}
 		}
 	
@@ -246,9 +252,11 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'exercise', 0));
 		}
-		foreach ($exercise as $entry) {
-			if (!($entry instanceof Activity)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'exercise', 'Activity'));
+		if ( ! empty($exercise) ) {
+			foreach ($exercise as $entry) {
+				if (!($entry instanceof Activity)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'exercise', 'Activity'));
+				}
 			}
 		}
 	

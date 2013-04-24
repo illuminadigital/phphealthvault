@@ -115,7 +115,9 @@ class StrucDoc.Footnote {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'content', 0));
 		}
-		foreach ($content as $entry) {
+		if ( ! empty($content) ) {
+			foreach ($content as $entry) {
+			}
 		}
 	
 		return $content;
@@ -150,7 +152,9 @@ class StrucDoc.Footnote {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'linkHtml', 0));
 		}
-		foreach ($linkHtml as $entry) {
+		if ( ! empty($linkHtml) ) {
+			foreach ($linkHtml as $entry) {
+			}
 		}
 	
 		return $linkHtml;
@@ -185,7 +189,9 @@ class StrucDoc.Footnote {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sub', 0));
 		}
-		foreach ($sub as $entry) {
+		if ( ! empty($sub) ) {
+			foreach ($sub as $entry) {
+			}
 		}
 	
 		return $sub;
@@ -220,7 +226,9 @@ class StrucDoc.Footnote {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sup', 0));
 		}
-		foreach ($sup as $entry) {
+		if ( ! empty($sup) ) {
+			foreach ($sup as $entry) {
+			}
 		}
 	
 		return $sup;
@@ -255,7 +263,9 @@ class StrucDoc.Footnote {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'br', 0));
 		}
-		foreach ($br as $entry) {
+		if ( ! empty($br) ) {
+			foreach ($br as $entry) {
+			}
 		}
 	
 		return $br;
@@ -290,7 +300,9 @@ class StrucDoc.Footnote {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'renderMultiMedia', 0));
 		}
-		foreach ($renderMultiMedia as $entry) {
+		if ( ! empty($renderMultiMedia) ) {
+			foreach ($renderMultiMedia as $entry) {
+			}
 		}
 	
 		return $renderMultiMedia;
@@ -325,7 +337,9 @@ class StrucDoc.Footnote {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'paragraph', 0));
 		}
-		foreach ($paragraph as $entry) {
+		if ( ! empty($paragraph) ) {
+			foreach ($paragraph as $entry) {
+			}
 		}
 	
 		return $paragraph;
@@ -360,7 +374,9 @@ class StrucDoc.Footnote {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'list', 0));
 		}
-		foreach ($list as $entry) {
+		if ( ! empty($list) ) {
+			foreach ($list as $entry) {
+			}
 		}
 	
 		return $list;
@@ -395,7 +411,9 @@ class StrucDoc.Footnote {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'table', 0));
 		}
-		foreach ($table as $entry) {
+		if ( ! empty($table) ) {
+			foreach ($table as $entry) {
+			}
 		}
 	
 		return $table;

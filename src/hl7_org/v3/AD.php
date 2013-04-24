@@ -224,7 +224,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'delimiter', 0));
 		}
-		foreach ($delimiter as $entry) {
+		if ( ! empty($delimiter) ) {
+			foreach ($delimiter as $entry) {
+			}
 		}
 	
 		return $delimiter;
@@ -259,7 +261,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'country', 0));
 		}
-		foreach ($country as $entry) {
+		if ( ! empty($country) ) {
+			foreach ($country as $entry) {
+			}
 		}
 	
 		return $country;
@@ -294,7 +298,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'state', 0));
 		}
-		foreach ($state as $entry) {
+		if ( ! empty($state) ) {
+			foreach ($state as $entry) {
+			}
 		}
 	
 		return $state;
@@ -329,7 +335,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'county', 0));
 		}
-		foreach ($county as $entry) {
+		if ( ! empty($county) ) {
+			foreach ($county as $entry) {
+			}
 		}
 	
 		return $county;
@@ -364,7 +372,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'city', 0));
 		}
-		foreach ($city as $entry) {
+		if ( ! empty($city) ) {
+			foreach ($city as $entry) {
+			}
 		}
 	
 		return $city;
@@ -399,7 +409,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'postalCode', 0));
 		}
-		foreach ($postalCode as $entry) {
+		if ( ! empty($postalCode) ) {
+			foreach ($postalCode as $entry) {
+			}
 		}
 	
 		return $postalCode;
@@ -434,7 +446,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'streetAddressLine', 0));
 		}
-		foreach ($streetAddressLine as $entry) {
+		if ( ! empty($streetAddressLine) ) {
+			foreach ($streetAddressLine as $entry) {
+			}
 		}
 	
 		return $streetAddressLine;
@@ -469,7 +483,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'houseNumber', 0));
 		}
-		foreach ($houseNumber as $entry) {
+		if ( ! empty($houseNumber) ) {
+			foreach ($houseNumber as $entry) {
+			}
 		}
 	
 		return $houseNumber;
@@ -504,7 +520,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'houseNumberNumeric', 0));
 		}
-		foreach ($houseNumberNumeric as $entry) {
+		if ( ! empty($houseNumberNumeric) ) {
+			foreach ($houseNumberNumeric as $entry) {
+			}
 		}
 	
 		return $houseNumberNumeric;
@@ -539,7 +557,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'direction', 0));
 		}
-		foreach ($direction as $entry) {
+		if ( ! empty($direction) ) {
+			foreach ($direction as $entry) {
+			}
 		}
 	
 		return $direction;
@@ -574,7 +594,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'streetName', 0));
 		}
-		foreach ($streetName as $entry) {
+		if ( ! empty($streetName) ) {
+			foreach ($streetName as $entry) {
+			}
 		}
 	
 		return $streetName;
@@ -609,7 +631,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'streetNameBase', 0));
 		}
-		foreach ($streetNameBase as $entry) {
+		if ( ! empty($streetNameBase) ) {
+			foreach ($streetNameBase as $entry) {
+			}
 		}
 	
 		return $streetNameBase;
@@ -644,7 +668,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'streetNameType', 0));
 		}
-		foreach ($streetNameType as $entry) {
+		if ( ! empty($streetNameType) ) {
+			foreach ($streetNameType as $entry) {
+			}
 		}
 	
 		return $streetNameType;
@@ -679,7 +705,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'additionalLocator', 0));
 		}
-		foreach ($additionalLocator as $entry) {
+		if ( ! empty($additionalLocator) ) {
+			foreach ($additionalLocator as $entry) {
+			}
 		}
 	
 		return $additionalLocator;
@@ -714,7 +742,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'unitID', 0));
 		}
-		foreach ($unitID as $entry) {
+		if ( ! empty($unitID) ) {
+			foreach ($unitID as $entry) {
+			}
 		}
 	
 		return $unitID;
@@ -749,7 +779,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'unitType', 0));
 		}
-		foreach ($unitType as $entry) {
+		if ( ! empty($unitType) ) {
+			foreach ($unitType as $entry) {
+			}
 		}
 	
 		return $unitType;
@@ -784,7 +816,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'careOf', 0));
 		}
-		foreach ($careOf as $entry) {
+		if ( ! empty($careOf) ) {
+			foreach ($careOf as $entry) {
+			}
 		}
 	
 		return $careOf;
@@ -819,7 +853,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'censusTract', 0));
 		}
-		foreach ($censusTract as $entry) {
+		if ( ! empty($censusTract) ) {
+			foreach ($censusTract as $entry) {
+			}
 		}
 	
 		return $censusTract;
@@ -854,7 +890,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryAddressLine', 0));
 		}
-		foreach ($deliveryAddressLine as $entry) {
+		if ( ! empty($deliveryAddressLine) ) {
+			foreach ($deliveryAddressLine as $entry) {
+			}
 		}
 	
 		return $deliveryAddressLine;
@@ -889,7 +927,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryInstallationType', 0));
 		}
-		foreach ($deliveryInstallationType as $entry) {
+		if ( ! empty($deliveryInstallationType) ) {
+			foreach ($deliveryInstallationType as $entry) {
+			}
 		}
 	
 		return $deliveryInstallationType;
@@ -924,7 +964,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryInstallationArea', 0));
 		}
-		foreach ($deliveryInstallationArea as $entry) {
+		if ( ! empty($deliveryInstallationArea) ) {
+			foreach ($deliveryInstallationArea as $entry) {
+			}
 		}
 	
 		return $deliveryInstallationArea;
@@ -959,7 +1001,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryInstallationQualifier', 0));
 		}
-		foreach ($deliveryInstallationQualifier as $entry) {
+		if ( ! empty($deliveryInstallationQualifier) ) {
+			foreach ($deliveryInstallationQualifier as $entry) {
+			}
 		}
 	
 		return $deliveryInstallationQualifier;
@@ -994,7 +1038,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryMode', 0));
 		}
-		foreach ($deliveryMode as $entry) {
+		if ( ! empty($deliveryMode) ) {
+			foreach ($deliveryMode as $entry) {
+			}
 		}
 	
 		return $deliveryMode;
@@ -1029,7 +1075,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'deliveryModeIdentifier', 0));
 		}
-		foreach ($deliveryModeIdentifier as $entry) {
+		if ( ! empty($deliveryModeIdentifier) ) {
+			foreach ($deliveryModeIdentifier as $entry) {
+			}
 		}
 	
 		return $deliveryModeIdentifier;
@@ -1064,7 +1112,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'buildingNumberSuffix', 0));
 		}
-		foreach ($buildingNumberSuffix as $entry) {
+		if ( ! empty($buildingNumberSuffix) ) {
+			foreach ($buildingNumberSuffix as $entry) {
+			}
 		}
 	
 		return $buildingNumberSuffix;
@@ -1099,7 +1149,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'postBox', 0));
 		}
-		foreach ($postBox as $entry) {
+		if ( ! empty($postBox) ) {
+			foreach ($postBox as $entry) {
+			}
 		}
 	
 		return $postBox;
@@ -1134,7 +1186,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'precinct', 0));
 		}
-		foreach ($precinct as $entry) {
+		if ( ! empty($precinct) ) {
+			foreach ($precinct as $entry) {
+			}
 		}
 	
 		return $precinct;
@@ -1169,7 +1223,9 @@ class AD extends \org\w3\www\_2001\XMLSchema\ANY {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'useablePeriod', 0));
 		}
-		foreach ($useablePeriod as $entry) {
+		if ( ! empty($useablePeriod) ) {
+			foreach ($useablePeriod as $entry) {
+			}
 		}
 	
 		return $useablePeriod;

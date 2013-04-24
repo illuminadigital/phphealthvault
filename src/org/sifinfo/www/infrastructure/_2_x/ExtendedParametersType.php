@@ -60,9 +60,11 @@ class ExtendedParametersType {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'extendedParameter', 0));
 		}
-		foreach ($extendedParameter as $entry) {
-			if (!($entry instanceof ExtendedParameter)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'extendedParameter', 'ExtendedParameter'));
+		if ( ! empty($extendedParameter) ) {
+			foreach ($extendedParameter as $entry) {
+				if (!($entry instanceof ExtendedParameter)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'extendedParameter', 'ExtendedParameter'));
+				}
 			}
 		}
 	

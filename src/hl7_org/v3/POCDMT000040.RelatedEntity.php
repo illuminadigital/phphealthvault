@@ -109,7 +109,9 @@ class POCDMT000040.RelatedEntity {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
-		foreach ($realmCode as $entry) {
+		if ( ! empty($realmCode) ) {
+			foreach ($realmCode as $entry) {
+			}
 		}
 	
 		return $realmCode;
@@ -164,7 +166,9 @@ class POCDMT000040.RelatedEntity {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
-		foreach ($templateId as $entry) {
+		if ( ! empty($templateId) ) {
+			foreach ($templateId as $entry) {
+			}
 		}
 	
 		return $templateId;
@@ -219,7 +223,9 @@ class POCDMT000040.RelatedEntity {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'addr', 0));
 		}
-		foreach ($addr as $entry) {
+		if ( ! empty($addr) ) {
+			foreach ($addr as $entry) {
+			}
 		}
 	
 		return $addr;
@@ -254,7 +260,9 @@ class POCDMT000040.RelatedEntity {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'telecom', 0));
 		}
-		foreach ($telecom as $entry) {
+		if ( ! empty($telecom) ) {
+			foreach ($telecom as $entry) {
+			}
 		}
 	
 		return $telecom;

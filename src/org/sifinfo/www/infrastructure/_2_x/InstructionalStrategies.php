@@ -59,9 +59,11 @@ class InstructionalStrategies {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'instructionalStrategy', 0));
 		}
-		foreach ($instructionalStrategy as $entry) {
-			if (!($entry instanceof InstructionalStrategy)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'instructionalStrategy', 'InstructionalStrategy'));
+		if ( ! empty($instructionalStrategy) ) {
+			foreach ($instructionalStrategy as $entry) {
+				if (!($entry instanceof InstructionalStrategy)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'instructionalStrategy', 'InstructionalStrategy'));
+				}
 			}
 		}
 	

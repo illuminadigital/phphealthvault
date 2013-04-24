@@ -66,9 +66,11 @@ class SupportedLocationList {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'location', 0));
 		}
-		foreach ($location as $entry) {
-			if (!($entry instanceof Location)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'location', 'Location'));
+		if ( ! empty($location) ) {
+			foreach ($location as $entry) {
+				if (!($entry instanceof Location)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'location', 'Location'));
+				}
 			}
 		}
 	

@@ -59,9 +59,11 @@ class Columns {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'column', 0));
 		}
-		foreach ($column as $entry) {
-			if (!($entry instanceof Column)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'column', 'Column'));
+		if ( ! empty($column) ) {
+			foreach ($column as $entry) {
+				if (!($entry instanceof Column)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'column', 'Column'));
+				}
 			}
 		}
 	

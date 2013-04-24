@@ -59,9 +59,11 @@ class SpanGaps {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'spanGap', 0));
 		}
-		foreach ($spanGap as $entry) {
-			if (!($entry instanceof SpanGap)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'spanGap', 'SpanGap'));
+		if ( ! empty($spanGap) ) {
+			foreach ($spanGap as $entry) {
+				if (!($entry instanceof SpanGap)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'spanGap', 'SpanGap'));
+				}
 			}
 		}
 	

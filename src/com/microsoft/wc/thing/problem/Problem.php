@@ -105,9 +105,11 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'diagnosis', 0));
 		}
-		foreach ($diagnosis as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'diagnosis', 'codable-value'));
+		if ( ! empty($diagnosis) ) {
+			foreach ($diagnosis as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'diagnosis', 'codable-value'));
+				}
 			}
 		}
 	
@@ -148,9 +150,11 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'duration', 0));
 		}
-		foreach ($duration as $entry) {
-			if (!($entry instanceof DurationValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'duration', 'duration-value'));
+		if ( ! empty($duration) ) {
+			foreach ($duration as $entry) {
+				if (!($entry instanceof DurationValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'duration', 'duration-value'));
+				}
 			}
 		}
 	

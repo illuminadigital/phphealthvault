@@ -123,9 +123,11 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'headers', 0));
 		}
-		foreach ($headers as $entry) {
-			if (!($entry instanceof MessageHeaderItem)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'headers', 'message-header-item'));
+		if ( ! empty($headers) ) {
+			foreach ($headers as $entry) {
+				if (!($entry instanceof MessageHeaderItem)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'headers', 'message-header-item'));
+				}
 			}
 		}
 	
@@ -280,9 +282,11 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'attachments', 0));
 		}
-		foreach ($attachments as $entry) {
-			if (!($entry instanceof MessageAttachment)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'attachments', 'message-attachment'));
+		if ( ! empty($attachments) ) {
+			foreach ($attachments as $entry) {
+				if (!($entry instanceof MessageAttachment)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'attachments', 'message-attachment'));
+				}
 			}
 		}
 	

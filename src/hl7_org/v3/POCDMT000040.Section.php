@@ -151,7 +151,9 @@ class POCDMT000040.Section {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'realmCode', 0));
 		}
-		foreach ($realmCode as $entry) {
+		if ( ! empty($realmCode) ) {
+			foreach ($realmCode as $entry) {
+			}
 		}
 	
 		return $realmCode;
@@ -206,7 +208,9 @@ class POCDMT000040.Section {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'templateId', 0));
 		}
-		foreach ($templateId as $entry) {
+		if ( ! empty($templateId) ) {
+			foreach ($templateId as $entry) {
+			}
 		}
 	
 		return $templateId;
@@ -381,7 +385,9 @@ class POCDMT000040.Section {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'author', 0));
 		}
-		foreach ($author as $entry) {
+		if ( ! empty($author) ) {
+			foreach ($author as $entry) {
+			}
 		}
 	
 		return $author;
@@ -416,7 +422,9 @@ class POCDMT000040.Section {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'informant', 0));
 		}
-		foreach ($informant as $entry) {
+		if ( ! empty($informant) ) {
+			foreach ($informant as $entry) {
+			}
 		}
 	
 		return $informant;
@@ -451,7 +459,9 @@ class POCDMT000040.Section {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'entry', 0));
 		}
-		foreach ($entry as $entry) {
+		if ( ! empty($entry) ) {
+			foreach ($entry as $entry) {
+			}
 		}
 	
 		return $entry;
@@ -486,7 +496,9 @@ class POCDMT000040.Section {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'component', 0));
 		}
-		foreach ($component as $entry) {
+		if ( ! empty($component) ) {
+			foreach ($component as $entry) {
+			}
 		}
 	
 		return $component;

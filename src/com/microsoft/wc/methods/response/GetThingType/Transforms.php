@@ -49,9 +49,11 @@ class Transforms {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'tag', 0));
 		}
-		foreach ($tag as $entry) {
-			if ( ! is_string($entry) && ! is_null($entry) ) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'tag', 'string'));
+		if ( ! empty($tag) ) {
+			foreach ($tag as $entry) {
+				if ( ! is_string($entry) && ! is_null($entry) ) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'tag', 'string'));
+				}
 			}
 		}
 	

@@ -221,9 +221,11 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'awakening', 0));
 		}
-		foreach ($awakening as $entry) {
-			if (!($entry instanceof Awakening)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'awakening', 'Awakening'));
+		if ( ! empty($awakening) ) {
+			foreach ($awakening as $entry) {
+				if (!($entry instanceof Awakening)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'awakening', 'Awakening'));
+				}
 			}
 		}
 	

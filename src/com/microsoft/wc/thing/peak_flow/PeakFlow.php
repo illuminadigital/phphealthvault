@@ -201,9 +201,11 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'measurementFlags', 0));
 		}
-		foreach ($measurementFlags as $entry) {
-			if (!($entry instanceof CodableValue)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'measurementFlags', 'codable-value'));
+		if ( ! empty($measurementFlags) ) {
+			foreach ($measurementFlags as $entry) {
+				if (!($entry instanceof CodableValue)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'measurementFlags', 'codable-value'));
+				}
 			}
 		}
 	

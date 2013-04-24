@@ -60,9 +60,11 @@ class VocabularyMapping {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularyMappingItem', 0));
 		}
-		foreach ($vocabularyMappingItem as $entry) {
-			if (!($entry instanceof VocabularyMappingItem)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyMappingItem', 'vocabulary-mapping-item'));
+		if ( ! empty($vocabularyMappingItem) ) {
+			foreach ($vocabularyMappingItem as $entry) {
+				if (!($entry instanceof VocabularyMappingItem)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyMappingItem', 'vocabulary-mapping-item'));
+				}
 			}
 		}
 	

@@ -60,9 +60,11 @@ class Subscriptions {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'subscription', 0));
 		}
-		foreach ($subscription as $entry) {
-			if (!($entry instanceof Subscription)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'subscription', 'Subscription'));
+		if ( ! empty($subscription) ) {
+			foreach ($subscription as $entry) {
+				if (!($entry instanceof Subscription)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'subscription', 'Subscription'));
+				}
 			}
 		}
 	

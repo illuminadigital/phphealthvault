@@ -60,9 +60,11 @@ class UpdatedRecords {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'updatedRecord', 0));
 		}
-		foreach ($updatedRecord as $entry) {
-			if (!($entry instanceof UpdatedRecord)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedRecord', 'UpdatedRecord'));
+		if ( ! empty($updatedRecord) ) {
+			foreach ($updatedRecord as $entry) {
+				if (!($entry instanceof UpdatedRecord)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedRecord', 'UpdatedRecord'));
+				}
 			}
 		}
 	

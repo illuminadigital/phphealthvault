@@ -324,9 +324,11 @@ class ThingTypeInfo {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'transformSource', 0));
 		}
-		foreach ($transformSource as $entry) {
-			if (!($entry instanceof TransformSource)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'transformSource', 'TransformSource'));
+		if ( ! empty($transformSource) ) {
+			foreach ($transformSource as $entry) {
+				if (!($entry instanceof TransformSource)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'transformSource', 'TransformSource'));
+				}
 			}
 		}
 	
@@ -367,9 +369,11 @@ class ThingTypeInfo {
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'image', 0));
 		}
-		foreach ($image as $entry) {
-			if (!($entry instanceof Image)) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'image', 'Image'));
+		if ( ! empty($image) ) {
+			foreach ($image as $entry) {
+				if (!($entry instanceof Image)) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'image', 'Image'));
+				}
 			}
 		}
 	
