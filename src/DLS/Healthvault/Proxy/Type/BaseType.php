@@ -18,7 +18,7 @@ abstract class BaseType
     
     public function getValue($element)
     {
-        if ( ! empty($element) ) {
+        if ( is_object($element) ) {
             return $element->getValue();
         } else {
             return NULL;
