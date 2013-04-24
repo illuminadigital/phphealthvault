@@ -134,6 +134,13 @@ class CodableValue extends VocabularyType
 
     public function setFromThingElement($thingElement)
     {
+        if (empty($thingElement)) {
+            $this->codedValue = NULL;
+            $this->text = NULL;
+            
+            return;
+        }
+        
         $this->text = $thingElement->getText();
         $codedValue = $thingElement->getCode(FALSE);
 
