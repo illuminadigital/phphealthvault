@@ -7,10 +7,11 @@ namespace hl7_org\v3;
  * @XmlNamespaces ({
  *	@XmlNamespace(url="urn:hl7-org:v3", prefix="")
  * })
- * @XmlRootEntity	(xml="url")
+ * @XmlEntity	(xml="URL")
  */
-class Url {
+class URL extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
+	 * A telecommunications address specified according to Internet standard RFC 1738 [http://www.ietf.org/rfc/rfc1738.txt]. The URL specifies the protocol and the contact point defined by that protocol for the resource. Notable uses of the telecommunication address data type are for telephone and telefax numbers, e-mail addresses, Hypertext references, FTP references, etc.
 	 */
 
 	/**
@@ -21,7 +22,7 @@ class Url {
 
 
 	/**
-	 * @XmlValue	(type="string", name="url")
+	 * @XmlAttribute	(type="string", name="value")
 	 */
 	protected $value;
 
@@ -45,14 +46,7 @@ class Url {
 	}
 
 	protected function validateValue($value) {
-		if (!is_string($value)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
-		}
 	
 		return $value;
 	}
-
-	public function __toString() {
-		return (string) $this->value;
-	}
-} // end class Url
+} // end class URL
