@@ -15,4 +15,13 @@ abstract class BaseType
     abstract public function updateToThingElement($thingElement);
     
     abstract public function __toString();
+    
+    public function getValue($element)
+    {
+        if ( ! empty($element) ) {
+            return $element->getValue();
+        } else {
+            return NULL;
+        }
+    }
 }
