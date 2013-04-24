@@ -71,6 +71,11 @@ class Person extends VocabularyType
      */
     protected $organizationId;
 
+    /**
+     * The contact details of the person
+     * 
+     * @var \DLS\Healthvault\Proxy\Type|Contact
+     */
     protected $contact;
 
     /**
@@ -85,6 +90,8 @@ class Person extends VocabularyType
         $this->type = new CodableValue('person-types');
         $this->title = new CodableValue('name-prefixes');
         $this->suffix = new CodableValue('name-suffixes');
+        
+        $this->contact = new Contact();
         
         parent::__construct($thingElement);
     }
@@ -223,21 +230,61 @@ class Person extends VocabularyType
 
     public function setFromThingElement($thingElement)
     {
-        // FIXME:
-        //$this->xxx->setVocabularyInterface($this->vocabularyInterface);
+        if (empty($thingElement)) {
+            return;
+        }
         
+        $this->type->setVocabularyInterface($this->vocabularyInterface);
+        $this->type->setFromThingElement($thingElement->getType(FALSE));        
+        
+        $this->title->setVocabularyInterface($this->vocabularyInterface);
+        $this->title->setFromThingElement($thingElement->getName()->getTitle(FALSE));        
+        
+        $this->suffix->setVocabularyInterface($this->vocabularyInterface);
+        $this->suffix->setFromThingElement($thingElement->getName()->getSuffix(FALSE));
+
+        $this->contact->setVocabularyInterface($this->vocabularyInterface);
+        $this->contact->setFromThingElement($thingElement->getContact(FALSE));
+        
+        $this->fullName = $this->getValue($thingElement->getName()->getFull(FALSE));
+        $this->firstName = $this->getValue($thingElement->getName()->getFirst(FALSE));
+        $this->middleName = $this->getValue($thingElement->getName()->getMiddle(FALSE));
+        $this->lastName = $this->getValue($thingElement->getName()->getLast(FALSE));
+
+        $this->organization = $this->getValue($thingElement->getOrganization(FALSE));
+        $this->organizationId = $this->getValue($thingElement->getId(FALSE));
+        
+        $this->professionalTraining = $this->getValue($thingElement->getProfessionalTraining(FALSE));
     }
 
     public function updateToThingElement($thingElement)
     {
-        // FIXME:
-        //$this->xxx->setVocabularyInterface($this->vocabularyInterface);
+        $this->type->setVocabularyInterface($this->vocabularyInterface);
+        $this->type->updateToThingElement($thingElement->getType());        
         
+        $this->title->setVocabularyInterface($this->vocabularyInterface);
+        $this->title->updateToThingElement($thingElement->getName()->getTitle());        
+        
+        $this->suffix->setVocabularyInterface($this->vocabularyInterface);
+        $this->suffix->updateToThingElement($thingElement->getName()->getSuffix());
+
+        $this->contact->setVocabularyInterface($this->vocabularyInterface);
+        $this->contact->updateToThingElement($thingElement->getContact());
+        
+        $thingElement->getName()->setFull($this->fullName);
+        $thingElement->getName()->setFirst($this->firstName);
+        $thingElement->getName()->setMiddle($this->middleName);
+        $thingElement->getName()->setLast($this->lastName);
+        
+        $thingElement->setOrganization($this->organization);
+        $thingElement->setId($this->organizationId);
+        
+        $thingElement->setProfessionalTraining($this->professionalTraining);
     }
 
     public function __toString()
     {
-
+        return $this->fullName;
     }
     
     public function isEmpty() {
