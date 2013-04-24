@@ -246,10 +246,10 @@ class Person extends VocabularyType
         $this->contact->setVocabularyInterface($this->vocabularyInterface);
         $this->contact->setFromThingElement($thingElement->getContact(FALSE));
         
-        $this->fullName = $this->getValue($thingElement->getName()->getFull(FALSE));
-        $this->firstName = $this->getValue($thingElement->getName()->getFirst(FALSE));
-        $this->middleName = $this->getValue($thingElement->getName()->getMiddle(FALSE));
-        $this->lastName = $this->getValue($thingElement->getName()->getLast(FALSE));
+        $this->fullName = $thingElement->getName()->getFull(FALSE);
+        $this->firstName = $thingElement->getName()->getFirst(FALSE);
+        $this->middleName = $thingElement->getName()->getMiddle(FALSE);
+        $this->lastName = $thingElement->getName()->getLast(FALSE);
 
         $this->organization = $this->getValue($thingElement->getOrganization(FALSE));
         $this->organizationId = $this->getValue($thingElement->getId(FALSE));

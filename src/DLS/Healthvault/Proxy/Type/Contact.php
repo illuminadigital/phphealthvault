@@ -1,6 +1,10 @@
 <?php
 namespace DLS\Healthvault\Proxy\Type;
 
+use com\microsoft\wc\thing\types\Email as hvEmail;
+use com\microsoft\wc\thing\types\Phone as hvPhone;
+use com\microsoft\wc\thing\types\Address as hvAddress;
+
 class Contact extends VocabularyType
 {
     /**
@@ -191,7 +195,7 @@ class Contact extends VocabularyType
 
         if (is_array($this->address)) {
             foreach ($this->address as $addressEntry) {
-                if (!$addressEntry->is_empty()) {
+                if (!$addressEntry->isEmpty()) {
                     $newAddress = new hvAddress();
                     $addressEntry->updateToThingElement($newAddress);
                     $newAddresses[] = $newAddress;
@@ -205,7 +209,7 @@ class Contact extends VocabularyType
 
         if (is_array($this->email)) {
             foreach ($this->email as $emailEntry) {
-                if (!$emailEntry->is_empty()) {
+                if (!$emailEntry->isEmpty()) {
                     $newEmail = new hvEmail();
                     $emailEntry->updateToThingElement($newEmail);
                     $newEmails[] = $newEmail;
@@ -219,7 +223,7 @@ class Contact extends VocabularyType
 
         if (is_array($this->phone)) {
             foreach ($this->phone as $phoneEntry) {
-                if (!$phoneEntry->is_empty()) {
+                if (!$phoneEntry->isEmpty()) {
                     $newPhone = new hvPhone();
                     $phoneEntry->updateToThingElement($newPhone);
                     $newPhones[] = $newPhone;
