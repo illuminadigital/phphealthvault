@@ -259,6 +259,28 @@ class CarePlan extends BaseThing
         return $name;
     }
     
+    public function replaceGoal($goal, $reference) {
+        if (strpos($reference, '-') === FALSE) {
+            return FALSE; // Makes no sense
+        }
+        
+        if ( is_array($this->goals) ) {
+            foreach ($this->goals as $goalGroupName => $goalData) {
+                if ( ! empty($goalData['goals']) && is_array($goalData['goals'])) {
+                    foreach ($goalData['goals'] as $index => $theGoal) {
+                        if ($theGoal->getReferenceId() == $reference) {
+                            $this->goals[$goalGroupName]['goals'][$index] = $goal;
+                            
+                            return TRUE;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return FALSE;
+    }
+    
     public function getGoalForReference($reference) {
         if (strpos($reference, '-') === FALSE) {
             return FALSE; // Makes no sense
