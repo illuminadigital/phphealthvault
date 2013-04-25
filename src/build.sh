@@ -100,5 +100,5 @@ echo "Fix root element namespace"
 for i in $DESTBASE/src/com/microsoft/wc/request/Request.php
 do
 	echo $i
-	sed -i~ 's#^\(\s*\*\s*\)\(@XmlEntity.*xml="\)#\1@XmlNamespaces ({\n\1  @XmlNamespace(url="urn:com.microsoft.wc.request", prefix="wc-request")\n\1})\n\1\2wc-request:#; ' $i
+	sed -i 's#^\(\s*\*\s*\)\(@XmlEntity.*xml="\)#\1@XmlNamespaces ({\n\1  @XmlNamespace(url="urn:com.microsoft.wc.request", prefix="wc-request")\n\1})\n\1\2wc-request:#; ' $i
 done
