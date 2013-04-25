@@ -311,7 +311,11 @@ abstract class CarePlanTargetType extends VocabularyType
     public function updateToThingElement($thingElement)
     {
         $this->name->setVocabularyInterface($this->vocabularyInterface);
-        $this->name->updateToThingElement($thingElement->getName());
+        if (! $this->name->isEmpty() ) {
+            $this->name->updateToThingElement($thingElement->getName());
+        } else {
+            $thingElement->setName(NULL);
+        }
         
         if ( ! empty($this->referenceId)) {
             $thingElement->getReferenceId()->setValue($this->referenceId);

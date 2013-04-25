@@ -179,6 +179,28 @@ class CarePlan extends BaseThing
         }
     }
     
+    public function deleteTask($task)
+    {
+        if (is_object($task)) {
+            $referenceId = $task->getReferenceId();
+        } else {
+            $referenceId = (string) $task;
+        }
+        
+        if (! is_array($this->tasks)) {
+            return FALSE;
+        }
+        
+        foreach ($this->tasks as $index => $thisTask) {
+            if ($thisTask->getReferenceId() == $referenceId) {
+                unset($this->tasks[$index]);
+                return TRUE;
+            }
+        }
+        
+        return FALSE;
+    }
+    
     public function replaceTask($task, $reference) {
         if (strpos($reference, '-') === FALSE) {
             if (isset($this->tasks[$reference])) {
