@@ -77,7 +77,7 @@ class Contact extends VocabularyType
 
     public function addPhone($phone)
     {
-        if (is_array($this->phone)) {
+        if (is_array($this->phone) && ! empty($phone) ) {
             foreach ($this->phone as $thisPhone) {
                 if ($thisPhone->getNumber() == $phone->getNumber()) {
                     return;
@@ -91,7 +91,7 @@ class Contact extends VocabularyType
     }
     
     public function removePhone($phone) {
-        if (is_array($this->phone)) {
+        if (is_array($this->phone) && ! empty($phone)) {
             foreach ($this->phone as $index => $thisPhone) {
                 if ($thisPhone->getNumber() == $phone->getNumber()) {
                     unset ($this->phone[$index]);
@@ -118,7 +118,7 @@ class Contact extends VocabularyType
 
     public function addEmail($email)
     {
-        if (is_array($this->email)) {
+        if (is_array($this->email) && ! empty($email) ) {
             foreach ($this->email as $index => $thisEmail) {
                 if ($thisEmail->getAddress() == $email->getAddress()) {
                     unset ($this->email[$index]);
@@ -134,7 +134,7 @@ class Contact extends VocabularyType
     }
     
     public function removeEmail($email) {
-        if (is_array($this->email)) {
+        if (is_array($this->email) && ! empty($email)) {
             foreach ($this->email as $thisEmail) {
                 if ($thisEmail == $email) {
                     return TRUE;
@@ -152,7 +152,7 @@ class Contact extends VocabularyType
             return;
         }
         
-        $addressEntries = $thingElement->getAddress();
+        $addressEntries = $thingElement->getAddress(FALSE);
 
         $newAddresses = array();
 
@@ -164,25 +164,25 @@ class Contact extends VocabularyType
 
         $this->address = $newAddresses;
 
-        $emailEntries = $thingElement->getAddress();
+        $emailEntries = $thingElement->getEmail(FALSE);
 
         $newEmails = array();
 
         if (is_array($emailEntries)) {
             foreach ($emailEntries as $emailEntry) {
-                $newEmails[] = new Address($emailEntry);
+                $newEmails[] = new Email($emailEntry);
             }
         }
 
         $this->email = $newEmails;
 
-        $phoneEntries = $thingElement->getAddress();
+        $phoneEntries = $thingElement->getPhone(FALSE);
 
         $newPhones = array();
 
         if (is_array($phoneEntries)) {
             foreach ($phoneEntries as $phoneEntry) {
-                $newPhones[] = new Address($phoneEntry);
+                $newPhones[] = new Phone($phoneEntry);
             }
         }
 
@@ -195,7 +195,7 @@ class Contact extends VocabularyType
 
         if (is_array($this->address)) {
             foreach ($this->address as $addressEntry) {
-                if (!$addressEntry->isEmpty()) {
+                if (is_object($addressEntry) && ! $addressEntry->isEmpty()) {
                     $newAddress = new hvAddress();
                     $addressEntry->updateToThingElement($newAddress);
                     $newAddresses[] = $newAddress;
@@ -209,7 +209,7 @@ class Contact extends VocabularyType
 
         if (is_array($this->email)) {
             foreach ($this->email as $emailEntry) {
-                if (!$emailEntry->isEmpty()) {
+                if (is_object($emailEntry) && ! $emailEntry->isEmpty()) {
                     $newEmail = new hvEmail();
                     $emailEntry->updateToThingElement($newEmail);
                     $newEmails[] = $newEmail;
@@ -223,7 +223,7 @@ class Contact extends VocabularyType
 
         if (is_array($this->phone)) {
             foreach ($this->phone as $phoneEntry) {
-                if (!$phoneEntry->isEmpty()) {
+                if (is_object($phoneEntry) && ! $phoneEntry->isEmpty()) {
                     $newPhone = new hvPhone();
                     $phoneEntry->updateToThingElement($newPhone);
                     $newPhones[] = $newPhone;
@@ -238,7 +238,7 @@ class Contact extends VocabularyType
     {
         if (is_array($this->address)) {
             foreach ($this->address as $thisAddress) {
-                if (!$thisAddress->isEmpty()) {
+                if (is_object($thisAddress) && ! $thisAddress->isEmpty()) {
                     return FALSE;
                 }
             }
@@ -246,7 +246,7 @@ class Contact extends VocabularyType
 
         if (is_array($this->phone)) {
             foreach ($this->phone as $thisPhone) {
-                if (!$thisPhone->isEmpty()) {
+                if (is_object($thisPhone) && ! $thisPhone->isEmpty()) {
                     return FALSE;
                 }
             }
@@ -254,7 +254,7 @@ class Contact extends VocabularyType
 
         if (is_array($this->email)) {
             foreach ($this->email as $thisEmail) {
-                if (!$thisEmail->isEmpty()) {
+                if (is_object($thisEmail) && ! $thisEmail->isEmpty()) {
                     return FALSE;
                 }
             }

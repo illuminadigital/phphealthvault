@@ -51,9 +51,9 @@ class Email extends BaseType
             return;
         }
         
-        $this->description = $this->getValue($thingElement->getDescription(FALSE));
-        $this->isPrimary = $this->getValue($thingElement->getIsPrimary(FALSE));
-        $this->address = $this->getValue($thingElement->getAddress(FALSE));
+        $this->description = $thingElement->getDescription(FALSE);
+        $this->isPrimary = $thingElement->getIsPrimary(FALSE);
+        $this->address = $thingElement->getAddress(FALSE);
     }
 
     public function updateToThingElement($thingElement)

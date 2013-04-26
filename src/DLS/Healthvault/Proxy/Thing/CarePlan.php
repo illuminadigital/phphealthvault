@@ -673,7 +673,7 @@ class CarePlan extends BaseThing
         // We always have ReferenceIds in our tasks
         
         $payload = $this->getThingPayload();
-        $tasksWrapper = $payload->getTasks();
+        $tasksWrapper = $payload->getTasks(FALSE);
         if ( $tasksWrapper ) { 
             $thingTasks = $tasksWrapper->getTask();
         } else {
@@ -685,6 +685,10 @@ class CarePlan extends BaseThing
 
         if ( ! empty($this->tasks) && is_array($this->tasks)) {
             foreach ($this->tasks as $theTaskReference => $theTask) {
+                if ($theTask->isEmpty()) {
+                    continue;
+                }
+                
                 if (is_numeric($theTaskReference)) {
                     // Must be an index
                     
