@@ -409,11 +409,11 @@ class CarePlan extends BaseThing
         $goals = array();
         
         $payload = $this->getThingPayload();
-        $goalGroups = $payload->getGoalGroups();
+        $goalGroups = $payload->getGoalGroups(FALSE);
         
         if ( ! empty ($goalGroups) )
         {
-            $groups = $goalGroups->getGoalGroup();
+            $groups = $goalGroups->getGoalGroup(FALSE);
             
             if ( ! empty($groups) )
             {
@@ -484,7 +484,10 @@ class CarePlan extends BaseThing
         
         $payload = $this->getThingPayload();
         
-        $this->setThingName($this->name);
+        if ( ! empty($this->name)) {
+            $this->setThingName($this->name);
+        }
+        
         $this->status->setVocabularyInterface($this->healthvaultVocabulary);
         $this->status->updateToThingElement($payload->getStatus());
 
@@ -550,9 +553,9 @@ class CarePlan extends BaseThing
         // adjust accordingly
 
         $payload = $this->getThingPayload();
-        $goalGroupsWrapper = $payload->getGoalGroups();
+        $goalGroupsWrapper = $payload->getGoalGroups(FALSE);
         if ($goalGroupsWrapper) {
-            $goalGroups = $goalGroupsWrapper->getGoalGroup();
+            $goalGroups = $goalGroupsWrapper->getGoalGroup(FALSE);
         } else {
             $goalGroups = array();
         }
@@ -658,7 +661,7 @@ class CarePlan extends BaseThing
         } 
 
         // If the result would be an empty group, remove the wrapper completely.           
-        $goalGroupCheck = $payload->getGoalGroups();
+        $goalGroupCheck = $payload->getGoalGroups(FALSE);
         if (empty($goalGroupCheck)) {
             $payload->setGoalGroups(FALSE);
         }
