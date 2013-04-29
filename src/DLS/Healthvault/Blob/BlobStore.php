@@ -29,11 +29,17 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $this->syncFromThing();
     }
     
-    public function add($file, $name, $contentType = NULL, $skipResync = FALSE)
+    public function add($file, $name, $contentType = NULL, $skipResync = FALSE, $doUpload = TRUE)
     {
         $handle = fopen($file);
         
-        $data = $this->uploadFile($handle);
+        $fileData = $this->getFileData($handle);
+        
+        $blob->setSize($fileData['size']);
+        
+        if ($doUpload) {
+            $data = $this->uploadFile($handle);
+        }
         
         fclose($handle);
         
@@ -42,34 +48,44 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
         
         $blob = new Blob($name, $data['size'], $contentType);
-        $blob->setReference($data['ref']);
-        $blob->setHashParams($data['hashParameters']);
-        $blob->setHashAlgorithm($data['hashAlgorithm']);
-        $blob->setUploaded();
-
-        $this->updateBlobHashData($blob);
+        
+        if (isset($data)) {
+            $blob->setReference($data['ref']);
+            $blob->setHashParams($data['hashParameters']);
+            $blob->setHashAlgorithm($data['hashAlgorithm']);
+            $blob->setUploaded();
+            
+            $this->updateBlobHashData($blob);
+        }
         
         $this->blobs[$name] = $blob;
         
-        if ( ! $skipResync ) {
+        if ( ! $skipResync && $doUpload ) {
             $this->syncToThing();
         }
     }
     
-    public function addBlob(Blob $blob, $skipResync = FALSE)
+    public function addBlob(Blob $blob, $skipResync = FALSE, $doUpload = TRUE)
     {
         $fileUrl = 'data://text/plain;base64,' . base64_encode($blob->getData());
         
         $handle = fopen($fileUrl, "r");
-        $uploadData = $this->uploadFile($handle);
+        
+        $fileData = $this->getFileData($handle);
+
+        $blob->setSize($fileData['size']);
+        
+        if ($doUpload) {
+            $uploadData = $this->uploadFile($handle);
+
+            $blob->setReference($uploadData['ref']);
+            $blob->setHashParams($uploadData['hashParameters']);
+            $blob->setHashAlgorithm($uploadData['hashAlgorithm']);
+            $blob->setUploaded();
+        }
+
         fclose($handle);
 
-        $blob->setSize($uploadData['size']);
-        $blob->setReference($uploadData['ref']);
-        $blob->setHashParams($uploadData['hashParameters']);
-        $blob->setHashAlgorithm($uploadData['hashAlgorithm']);
-        $blob->setUploaded();
-        
         $contentType = $blob->getContentType();
         
         if (empty($contentType)) {
@@ -78,13 +94,16 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $blob->setContentType($contentType);
         
-        $this->updateBlobHashData($blob);
+        if ($doUpload) {
+            $this->updateBlobHashData($blob);
+        }
         
         $name = $blob->getName();
         
         $this->blobs[$name] = $blob;
         
-        if ( ! $skipResync ) {
+        // Don't resync if told not to, or if we didn't upload the file
+        if ( ! $skipResync && $doUpload ) {
             $this->synctoThing();
         }
         
@@ -150,6 +169,12 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
     
     public function getNames() {
         return array_keys($this->blobs);
+    }
+    
+    protected function getFileData($file) {
+        $fileData = fstat($file);
+        
+        return $fileData;
     }
     
     protected function uploadFile($file) {
