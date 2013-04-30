@@ -7,6 +7,7 @@ use com\microsoft\wc\types\Guid;
 
 class QueryPermissionsMethod extends PlatformMethod
 {
+    protected $mustIncludeRecord = TRUE;
     protected $methodName = 'QueryPermissions';
     protected $methodVersion = 1;
 
@@ -23,5 +24,12 @@ class QueryPermissionsMethod extends PlatformMethod
         $queryInfo = $this->requestData->getInfo()->addThingTypeId($thingGuid);
 
     }
+
+    public function setRecord($recordId){
+
+        $this->requestData->getHeader()->setRecordId($recordId);
+
+    }
+
 
 }
