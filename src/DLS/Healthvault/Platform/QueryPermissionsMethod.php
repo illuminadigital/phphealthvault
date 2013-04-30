@@ -27,7 +27,7 @@ class QueryPermissionsMethod extends PlatformMethod
 
     public function setRecord($recordId){
 
-        $this->requestData->getHeader()->setRecordId($recordId);
+        $this->configuration->setRecord($recordId);
 
     }
 
