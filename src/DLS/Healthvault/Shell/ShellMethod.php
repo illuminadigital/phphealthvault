@@ -38,8 +38,11 @@ class ShellMethod
         $this->targetqsParameter = '';
         
         $this->validateParameters();
-        
-        $returnUrl = $this->configuration->getReturnUrl($this->methodName);
+
+        $targetqs = (isset($this->configuration->targetqsParameter))?$this->configuration->targetqsParameter:null;
+
+        $returnUrl = $this->configuration->getReturnUrl($targetqs);
+
         if ( ! empty($returnUrl) )
         {
             $this->addParameter('redirect', $returnUrl);
