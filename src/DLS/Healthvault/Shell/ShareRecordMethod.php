@@ -18,9 +18,13 @@ class ShareRecordMethod extends AppRedirectMethod
         $this->destinationApplicationId = $this->configuration->getApplicationId();
     }
 
-    public function setTargetqsParameter($targetqsParameter)
+    public function getTargetqsParameter()
     {
-        $this->configuration->targetqsParameter = $targetqsParameter;
+        parent::getTargetqsParameter();
+
+        $this->addParameter('appid', $this->destinationApplicationId);
+
+        return $this->targetqsParameter;
     }
 
     public function setDestinationApplicationId($applicationId)
