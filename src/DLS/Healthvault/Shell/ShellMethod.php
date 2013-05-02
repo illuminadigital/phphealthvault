@@ -39,9 +39,7 @@ class ShellMethod
         
         $this->validateParameters();
 
-        $targetqs = (isset($this->configuration->targetqsParameter))?$this->configuration->targetqsParameter:null;
-
-        $returnUrl = $this->configuration->getReturnUrl($targetqs);
+        $returnUrl = $this->configuration->getReturnUrl($this->methodName);
 
         if ( ! empty($returnUrl) )
         {
