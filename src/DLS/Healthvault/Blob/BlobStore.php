@@ -298,12 +298,13 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             if ( ! isset($processed[$thisBlobName]) && $thisBlobData->isModified() ) {
                 $thisBlob = new BlobPayloadItem();
                 
-                $this->updateThingBlob($thisBlob, $thisBlobName);
-                    
-                if ( $thisBlobData->isDeleted() ) {
+                if ( ! $thisBlobData->isDeleted() ) {
+                    $this->updateThingBlob($thisBlob, $thisBlobName);
+                } else {
+                    $thisBlobInfo = $thisBlob->getBlobInfo();
+                    $thisBlobInfo->setName($thisBlobName);
+                    $thisBlobInfo->getContentType($thisBlobData->getContentType());
                     $thisBlob->setContentLength(0);
-                    $thisBlob->setBase64data(FALSE);
-                    $thisBlob->setBlobRefUrl(NULL);
                 }
                                     
                 $blobData[] = $thisBlob;
