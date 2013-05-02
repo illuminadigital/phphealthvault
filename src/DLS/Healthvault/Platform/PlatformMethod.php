@@ -83,7 +83,13 @@ class PlatformMethod
         
         return $headerObj;
     }
-    
+
+    public function getRecord(){
+
+        return $this->configuration->getRecord();
+
+    }
+
     protected function getLanguage()
     {
     	return 'en';

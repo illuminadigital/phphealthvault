@@ -7,6 +7,7 @@ use com\microsoft\wc\types\Guid;
 
 class QueryPermissionsMethod extends PlatformMethod
 {
+    protected $permissionRecord = null;
     protected $mustIncludeRecord = TRUE;
     protected $methodName = 'QueryPermissions';
     protected $methodVersion = 1;
@@ -27,9 +28,21 @@ class QueryPermissionsMethod extends PlatformMethod
 
     public function setRecord($recordId){
 
-        $this->configuration->setRecord($recordId);
+        $this->permissionRecord = $recordId;
 
     }
 
+    public function getRecord(){
 
+        if($this->permissionRecord){
+
+            return $this->permissionRecord;
+
+        }else{
+
+            return parent::getRecord();
+
+        }
+
+    }
 }
