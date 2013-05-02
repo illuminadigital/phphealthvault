@@ -70,7 +70,7 @@ class PlatformMethod
         }
         
         if  ( $this->mustIncludeRecord) {
-            $headerObj->setRecordId($this->configuration->getRecord());
+            $headerObj->setRecordId($this->getRecord());
         }
  
         $headerObj->setLanguage($this->getLanguage());
