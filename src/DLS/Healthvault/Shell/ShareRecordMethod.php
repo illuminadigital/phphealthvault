@@ -6,7 +6,7 @@ use DLS\Healthvault\HealthvaultConfigurationInterface;
 use DLS\Healthvault\Shell\AppRedirectMethod;
 
 
-class ShareRecordMethod extends AppRedirectMethod
+class ShareRecordMethod extends ShellMethodWithRecordId
 {
     protected $destinationApplicationId = NULL;
     protected $methodName = 'SHARERECORD';
@@ -37,11 +37,6 @@ class ShareRecordMethod extends AppRedirectMethod
         $this->destinationTarget = $target;
     }
 
-    public function setExternalRecordId($recordId){
-
-        $this->externalRecordId($recordId);
-    }
-
     public function validateParameters($throwException = TRUE)
     {
         $missing = array();
@@ -60,4 +55,5 @@ class ShareRecordMethod extends AppRedirectMethod
             return $missing;
         }
     }
+
 }
