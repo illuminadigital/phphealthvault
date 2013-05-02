@@ -135,7 +135,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
     }
     
     public function remove($name) {
-        $names = (is_array($name) ? $name : array($names));
+        $names = (is_array($name) ? $name : array($name));
         
         foreach ($names as $thisName) {
             if ( ! isset($this->blobs[$thisName]) )
@@ -258,7 +258,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         return TRUE;
     }
     
-    protected function syncToThing() {
+    public function syncToThing() {
 		$names = $this->blobs;
         
         $blobPayload = $this->thing->getBlobPayload();
@@ -276,11 +276,9 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 // Process this entry
                 
                 if ($this->blobs[$thisBlobName]->isDeleted()) {
-                    $thisBlob
-                        ->setContentLength(0)
-                        ->setBase64data(FALSE)
-                        ->setBlobRefUrl(FALSE)
-                    ;
+                    $thisBlob->setContentLength(0);
+                    $thisBlob->setBase64data(FALSE);
+                    $thisBlob->setBlobRefUrl(NULL);
                 } else if ($this->blobs[$thisBlobName]->isModified()) {
                     $this->updateThingBlob($thisBlob, $thisBlobName);
                 } else {
@@ -297,13 +295,17 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         foreach (array_keys($names) as $thisBlobName) {
             $thisBlobData = $this->blobs[$thisBlobName];
             
-            if ( ! isset($processed[$thisBlobName]) && ($thisBlobData->isModified() && ! $thisBlobData->isDeleted())) {
-                // New entry
-                
+            if ( ! isset($processed[$thisBlobName]) && $thisBlobData->isModified() ) {
                 $thisBlob = new BlobPayloadItem();
                 
                 $this->updateThingBlob($thisBlob, $thisBlobName);
-                
+                    
+                if ( $thisBlobData->isDeleted() ) {
+                    $thisBlob->setContentLength(0);
+                    $thisBlob->setBase64data(FALSE);
+                    $thisBlob->setBlobRefUrl(NULL);
+                }
+                                    
                 $blobData[] = $thisBlob;
             }
         }
@@ -328,14 +330,17 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         } else {
             $thisBlob->setContentLength($storedBlob->getSize());
             $thisBlob->setBase64data(base64_encode($storedBlob->getData()));
-            $thisBlob->setBlobRefUrl(FALSE);
+            $thisBlob->setBlobRefUrl(NULL);
         }
         
         $thisBlobInfo->setName($storedBlob->getName());
         $thisBlobInfo->setContentType($storedBlob->getContentType());
         
         $thisBlobHashInfo->setAlgorithm($storedBlob->getHashAlgorithm());
-        $thisBlobHashInfo->getParams()->setBlockSize($storedBlob->getHashParams()->getBlockSize());
+        $hashParams = $storedBlob->getHashParams();
+        if (is_object($hashParams)) {
+            $thisBlobHashInfo->getParams()->setBlockSize($hashParams->getBlockSize());
+        }
         $thisBlobHashInfo->setHash($storedBlob->getHash());
     }
     
