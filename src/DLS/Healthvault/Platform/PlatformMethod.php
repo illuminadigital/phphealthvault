@@ -70,7 +70,7 @@ class PlatformMethod
         }
         
         if  ( $this->mustIncludeRecord) {
-            $headerObj->setRecordId($this->configuration->getRecord());
+            $headerObj->setRecordId($this->getRecord());
         }
  
         $headerObj->setLanguage($this->getLanguage());
@@ -83,7 +83,13 @@ class PlatformMethod
         
         return $headerObj;
     }
-    
+
+    public function getRecord(){
+
+        return $this->configuration->getRecord();
+
+    }
+
     protected function getLanguage()
     {
     	return 'en';

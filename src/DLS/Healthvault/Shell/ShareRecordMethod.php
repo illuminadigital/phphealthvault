@@ -3,10 +3,10 @@ namespace DLS\Healthvault\Shell;
 
 
 use DLS\Healthvault\HealthvaultConfigurationInterface;
-use DLS\Healthvault\Shell\ShellMethod;
+use DLS\Healthvault\Shell\AppRedirectMethod;
 
 
-class ShareRecordMethod extends ShellMethod
+class ShareRecordMethod extends AppRedirectMethod
 {
     protected $destinationApplicationId = NULL;
     protected $methodName = 'SHARERECORD';
@@ -17,6 +17,7 @@ class ShareRecordMethod extends ShellMethod
 
         $this->destinationApplicationId = $this->configuration->getApplicationId();
     }
+
     public function getTargetqsParameter()
     {
         parent::getTargetqsParameter();
@@ -34,6 +35,11 @@ class ShareRecordMethod extends ShellMethod
     public function setDestinationTarget($target)
     {
         $this->destinationTarget = $target;
+    }
+
+    public function setExternalRecordId($recordId){
+
+        $this->externalRecordId($recordId);
     }
 
     public function validateParameters($throwException = TRUE)
