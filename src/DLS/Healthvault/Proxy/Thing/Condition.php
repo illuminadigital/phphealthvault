@@ -16,15 +16,7 @@ class Condition extends BaseThing
 {
     protected $thingType = 'Condition';
     
-    /* @Assert\Choice(callback="getPossibleCategories") */
-    /**
-     * @Assert\NotBlank()
-     * 
-     * @var string
-     */
-    protected $category;
-    
-    /**
+    /*
      * @Assert\NotBlank()
      * @Validate\InHealthvaultVocabulary("condition-occurrence")
      * @var string
@@ -52,22 +44,6 @@ class Condition extends BaseThing
      * @var string
      */
     protected $name;
-    
-    public function getCategory()
-    {
-        return $this->category;
-    }
-    
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        if ($this->thing) {
-            $this->setThingCategory($category);
-        }
-
-        return $this;
-    }
     
     public function getStatus()
     {
@@ -149,39 +125,6 @@ class Condition extends BaseThing
         return $this;
     }
            
-    public static function getPossibleCategories()
-    {
-        return array(
-        	'arthritis' 							=> 'Arthritis',
-        	'asthma' 								=> 'Asthma',
-        	'atrial-fibrillation' 					=> 'Atrial fibrillation (Irregular Heart Beat)',
-        	'cancer' 								=> 'Cancer',
-        	'chronic-kidney-disease' 				=> 'Chronic kidney disease',
-        	'chronic-fatigue-syndrome' 				=> 'Chronic fatigue syndrome',
-        	'chronic-obstructive-pulmonary-disease'	=> 'Chronic obstructive pulmonary disease',
-        	'chronic-pain-syndromes' 				=> 'Chronic Pain Syndromes',
-        	'coronary-heart-disease' 				=> 'Coronary heart disease',
-        	'dementia' 								=> 'Dementia',
-        	'depression' 							=> 'Depression',
-        	'diabetes' 								=> 'Diabetes',
-        	'epilepsy' 								=> 'Epilepsy',
-        	'fibromyalgia' 							=> 'Fibromyalgia',
-        	'hiv-aids' 								=> 'HIV/AIDS',
-        	'hypertension' 							=> 'Hypertension',
-        	'hypothyroidism' 						=> 'Hypothyroidism (Thyroid/iodine deficiency)',
-        	'mental-health' 						=> 'Mental health',
-        	'multiple-sclerosis' 					=> 'Multiple Sclerosis',
-        	'motor-neuron-disease' 					=> 'Motor Neuron Disease',
-        	'osteoporosis' 							=> 'Osteoporosis',
-        	'parkinsons-disease' 					=> 'Parkinson\'s Disease',
-        	'schizophrenia' 						=> 'Schizophrenia',
-        	'sickle-cell-anaemia' 					=> 'Sickle Cell Anaemia and other haemoglobin disorders',
-        	'skin-conditions' 						=> 'Skin conditions',
-        	'stroke' 								=> 'Stroke',
-        	'other' 								=> 'Other',
-        );
-    }
-    
     public static function reallySupports(Thing2 $thing)
     {
         return ($thing->getTypeId()->getValue() == hvCondition::ID);
@@ -216,7 +159,6 @@ class Condition extends BaseThing
         $this->status = $code->getValue();
         
         $this->notes = $payloadArea->getCommon()->getNote();
-        // $this->category = ?
         
         return $this;
     }
@@ -226,7 +168,6 @@ class Condition extends BaseThing
         $hvCondition = parent::getThing($hvCondition);
                 
         $this->setThingName($this->name);
-        $this->setThingCategory($this->category);
         $this->setThingStatus($this->status);
         $this->setThingOnsetDate($this->onsetDate);
         $this->setThingStopDate($this->stopDate);
@@ -240,11 +181,6 @@ class Condition extends BaseThing
     {
         // FIXME: Get Category list(!)
         return $this->setThingCodableValue($this->getThingPayload()->getName(), $name, array());
-    }
-    
-    protected function setThingCategory($category)
-    {
-        // FIXME: Where does this map?
     }
     
     protected function setThingOnsetDate($onsetDate)
