@@ -260,14 +260,26 @@ class Person extends VocabularyType
     public function updateToThingElement($thingElement)
     {
         $this->type->setVocabularyInterface($this->vocabularyInterface);
-        $this->type->updateToThingElement($thingElement->getType());        
+        if ( ! $this->type->isEmpty() ) {
+            $this->type->updateToThingElement($thingElement->getType());
+        } else {
+            $thingElement->getType(NULL);
+        }
         
         $this->title->setVocabularyInterface($this->vocabularyInterface);
-        $this->title->updateToThingElement($thingElement->getName()->getTitle());        
+        if ( ! $this->title->isEmpty() ) {
+            $this->title->updateToThingElement($thingElement->getName()->getTitle());
+        } else {
+            $thingElement->getName()->setTitle(NULL);
+        }        
         
         $this->suffix->setVocabularyInterface($this->vocabularyInterface);
-        $this->suffix->updateToThingElement($thingElement->getName()->getSuffix());
-
+        if ( ! $this->suffix->isEmpty() ) {
+            $this->suffix->updateToThingElement($thingElement->getName()->getSuffix());
+        } else {
+            $thingElement->getName()->setSuffix(NULL);
+        }
+            
         $this->contact->setVocabularyInterface($this->vocabularyInterface);
         $this->contact->updateToThingElement($thingElement->getContact());
         

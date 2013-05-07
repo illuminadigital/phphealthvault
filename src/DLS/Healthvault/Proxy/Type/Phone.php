@@ -51,9 +51,9 @@ class Phone extends BaseType
             return;
         }
         
-        $this->description = $this->getValue($thingElement->getDescription(FALSE));
-        $this->isPrimary = $this->getValue($thingElement->getIsPrimary(FALSE));
-        $this->number = $this->getValue($thingElement->getNumber(FALSE));
+        $this->description = $thingElement->getDescription(FALSE);
+        $this->isPrimary = $thingElement->getIsPrimary(FALSE);
+        $this->number = $thingElement->getNumber(FALSE);
     }
 
     public function updateToThingElement($thingElement)

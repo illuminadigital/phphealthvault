@@ -174,7 +174,7 @@ abstract class CarePlanTargetType extends VocabularyType
      */
     public function setEndDate($endDate)
     {
-        if ( ! $endDate instanceof \DateTime ) {
+        if ( $endDate !== NULL && ! $endDate instanceof \DateTime ) {
             $endDate = new \DateTime($endDate);
         }
         
@@ -287,7 +287,7 @@ abstract class CarePlanTargetType extends VocabularyType
     public function setFromThingElement($thingElement)
     {
         $this->name->setVocabularyInterface($this->vocabularyInterface);
-        $this->name->setFromThingElement($thingElement->getName());
+        $this->name->setFromThingElement($thingElement->getName(FALSE));
         
         $ref = $thingElement->getReferenceId(FALSE);
         if ($ref) {
@@ -311,7 +311,11 @@ abstract class CarePlanTargetType extends VocabularyType
     public function updateToThingElement($thingElement)
     {
         $this->name->setVocabularyInterface($this->vocabularyInterface);
-        $this->name->updateToThingElement($thingElement->getName());
+        if (! $this->name->isEmpty() ) {
+            $this->name->updateToThingElement($thingElement->getName());
+        } else {
+            $thingElement->setName(NULL);
+        }
         
         if ( ! empty($this->referenceId)) {
             $thingElement->getReferenceId()->setValue($this->referenceId);
@@ -320,13 +324,15 @@ abstract class CarePlanTargetType extends VocabularyType
             $thingElement->getDescription()->setValue($this->description);
         }
         
-        if ( isset($this->startDate) || $thingElement->getStartDate(FALSE)) {
+        if ( isset($this->startDate)) {
             DateTimeUtils::setThingApproxDateTime($thingElement->getStartDate(), $this->startDate);
         }
-        if ( isset($this->endDate) || $thingElement->getEndDate(FALSE)) {
+        if ( isset($this->endDate) ) {
             DateTimeUtils::setThingApproxDateTime($thingElement->getEndDate(), $this->endDate);
+        } else {
+            $thingElement->setEndDate(NULL);
         }
-        if ( isset($this->targetCompletionDate) || $thingElement->getTargetCompletionDate(FALSE)) {
+        if ( isset($this->targetCompletionDate)) {
             DateTimeUtils::setThingApproxDateTime($thingElement->getTargetCompletionDate(), $this->targetCompletionDate);
         }
         
@@ -338,6 +344,9 @@ abstract class CarePlanTargetType extends VocabularyType
     
     public function isEmpty() 
     {
-        return ((empty($this->name) || $this->name->isEmpty()) && empty($this->description));
+        $hasNoName = (empty($this->name) || $this->name->isEmpty());
+        $hasNoDescription = empty($this->description);
+          
+        return ( $hasNoName && $hasNoDescription );
     }
 }

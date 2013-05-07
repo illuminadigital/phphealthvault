@@ -29,11 +29,17 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $this->syncFromThing();
     }
     
-    public function add($file, $name, $contentType = NULL, $skipResync = FALSE)
+    public function add($file, $name, $contentType = NULL, $skipResync = FALSE, $doUpload = TRUE)
     {
         $handle = fopen($file);
         
-        $data = $this->uploadFile($handle);
+        $fileData = $this->getFileData($handle);
+        
+        $blob->setSize($fileData['size']);
+        
+        if ($doUpload) {
+            $data = $this->uploadFile($handle);
+        }
         
         fclose($handle);
         
@@ -42,34 +48,44 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
         
         $blob = new Blob($name, $data['size'], $contentType);
-        $blob->setReference($data['ref']);
-        $blob->setHashParams($data['hashParameters']);
-        $blob->setHashAlgorithm($data['hashAlgorithm']);
-        $blob->setUploaded();
-
-        $this->updateBlobHashData($blob);
+        
+        if (isset($data)) {
+            $blob->setReference($data['ref']);
+            $blob->setHashParams($data['hashParameters']);
+            $blob->setHashAlgorithm($data['hashAlgorithm']);
+            $blob->setUploaded();
+            
+            $this->updateBlobHashData($blob);
+        }
         
         $this->blobs[$name] = $blob;
         
-        if ( ! $skipResync ) {
+        if ( ! $skipResync && $doUpload ) {
             $this->syncToThing();
         }
     }
     
-    public function addBlob(Blob $blob, $skipResync = FALSE)
+    public function addBlob(Blob $blob, $skipResync = FALSE, $doUpload = TRUE)
     {
         $fileUrl = 'data://text/plain;base64,' . base64_encode($blob->getData());
         
         $handle = fopen($fileUrl, "r");
-        $uploadData = $this->uploadFile($handle);
+        
+        $fileData = $this->getFileData($handle);
+
+        $blob->setSize($fileData['size']);
+        
+        if ($doUpload) {
+            $uploadData = $this->uploadFile($handle);
+
+            $blob->setReference($uploadData['ref']);
+            $blob->setHashParams($uploadData['hashParameters']);
+            $blob->setHashAlgorithm($uploadData['hashAlgorithm']);
+            $blob->setUploaded();
+        }
+
         fclose($handle);
 
-        $blob->setSize($uploadData['size']);
-        $blob->setReference($uploadData['ref']);
-        $blob->setHashParams($uploadData['hashParameters']);
-        $blob->setHashAlgorithm($uploadData['hashAlgorithm']);
-        $blob->setUploaded();
-        
         $contentType = $blob->getContentType();
         
         if (empty($contentType)) {
@@ -78,13 +94,16 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $blob->setContentType($contentType);
         
-        $this->updateBlobHashData($blob);
+        if ($doUpload) {
+            $this->updateBlobHashData($blob);
+        }
         
         $name = $blob->getName();
         
         $this->blobs[$name] = $blob;
         
-        if ( ! $skipResync ) {
+        // Don't resync if told not to, or if we didn't upload the file
+        if ( ! $skipResync && $doUpload ) {
             $this->synctoThing();
         }
         
@@ -116,7 +135,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
     }
     
     public function remove($name) {
-        $names = (is_array($name) ? $name : array($names));
+        $names = (is_array($name) ? $name : array($name));
         
         foreach ($names as $thisName) {
             if ( ! isset($this->blobs[$thisName]) )
@@ -150,6 +169,12 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
     
     public function getNames() {
         return array_keys($this->blobs);
+    }
+    
+    protected function getFileData($file) {
+        $fileData = fstat($file);
+        
+        return $fileData;
     }
     
     protected function uploadFile($file) {
@@ -233,7 +258,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         return TRUE;
     }
     
-    protected function syncToThing() {
+    public function syncToThing() {
 		$names = $this->blobs;
         
         $blobPayload = $this->thing->getBlobPayload();
@@ -251,11 +276,9 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 // Process this entry
                 
                 if ($this->blobs[$thisBlobName]->isDeleted()) {
-                    $thisBlob
-                        ->setContentLength(0)
-                        ->setBase64data(FALSE)
-                        ->setBlobRefUrl(FALSE)
-                    ;
+                    $thisBlob->setContentLength(0);
+                    $thisBlob->setBase64data(FALSE);
+                    $thisBlob->setBlobRefUrl(NULL);
                 } else if ($this->blobs[$thisBlobName]->isModified()) {
                     $this->updateThingBlob($thisBlob, $thisBlobName);
                 } else {
@@ -272,13 +295,18 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         foreach (array_keys($names) as $thisBlobName) {
             $thisBlobData = $this->blobs[$thisBlobName];
             
-            if ( ! isset($processed[$thisBlobName]) && ($thisBlobData->isModified() && ! $thisBlobData->isDeleted())) {
-                // New entry
-                
+            if ( ! isset($processed[$thisBlobName]) && $thisBlobData->isModified() ) {
                 $thisBlob = new BlobPayloadItem();
                 
-                $this->updateThingBlob($thisBlob, $thisBlobName);
-                
+                if ( ! $thisBlobData->isDeleted() ) {
+                    $this->updateThingBlob($thisBlob, $thisBlobName);
+                } else {
+                    $thisBlobInfo = $thisBlob->getBlobInfo();
+                    $thisBlobInfo->setName($thisBlobName);
+                    $thisBlobInfo->getContentType($thisBlobData->getContentType());
+                    $thisBlob->setContentLength(0);
+                }
+                                    
                 $blobData[] = $thisBlob;
             }
         }
@@ -303,14 +331,17 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         } else {
             $thisBlob->setContentLength($storedBlob->getSize());
             $thisBlob->setBase64data(base64_encode($storedBlob->getData()));
-            $thisBlob->setBlobRefUrl(FALSE);
+            $thisBlob->setBlobRefUrl(NULL);
         }
         
         $thisBlobInfo->setName($storedBlob->getName());
         $thisBlobInfo->setContentType($storedBlob->getContentType());
         
         $thisBlobHashInfo->setAlgorithm($storedBlob->getHashAlgorithm());
-        $thisBlobHashInfo->getParams()->setBlockSize($storedBlob->getHashParams()->getBlockSize());
+        $hashParams = $storedBlob->getHashParams();
+        if (is_object($hashParams)) {
+            $thisBlobHashInfo->getParams()->setBlockSize($hashParams->getBlockSize());
+        }
         $thisBlobHashInfo->setHash($storedBlob->getHash());
     }
     

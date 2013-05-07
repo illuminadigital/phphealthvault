@@ -179,6 +179,28 @@ class CarePlan extends BaseThing
         }
     }
     
+    public function deleteTask($task)
+    {
+        if (is_object($task)) {
+            $referenceId = $task->getReferenceId();
+        } else {
+            $referenceId = (string) $task;
+        }
+        
+        if (! is_array($this->tasks)) {
+            return FALSE;
+        }
+        
+        foreach ($this->tasks as $index => $thisTask) {
+            if ($thisTask->getReferenceId() == $referenceId) {
+                unset($this->tasks[$index]);
+                return TRUE;
+            }
+        }
+        
+        return FALSE;
+    }
+    
     public function replaceTask($task, $reference) {
         if (strpos($reference, '-') === FALSE) {
             if (isset($this->tasks[$reference])) {
@@ -387,11 +409,11 @@ class CarePlan extends BaseThing
         $goals = array();
         
         $payload = $this->getThingPayload();
-        $goalGroups = $payload->getGoalGroups();
+        $goalGroups = $payload->getGoalGroups(FALSE);
         
         if ( ! empty ($goalGroups) )
         {
-            $groups = $goalGroups->getGoalGroup();
+            $groups = $goalGroups->getGoalGroup(FALSE);
             
             if ( ! empty($groups) )
             {
@@ -462,7 +484,10 @@ class CarePlan extends BaseThing
         
         $payload = $this->getThingPayload();
         
-        $this->setThingName($this->name);
+        if ( ! empty($this->name)) {
+            $this->setThingName($this->name);
+        }
+        
         $this->status->setVocabularyInterface($this->healthvaultVocabulary);
         $this->status->updateToThingElement($payload->getStatus());
 
@@ -528,9 +553,9 @@ class CarePlan extends BaseThing
         // adjust accordingly
 
         $payload = $this->getThingPayload();
-        $goalGroupsWrapper = $payload->getGoalGroups();
+        $goalGroupsWrapper = $payload->getGoalGroups(FALSE);
         if ($goalGroupsWrapper) {
-            $goalGroups = $goalGroupsWrapper->getGoalGroup();
+            $goalGroups = $goalGroupsWrapper->getGoalGroup(FALSE);
         } else {
             $goalGroups = array();
         }
@@ -636,7 +661,7 @@ class CarePlan extends BaseThing
         } 
 
         // If the result would be an empty group, remove the wrapper completely.           
-        $goalGroupCheck = $payload->getGoalGroups();
+        $goalGroupCheck = $payload->getGoalGroups(FALSE);
         if (empty($goalGroupCheck)) {
             $payload->setGoalGroups(FALSE);
         }
@@ -648,7 +673,7 @@ class CarePlan extends BaseThing
         // We always have ReferenceIds in our tasks
         
         $payload = $this->getThingPayload();
-        $tasksWrapper = $payload->getTasks();
+        $tasksWrapper = $payload->getTasks(FALSE);
         if ( $tasksWrapper ) { 
             $thingTasks = $tasksWrapper->getTask();
         } else {
@@ -660,6 +685,10 @@ class CarePlan extends BaseThing
 
         if ( ! empty($this->tasks) && is_array($this->tasks)) {
             foreach ($this->tasks as $theTaskReference => $theTask) {
+                if ($theTask->isEmpty()) {
+                    continue;
+                }
+                
                 if (is_numeric($theTaskReference)) {
                     // Must be an index
                     

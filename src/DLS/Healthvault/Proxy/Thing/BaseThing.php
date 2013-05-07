@@ -440,6 +440,15 @@ abstract class BaseThing
         return DateTimeUtils::getThingApproxDateTime($hvDate);
     }
     
+    public function getElementValue($element)
+    {
+        if ( is_object($element) ) {
+            return $element->getValue();
+        } else {
+            return NULL;
+        }
+    }
+    
     /**
      * Gets a list of fields to display
      * 
@@ -491,10 +500,10 @@ abstract class BaseThing
         return NULL;
     }
     
-    public function addBlob(Blob $blob) {
+    public function addBlob(Blob $blob, $doUpload = TRUE) {
         $blobStore = $this->getBlobStore();
         
-        return $blobStore->addBlob($blob);
+        return $blobStore->addBlob($blob, FALSE, $doUpload);
     }
     
     public function removeBlob(Blob $blob) {
@@ -506,7 +515,11 @@ abstract class BaseThing
     public function getBlobs() {
         $blobStore = $this->getBlobStore();
         
-        return $blobStore; // This is an iterable
+        if ( ! $blobStore ) {
+            return $blobStore;
+        }
+        // else
+        return $blobStore->getIterator();
     }
     
     public function getExtensions() {
