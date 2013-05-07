@@ -1,6 +1,8 @@
 <?php
 namespace DLS\Healthvault\Blob;
 
+use DLS\Healthvault\Blob\Exceptions\NetworkIOException;
+
 use DLS\Healthvault\Platform\PlatformMethodFactory;
 use com\microsoft\wc\thing\Thing2;
 
@@ -250,7 +252,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $response = curl_exec($conn);
         
         if ($response === FALSE) {
-            throw new \NetworkIOException('Failed to PUT data into HealthVault');
+            throw new NetworkIOException('Failed to PUT data into HealthVault');
         }
         
         $sentBytes += $chunkLength;
