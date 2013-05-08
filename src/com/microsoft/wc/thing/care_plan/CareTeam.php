@@ -54,7 +54,7 @@ class CareTeam {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'person', 1));
 		}
 		foreach ($person as $entry) {
-			if (!($entry instanceof Person)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\types\Person )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'person', 'person'));
 			}
 		}

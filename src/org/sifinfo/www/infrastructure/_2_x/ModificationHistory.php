@@ -61,7 +61,7 @@ class ModificationHistory {
 		}
 		if ( ! empty($modified) ) {
 			foreach ($modified as $entry) {
-				if (!($entry instanceof Modified)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Modified )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'modified', 'Modified'));
 				}
 			}

@@ -61,7 +61,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'token', 1));
 		}
 		foreach ($token as $entry) {
-			if (!($entry instanceof Token)) {
+			if (!($entry instanceof \com\microsoft\wc\auth\Token )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'token', 'Token'));
 			}
 		}
@@ -97,7 +97,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'tokenAbsenceReason', 1));
 		}
 		foreach ($tokenAbsenceReason as $entry) {
-			if (!($entry instanceof AppAuthTokenAbsenceReason)) {
+			if (!($entry instanceof \com\microsoft\wc\methods\response\CreateAuthenticatedSessionToken\AppAuthTokenAbsenceReason )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'tokenAbsenceReason', 'AppAuthTokenAbsenceReason'));
 			}
 		}

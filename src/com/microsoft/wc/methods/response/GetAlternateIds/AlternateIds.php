@@ -61,7 +61,7 @@ class AlternateIds {
 		}
 		if ( ! empty($alternateId) ) {
 			foreach ($alternateId as $entry) {
-				if (!($entry instanceof String255nw)) {
+				if (!($entry instanceof \com\microsoft\wc\types\String255nw )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'alternateId', 'string255nw'));
 				}
 			}

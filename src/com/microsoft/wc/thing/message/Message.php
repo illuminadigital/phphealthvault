@@ -125,7 +125,7 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($headers) ) {
 			foreach ($headers as $entry) {
-				if (!($entry instanceof MessageHeaderItem)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\message\MessageHeaderItem )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'headers', 'message-header-item'));
 				}
 			}
@@ -284,7 +284,7 @@ class Message extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($attachments) ) {
 			foreach ($attachments as $entry) {
-				if (!($entry instanceof MessageAttachment)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\message\MessageAttachment )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'attachments', 'message-attachment'));
 				}
 			}

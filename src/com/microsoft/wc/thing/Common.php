@@ -167,7 +167,7 @@ class Common {
 		}
 		if ( ! empty($extension) ) {
 			foreach ($extension as $entry) {
-				if (!($entry instanceof Extension)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\Extension )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'extension', 'extension'));
 				}
 			}
@@ -212,7 +212,7 @@ class Common {
 		}
 		if ( ! empty($relatedThing) ) {
 			foreach ($relatedThing as $entry) {
-				if (!($entry instanceof RelatedThing)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\RelatedThing )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'relatedThing', 'RelatedThing'));
 				}
 			}

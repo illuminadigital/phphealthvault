@@ -53,7 +53,7 @@ class StudentRecordExchangeDataListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'studentRecordExchangeData', 1));
 		}
 		foreach ($studentRecordExchangeData as $entry) {
-			if (!($entry instanceof StudentRecordExchangeData)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\StudentRecordExchangeData )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'studentRecordExchangeData', 'StudentRecordExchangeData'));
 			}
 		}

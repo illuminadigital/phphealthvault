@@ -246,7 +246,7 @@ class PersonInfo {
 		}
 		if ( ! empty($record) ) {
 			foreach ($record as $entry) {
-				if (!($entry instanceof Record)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Record )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'record', 'Record'));
 				}
 			}

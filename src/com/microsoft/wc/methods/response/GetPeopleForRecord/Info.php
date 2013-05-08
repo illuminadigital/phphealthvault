@@ -61,7 +61,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'activePersonAuthorization', 1));
 		}
 		foreach ($activePersonAuthorization as $entry) {
-			if (!($entry instanceof ActivePersonAuthorizationNoIds)) {
+			if (!($entry instanceof \com\microsoft\wc\record\ActivePersonAuthorizationNoIds )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'activePersonAuthorization', 'ActivePersonAuthorizationNoIds'));
 			}
 		}
@@ -105,7 +105,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		}
 		if ( ! empty($nonActiveAuthorization) ) {
 			foreach ($nonActiveAuthorization as $entry) {
-				if (!($entry instanceof NonActiveAuthorizationNoIds)) {
+				if (!($entry instanceof \com\microsoft\wc\record\NonActiveAuthorizationNoIds )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'nonActiveAuthorization', 'NonActiveAuthorizationNoIds'));
 				}
 			}

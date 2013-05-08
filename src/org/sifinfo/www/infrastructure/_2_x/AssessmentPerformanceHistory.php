@@ -53,7 +53,7 @@ class AssessmentPerformanceHistory {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'assessment', 1));
 		}
 		foreach ($assessment as $entry) {
-			if (!($entry instanceof Assessment)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Assessment )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'assessment', 'Assessment'));
 			}
 		}

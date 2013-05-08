@@ -62,7 +62,7 @@ class SoftwareRequirementListType {
 		}
 		if ( ! empty($softwareRequirement) ) {
 			foreach ($softwareRequirement as $entry) {
-				if (!($entry instanceof SoftwareRequirement)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\SoftwareRequirement )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'softwareRequirement', 'SoftwareRequirement'));
 				}
 			}

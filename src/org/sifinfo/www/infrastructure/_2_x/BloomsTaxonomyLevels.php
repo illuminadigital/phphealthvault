@@ -61,7 +61,7 @@ class BloomsTaxonomyLevels {
 		}
 		if ( ! empty($bloomsTaxonomyLevel) ) {
 			foreach ($bloomsTaxonomyLevel as $entry) {
-				if (!($entry instanceof BloomsTaxonomyLevel)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\BloomsTaxonomyLevel )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'bloomsTaxonomyLevel', 'BloomsTaxonomyLevel'));
 				}
 			}

@@ -131,7 +131,7 @@ class MicrobiologyLabResults extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($labTests) ) {
 			foreach ($labTests as $entry) {
-				if (!($entry instanceof LabTestType)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\LabTestType )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'labTests', 'lab-test-type'));
 				}
 			}

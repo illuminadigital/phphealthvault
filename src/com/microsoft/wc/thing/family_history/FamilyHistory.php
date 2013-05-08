@@ -72,7 +72,7 @@ class FamilyHistory extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($condition) ) {
 			foreach ($condition as $entry) {
-				if (!($entry instanceof Condition)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\Condition )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'condition', 'condition'));
 				}
 			}

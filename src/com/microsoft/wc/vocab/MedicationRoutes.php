@@ -54,7 +54,7 @@ class MedicationRoutes {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'route', 1));
 		}
 		foreach ($route as $entry) {
-			if (!($entry instanceof CodableValue)) {
+			if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'route', 'codable-value'));
 			}
 		}

@@ -223,7 +223,7 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($awakening) ) {
 			foreach ($awakening as $entry) {
-				if (!($entry instanceof Awakening)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\sjam\Awakening )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'awakening', 'Awakening'));
 				}
 			}

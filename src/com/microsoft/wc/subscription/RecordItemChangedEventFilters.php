@@ -54,7 +54,7 @@ class RecordItemChangedEventFilters {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'filter', 1));
 		}
 		foreach ($filter as $entry) {
-			if (!($entry instanceof RecordItemChangedEventFilter)) {
+			if (!($entry instanceof \com\microsoft\wc\subscription\RecordItemChangedEventFilter )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'filter', 'RecordItemChangedEventFilter'));
 			}
 		}

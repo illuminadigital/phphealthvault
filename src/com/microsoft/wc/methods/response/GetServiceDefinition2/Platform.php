@@ -120,7 +120,7 @@ class Platform {
 		}
 		if ( ! empty($configuration) ) {
 			foreach ($configuration as $entry) {
-				if (!($entry instanceof ConfigurationEntry)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\ConfigurationEntry )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'configuration', 'ConfigurationEntry'));
 				}
 			}

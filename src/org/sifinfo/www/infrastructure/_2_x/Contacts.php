@@ -61,7 +61,7 @@ class Contacts {
 		}
 		if ( ! empty($contact) ) {
 			foreach ($contact as $entry) {
-				if (!($entry instanceof Contact)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Contact )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'contact', 'Contact'));
 				}
 			}

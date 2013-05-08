@@ -62,7 +62,7 @@ class UpdatedRecords {
 		}
 		if ( ! empty($updatedRecord) ) {
 			foreach ($updatedRecord as $entry) {
-				if (!($entry instanceof UpdatedRecord)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication2\UpdatedRecord )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedRecord', 'UpdatedRecord'));
 				}
 			}

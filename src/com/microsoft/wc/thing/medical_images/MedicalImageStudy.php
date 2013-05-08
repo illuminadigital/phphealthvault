@@ -183,7 +183,7 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'series', 1));
 		}
 		foreach ($series as $entry) {
-			if (!($entry instanceof MedicalImageStudySeries)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\medical_images\MedicalImageStudySeries )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'series', 'medical-image-study-series'));
 			}
 		}
@@ -287,7 +287,7 @@ class MedicalImageStudy extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($keyImages) ) {
 			foreach ($keyImages as $entry) {
-				if (!($entry instanceof MedicalImageStudySeriesImage)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\medical_images\MedicalImageStudySeriesImage )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'keyImages', 'medical-image-study-series-image'));
 				}
 			}

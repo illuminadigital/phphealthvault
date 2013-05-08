@@ -99,7 +99,7 @@ class LabTestResults extends \com\microsoft\wc\thing\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'labGroup', 1));
 		}
 		foreach ($labGroup as $entry) {
-			if (!($entry instanceof LabTestResultsGroupType)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\lab_test_results\LabTestResultsGroupType )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'labGroup', 'lab-test-results-group-type'));
 			}
 		}

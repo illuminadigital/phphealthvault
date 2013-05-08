@@ -304,7 +304,7 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($language) ) {
 			foreach ($language as $entry) {
-				if (!($entry instanceof Language)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\Language )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'language', 'language'));
 				}
 			}

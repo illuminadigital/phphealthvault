@@ -61,7 +61,7 @@ class FeesForUse {
 		}
 		if ( ! empty($feeForUse) ) {
 			foreach ($feeForUse as $entry) {
-				if (!($entry instanceof FeeForUse)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\FeeForUse )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'feeForUse', 'FeeForUse'));
 				}
 			}

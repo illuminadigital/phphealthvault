@@ -53,7 +53,7 @@ class TransformsType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'transform', 1));
 		}
 		foreach ($transform as $entry) {
-			if (!($entry instanceof Transform)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\Transform )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'transform', 'Transform'));
 			}
 		}

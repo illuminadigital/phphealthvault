@@ -53,7 +53,7 @@ class CultureSpecificExtensionItems {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'extensionItem', 1));
 		}
 		foreach ($extensionItem as $entry) {
-			if (!($entry instanceof CultureSpecificExtensionItem)) {
+			if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificExtensionItem )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'extensionItem', 'CultureSpecificExtensionItem'));
 			}
 		}

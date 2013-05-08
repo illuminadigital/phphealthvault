@@ -198,7 +198,7 @@ class App {
 		}
 		if ( ! empty($name) ) {
 			foreach ($name as $entry) {
-				if (!($entry instanceof CultureSpecificString255)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString255 )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'CultureSpecificString255'));
 				}
 			}
@@ -335,7 +335,7 @@ class App {
 		}
 		if ( ! empty($description) ) {
 			foreach ($description as $entry) {
-				if (!($entry instanceof CultureSpecificString)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'CultureSpecificString'));
 				}
 			}
@@ -380,7 +380,7 @@ class App {
 		}
 		if ( ! empty($authReason) ) {
 			foreach ($authReason as $entry) {
-				if (!($entry instanceof CultureSpecificString)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'authReason', 'CultureSpecificString'));
 				}
 			}

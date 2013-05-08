@@ -83,7 +83,7 @@ class CultureSpecificExtensionItem {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'value', 1));
 		}
 		foreach ($value as $entry) {
-			if (!($entry instanceof CultureSpecificString)) {
+			if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'CultureSpecificString'));
 			}
 		}

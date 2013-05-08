@@ -61,7 +61,7 @@ class CourseHistory {
 		}
 		if ( ! empty($term) ) {
 			foreach ($term as $entry) {
-				if (!($entry instanceof Term)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Term )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'term', 'Term'));
 				}
 			}

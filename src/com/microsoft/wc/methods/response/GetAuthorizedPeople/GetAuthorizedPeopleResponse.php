@@ -68,7 +68,7 @@ class GetAuthorizedPeopleResponse {
 		}
 		if ( ! empty($personInfo) ) {
 			foreach ($personInfo as $entry) {
-				if (!($entry instanceof PersonInfo)) {
+				if (!($entry instanceof \com\microsoft\wc\types\PersonInfo )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'personInfo', 'PersonInfo'));
 				}
 			}

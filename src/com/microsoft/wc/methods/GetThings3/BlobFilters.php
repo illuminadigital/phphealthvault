@@ -53,7 +53,7 @@ class BlobFilters {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'blobFilter', 1));
 		}
 		foreach ($blobFilter as $entry) {
-			if (!($entry instanceof BlobFilterSpec)) {
+			if (!($entry instanceof \com\microsoft\wc\methods\GetThings3\BlobFilterSpec )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'blobFilter', 'BlobFilterSpec'));
 			}
 		}

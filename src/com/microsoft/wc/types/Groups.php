@@ -54,7 +54,7 @@ class Groups {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'group', 1));
 		}
 		foreach ($group as $entry) {
-			if (!($entry instanceof Group)) {
+			if (!($entry instanceof \com\microsoft\wc\types\Group )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'group', 'Group'));
 			}
 		}

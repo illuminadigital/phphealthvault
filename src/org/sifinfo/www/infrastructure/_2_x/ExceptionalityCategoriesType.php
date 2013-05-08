@@ -53,7 +53,7 @@ class ExceptionalityCategoriesType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'exceptionalityCategory', 1));
 		}
 		foreach ($exceptionalityCategory as $entry) {
-			if (!($entry instanceof ExceptionalityCategory)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ExceptionalityCategory )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'exceptionalityCategory', 'ExceptionalityCategory'));
 			}
 		}

@@ -7,11 +7,10 @@ namespace hl7_org\v3;
  * @XmlNamespaces ({
  *	@XmlNamespace(url="urn:hl7-org:v3", prefix="")
  * })
- * @XmlEntity	(xml="BN")
+ * @XmlRootEntity	(xml="bn")
  */
-class BN extends \org\w3\www\_2001\XMLSchema\ANYNonNull {
+class Bn {
 	/**
-	 * The BooleanNonNull type is used where a Boolean cannot have a null value. A Boolean value can be either true or false.
 	 */
 
 	/**
@@ -22,7 +21,7 @@ class BN extends \org\w3\www\_2001\XMLSchema\ANYNonNull {
 
 
 	/**
-	 * @XmlAttribute	(type="string", name="value")
+	 * @XmlElement	(type="\hl7_org\v3\Bl", name="value")
 	 */
 	protected $value;
 
@@ -38,7 +37,7 @@ class BN extends \org\w3\www\_2001\XMLSchema\ANYNonNull {
 	}
 	
 	protected function createValue() {
-		return NULL;
+		return new \hl7_org\v3\BL();
 	}
 
 	public function setValue($value) {
@@ -46,7 +45,14 @@ class BN extends \org\w3\www\_2001\XMLSchema\ANYNonNull {
 	}
 
 	protected function validateValue($value) {
+		if ( ! $value instanceof \hl7_org\v3\BL ) {
+			$value = new \hl7_org\v3\BL ($value);
+		}
 	
 		return $value;
 	}
-} // end class BN
+
+	public function __toString() {
+		return (string) $this->value;
+	}
+} // end class Bn

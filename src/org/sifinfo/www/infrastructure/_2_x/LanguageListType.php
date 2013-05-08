@@ -53,7 +53,7 @@ class LanguageListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'language', 1));
 		}
 		foreach ($language as $entry) {
-			if (!($entry instanceof Language)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Language )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'language', 'Language'));
 			}
 		}

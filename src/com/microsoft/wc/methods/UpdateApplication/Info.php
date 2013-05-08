@@ -224,7 +224,7 @@ class Info extends \com\microsoft\wc\request\Info {
 		}
 		if ( ! empty($name) ) {
 			foreach ($name as $entry) {
-				if (!($entry instanceof CultureSpecificString255)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString255 )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'CultureSpecificString255'));
 				}
 			}
@@ -419,7 +419,7 @@ class Info extends \com\microsoft\wc\request\Info {
 		}
 		if ( ! empty($description) ) {
 			foreach ($description as $entry) {
-				if (!($entry instanceof CultureSpecificStringnz)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificStringnz )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'CultureSpecificStringnz'));
 				}
 			}
@@ -464,7 +464,7 @@ class Info extends \com\microsoft\wc\request\Info {
 		}
 		if ( ! empty($authReason) ) {
 			foreach ($authReason as $entry) {
-				if (!($entry instanceof CultureSpecificStringnz)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificStringnz )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'authReason', 'CultureSpecificStringnz'));
 				}
 			}

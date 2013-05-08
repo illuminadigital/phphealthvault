@@ -53,7 +53,7 @@ class MarkingPeriods {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'markingPeriod', 1));
 		}
 		foreach ($markingPeriod as $entry) {
-			if (!($entry instanceof MarkingPeriod)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\MarkingPeriod )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'markingPeriod', 'MarkingPeriod'));
 			}
 		}

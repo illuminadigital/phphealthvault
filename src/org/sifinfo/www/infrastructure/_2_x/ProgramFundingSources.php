@@ -53,7 +53,7 @@ class ProgramFundingSources {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'programFundingSource', 1));
 		}
 		foreach ($programFundingSource as $entry) {
-			if (!($entry instanceof ProgramFundingSource)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ProgramFundingSource )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'programFundingSource', 'ProgramFundingSource'));
 			}
 		}

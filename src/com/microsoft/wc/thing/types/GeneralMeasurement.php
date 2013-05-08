@@ -93,7 +93,7 @@ class GeneralMeasurement {
 		}
 		if ( ! empty($structured) ) {
 			foreach ($structured as $entry) {
-				if (!($entry instanceof StructuredMeasurement)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\StructuredMeasurement )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'structured', 'structured-measurement'));
 				}
 			}

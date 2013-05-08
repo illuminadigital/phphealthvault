@@ -93,7 +93,7 @@ class Info extends \com\microsoft\wc\request\Info {
 		}
 		if ( ! empty($rcptAddress) ) {
 			foreach ($rcptAddress as $entry) {
-				if (!($entry instanceof RcptAddress)) {
+				if (!($entry instanceof \com\microsoft\wc\types\RcptAddress )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'rcptAddress', 'RcptAddress'));
 				}
 			}
@@ -138,7 +138,7 @@ class Info extends \com\microsoft\wc\request\Info {
 		}
 		if ( ! empty($rcptPerson) ) {
 			foreach ($rcptPerson as $entry) {
-				if (!($entry instanceof RcptPerson)) {
+				if (!($entry instanceof \com\microsoft\wc\types\RcptPerson )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'rcptPerson', 'RcptPerson'));
 				}
 			}

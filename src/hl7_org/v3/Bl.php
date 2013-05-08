@@ -7,11 +7,10 @@ namespace hl7_org\v3;
  * @XmlNamespaces ({
  *	@XmlNamespace(url="urn:hl7-org:v3", prefix="")
  * })
- * @XmlEntity	(xml="BL")
+ * @XmlRootEntity	(xml="bl")
  */
-class BL extends \org\w3\www\_2001\XMLSchema\ANY {
+class Bl {
 	/**
-	 * The Boolean type stands for the values of two-valued logic. A Boolean value can be either true or false, or, as any other value may be NULL.
 	 */
 
 	/**
@@ -22,7 +21,7 @@ class BL extends \org\w3\www\_2001\XMLSchema\ANY {
 
 
 	/**
-	 * @XmlAttribute	(type="string", name="value")
+	 * @XmlValue	(type="boolean", name="bl")
 	 */
 	protected $value;
 
@@ -38,7 +37,7 @@ class BL extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 	
 	protected function createValue() {
-		return NULL;
+		return FALSE;
 	}
 
 	public function setValue($value) {
@@ -46,7 +45,18 @@ class BL extends \org\w3\www\_2001\XMLSchema\ANY {
 	}
 
 	protected function validateValue($value) {
+		if (!is_bool($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'boolean'));
+		}
+
+		if (!preg_match('/^true|false$/', $value)) {
+			throw new \Exception(sprintf('Supplied %s value did not match the right pattern.', 'bl', 'true|false'));
+		}
 	
 		return $value;
 	}
-} // end class BL
+
+	public function __toString() {
+		return (string) $this->value;
+	}
+} // end class Bl

@@ -61,7 +61,7 @@ class Columns {
 		}
 		if ( ! empty($column) ) {
 			foreach ($column as $entry) {
-				if (!($entry instanceof Column)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetThingType\Column )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'column', 'Column'));
 				}
 			}

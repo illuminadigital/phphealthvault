@@ -54,7 +54,7 @@ class ElectronicIdListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'electronicId', 1));
 		}
 		foreach ($electronicId as $entry) {
-			if (!($entry instanceof ElectronicId)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ElectronicId )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'electronicId', 'ElectronicId'));
 			}
 		}

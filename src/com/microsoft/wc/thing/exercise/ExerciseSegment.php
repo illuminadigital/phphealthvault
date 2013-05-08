@@ -229,7 +229,7 @@ class ExerciseSegment {
 		}
 		if ( ! empty($detail) ) {
 			foreach ($detail as $entry) {
-				if (!($entry instanceof StructuredNameValue)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\exercise\StructuredNameValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'detail', 'StructuredNameValue'));
 				}
 			}

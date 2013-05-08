@@ -53,7 +53,7 @@ class RaceListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'race', 1));
 		}
 		foreach ($race as $entry) {
-			if (!($entry instanceof Race)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Race )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'race', 'Race'));
 			}
 		}

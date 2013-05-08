@@ -53,7 +53,7 @@ class BlobSignatureInfo {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'item', 1));
 		}
 		foreach ($item as $entry) {
-			if (!($entry instanceof Item)) {
+			if (!($entry instanceof \com\microsoft\wc\methods\CreateConnectPackage2\Item )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'item', 'item'));
 			}
 		}

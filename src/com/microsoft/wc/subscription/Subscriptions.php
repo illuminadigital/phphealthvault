@@ -62,7 +62,7 @@ class Subscriptions {
 		}
 		if ( ! empty($subscription) ) {
 			foreach ($subscription as $entry) {
-				if (!($entry instanceof Subscription)) {
+				if (!($entry instanceof \com\microsoft\wc\subscription\Subscription )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'subscription', 'Subscription'));
 				}
 			}

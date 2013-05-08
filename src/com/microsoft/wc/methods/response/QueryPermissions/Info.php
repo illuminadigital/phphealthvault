@@ -63,7 +63,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		}
 		if ( ! empty($thingTypePermission) ) {
 			foreach ($thingTypePermission as $entry) {
-				if (!($entry instanceof ThingTypePermission)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\QueryPermissions\ThingTypePermission )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'thingTypePermission', 'ThingTypePermission'));
 				}
 			}

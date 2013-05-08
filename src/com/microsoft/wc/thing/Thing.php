@@ -334,7 +334,7 @@ class Thing {
 		}
 		if ( ! empty($dataXml) ) {
 			foreach ($dataXml as $entry) {
-				if (!($entry instanceof DataXml)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\DataXml )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'dataXml', 'DataXml'));
 				}
 			}

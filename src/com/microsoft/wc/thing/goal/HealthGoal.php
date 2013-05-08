@@ -274,7 +274,7 @@ class HealthGoal extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($goalAdditionalRanges) ) {
 			foreach ($goalAdditionalRanges as $entry) {
-				if (!($entry instanceof GoalRange)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\goal\GoalRange )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'goalAdditionalRanges', 'goal-range'));
 				}
 			}

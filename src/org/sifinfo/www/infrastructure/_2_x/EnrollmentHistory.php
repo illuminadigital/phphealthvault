@@ -61,7 +61,7 @@ class EnrollmentHistory {
 		}
 		if ( ! empty($studentSchoolEnrollmentData) ) {
 			foreach ($studentSchoolEnrollmentData as $entry) {
-				if (!($entry instanceof StudentSchoolEnrollmentData)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\StudentSchoolEnrollmentData )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'studentSchoolEnrollmentData', 'StudentSchoolEnrollmentData'));
 				}
 			}

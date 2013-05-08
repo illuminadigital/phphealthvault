@@ -54,7 +54,7 @@ class OtherIdListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'otherId', 1));
 		}
 		foreach ($otherId as $entry) {
-			if (!($entry instanceof OtherId)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\OtherId )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'otherId', 'OtherId'));
 			}
 		}

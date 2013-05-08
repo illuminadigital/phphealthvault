@@ -53,7 +53,7 @@ class MarkingSystems {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'markValueInfoData', 1));
 		}
 		foreach ($markValueInfoData as $entry) {
-			if (!($entry instanceof MarkValueInfoData)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\MarkValueInfoData )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'markValueInfoData', 'MarkValueInfoData'));
 			}
 		}

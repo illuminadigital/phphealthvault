@@ -59,7 +59,7 @@ class StatementInfo {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'statement', 1));
 		}
 		foreach ($statement as $entry) {
-			if (!($entry instanceof CultureSpecificStatement)) {
+			if (!($entry instanceof \com\microsoft\wc\application\CultureSpecificStatement )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'statement', 'CultureSpecificStatement'));
 			}
 		}

@@ -68,7 +68,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		}
 		if ( ! empty($vocabularyKey) ) {
 			foreach ($vocabularyKey as $entry) {
-				if (!($entry instanceof VocabularyKeyInfo)) {
+				if (!($entry instanceof \com\microsoft\wc\vocab\VocabularyKeyInfo )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyKey', 'VocabularyKeyInfo'));
 				}
 			}

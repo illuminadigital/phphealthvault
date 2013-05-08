@@ -62,7 +62,7 @@ class SIFExtendedElementsType {
 		}
 		if ( ! empty($sifExtendedElement) ) {
 			foreach ($sifExtendedElement as $entry) {
-				if (!($entry instanceof SIFExtendedElement)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\SIFExtendedElement )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'sifExtendedElement', 'SIF_ExtendedElement'));
 				}
 			}

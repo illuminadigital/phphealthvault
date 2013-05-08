@@ -120,7 +120,7 @@ class Shell {
 		}
 		if ( ! empty($redirectToken) ) {
 			foreach ($redirectToken as $entry) {
-				if (!($entry instanceof ShellRedirectToken)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\ShellRedirectToken )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'redirectToken', 'ShellRedirectToken'));
 				}
 			}

@@ -53,7 +53,7 @@ class IdentificationInfoListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'identificationInfo', 1));
 		}
 		foreach ($identificationInfo as $entry) {
-			if (!($entry instanceof IdentificationInfo)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\IdentificationInfo )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'identificationInfo', 'IdentificationInfo'));
 			}
 		}

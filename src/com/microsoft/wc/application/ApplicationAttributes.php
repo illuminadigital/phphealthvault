@@ -56,7 +56,7 @@ class ApplicationAttributes {
 			throw new \Exception(sprintf('Supplied %s array has more than the required number (%d) of entries.', 'appAttribute', 20));
 		}
 		foreach ($appAttribute as $entry) {
-			if (!($entry instanceof Stringnz)) {
+			if (!($entry instanceof \com\microsoft\wc\types\Stringnz )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'appAttribute', 'stringnz'));
 			}
 		}

@@ -62,7 +62,7 @@ class EffectivePermissions {
 			throw new \Exception(sprintf('Supplied %s array has more than the required number (%d) of entries.', 'permission', 5));
 		}
 		foreach ($permission as $entry) {
-			if (!($entry instanceof Permission)) {
+			if (!($entry instanceof \com\microsoft\wc\types\Permission )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'permission', 'Permission'));
 			}
 		}

@@ -55,7 +55,7 @@ class Info extends \com\microsoft\wc\request\Info {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'thingId', 1));
 		}
 		foreach ($thingId as $entry) {
-			if (!($entry instanceof ThingKey)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\ThingKey )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'thingId', 'ThingKey'));
 			}
 		}

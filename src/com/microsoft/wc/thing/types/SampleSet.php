@@ -150,7 +150,7 @@ class SampleSet {
 		}
 		if ( ! empty($sample) ) {
 			foreach ($sample as $entry) {
-				if (!($entry instanceof Sample)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\Sample )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'sample', 'sample'));
 				}
 			}

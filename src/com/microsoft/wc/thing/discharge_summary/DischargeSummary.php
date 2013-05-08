@@ -531,7 +531,7 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($additionalDiagnosis) ) {
 			foreach ($additionalDiagnosis as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'additionalDiagnosis', 'codable-value'));
 				}
 			}
@@ -636,7 +636,7 @@ class DischargeSummary extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($additionalProcedure) ) {
 			foreach ($additionalProcedure as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'additionalProcedure', 'codable-value'));
 				}
 			}

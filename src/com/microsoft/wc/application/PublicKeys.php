@@ -53,7 +53,7 @@ class PublicKeys {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'publicKey', 1));
 		}
 		foreach ($publicKey as $entry) {
-			if (!($entry instanceof PublicKey)) {
+			if (!($entry instanceof \com\microsoft\wc\application\PublicKey )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'publicKey', 'PublicKey'));
 			}
 		}

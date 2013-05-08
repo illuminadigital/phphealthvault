@@ -54,7 +54,7 @@ class OtherCodeListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'otherCode', 1));
 		}
 		foreach ($otherCode as $entry) {
-			if (!($entry instanceof OtherCode)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\OtherCode )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'otherCode', 'OtherCode'));
 			}
 		}

@@ -131,7 +131,7 @@ class DiabeticProfile extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($targetGlucoseZoneGroup) ) {
 			foreach ($targetGlucoseZoneGroup as $entry) {
-				if (!($entry instanceof TargetGlucoseZoneGroup)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\diabetic_profile\TargetGlucoseZoneGroup )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'targetGlucoseZoneGroup', 'TargetGlucoseZoneGroup'));
 				}
 			}

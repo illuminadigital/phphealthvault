@@ -53,7 +53,7 @@ class AdditionalGraduationRequirementPerformanceHistory {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'requirement', 1));
 		}
 		foreach ($requirement as $entry) {
-			if (!($entry instanceof Requirement)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Requirement )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'requirement', 'Requirement'));
 			}
 		}

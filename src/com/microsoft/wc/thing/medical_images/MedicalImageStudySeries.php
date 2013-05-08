@@ -155,7 +155,7 @@ class MedicalImageStudySeries {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'images', 1));
 		}
 		foreach ($images as $entry) {
-			if (!($entry instanceof MedicalImageStudySeriesImage)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\medical_images\MedicalImageStudySeriesImage )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'images', 'medical-image-study-series-image'));
 			}
 		}

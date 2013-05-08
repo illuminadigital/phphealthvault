@@ -161,7 +161,7 @@ class VocabularyCodeSet {
 		}
 		if ( ! empty($codeItem) ) {
 			foreach ($codeItem as $entry) {
-				if (!($entry instanceof VocabularyCodeItem)) {
+				if (!($entry instanceof \com\microsoft\wc\vocab\VocabularyCodeItem )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'codeItem', 'VocabularyCodeItem'));
 				}
 			}

@@ -61,7 +61,7 @@ class Rules {
 		}
 		if ( ! empty($rule) ) {
 			foreach ($rule as $entry) {
-				if (!($entry instanceof Rule)) {
+				if (!($entry instanceof \com\microsoft\wc\auth\Rule )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'rule', 'Rule'));
 				}
 			}

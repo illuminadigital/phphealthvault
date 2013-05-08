@@ -63,7 +63,7 @@ class Info extends \com\microsoft\wc\request\Info {
 		}
 		if ( ! empty($applicationId) ) {
 			foreach ($applicationId as $entry) {
-				if (!($entry instanceof Guid)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Guid )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'applicationId', 'guid'));
 				}
 			}

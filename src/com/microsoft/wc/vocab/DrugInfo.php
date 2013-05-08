@@ -67,7 +67,7 @@ class DrugInfo {
 		}
 		if ( ! empty($strength) ) {
 			foreach ($strength as $entry) {
-				if (!($entry instanceof MedicationStrength)) {
+				if (!($entry instanceof \com\microsoft\wc\vocab\MedicationStrength )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'strength', 'medication-strength'));
 				}
 			}

@@ -61,7 +61,7 @@ class AcademicPerformanceHistory {
 		}
 		if ( ! empty($termPerformance) ) {
 			foreach ($termPerformance as $entry) {
-				if (!($entry instanceof TermPerformance)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\TermPerformance )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'termPerformance', 'TermPerformance'));
 				}
 			}

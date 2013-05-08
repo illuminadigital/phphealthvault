@@ -92,7 +92,7 @@ class CodableValue {
 		}
 		if ( ! empty($code) ) {
 			foreach ($code as $entry) {
-				if (!($entry instanceof CodedValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodedValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'code', 'coded-value'));
 				}
 			}

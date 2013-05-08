@@ -62,7 +62,7 @@ class VocabularyMapping {
 		}
 		if ( ! empty($vocabularyMappingItem) ) {
 			foreach ($vocabularyMappingItem as $entry) {
-				if (!($entry instanceof VocabularyMappingItem)) {
+				if (!($entry instanceof \com\microsoft\wc\vocab\VocabularyMappingItem )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyMappingItem', 'vocabulary-mapping-item'));
 				}
 			}
