@@ -40,6 +40,21 @@ class GetThingsMethod extends PlatformMethod
 		
 		return $theGroup;
     }
+
+    public function setXPathFilter($xpath, $newGroup = FALSE) {
+        if ( $newGroup ) {
+            $theGroup = $this->addGroup($this->createGroup());
+        } else {
+            $theGroup = $this->getLastGroup();
+        }
+
+        $filterSpec = new ThingFilterSpec();
+        $filterSpec->setXpath($xpath);
+
+        $theGroup->addFilter($filterSpec);
+
+        return $theGroup;
+    }
     
     public function addBasicIdFilter($id) {
         $lastGroup = $this->getLastGroup();
