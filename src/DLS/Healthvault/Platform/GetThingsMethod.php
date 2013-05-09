@@ -41,6 +41,19 @@ class GetThingsMethod extends PlatformMethod
 		return $theGroup;
     }
 
+    public function addThingKey($thingKey, $newGroup = FALSE) {
+
+        if ( $newGroup ) {
+            $theGroup = $this->addGroup($this->createGroup());
+        } else {
+            $theGroup = $this->getLastGroup();
+        }
+
+        $theGroup->addKey($thingKey);
+
+    }
+
+
     public function setXPathFilter($xpath, $newGroup = FALSE) {
         if ( $newGroup ) {
             $theGroup = $this->addGroup($this->createGroup());
