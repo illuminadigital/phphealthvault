@@ -75,7 +75,7 @@ class ThingFormatSpec {
 		}
 		if ( ! empty($section) ) {
 			foreach ($section as $entry) {
-				if (!($entry instanceof ThingSectionSpec)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\GetThings\ThingSectionSpec )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'section', 'ThingSectionSpec'));
 				}
 			}
@@ -163,7 +163,7 @@ class ThingFormatSpec {
 		}
 		if ( ! empty($typeVersionFormat) ) {
 			foreach ($typeVersionFormat as $entry) {
-				if (!($entry instanceof Guid)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Guid )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'typeVersionFormat', 'guid'));
 				}
 			}

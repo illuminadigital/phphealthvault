@@ -76,7 +76,7 @@ class Contact {
 		}
 		if ( ! empty($address) ) {
 			foreach ($address as $entry) {
-				if (!($entry instanceof Address)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\Address )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'address', 'address'));
 				}
 			}
@@ -121,7 +121,7 @@ class Contact {
 		}
 		if ( ! empty($phone) ) {
 			foreach ($phone as $entry) {
-				if (!($entry instanceof Phone)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\Phone )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'phone', 'phone'));
 				}
 			}
@@ -166,7 +166,7 @@ class Contact {
 		}
 		if ( ! empty($email) ) {
 			foreach ($email as $entry) {
-				if (!($entry instanceof Email)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\Email )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'email', 'email'));
 				}
 			}

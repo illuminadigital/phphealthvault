@@ -61,7 +61,7 @@ class RightsElements {
 		}
 		if ( ! empty($rightsElement) ) {
 			foreach ($rightsElement as $entry) {
-				if (!($entry instanceof RightsElement)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\RightsElement )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'rightsElement', 'RightsElement'));
 				}
 			}

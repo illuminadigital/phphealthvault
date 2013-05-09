@@ -61,7 +61,7 @@ class InstructionalStrategies {
 		}
 		if ( ! empty($instructionalStrategy) ) {
 			foreach ($instructionalStrategy as $entry) {
-				if (!($entry instanceof InstructionalStrategy)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\InstructionalStrategy )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'instructionalStrategy', 'InstructionalStrategy'));
 				}
 			}

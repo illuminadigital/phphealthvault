@@ -117,7 +117,7 @@ class SignedInfoType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'reference', 1));
 		}
 		foreach ($reference as $entry) {
-			if (!($entry instanceof Reference)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\Reference )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'reference', 'Reference'));
 			}
 		}

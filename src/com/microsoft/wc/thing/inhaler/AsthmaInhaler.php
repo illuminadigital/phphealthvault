@@ -436,7 +436,7 @@ class AsthmaInhaler extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($alert) ) {
 			foreach ($alert as $entry) {
-				if (!($entry instanceof Alert)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\inhaler\Alert )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'alert', 'alert'));
 				}
 			}

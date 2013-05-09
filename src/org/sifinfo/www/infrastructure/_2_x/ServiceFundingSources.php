@@ -53,7 +53,7 @@ class ServiceFundingSources {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'serviceFundingSource', 1));
 		}
 		foreach ($serviceFundingSource as $entry) {
-			if (!($entry instanceof ServiceFundingSource)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ServiceFundingSource )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'serviceFundingSource', 'ServiceFundingSource'));
 			}
 		}

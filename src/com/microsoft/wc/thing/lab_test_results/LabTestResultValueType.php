@@ -98,7 +98,7 @@ class LabTestResultValueType {
 		}
 		if ( ! empty($ranges) ) {
 			foreach ($ranges as $entry) {
-				if (!($entry instanceof TestResultRange)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\lab_test_results\TestResultRange )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'ranges', 'test-result-range'));
 				}
 			}
@@ -143,7 +143,7 @@ class LabTestResultValueType {
 		}
 		if ( ! empty($flag) ) {
 			foreach ($flag as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'flag', 'codable-value'));
 				}
 			}

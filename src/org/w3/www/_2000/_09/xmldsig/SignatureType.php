@@ -161,7 +161,7 @@ class SignatureType {
 		}
 		if ( ! empty($object) ) {
 			foreach ($object as $entry) {
-				if (!($entry instanceof Object)) {
+				if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\Object )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'object', 'Object'));
 				}
 			}

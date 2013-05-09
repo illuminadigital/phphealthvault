@@ -248,7 +248,7 @@ class Directive extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($prohibitedInterventions) ) {
 			foreach ($prohibitedInterventions as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'prohibitedInterventions', 'codable-value'));
 				}
 			}

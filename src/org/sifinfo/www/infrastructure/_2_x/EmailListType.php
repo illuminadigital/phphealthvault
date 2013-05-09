@@ -54,7 +54,7 @@ class EmailListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'email', 1));
 		}
 		foreach ($email as $entry) {
-			if (!($entry instanceof Email)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Email )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'email', 'Email'));
 			}
 		}

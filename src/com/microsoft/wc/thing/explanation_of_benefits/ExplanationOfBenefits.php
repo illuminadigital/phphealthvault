@@ -419,7 +419,7 @@ class ExplanationOfBenefits extends \com\microsoft\wc\thing\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'services', 1));
 		}
 		foreach ($services as $entry) {
-			if (!($entry instanceof Service)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\explanation_of_benefits\Service )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'services', 'Service'));
 			}
 		}

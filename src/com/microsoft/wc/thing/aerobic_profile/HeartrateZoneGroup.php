@@ -69,7 +69,7 @@ class HeartrateZoneGroup {
 		}
 		if ( ! empty($heartrateZone) ) {
 			foreach ($heartrateZone as $entry) {
-				if (!($entry instanceof HeartrateZone)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\aerobic_profile\HeartrateZone )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'heartrateZone', 'HeartrateZone'));
 				}
 			}

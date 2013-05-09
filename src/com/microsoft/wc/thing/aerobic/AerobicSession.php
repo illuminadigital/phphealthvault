@@ -160,7 +160,7 @@ class AerobicSession extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($lapSession) ) {
 			foreach ($lapSession as $entry) {
-				if (!($entry instanceof AerobicLapSession)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\AerobicLapSession )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'lapSession', 'aerobic-lap-session'));
 				}
 			}

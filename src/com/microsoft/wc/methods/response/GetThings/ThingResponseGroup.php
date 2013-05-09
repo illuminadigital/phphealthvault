@@ -81,7 +81,7 @@ class ThingResponseGroup {
 		}
 		if ( ! empty($thing) ) {
 			foreach ($thing as $entry) {
-				if (!($entry instanceof Thing)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\Thing )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'thing', 'Thing'));
 				}
 			}
@@ -126,7 +126,7 @@ class ThingResponseGroup {
 		}
 		if ( ! empty($unprocessedThingKeyInfo) ) {
 			foreach ($unprocessedThingKeyInfo as $entry) {
-				if (!($entry instanceof UnprocessedThingKeyInfo)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\UnprocessedThingKeyInfo )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'unprocessedThingKeyInfo', 'UnprocessedThingKeyInfo'));
 				}
 			}

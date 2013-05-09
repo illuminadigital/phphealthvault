@@ -168,7 +168,7 @@ class LabTestResultsGroupType {
 		}
 		if ( ! empty($subGroups) ) {
 			foreach ($subGroups as $entry) {
-				if (!($entry instanceof LabTestResultsGroupType)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\lab_test_results\LabTestResultsGroupType )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'subGroups', 'lab-test-results-group-type'));
 				}
 			}
@@ -213,7 +213,7 @@ class LabTestResultsGroupType {
 		}
 		if ( ! empty($results) ) {
 			foreach ($results as $entry) {
-				if (!($entry instanceof LabTestResultType)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\lab_test_results\LabTestResultType )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'results', 'lab-test-result-type'));
 				}
 			}

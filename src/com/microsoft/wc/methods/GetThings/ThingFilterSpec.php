@@ -134,7 +134,7 @@ class ThingFilterSpec {
 		}
 		if ( ! empty($typeId) ) {
 			foreach ($typeId as $entry) {
-				if (!($entry instanceof Guid)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Guid )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'typeId', 'guid'));
 				}
 			}
@@ -182,7 +182,7 @@ class ThingFilterSpec {
 		}
 		if ( ! empty($thingState) ) {
 			foreach ($thingState as $entry) {
-				if (!($entry instanceof ThingState)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\ThingState )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'thingState', 'ThingState'));
 				}
 			}

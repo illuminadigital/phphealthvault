@@ -53,7 +53,7 @@ class ActivityAwardHistory {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'activityAward', 1));
 		}
 		foreach ($activityAward as $entry) {
-			if (!($entry instanceof ActivityAward)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ActivityAward )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'activityAward', 'ActivityAward'));
 			}
 		}

@@ -54,7 +54,7 @@ class AddressListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'address', 1));
 		}
 		foreach ($address as $entry) {
-			if (!($entry instanceof Address)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Address )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'address', 'Address'));
 			}
 		}

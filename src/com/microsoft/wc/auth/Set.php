@@ -67,7 +67,7 @@ class Set {
 		}
 		if ( ! empty($dateRange) ) {
 			foreach ($dateRange as $entry) {
-				if (!($entry instanceof DateRange)) {
+				if (!($entry instanceof \com\microsoft\wc\types\DateRange )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'dateRange', 'DateRange'));
 				}
 			}
@@ -112,7 +112,7 @@ class Set {
 		}
 		if ( ! empty($typeId) ) {
 			foreach ($typeId as $entry) {
-				if (!($entry instanceof Guid)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Guid )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'typeId', 'guid'));
 				}
 			}

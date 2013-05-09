@@ -119,7 +119,7 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($caffeine) ) {
 			foreach ($caffeine as $entry) {
-				if (!($entry instanceof Time)) {
+				if (!($entry instanceof \com\microsoft\wc\dates\Time )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'caffeine', 'time'));
 				}
 			}
@@ -164,7 +164,7 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($alcohol) ) {
 			foreach ($alcohol as $entry) {
-				if (!($entry instanceof Time)) {
+				if (!($entry instanceof \com\microsoft\wc\dates\Time )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'alcohol', 'time'));
 				}
 			}
@@ -209,7 +209,7 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($nap) ) {
 			foreach ($nap as $entry) {
-				if (!($entry instanceof Activity)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\sjpm\Activity )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'nap', 'Activity'));
 				}
 			}
@@ -254,7 +254,7 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($exercise) ) {
 			foreach ($exercise as $entry) {
-				if (!($entry instanceof Activity)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\sjpm\Activity )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'exercise', 'Activity'));
 				}
 			}

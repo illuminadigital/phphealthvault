@@ -319,7 +319,7 @@ class CarePlanGoal {
 		}
 		if ( ! empty($goalAdditionalRanges) ) {
 			foreach ($goalAdditionalRanges as $entry) {
-				if (!($entry instanceof GoalRange)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\care_plan\GoalRange )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'goalAdditionalRanges', 'goal-range'));
 				}
 			}

@@ -244,7 +244,7 @@ class AppWithLogos {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 1));
 		}
 		foreach ($name as $entry) {
-			if (!($entry instanceof CultureSpecificString255)) {
+			if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString255 )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'CultureSpecificString255'));
 			}
 		}
@@ -380,7 +380,7 @@ class AppWithLogos {
 		}
 		if ( ! empty($description) ) {
 			foreach ($description as $entry) {
-				if (!($entry instanceof CultureSpecificString)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'description', 'CultureSpecificString'));
 				}
 			}
@@ -425,7 +425,7 @@ class AppWithLogos {
 		}
 		if ( ! empty($authReason) ) {
 			foreach ($authReason as $entry) {
-				if (!($entry instanceof CultureSpecificString)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'authReason', 'CultureSpecificString'));
 				}
 			}

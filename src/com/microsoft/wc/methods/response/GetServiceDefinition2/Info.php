@@ -119,7 +119,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'xmlMethod', 1));
 		}
 		foreach ($xmlMethod as $entry) {
-			if (!($entry instanceof XmlMethod)) {
+			if (!($entry instanceof \com\microsoft\wc\methods\response\GetServiceDefinition2\XmlMethod )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'xmlMethod', 'XmlMethod'));
 			}
 		}

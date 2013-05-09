@@ -61,7 +61,7 @@ class SpanGaps {
 		}
 		if ( ! empty($spanGap) ) {
 			foreach ($spanGap as $entry) {
-				if (!($entry instanceof SpanGap)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\SpanGap )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'spanGap', 'SpanGap'));
 				}
 			}

@@ -200,7 +200,7 @@ class Delivery {
 		}
 		if ( ! empty($complications) ) {
 			foreach ($complications as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'complications', 'codable-value'));
 				}
 			}
@@ -245,7 +245,7 @@ class Delivery {
 		}
 		if ( ! empty($anesthesia) ) {
 			foreach ($anesthesia as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'anesthesia', 'codable-value'));
 				}
 			}

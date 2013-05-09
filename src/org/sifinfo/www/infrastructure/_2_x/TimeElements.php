@@ -61,7 +61,7 @@ class TimeElements {
 		}
 		if ( ! empty($timeElement) ) {
 			foreach ($timeElement as $entry) {
-				if (!($entry instanceof TimeElement)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\TimeElement )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'timeElement', 'TimeElement'));
 				}
 			}

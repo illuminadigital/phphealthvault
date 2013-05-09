@@ -53,7 +53,7 @@ class Letter {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'validMark', 1));
 		}
 		foreach ($validMark as $entry) {
-			if (!($entry instanceof ValidMark)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ValidMark )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'validMark', 'ValidMark'));
 			}
 		}

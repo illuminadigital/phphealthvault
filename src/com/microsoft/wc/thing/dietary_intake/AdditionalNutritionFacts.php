@@ -53,7 +53,7 @@ class AdditionalNutritionFacts {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'nutritionFact', 1));
 		}
 		foreach ($nutritionFact as $entry) {
-			if (!($entry instanceof NutritionFact)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\dietary_intake\NutritionFact )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'nutritionFact', 'nutrition-fact'));
 			}
 		}

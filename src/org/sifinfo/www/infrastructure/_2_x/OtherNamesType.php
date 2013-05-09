@@ -54,7 +54,7 @@ class OtherNamesType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'name', 1));
 		}
 		foreach ($name as $entry) {
-			if (!($entry instanceof Name)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Name )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'Name'));
 			}
 		}

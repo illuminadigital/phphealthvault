@@ -62,7 +62,7 @@ class VocabularySynonyms {
 		}
 		if ( ! empty($vocabularySynonym) ) {
 			foreach ($vocabularySynonym as $entry) {
-				if (!($entry instanceof VocabularySynonym)) {
+				if (!($entry instanceof \com\microsoft\wc\vocab\VocabularySynonym )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularySynonym', 'vocabulary-synonym'));
 				}
 			}

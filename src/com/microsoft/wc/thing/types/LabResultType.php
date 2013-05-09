@@ -241,7 +241,7 @@ class LabResultType {
 		}
 		if ( ! empty($flag) ) {
 			foreach ($flag as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'flag', 'codable-value'));
 				}
 			}

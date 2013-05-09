@@ -239,7 +239,7 @@ class AerobicProfile extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($heartrateZoneGroup) ) {
 			foreach ($heartrateZoneGroup as $entry) {
-				if (!($entry instanceof HeartrateZoneGroup)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\aerobic_profile\HeartrateZoneGroup )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'heartrateZoneGroup', 'HeartrateZoneGroup'));
 				}
 			}

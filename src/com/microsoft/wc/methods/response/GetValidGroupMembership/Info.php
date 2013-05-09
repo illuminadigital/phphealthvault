@@ -62,7 +62,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		}
 		if ( ! empty($thing) ) {
 			foreach ($thing as $entry) {
-				if (!($entry instanceof Thing)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\Thing )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'thing', 'Thing'));
 				}
 			}

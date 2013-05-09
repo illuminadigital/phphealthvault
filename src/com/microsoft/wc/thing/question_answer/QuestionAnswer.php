@@ -129,7 +129,7 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($answerChoice) ) {
 			foreach ($answerChoice as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'answerChoice', 'codable-value'));
 				}
 			}
@@ -174,7 +174,7 @@ class QuestionAnswer extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($answer) ) {
 			foreach ($answer as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'answer', 'codable-value'));
 				}
 			}

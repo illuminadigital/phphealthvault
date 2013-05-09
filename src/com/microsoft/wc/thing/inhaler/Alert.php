@@ -64,7 +64,7 @@ class Alert {
 			throw new \Exception(sprintf('Supplied %s array has more than the required number (%d) of entries.', 'dow', 7));
 		}
 		foreach ($dow as $entry) {
-			if (!($entry instanceof Dow)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\types\Dow )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'dow', 'dow'));
 			}
 		}
@@ -100,7 +100,7 @@ class Alert {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'time', 1));
 		}
 		foreach ($time as $entry) {
-			if (!($entry instanceof Time)) {
+			if (!($entry instanceof \com\microsoft\wc\dates\Time )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'time', 'time'));
 			}
 		}

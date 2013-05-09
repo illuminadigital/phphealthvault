@@ -145,7 +145,7 @@ class HealthAssessment extends \com\microsoft\wc\thing\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'result', 1));
 		}
 		foreach ($result as $entry) {
-			if (!($entry instanceof Assessment)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\health_assessment\Assessment )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'result', 'Assessment'));
 			}
 		}

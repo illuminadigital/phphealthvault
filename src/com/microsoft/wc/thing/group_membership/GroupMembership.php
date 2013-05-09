@@ -71,7 +71,7 @@ class GroupMembership extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($membership) ) {
 			foreach ($membership as $entry) {
-				if (!($entry instanceof GroupMembershipType)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\GroupMembershipType )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'membership', 'group-membership-type'));
 				}
 			}

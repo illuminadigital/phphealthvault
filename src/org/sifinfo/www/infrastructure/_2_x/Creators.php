@@ -53,7 +53,7 @@ class Creators {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'creator', 1));
 		}
 		foreach ($creator as $entry) {
-			if (!($entry instanceof Creator)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Creator )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'creator', 'Creator'));
 			}
 		}

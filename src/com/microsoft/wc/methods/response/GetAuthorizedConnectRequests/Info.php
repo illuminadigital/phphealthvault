@@ -91,7 +91,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		}
 		if ( ! empty($connectRequest) ) {
 			foreach ($connectRequest as $entry) {
-				if (!($entry instanceof ConnectRequest)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetAuthorizedConnectRequests\ConnectRequest )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'connectRequest', 'ConnectRequest'));
 				}
 			}

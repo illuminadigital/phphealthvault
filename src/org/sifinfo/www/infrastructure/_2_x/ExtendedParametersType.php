@@ -62,7 +62,7 @@ class ExtendedParametersType {
 		}
 		if ( ! empty($extendedParameter) ) {
 			foreach ($extendedParameter as $entry) {
-				if (!($entry instanceof ExtendedParameter)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ExtendedParameter )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'extendedParameter', 'ExtendedParameter'));
 				}
 			}

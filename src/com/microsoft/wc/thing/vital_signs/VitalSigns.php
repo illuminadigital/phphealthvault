@@ -107,7 +107,7 @@ class VitalSigns extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($vitalSignsResults) ) {
 			foreach ($vitalSignsResults as $entry) {
-				if (!($entry instanceof VitalSignResultType)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\vital_signs\VitalSignResultType )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'vitalSignsResults', 'vital-sign-result-type'));
 				}
 			}

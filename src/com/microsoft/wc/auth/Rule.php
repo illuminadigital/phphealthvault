@@ -103,7 +103,7 @@ class Rule {
 		}
 		if ( ! empty($reason) ) {
 			foreach ($reason as $entry) {
-				if (!($entry instanceof CultureSpecificString1024)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString1024 )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'reason', 'CultureSpecificString1024'));
 				}
 			}
@@ -177,7 +177,7 @@ class Rule {
 			throw new \Exception(sprintf('Supplied %s array has more than the required number (%d) of entries.', 'permission', 5));
 		}
 		foreach ($permission as $entry) {
-			if (!($entry instanceof Permission)) {
+			if (!($entry instanceof \com\microsoft\wc\types\Permission )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'permission', 'Permission'));
 			}
 		}
@@ -221,7 +221,7 @@ class Rule {
 		}
 		if ( ! empty($targetSet) ) {
 			foreach ($targetSet as $entry) {
-				if (!($entry instanceof Set)) {
+				if (!($entry instanceof \com\microsoft\wc\auth\Set )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'targetSet', 'Set'));
 				}
 			}
@@ -266,7 +266,7 @@ class Rule {
 		}
 		if ( ! empty($exceptionSet) ) {
 			foreach ($exceptionSet as $entry) {
-				if (!($entry instanceof Set)) {
+				if (!($entry instanceof \com\microsoft\wc\auth\Set )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'exceptionSet', 'Set'));
 				}
 			}

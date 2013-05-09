@@ -203,7 +203,7 @@ class PeakFlow extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($measurementFlags) ) {
 			foreach ($measurementFlags as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'measurementFlags', 'codable-value'));
 				}
 			}

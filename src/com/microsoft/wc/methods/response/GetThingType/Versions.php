@@ -60,7 +60,7 @@ class Versions {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'versionInfo', 1));
 		}
 		foreach ($versionInfo as $entry) {
-			if (!($entry instanceof VersionInfo)) {
+			if (!($entry instanceof \com\microsoft\wc\methods\response\GetThingType\VersionInfo )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'versionInfo', 'VersionInfo'));
 			}
 		}

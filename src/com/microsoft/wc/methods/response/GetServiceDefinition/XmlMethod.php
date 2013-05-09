@@ -91,7 +91,7 @@ class XmlMethod {
 		}
 		if ( ! empty($version) ) {
 			foreach ($version as $entry) {
-				if (!($entry instanceof XmlMethodVersion)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\XmlMethodVersion )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'version', 'XmlMethodVersion'));
 				}
 			}

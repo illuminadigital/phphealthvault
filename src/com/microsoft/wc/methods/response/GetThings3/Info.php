@@ -54,7 +54,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'group', 1));
 		}
 		foreach ($group as $entry) {
-			if (!($entry instanceof ThingResponseGroup2)) {
+			if (!($entry instanceof \com\microsoft\wc\methods\response\GetThings3\ThingResponseGroup2 )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'group', 'ThingResponseGroup2'));
 			}
 		}

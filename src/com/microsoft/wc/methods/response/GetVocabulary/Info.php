@@ -61,7 +61,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabulary', 1));
 		}
 		foreach ($vocabulary as $entry) {
-			if (!($entry instanceof VocabularyCodeSet)) {
+			if (!($entry instanceof \com\microsoft\wc\vocab\VocabularyCodeSet )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabulary', 'VocabularyCodeSet'));
 			}
 		}
@@ -97,7 +97,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularyKey', 1));
 		}
 		foreach ($vocabularyKey as $entry) {
-			if (!($entry instanceof VocabularyKeyInfo)) {
+			if (!($entry instanceof \com\microsoft\wc\vocab\VocabularyKeyInfo )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyKey', 'VocabularyKeyInfo'));
 			}
 		}

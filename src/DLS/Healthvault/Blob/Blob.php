@@ -1,6 +1,8 @@
 <?php
 namespace DLS\Healthvault\Blob;
 
+use DLS\Healthvault\Blob\Exceptions\NetworkIOException;
+
 class Blob
 {
     protected $name;
@@ -55,7 +57,7 @@ class Blob
     
     public function setUploaded()
     {
-        $this->isUploaded = TRUE;
+        $this->isUploaded = TRUE; 
         
         return $this;
     }
@@ -87,7 +89,7 @@ class Blob
                 curl_close($conn);
     
                 if ($response === FALSE) {
-                    throw new \NetworkIOException(
+                    throw new NetworkIOException(
                             sprintf('Failed to retrieve blob content from %s',
                                     $this->reference));
                 }

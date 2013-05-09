@@ -55,7 +55,7 @@ class Info extends \com\microsoft\wc\request\Info {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'group', 1));
 		}
 		foreach ($group as $entry) {
-			if (!($entry instanceof ThingRequestGroup2)) {
+			if (!($entry instanceof \com\microsoft\wc\methods\GetThings3\ThingRequestGroup2 )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'group', 'ThingRequestGroup2'));
 			}
 		}

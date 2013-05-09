@@ -101,7 +101,7 @@ class KeyInfoType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'keyName', 1));
 		}
 		foreach ($keyName as $entry) {
-			if (!($entry instanceof KeyName)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\KeyName )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'keyName', 'KeyName'));
 			}
 		}
@@ -137,7 +137,7 @@ class KeyInfoType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'keyValue', 1));
 		}
 		foreach ($keyValue as $entry) {
-			if (!($entry instanceof KeyValue)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\KeyValue )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'keyValue', 'KeyValue'));
 			}
 		}
@@ -173,7 +173,7 @@ class KeyInfoType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'retrievalMethod', 1));
 		}
 		foreach ($retrievalMethod as $entry) {
-			if (!($entry instanceof RetrievalMethod)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\RetrievalMethod )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'retrievalMethod', 'RetrievalMethod'));
 			}
 		}
@@ -209,7 +209,7 @@ class KeyInfoType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'x509Data', 1));
 		}
 		foreach ($x509Data as $entry) {
-			if (!($entry instanceof X509Data)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\X509Data )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'x509Data', 'X509Data'));
 			}
 		}
@@ -245,7 +245,7 @@ class KeyInfoType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'pGPData', 1));
 		}
 		foreach ($pGPData as $entry) {
-			if (!($entry instanceof PGPData)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\PGPData )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'pGPData', 'PGPData'));
 			}
 		}
@@ -281,7 +281,7 @@ class KeyInfoType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sPKIData', 1));
 		}
 		foreach ($sPKIData as $entry) {
-			if (!($entry instanceof SPKIData)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\SPKIData )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'sPKIData', 'SPKIData'));
 			}
 		}
@@ -317,7 +317,7 @@ class KeyInfoType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'mgmtData', 1));
 		}
 		foreach ($mgmtData as $entry) {
-			if (!($entry instanceof MgmtData)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\MgmtData )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'mgmtData', 'MgmtData'));
 			}
 		}

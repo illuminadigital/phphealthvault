@@ -54,7 +54,7 @@ class TypeIds {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'typeId', 1));
 		}
 		foreach ($typeId as $entry) {
-			if (!($entry instanceof Guid)) {
+			if (!($entry instanceof \com\microsoft\wc\types\Guid )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'typeId', 'guid'));
 			}
 		}

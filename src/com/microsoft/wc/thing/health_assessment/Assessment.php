@@ -89,7 +89,7 @@ class Assessment {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'value', 1));
 		}
 		foreach ($value as $entry) {
-			if (!($entry instanceof CodableValue)) {
+			if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'codable-value'));
 			}
 		}

@@ -111,7 +111,7 @@ class ThingRequestGroup2 {
 		}
 		if ( ! empty($id) ) {
 			foreach ($id as $entry) {
-				if (!($entry instanceof Guid)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Guid )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'guid'));
 				}
 			}
@@ -156,7 +156,7 @@ class ThingRequestGroup2 {
 		}
 		if ( ! empty($key) ) {
 			foreach ($key as $entry) {
-				if (!($entry instanceof ThingKey)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\ThingKey )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'key', 'ThingKey'));
 				}
 			}
@@ -201,7 +201,7 @@ class ThingRequestGroup2 {
 		}
 		if ( ! empty($clientThingId) ) {
 			foreach ($clientThingId as $entry) {
-				if (!($entry instanceof String255)) {
+				if (!($entry instanceof \com\microsoft\wc\types\String255 )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'clientThingId', 'string255'));
 				}
 			}
@@ -246,7 +246,7 @@ class ThingRequestGroup2 {
 		}
 		if ( ! empty($filter) ) {
 			foreach ($filter as $entry) {
-				if (!($entry instanceof ThingFilterSpec)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\GetThings\ThingFilterSpec )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'filter', 'ThingFilterSpec'));
 				}
 			}

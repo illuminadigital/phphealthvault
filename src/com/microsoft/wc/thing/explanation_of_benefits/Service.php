@@ -221,7 +221,7 @@ class Service {
 		}
 		if ( ! empty($notes) ) {
 			foreach ($notes as $entry) {
-				if (!($entry instanceof Stringnznw)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Stringnznw )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'notes', 'stringnznw'));
 				}
 			}

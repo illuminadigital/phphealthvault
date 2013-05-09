@@ -63,7 +63,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		}
 		if ( ! empty($recordId) ) {
 			foreach ($recordId as $entry) {
-				if (!($entry instanceof RecordId)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetUpdatedRecordsForApplication\RecordId )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'recordId', 'record-id'));
 				}
 			}

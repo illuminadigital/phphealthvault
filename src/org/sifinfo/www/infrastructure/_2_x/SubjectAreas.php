@@ -53,7 +53,7 @@ class SubjectAreas {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'subjectArea', 1));
 		}
 		foreach ($subjectArea as $entry) {
-			if (!($entry instanceof SubjectArea)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\SubjectArea )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'subjectArea', 'SubjectArea'));
 			}
 		}

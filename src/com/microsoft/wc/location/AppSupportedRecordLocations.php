@@ -62,7 +62,7 @@ class AppSupportedRecordLocations {
 		}
 		if ( ! empty($appSupportedRecordLocation) ) {
 			foreach ($appSupportedRecordLocation as $entry) {
-				if (!($entry instanceof AppSupportedRecordLocation)) {
+				if (!($entry instanceof \com\microsoft\wc\location\AppSupportedRecordLocation )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'appSupportedRecordLocation', 'AppSupportedRecordLocation'));
 				}
 			}

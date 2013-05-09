@@ -61,7 +61,7 @@ class AcademicSubjects {
 		}
 		if ( ! empty($academicSubject) ) {
 			foreach ($academicSubject as $entry) {
-				if (!($entry instanceof AcademicSubject)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\AcademicSubject )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'academicSubject', 'AcademicSubject'));
 				}
 			}

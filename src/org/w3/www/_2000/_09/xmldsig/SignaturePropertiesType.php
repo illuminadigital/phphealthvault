@@ -59,7 +59,7 @@ class SignaturePropertiesType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'signatureProperty', 1));
 		}
 		foreach ($signatureProperty as $entry) {
-			if (!($entry instanceof SignatureProperty)) {
+			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\SignatureProperty )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'signatureProperty', 'SignatureProperty'));
 			}
 		}

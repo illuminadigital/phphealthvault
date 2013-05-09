@@ -54,7 +54,7 @@ class SchoolContactListType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'schoolContact', 1));
 		}
 		foreach ($schoolContact as $entry) {
-			if (!($entry instanceof SchoolContact)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\SchoolContact )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'schoolContact', 'SchoolContact'));
 			}
 		}

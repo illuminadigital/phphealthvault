@@ -81,7 +81,7 @@ class Info extends \com\microsoft\wc\request\Info {
 		}
 		if ( ! empty($id) ) {
 			foreach ($id as $entry) {
-				if (!($entry instanceof Guid)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Guid )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'id', 'guid'));
 				}
 			}

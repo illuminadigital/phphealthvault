@@ -54,7 +54,7 @@ class VocabularyAuthorizations {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularyAuthorization', 1));
 		}
 		foreach ($vocabularyAuthorization as $entry) {
-			if (!($entry instanceof VocabularyAuthorization)) {
+			if (!($entry instanceof \com\microsoft\wc\vocab\VocabularyAuthorization )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyAuthorization', 'VocabularyAuthorization'));
 			}
 		}

@@ -61,7 +61,7 @@ class Names {
 		}
 		if ( ! empty($name) ) {
 			foreach ($name as $entry) {
-				if (!($entry instanceof Name)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Name )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'name', 'Name'));
 				}
 			}

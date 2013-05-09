@@ -161,7 +161,7 @@ class ThingFormatSpec2 {
 		}
 		if ( ! empty($typeVersionFormat) ) {
 			foreach ($typeVersionFormat as $entry) {
-				if (!($entry instanceof Guid)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Guid )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'typeVersionFormat', 'guid'));
 				}
 			}

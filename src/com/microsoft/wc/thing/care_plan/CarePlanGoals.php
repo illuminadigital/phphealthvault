@@ -54,7 +54,7 @@ class CarePlanGoals {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'goal', 1));
 		}
 		foreach ($goal as $entry) {
-			if (!($entry instanceof CarePlanGoal)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\care_plan\CarePlanGoal )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'goal', 'care-plan-goal'));
 			}
 		}

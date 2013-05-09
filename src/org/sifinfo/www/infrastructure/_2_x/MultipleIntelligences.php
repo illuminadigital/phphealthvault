@@ -61,7 +61,7 @@ class MultipleIntelligences {
 		}
 		if ( ! empty($multipleIntelligence) ) {
 			foreach ($multipleIntelligence as $entry) {
-				if (!($entry instanceof MultipleIntelligence)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\MultipleIntelligence )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'multipleIntelligence', 'MultipleIntelligence'));
 				}
 			}

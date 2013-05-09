@@ -326,7 +326,7 @@ class ThingTypeInfo {
 		}
 		if ( ! empty($transformSource) ) {
 			foreach ($transformSource as $entry) {
-				if (!($entry instanceof TransformSource)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetThingType\TransformSource )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'transformSource', 'TransformSource'));
 				}
 			}
@@ -371,7 +371,7 @@ class ThingTypeInfo {
 		}
 		if ( ! empty($image) ) {
 			foreach ($image as $entry) {
-				if (!($entry instanceof Image)) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetThingType\Image )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'image', 'Image'));
 				}
 			}

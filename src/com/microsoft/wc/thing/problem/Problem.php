@@ -107,7 +107,7 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($diagnosis) ) {
 			foreach ($diagnosis as $entry) {
-				if (!($entry instanceof CodableValue)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CodableValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'diagnosis', 'codable-value'));
 				}
 			}
@@ -152,7 +152,7 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($duration) ) {
 			foreach ($duration as $entry) {
-				if (!($entry instanceof DurationValue)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\types\DurationValue )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'duration', 'duration-value'));
 				}
 			}

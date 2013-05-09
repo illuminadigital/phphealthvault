@@ -59,7 +59,7 @@ class AppLargeLogoInfo {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'logo', 1));
 		}
 		foreach ($logo as $entry) {
-			if (!($entry instanceof CultureSpecificAppLargeLogo)) {
+			if (!($entry instanceof \com\microsoft\wc\application\CultureSpecificAppLargeLogo )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'logo', 'CultureSpecificAppLargeLogo'));
 			}
 		}

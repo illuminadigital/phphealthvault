@@ -53,7 +53,7 @@ class ResourceTypes {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'resourceType', 1));
 		}
 		foreach ($resourceType as $entry) {
-			if (!($entry instanceof ResourceType)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ResourceType )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'resourceType', 'ResourceType'));
 			}
 		}

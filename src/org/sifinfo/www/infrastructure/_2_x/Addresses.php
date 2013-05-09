@@ -61,7 +61,7 @@ class Addresses {
 		}
 		if ( ! empty($address) ) {
 			foreach ($address as $entry) {
-				if (!($entry instanceof Address)) {
+				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\Address )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'address', 'Address'));
 				}
 			}

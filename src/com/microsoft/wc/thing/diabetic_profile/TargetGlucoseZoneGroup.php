@@ -69,7 +69,7 @@ class TargetGlucoseZoneGroup {
 		}
 		if ( ! empty($targetGlucoseZone) ) {
 			foreach ($targetGlucoseZone as $entry) {
-				if (!($entry instanceof TargetGlucoseZone)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\diabetic_profile\TargetGlucoseZone )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'targetGlucoseZone', 'TargetGlucoseZone'));
 				}
 			}

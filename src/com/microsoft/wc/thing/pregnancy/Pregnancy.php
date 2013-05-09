@@ -245,7 +245,7 @@ class Pregnancy extends \com\microsoft\wc\thing\AnyMixed {
 		}
 		if ( ! empty($delivery) ) {
 			foreach ($delivery as $entry) {
-				if (!($entry instanceof Delivery)) {
+				if (!($entry instanceof \com\microsoft\wc\thing\pregnancy\Delivery )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'delivery', 'Delivery'));
 				}
 			}

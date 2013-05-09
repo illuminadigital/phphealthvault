@@ -60,7 +60,7 @@ class VocabularyParameters {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'vocabularyKey', 1));
 		}
 		foreach ($vocabularyKey as $entry) {
-			if (!($entry instanceof VocabularyKey)) {
+			if (!($entry instanceof \com\microsoft\wc\vocab\VocabularyKey )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'vocabularyKey', 'VocabularyKey'));
 			}
 		}

@@ -149,7 +149,7 @@ class AppSupportedRecordLocation {
 		}
 		if ( ! empty($warningMsg) ) {
 			foreach ($warningMsg as $entry) {
-				if (!($entry instanceof CultureSpecificString)) {
+				if (!($entry instanceof \com\microsoft\wc\types\CultureSpecificString )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'warningMsg', 'CultureSpecificString'));
 				}
 			}

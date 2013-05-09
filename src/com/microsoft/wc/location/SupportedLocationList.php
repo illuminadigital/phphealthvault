@@ -68,7 +68,7 @@ class SupportedLocationList {
 		}
 		if ( ! empty($location) ) {
 			foreach ($location as $entry) {
-				if (!($entry instanceof Location)) {
+				if (!($entry instanceof \com\microsoft\wc\types\Location )) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'location', 'Location'));
 				}
 			}

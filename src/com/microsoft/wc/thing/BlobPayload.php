@@ -53,7 +53,7 @@ class BlobPayload {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'blob', 1));
 		}
 		foreach ($blob as $entry) {
-			if (!($entry instanceof BlobPayloadItem)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\BlobPayloadItem )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'blob', 'BlobPayloadItem'));
 			}
 		}

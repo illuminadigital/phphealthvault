@@ -53,7 +53,7 @@ class StudentParticipationList {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'studentParticipationData', 1));
 		}
 		foreach ($studentParticipationData as $entry) {
-			if (!($entry instanceof StudentParticipationData)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\StudentParticipationData )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'studentParticipationData', 'StudentParticipationData'));
 			}
 		}

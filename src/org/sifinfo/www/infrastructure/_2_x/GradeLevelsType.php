@@ -54,7 +54,7 @@ class GradeLevelsType {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'gradeLevel', 1));
 		}
 		foreach ($gradeLevel as $entry) {
-			if (!($entry instanceof GradeLevel)) {
+			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\GradeLevel )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'gradeLevel', 'GradeLevel'));
 			}
 		}
