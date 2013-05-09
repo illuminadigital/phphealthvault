@@ -5,6 +5,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
 
 use com\microsoft\wc\thing\Thing2;
+use com\microsoft\wc\types\CodableValue as hvCodableValue;
 use com\microsoft\wc\thing\question_answer\QuestionAnswer as hvQuestionAnswer;
 
 use DLS\Healthvault\Utilities\VocabularyInterface;
@@ -23,29 +24,15 @@ class QuestionAnswer extends WhenThing
     protected $question;
 
     /**
-     * @var string
-     */
-    protected $answerChoice;
-
-    /**
      * @Assert\NotBlank()
      * @var string
      */
     protected $answer;
 
-    public function __construct(Thing2 $thing = NULL,
-                                VocabularyInterface $healthvaultVocabulary = NULL) {
-
-        $this->question = new CodableValue();
-        $this->answerChoice = new CodableValue();
-        $this->answer = new CodableValue();
-
-        parent::__construct($thing, $healthvaultVocabulary);
-    }
-
     public function getQuestion(){
         return $this->question;
     }
+
     public function setQuestion($question){
 
         $this->question = $question;
@@ -59,36 +46,9 @@ class QuestionAnswer extends WhenThing
     }
     public function setThingQuestion($question){
 
-        $payload = $this->getThingPayload();
+        $payloadQuestion = $this->getThingPayload()->getQuestion();
 
-        $this->question->updateToThingElement($payload->getQuestion());
-
-        return $this;
-
-    }
-
-    public function getAnswerChoice(){
-        return $this->answerChoice;
-    }
-    public function setAnswerChoice($answerChoice){
-
-        $this->answerChoice = $answerChoice;
-
-        if ($this->thing) {
-            $this->setThingAnswerChoice($answerChoice);
-        }
-
-        return $this;
-
-    }
-    public function setThingAnswerChoice($answerChoice){
-
-        $payload = $this->getThingPayload();
-
-        $this->answerChoice->updateToThingElement($payload->getAnswerChoice());
-
-        return $this;
-
+        return $this->setThingCodableValue($payloadQuestion, $question, array());
 
     }
 
@@ -108,12 +68,17 @@ class QuestionAnswer extends WhenThing
     }
     public function setThingAnswer($answer){
 
-        $payload = $this->getThingPayload();
+        $payloadAnswer = $this->getThingPayload()->getAnswer();
 
-        $this->answer->updateToThingElement($payload->getAnswer());
+        if(is_array($payloadAnswer)){
 
-        return $this;
+            $payloadAnswerItem = new hvCodableValue();
 
+        }
+
+        $this->setThingCodableValue($payloadAnswerItem, (string)$answer, array());
+
+        $this->getThingPayload()->setAnswer(array($payloadAnswerItem));
 
     }
 
@@ -129,6 +94,7 @@ class QuestionAnswer extends WhenThing
         $payload = $this->getThingPayload();
 
         $this->question = $payload->getQuestion()->getText();
+
         $this->answer = current($payload->getAnswer())->getText();
 
         return $this;
@@ -140,9 +106,14 @@ class QuestionAnswer extends WhenThing
 
         $this->setThingQuestion($this->question);
 
-        //$this->setThingAnswer($this->answer);
+        $this->setThingAnswer($this->answer);
 
-        //$this->setThingAnswerChoice($this->answerChoice);
+
+        $qa = current(current($thing->getDataXml())->getAny());
+
+        $q = $qa->getQuestion();
+
+        $a = $qa->getAnswer();
 
         return $thing;
     }
