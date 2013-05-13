@@ -242,7 +242,7 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	
     	$metadataFactoryAltererCallable = array($this, 'alterMetadataFactory');
     	if (is_callable($metadataFactoryAltererCallable)) {
-    	    call_user_func($callable, $metadataFactory); // Objects are always be reference
+    	    call_user_func($metadataFactoryAltererCallable, $metadataFactory); // Objects are always be reference
     	}
     	
     	$marshaller = new XmlMarshaller($metadataFactory);
