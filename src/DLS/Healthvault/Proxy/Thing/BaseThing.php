@@ -224,17 +224,22 @@ abstract class BaseThing
         $hvExtensions = array();
         
         foreach ($extensions as $thisExtension) {
+            $hvExtension = NULL;
+            
             $callable = array($thisExtension, 'getThingClassname');
             
             if (is_callable($callable)) {
                 $thingClassname = call_user_func($callable);
+                
+                if ( ! empty($thingClassname) ) {
+                    $hvExtension = new $thingClassname();
+                }
             }
             
-            if (empty($thingClassname)) {
-                $thingClassname = 'hvExtension';
+            if ( ! isset ($hvExtension) ) {
+                $hvExtension = new hvExtension();
             }
-            
-            $hvExtension = new $thingClassname();
+
             $thisExtension->updateToThingElement($hvExtension);
             
             $hvExtensions[] = $hvExtension;
