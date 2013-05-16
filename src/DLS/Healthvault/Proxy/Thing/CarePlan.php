@@ -6,6 +6,7 @@ use com\microsoft\wc\thing\care_plan\CarePlan as hvCarePlan;
 use com\microsoft\wc\thing\care_plan\CarePlanGoal as hvCarePlanGoal;
 use com\microsoft\wc\thing\care_plan\CarePlanGoalGroup as hvCarePlanGoalGroup;
 use com\microsoft\wc\thing\care_plan\CarePlanTask as hvCarePlanTask;
+use com\microsoft\wc\thing\types\Person as hvPerson;
 
 use DLS\Healthvault\Proxy\Thing\BaseThing;
 
@@ -57,10 +58,24 @@ class CarePlan extends BaseThing
      * @Validate\InHealthvaultVocabulary("goal-status") ?
      */
     protected $status;
+    
+    /**
+     * The people involved in helping with the care plan
+     * 
+     * @var array
+     */
+    protected $careTeam = array();
+    
+    /**
+     * The person who is managing the care plan.
+     * 
+     * @var \DLS\Healthvault\Proxy\Type\Person
+     */
+    protected $carePlanManager;
 
-    protected $tasks;
+    protected $tasks = array();
 
-    protected $goals;
+    protected $goals = array();
     
     public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL, BlobStoreFactory $factory = NULL) {
         
@@ -323,6 +338,77 @@ class CarePlan extends BaseThing
         return NULL;
     }
     
+    public function getCareTeam()
+    {
+        return $this->careTeam;
+    }
+    
+    public function setCareTeam($careTeam)
+    {
+        $this->careTeam = $careTeam;
+        
+        return $this;
+    }
+    
+    public function addCareTeamMember($person)
+    {
+        if (empty($this->careTeam)) {
+            $this->careTeam = array($person);
+            return $this;
+        }
+        
+        if (! is_array($this->careTeam)) {
+            $this->careTeam = array($this->careTeam);
+        }
+        
+        foreach ($this->careTeam as $careTeamMember)
+        {
+            if ($careTeamMember->equals($person))
+            {
+                // Already added
+                return $this;
+            }
+        }
+        $this->careTeam[] = $person;
+        
+        return $this;
+    }
+    
+    public function removeCareTeamMember($person)
+    {
+        if (empty($this->careTeam)) {
+            return $this;
+        }
+        
+        if (! is_array($this->careTeam)) {
+            $this->careTeam = array($this->careTeam);
+        }
+        
+        foreach ($this->careTeam as $index => $careTeamMember)
+        {
+            if ($careTeamMember->equals($person))
+            {
+                unset($this->careTeam[$index]);
+                
+                return $this;
+            }
+        }
+        
+        return $this;
+    }
+    
+    public function getCarePlanManager()
+    {
+        return $this->carePlanManager;
+    }
+    
+    public function setCarePlanManager($manager)
+    {
+        $this->carePlanManager = $manager;
+        
+        return $this;
+    }
+    
     /* Thing Methods */
     public function getThingName()
     {
@@ -363,7 +449,7 @@ class CarePlan extends BaseThing
     
         return $endDate;
     }
-    
+
     public function setThingEndDate(\DateTime $endDate)
     {
         $payload = $this->getThingPayload();
@@ -401,6 +487,83 @@ class CarePlan extends BaseThing
         $payload = $this->getThingPayload();
         $this->setThingApproxDateTime($payload->getEndDate(), $endDate);
     
+        return $this;
+    }
+    
+    public function getThingCarePlanManager()
+    {
+        $payload = $this->getThingPayload();
+        $manager = $payload->getCarePlanManager(FALSE);
+        
+        return $manager;
+    }
+    
+    public function setThingCarePlanManager($manager) 
+    {
+        $payload = $this->getThingPayload();
+        
+        if ($manager) {
+            $manager->updateToThingElement($payload->getCarePlanManager());
+        } else {
+            $payload->setCarePlanManager(NULL);
+        }
+        
+        return $this;
+    }
+    
+    public function getThingCareTeam()
+    {
+        $payload = $this->getThingPayload();
+        
+        $careTeam = array();
+        
+        if (($hvCareTeam = $payload->getCareTeam(FALSE)) 
+                && ($hvCareTeamMembers = $hvCareTeam->getPerson(FALSE)))
+        {
+            foreach ($hvCareTeamMembers as $hvTeamMember) {
+                $teamMember = new Person($hvTeamMember);
+                
+                $careTeam[] = $teamMember;
+            }
+        }
+        
+        return $careTeam;
+    }
+    
+    public function setThingCareTeam($careTeam) {
+        $payload = $this->getThingPayload();
+        
+        if ( empty($careTeam) )
+        {
+            $payload->setCareTeam(NULL);
+            
+            return $this;
+        }
+
+        if ( ! is_array($careTeam) )
+        {
+            $careTeam = array($careTeam);
+        }
+        
+        $hvCareTeam = array();
+        foreach ($careTeam as $thisCareTeamMember)
+        {
+            if ( $thisCareTeamMember->isEmpty() ) {
+                continue;
+            }
+            
+            $hvCareTeamMember = new hvPerson();
+            $thisCareTeamMember->updateToThingElement($hvCareTeamMember);
+            
+            $hvCareTeam[] = $hvCareTeamMember;
+        }
+        
+        if ( ! empty($hvCareTeam)) {
+            $payload->getCareTeam()->setPerson($hvCareTeam);
+        } else {
+            $payload->setCareTeam(NULL);
+        }
+        
         return $this;
     }
     
@@ -495,6 +658,10 @@ class CarePlan extends BaseThing
         
         $this->synchroniseTasks();
         
+        $this->synchroniseCareTeam();
+        
+        $this->setThingCarePlanManager($this->carePlanManager);
+        
         return $thing;
     }
     
@@ -513,7 +680,8 @@ class CarePlan extends BaseThing
         $this->goals = $this->getThingGoals();
         $this->tasks = $this->getThingTasks();
         
-        // FIXME: Implement rest of the methods
+        $this->careTeam = $this->getThingCareTeam();
+        $this->carePlanManager = $this->getThingCarePlanManager();
         
         return $this;
     }
@@ -732,5 +900,10 @@ class CarePlan extends BaseThing
         } else {
             $payload->setTasks(FALSE);
         }
+    }
+    
+    protected function synchroniseCareTeam()
+    {
+        return $this->setThingCareTeam($this->careTeam);
     }
 }
