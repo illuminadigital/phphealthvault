@@ -18,7 +18,7 @@ abstract class WeightValue extends DisplayValue {
                 'label' => 'Kilograms',
                 'major' => 'kilogram(s)',
                 'minor' => 'gram(s)',
-                'minor_scale' => 0.01,
+                'minor_scale' => 0.001,
             ),
             'oz' => array(
                 'name' => 'ounce',
