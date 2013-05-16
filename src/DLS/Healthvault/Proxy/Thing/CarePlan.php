@@ -457,7 +457,7 @@ class CarePlan extends BaseThing
     
         return $this;
     }
-    
+/*    
     public function getThingTargetDate()
     {
         $payload = $this->getThingPayload();
@@ -489,7 +489,7 @@ class CarePlan extends BaseThing
     
         return $this;
     }
-    
+*/    
     public function getThingCarePlanManager()
     {
         $payload = $this->getThingPayload();
@@ -641,8 +641,8 @@ class CarePlan extends BaseThing
             $this->setThingStartDate($this->startDate);
         }
         
-        if ( ! empty ($this->targetDate) ) {
-            $this->setThingTargetDate($this->targetDate);
+        if ( ! empty ($this->endDate) ) {
+            $this->setThingEndDate($this->endDate);
         }
         
         $payload = $this->getThingPayload();
