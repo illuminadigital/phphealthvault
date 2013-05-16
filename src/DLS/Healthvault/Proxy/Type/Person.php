@@ -306,4 +306,10 @@ class Person extends VocabularyType
     public function isEmpty() {
         return empty($this->fullName);
     }
+    
+    public function equals($person) {
+        $result = ($this === $person || $this == $person);
+
+        return $result;
+    }
 }
