@@ -150,7 +150,11 @@ class Exercise extends ApproxWhenThing {
 	public function setThingDuration($duration) {
 		$payload = $this->getThingPayload();
 		
-		$payload->getDuration()->setValue($duration);
+		if ( ! empty($duration) ) {
+    		$payload->getDuration()->setValue($duration);
+		} else {
+		    $payload->setDuration(NULL);
+		}
 		
 		return $this;
 	}
