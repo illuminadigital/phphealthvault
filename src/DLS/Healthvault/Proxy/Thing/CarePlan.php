@@ -374,6 +374,32 @@ class CarePlan extends BaseThing
         return $this;
     }
     
+    public function replaceCareTeamMember($person)
+    {
+        if (empty($this->careTeam)) {
+            $this->careTeam = array($person);
+            return $this;
+        }
+        
+        if (! is_array($this->careTeam)) {
+            $this->careTeam = array($this->careTeam);
+        }
+        
+        foreach ($this->careTeam as $index => $careTeamMember)
+        {
+            if ($careTeamMember->equals($person))
+            {
+                $this->careTeam[$index] = $person;
+                
+                return $this;
+            }
+        }
+        
+        $this->careTeam[] = $person;
+        
+        return FALSE;
+    }
+    
     public function removeCareTeamMember($person)
     {
         if (empty($this->careTeam)) {
