@@ -308,7 +308,7 @@ class Person extends VocabularyType
     }
     
     public function equals($person) {
-        $result = ($this === $person || $this == $person);
+        $result = ($this === $person || $person == $this);
 
         return $result;
     }
