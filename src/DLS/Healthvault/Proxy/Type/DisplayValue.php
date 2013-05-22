@@ -187,6 +187,10 @@ abstract class DisplayValue extends BaseType implements DisplayValueInterface
             $this->majorValue = $units;
             $this->minorValue = 0;
         } else {
+            if (isset($thisType['major_scale']) && $thisType['major_scale'] != 1) {
+                $units = $units / $thisType['major_scale'];
+            }
+            
             $this->majorValue = (int) $units;
             
             if (isset($thisType['minor_scale'])) {

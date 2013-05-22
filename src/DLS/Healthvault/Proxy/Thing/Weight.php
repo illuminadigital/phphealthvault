@@ -46,14 +46,14 @@ class Weight extends WhenThing
                     'name' => 'Stones',
                     'major' => 'stone(s)',
                     'minor' => 'pound(s)', 
-                    'minor_scale' => 1 / 16,
+                    'minor_scale' => 1 / 14,
                     'major_scale' => 6.35029
                 ),
                 'kg' => array(
                     'name' => 'Kilograms',
                     'major' => 'Kilogram(s)',
                     'minor' => 'gram(s)',
-                    'minor_scale' => 0.01,
+                    'minor_scale' => 0.001,
                 ),
             );
         }

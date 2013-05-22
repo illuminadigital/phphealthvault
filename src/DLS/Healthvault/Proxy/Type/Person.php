@@ -279,9 +279,13 @@ class Person extends VocabularyType
         } else {
             $thingElement->getName()->setSuffix(NULL);
         }
-            
-        $this->contact->setVocabularyInterface($this->vocabularyInterface);
-        $this->contact->updateToThingElement($thingElement->getContact());
+        
+        if ($this->contact && ! $this->contact->isEmpty()) {
+            $this->contact->setVocabularyInterface($this->vocabularyInterface);
+            $this->contact->updateToThingElement($thingElement->getContact());
+        } else {
+            $thingElement->setContact(NULL);
+        }
         
         $thingElement->getName()->setFull($this->fullName);
         $thingElement->getName()->setFirst($this->firstName);
@@ -301,5 +305,11 @@ class Person extends VocabularyType
     
     public function isEmpty() {
         return empty($this->fullName);
+    }
+    
+    public function equals($person) {
+        $result = ($this === $person || $person == $this);
+
+        return $result;
     }
 }
