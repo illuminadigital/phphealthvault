@@ -100,11 +100,11 @@ class QuestionAnswerType extends VocabularyType
         $newAnswers = array();
         
         foreach ($answers as $index => $thisAnswer) {
-            if ($answer instanceof CodableValue) {
+            if ($thisAnswer instanceof CodableValue) {
                 $newAnswers[$index] = $thisAnswer;
             } else {
                 $newAnswer = new CodableValue();
-                $newAnswer->setText((string)$answer);
+                $newAnswer->setText((string)$thisAnswer);
                 
                 $newAnswers[$index] = $newAnswer;
             }
