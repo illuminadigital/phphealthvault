@@ -12,76 +12,46 @@ use DLS\Healthvault\Utilities\VocabularyInterface;
 
 use DLS\Healthvault\Proxy\Type\CodableValue;
 
+use DLS\Healthvault\Proxy\Type\QuestionAnswerType;
+
 class QuestionAnswer extends WhenThing
 {
     protected $thingType = 'Question Answer';
 
-
     /**
-     * @Assert\NotBlank()
-     * @var string
+     * @var \DLS\Healthvault\Proxy\Thing\QuestionAnswerType
      */
-    protected $question;
+    protected $questionAnswer;
 
-    /**
-     * @Assert\NotBlank()
-     * @var string
-     */
-    protected $answer;
+    public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL)
+    {
+        // The gaps will be filled in by the parent constructor
+        $this->questionAnswer = new QuestionAnswerType();
+        
+        parent::__construct($thing, $healthvaultVocabulary);
+    }
 
     public function getQuestion(){
-        return $this->question;
+        return $this->questionAnswer->getQuestion();
     }
 
     public function setQuestion($question){
 
-        $this->question = $question;
-
-        if ($this->thing) {
-            $this->setThingQuestion($question);
-        }
+        $this->questionAnswer->setQuestion($question);
 
         return $this;
-
     }
-    public function setThingQuestion($question){
-
-        $payloadQuestion = $this->getThingPayload()->getQuestion();
-
-        return $this->setThingCodableValue($payloadQuestion, $question, array());
-
-    }
-
+    
     public function getAnswer(){
-        return $this->answer;
+        return $this->questionAnswer->getAnswer();
     }
+    
     public function setAnswer($answer){
-
-        $this->answer = $answer;
-
-        if ($this->thing) {
-            $this->setThingAnswer($answer);
-        }
-
+        $this->questionAnswer->setAnswer($answer);
+        
         return $this;
 
     }
-    public function setThingAnswer($answer){
-
-        $payloadAnswer = $this->getThingPayload()->getAnswer();
-
-        if(is_array($payloadAnswer)){
-
-            $payloadAnswerItem = new hvCodableValue();
-
-        }
-
-        $this->setThingCodableValue($payloadAnswerItem, (string)$answer, array());
-
-        $this->getThingPayload()->setAnswer(array($payloadAnswerItem));
-
-    }
-
 
     public function setThing(Thing2 $thing)
     {
@@ -92,10 +62,7 @@ class QuestionAnswer extends WhenThing
         }
 
         $payload = $this->getThingPayload();
-
-        $this->question = $payload->getQuestion()->getText();
-
-        $this->answer = current($payload->getAnswer())->getText();
+        $this->questionAnswer->setFromThingElement($payload);
 
         return $this;
     }
@@ -104,17 +71,9 @@ class QuestionAnswer extends WhenThing
     {
         $thing = parent::getThing($thing);
 
-        $this->setThingQuestion($this->question);
-
-        $this->setThingAnswer($this->answer);
-
-
-        $qa = current(current($thing->getDataXml())->getAny());
-
-        $q = $qa->getQuestion();
-
-        $a = $qa->getAnswer();
-
+        $payload = $this->getThingPayload();
+        $this->questionAnswer->updateToThingElement($payload);
+        
         return $thing;
     }
 
@@ -128,5 +87,4 @@ class QuestionAnswer extends WhenThing
         return new hvQuestionAnswer();
 
     }
-
 }
