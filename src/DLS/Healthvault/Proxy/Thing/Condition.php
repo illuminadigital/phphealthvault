@@ -45,12 +45,6 @@ class Condition extends BaseThing
      */
     protected $name;
 
-    /**
-     * @var string
-     */
-
-    protected $category;
-
     public function getStatus()
     {
         return $this->status;
@@ -65,42 +59,6 @@ class Condition extends BaseThing
         }
 
         return $this;
-    }
-
-    /**
-     * @return the unknown_type
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param unknown_type $goals
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-    }
-
-    public function getThingCategory(){
-
-        $category = null;
-
-        $extensions = $this->getExtensions();
-
-        foreach($extensions as $extension){
-
-            if($extension instanceof \Illumina\AbpBundle\Entity\Extensions\DlsAbpCondition\Proxy\AbpConditionExtension){
-
-                $category = $extension->getCategory();
-
-            }
-        }
-
-        return $category;
-
     }
 
     public function getOnsetDate()
@@ -201,8 +159,6 @@ class Condition extends BaseThing
         $this->status = $code->getValue();
 
         $this->notes = $payloadArea->getCommon()->getNote();
-
-        $this->category = $this->getThingCategory();
 
         return $this;
     }
