@@ -1,7 +1,7 @@
 <?php
 namespace DLS\Healthvault\Proxy\Type;
 
-use com\microsoft\wc\thing\types\CodableValue;
+use com\microsoft\wc\thing\types\CodableValue as hvCodableValue;
 use com\microsoft\wc\thing\types\StructuredMeasurement as hvStructuredMeasurement;
 
 use DLS\Healthvault\Utilities\VocabularyInterface;
@@ -104,7 +104,7 @@ class GeneralMeasurement
 
             $vocabulary_code = explode(":",$codedValue->getVocabularies());
 
-            $structuredThing->setUnits( new \com\microsoft\wc\types\CodableValue($vocabulary_code[0]));
+            $structuredThing->setUnits( new hvCodableValue($vocabulary_code[0]));
 
         }
 
