@@ -20,7 +20,7 @@ class GetPeopleForRecordMethod extends PlatformMethod
 
     protected function getInfoClassName()
     {
-        return '\com\microsoft\wc\methods\response\GetPeopleForRecord\Info';
+        return NULL;
     }
 
 }
