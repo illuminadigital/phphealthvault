@@ -373,4 +373,8 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         
         return $this;
     }
+    
+    public function getVocabularyInterface() {
+        return NULL; // FIXME: Should return a real vocabulary interface
+    }
 }
