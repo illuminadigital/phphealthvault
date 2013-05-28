@@ -1,5 +1,5 @@
 <?php
-namespace DLS\Healthvault\Proxy\Thing;
+namespace DLS\Healthvault\Proxy\Type;
 
 use com\microsoft\wc\thing\Thing2;
 

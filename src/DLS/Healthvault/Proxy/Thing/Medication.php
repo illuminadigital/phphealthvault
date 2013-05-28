@@ -14,7 +14,7 @@ use com\microsoft\wc\types\CodableValue;
 use DLS\Healthvault\Utilities\VocabularyInterface;
 use DLS\Healthvault\Proxy\Thing\BaseThing;
 use DLS\Healthvault\Proxy\Type\GeneralMeasurement;
-use DLS\Healthvault\Proxy\Thing\Prescription;
+use DLS\Healthvault\Proxy\Type\Prescription;
 
 class Medication extends BaseThing
 {
@@ -64,7 +64,7 @@ class Medication extends BaseThing
     protected $instructions;
 
     /**
-     * @var \DLS\Healthvault\Proxy\Thing\Prescription
+     * @var \DLS\Healthvault\Proxy\Type\Prescription
      */
     protected $prescription;
 
