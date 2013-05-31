@@ -6,6 +6,7 @@ use DLS\Healthvault\Platform\PlatformMethodFactory;
 use DLS\Healthvault\Blob\BlobStoreFactory;
 
 use DLS\Healthvault\Proxy\ProxyFactory;
+use DLS\Healthvault\Proxy\ThingFactory;
 
 use com\microsoft\wc\thing\Thing2;
 
@@ -24,6 +25,7 @@ class Driver {
     private $platformMethodFactory;
     private $blobStore;
     private $proxyFactory;
+    private $thingFactory;
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
@@ -31,6 +33,9 @@ class Driver {
         
         // We need to change the default "DateTime" handler for OXM to be an ISO-8601 compliant one
         Type::overrideType(Type::DATETIME, '\DLS\Types\XMLSchemaDateTimeType');
+        
+        // Set up the thing factory. BEWARE: This could cause a loop if the code is changed
+        $this->getThingFactory();
     }
     
     public function getShellMethod($methodName)
@@ -129,5 +134,14 @@ class Driver {
         }
         
         return $this->proxyFactory;
+    }
+    
+    public function getThingFactory()
+    {
+        if ( ! isset($this->thingFactory)) {
+            $this->thingFactory = new ThingFactory($this);
+        }
+        
+        return $this->thingFactory;
     }
 }
