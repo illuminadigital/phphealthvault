@@ -168,4 +168,13 @@ class HbA1C extends WhenThing
         return new hvHbA1C();
     }
 
+    public static function getDisplayFields() {
+        return array(
+            'when' => 'Date',
+            'value' => 'Value ',
+            'HbA1CAssayMethod' => 'HbA1C Assay Method',
+        );
+    }
+
+
 }
