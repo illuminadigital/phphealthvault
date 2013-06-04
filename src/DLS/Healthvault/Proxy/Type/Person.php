@@ -251,10 +251,10 @@ class Person extends VocabularyType
         $this->middleName = $thingElement->getName()->getMiddle(FALSE);
         $this->lastName = $thingElement->getName()->getLast(FALSE);
 
-        $this->organization = $this->getValue($thingElement->getOrganization(FALSE));
+        $this->organization = $thingElement->getOrganization();
         $this->organizationId = $this->getValue($thingElement->getId(FALSE));
         
-        $this->professionalTraining = $this->getValue($thingElement->getProfessionalTraining(FALSE));
+        $this->professionalTraining = $thingElement->getProfessionalTraining();
     }
 
     public function updateToThingElement($thingElement)
