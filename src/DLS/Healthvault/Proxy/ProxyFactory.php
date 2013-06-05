@@ -59,6 +59,8 @@ class ProxyFactory {
         }
         
         if (is_object($proxyClass) && $proxyClass instanceof BaseThing) {
+            $id = strtolower($id); // Use lower case for the ID because HealthVault is inconsistent
+            
             self::$proxies[$id] = get_class($proxyClass);
             
             return TRUE;
@@ -78,7 +80,12 @@ class ProxyFactory {
             return NULL;
         }
         
-        $thingTypeId = $thing->getTypeId()->getValue();
+        $thingTypeId = $thingTypeId->getValue();
+        if ( empty($thingTypeId) ) {
+            return NULL;
+        }
+        
+        $thingTypeId = strtolower($thingTypeId);
         
         if ( ! empty(self::$proxies[$thingTypeId])) {
             $proxyClass = self::$proxies[$thingTypeId];

@@ -40,6 +40,8 @@ class ThingFactory {
         $toFetch = array();
         
         foreach ($ids as $thisId) {
+            $thisId = strtolower($thisId);
+            
             if ( ! empty($this->things[$thisId]) )
             {
                 $theThing = $this->things[$thisId];
@@ -89,9 +91,11 @@ class ThingFactory {
                         $thingType = 'Undefined';
                     }
                     
-                    $things[$thingType][$proxy->getId()] = $proxy;
+                    $id = strtolower($proxy->getId());
                     
-                    $this->things[$proxy->getId()] = $proxy;
+                    $things[$thingType][$id] = $proxy;
+                    
+                    $this->things[$id] = $proxy;
                 }
             }
         }
