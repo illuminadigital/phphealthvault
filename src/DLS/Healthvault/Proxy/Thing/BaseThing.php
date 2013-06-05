@@ -584,4 +584,20 @@ abstract class BaseThing
         
         return TRUE;
     }
+    
+    public function isNew() {
+        if (empty($this->version) || empty($this->thing)) {
+            return TRUE;
+        }
+        
+        $thingIdObj = $this->thing->getThingId(FALSE);
+        
+        if (empty($thingIdObj)) {
+            return TRUE;
+        }
+
+        $thingId = $thingIdObj->getValue(FALSE);
+        
+        return empty($thingId);
+    }
 }
