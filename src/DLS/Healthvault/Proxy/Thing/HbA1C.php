@@ -121,7 +121,11 @@ class HbA1C extends WhenThing
     }
     public function setThingDeviceId($deviceId){
 
+        $payload = $this->getThingPayload();
 
+        $payload->setDeviceId($deviceId);
+
+        return $this;
 
     }
 
@@ -173,6 +177,7 @@ class HbA1C extends WhenThing
             'when' => 'Date',
             'value' => 'Value ',
             'HbA1CAssayMethod' => 'HbA1C Assay Method',
+            'deviceId' => 'Device'
         );
     }
 
