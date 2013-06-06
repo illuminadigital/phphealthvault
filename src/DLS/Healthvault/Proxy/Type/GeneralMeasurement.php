@@ -104,7 +104,12 @@ class GeneralMeasurement
 
             $vocabulary_code = explode(":",$codedValue->getVocabularies());
 
-            $structuredThing->setUnits( new hvCodableValue($vocabulary_code[0]));
+            /*
+             * There appears to be a mis-match between the duplicate definitions from types and thing/types.
+             * Trying to pick the correct one is tricky, so let the autoCreate code take the strain.
+             * That this exists is probably a bug in the generation code
+             */
+            $structuredThing->setUnits($vocabulary_code[0]);
 
         }
 

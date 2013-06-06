@@ -157,7 +157,7 @@ class Medication extends BaseThing
 
         $payload = $this->getThingPayload();
 
-        $this->strength->updateToThingElement($payload->getDose());
+        $this->dose->updateToThingElement($payload->getDose());
     }
 
 
