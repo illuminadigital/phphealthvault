@@ -164,31 +164,31 @@ class Emotion extends WhenThing
         return new hvEmotion();
     }
 
-    static function getMoodLabels(){
+    public static function getMoodLabels(){
         return array(
-            0=>'Depressed',
-            1=>'Sad',
-            2=>'Neutral',
-            3=>'Happy',
-            4=>'Elated'
+            1=>'Depressed',
+            2=>'Sad',
+            3=>'Neutral',
+            4=>'Happy',
+            5=>'Elated'
         );
     }
-    static function getStressLabels(){
+    public static function getStressLabels(){
         return array(
-            0=>'Very Low',
-            1=>'Low',
-            2=>'Moderate',
-            3=>'High',
-            4=>'Very High'
+            1=>'Very Low',
+            2=>'Low',
+            3=>'Moderate',
+            4=>'High',
+            5=>'Very High'
         );
     }
-    static function getWellbeingLabels(){
+    public static function getWellbeingLabels(){
         return array(
-            0=>'Sick',
-            1=>'Impaired',
-            2=>'Able',
-            3=>'Healthy',
-            4=>'Vigorous'
+            1=>'Sick',
+            2=>'Impaired',
+            3=>'Able',
+            4=>'Healthy',
+            5=>'Vigorous'
         );
     }
 
