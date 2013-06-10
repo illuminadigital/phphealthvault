@@ -220,10 +220,10 @@ class Glucose extends WhenThing
     protected function setThingNormalcy($normalcy) {
         $payload = $this->getThingPayload();
         
-        if ( empty($value) || ! ($value = (int) $value) ) {
+        if ( empty($normalcy) || ! ($normalcy = (int) $normalcy) ) {
             $payload->setNormalcy(NULL);
         } else {
-            $payload->getNormalcy()->setValue($value);
+            $payload->getNormalcy()->setValue($normalcy);
         }
         
         return $this;
