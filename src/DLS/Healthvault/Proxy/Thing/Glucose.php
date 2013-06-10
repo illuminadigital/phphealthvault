@@ -252,4 +252,14 @@ class Glucose extends WhenThing
             'glucoseMeasurementType' => 'Type',
         );
     }
+
+    public static function getNormalcyLabels(){
+        return array (
+            1 => 'Much lower than normal',
+            2 => 'Lower than normal',
+            3 => 'Equivalent to normal',
+            4 => 'Higher than normal',
+            5 => 'Much higher than normal',
+        );
+    }
 }
