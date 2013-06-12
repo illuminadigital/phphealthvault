@@ -63,7 +63,7 @@ class Emotion extends WhenThing
         $payload = $this->getThingPayload();
 
         if ( empty($mood) || ! ($mood = (int) $mood) ) {
-            $payload->setNormalcy(NULL);
+            $payload->setMood(NULL);
         } else {
             $payload->getMood()->setValue($mood);
         }
@@ -88,7 +88,7 @@ class Emotion extends WhenThing
         $payload = $this->getThingPayload();
 
         if ( empty($stress) || ! ($stress = (int) $stress) ) {
-            $payload->setNormalcy(NULL);
+            $payload->setStress(NULL);
         } else {
             $payload->getStress()->setValue($stress);
         }
@@ -117,7 +117,7 @@ class Emotion extends WhenThing
         $payload = $this->getThingPayload();
 
         if ( empty($wellbeing) || ! ($wellbeing = (int) $wellbeing) ) {
-            $payload->setNormalcy(NULL);
+            $payload->setWellbeing(NULL);
         } else {
             $payload->getWellbeing()->setValue($wellbeing);
         }
