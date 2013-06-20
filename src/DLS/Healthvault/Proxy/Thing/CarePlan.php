@@ -296,6 +296,34 @@ class CarePlan extends BaseThing
         return $name;
     }
     
+    public function deleteGoal($goal)
+    {
+        if (is_object($goal)) {
+            $referenceId = $goal->getReferenceId();
+        } else {
+            $referenceId = (string) $goal;
+        }
+
+        if (! is_array($this->goals)) {
+            return FALSE;
+        }
+    
+        echo '<pre>'; var_dump($referenceId); echo '</pre>';
+        
+        foreach ($this->goals as $catIndex => $category) {
+            foreach ($category['goals'] as $index => $thisGoal) {
+                if ($thisGoal->getReferenceId() == $referenceId) {
+        echo '<pre>Unsetting: '; var_dump($referenceId); echo '</pre>';
+        
+                    unset($this->goals[$catIndex]['goals'][$index]);
+                    return TRUE;
+                }
+            }
+        }
+    
+        return FALSE;
+    }
+    
     public function replaceGoal($goal, $reference) {
         if (strpos($reference, '-') === FALSE) {
             return FALSE; // Makes no sense
