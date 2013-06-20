@@ -31,8 +31,8 @@ class QuestionAnswer extends WhenThing
         parent::__construct($thing, $healthvaultVocabulary);
     }
 
-    public function getQuestion(){
-        return $this->questionAnswer->getQuestion();
+    public function getQuestion($textOnly = TRUE){
+        return $this->questionAnswer->getQuestion($textOnly);
     }
 
     public function setQuestion($question){
