@@ -16,8 +16,7 @@ class Emotion extends WhenThing
 
     /**
      * @Assert\Type("integer")
-     * @Assert\Min(1)
-     * @Assert\Max(5)
+     * @Assert\Range(min=1, max=5)
      *
      * @var integer
      */
@@ -25,8 +24,7 @@ class Emotion extends WhenThing
 
     /**
      * @Assert\Type("integer")
-     * @Assert\Min(1)
-     * @Assert\Max(5)
+     * @Assert\Range(min=1, max=5)
      *
      * @var integer
      */
@@ -34,8 +32,7 @@ class Emotion extends WhenThing
 
     /**
      * @Assert\Type("integer")
-     * @Assert\Min(1)
-     * @Assert\Max(5)
+     * @Assert\Range(min=1, max=5)
      *
      * @var integer
      */
