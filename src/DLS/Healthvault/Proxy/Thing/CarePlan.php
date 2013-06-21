@@ -308,12 +308,9 @@ class CarePlan extends BaseThing
             return FALSE;
         }
     
-        echo '<pre>'; var_dump($referenceId); echo '</pre>';
-        
         foreach ($this->goals as $catIndex => $category) {
             foreach ($category['goals'] as $index => $thisGoal) {
                 if ($thisGoal->getReferenceId() == $referenceId) {
-        echo '<pre>Unsetting: '; var_dump($referenceId); echo '</pre>';
         
                     unset($this->goals[$catIndex]['goals'][$index]);
                     return TRUE;
@@ -511,39 +508,7 @@ class CarePlan extends BaseThing
     
         return $this;
     }
-/*    
-    public function getThingTargetDate()
-    {
-        $payload = $this->getThingPayload();
-        $targetDate = $this->getThingApproxDateTime($payload->getTargetDate(FALSE));
-    
-        return $targetDate;
-    }
-    
-    public function setThingTargetDate(\DateTime $targetDate)
-    {
-        $payload = $this->getThingPayload();
-        $this->setThingApproxDateTime($payload->getTargetDate(), $targetDate);
-    
-        return $this;
-    }
-    
-    public function getThingCompletionDate()
-    {
-        $payload = $this->getThingPayload();
-        $endDate = $this->getThingApproxDateTime($payload->getEndDate(FALSE));
-    
-        return $endDate;
-    }
-    
-    public function setThingCompletionDate(\DateTime $endDate)
-    {
-        $payload = $this->getThingPayload();
-        $this->setThingApproxDateTime($payload->getEndDate(), $endDate);
-    
-        return $this;
-    }
-*/    
+
     public function getThingCarePlanManager()
     {
         $payload = $this->getThingPayload();
@@ -776,7 +741,7 @@ class CarePlan extends BaseThing
 
         $payload = $this->getThingPayload();
         $goalGroupsWrapper = $payload->getGoalGroups(FALSE);
-        if ($goalGroupsWrapper) {
+        if ( ! empty($goalGroupsWrapper) ) {
             $goalGroups = $goalGroupsWrapper->getGoalGroup(FALSE);
         } else {
             $goalGroups = array();
@@ -836,6 +801,9 @@ class CarePlan extends BaseThing
                 
                 unset ($goalGroupGoals[$goalIndex]);
             }
+
+            // Re-sync to remove any deleted ones
+            $goalGroup->getGoals()->setGoal($goalGroupGoals);
             
             if ( ! empty ($ourGoals[$goalGroupName]['goals'])) {
                 // Need to add these items
@@ -849,6 +817,30 @@ class CarePlan extends BaseThing
                 }
                 
                 unset($ourGoals[$goalGroupName]);
+            }
+            
+            // Now check if the group is empty
+            $remainingGoals =  $goalGroup->getGoals()->getGoal();
+            
+            if (empty($remainingGoals)) {
+                unset ($goalGroups[$goalGroupIndex]);
+            }
+        }
+
+        if ( ! empty($goalGroupsWrapper)) {
+            if ( ! empty($goalGroups) ) {
+                $goalGroupsWrapper->setGoalGroup($goalGroups);
+            } else {
+                $goalGroupsWrapper = NULL;
+            }
+        }
+        
+        // Sanity check there is nothing left in there that shouldn't be,
+        if ( ! empty($ourGoals) ) {
+            foreach ($ourGoals as $groupName => $goalData) {
+                if ( empty($goalData['goals'])) {
+                    unset($ourGoals[$groupName]);
+                }
             }
         }
         
@@ -880,11 +872,15 @@ class CarePlan extends BaseThing
                 
                 $goalGroupWrapper->addGoalGroup($goalGroup);
             }
-        } 
+        } else if (empty($goalStatus['kept'])) {
+            // No goals kept, no goals added
+            $payload->setGoalGroups(FALSE);
+        }
 
         // If the result would be an empty group, remove the wrapper completely.           
         $goalGroupCheck = $payload->getGoalGroups(FALSE);
         if (empty($goalGroupCheck)) {
+            // This works because goalGroups is a collection with a wrapper
             $payload->setGoalGroups(FALSE);
         }
         
