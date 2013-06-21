@@ -254,7 +254,12 @@ class DietaryIntakeDaily extends DayWhenThing
         
         $payload = $this->getThingPayload();
         
-        $payload->getCalories()->setValue($this->calories);
+        if ( ! empty($this->calories) ) {
+            $payload->getCalories()->setValue($this->calories);
+        } else {
+            $payload->setCalories(FALSE);
+        }
+        
         if ($this->totalFat->isEmpty()) {
             $payload->setTotalFat(FALSE);
         } else {
