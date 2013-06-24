@@ -201,6 +201,9 @@ class PlatformMethod
 
         if ( ! empty($response) )
         {
+            // HV is currently adding extra bit of rubbish to the end of some Condition things
+            $response = preg_replace('/<updated-end-date>[^<]+?<\/updated-end-date>/', '', $response);
+
             $unmarshaller = $this->configuration->getMarshallingService();
 
             $responseObject = $unmarshaller->unmarshalFromString($response);
