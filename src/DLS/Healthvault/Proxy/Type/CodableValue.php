@@ -209,7 +209,7 @@ class CodableValue extends VocabularyType
         }
 
         if (empty($this->text)) {
-            $this->text = 'Unknown';
+            $this->text = '';
         }
 
         $thingElement->setText($this->text);
