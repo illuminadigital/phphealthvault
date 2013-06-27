@@ -32,7 +32,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 	protected $sharedSecret;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\String512", name="app-token")
+	 * @XmlElement	(type="\com\microsoft\wc\types\String1024", name="app-token")
 	 */
 	protected $appToken;
 
@@ -96,7 +96,7 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 	}
 	
 	protected function createAppToken() {
-		return new \com\microsoft\wc\types\String512();
+		return new \com\microsoft\wc\types\String1024();
 	}
 
 	public function setAppToken($appToken) {
@@ -104,8 +104,8 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 	}
 
 	protected function validateAppToken($appToken) {
-		if ( ! $appToken instanceof \com\microsoft\wc\types\String512 ) {
-			$appToken = new \com\microsoft\wc\types\String512 ($appToken);
+		if ( ! $appToken instanceof \com\microsoft\wc\types\String1024 ) {
+			$appToken = new \com\microsoft\wc\types\String1024 ($appToken);
 		}
 	
 		return $appToken;

@@ -47,12 +47,18 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 	 */
 	protected $commonSchema;
 
-	public function __construct($platform = NULL, $shell = NULL, $sdkAssembly = NULL, $xmlMethod = NULL, $commonSchema = NULL) {
+	/**
+	 * @XmlText	(type="string", name="updated-date")
+	 */
+	protected $updatedDate;
+
+	public function __construct($platform = NULL, $shell = NULL, $sdkAssembly = NULL, $xmlMethod = NULL, $commonSchema = NULL, $updatedDate = NULL) {
 		$this->platform = ($platform===NULL) ? NULL : $this->validatePlatform($platform);
 		$this->shell = ($shell===NULL) ? NULL : $this->validateShell($shell);
 		$this->sdkAssembly = ($sdkAssembly===NULL) ? NULL : $this->validateSdkAssembly($sdkAssembly);
 		$this->xmlMethod = ($xmlMethod===NULL) ? NULL : $this->validateXmlMethod($xmlMethod);
 		$this->commonSchema = ($commonSchema===NULL) ? NULL : $this->validateCommonSchema($commonSchema);
+		$this->updatedDate = ($updatedDate===NULL) ? NULL : $this->validateUpdatedDate($updatedDate);
 	}
 
 	public function getPlatform($autoCreate = TRUE) {
@@ -71,9 +77,16 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 	}
 
 	protected function validatePlatform($platform) {
-		if ( ! $platform instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\Platform ) {
+		if ( $platform === FALSE ) {
+			$this->_overrides['platform'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $platform instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\Platform  && ! is_null($platform) ) {
 			$platform = new \com\microsoft\wc\methods\response\GetServiceDefinition\Platform ($platform);
 		}
+
+		unset ($this->_overrides['platform']);
 	
 		return $platform;
 	}
@@ -94,9 +107,16 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 	}
 
 	protected function validateShell($shell) {
-		if ( ! $shell instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\Shell ) {
+		if ( $shell === FALSE ) {
+			$this->_overrides['shell'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $shell instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\Shell  && ! is_null($shell) ) {
 			$shell = new \com\microsoft\wc\methods\response\GetServiceDefinition\Shell ($shell);
 		}
+
+		unset ($this->_overrides['shell']);
 	
 		return $shell;
 	}
@@ -117,16 +137,25 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 	}
 
 	protected function validateSdkAssembly($sdkAssembly) {
-		if ( ! is_array ($sdkAssembly) ) {
+		if ( $sdkAssembly === FALSE ) {
+			$this->_overrides['sdkAssembly'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! is_array ($sdkAssembly) && ! is_null($sdkAssembly) ) {
 			$sdkAssembly = array($sdkAssembly);
 		}
+
+		unset ($this->_overrides['sdkAssembly']);
 		$count = count($sdkAssembly);
-		if ($count < 1) {
-			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sdkAssembly', 1));
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'sdkAssembly', 0));
 		}
-		foreach ($sdkAssembly as $entry) {
-			if (!($entry instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\SDKAssembly )) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'sdkAssembly', 'SDKAssembly'));
+		if ( ! empty($sdkAssembly) ) {
+			foreach ($sdkAssembly as $entry) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\SDKAssembly )) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'sdkAssembly', 'SDKAssembly'));
+				}
 			}
 		}
 	
@@ -153,16 +182,25 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 	}
 
 	protected function validateXmlMethod($xmlMethod) {
-		if ( ! is_array ($xmlMethod) ) {
+		if ( $xmlMethod === FALSE ) {
+			$this->_overrides['xmlMethod'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! is_array ($xmlMethod) && ! is_null($xmlMethod) ) {
 			$xmlMethod = array($xmlMethod);
 		}
+
+		unset ($this->_overrides['xmlMethod']);
 		$count = count($xmlMethod);
-		if ($count < 1) {
-			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'xmlMethod', 1));
+		if ($count < 0) {
+			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'xmlMethod', 0));
 		}
-		foreach ($xmlMethod as $entry) {
-			if (!($entry instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\XmlMethod )) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'xmlMethod', 'XmlMethod'));
+		if ( ! empty($xmlMethod) ) {
+			foreach ($xmlMethod as $entry) {
+				if (!($entry instanceof \com\microsoft\wc\methods\response\GetServiceDefinition\XmlMethod )) {
+					throw new \Exception(sprintf('Supplied %s value was not %s', 'xmlMethod', 'XmlMethod'));
+				}
 			}
 		}
 	
@@ -214,5 +252,28 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 		}
 	
 		return $commonSchema;
+	}
+
+	public function getUpdatedDate($autoCreate = TRUE) {
+		if ($this->updatedDate===NULL && $autoCreate && ! isset($this->_overrides['updatedDate']) ) {
+			$this->updatedDate = $this->createUpdatedDate();
+		}
+		return $this->updatedDate;
+	}
+	
+	protected function createUpdatedDate() {
+		return NULL;
+	}
+
+	public function setUpdatedDate($updatedDate) {
+		$this->updatedDate = $this->validateUpdatedDate($updatedDate);
+	}
+
+	protected function validateUpdatedDate($updatedDate) {
+		if ( ! is_string($updatedDate) && ! is_null($updatedDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedDate', 'string'));
+		}
+	
+		return $updatedDate;
 	}
 } // end class Info

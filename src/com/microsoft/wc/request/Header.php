@@ -51,14 +51,19 @@ class Header {
 	protected $authSession;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Iso6391", name="language")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnwz64", name="language")
 	 */
 	protected $language;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Iso3166", name="country")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnwz64", name="country")
 	 */
 	protected $country;
+
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnwz64", name="culture-code")
+	 */
+	protected $cultureCode;
 
 	/**
 	 * @XmlElement	(type="\com\microsoft\wc\request\Xsl", name="final-xsl")
@@ -76,7 +81,7 @@ class Header {
 	protected $msgTtl;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Version", name="version")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnz", name="version")
 	 */
 	protected $version;
 
@@ -85,7 +90,7 @@ class Header {
 	 */
 	protected $infoHash;
 
-	public function __construct($method = NULL, $methodVersion = NULL, $targetPersonId = NULL, $recordId = NULL, $appId = NULL, $authSession = NULL, $language = NULL, $country = NULL, $finalXsl = NULL, $msgTime = NULL, $msgTtl = NULL, $version = NULL, $infoHash = NULL) {
+	public function __construct($method = NULL, $methodVersion = NULL, $targetPersonId = NULL, $recordId = NULL, $appId = NULL, $authSession = NULL, $language = NULL, $country = NULL, $cultureCode = NULL, $finalXsl = NULL, $msgTime = NULL, $msgTtl = NULL, $version = NULL, $infoHash = NULL) {
 		$this->method = ($method===NULL) ? NULL : $this->validateMethod($method);
 		$this->methodVersion = ($methodVersion===NULL) ? NULL : $this->validateMethodVersion($methodVersion);
 		$this->targetPersonId = ($targetPersonId===NULL) ? NULL : $this->validateTargetPersonId($targetPersonId);
@@ -94,6 +99,7 @@ class Header {
 		$this->authSession = ($authSession===NULL) ? NULL : $this->validateAuthSession($authSession);
 		$this->language = ($language===NULL) ? NULL : $this->validateLanguage($language);
 		$this->country = ($country===NULL) ? NULL : $this->validateCountry($country);
+		$this->cultureCode = ($cultureCode===NULL) ? NULL : $this->validateCultureCode($cultureCode);
 		$this->finalXsl = ($finalXsl===NULL) ? NULL : $this->validateFinalXsl($finalXsl);
 		$this->msgTime = ($msgTime===NULL) ? NULL : $this->validateMsgTime($msgTime);
 		$this->msgTtl = ($msgTtl===NULL) ? NULL : $this->validateMsgTtl($msgTtl);
@@ -269,7 +275,7 @@ class Header {
 	}
 	
 	protected function createLanguage() {
-		return new \com\microsoft\wc\types\Iso6391();
+		return new \com\microsoft\wc\types\Stringnwz64();
 	}
 
 	public function setLanguage($language) {
@@ -282,8 +288,8 @@ class Header {
 			return NULL;
 		}
 
-		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
-			$language = new \com\microsoft\wc\types\Iso6391 ($language);
+		if ( ! $language instanceof \com\microsoft\wc\types\Stringnwz64  && ! is_null($language) ) {
+			$language = new \com\microsoft\wc\types\Stringnwz64 ($language);
 		}
 
 		unset ($this->_overrides['language']);
@@ -299,7 +305,7 @@ class Header {
 	}
 	
 	protected function createCountry() {
-		return new \com\microsoft\wc\types\Iso3166();
+		return new \com\microsoft\wc\types\Stringnwz64();
 	}
 
 	public function setCountry($country) {
@@ -312,13 +318,43 @@ class Header {
 			return NULL;
 		}
 
-		if ( ! $country instanceof \com\microsoft\wc\types\Iso3166  && ! is_null($country) ) {
-			$country = new \com\microsoft\wc\types\Iso3166 ($country);
+		if ( ! $country instanceof \com\microsoft\wc\types\Stringnwz64  && ! is_null($country) ) {
+			$country = new \com\microsoft\wc\types\Stringnwz64 ($country);
 		}
 
 		unset ($this->_overrides['country']);
 	
 		return $country;
+	}
+
+	public function getCultureCode($autoCreate = TRUE) {
+		if ($this->cultureCode===NULL && $autoCreate && ! isset($this->_overrides['cultureCode']) ) {
+			$this->cultureCode = $this->createCultureCode();
+		}
+		return $this->cultureCode;
+	}
+	
+	protected function createCultureCode() {
+		return new \com\microsoft\wc\types\Stringnwz64();
+	}
+
+	public function setCultureCode($cultureCode) {
+		$this->cultureCode = $this->validateCultureCode($cultureCode);
+	}
+
+	protected function validateCultureCode($cultureCode) {
+		if ( $cultureCode === FALSE ) {
+			$this->_overrides['cultureCode'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $cultureCode instanceof \com\microsoft\wc\types\Stringnwz64  && ! is_null($cultureCode) ) {
+			$cultureCode = new \com\microsoft\wc\types\Stringnwz64 ($cultureCode);
+		}
+
+		unset ($this->_overrides['cultureCode']);
+	
+		return $cultureCode;
 	}
 
 	public function getFinalXsl($autoCreate = TRUE) {
@@ -413,7 +449,7 @@ class Header {
 	}
 	
 	protected function createVersion() {
-		return new \com\microsoft\wc\types\Version();
+		return new \com\microsoft\wc\types\Stringnz();
 	}
 
 	public function setVersion($version) {
@@ -421,8 +457,8 @@ class Header {
 	}
 
 	protected function validateVersion($version) {
-		if ( ! $version instanceof \com\microsoft\wc\types\Version ) {
-			$version = new \com\microsoft\wc\types\Version ($version);
+		if ( ! $version instanceof \com\microsoft\wc\types\Stringnz ) {
+			$version = new \com\microsoft\wc\types\Stringnz ($version);
 		}
 	
 		return $version;

@@ -72,7 +72,12 @@ class PersonInfo {
 	 */
 	protected $location;
 
-	public function __construct($personId = NULL, $name = NULL, $appSettings = NULL, $selectedRecordId = NULL, $moreRecords = NULL, $record = NULL, $groups = NULL, $preferredCulture = NULL, $preferredUiculture = NULL, $location = NULL) {
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\types\EffectiveRecordPermissionList", name="effective-record-permission-list")
+	 */
+	protected $effectiveRecordPermissionList;
+
+	public function __construct($personId = NULL, $name = NULL, $appSettings = NULL, $selectedRecordId = NULL, $moreRecords = NULL, $record = NULL, $groups = NULL, $preferredCulture = NULL, $preferredUiculture = NULL, $location = NULL, $effectiveRecordPermissionList = NULL) {
 		$this->personId = ($personId===NULL) ? NULL : $this->validatePersonId($personId);
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 		$this->appSettings = ($appSettings===NULL) ? NULL : $this->validateAppSettings($appSettings);
@@ -83,6 +88,7 @@ class PersonInfo {
 		$this->preferredCulture = ($preferredCulture===NULL) ? NULL : $this->validatePreferredCulture($preferredCulture);
 		$this->preferredUiculture = ($preferredUiculture===NULL) ? NULL : $this->validatePreferredUiculture($preferredUiculture);
 		$this->location = ($location===NULL) ? NULL : $this->validateLocation($location);
+		$this->effectiveRecordPermissionList = ($effectiveRecordPermissionList===NULL) ? NULL : $this->validateEffectiveRecordPermissionList($effectiveRecordPermissionList);
 	}
 
 	public function getPersonId($autoCreate = TRUE) {
@@ -377,5 +383,35 @@ class PersonInfo {
 		unset ($this->_overrides['location']);
 	
 		return $location;
+	}
+
+	public function getEffectiveRecordPermissionList($autoCreate = TRUE) {
+		if ($this->effectiveRecordPermissionList===NULL && $autoCreate && ! isset($this->_overrides['effectiveRecordPermissionList']) ) {
+			$this->effectiveRecordPermissionList = $this->createEffectiveRecordPermissionList();
+		}
+		return $this->effectiveRecordPermissionList;
+	}
+	
+	protected function createEffectiveRecordPermissionList() {
+		return new \com\microsoft\wc\types\EffectiveRecordPermissionList();
+	}
+
+	public function setEffectiveRecordPermissionList($effectiveRecordPermissionList) {
+		$this->effectiveRecordPermissionList = $this->validateEffectiveRecordPermissionList($effectiveRecordPermissionList);
+	}
+
+	protected function validateEffectiveRecordPermissionList($effectiveRecordPermissionList) {
+		if ( $effectiveRecordPermissionList === FALSE ) {
+			$this->_overrides['effectiveRecordPermissionList'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $effectiveRecordPermissionList instanceof \com\microsoft\wc\types\EffectiveRecordPermissionList  && ! is_null($effectiveRecordPermissionList) ) {
+			$effectiveRecordPermissionList = new \com\microsoft\wc\types\EffectiveRecordPermissionList ($effectiveRecordPermissionList);
+		}
+
+		unset ($this->_overrides['effectiveRecordPermissionList']);
+	
+		return $effectiveRecordPermissionList;
 	}
 } // end class PersonInfo

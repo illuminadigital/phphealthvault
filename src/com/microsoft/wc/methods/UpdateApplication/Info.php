@@ -142,7 +142,12 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 	protected $supportedRecordLocations;
 
-	public function __construct($id = NULL, $name = NULL, $publicKeys = NULL, $personOnlineBaseAuth = NULL, $personOfflineBaseAuth = NULL, $methods = NULL, $actionUrl = NULL, $description = NULL, $authReason = NULL, $domainName = NULL, $largeLogo = NULL, $smallLogo = NULL, $persistentTokens = NULL, $appType = NULL, $privacyStatement = NULL, $termsOfUse = NULL, $appAuthRequired = NULL, $restrictAppUsers = NULL, $isPublished = NULL, $dtcSuccessMessage = NULL, $appAttributes = NULL, $validIpPrefixes = NULL, $vocabularyAuthorizations = NULL, $supportedRecordLocations = NULL) {
+	/**
+	 * @XmlElement	(type="\com\microsoft\wc\location\SupportedInstanceList", name="supported-instances")
+	 */
+	protected $supportedInstances;
+
+	public function __construct($id = NULL, $name = NULL, $publicKeys = NULL, $personOnlineBaseAuth = NULL, $personOfflineBaseAuth = NULL, $methods = NULL, $actionUrl = NULL, $description = NULL, $authReason = NULL, $domainName = NULL, $largeLogo = NULL, $smallLogo = NULL, $persistentTokens = NULL, $appType = NULL, $privacyStatement = NULL, $termsOfUse = NULL, $appAuthRequired = NULL, $restrictAppUsers = NULL, $isPublished = NULL, $dtcSuccessMessage = NULL, $appAttributes = NULL, $validIpPrefixes = NULL, $vocabularyAuthorizations = NULL, $supportedRecordLocations = NULL, $supportedInstances = NULL) {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 		$this->publicKeys = ($publicKeys===NULL) ? NULL : $this->validatePublicKeys($publicKeys);
@@ -167,6 +172,7 @@ class Info extends \com\microsoft\wc\request\Info {
 		$this->validIpPrefixes = ($validIpPrefixes===NULL) ? NULL : $this->validateValidIpPrefixes($validIpPrefixes);
 		$this->vocabularyAuthorizations = ($vocabularyAuthorizations===NULL) ? NULL : $this->validateVocabularyAuthorizations($vocabularyAuthorizations);
 		$this->supportedRecordLocations = ($supportedRecordLocations===NULL) ? NULL : $this->validateSupportedRecordLocations($supportedRecordLocations);
+		$this->supportedInstances = ($supportedInstances===NULL) ? NULL : $this->validateSupportedInstances($supportedInstances);
 	}
 
 	public function getId($autoCreate = TRUE) {
@@ -904,5 +910,35 @@ class Info extends \com\microsoft\wc\request\Info {
 		unset ($this->_overrides['supportedRecordLocations']);
 	
 		return $supportedRecordLocations;
+	}
+
+	public function getSupportedInstances($autoCreate = TRUE) {
+		if ($this->supportedInstances===NULL && $autoCreate && ! isset($this->_overrides['supportedInstances']) ) {
+			$this->supportedInstances = $this->createSupportedInstances();
+		}
+		return $this->supportedInstances;
+	}
+	
+	protected function createSupportedInstances() {
+		return new \com\microsoft\wc\location\SupportedInstanceList();
+	}
+
+	public function setSupportedInstances($supportedInstances) {
+		$this->supportedInstances = $this->validateSupportedInstances($supportedInstances);
+	}
+
+	protected function validateSupportedInstances($supportedInstances) {
+		if ( $supportedInstances === FALSE ) {
+			$this->_overrides['supportedInstances'] = TRUE;
+			return NULL;
+		}
+
+		if ( ! $supportedInstances instanceof \com\microsoft\wc\location\SupportedInstanceList  && ! is_null($supportedInstances) ) {
+			$supportedInstances = new \com\microsoft\wc\location\SupportedInstanceList ($supportedInstances);
+		}
+
+		unset ($this->_overrides['supportedInstances']);
+	
+		return $supportedInstances;
 	}
 } // end class Info

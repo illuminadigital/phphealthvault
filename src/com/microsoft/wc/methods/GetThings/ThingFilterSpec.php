@@ -5,7 +5,7 @@ namespace com\microsoft\wc\methods\GetThings;
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings", prefix="wc-method-getthings")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings", prefix="")
  * })
  * @XmlEntity	(xml="ThingFilterSpec")
  */
@@ -86,7 +86,17 @@ class ThingFilterSpec {
 	 */
 	protected $xpath;
 
-	public function __construct($typeId = NULL, $thingState = NULL, $effDateMin = NULL, $effDateMax = NULL, $createdAppId = NULL, $createdPersonId = NULL, $updatedAppId = NULL, $updatedPersonId = NULL, $createdDateMin = NULL, $createdDateMax = NULL, $updatedDateMin = NULL, $updatedDateMax = NULL, $xpath = NULL) {
+	/**
+	 * @XmlText	(type="string", name="updated-end-date-max")
+	 */
+	protected $updatedEndDateMax;
+
+	/**
+	 * @XmlText	(type="string", name="updated-end-date-min")
+	 */
+	protected $updatedEndDateMin;
+
+	public function __construct($typeId = NULL, $thingState = NULL, $effDateMin = NULL, $effDateMax = NULL, $createdAppId = NULL, $createdPersonId = NULL, $updatedAppId = NULL, $updatedPersonId = NULL, $createdDateMin = NULL, $createdDateMax = NULL, $updatedDateMin = NULL, $updatedDateMax = NULL, $xpath = NULL, $updatedEndDateMax = NULL, $updatedEndDateMin = NULL) {
 		$this->typeId = ($typeId===NULL) ? NULL : $this->validateTypeId($typeId);
 		$this->thingState = ($thingState===NULL) ? NULL : $this->validateThingState($thingState);
 		$this->effDateMin = ($effDateMin===NULL) ? NULL : $this->validateEffDateMin($effDateMin);
@@ -100,6 +110,8 @@ class ThingFilterSpec {
 		$this->updatedDateMin = ($updatedDateMin===NULL) ? NULL : $this->validateUpdatedDateMin($updatedDateMin);
 		$this->updatedDateMax = ($updatedDateMax===NULL) ? NULL : $this->validateUpdatedDateMax($updatedDateMax);
 		$this->xpath = ($xpath===NULL) ? NULL : $this->validateXpath($xpath);
+		$this->updatedEndDateMax = ($updatedEndDateMax===NULL) ? NULL : $this->validateUpdatedEndDateMax($updatedEndDateMax);
+		$this->updatedEndDateMin = ($updatedEndDateMin===NULL) ? NULL : $this->validateUpdatedEndDateMin($updatedEndDateMin);
 	}
 
 	public function getTypeId($autoCreate = TRUE) {
@@ -474,5 +486,51 @@ class ThingFilterSpec {
 		}
 	
 		return $xpath;
+	}
+
+	public function getUpdatedEndDateMax($autoCreate = TRUE) {
+		if ($this->updatedEndDateMax===NULL && $autoCreate && ! isset($this->_overrides['updatedEndDateMax']) ) {
+			$this->updatedEndDateMax = $this->createUpdatedEndDateMax();
+		}
+		return $this->updatedEndDateMax;
+	}
+	
+	protected function createUpdatedEndDateMax() {
+		return NULL;
+	}
+
+	public function setUpdatedEndDateMax($updatedEndDateMax) {
+		$this->updatedEndDateMax = $this->validateUpdatedEndDateMax($updatedEndDateMax);
+	}
+
+	protected function validateUpdatedEndDateMax($updatedEndDateMax) {
+		if ( ! is_string($updatedEndDateMax) && ! is_null($updatedEndDateMax) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedEndDateMax', 'string'));
+		}
+	
+		return $updatedEndDateMax;
+	}
+
+	public function getUpdatedEndDateMin($autoCreate = TRUE) {
+		if ($this->updatedEndDateMin===NULL && $autoCreate && ! isset($this->_overrides['updatedEndDateMin']) ) {
+			$this->updatedEndDateMin = $this->createUpdatedEndDateMin();
+		}
+		return $this->updatedEndDateMin;
+	}
+	
+	protected function createUpdatedEndDateMin() {
+		return NULL;
+	}
+
+	public function setUpdatedEndDateMin($updatedEndDateMin) {
+		$this->updatedEndDateMin = $this->validateUpdatedEndDateMin($updatedEndDateMin);
+	}
+
+	protected function validateUpdatedEndDateMin($updatedEndDateMin) {
+		if ( ! is_string($updatedEndDateMin) && ! is_null($updatedEndDateMin) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedEndDateMin', 'string'));
+		}
+	
+		return $updatedEndDateMin;
 	}
 } // end class ThingFilterSpec

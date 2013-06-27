@@ -80,7 +80,12 @@ class Thing2 {
 	 */
 	protected $signatureInfo;
 
-	public function __construct($thingId = NULL, $typeId = NULL, $thingState = NULL, $flags = NULL, $effDate = NULL, $created = NULL, $updated = NULL, $dataXml = NULL, $blobPayload = NULL, $effPermissions = NULL, $tags = NULL, $signatureInfo = NULL) {
+	/**
+	 * @XmlText	(type="string", name="updated-end-date")
+	 */
+	protected $updatedEndDate;
+
+	public function __construct($thingId = NULL, $typeId = NULL, $thingState = NULL, $flags = NULL, $effDate = NULL, $created = NULL, $updated = NULL, $dataXml = NULL, $blobPayload = NULL, $effPermissions = NULL, $tags = NULL, $signatureInfo = NULL, $updatedEndDate = NULL) {
 		$this->thingId = ($thingId===NULL) ? NULL : $this->validateThingId($thingId);
 		$this->typeId = ($typeId===NULL) ? NULL : $this->validateTypeId($typeId);
 		$this->thingState = ($thingState===NULL) ? NULL : $this->validateThingState($thingState);
@@ -93,6 +98,7 @@ class Thing2 {
 		$this->effPermissions = ($effPermissions===NULL) ? NULL : $this->validateEffPermissions($effPermissions);
 		$this->tags = ($tags===NULL) ? NULL : $this->validateTags($tags);
 		$this->signatureInfo = ($signatureInfo===NULL) ? NULL : $this->validateSignatureInfo($signatureInfo);
+		$this->updatedEndDate = ($updatedEndDate===NULL) ? NULL : $this->validateUpdatedEndDate($updatedEndDate);
 	}
 
 	public function getThingId($autoCreate = TRUE) {
@@ -465,5 +471,28 @@ class Thing2 {
 		unset ($this->_overrides['signatureInfo']);
 	
 		return $signatureInfo;
+	}
+
+	public function getUpdatedEndDate($autoCreate = TRUE) {
+		if ($this->updatedEndDate===NULL && $autoCreate && ! isset($this->_overrides['updatedEndDate']) ) {
+			$this->updatedEndDate = $this->createUpdatedEndDate();
+		}
+		return $this->updatedEndDate;
+	}
+	
+	protected function createUpdatedEndDate() {
+		return NULL;
+	}
+
+	public function setUpdatedEndDate($updatedEndDate) {
+		$this->updatedEndDate = $this->validateUpdatedEndDate($updatedEndDate);
+	}
+
+	protected function validateUpdatedEndDate($updatedEndDate) {
+		if ( ! is_string($updatedEndDate) && ! is_null($updatedEndDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedEndDate', 'string'));
+		}
+	
+		return $updatedEndDate;
 	}
 } // end class Thing2

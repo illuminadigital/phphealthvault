@@ -81,7 +81,17 @@ class ThingTypeInfo {
 	 */
 	protected $effectiveDateXpath;
 
-	public function __construct($id = NULL, $name = NULL, $uncreatable = NULL, $immutable = NULL, $singleton = NULL, $xsd = NULL, $columns = NULL, $transforms = NULL, $transformSource = NULL, $image = NULL, $versions = NULL, $effectiveDateXpath = NULL) {
+	/**
+	 * @XmlText	(type="string", name="updated-end-date-xpath")
+	 */
+	protected $updatedEndDateXpath;
+
+	/**
+	 * @XmlText	(type="boolean", name="allow-readonly")
+	 */
+	protected $allowReadonly;
+
+	public function __construct($id = NULL, $name = NULL, $uncreatable = NULL, $immutable = NULL, $singleton = NULL, $xsd = NULL, $columns = NULL, $transforms = NULL, $transformSource = NULL, $image = NULL, $versions = NULL, $effectiveDateXpath = NULL, $updatedEndDateXpath = NULL, $allowReadonly = NULL) {
 		$this->id = ($id===NULL) ? NULL : $this->validateId($id);
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
 		$this->uncreatable = ($uncreatable===NULL) ? NULL : $this->validateUncreatable($uncreatable);
@@ -94,6 +104,8 @@ class ThingTypeInfo {
 		$this->image = ($image===NULL) ? NULL : $this->validateImage($image);
 		$this->versions = ($versions===NULL) ? NULL : $this->validateVersions($versions);
 		$this->effectiveDateXpath = ($effectiveDateXpath===NULL) ? NULL : $this->validateEffectiveDateXpath($effectiveDateXpath);
+		$this->updatedEndDateXpath = ($updatedEndDateXpath===NULL) ? NULL : $this->validateUpdatedEndDateXpath($updatedEndDateXpath);
+		$this->allowReadonly = ($allowReadonly===NULL) ? NULL : $this->validateAllowReadonly($allowReadonly);
 	}
 
 	public function getId($autoCreate = TRUE) {
@@ -435,5 +447,51 @@ class ThingTypeInfo {
 		}
 	
 		return $effectiveDateXpath;
+	}
+
+	public function getUpdatedEndDateXpath($autoCreate = TRUE) {
+		if ($this->updatedEndDateXpath===NULL && $autoCreate && ! isset($this->_overrides['updatedEndDateXpath']) ) {
+			$this->updatedEndDateXpath = $this->createUpdatedEndDateXpath();
+		}
+		return $this->updatedEndDateXpath;
+	}
+	
+	protected function createUpdatedEndDateXpath() {
+		return '';
+	}
+
+	public function setUpdatedEndDateXpath($updatedEndDateXpath) {
+		$this->updatedEndDateXpath = $this->validateUpdatedEndDateXpath($updatedEndDateXpath);
+	}
+
+	protected function validateUpdatedEndDateXpath($updatedEndDateXpath) {
+		if ( ! is_string($updatedEndDateXpath) && ! is_null($updatedEndDateXpath) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedEndDateXpath', 'string'));
+		}
+	
+		return $updatedEndDateXpath;
+	}
+
+	public function getAllowReadonly($autoCreate = TRUE) {
+		if ($this->allowReadonly===NULL && $autoCreate && ! isset($this->_overrides['allowReadonly']) ) {
+			$this->allowReadonly = $this->createAllowReadonly();
+		}
+		return $this->allowReadonly;
+	}
+	
+	protected function createAllowReadonly() {
+		return FALSE;
+	}
+
+	public function setAllowReadonly($allowReadonly) {
+		$this->allowReadonly = $this->validateAllowReadonly($allowReadonly);
+	}
+
+	protected function validateAllowReadonly($allowReadonly) {
+		if ( ! is_bool($allowReadonly) && ! is_null($allowReadonly) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'allowReadonly', 'boolean'));
+		}
+	
+		return $allowReadonly;
 	}
 } // end class ThingTypeInfo

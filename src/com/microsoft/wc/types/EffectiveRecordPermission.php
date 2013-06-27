@@ -1,18 +1,17 @@
 <?php
-namespace com\microsoft\wc\methods\response\QueryPermissions;
+namespace com\microsoft\wc\types;
 
 
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.response.QueryPermissions", prefix="")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
  * })
- * @XmlEntity	(xml="info")
+ * @XmlEntity	(xml="EffectiveRecordPermission")
  */
-class Info extends \com\microsoft\wc\response\AnyMixed {
+class EffectiveRecordPermission {
 	/**
-	 * The element of the response that contains the method specific return value(s).
-	 * All response schemas contain the info element which contain the return value of the method. If the method does not define an info element, the method has no return value.
+	 * A list of the permissions the calling application has to the specified record.
 	 */
 
 	/**
@@ -23,12 +22,41 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 
 
 	/**
+	 * @XmlElement	(type="\com\microsoft\wc\types\Guid", name="record-id")
+	 */
+	protected $recordId;
+
+	/**
 	 * @XmlElement	(type="\com\microsoft\wc\types\ThingTypePermission", collection="true", name="thing-type-permission")
 	 */
 	protected $thingTypePermission;
 
-	public function __construct($thingTypePermission = NULL) {
+	public function __construct($recordId = NULL, $thingTypePermission = NULL) {
+		$this->recordId = ($recordId===NULL) ? NULL : $this->validateRecordId($recordId);
 		$this->thingTypePermission = ($thingTypePermission===NULL) ? NULL : $this->validateThingTypePermission($thingTypePermission);
+	}
+
+	public function getRecordId($autoCreate = TRUE) {
+		if ($this->recordId===NULL && $autoCreate && ! isset($this->_overrides['recordId']) ) {
+			$this->recordId = $this->createRecordId();
+		}
+		return $this->recordId;
+	}
+	
+	protected function createRecordId() {
+		return new \com\microsoft\wc\types\Guid();
+	}
+
+	public function setRecordId($recordId) {
+		$this->recordId = $this->validateRecordId($recordId);
+	}
+
+	protected function validateRecordId($recordId) {
+		if ( ! $recordId instanceof \com\microsoft\wc\types\Guid ) {
+			$recordId = new \com\microsoft\wc\types\Guid ($recordId);
+		}
+	
+		return $recordId;
 	}
 
 	public function getThingTypePermission($autoCreate = TRUE) {
@@ -75,4 +103,4 @@ class Info extends \com\microsoft\wc\response\AnyMixed {
 	public function addThingTypePermission($thingTypePermission) {
 		$this->thingTypePermission[] = $thingTypePermission;
 	}
-} // end class Info
+} // end class EffectiveRecordPermission

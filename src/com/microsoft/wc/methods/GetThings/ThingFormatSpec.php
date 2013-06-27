@@ -5,7 +5,7 @@ namespace com\microsoft\wc\methods\GetThings;
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings", prefix="wc-method-getthings")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.methods.GetThings", prefix="")
  * })
  * @XmlEntity	(xml="ThingFormatSpec")
  */
@@ -59,25 +59,12 @@ class ThingFormatSpec {
 	}
 
 	protected function validateSection($section) {
-		if ( $section === FALSE ) {
-			$this->_overrides['section'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! is_array ($section) && ! is_null($section) ) {
-			$section = array($section);
-		}
-
-		unset ($this->_overrides['section']);
 		$count = count($section);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'section', 0));
 		}
 		if ( ! empty($section) ) {
 			foreach ($section as $entry) {
-				if (!($entry instanceof \com\microsoft\wc\methods\GetThings\ThingSectionSpec )) {
-					throw new \Exception(sprintf('Supplied %s value was not %s', 'section', 'ThingSectionSpec'));
-				}
 			}
 		}
 	
@@ -85,7 +72,12 @@ class ThingFormatSpec {
 	}
 
 	public function addSection($section) {
-		$this->section[] = $section;
+		$this->section[] = $this->validateSectionType($section);
+	}
+
+	protected function validateSectionType($section) {
+	
+		return $section;
 	}
 
 	public function getXml($autoCreate = TRUE) {

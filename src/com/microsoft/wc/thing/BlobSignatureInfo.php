@@ -21,7 +21,7 @@ class BlobSignatureInfo {
 
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\methods\CreateConnectPackage2\Item", collection="true", name="item")
+	 * @XmlElement	(type="\com\microsoft\wc\methods\GetThings\Item", collection="true", name="item")
 	 */
 	protected $item;
 
@@ -53,7 +53,7 @@ class BlobSignatureInfo {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'item', 1));
 		}
 		foreach ($item as $entry) {
-			if (!($entry instanceof \com\microsoft\wc\methods\CreateConnectPackage2\Item )) {
+			if (!($entry instanceof \com\microsoft\wc\methods\GetThings\Item )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'item', 'item'));
 			}
 		}

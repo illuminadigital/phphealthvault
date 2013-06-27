@@ -66,7 +66,7 @@ class LocalizedString {
 	}
 	
 	protected function createLanguage() {
-		return new \com\microsoft\wc\types\Iso6391();
+		return NULL;
 	}
 
 	public function setLanguage($language) {
@@ -74,16 +74,9 @@ class LocalizedString {
 	}
 
 	protected function validateLanguage($language) {
-		if ( $language === FALSE ) {
-			$this->_overrides['language'] = TRUE;
-			return NULL;
+		if ( ! is_string($language) && ! is_null($language) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'language', 'string'));
 		}
-
-		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
-			$language = new \com\microsoft\wc\types\Iso6391 ($language);
-		}
-
-		unset ($this->_overrides['language']);
 	
 		return $language;
 	}

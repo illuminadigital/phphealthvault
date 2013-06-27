@@ -22,12 +22,12 @@ class Culture {
 
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Iso6391", name="language")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnwz64", name="language")
 	 */
 	protected $language;
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\types\Iso3166", name="country")
+	 * @XmlElement	(type="\com\microsoft\wc\types\Stringnwz64", name="country")
 	 */
 	protected $country;
 
@@ -44,7 +44,7 @@ class Culture {
 	}
 	
 	protected function createLanguage() {
-		return new \com\microsoft\wc\types\Iso6391();
+		return new \com\microsoft\wc\types\Stringnwz64();
 	}
 
 	public function setLanguage($language) {
@@ -57,8 +57,8 @@ class Culture {
 			return NULL;
 		}
 
-		if ( ! $language instanceof \com\microsoft\wc\types\Iso6391  && ! is_null($language) ) {
-			$language = new \com\microsoft\wc\types\Iso6391 ($language);
+		if ( ! $language instanceof \com\microsoft\wc\types\Stringnwz64  && ! is_null($language) ) {
+			$language = new \com\microsoft\wc\types\Stringnwz64 ($language);
 		}
 
 		unset ($this->_overrides['language']);
@@ -74,7 +74,7 @@ class Culture {
 	}
 	
 	protected function createCountry() {
-		return new \com\microsoft\wc\types\Iso3166();
+		return new \com\microsoft\wc\types\Stringnwz64();
 	}
 
 	public function setCountry($country) {
@@ -87,8 +87,8 @@ class Culture {
 			return NULL;
 		}
 
-		if ( ! $country instanceof \com\microsoft\wc\types\Iso3166  && ! is_null($country) ) {
-			$country = new \com\microsoft\wc\types\Iso3166 ($country);
+		if ( ! $country instanceof \com\microsoft\wc\types\Stringnwz64  && ! is_null($country) ) {
+			$country = new \com\microsoft\wc\types\Stringnwz64 ($country);
 		}
 
 		unset ($this->_overrides['country']);

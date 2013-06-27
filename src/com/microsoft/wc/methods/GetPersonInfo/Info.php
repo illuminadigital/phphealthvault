@@ -27,8 +27,14 @@ class Info extends \com\microsoft\wc\request\Info {
 	 */
 	protected $groupMembership;
 
-	public function __construct($groupMembership = NULL) {
+	/**
+	 * @XmlText	(type="boolean", name="effective-record-permissions")
+	 */
+	protected $effectiveRecordPermissions;
+
+	public function __construct($groupMembership = NULL, $effectiveRecordPermissions = NULL) {
 		$this->groupMembership = ($groupMembership===NULL) ? NULL : $this->validateGroupMembership($groupMembership);
+		$this->effectiveRecordPermissions = ($effectiveRecordPermissions===NULL) ? NULL : $this->validateEffectiveRecordPermissions($effectiveRecordPermissions);
 	}
 
 	public function getGroupMembership($autoCreate = TRUE) {
@@ -52,5 +58,28 @@ class Info extends \com\microsoft\wc\request\Info {
 		}
 	
 		return $groupMembership;
+	}
+
+	public function getEffectiveRecordPermissions($autoCreate = TRUE) {
+		if ($this->effectiveRecordPermissions===NULL && $autoCreate && ! isset($this->_overrides['effectiveRecordPermissions']) ) {
+			$this->effectiveRecordPermissions = $this->createEffectiveRecordPermissions();
+		}
+		return $this->effectiveRecordPermissions;
+	}
+	
+	protected function createEffectiveRecordPermissions() {
+		return FALSE;
+	}
+
+	public function setEffectiveRecordPermissions($effectiveRecordPermissions) {
+		$this->effectiveRecordPermissions = $this->validateEffectiveRecordPermissions($effectiveRecordPermissions);
+	}
+
+	protected function validateEffectiveRecordPermissions($effectiveRecordPermissions) {
+		if ( ! is_bool($effectiveRecordPermissions) && ! is_null($effectiveRecordPermissions) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'effectiveRecordPermissions', 'boolean'));
+		}
+	
+		return $effectiveRecordPermissions;
 	}
 } // end class Info

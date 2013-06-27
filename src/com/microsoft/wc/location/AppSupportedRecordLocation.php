@@ -5,7 +5,7 @@ namespace com\microsoft\wc\location;
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.location", prefix="location")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.location", prefix="wc-location")
  * })
  * @XmlEntity	(xml="AppSupportedRecordLocation")
  */

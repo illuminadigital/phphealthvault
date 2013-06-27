@@ -37,10 +37,16 @@ class UnprocessedThingKeyInfo {
 	 */
 	protected $effDate;
 
-	public function __construct($thingId = NULL, $typeId = NULL, $effDate = NULL) {
+	/**
+	 * @XmlText	(type="string", name="updated-end-date")
+	 */
+	protected $updatedEndDate;
+
+	public function __construct($thingId = NULL, $typeId = NULL, $effDate = NULL, $updatedEndDate = NULL) {
 		$this->thingId = ($thingId===NULL) ? NULL : $this->validateThingId($thingId);
 		$this->typeId = ($typeId===NULL) ? NULL : $this->validateTypeId($typeId);
 		$this->effDate = ($effDate===NULL) ? NULL : $this->validateEffDate($effDate);
+		$this->updatedEndDate = ($updatedEndDate===NULL) ? NULL : $this->validateUpdatedEndDate($updatedEndDate);
 	}
 
 	public function getThingId($autoCreate = TRUE) {
@@ -110,5 +116,28 @@ class UnprocessedThingKeyInfo {
 		}
 	
 		return $effDate;
+	}
+
+	public function getUpdatedEndDate($autoCreate = TRUE) {
+		if ($this->updatedEndDate===NULL && $autoCreate && ! isset($this->_overrides['updatedEndDate']) ) {
+			$this->updatedEndDate = $this->createUpdatedEndDate();
+		}
+		return $this->updatedEndDate;
+	}
+	
+	protected function createUpdatedEndDate() {
+		return NULL;
+	}
+
+	public function setUpdatedEndDate($updatedEndDate) {
+		$this->updatedEndDate = $this->validateUpdatedEndDate($updatedEndDate);
+	}
+
+	protected function validateUpdatedEndDate($updatedEndDate) {
+		if ( ! is_string($updatedEndDate) && ! is_null($updatedEndDate) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'updatedEndDate', 'string'));
+		}
+	
+		return $updatedEndDate;
 	}
 } // end class UnprocessedThingKeyInfo
