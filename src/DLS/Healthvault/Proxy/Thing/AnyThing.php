@@ -5,6 +5,8 @@ use com\microsoft\wc\thing\Thing2;
 
 class AnyThing extends BaseThing
 {
+    protected $thingType = 'Any';
+    
     public static function reallySupports(Thing2 $thing)
     {
         return TRUE;
