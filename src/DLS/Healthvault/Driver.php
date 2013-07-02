@@ -111,7 +111,7 @@ class Driver {
             \com\microsoft\wc\thing\exercise\Exercise::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Exercise',
             \com\microsoft\wc\thing\file\File::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\File',
             \com\microsoft\wc\thing\BloodGlucose\BloodGlucose::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Glucose',
-            \com\microsoft\wc\thing\Hb1AC\Hb1AC::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\HbA1C',
+            \com\microsoft\wc\thing\HbA1C\HbA1C::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\HbA1C',
             \com\microsoft\wc\thing\height\Height::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Height',
             \com\microsoft\wc\thing\life_goal\LifeGoal::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\LifeGoal',
             \com\microsoft\wc\thing\medication\Medication::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Medication',
