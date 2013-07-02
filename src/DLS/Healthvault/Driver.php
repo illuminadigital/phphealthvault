@@ -102,6 +102,7 @@ class Driver {
     public function getProxyFactory()
     {
         static $proxyData = array(
+            \com\microsoft\wc\thing\appointment\Appointment::ID => '\\DLS\\Healthvault\\Proxy\\Thing\Appointment',
             \com\microsoft\wc\thing\BloodPressure\BloodPressure::ID => '\\DLS\\Healthvault\\Proxy\\Thing\BloodPressure',
             \com\microsoft\wc\thing\care_plan\CarePlan::ID => '\\DLS\Healthvault\\Proxy\\Thing\\CarePlan',
             \com\microsoft\wc\thing\condition\Condition::ID => '\\DLS\Healthvault\Proxy\\Thing\\Condition',
