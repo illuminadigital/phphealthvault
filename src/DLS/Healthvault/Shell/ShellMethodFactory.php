@@ -17,6 +17,19 @@ class ShellMethodFactory {
         $this->configuration = $configuration;
     }
 
+    
+    /**
+     * Return an object implementing the given method
+     * 
+     * Raise an exception if the method can't be set up
+     * 
+     * @param string $name
+     * 
+     * @throws InvalidConfigurationException
+     * @throws UnsupportedShellMethodException
+     * 
+     * @return ShellMethod
+     */
     public function getShellMethod($name)
     {
         if ( ! isset($this->configuration) )

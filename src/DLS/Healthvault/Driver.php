@@ -12,19 +12,54 @@ use com\microsoft\wc\thing\Thing2;
 
 use Doctrine\OXM\Types\Type;
 
+/**
+ * Entry point for all interactions with Microsoft HealthVault
+ * 
+ * @author Alistair MacDonald <alistair.macdonald@digitallifesciences.co.uk>
+ *
+ */
 class Driver {
     
     /**
      * Configuration information required for the connection
      * 
-     * @var HealthvaultConfiguration
+     * @var \DLS\Healthvault\HealthvaultConfigurationInterface
      */
     private $configuration;
     
+    /**
+     * Factory for the shell methods
+     * 
+     * @var \DLS\Healthvault\Shell\ShellMethodFactory
+     */
     private $shellMethodFactory;
+    
+    /**
+     * Factory for the platform methods
+     * 
+     * @var \DLS\Healthvault\Platform\PlatformMethodFactory
+     */
     private $platformMethodFactory;
+    
+    /**
+     * Storage area for Blobs
+     * 
+     * @var \DLS\Healthvault\Blob\BlobStore
+     */
     private $blobStore;
+    
+    /**
+     * Factory for converting Things to the Proxy equivalent
+     * 
+     * @var \DLS\Healthvault\Proxy\ProxyFactory
+     */
     private $proxyFactory;
+    
+    /**
+     * Factory for returning Things based on their ID
+     * 
+     * @var \DLS\Healthvault\Proxy\ThingFactory
+     */
     private $thingFactory;
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
@@ -38,6 +73,11 @@ class Driver {
         $this->getThingFactory();
     }
     
+    /**
+     * Return a shell method object for the method name
+     * 
+     * @param string $methodName
+     */
     public function getShellMethod($methodName)
     {
         $shellMethodFactory = $this->getShellMethodFactory();
@@ -55,6 +95,11 @@ class Driver {
         return $this->shellMethodFactory;
     }
     
+    /**
+     * Return a platform method objeect for the method name
+     * 
+     * @param string $methodName
+     */
     public function getPlatformMethod($methodName)
     {
         $platformMethodFactory = $this->getPlatformMethodFactory();
@@ -72,11 +117,25 @@ class Driver {
         return $this->platformMethodFactory;
     }
     
+    
+    /**
+     * Return the configuration information used for this connection
+     * 
+     * @return \DLS\Healthvault\HealthvaultConfigurationInterface
+     */
     public function getConfiguration()
     {
     	return $this->configuration;
     }
     
+    
+    /**
+     * Return the Blob Store for the thing
+     * 
+     * @param Thing2 $thing
+     * 
+     * @return \DLS\Healthvault\Blob\BlobStore
+     */
     public function getBlobStore(Thing2 $thing)
     {
         $blobStoreFactory = $this->getBlobStoreFactory();
@@ -84,6 +143,11 @@ class Driver {
         return $blobStoreFactory->getBlobStore($thing);
     }
     
+    /**
+     * Return the factory used to obtain Blob Stores
+     * 
+     * @return \DLS\Healthvault\Blob\BlobStoreFactory
+     */
     public function getBlobStoreFactory() 
     {
         if ( ! isset($this->blobStoreFactory) )
@@ -94,13 +158,28 @@ class Driver {
         return $this->blobStoreFactory;
     }
     
+    /**
+     * Return the main vocabulary interface for the connection
+     * 
+     * @return \DLS\Healtvault\Utilities\VocabularyInterface
+     */
     public function getVocabularyInterface()
     {
         return $this->configuration->getVocabularyInterface();
     }
     
+    /**
+     * Return the factory used to provide proxies for things
+     * 
+     * Provides the following hook:
+     * - CONFIGURATION->registerProxies(ProxyFactory) 
+     * 
+     * @return \DLS\Healthvault\Proxy\ProxyFactory
+     */
     public function getProxyFactory()
     {
+        // The proxyies we currently know about.
+        // FIXME: Get the list of proxies automatically using annotations or the like
         static $proxyData = array(
             \com\microsoft\wc\thing\BloodPressure\BloodPressure::ID => '\\DLS\\Healthvault\\Proxy\\Thing\BloodPressure',
             \com\microsoft\wc\thing\care_plan\CarePlan::ID => '\\DLS\Healthvault\\Proxy\\Thing\\CarePlan',
@@ -123,10 +202,12 @@ class Driver {
         {
             $this->proxyFactory = new ProxyFactory($this->getVocabularyInterface(), $this->getBlobStoreFactory());
             
+            // We register each thing ID with it's corresponding proxy class
             foreach ($proxyData as $thingId => $proxyClass) {
                 $this->proxyFactory->registerProxy($thingId, $proxyClass);
             } 
 
+            // Provide a hook that implementors can use to replace our proxies with their own
             $callable = array($this->configuration, 'registerProxies');
             if (is_callable($callable)) {
                 call_user_func($callable, $this->proxyFactory);
@@ -136,6 +217,11 @@ class Driver {
         return $this->proxyFactory;
     }
     
+    /**
+     * Returns a factory for creating things from their IDs
+     * 
+     * @return \DLS\Healthvault\Proxy\ThingFactory
+     */
     public function getThingFactory()
     {
         if ( ! isset($this->thingFactory)) {

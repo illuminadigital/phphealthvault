@@ -8,20 +8,103 @@ use Doctrine\OXM\Marshaller\Marshaller;
 
 use Doctrine\OXM\Configuration;
 
+/**
+ * Provides the starting point for implementations of the configuration.
+ * 
+ * @author Alistair MacDonald <alistair.macdonald@digitallifesciences.co.uk>
+ *
+ */
 class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
 {
+    /**
+     * The URL of the HealthVault instance to send requests to
+     * 
+     * @var string
+     */
     protected $baseUrl;
+    
+    /**
+     * The application ID, as defined in the HealthVault provisioning system
+     * 
+     * @var string
+     */
     protected $applicationId;
+    
+    /**
+     * The private key for the application, as defined in the HealthVault
+     * provisioning system
+     * 
+     * @var string
+     */
     protected $privateKey;
+    
+    /**
+     * An implementation of the marshalling service that can serialise and deserialise the data
+     * 
+     * @var XMLMarshallingService
+     */
     protected $marshallingService;
+    
+    /**
+     * The shared secret
+     * 
+     * @var string
+     */
     protected $sharedSecret;
+    
+    /**
+     * The secret digest
+     * 
+     * @var string
+     */
     protected $secretDigest;
+    
+    /**
+     * The user's authentication token
+     * 
+     * @var string
+     */
     protected $token;
+    
+    /**
+     * The RecordId of the user's selected record
+     * 
+     * @var string
+     */
     protected $record;
+    
+    /**
+     * The thumbprint used to verify the application
+     * 
+     * @var string
+     */
     protected $thumbprint;
+    
+    /**
+     * A seed to keep the encryption random
+     * 
+     * @var string
+     */
     protected $seed;
+    
+    /**
+     * The token authorising the application to use HealthVault on behalf of the user
+     * 
+     * @var string
+     */
     protected $appAuthToken;
     
+    /**
+     * Set up the main configration information.
+     * 
+     * @param mixed $application - either the application ID or an array-like entity with the values
+     * @param string $privateKey
+     * @param string $thumbprint
+     * @param string $baseUrl
+     * @param string $marshallingService
+     * @param string $seed
+     * @param string $appAuthtoken
+     */
     public function __construct($application, $privateKey = NULL, $thumbprint = NULL, $baseUrl = NULL, $marshallingService = NULL, $seed = NULL, $appAuthtoken = NULL)
     {
         if (is_array($application) || $application instanceof ArrayAccess) 
@@ -73,11 +156,19 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         $this->checkConfiguration();
     }
     
+    /**
+     * Rebuilds the secrets after the seed has changed
+     */
     protected function updateSecrets() {
         $this->sharedSecret = hash($this->getSharedSecretHash(), $this->seed);
         $this->secretDigest = hash_hmac($this->getSecretDigestHash(), $this->sharedSecret, $this->sharedSecret);
     }
     
+    /**
+     * Retrieve the current seed for the hashing algorithms.
+     * 
+     * If the seed is not set then create one.
+     */
     public function getSeed() {
         if ( empty ($this->seed) ) {
             $this->setSeed(uniqid(rand(0,1), TRUE)); 
@@ -94,6 +185,20 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         return $this;
     }
     
+    /**
+     * Initialises the data from an array-like entity.
+     * 
+     * The keys are:
+     * - applicationId
+     * - privateKey (either the data resource or a filename)
+     * - thumbprint
+     * - baseUrl
+     * - marshallingService
+     * - seed
+     * - appAuthToken
+     * 
+     * @param mixed $data
+     */
     protected function setFromArray($data)
     {
         if (isset($data['applicationId']))
@@ -202,6 +307,9 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         return $this->privateKey;
     }
     
+    /**
+     * Return an object that can be used to convert back and forth between objects and XML
+     */
     public function getMarshallingService()
     {
         if ( empty ($this->marshallingService)) {
@@ -211,35 +319,57 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
         return $this->marshallingService;
     }
     
+    /**
+     * Set up the default marshalling service. 
+     * 
+     * Provides the following hooks:
+     * - $this->alterAnnotationPaths() - to change where to look for annotated classes
+     * - ANNOTATIONDRIVER->registerAnnotationClasses() - to allow the annotations to be loaded
+     * - $this->alterMetadataFactory() - to allow the metadata factory configuration to be tweaked 
+     * 
+     * @return \Doctrine\OXM\Marshaller\XmlMarshaller
+     */
     protected function getDefaultMarshallingService()
     {
+        // The OXM code has it's own configuration structure
     	$OXMConfiguration = new \Doctrine\OXM\Configuration();
     	
+    	// Where can we find our annotated classes?
     	$paths = array(
     		__DIR__ . '/../../com',
     		__DIR__ . '/../../org',
     	);
     	
+    	// Create a hook that allows code to add more paths to search for classes
         $pathAltererCallable = array($this, 'alterAnnotationPaths');
         if (is_callable($pathAltererCallable)) {
-            $paths = call_user_func($pathAltererCallable, $paths); // No call by reference
+            /*
+             * Return the updated paths as we can't use call-by-reference and arrays are
+             * "weird" when it comes to non-explicit calls 
+             */ 
+            $paths = call_user_func($pathAltererCallable, $paths);
         }
         
+        // We need something that can interpret annotations
     	$annotationDriver = $this->getAnnotationDriver($OXMConfiguration, $paths);
     	
-    	// Register the classes
+    	// Register the classes if possible
     	$callable = array(get_class($annotationDriver), 'registerAnnotationClasses');
     	if (is_callable($callable)) {
 	    	call_user_func($callable);
     	}
     	
+    	// Set up the conversion of annotations to metadata
     	$OXMConfiguration->setMetadataDriverImpl($annotationDriver);
 
+    	// ... and a cache for that metadata
     	$OXMConfiguration->setMetadataCacheImpl($this->getMetadataCacheImpl());
     	
+    	// That process needs a factory for the metadata
     	$metadataFactoryName = $OXMConfiguration->getClassMetadataFactoryName();
     	$metadataFactory = new $metadataFactoryName($OXMConfiguration);
     	
+    	// ... and provide a hook to configure that factory
     	$metadataFactoryAltererCallable = array($this, 'alterMetadataFactory');
     	if (is_callable($metadataFactoryAltererCallable)) {
     	    call_user_func($metadataFactoryAltererCallable, $metadataFactory); // Objects are always be reference
@@ -253,12 +383,25 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	return $marshaller;
     }
     
+    /**
+     * Build the annotation driver
+     * 
+     * @param Configuration $OXMConfiguration
+     * @param array $paths - where to look for annotated files
+     * 
+     * @return Doctrine\OXM\Mapping\Driver\AnnotationDriver
+     */
     protected function getAnnotationDriver(Configuration $OXMConfiguration, array $paths) {
         $annotationDriver = $OXMConfiguration->newDefaultAnnotationDriver($paths);
         
         return $annotationDriver;
     }
     
+    /**
+     * Build the Cache for metadata
+     * 
+     * @return \Doctrine\Common\Cache\Cache
+     */
     protected function getMetadataCacheImpl() {
         return new \Doctrine\Common\Cache\ArrayCache();
     }
@@ -295,6 +438,16 @@ class BaseHealthvaultConfiguration implements HealthvaultConfigurationInterface
     	
     }
     
+    /**
+     * Set the private key information. 
+     * 
+     * This should be either a resource, a string version of the key, 
+     * or the filename from which to load the key.
+     * 
+     * @param Resource|string $key
+     * @throws \Exception
+     * @return \DLS\Healthvault\BaseHealthvaultConfiguration
+     */
     public function setPrivateKey($key)
     {
     	if (is_string($key)) {
