@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+    targetNamespace="urn:com.microsoft.wc.methods.response"
+    xmlns:this="urn:com.microsoft.wc.methods.response"
+    xmlns:wc-types="urn:com.microsoft.wc.types"
+    xmlns="http://www.w3.org/2001/XMLSchema" >
+
+    <annotation>
+    	<documentation>
+    		<summary>
+    			Dummy schema for the response
+    		</summary>
+    	</documentation>
+    </annotation>
+    
+    <complexType name="Info">
+    	<annotation>
+    		<documentation>
+    			<summary>
+    				The actual response from the method
+    			</summary>
+    		</documentation>
+    	</annotation>
+    		
+   		<sequence>
+   			<any minOccurs="0" maxOccurs="unbounded" namespace="##any" processContents="skip">
+   				<annotation>
+   					<documentation>
+   						<summary>
+   							The payload of the response
+   						</summary>
+   					</documentation>
+   				</annotation>
+   			</any>
+   		</sequence>
+    </complexType>
+    
+    <complexType name="Status">
+    	<annotation>
+    		<documentation>
+    			<summary>
+    				The status of the request
+    			</summary>
+    		</documentation>
+    	</annotation>
+    	
+    	<sequence>
+    		<element name="code" type="integer">
+    			<annotation>
+    				<documentation>
+    					<summary>A numeric code representing the status</summary>
+    				</documentation>
+    			</annotation>
+    		</element>
+    		<element name="error" type="this:Error" minOccurs="0" maxOccurs="1">
+    			<annotation>
+    				<documentation>
+    					<summary>Details of the error</summary>
+    				</documentation>
+    			</annotation>
+    		</element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="Error">
+    	<annotation>
+    		<documentation>
+    			<summary>
+    				Details of the error
+    			</summary>
+    		</documentation>
+    	</annotation>
+    	
+    	<sequence>
+    		<element name="message" type="string">
+    			<annotation>
+    				<documentation>
+    					<summary>
+    						A description of the error
+    					</summary>
+    				</documentation>
+    			</annotation>
+    		</element>
+    	</sequence>
+    </complexType>
+
+	<element name="response">
+		<complexType>
+			<annotation>
+				<documentation>
+					<summary>
+						The standard response wrapper from HealthVault
+					</summary>
+				</documentation>
+			</annotation>
+			
+			<sequence>
+				<element name="status" type="this:Status" minOccurs="1" maxOccurs="1">
+					<annotation>
+						<documentation>
+							<summary>
+								The status of the request
+							</summary>
+							<remarks>
+								This section will always be present and contain the status of the request
+							</remarks>
+						</documentation>
+					</annotation>
+				</element>
+				
+				<element name="info" type="this:Info" minOccurs="1" maxOccurs="1">
+					<annotation>
+						<documentation>
+							<summary>
+								The result of the method
+							</summary>
+						</documentation>
+					</annotation>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+    
+</schema>

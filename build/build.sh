@@ -1,31 +1,38 @@
 #!/bin/sh
 
-SCHEMABASE=/var/www/vhosts/schema
+if [ "x$1" == "x" ]
+then
+	BUILDPATH=`dirname $0`
+else
+	BUILDPATH="$1"
+fi
+
+SCHEMABASE=$BUILDPATH/schema
 XSD2PHPBASE=/var/www/vhosts/xsd-to-php
-DESTBASE=/var/www/vhosts/phphealthvault
+
+if [ "x$2" == "x" ]
+then
+	DESTBASE=`dirname $0`/..
+else
+	DESTBASE="$2"
+fi
+
+TMPFOLDER="/tmp/$$"
 
 echo "Building base structure"
-mkdir /tmp/$$
-cp -r $SCHEMABASE/platform /tmp/$$
+mkdir $TMPFOLDER
+cp -r $SCHEMABASE $TMPFOLDER
 
 echo "Generating master classes"
 
-#for i in `find $SCHEMABASE/platform/web/xsd -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print`
-#do
-	#	echo $i
-	#	FNAME=/tmp/$$`echo $i | sed -e 's#$SCHEMABASE##' `
-	#	mkdir -p `dirname $FNAME`
-	#	#perl -e 'while (defined($f = <>)) { $content .= $f; } $content =~ m#xmlns[^=]*="http://www.w3.org/2001/XMLSchema# && $content =~ s#(<schema.*?>)#\1\n<import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="XMLSchema.xsd" />#s;; print $content;' $i > $FNAME  
-#done
-
-####
-
 DEFDIR=`pwd`
-cd /tmp/$$
+
+cd $TMPFOLDER
+
 for i in `find . -name 'healthvault-methods.xsd' -prune -o -type f -name 'method*.xsd' -print -o -type f -name 'request*.xsd' -print -o -type f -name 'response*.xsd' -print -o -type f -name 'thingtype-*.xsd' -print -o -name response.xsd -print`
 do
 	echo $i
-	if grep -q "Note: Please use the new version" /tmp/$$/$i
+	if grep -q "Note: Please use the new version" $TMPFOLDER/$i
 	then
 		echo "Skipping old thing"
 	else
@@ -36,7 +43,7 @@ done
 
 echo "Cleaning up"
 cd $DEFDIR
-rm -rf /tmp/$$
+rm -rf $TMPFOLDER
 
 echo "Creating missing Any classes"
 for i in `find $DESTBASE/src -type f -print0 | xargs -0 egrep -h 'type="[^"]*Any(Mixed|Type)"' | perl -ne '/type="([^"]*Any(Mixed|Type))"/ && do { $class = $1; $class =~ s#\\\\#\\/#g; print "$class\n"; }' | sort -u` 
@@ -84,15 +91,15 @@ done
 #echo "Header fix"
 #for i in $DESTBASE/vendor/com/microsoft/wc/request/Header.php
 #do
-	#	echo $i
-	#	sed -i~ 's#XmlElement	(type="\\com\\microsoft\\wc\\request\\DateTime#XmlText	(type="datetime#; s#is_string($msgTime)# $msgTime instanceof \\DateTime#' $i
+#		echo $i
+#		sed -i~ 's#XmlElement	(type="\\com\\microsoft\\wc\\request\\DateTime#XmlText	(type="datetime#; s#is_string($msgTime)# $msgTime instanceof \\DateTime#' $i
 #done
 
 #echo "Force (non-default) namespace"
 #for i in $DESTBASE/vendor/com/microsoft/wc/request/Request.php $DESTBASE/vendor/com/microsoft/wc/request/Header.php
 #do
-	#	echo $i
-	#	sed -i~ 's#\(XmlNamespace.*prefix="\)#\1wc-request#; ' $i
+#		echo $i
+#		sed -i~ 's#\(XmlNamespace.*prefix="\)#\1wc-request#; ' $i
 #done
 ####
 

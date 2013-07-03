@@ -1,0 +1,24 @@
+--- auth.xsd.orig	2013-01-15 16:26:33.000000000 +0000
++++ auth.xsd	2013-01-15 16:26:55.000000000 +0000
+@@ -305,21 +305,6 @@
+         </sequence>
+     </complexType>
+   
+-    <element name="auth" type="this:Auth">
+-        <annotation>
+-            <documentation>
+-                <summary>
+-
+-                </summary>
+-
+-                <remarks>
+-
+-                </remarks>
+-            </documentation>
+-        </annotation>
+-    </element>
+-
+-
+     <simpleType name="TextualPermissionsType">
+         <annotation>
+             <documentation>

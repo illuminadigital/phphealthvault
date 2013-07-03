@@ -1,0 +1,15 @@
+{
+	"name": "illuminadigital/phphealtvault-builder",
+	
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/illuminadigital/xsd-to-php.git",
+			"reference": "master"
+		}
+	],
+	
+	"require": {
+		"illuminadigital/xsd-to-php": "dev-master"
+	},
+}
