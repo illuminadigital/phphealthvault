@@ -76,10 +76,27 @@ class Blob
         return $this;
     }
 
+    /**
+     * Get the content of the blob.
+     * 
+     * If the blob is empty but indicates that the content is streamable 
+     * and the fetchIfEmpty flag is set then the content will be downloaded
+     * first. Similar rules apply if it points to a local file.
+     * 
+     * Resets the modification flags if the content is loaded and sets the
+     * state of the upload flag
+     * 
+     * @param boolean $fetchIfEmpty - fetch as required
+     * 
+     * @throws NetworkIOException
+     */
+    
     public function getData($fetchIfEmpty = TRUE)
     {
         if (empty($this->data) && $fetchIfEmpty) {
             if ( ! empty($this->reference) ) {
+                
+                // It's a straight download from the "reference" URL
                 $conn = curl_init($this->reference);
                 curl_setopt($conn, CURLOPT_HEADER, FALSE);
                 curl_setopt($conn, CURLOPT_RETURNTRANSFER, TRUE);
@@ -113,6 +130,14 @@ class Blob
         return $this->data;
     }
 
+    /**
+     * Set the data payload of the blob from a string
+     * 
+     * @param string $data - the payload
+     * @param string $updateOtherFields - whether to adjust the size, etc.
+     * 
+     * @return \DLS\Healthvault\Blob\Blob
+     */
     public function setData($data, $updateOtherFields = TRUE)
     {
         if ( ! is_string($data) ) {
@@ -265,6 +290,14 @@ class Blob
         }
     }
     
+    /**
+     * Obtain the mime type from the content of the file
+     * 
+     * @param mixed $file
+     * @param boolean $isString - whether the data is a string
+     * 
+     * @return string - the mime type
+     */
     public static function determineContentType($file, $isString = FALSE)
     {
         $finfo = finfo_open(FILEINFO_MIME_TYPE);

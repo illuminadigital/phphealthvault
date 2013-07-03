@@ -8,20 +8,43 @@ use com\microsoft\wc\thing\Thing2;
 
 use com\microsoft\wc\thing\BlobPayloadItem;
 
+/**
+ * A store the Blobs related to a Thing. 
+ * 
+ * Transparently manages the blobs as far as possible, although the Thing does
+ * need to be saved (with PutThing) after any changes
+ * 
+ * @author Alistair MacDonald <alistair.macdonald@digitallifesciences.co.uk>
+ *
+ */
 class BlobStore implements \Iterator, \Countable, \ArrayAccess
 {
     /**
-     * @var PlatformMethodFactory
+     * Factory for creating methods that talk to HealthVault
+     * 
+     * @var \DLS\Healthvault\Platform\PlatformMethodFactory
      */
     protected $platformMethodFactory;
     
     /**
-     * @var Thing
+     * The Thing to which this store relates
+     * 
+     * @var \com\microsoft\wc\thing\Thing2
      */
     protected $thing;
     
+    /**
+     * The blobs that are attached to this thing
+     * 
+     * @var array
+     */
     protected $blobs = array();
     
+    /**
+     * An iterator, allowing the store to be used for direct access
+     * 
+     * @var \Iterator
+     */
     protected $iterator;
     
     public function __construct(PlatformMethodFactory $factory, Thing2 $thing) {
@@ -31,6 +54,15 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $this->syncFromThing();
     }
     
+    /**
+     * Add a blob from a filename
+     * 
+     * @param string $file - the filename
+     * @param string $name - the name to give the blob (must be unique in this thing)
+     * @param string $contentType - the mime type of the file (optional)
+     * @param boolean $skipResync - whether to immediately resync the data (internal mostly)
+     * @param boolean $doUpload - whether to immediately upload the data (internal mostly)
+     */
     public function add($file, $name, $contentType = NULL, $skipResync = FALSE, $doUpload = TRUE)
     {
         $handle = fopen($file);
@@ -49,8 +81,9 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $contentType = Blob::determineContentType($file);
         }
         
-        $blob = new Blob($name, $data['size'], $contentType);
+        $blob = new Blob($name, $fileData['size'], $contentType);
         
+        // $data will only have been set if the file was just uploaded 
         if (isset($data)) {
             $blob->setReference($data['ref']);
             $blob->setHashParams($data['hashParameters']);
@@ -67,8 +100,18 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
     }
     
+    /**
+     * Adds an exsting Blob to the store for this thing
+     * 
+     * @param Blob $blob
+     * @param boolean $skipResync - whether to immediately resync the data (internal mostly)
+     * @param boolean $doUpload - whether to immediately upload the data (internal mostly)
+     * 
+     * @return boolean
+     */
     public function addBlob(Blob $blob, $skipResync = FALSE, $doUpload = TRUE)
     {
+        // Use a string URI built from the base64 data in the blob
         $fileUrl = 'data://text/plain;base64,' . base64_encode($blob->getData());
         
         $handle = fopen($fileUrl, "r");
@@ -97,6 +140,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $blob->setContentType($contentType);
         
         if ($doUpload) {
+            // The information needs updating if we needed the upload
             $this->updateBlobHashData($blob);
         }
         
@@ -112,6 +156,13 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         return TRUE;
     }
     
+    /**
+     * Convenience method for adding a number files (from filenames)
+     * 
+     * @param array $files - filenames to add
+     * 
+     * @return boolean
+     */
     public function addMultiple(array $files)
     {
         $addedNames = array();
@@ -126,22 +177,30 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 $file = $data;
             }
             
+            // We skip the resync and do it at the end
             $this->add($file, $name, $contentType, TRUE);
             
             $addedNames[$name] = TRUE;
         }
         
+        // Sync all the entries in one go
         $this->syncToThing();
         
         return TRUE;
     }
     
+    /**
+     * Removes the named blob(s) from the store
+     * 
+     * @param string|array $name
+     */
     public function remove($name) {
         $names = (is_array($name) ? $name : array($name));
         
         foreach ($names as $thisName) {
             if ( ! isset($this->blobs[$thisName]) )
             {
+                // The blob may need to be deleted at the far end but not be present locally
                 $blob = new Blob($thisName);
                 
                 $this->blobs[$thisName] = $blob;
@@ -155,12 +214,24 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $this->syncToThing();
     }
     
+    /**
+     * Removes the blob by reference from the stoe
+     * 
+     * @param Blob $blob
+     */
     public function removeBlob(Blob $blob) {
         $name = $blob->getName();
 
         return $this->remove($name);
     }
 
+    /**
+     * Retrieves a blob by name. Returns NULL if not found
+     * 
+     * @param string $name
+     * 
+     * @return Blob
+     */
     public function get($name) {
         if (isset($this->blobs[$name])) {
             return $this->blobs[$name];
@@ -169,6 +240,11 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
     }
     
+    /**
+     * Returns the list of blob names known to this store
+     *  
+     * @return array
+     */
     public function getNames() {
         return array_keys($this->blobs);
     }
@@ -179,16 +255,24 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         return $fileData;
     }
     
+    /**
+     * Uploads a file into HealthVault
+     * 
+     * @param FileHandle $file
+     * @return array - details of the uploaded file
+     */
     protected function uploadFile($file) {
+        // First we need to get the URL and upload parameters 
         $method = $this->platformMethodFactory->getPlatformMethod('BeginPutBlob');
         $result = $method->execute();
         
-        $blobRefUrl = $result->getBlobRefUrl();
-        $chunkSize = $result->getBlobChunkSize();
-        $maxBlobSize = $result->getMaxBlobSize();
-        $hashAlgorithm = $result->getBlobHashAlgorithm()->getValue();
-        $hashParameters = $result->getBlobHashParameters();
-        
+        $blobRefUrl = $result->getBlobRefUrl(); // URL to upload to
+        $chunkSize = $result->getBlobChunkSize(); // How much data to send at a time
+        $maxBlobSize = $result->getMaxBlobSize(); // How large the uploaded file can be
+        $hashAlgorithm = $result->getBlobHashAlgorithm()->getValue(); // The name of the hash algorithm to use as checksum
+        $hashParameters = $result->getBlobHashParameters(); // The parameters for the hash algorithm
+
+        // Open a connection to the upload URL
         $conn = curl_init($blobRefUrl);
         
         $completed = FALSE;
@@ -197,13 +281,16 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $fileData = fstat($file);
         
+        // We are supposed to tell the server the total size of the data we will be sending
         if ( ! $fileData || ! isset($fileData['size']) ) {
             $totalLength = '*'; // Not documented, but in .NET code
         } else {
             $totalLength = $fileData['size'];
         }
-        
+
+        // Loop through sending the file in blocks of the requested size 
         while (($nextChunk = fread($file, $chunkSize)) !== FALSE && ! $completed) {
+            // If we now have the end of the file then we can mark the upload complete
             if (feof($file)) {
                 $completed = TRUE;
             }
@@ -211,11 +298,13 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $this->sendData($conn, $nextChunk, $sentBytes, $completed, $totalLength);
         }
         
+        // If we hadn't got the end of the file before make sure the upload is marked as complete.
         if ( ! $completed ) {
             $completed = TRUE;
             $this->sendData($conn, NULL, $sentBytes, $completed);
         }
         
+        // Send back the useful information to store in the Blob
         return array(
             'size' => $sentBytes,
             'ref' => $blobRefUrl,
@@ -225,6 +314,19 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         );
     }
     
+    /**
+     * Write data to the HealthVault blob store URL
+     * 
+     * @param $conn - the curl connection 
+     * @param string $data - the binary data to send
+     * @param int $sentBytes - how many bytes have already been sent
+     * @param boolean $isComplete - does this complete the transfer
+     * @param string $totalLength - how long is the overall data block
+     * 
+     * @throws NetworkIOException
+     * 
+     * @return boolean
+     */
     protected function sendData($conn, $data, &$sentBytes, $isComplete = FALSE, $totalLength = '*') {
         $chunkLength = Blob::safeStrlen($data);
 
@@ -239,6 +341,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
         
         if ($isComplete) {
+            // Send the header that tells HealthVault that the transfer is complete
             $extraHeaders[] = 'x-hv-blob-complete: 1';
         }
         
@@ -261,12 +364,14 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
     }
     
     public function syncToThing() {
+        // Get the blobs that the store knows about
 		$names = $this->blobs;
         
         $blobPayload = $this->thing->getBlobPayload();
         
         $processed = array();
         
+        // Get the blobs that the thing knows about
         $blobData = $blobPayload->getBlob();
         
         foreach ($blobData as $index => $thisBlob) {
@@ -275,16 +380,18 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $thisBlobName = $blobInfo->getName()->getValue();
             
             if ( isset($names[$thisBlobName]) ) {
-                // Process this entry
+                // Both parts know the name: Process this entry
                 
                 if ($this->blobs[$thisBlobName]->isDeleted()) {
+                    // The store thinks this is deleted
                     $thisBlob->setContentLength(0);
                     $thisBlob->setBase64data(FALSE);
                     $thisBlob->setBlobRefUrl(NULL);
                 } else if ($this->blobs[$thisBlobName]->isModified()) {
+                    // The store thinks this is modified
                     $this->updateThingBlob($thisBlob, $thisBlobName);
                 } else {
-                    // Remove unchanged items
+                    // Remove unchanged items -- they shouldn't be sent back to HEalthVault
                     unset ($blobData[$index]);
                 }
                 
@@ -292,17 +399,26 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             }
         }
         
-        // Don't use the internal mechanisms as they can't cope with creating an empty array of blobs. We will deal with that later.
+        /*
+         * The generated code insists that there alway be an entry in the blobs. 
+         * If our processing results in an empty array then it would cause an error. 
+         * Rather than using the normal add/remove logic we do the processing ourselves
+         * and look at the result to determine what to do.
+         */
         
+        // Go through all the blobs that the store knows about
         foreach (array_keys($names) as $thisBlobName) {
             $thisBlobData = $this->blobs[$thisBlobName];
             
             if ( ! isset($processed[$thisBlobName]) && $thisBlobData->isModified() ) {
+                // This blob has changed and wasn't in the blobs that the thing knows about
                 $thisBlob = new BlobPayloadItem();
                 
                 if ( ! $thisBlobData->isDeleted() ) {
+                    // It wasn't deleted though
                     $this->updateThingBlob($thisBlob, $thisBlobName);
                 } else {
+                    // This was deleted
                     $thisBlobInfo = $thisBlob->getBlobInfo();
                     $thisBlobInfo->setName($thisBlobName);
                     $thisBlobInfo->getContentType($thisBlobData->getContentType());
@@ -313,6 +429,12 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             }
         }
         
+        /*
+         * Now we can sort out what to do.
+         * 
+         * It's easy enough -- just prevent the wrapper from existing if there are
+         * no entries!
+         */
         if ( ! empty($blobData) ) {
             // Write the changes back into the payload;
             $blobPayload->setBlob($blobData);
@@ -321,16 +443,24 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
     }
     
+    /**
+     * Updates the parts of the thing that relate to this blob
+     * 
+     * @param BlobPayloadItem $thisBlob
+     * @param string $thisBlobName
+     */
     protected function updateThingBlob(BlobPayloadItem $thisBlob, $thisBlobName) {
         $storedBlob = $this->blobs[$thisBlobName];
         $thisBlobInfo = $thisBlob->getBlobInfo();
         $thisBlobHashInfo = $thisBlobInfo->getHashInfo();
         
         if ($storedBlob->isUploaded()) {
+            // Uploaded blobs need to reference the upload URL
             $thisBlob->setContentLength($storedBlob->getSize());
             $thisBlob->setBlobRefUrl($storedBlob->getReference());
             $thisBlob->setBase64data(FALSE);
         } else {
+            // Non-Uploaded blobs need to be included in the thing
             $thisBlob->setContentLength($storedBlob->getSize());
             $thisBlob->setBase64data(base64_encode($storedBlob->getData()));
             $thisBlob->setBlobRefUrl(NULL);
@@ -347,6 +477,11 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         $thisBlobHashInfo->setHash($storedBlob->getHash());
     }
     
+    /**
+     * Convert the thing datastructures into the internal ones for the store
+     * 
+     * @param boolean $removeNewItems - should locally added new items be removed from the store
+     */
     protected function syncFromThing($removeNewItems = FALSE) {
         $blobPayload = $this->thing->getBlobPayload();
 
@@ -358,10 +493,11 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $thisBlobName = $blobInfo->getName()->getValue();
         
             if (isset($this->blobs[$thisBlobName])) {
-                // Resync existing
+                // Resync our existing data
                 
                 $blob = $this->blobs[$thisBlobName];
                 
+                // If the idea of size doesn't match, or we don't actually have the contemt and it is included inline then get the content
                 if ($blob->getSize() != $thisBlob->getContentLength() 
                         && ($blob->hasData() 
                                 || ($thisBlob->getData() && $thisBlob->getData()->getValue())
@@ -375,9 +511,11 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                     $blob->setData($data);
                 }
             } else {
+                // The blob store doesn't know about this blob -- yet!
                 $blob = new Blob($thisBlobName, $thisBlob->getContentLength(), $blobInfo->getContentType()->getValue());
                 $this->blobs[$thisBlobName] = $blob;
                 
+                // Get the inline data if it is provided
                 $data = $thisBlob->getBase64data(FALSE);
                 if ( is_object($data) ) {
                     $data = $data->getValue();
@@ -389,6 +527,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 $blob->setData($data);
             }
             
+            // Then update the hash data in th blob store copy
             $hashInfo = $blobInfo->getHashInfo();
             
             $blob
@@ -398,6 +537,9 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
                 ->setReference($thisBlob->getBlobRefUrl(FALSE))
                 ->setClean(TRUE)
             ;
+            
+            // Remember we have seen this one
+            $processed[$thisBlobName] = TRUE;
         }
         
         if ($removeNewItems) {
@@ -409,6 +551,13 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         }
     }
     
+    /**
+     * Sets up the correct information for the verification hashes
+     * 
+     * @param Blob $blob
+     * 
+     * @return \DLS\Healthvault\Blob\BlobStore
+     */
     protected function updateBlobHashData(Blob $blob) {
         /*
         $blob
@@ -419,6 +568,7 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $hashAlgorithm = $blob->getHashAlgorithm();
         if ( empty($hashAlgorithm) ) {
+            // Use the default algorithm
             $hashAlgorithm = $this->getHashAlgorithm();
             $blob->setHashAlgorithm($hashAlgorithm);
         }
@@ -432,21 +582,26 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
             $blob->getHashParams()->setBlockSize($chunkSize);
         }
         
-        // Convert from BITS to BYTES
-        $chunkSize = $chunkSize >> 3;
-        
-        /*
-         * The procedure appears to be:
-         * - Chunk the data into blocks of maximum length "block size"
-         * - Foreach chunk, hash the data with the hashing algorithm.
-         * - Concatenate all the hashes and then hash this with the hashing algorithm.
-         * - return this final hash
+        /* 
+         * Convert from BITS to BYTES
+         * 
+         * Yes, the data size comes back in bits but we are expected to work in bytes on the upload
          */
+        $chunkSize = $chunkSize >> 3;
         
         $data = $blob->getData();
         $blobLength = Blob::safeStrlen($data);
         
+        // The algorithm name can end in "Block"
         if (substr($hashAlgorithm, -5) == 'Block') {
+            /*
+             * The procedure appears to be:
+             * - Chunk the data into blocks of maximum length "block size"
+             * - Foreach chunk, hash the data with the hashing algorithm.
+             * - Concatenate all the hashes and then hash this with the hashing algorithm.
+             * - return this final hash
+             */
+        
             $hashAlgorithm = substr($hashAlgorithm, 0, -5);
 
             $hashData = '';
@@ -470,6 +625,8 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
     protected function getHashAlgorithm() {
         return 'SHA256';
     }
+    
+    /* Function as an iterable */
     
     public function getIterator() {
         if ( empty($this->iterator) ) {
@@ -509,9 +666,17 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         return $iterator->valid();
     }
 
+    /* end of iterator */
+    
+    /* countable */
+    
     public function count() {
         return count($this->blobs);
     }
+    
+    /* end of countable */
+    
+    /* array access */
     
     /*
      * The following methods use the iterator for consistency 
@@ -539,4 +704,6 @@ class BlobStore implements \Iterator, \Countable, \ArrayAccess
         
         $iterator->offsetUnset($offset);
     }
+    
+    /* end of array access */
 }
