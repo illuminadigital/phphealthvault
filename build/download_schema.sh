@@ -1,8 +1,14 @@
 #!/bin/sh
 
-if [ "x$1" == "x" ]
+if [ "x$1" = "x" ]
 then
-	BUILDPATH=`dirname $0`
+	case $0 
+	in 
+		/*) 
+			BUILDPATH="`dirname $0`";; 
+		*) 
+			BUILDPATH="`pwd`";; 
+	esac
 else
 	BUILDPATH="$1"
 fi

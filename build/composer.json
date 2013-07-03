@@ -3,13 +3,20 @@
 	
 	"repositories": [
 		{
-			"type": "vcs",
-			"url": "https://github.com/illuminadigital/xsd-to-php.git",
-			"reference": "master"
+			"type": "package",
+			"package": {
+				"name": "illuminadigital/xsd-to-php",
+				"version": "master",
+				"source": {
+					"url": "https://github.com/illuminadigital/xsd-to-php.git",
+					"reference": "master",
+					"type": "git"
+				}
+			}
 		}
 	],
 	
 	"require": {
 		"illuminadigital/xsd-to-php": "dev-master"
-	},
+	}
 }

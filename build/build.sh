@@ -1,18 +1,24 @@
 #!/bin/sh
 
-if [ "x$1" == "x" ]
+if [ "x$1" = "x" ]
 then
-	BUILDPATH=`dirname $0`
+	case $0 
+	in 
+		/*) 
+			BUILDPATH="`dirname $0`";; 
+		*) 
+			BUILDPATH="`pwd`";; 
+	esac
 else
 	BUILDPATH="$1"
 fi
 
 SCHEMABASE=$BUILDPATH/schema
-XSD2PHPBASE=/var/www/vhosts/xsd-to-php
+XSD2PHPBASE=$BUILDPATH/vendor/illuminadigital/xsd-to-php
 
-if [ "x$2" == "x" ]
+if [ "x$2" = "x" ]
 then
-	DESTBASE=`dirname $0`/..
+	DESTBASE="$BUILDPATH/.."
 else
 	DESTBASE="$2"
 fi
