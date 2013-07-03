@@ -21,7 +21,7 @@ have the `HTML/HTML5/Entities" module installed)
 Once all the components are in place it is possible to simply run `build.sh` to
 regenerate all the files. 
 
-Assuming that `composer.phar` installed somewhere and is executable on your 
+Assuming that `composer.phar` is installed somewhere and is executable on your 
 system then the process is:
 
 	$ composer.phar install
