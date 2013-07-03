@@ -202,7 +202,7 @@ class Address extends BaseType
             $region[]=$this->county;
         }
 
-        $regionStr = implode(' ,',$region);
+        $regionStr = implode(', ',$region);
 
         if(strlen($regionStr)>0){
             $address.=$regionStr.'. ';
@@ -222,7 +222,7 @@ class Address extends BaseType
             $area[]=$this->country;
         }
 
-        $areaStr = implode(' ,',$area);
+        $areaStr = implode(', ',$area);
 
         if(strlen($regionStr)>0){
             $address.=$areaStr.'.';
