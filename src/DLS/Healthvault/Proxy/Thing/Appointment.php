@@ -7,7 +7,10 @@ use DLS\Healthvault\Utilities\VocabularyInterface;
 
 use com\microsoft\wc\thing\appointment\Appointment as hvAppointment;
 use com\microsoft\wc\thing\Thing2;
-use com\microsoft\wc\thing\types\CodableValue;
+
+use DLS\Healthvault\Proxy\Type\CodableValue;
+use DLS\Healthvault\Proxy\Type\DurationValue;
+use DLS\Healthvault\Proxy\Type\Person;
 
 
 class Appointment extends WhenThing
@@ -53,6 +56,10 @@ class Appointment extends WhenThing
         $this->status = new CodableValue('appointment-status');
 
         $this->careClass = new CodableValue('appointment-care-class');
+
+        $this->duration = new DurationValue();
+
+        $this->clinic = new Person();
 
         if ($healthvaultVocabulary)
         {
@@ -128,7 +135,9 @@ class Appointment extends WhenThing
 
     public function setThingDuration($duration){
 
-        //TODO: SET THING
+        $payload = $this->getThingPayload();
+
+        $this->duration->updateToThingElement($payload->getDuration());
 
     }
 
@@ -157,7 +166,9 @@ class Appointment extends WhenThing
 
     public function setThingClinic($clinic)
     {
-        //TODO: SET THING
+        $payload = $this->getThingPayload();
+
+        $this->clinic->updateToThingElement($payload->getClinic());
     }
 
     public function getSpecialty()
@@ -188,7 +199,7 @@ class Appointment extends WhenThing
 
         $payload = $this->getThingPayload();
 
-        $this->specialty->updateToThingElement($payload->getSpeciality());
+        $this->specialty->updateToThingElement($payload->getSpecialty());
 
     }
 
@@ -271,7 +282,7 @@ class Appointment extends WhenThing
         $this->service->setFromThingElement($service);
 
         //LOAD SPECIALITY
-        $specialty = $payload->getSpeciality();
+        $specialty = $payload->getSpecialty();
 
         $this->specialty->setFromThingElement($specialty);
 
