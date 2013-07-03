@@ -181,13 +181,16 @@ class Driver {
         // The proxyies we currently know about.
         // FIXME: Get the list of proxies automatically using annotations or the like
         static $proxyData = array(
+            \com\microsoft\wc\thing\appointment\Appointment::ID => '\\DLS\\Healthvault\\Proxy\\Thing\Appointment',
             \com\microsoft\wc\thing\BloodPressure\BloodPressure::ID => '\\DLS\\Healthvault\\Proxy\\Thing\BloodPressure',
             \com\microsoft\wc\thing\care_plan\CarePlan::ID => '\\DLS\Healthvault\\Proxy\\Thing\\CarePlan',
             \com\microsoft\wc\thing\condition\Condition::ID => '\\DLS\Healthvault\Proxy\\Thing\\Condition',
             \com\microsoft\wc\thing\dietary_intake_daily\DietaryIntakeDaily::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\DietaryIntakeDaily',
+            \com\microsoft\wc\thing\emotion\Emotion::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Emotion',
             \com\microsoft\wc\thing\exercise\Exercise::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Exercise',
             \com\microsoft\wc\thing\file\File::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\File',
             \com\microsoft\wc\thing\BloodGlucose\BloodGlucose::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Glucose',
+            \com\microsoft\wc\thing\HbA1C\HbA1C::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\HbA1C',
             \com\microsoft\wc\thing\height\Height::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Height',
             \com\microsoft\wc\thing\life_goal\LifeGoal::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\LifeGoal',
             \com\microsoft\wc\thing\medication\Medication::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Medication',
