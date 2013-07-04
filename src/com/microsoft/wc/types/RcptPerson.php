@@ -5,11 +5,11 @@ namespace com\microsoft\wc\types;
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="t")
  * })
  * @XmlEntity	(xml="RcptPerson")
  */
-class RcptPerson extends \com\microsoft\wc\types\Guid {
+class RcptPerson extends \com\microsoft\wc\typescom\microsoft\wc\thing\types\Guid {
 	/**
 	 * Represents a message recipient who is identified by a a unique Microsoft Health account identifier.
 	 * The validated attribute determines whether the email address must first be validated by the account owner. If the validated attribute is true and the email address hasn't been validated then an error will be returned.

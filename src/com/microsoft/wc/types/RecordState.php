@@ -5,7 +5,7 @@ namespace com\microsoft\wc\types;
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="t")
  * })
  * @XmlRootEntity	(xml="RecordState")
  */

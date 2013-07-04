@@ -5,11 +5,11 @@ namespace com\microsoft\wc\types;
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="wc-types")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.types", prefix="t")
  * })
  * @XmlEntity	(xml="AppInfo")
  */
-class AppInfo extends \com\microsoft\wc\types\Guid {
+class AppInfo extends \com\microsoft\wc\typescom\microsoft\wc\thing\types\Guid {
 	/**
 	 * The applications to create credential tokens for.
 	 * Each application will be issued a unique token that has a limited lifetime.
