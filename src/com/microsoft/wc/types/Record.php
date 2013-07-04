@@ -9,7 +9,7 @@ namespace com\microsoft\wc\types;
  * })
  * @XmlEntity	(xml="Record")
  */
-class Record extends \com\microsoft\wc\typescom\microsoft\wc\thing\types\String255 {
+class Record extends \com\microsoft\wc\types\String255 {
 	/**
 	 * Basic information about the authenticated person's view of a health record.
 	 * Health records are a place to store health and fitness related data. Each person may be authorized to zero to many health records. This type represents the metadata about the authenticated person's view of the record, including it's unique identifier, the relationship the authorized person has with the owner of the record, the name of the record, whether the authorized person is a custodian of the record, and more.

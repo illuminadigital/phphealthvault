@@ -9,7 +9,7 @@ namespace com\microsoft\wc\types;
  * })
  * @XmlEntity	(xml="CultureSpecificString255")
  */
-class CultureSpecificString255 extends \com\microsoft\wc\typescom\microsoft\wc\thing\types\String255 {
+class CultureSpecificString255 extends \com\microsoft\wc\types\String255 {
 	/**
 	 * The CultureSpecific... classes are intended for use with data that can be localized for one or more languages and cultures.
 	 * The CultureSpecific... classes should be upward compatibile with the base types.
