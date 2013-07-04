@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class BN extends \org\w3\www\_2001\XMLSchema\ANYNonNull {
 	/**
-	 * The BooleanNonNull type is used where a Boolean cannot have a null value. A Boolean value can be either true or false.
+	 * The BooleanNonNull type is used where a Boolean cannothave a null value. A Boolean value can be eithertrue or false.
 	 */
 
 	/**

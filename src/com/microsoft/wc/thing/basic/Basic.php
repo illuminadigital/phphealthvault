@@ -84,7 +84,7 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createGender() {
-		return new \com\microsoft\wc\thing\basic\Gender();
+		return NULL;
 	}
 
 	public function setGender($gender) {
@@ -92,16 +92,6 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateGender($gender) {
-		if ( $gender === FALSE ) {
-			$this->_overrides['gender'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $gender instanceof \com\microsoft\wc\thing\basic\Gender  && ! is_null($gender) ) {
-			$gender = new \com\microsoft\wc\thing\basic\Gender ($gender);
-		}
-
-		unset ($this->_overrides['gender']);
 	
 		return $gender;
 	}
@@ -114,7 +104,7 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createBirthyear() {
-		return new \com\microsoft\wc\thing\basic\Birthyear();
+		return NULL;
 	}
 
 	public function setBirthyear($birthyear) {
@@ -122,16 +112,6 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateBirthyear($birthyear) {
-		if ( $birthyear === FALSE ) {
-			$this->_overrides['birthyear'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $birthyear instanceof \com\microsoft\wc\thing\basic\Birthyear  && ! is_null($birthyear) ) {
-			$birthyear = new \com\microsoft\wc\thing\basic\Birthyear ($birthyear);
-		}
-
-		unset ($this->_overrides['birthyear']);
 	
 		return $birthyear;
 	}
@@ -250,7 +230,7 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createFirstdow() {
-		return new \com\microsoft\wc\thing\basic\Firstdow();
+		return NULL;
 	}
 
 	public function setFirstdow($firstdow) {
@@ -258,16 +238,6 @@ class Basic extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateFirstdow($firstdow) {
-		if ( $firstdow === FALSE ) {
-			$this->_overrides['firstdow'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $firstdow instanceof \com\microsoft\wc\thing\basic\Firstdow  && ! is_null($firstdow) ) {
-			$firstdow = new \com\microsoft\wc\thing\basic\Firstdow ($firstdow);
-		}
-
-		unset ($this->_overrides['firstdow']);
 	
 		return $firstdow;
 	}

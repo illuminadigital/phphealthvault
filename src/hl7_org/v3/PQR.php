@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class PQR extends \org\w3\www\_2001\XMLSchema\CV {
 	/**
-	 * A representation of a physical quantity in a unit from any code system. Used to show alternative representation for a physical quantity.
+	 * A representation of a physical quantity in a unit fromany code system. Used to show alternative representationfor a physical quantity.
 	 */
 
 	/**

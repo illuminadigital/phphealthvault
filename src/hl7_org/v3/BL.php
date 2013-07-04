@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class BL extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
-	 * The Boolean type stands for the values of two-valued logic. A Boolean value can be either true or false, or, as any other value may be NULL.
+	 * The Boolean type stands for the values of two-valued logic.A Boolean value can be either true orfalse, or, as any other value may be NULL.
 	 */
 
 	/**

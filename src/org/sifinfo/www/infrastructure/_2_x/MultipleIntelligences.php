@@ -45,25 +45,12 @@ class MultipleIntelligences {
 	}
 
 	protected function validateMultipleIntelligence($multipleIntelligence) {
-		if ( $multipleIntelligence === FALSE ) {
-			$this->_overrides['multipleIntelligence'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! is_array ($multipleIntelligence) && ! is_null($multipleIntelligence) ) {
-			$multipleIntelligence = array($multipleIntelligence);
-		}
-
-		unset ($this->_overrides['multipleIntelligence']);
 		$count = count($multipleIntelligence);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'multipleIntelligence', 0));
 		}
 		if ( ! empty($multipleIntelligence) ) {
 			foreach ($multipleIntelligence as $entry) {
-				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\MultipleIntelligence )) {
-					throw new \Exception(sprintf('Supplied %s value was not %s', 'multipleIntelligence', 'MultipleIntelligence'));
-				}
 			}
 		}
 	
@@ -71,6 +58,11 @@ class MultipleIntelligences {
 	}
 
 	public function addMultipleIntelligence($multipleIntelligence) {
-		$this->multipleIntelligence[] = $multipleIntelligence;
+		$this->multipleIntelligence[] = $this->validateMultipleIntelligenceType($multipleIntelligence);
+	}
+
+	protected function validateMultipleIntelligenceType($multipleIntelligence) {
+	
+		return $multipleIntelligence;
 	}
 } // end class MultipleIntelligences

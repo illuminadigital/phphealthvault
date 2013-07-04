@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class SC extends \org\w3\www\_2001\XMLSchema\ST {
 	/**
-	 * A ST that optionally may have a code attached. The text must always be present if a code is present. The code is often a local code.
+	 * An ST that optionally may have a code attached.The text must always be present if a code is present. Thecode is often a local code.
 	 */
 
 	/**

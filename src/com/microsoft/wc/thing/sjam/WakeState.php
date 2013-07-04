@@ -9,14 +9,11 @@ namespace com\microsoft\wc\thing\sjam;
  * })
  * @XmlEntity	(xml="wake-state")
  */
-class WakeState extends \com\microsoft\wc\thing\AnyMixed {
+class WakeState {
 	/**
 	 * An evaluation of how the person felt when they got up in the morning.
 	 * 1 = Wide awake,2 = Awake but a little tired,3 = Sleepy
 	 */
-
-	const ID = '11C52484-7F1A-11DB-AEAC-87D355D89593';
-	const NAME = 'Sleep Session';
 
 	/**
 	 * List of manually overridden properties that should not be re-generated automatically
@@ -25,6 +22,43 @@ class WakeState extends \com\microsoft\wc\thing\AnyMixed {
 	protected $_overrides = array();
 
 
-	public function __construct() {
+	/**
+	 * @XmlValue	(type="integer", name="wake-state")
+	 */
+	protected $value;
+
+	public function __construct($value = NULL) {
+		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
+	}
+
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
+			$this->value = $this->createValue();
+		}
+		return $this->value;
+	}
+	
+	protected function createValue() {
+		return 0;
+	}
+
+	public function setValue($value) {
+		$this->value = $this->validateValue($value);
+	}
+
+	protected function validateValue($value) {
+		$isValid = FALSE;
+		if ( is_integer($value) ) {
+			$isValid = TRUE;
+		}
+		else if ( $value == ($castVar = (integer) $value) ) {
+			$isValid = TRUE;
+			$value = $castVar;
+		}
+		if ( ! $isValid ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'integer'));
+		}
+	
+		return $value;
 	}
 } // end class WakeState

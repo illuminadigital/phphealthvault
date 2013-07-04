@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class ANY {
 	/**
-	 * Defines the basic properties of every data value. This is an abstract type, meaning that no value can be just a data value without belonging to any concrete type. Every concrete type is a specialization of this general abstract DataValue type.
+	 * Defines the basic properties of every data value. Thisis an abstract type, meaning that no value can be justa data value without belonging to any concrete type.Every concrete type is a specialization of thisgeneral abstract DataValue type.
 	 */
 
 	/**

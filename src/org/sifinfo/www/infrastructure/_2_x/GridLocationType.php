@@ -44,7 +44,7 @@ class GridLocationType {
 	}
 	
 	protected function createLatitude() {
-		return new \org\sifinfo\www\infrastructure\_2_x\Latitude();
+		return NULL;
 	}
 
 	public function setLatitude($latitude) {
@@ -52,9 +52,6 @@ class GridLocationType {
 	}
 
 	protected function validateLatitude($latitude) {
-		if ( ! $latitude instanceof \org\sifinfo\www\infrastructure\_2_x\Latitude ) {
-			$latitude = new \org\sifinfo\www\infrastructure\_2_x\Latitude ($latitude);
-		}
 	
 		return $latitude;
 	}
@@ -67,7 +64,7 @@ class GridLocationType {
 	}
 	
 	protected function createLongitude() {
-		return new \org\sifinfo\www\infrastructure\_2_x\Longitude();
+		return NULL;
 	}
 
 	public function setLongitude($longitude) {
@@ -75,9 +72,6 @@ class GridLocationType {
 	}
 
 	protected function validateLongitude($longitude) {
-		if ( ! $longitude instanceof \org\sifinfo\www\infrastructure\_2_x\Longitude ) {
-			$longitude = new \org\sifinfo\www\infrastructure\_2_x\Longitude ($longitude);
-		}
 	
 		return $longitude;
 	}

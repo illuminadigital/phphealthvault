@@ -173,7 +173,7 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createImportance() {
-		return new \com\microsoft\wc\thing\problem\Importance();
+		return NULL;
 	}
 
 	public function setImportance($importance) {
@@ -181,16 +181,6 @@ class Problem extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateImportance($importance) {
-		if ( $importance === FALSE ) {
-			$this->_overrides['importance'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $importance instanceof \com\microsoft\wc\thing\problem\Importance  && ! is_null($importance) ) {
-			$importance = new \com\microsoft\wc\thing\problem\Importance ($importance);
-		}
-
-		unset ($this->_overrides['importance']);
 	
 		return $importance;
 	}

@@ -274,7 +274,7 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createWakeState() {
-		return new \com\microsoft\wc\thing\sjam\WakeState();
+		return NULL;
 	}
 
 	public function setWakeState($wakeState) {
@@ -282,9 +282,6 @@ class SleepAm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateWakeState($wakeState) {
-		if ( ! $wakeState instanceof \com\microsoft\wc\thing\sjam\WakeState ) {
-			$wakeState = new \com\microsoft\wc\thing\sjam\WakeState ($wakeState);
-		}
 	
 		return $wakeState;
 	}

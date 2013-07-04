@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class CO extends \org\w3\www\_2001\XMLSchema\CV {
 	/**
-	 * Coded data, where the domain from which the codeset comes is ordered. The Coded Ordinal data type adds semantics related to ordering so that models that make use of such domains may introduce model elements that involve statements about the order of the terms in a domain.
+	 * Coded data, where the domain from which the codeset comesis ordered. The Coded Ordinal data type adds semanticsrelated to ordering so that models that make use of suchdomains may introduce model elements that involve statementsabout the order of the terms in a domain.
 	 */
 
 	/**

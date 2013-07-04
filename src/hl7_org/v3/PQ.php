@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class PQ extends \org\w3\www\_2001\XMLSchema\QTY {
 	/**
-	 * A dimensioned quantity expressing the result of a measurement act.
+	 * A dimensioned quantity expressing the result of ameasurement act.
 	 */
 
 	/**

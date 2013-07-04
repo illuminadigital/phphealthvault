@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class REAL extends \org\w3\www\_2001\XMLSchema\QTY {
 	/**
-	 * Fractional numbers. Typically used whenever quantities are measured, estimated, or computed from other real numbers. The typical representation is decimal, where the number of significant decimal digits is known as the precision. Real numbers are needed beyond integers whenever quantities of the real world are measured, estimated, or computed from other real numbers. The term "Real number" in this specification is used to mean that fractional values are covered without necessarily implying the full set of the mathematical real numbers.
+	 * Fractional numbers. Typically used whenever quantitiesare measured, estimated, or computed from other realnumbers. The typical representation is decimal, wherethe number of significant decimal digits is known as theprecision. Real numbers are needed beyond integerswhenever quantities of the real world are measured,estimated, or computed from other real numbers. The term"Real number" in this specification is used to meanthat fractional values are covered without necessarilyimplying the full set of the mathematical real numbers.
 	 */
 
 	/**

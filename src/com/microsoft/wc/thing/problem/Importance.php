@@ -9,12 +9,9 @@ namespace com\microsoft\wc\thing\problem;
  * })
  * @XmlEntity	(xml="importance")
  */
-class Importance extends \com\microsoft\wc\thing\AnyMixed {
+class Importance extends \com\microsoft\wc\thing\types\PositiveInt {
 	/**
 	 */
-
-	const ID = '5E2C027E-3417-4CFC-BD10-5A6F2E91AD23';
-	const NAME = 'Medical Problem';
 
 	/**
 	 * List of manually overridden properties that should not be re-generated automatically

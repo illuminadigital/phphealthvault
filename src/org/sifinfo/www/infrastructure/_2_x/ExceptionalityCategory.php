@@ -49,7 +49,7 @@ class ExceptionalityCategory {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\Code();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -57,9 +57,6 @@ class ExceptionalityCategory {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\Code ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\Code ($code);
-		}
 	
 		return $code;
 	}
@@ -102,7 +99,7 @@ class ExceptionalityCategory {
 	}
 	
 	protected function createExceptionalityPriority() {
-		return new \org\sifinfo\www\infrastructure\_2_x\ExceptionalityPriority();
+		return NULL;
 	}
 
 	public function setExceptionalityPriority($exceptionalityPriority) {
@@ -110,9 +107,6 @@ class ExceptionalityCategory {
 	}
 
 	protected function validateExceptionalityPriority($exceptionalityPriority) {
-		if ( ! $exceptionalityPriority instanceof \org\sifinfo\www\infrastructure\_2_x\ExceptionalityPriority ) {
-			$exceptionalityPriority = new \org\sifinfo\www\infrastructure\_2_x\ExceptionalityPriority ($exceptionalityPriority);
-		}
 	
 		return $exceptionalityPriority;
 	}

@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class EN extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
-	 * A name for a person, organization, place or thing. A sequence of name parts, such as given name or family name, prefix, suffix, etc. Examples for entity name values are "Jim Bob Walton, Jr.", "Health Level Seven, Inc.", "Lake Tahoe", etc. An entity name may be as simple as a character string or may consist of several entity name parts, such as, "Jim", "Bob", "Walton", and "Jr.", "Health Level Seven" and "Inc.", "Lake" and "Tahoe".
+	 * A name for a person, organization, place or thing. Asequence of name parts, such as given name or familyname, prefix, suffix, etc. Examples for entity namevalues are "Jim Bob Walton, Jr.", "Health Level Seven,Inc.", "Lake Tahoe", etc. An entity name may be as simpleas a character string or may consist of several entity nameparts, such as, "Jim", "Bob", "Walton", and "Jr.", "HealthLevel Seven" and "Inc.", "Lake" and "Tahoe".
 	 */
 
 	/**

@@ -9,14 +9,11 @@ namespace com\microsoft\wc\thing\basic;
  * })
  * @XmlEntity	(xml="gender")
  */
-class Gender extends \com\microsoft\wc\thing\AnyMixed {
+class Gender {
 	/**
 	 * The person's gender.
 	 * [m]ale or [f]emale
 	 */
-
-	const ID = '3b3e6b16-eb69-483c-8d7e-dfe116ae6092';
-	const NAME = 'Basic Demographic Information';
 
 	/**
 	 * List of manually overridden properties that should not be re-generated automatically
@@ -25,6 +22,35 @@ class Gender extends \com\microsoft\wc\thing\AnyMixed {
 	protected $_overrides = array();
 
 
-	public function __construct() {
+	/**
+	 * @XmlValue	(type="string", name="gender")
+	 */
+	protected $value;
+
+	public function __construct($value = NULL) {
+		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
+	}
+
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
+			$this->value = $this->createValue();
+		}
+		return $this->value;
+	}
+	
+	protected function createValue() {
+		return '';
+	}
+
+	public function setValue($value) {
+		$this->value = $this->validateValue($value);
+	}
+
+	protected function validateValue($value) {
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		}
+	
+		return $value;
 	}
 } // end class Gender

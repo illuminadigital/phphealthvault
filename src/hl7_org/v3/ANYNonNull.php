@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class ANYNonNull extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
-	 * The BooleanNonNull type is used where a Boolean cannot have a null value. A Boolean value can be either true or false.
+	 * The BooleanNonNull type is used where a Boolean cannothave a null value. A Boolean value can be eithertrue or false.
 	 */
 
 	/**

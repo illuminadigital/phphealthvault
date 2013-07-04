@@ -369,7 +369,7 @@ class StudentParticipationData {
 	}
 	
 	protected function createStudentSpecialEducationFTE() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StudentSpecialEducationFTE();
+		return NULL;
 	}
 
 	public function setStudentSpecialEducationFTE($studentSpecialEducationFTE) {
@@ -377,16 +377,6 @@ class StudentParticipationData {
 	}
 
 	protected function validateStudentSpecialEducationFTE($studentSpecialEducationFTE) {
-		if ( $studentSpecialEducationFTE === FALSE ) {
-			$this->_overrides['studentSpecialEducationFTE'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $studentSpecialEducationFTE instanceof \org\sifinfo\www\infrastructure\_2_x\StudentSpecialEducationFTE  && ! is_null($studentSpecialEducationFTE) ) {
-			$studentSpecialEducationFTE = new \org\sifinfo\www\infrastructure\_2_x\StudentSpecialEducationFTE ($studentSpecialEducationFTE);
-		}
-
-		unset ($this->_overrides['studentSpecialEducationFTE']);
 	
 		return $studentSpecialEducationFTE;
 	}

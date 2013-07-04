@@ -49,7 +49,7 @@ class StudentLEARelationship {
 	}
 	
 	protected function createMembershipType() {
-		return new \org\sifinfo\www\infrastructure\_2_x\MembershipType();
+		return NULL;
 	}
 
 	public function setMembershipType($membershipType) {
@@ -57,16 +57,6 @@ class StudentLEARelationship {
 	}
 
 	protected function validateMembershipType($membershipType) {
-		if ( $membershipType === FALSE ) {
-			$this->_overrides['membershipType'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $membershipType instanceof \org\sifinfo\www\infrastructure\_2_x\MembershipType  && ! is_null($membershipType) ) {
-			$membershipType = new \org\sifinfo\www\infrastructure\_2_x\MembershipType ($membershipType);
-		}
-
-		unset ($this->_overrides['membershipType']);
 	
 		return $membershipType;
 	}

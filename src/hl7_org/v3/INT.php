@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class INT extends \org\w3\www\_2001\XMLSchema\QTY {
 	/**
-	 * Integer numbers (-1,0,1,2, 100, 3398129, etc.) are precise numbers that are results of counting and enumerating. Integer numbers are discrete, the set of integers is infinite but countable. No arbitrary limit is imposed on the range of integer numbers. Two NULL flavors are defined for the positive and negative infinity.
+	 * Integer numbers (-1,0,1,2, 100, 3398129, etc.) are precisenumbers that are results of counting and enumerating.Integer numbers are discrete, the set of integers isinfinite but countable. No arbitrary limit is imposed onthe range of integer numbers. Two NULL flavors aredefined for the positive and negative infinity.
 	 */
 
 	/**

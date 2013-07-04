@@ -51,11 +51,6 @@ class POCDMT000040.PlayingEntity {
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\BirthTime", name="birthTime")
-	 */
-	protected $birthTime;
-
-	/**
 	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\ED", name="desc")
 	 */
 	protected $desc;
@@ -75,14 +70,13 @@ class POCDMT000040.PlayingEntity {
 	 */
 	protected $determinerCode;
 
-	public function __construct($realmCode = NULL, $typeId = NULL, $templateId = NULL, $code = NULL, $quantity = NULL, $name = NULL, $birthTime = NULL, $desc = NULL, $nullFlavor = NULL, $classCode = NULL, $determinerCode = NULL) {
+	public function __construct($realmCode = NULL, $typeId = NULL, $templateId = NULL, $code = NULL, $quantity = NULL, $name = NULL, $desc = NULL, $nullFlavor = NULL, $classCode = NULL, $determinerCode = NULL) {
 		$this->realmCode = ($realmCode===NULL) ? NULL : $this->validateRealmCode($realmCode);
 		$this->typeId = ($typeId===NULL) ? NULL : $this->validateTypeId($typeId);
 		$this->templateId = ($templateId===NULL) ? NULL : $this->validateTemplateId($templateId);
 		$this->code = ($code===NULL) ? NULL : $this->validateCode($code);
 		$this->quantity = ($quantity===NULL) ? NULL : $this->validateQuantity($quantity);
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
-		$this->birthTime = ($birthTime===NULL) ? NULL : $this->validateBirthTime($birthTime);
 		$this->desc = ($desc===NULL) ? NULL : $this->validateDesc($desc);
 		$this->nullFlavor = ($nullFlavor===NULL) ? NULL : $this->validateNullFlavor($nullFlavor);
 		$this->classCode = ($classCode===NULL) ? NULL : $this->validateClassCode($classCode);
@@ -275,29 +269,6 @@ class POCDMT000040.PlayingEntity {
 	protected function validateNameType($name) {
 	
 		return $name;
-	}
-
-	public function getBirthTime($autoCreate = TRUE) {
-		if ($this->birthTime===NULL && $autoCreate && ! isset($this->_overrides['birthTime']) ) {
-			$this->birthTime = $this->createBirthTime();
-		}
-		return $this->birthTime;
-	}
-	
-	protected function createBirthTime() {
-		return NULL;
-	}
-
-	public function setBirthTime($birthTime) {
-		$this->birthTime = $this->validateBirthTime($birthTime);
-	}
-
-	protected function validateBirthTime($birthTime) {
-		if ( ! is_birthTime($birthTime) && ! is_null($birthTime) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'birthTime', 'birthTime'));
-		}
-	
-		return $birthTime;
 	}
 
 	public function getDesc($autoCreate = TRUE) {

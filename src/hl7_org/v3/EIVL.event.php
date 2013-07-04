@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class EIVL.event extends \org\w3\www\_2001\XMLSchema\CE {
 	/**
-	 * A code for a common (periodical) activity of daily living based on which the event related periodic interval is specified.
+	 * A code for a common (periodical) activity of dailyliving based on which the event related periodicinterval is specified.
 	 */
 
 	/**

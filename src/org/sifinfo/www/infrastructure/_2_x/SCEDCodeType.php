@@ -82,7 +82,7 @@ class SCEDCodeType {
 	}
 	
 	protected function createCourseLevel() {
-		return new \org\sifinfo\www\infrastructure\_2_x\CourseLevel();
+		return NULL;
 	}
 
 	public function setCourseLevel($courseLevel) {
@@ -90,9 +90,6 @@ class SCEDCodeType {
 	}
 
 	protected function validateCourseLevel($courseLevel) {
-		if ( ! $courseLevel instanceof \org\sifinfo\www\infrastructure\_2_x\CourseLevel ) {
-			$courseLevel = new \org\sifinfo\www\infrastructure\_2_x\CourseLevel ($courseLevel);
-		}
 	
 		return $courseLevel;
 	}
@@ -105,7 +102,7 @@ class SCEDCodeType {
 	}
 	
 	protected function createAvailableCredit() {
-		return new \org\sifinfo\www\infrastructure\_2_x\AvailableCredit();
+		return NULL;
 	}
 
 	public function setAvailableCredit($availableCredit) {
@@ -113,9 +110,6 @@ class SCEDCodeType {
 	}
 
 	protected function validateAvailableCredit($availableCredit) {
-		if ( ! $availableCredit instanceof \org\sifinfo\www\infrastructure\_2_x\AvailableCredit ) {
-			$availableCredit = new \org\sifinfo\www\infrastructure\_2_x\AvailableCredit ($availableCredit);
-		}
 	
 		return $availableCredit;
 	}
@@ -128,7 +122,7 @@ class SCEDCodeType {
 	}
 	
 	protected function createSequenceNumber() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SequenceNumber();
+		return NULL;
 	}
 
 	public function setSequenceNumber($sequenceNumber) {
@@ -136,9 +130,6 @@ class SCEDCodeType {
 	}
 
 	protected function validateSequenceNumber($sequenceNumber) {
-		if ( ! $sequenceNumber instanceof \org\sifinfo\www\infrastructure\_2_x\SequenceNumber ) {
-			$sequenceNumber = new \org\sifinfo\www\infrastructure\_2_x\SequenceNumber ($sequenceNumber);
-		}
 	
 		return $sequenceNumber;
 	}
@@ -151,7 +142,7 @@ class SCEDCodeType {
 	}
 	
 	protected function createSequenceLimit() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SequenceLimit();
+		return NULL;
 	}
 
 	public function setSequenceLimit($sequenceLimit) {
@@ -159,9 +150,6 @@ class SCEDCodeType {
 	}
 
 	protected function validateSequenceLimit($sequenceLimit) {
-		if ( ! $sequenceLimit instanceof \org\sifinfo\www\infrastructure\_2_x\SequenceLimit ) {
-			$sequenceLimit = new \org\sifinfo\www\infrastructure\_2_x\SequenceLimit ($sequenceLimit);
-		}
 	
 		return $sequenceLimit;
 	}

@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class Thumbnail extends \org\w3\www\_2001\XMLSchema\ED {
 	/**
-	 * A thumbnail is an abbreviated rendition of the full data. A thumbnail requires significantly fewer resources than the full data, while still maintaining some distinctive similarity with the full data. A thumbnail is typically used with by-reference encapsulated data. It allows a user to select data more efficiently before actually downloading through the reference.
+	 * A thumbnail is an abbreviated rendition of the fulldata. A thumbnail requires significantly fewerresources than the full data, while still maintainingsome distinctive similarity with the full data. Athumbnail is typically used with by-referenceencapsulated data. It allows a user to select datamore efficiently before actually downloading throughthe reference.
 	 */
 
 	/**

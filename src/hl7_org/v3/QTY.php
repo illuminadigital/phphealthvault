@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class QTY extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
-	 * The quantity data type is an abstract generalization for all data types (1) whose value set has an order relation (less-or-equal) and (2) where difference is defined in all of the data type's totally ordered value subsets. The quantity type abstraction is needed in defining certain other types, such as the interval and the probability distribution.
+	 * is an abstract generalizationfor all data types (1) whose value set has an orderrelation (less-or-equal) and (2) where difference isdefined in all of the data type's totally ordered valuesubsets. The quantity type abstraction is needed indefining certain other types, such as the interval andthe probability distribution.
 	 */
 
 	/**

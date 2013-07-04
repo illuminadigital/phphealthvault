@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class EIVLPPDTS extends \org\w3\www\_2001\XMLSchema\SXCMPPDTS {
 	/**
-	 * Note: because this type is defined as an extension of SXCM_T, all of the attributes and elements accepted for T are also accepted by this definition. However, they are NOT allowed by the normative description of this type. Unfortunately, we cannot write a general purpose schematron contraints to provide that extra validation, thus applications must be aware that instance (fragments) that pass validation with this might might still not be legal.
+	 * Note: because this type is defined as an extension of SXCM_T,all of the attributes and elements accepted for T are alsoaccepted by this definition. However, they are NOT allowedby the normative description of this type. Unfortunately,we cannot write a general purpose schematron contraints toprovide that extra validation, thus applications must beaware that instance (fragments) that pass validation withthis might might still not be legal.
 	 */
 
 	/**

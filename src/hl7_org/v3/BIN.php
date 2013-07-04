@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class BIN extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
-	 * Binary data is a raw block of bits. Binary data is a protected type that MUST not be used outside the data type specification.
+	 * Binary data is a raw block of bits. Binary data is aprotected type that MUST not be used outside the datatype specification.
 	 */
 
 	/**

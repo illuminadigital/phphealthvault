@@ -41,11 +41,6 @@ class POCDMT000040.Person {
 	protected $name;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\BirthTime", name="birthTime")
-	 */
-	protected $birthTime;
-
-	/**
 	 * @XmlAttribute	(type="string", name="nullFlavor")
 	 */
 	protected $nullFlavor;
@@ -60,12 +55,11 @@ class POCDMT000040.Person {
 	 */
 	protected $determinerCode;
 
-	public function __construct($realmCode = NULL, $typeId = NULL, $templateId = NULL, $name = NULL, $birthTime = NULL, $nullFlavor = NULL, $classCode = NULL, $determinerCode = NULL) {
+	public function __construct($realmCode = NULL, $typeId = NULL, $templateId = NULL, $name = NULL, $nullFlavor = NULL, $classCode = NULL, $determinerCode = NULL) {
 		$this->realmCode = ($realmCode===NULL) ? NULL : $this->validateRealmCode($realmCode);
 		$this->typeId = ($typeId===NULL) ? NULL : $this->validateTypeId($typeId);
 		$this->templateId = ($templateId===NULL) ? NULL : $this->validateTemplateId($templateId);
 		$this->name = ($name===NULL) ? NULL : $this->validateName($name);
-		$this->birthTime = ($birthTime===NULL) ? NULL : $this->validateBirthTime($birthTime);
 		$this->nullFlavor = ($nullFlavor===NULL) ? NULL : $this->validateNullFlavor($nullFlavor);
 		$this->classCode = ($classCode===NULL) ? NULL : $this->validateClassCode($classCode);
 		$this->determinerCode = ($determinerCode===NULL) ? NULL : $this->validateDeterminerCode($determinerCode);
@@ -200,29 +194,6 @@ class POCDMT000040.Person {
 	protected function validateNameType($name) {
 	
 		return $name;
-	}
-
-	public function getBirthTime($autoCreate = TRUE) {
-		if ($this->birthTime===NULL && $autoCreate && ! isset($this->_overrides['birthTime']) ) {
-			$this->birthTime = $this->createBirthTime();
-		}
-		return $this->birthTime;
-	}
-	
-	protected function createBirthTime() {
-		return NULL;
-	}
-
-	public function setBirthTime($birthTime) {
-		$this->birthTime = $this->validateBirthTime($birthTime);
-	}
-
-	protected function validateBirthTime($birthTime) {
-		if ( ! is_birthTime($birthTime) && ! is_null($birthTime) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'birthTime', 'birthTime'));
-		}
-	
-		return $birthTime;
 	}
 
 	public function getNullFlavor($autoCreate = TRUE) {

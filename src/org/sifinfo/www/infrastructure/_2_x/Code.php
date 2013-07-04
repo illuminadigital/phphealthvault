@@ -9,7 +9,7 @@ namespace org\sifinfo\www\infrastructure\_2_x;
  * })
  * @XmlEntity	(xml="Code")
  */
-class Code {
+class Code extends \org\sifinfo\www\infrastructure\_2_x\NCES0768PrimaryDisabilityTypeType {
 	/**
 	 * Exceptionality description/code which identifies the exceptionality or areas of need of the student.Not all programs require identification of an exceptionality.If required for this program type, must have at least one element with ExceptionalityPriority value of Primary.
 	 */

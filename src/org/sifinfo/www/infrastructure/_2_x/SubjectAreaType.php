@@ -44,7 +44,7 @@ class SubjectAreaType {
 	}
 	
 	protected function createCode() {
-		return new \org\sifinfo\www\infrastructure\_2_x\Code();
+		return NULL;
 	}
 
 	public function setCode($code) {
@@ -52,9 +52,6 @@ class SubjectAreaType {
 	}
 
 	protected function validateCode($code) {
-		if ( ! $code instanceof \org\sifinfo\www\infrastructure\_2_x\Code ) {
-			$code = new \org\sifinfo\www\infrastructure\_2_x\Code ($code);
-		}
 	
 		return $code;
 	}

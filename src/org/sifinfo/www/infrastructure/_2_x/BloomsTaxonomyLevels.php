@@ -45,25 +45,12 @@ class BloomsTaxonomyLevels {
 	}
 
 	protected function validateBloomsTaxonomyLevel($bloomsTaxonomyLevel) {
-		if ( $bloomsTaxonomyLevel === FALSE ) {
-			$this->_overrides['bloomsTaxonomyLevel'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! is_array ($bloomsTaxonomyLevel) && ! is_null($bloomsTaxonomyLevel) ) {
-			$bloomsTaxonomyLevel = array($bloomsTaxonomyLevel);
-		}
-
-		unset ($this->_overrides['bloomsTaxonomyLevel']);
 		$count = count($bloomsTaxonomyLevel);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'bloomsTaxonomyLevel', 0));
 		}
 		if ( ! empty($bloomsTaxonomyLevel) ) {
 			foreach ($bloomsTaxonomyLevel as $entry) {
-				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\BloomsTaxonomyLevel )) {
-					throw new \Exception(sprintf('Supplied %s value was not %s', 'bloomsTaxonomyLevel', 'BloomsTaxonomyLevel'));
-				}
 			}
 		}
 	
@@ -71,6 +58,11 @@ class BloomsTaxonomyLevels {
 	}
 
 	public function addBloomsTaxonomyLevel($bloomsTaxonomyLevel) {
-		$this->bloomsTaxonomyLevel[] = $bloomsTaxonomyLevel;
+		$this->bloomsTaxonomyLevel[] = $this->validateBloomsTaxonomyLevelType($bloomsTaxonomyLevel);
+	}
+
+	protected function validateBloomsTaxonomyLevelType($bloomsTaxonomyLevel) {
+	
+		return $bloomsTaxonomyLevel;
 	}
 } // end class BloomsTaxonomyLevels

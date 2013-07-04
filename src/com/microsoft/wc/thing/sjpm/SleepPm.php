@@ -275,7 +275,7 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 	
 	protected function createSleepiness() {
-		return new \com\microsoft\wc\thing\sjpm\Sleepiness();
+		return NULL;
 	}
 
 	public function setSleepiness($sleepiness) {
@@ -283,9 +283,6 @@ class SleepPm extends \com\microsoft\wc\thing\AnyMixed {
 	}
 
 	protected function validateSleepiness($sleepiness) {
-		if ( ! $sleepiness instanceof \com\microsoft\wc\thing\sjpm\Sleepiness ) {
-			$sleepiness = new \com\microsoft\wc\thing\sjpm\Sleepiness ($sleepiness);
-		}
 	
 		return $sleepiness;
 	}

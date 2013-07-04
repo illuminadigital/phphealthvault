@@ -45,23 +45,22 @@ class ResourceTypes {
 	}
 
 	protected function validateResourceType($resourceType) {
-		if ( ! is_array ($resourceType) ) {
-			$resourceType = array($resourceType);
-		}
 		$count = count($resourceType);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'resourceType', 1));
 		}
 		foreach ($resourceType as $entry) {
-			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ResourceType )) {
-				throw new \Exception(sprintf('Supplied %s value was not %s', 'resourceType', 'ResourceType'));
-			}
 		}
 	
 		return $resourceType;
 	}
 
 	public function addResourceType($resourceType) {
-		$this->resourceType[] = $resourceType;
+		$this->resourceType[] = $this->validateResourceTypeType($resourceType);
+	}
+
+	protected function validateResourceTypeType($resourceType) {
+	
+		return $resourceType;
 	}
 } // end class ResourceTypes

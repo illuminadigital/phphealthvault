@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class ED extends \org\w3\www\_2001\XMLSchema\BIN {
 	/**
-	 * Data that is primarily intended for human interpretation or for further machine processing is outside the scope of HL7. This includes unformatted or formatted written language, multimedia data, or structured information as defined by a different standard (e.g., XML-signatures.) Instead of the data itself, an ED may contain only a reference (see TEL.) Note that the ST data type is a specialization of the ED data type when the ED media type is text/plain.
+	 * Data that is primarily intended for human interpretationor for further machine processing is outside the scope ofHL7. This includes unformatted or formatted written language,multimedia data, or structured information as defined by adifferent standard (e.g., XML-signatures.) Instead of thedata itself, an ED may containonly a reference (see TEL.) Notethat the ST data type is aspecialization ofwhen the is text/plain.
 	 */
 
 	/**

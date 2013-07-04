@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class II extends \org\w3\www\_2001\XMLSchema\ANY {
 	/**
-	 * An identifier that uniquely identifies a thing or object. Examples are object identifier for HL7 RIM objects, medical record number, order id, service catalog item id, Vehicle Identification Number (VIN), etc. Instance identifiers are defined based on ISO object identifiers.
+	 * An identifier that uniquely identifies a thing or object.Examples are object identifier for HL7 RIM objects,medical record number, order id, service catalog item id,Vehicle Identification Number (VIN), etc. Instanceidentifiers are defined based on ISO object identifiers.
 	 */
 
 	/**

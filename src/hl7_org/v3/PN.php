@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class PN extends \org\w3\www\_2001\XMLSchema\EN {
 	/**
-	 * A name for a person. A sequence of name parts, such as given name or family name, prefix, suffix, etc. PN differs from EN because the qualifier type cannot include LS (Legal Status).
+	 * A name for a person. A sequence of name parts, such asgiven name or family name, prefix, suffix, etc. PN differsfrom EN because the qualifier type cannot include LS(Legal Status).
 	 */
 
 	/**

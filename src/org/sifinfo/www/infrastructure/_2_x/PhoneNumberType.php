@@ -102,7 +102,7 @@ class PhoneNumberType {
 	}
 	
 	protected function createListedStatus() {
-		return new \org\sifinfo\www\infrastructure\_2_x\ListedStatus();
+		return NULL;
 	}
 
 	public function setListedStatus($listedStatus) {
@@ -110,16 +110,6 @@ class PhoneNumberType {
 	}
 
 	protected function validateListedStatus($listedStatus) {
-		if ( $listedStatus === FALSE ) {
-			$this->_overrides['listedStatus'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $listedStatus instanceof \org\sifinfo\www\infrastructure\_2_x\ListedStatus  && ! is_null($listedStatus) ) {
-			$listedStatus = new \org\sifinfo\www\infrastructure\_2_x\ListedStatus ($listedStatus);
-		}
-
-		unset ($this->_overrides['listedStatus']);
 	
 		return $listedStatus;
 	}

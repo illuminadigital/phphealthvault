@@ -9,13 +9,10 @@ namespace com\microsoft\wc\thing\basic;
  * })
  * @XmlEntity	(xml="country")
  */
-class Country extends \com\microsoft\wc\thing\AnyMixed {
+class Country {
 	/**
 	 * The country of residence as an ISO-3166two character code.
 	 */
-
-	const ID = 'bf516a61-5252-4c28-a979-27f45f62f78d';
-	const NAME = 'Basic Demographic Information';
 
 	/**
 	 * List of manually overridden properties that should not be re-generated automatically
@@ -24,6 +21,35 @@ class Country extends \com\microsoft\wc\thing\AnyMixed {
 	protected $_overrides = array();
 
 
-	public function __construct() {
+	/**
+	 * @XmlValue	(type="string", name="country")
+	 */
+	protected $value;
+
+	public function __construct($value = NULL) {
+		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
+	}
+
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
+			$this->value = $this->createValue();
+		}
+		return $this->value;
+	}
+	
+	protected function createValue() {
+		return '';
+	}
+
+	public function setValue($value) {
+		$this->value = $this->validateValue($value);
+	}
+
+	protected function validateValue($value) {
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		}
+	
+		return $value;
 	}
 } // end class Country

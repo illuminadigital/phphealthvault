@@ -246,7 +246,7 @@ class StudentPlacementType {
 	}
 	
 	protected function createServiceCategory() {
-		return new \org\sifinfo\www\infrastructure\_2_x\ServiceCategory();
+		return NULL;
 	}
 
 	public function setServiceCategory($serviceCategory) {
@@ -254,16 +254,6 @@ class StudentPlacementType {
 	}
 
 	protected function validateServiceCategory($serviceCategory) {
-		if ( $serviceCategory === FALSE ) {
-			$this->_overrides['serviceCategory'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! $serviceCategory instanceof \org\sifinfo\www\infrastructure\_2_x\ServiceCategory  && ! is_null($serviceCategory) ) {
-			$serviceCategory = new \org\sifinfo\www\infrastructure\_2_x\ServiceCategory ($serviceCategory);
-		}
-
-		unset ($this->_overrides['serviceCategory']);
 	
 		return $serviceCategory;
 	}

@@ -66,7 +66,7 @@ class POCDMT000040.Patient {
 	protected $religiousAffiliationCode;
 
 	/**
-	 * @XmlElement	(type="\hl7_org\v3\RaceCode", collection="true", name="raceCode")
+	 * @XmlElement	(type="\org\w3\www\_2001\XMLSchema\CE", name="raceCode")
 	 */
 	protected $raceCode;
 
@@ -364,7 +364,7 @@ class POCDMT000040.Patient {
 	}
 	
 	protected function createRaceCode() {
-		return array();
+		return NULL;
 	}
 
 	public function setRaceCode($raceCode) {
@@ -372,29 +372,6 @@ class POCDMT000040.Patient {
 	}
 
 	protected function validateRaceCode($raceCode) {
-		$count = count($raceCode);
-		if ($count < 0) {
-			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'raceCode', 0));
-		}
-		if ( ! empty($raceCode) ) {
-			foreach ($raceCode as $entry) {
-				if ( ! is_raceCode($entry) && ! is_null($entry) ) {
-					throw new \Exception(sprintf('Supplied %s value was not %s', 'raceCode', 'raceCode'));
-				}
-			}
-		}
-	
-		return $raceCode;
-	}
-
-	public function addRaceCode($raceCode) {
-		$this->raceCode[] = $this->validateRaceCodeType($raceCode);
-	}
-
-	protected function validateRaceCodeType($raceCode) {
-		if ( ! is_raceCode($raceCode) && ! is_null($raceCode) ) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'raceCode', 'raceCode'));
-		}
 	
 		return $raceCode;
 	}

@@ -9,13 +9,10 @@ namespace com\microsoft\wc\thing\password\_protected\package;
  * })
  * @XmlEntity	(xml="algorithm-name")
  */
-class AlgorithmName extends \com\microsoft\wc\thing\AnyMixed {
+class AlgorithmName {
 	/**
 	 * Algorithm used for the encryption.
 	 */
-
-	const ID = 'c9287326-bb43-4194-858c-8b60768f000f';
-	const NAME = 'Password Protected Package';
 
 	/**
 	 * List of manually overridden properties that should not be re-generated automatically
@@ -24,6 +21,35 @@ class AlgorithmName extends \com\microsoft\wc\thing\AnyMixed {
 	protected $_overrides = array();
 
 
-	public function __construct() {
+	/**
+	 * @XmlValue	(type="string", name="algorithm-name")
+	 */
+	protected $value;
+
+	public function __construct($value = NULL) {
+		$this->value = ($value===NULL) ? NULL : $this->validateValue($value);
+	}
+
+	public function getValue($autoCreate = TRUE) {
+		if ($this->value===NULL && $autoCreate && ! isset($this->_overrides['value']) ) {
+			$this->value = $this->createValue();
+		}
+		return $this->value;
+	}
+	
+	protected function createValue() {
+		return '';
+	}
+
+	public function setValue($value) {
+		$this->value = $this->validateValue($value);
+	}
+
+	protected function validateValue($value) {
+		if (!is_string($value)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'value', 'string'));
+		}
+	
+		return $value;
 	}
 } // end class AlgorithmName

@@ -43,7 +43,7 @@ class PackageEncryptionType {
 	}
 	
 	protected function createAlgorithmName() {
-		return new \com\microsoft\wc\thing\password\_protected\package\AlgorithmName();
+		return NULL;
 	}
 
 	public function setAlgorithmName($algorithmName) {
@@ -51,9 +51,6 @@ class PackageEncryptionType {
 	}
 
 	protected function validateAlgorithmName($algorithmName) {
-		if ( ! $algorithmName instanceof \com\microsoft\wc\thing\password\_protected\package\AlgorithmName ) {
-			$algorithmName = new \com\microsoft\wc\thing\password\_protected\package\AlgorithmName ($algorithmName);
-		}
 	
 		return $algorithmName;
 	}

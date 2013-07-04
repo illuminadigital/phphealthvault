@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class TEL extends \org\w3\www\_2001\XMLSchema\URL {
 	/**
-	 * A telephone number (voice or fax), e-mail address, or other locator for a resource (information or service) mediated by telecommunication equipment. The address is specified as a Universal Resource Locator (URL) qualified by time specification and use codes that help in deciding which address to use for a given time and purpose.
+	 * A telephone number (voice or fax), e-mail address, orother locator for a resource (information or service)mediated by telecommunication equipment. The addressis specified as a URLqualified by time specification and use codes that helpin deciding which address to use for a given time andpurpose.
 	 */
 
 	/**

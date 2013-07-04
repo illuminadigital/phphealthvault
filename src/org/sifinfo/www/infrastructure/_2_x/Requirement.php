@@ -107,7 +107,7 @@ class Requirement {
 	}
 	
 	protected function createStatus() {
-		return new \org\sifinfo\www\infrastructure\_2_x\Status();
+		return NULL;
 	}
 
 	public function setStatus($status) {
@@ -115,9 +115,6 @@ class Requirement {
 	}
 
 	protected function validateStatus($status) {
-		if ( ! $status instanceof \org\sifinfo\www\infrastructure\_2_x\Status ) {
-			$status = new \org\sifinfo\www\infrastructure\_2_x\Status ($status);
-		}
 	
 		return $status;
 	}

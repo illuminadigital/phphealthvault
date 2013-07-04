@@ -45,25 +45,12 @@ class InstructionalStrategies {
 	}
 
 	protected function validateInstructionalStrategy($instructionalStrategy) {
-		if ( $instructionalStrategy === FALSE ) {
-			$this->_overrides['instructionalStrategy'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! is_array ($instructionalStrategy) && ! is_null($instructionalStrategy) ) {
-			$instructionalStrategy = array($instructionalStrategy);
-		}
-
-		unset ($this->_overrides['instructionalStrategy']);
 		$count = count($instructionalStrategy);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'instructionalStrategy', 0));
 		}
 		if ( ! empty($instructionalStrategy) ) {
 			foreach ($instructionalStrategy as $entry) {
-				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\InstructionalStrategy )) {
-					throw new \Exception(sprintf('Supplied %s value was not %s', 'instructionalStrategy', 'InstructionalStrategy'));
-				}
 			}
 		}
 	
@@ -71,6 +58,11 @@ class InstructionalStrategies {
 	}
 
 	public function addInstructionalStrategy($instructionalStrategy) {
-		$this->instructionalStrategy[] = $instructionalStrategy;
+		$this->instructionalStrategy[] = $this->validateInstructionalStrategyType($instructionalStrategy);
+	}
+
+	protected function validateInstructionalStrategyType($instructionalStrategy) {
+	
+		return $instructionalStrategy;
 	}
 } // end class InstructionalStrategies

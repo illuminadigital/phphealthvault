@@ -11,7 +11,7 @@ namespace hl7_org\v3;
  */
 class MO extends \org\w3\www\_2001\XMLSchema\QTY {
 	/**
-	 * A monetary amount is a quantity expressing the amount of money in some currency. Currencies are the units in which monetary amounts are denominated in different economic regions. While the monetary amount is a single kind of quantity (money) the exchange rates between the different units are variable. This is the principle difference between physical quantity and monetary amounts, and the reason why currency units are not physical units.
+	 * A monetary amount is a quantity expressing the amount ofmoney in some currency. Currencies are the units in whichmonetary amounts are denominated in different economicregions. While the monetary amount is a single kind ofquantity (money) the exchange rates between the differentunits are variable. This is the principle differencebetween physical quantity and monetary amounts, and thereason why currency units are not physical units.
 	 */
 
 	/**
