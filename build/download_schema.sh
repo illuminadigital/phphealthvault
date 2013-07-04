@@ -41,7 +41,7 @@ wget -O - https://platform.healthvault-ppe.com/platform/XSD/request.xsd | sed -e
 for i in `wget -O - http://developer.healthvault.com/pages/types/types.aspx | perl -ne 's#.*href="type.aspx\?id=(.*?)".*#$1# && do { print; }'`
 do
 	# $line =~ s#urn:com.microsoft.wc.thing.types#urn:com.microsoft.wc.types#; 
-	wget -O - "http://developer.healthvault.com/pages/types/type.aspx?id=$i" | perl -ne 'use HTML::HTML5::Entities; BEGIN {$output=0;} $line = $_; if ($line =~ s#.*<pre lang="XML">##) { $output=1; } if ( $line =~ s#</pre>.*##) { $output = 2; } if ($output) { print decode_entities($line); } if ($output == 2) { $output = 0 };' > "thingtype-$i.xsd"
+	wget -O - "http://developer.healthvault.com/pages/types/type.aspx?id=$i" | perl -ne 'use HTML::HTML5::Entities; BEGIN {$output=0;} $line = $_; if ($line =~ s#.*<pre lang="XML">##) { $output=1; } if ( $line =~ s#</pre>.*##) { $output = 2; } if ($output) { $line = decode_entities($line); $line =~ s/(encoding=)(.?)UTF-16\2/\1\2UTF-8\2/i; print $line; } if ($output == 2) { $output = 0 };' > "thingtype-$i.xsd"
 
 	# Get a random delay between 0 and 2 seconds
 	SEED=`( echo $$ ; ps ; w ; date ) | cksum | cut -f1 -d" " `
