@@ -11,20 +11,24 @@ use com\microsoft\wc\thing\Thing2;
 use DLS\Healthvault\Proxy\Type\CodableValue;
 use DLS\Healthvault\Proxy\Type\DurationValue;
 use DLS\Healthvault\Proxy\Type\Person;
+use DLS\Healthvault\Proxy\Type\Phone;
+use DLS\Healthvault\Proxy\Type\Email;
 
 
 class Appointment extends WhenThing
 {
+
+    protected $thingType = 'Appointment';
 
     /**
      * @var \DLS\Healthvault\Proxy\Type\CodableValue
      */
     protected $service;
 
-    /**
-     * @var \DLS\Healthvault\Proxy\Type\DurationValue
-     */
-    protected $duration;
+//    /**
+//     * @var \DLS\Healthvault\Proxy\Type\DurationValue
+//     */
+//    protected $duration;
 
     /**
      * @var \DLS\Healthvault\Proxy\Type\Person
@@ -49,7 +53,7 @@ class Appointment extends WhenThing
     public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL)
     {
 
-        $this->service = new CodableValue('medical-specialties');
+        $this->service = new CodableValue('appointment-care-class');
 
         $this->specialty = new CodableValue('medical-specialties');
 
@@ -57,14 +61,16 @@ class Appointment extends WhenThing
 
         $this->careClass = new CodableValue('appointment-care-class');
 
-        $this->duration = new DurationValue();
+        //$this->duration = new DurationValue();
 
         $this->clinic = new Person();
 
+        $this->clinic->getContact()->addPhone(new Phone());
+
+        $this->clinic->getContact()->addEmail(new Email());
+
         if ($healthvaultVocabulary)
         {
-
-            $this->service->setVocabularyInterface($healthvaultVocabulary);
 
             $this->specialty->setVocabularyInterface($healthvaultVocabulary);
 
@@ -110,36 +116,36 @@ class Appointment extends WhenThing
 
     }
 
-    public function getDuration()
-    {
-
-        return $this->duration;
-
-    }
-
-    public function setDuration($duration)
-    {
-
-        $this->duration = $duration;
-
-        if($this->thing)
-        {
-
-            $this->setThingDuration($duration);
-
-        }
-
-        return $this;
-
-    }
-
-    public function setThingDuration($duration){
-
-        $payload = $this->getThingPayload();
-
-        $this->duration->updateToThingElement($payload->getDuration());
-
-    }
+//    public function getDuration()
+//    {
+//
+//        return $this->duration;
+//
+//    }
+//
+//    public function setDuration($duration)
+//    {
+//
+//        $this->duration = $duration;
+//
+//        if($this->thing)
+//        {
+//
+//            $this->setThingDuration($duration);
+//
+//        }
+//
+//        return $this;
+//
+//    }
+//
+//    public function setThingDuration($duration){
+//
+//        $payload = $this->getThingPayload();
+//
+//        $this->duration->updateToThingElement($payload->getDuration());
+//
+//    }
 
     public function getClinic()
     {
@@ -206,7 +212,7 @@ class Appointment extends WhenThing
     public function getStatus()
     {
 
-        return $this->getStatus();
+        return $this->status;
 
     }
 
@@ -296,10 +302,10 @@ class Appointment extends WhenThing
 
         $this->careClass->setFromThingElement($careClass);
 
-        //LOAD DURATION
-        $duration = $payload->getDuration();
-
-        $this->duration->setFromThingElement($duration);
+//        //LOAD DURATION
+//        $duration = $payload->getDuration();
+//
+//        $this->duration->setFromThingElement($duration);
 
         //LOAD CLINIC
         $clinic = $payload->getClinic();
@@ -323,7 +329,7 @@ class Appointment extends WhenThing
 
         $this->setThingCareClass($this->careClass);
 
-        $this->setThingDuration($this->duration);
+//        $this->setThingDuration($this->duration);
 
         $this->setThingClinic($this->clinic);
 
