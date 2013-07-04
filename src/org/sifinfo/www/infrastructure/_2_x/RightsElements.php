@@ -45,23 +45,13 @@ class RightsElements {
 	}
 
 	protected function validateRightsElement($rightsElement) {
-		if ( $rightsElement === FALSE ) {
-			$this->_overrides['rightsElement'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! is_array ($rightsElement) && ! is_null($rightsElement) ) {
-			$rightsElement = array($rightsElement);
-		}
-
-		unset ($this->_overrides['rightsElement']);
 		$count = count($rightsElement);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'rightsElement', 0));
 		}
 		if ( ! empty($rightsElement) ) {
 			foreach ($rightsElement as $entry) {
-				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\RightsElement )) {
+				if ( ! is_RightsElement($entry) && ! is_null($entry) ) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'rightsElement', 'RightsElement'));
 				}
 			}
@@ -71,6 +61,14 @@ class RightsElements {
 	}
 
 	public function addRightsElement($rightsElement) {
-		$this->rightsElement[] = $rightsElement;
+		$this->rightsElement[] = $this->validateRightsElementType($rightsElement);
+	}
+
+	protected function validateRightsElementType($rightsElement) {
+		if ( ! is_RightsElement($rightsElement) && ! is_null($rightsElement) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'rightsElement', 'RightsElement'));
+		}
+	
+		return $rightsElement;
 	}
 } // end class RightsElements

@@ -45,23 +45,13 @@ class TimeElements {
 	}
 
 	protected function validateTimeElement($timeElement) {
-		if ( $timeElement === FALSE ) {
-			$this->_overrides['timeElement'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! is_array ($timeElement) && ! is_null($timeElement) ) {
-			$timeElement = array($timeElement);
-		}
-
-		unset ($this->_overrides['timeElement']);
 		$count = count($timeElement);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'timeElement', 0));
 		}
 		if ( ! empty($timeElement) ) {
 			foreach ($timeElement as $entry) {
-				if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\TimeElement )) {
+				if ( ! is_TimeElement($entry) && ! is_null($entry) ) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'timeElement', 'TimeElement'));
 				}
 			}
@@ -71,6 +61,14 @@ class TimeElements {
 	}
 
 	public function addTimeElement($timeElement) {
-		$this->timeElement[] = $timeElement;
+		$this->timeElement[] = $this->validateTimeElementType($timeElement);
+	}
+
+	protected function validateTimeElementType($timeElement) {
+		if ( ! is_TimeElement($timeElement) && ! is_null($timeElement) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'timeElement', 'TimeElement'));
+		}
+	
+		return $timeElement;
 	}
 } // end class TimeElements

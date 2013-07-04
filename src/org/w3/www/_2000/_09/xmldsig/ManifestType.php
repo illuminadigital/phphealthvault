@@ -51,15 +51,12 @@ class ManifestType {
 	}
 
 	protected function validateReference($reference) {
-		if ( ! is_array ($reference) ) {
-			$reference = array($reference);
-		}
 		$count = count($reference);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'reference', 1));
 		}
 		foreach ($reference as $entry) {
-			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\Reference )) {
+			if (!is_Reference($entry)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'reference', 'Reference'));
 			}
 		}
@@ -68,7 +65,15 @@ class ManifestType {
 	}
 
 	public function addReference($reference) {
-		$this->reference[] = $reference;
+		$this->reference[] = $this->validateReferenceType($reference);
+	}
+
+	protected function validateReferenceType($reference) {
+		if (!is_Reference($reference)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'reference', 'Reference'));
+		}
+	
+		return $reference;
 	}
 
 	public function getId($autoCreate = TRUE) {

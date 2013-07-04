@@ -149,7 +149,7 @@ class AddressType {
 	}
 	
 	protected function createStateProvince() {
-		return new \org\sifinfo\www\infrastructure\_2_x\StateProvince();
+		return NULL;
 	}
 
 	public function setStateProvince($stateProvince) {
@@ -157,8 +157,8 @@ class AddressType {
 	}
 
 	protected function validateStateProvince($stateProvince) {
-		if ( ! $stateProvince instanceof \org\sifinfo\www\infrastructure\_2_x\StateProvince ) {
-			$stateProvince = new \org\sifinfo\www\infrastructure\_2_x\StateProvince ($stateProvince);
+		if (!is_StateProvince($stateProvince)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'stateProvince', 'StateProvince'));
 		}
 	
 		return $stateProvince;
@@ -172,7 +172,7 @@ class AddressType {
 	}
 	
 	protected function createCountry() {
-		return new \org\sifinfo\www\infrastructure\_2_x\Country();
+		return NULL;
 	}
 
 	public function setCountry($country) {
@@ -180,8 +180,8 @@ class AddressType {
 	}
 
 	protected function validateCountry($country) {
-		if ( ! $country instanceof \org\sifinfo\www\infrastructure\_2_x\Country ) {
-			$country = new \org\sifinfo\www\infrastructure\_2_x\Country ($country);
+		if (!is_Country($country)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'country', 'Country'));
 		}
 	
 		return $country;

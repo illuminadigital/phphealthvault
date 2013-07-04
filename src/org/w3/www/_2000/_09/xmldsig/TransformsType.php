@@ -45,15 +45,12 @@ class TransformsType {
 	}
 
 	protected function validateTransform($transform) {
-		if ( ! is_array ($transform) ) {
-			$transform = array($transform);
-		}
 		$count = count($transform);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'transform', 1));
 		}
 		foreach ($transform as $entry) {
-			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\Transform )) {
+			if (!is_Transform($entry)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'transform', 'Transform'));
 			}
 		}
@@ -62,6 +59,14 @@ class TransformsType {
 	}
 
 	public function addTransform($transform) {
-		$this->transform[] = $transform;
+		$this->transform[] = $this->validateTransformType($transform);
+	}
+
+	protected function validateTransformType($transform) {
+		if (!is_Transform($transform)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'transform', 'Transform'));
+		}
+	
+		return $transform;
 	}
 } // end class TransformsType

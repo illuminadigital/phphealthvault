@@ -67,7 +67,7 @@ class ReferenceType {
 	}
 	
 	protected function createTransforms() {
-		return new \org\w3\www\_2000\_09\xmldsig\Transforms();
+		return NULL;
 	}
 
 	public function setTransforms($transforms) {
@@ -75,16 +75,9 @@ class ReferenceType {
 	}
 
 	protected function validateTransforms($transforms) {
-		if ( $transforms === FALSE ) {
-			$this->_overrides['transforms'] = TRUE;
-			return NULL;
+		if ( ! is_Transforms($transforms) && ! is_null($transforms) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'transforms', 'Transforms'));
 		}
-
-		if ( ! $transforms instanceof \org\w3\www\_2000\_09\xmldsig\Transforms  && ! is_null($transforms) ) {
-			$transforms = new \org\w3\www\_2000\_09\xmldsig\Transforms ($transforms);
-		}
-
-		unset ($this->_overrides['transforms']);
 	
 		return $transforms;
 	}
@@ -97,7 +90,7 @@ class ReferenceType {
 	}
 	
 	protected function createDigestMethod() {
-		return new \org\w3\www\_2000\_09\xmldsig\DigestMethod();
+		return NULL;
 	}
 
 	public function setDigestMethod($digestMethod) {
@@ -105,8 +98,8 @@ class ReferenceType {
 	}
 
 	protected function validateDigestMethod($digestMethod) {
-		if ( ! $digestMethod instanceof \org\w3\www\_2000\_09\xmldsig\DigestMethod ) {
-			$digestMethod = new \org\w3\www\_2000\_09\xmldsig\DigestMethod ($digestMethod);
+		if (!is_DigestMethod($digestMethod)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'digestMethod', 'DigestMethod'));
 		}
 	
 		return $digestMethod;
@@ -120,7 +113,7 @@ class ReferenceType {
 	}
 	
 	protected function createDigestValue() {
-		return new \org\w3\www\_2000\_09\xmldsig\DigestValue();
+		return NULL;
 	}
 
 	public function setDigestValue($digestValue) {
@@ -128,8 +121,8 @@ class ReferenceType {
 	}
 
 	protected function validateDigestValue($digestValue) {
-		if ( ! $digestValue instanceof \org\w3\www\_2000\_09\xmldsig\DigestValue ) {
-			$digestValue = new \org\w3\www\_2000\_09\xmldsig\DigestValue ($digestValue);
+		if (!is_DigestValue($digestValue)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'digestValue', 'DigestValue'));
 		}
 	
 		return $digestValue;

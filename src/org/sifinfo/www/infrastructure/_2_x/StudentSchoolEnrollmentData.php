@@ -61,7 +61,7 @@ class StudentSchoolEnrollmentData {
 	}
 	
 	protected function createGradeLevel() {
-		return new \org\sifinfo\www\infrastructure\_2_x\GradeLevel();
+		return NULL;
 	}
 
 	public function setGradeLevel($gradeLevel) {
@@ -69,8 +69,8 @@ class StudentSchoolEnrollmentData {
 	}
 
 	protected function validateGradeLevel($gradeLevel) {
-		if ( ! $gradeLevel instanceof \org\sifinfo\www\infrastructure\_2_x\GradeLevel ) {
-			$gradeLevel = new \org\sifinfo\www\infrastructure\_2_x\GradeLevel ($gradeLevel);
+		if (!is_GradeLevel($gradeLevel)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'gradeLevel', 'GradeLevel'));
 		}
 	
 		return $gradeLevel;

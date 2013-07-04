@@ -121,7 +121,7 @@ class LEAInfoData {
 	}
 	
 	protected function createLEAName() {
-		return new \org\sifinfo\www\infrastructure\_2_x\LEAName();
+		return NULL;
 	}
 
 	public function setLEAName($lEAName) {
@@ -129,8 +129,8 @@ class LEAInfoData {
 	}
 
 	protected function validateLEAName($lEAName) {
-		if ( ! $lEAName instanceof \org\sifinfo\www\infrastructure\_2_x\LEAName ) {
-			$lEAName = new \org\sifinfo\www\infrastructure\_2_x\LEAName ($lEAName);
+		if (!is_LEAName($lEAName)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'lEAName', 'LEAName'));
 		}
 	
 		return $lEAName;

@@ -55,7 +55,7 @@ class SignedInfoType {
 	}
 	
 	protected function createCanonicalizationMethod() {
-		return new \org\w3\www\_2000\_09\xmldsig\CanonicalizationMethod();
+		return NULL;
 	}
 
 	public function setCanonicalizationMethod($canonicalizationMethod) {
@@ -63,8 +63,8 @@ class SignedInfoType {
 	}
 
 	protected function validateCanonicalizationMethod($canonicalizationMethod) {
-		if ( ! $canonicalizationMethod instanceof \org\w3\www\_2000\_09\xmldsig\CanonicalizationMethod ) {
-			$canonicalizationMethod = new \org\w3\www\_2000\_09\xmldsig\CanonicalizationMethod ($canonicalizationMethod);
+		if (!is_CanonicalizationMethod($canonicalizationMethod)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'canonicalizationMethod', 'CanonicalizationMethod'));
 		}
 	
 		return $canonicalizationMethod;
@@ -78,7 +78,7 @@ class SignedInfoType {
 	}
 	
 	protected function createSignatureMethod() {
-		return new \org\w3\www\_2000\_09\xmldsig\SignatureMethod();
+		return NULL;
 	}
 
 	public function setSignatureMethod($signatureMethod) {
@@ -86,8 +86,8 @@ class SignedInfoType {
 	}
 
 	protected function validateSignatureMethod($signatureMethod) {
-		if ( ! $signatureMethod instanceof \org\w3\www\_2000\_09\xmldsig\SignatureMethod ) {
-			$signatureMethod = new \org\w3\www\_2000\_09\xmldsig\SignatureMethod ($signatureMethod);
+		if (!is_SignatureMethod($signatureMethod)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'signatureMethod', 'SignatureMethod'));
 		}
 	
 		return $signatureMethod;
@@ -109,15 +109,12 @@ class SignedInfoType {
 	}
 
 	protected function validateReference($reference) {
-		if ( ! is_array ($reference) ) {
-			$reference = array($reference);
-		}
 		$count = count($reference);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'reference', 1));
 		}
 		foreach ($reference as $entry) {
-			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\Reference )) {
+			if (!is_Reference($entry)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'reference', 'Reference'));
 			}
 		}
@@ -126,7 +123,15 @@ class SignedInfoType {
 	}
 
 	public function addReference($reference) {
-		$this->reference[] = $reference;
+		$this->reference[] = $this->validateReferenceType($reference);
+	}
+
+	protected function validateReferenceType($reference) {
+		if (!is_Reference($reference)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'reference', 'Reference'));
+		}
+	
+		return $reference;
 	}
 
 	public function getId($autoCreate = TRUE) {

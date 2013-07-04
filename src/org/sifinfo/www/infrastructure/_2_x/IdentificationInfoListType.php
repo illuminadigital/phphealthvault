@@ -45,15 +45,12 @@ class IdentificationInfoListType {
 	}
 
 	protected function validateIdentificationInfo($identificationInfo) {
-		if ( ! is_array ($identificationInfo) ) {
-			$identificationInfo = array($identificationInfo);
-		}
 		$count = count($identificationInfo);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'identificationInfo', 1));
 		}
 		foreach ($identificationInfo as $entry) {
-			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\IdentificationInfo )) {
+			if (!is_IdentificationInfo($entry)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'identificationInfo', 'IdentificationInfo'));
 			}
 		}
@@ -62,6 +59,14 @@ class IdentificationInfoListType {
 	}
 
 	public function addIdentificationInfo($identificationInfo) {
-		$this->identificationInfo[] = $identificationInfo;
+		$this->identificationInfo[] = $this->validateIdentificationInfoType($identificationInfo);
+	}
+
+	protected function validateIdentificationInfoType($identificationInfo) {
+		if (!is_IdentificationInfo($identificationInfo)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'identificationInfo', 'IdentificationInfo'));
+		}
+	
+		return $identificationInfo;
 	}
 } // end class IdentificationInfoListType

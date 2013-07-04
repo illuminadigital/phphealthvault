@@ -46,15 +46,12 @@ class GradeLevelsType {
 	}
 
 	protected function validateGradeLevel($gradeLevel) {
-		if ( ! is_array ($gradeLevel) ) {
-			$gradeLevel = array($gradeLevel);
-		}
 		$count = count($gradeLevel);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'gradeLevel', 1));
 		}
 		foreach ($gradeLevel as $entry) {
-			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\GradeLevel )) {
+			if (!is_GradeLevel($entry)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'gradeLevel', 'GradeLevel'));
 			}
 		}
@@ -63,6 +60,14 @@ class GradeLevelsType {
 	}
 
 	public function addGradeLevel($gradeLevel) {
-		$this->gradeLevel[] = $gradeLevel;
+		$this->gradeLevel[] = $this->validateGradeLevelType($gradeLevel);
+	}
+
+	protected function validateGradeLevelType($gradeLevel) {
+		if (!is_GradeLevel($gradeLevel)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'gradeLevel', 'GradeLevel'));
+		}
+	
+		return $gradeLevel;
 	}
 } // end class GradeLevelsType

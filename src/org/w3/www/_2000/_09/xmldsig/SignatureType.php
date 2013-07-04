@@ -61,7 +61,7 @@ class SignatureType {
 	}
 	
 	protected function createSignedInfo() {
-		return new \org\w3\www\_2000\_09\xmldsig\SignedInfo();
+		return NULL;
 	}
 
 	public function setSignedInfo($signedInfo) {
@@ -69,8 +69,8 @@ class SignatureType {
 	}
 
 	protected function validateSignedInfo($signedInfo) {
-		if ( ! $signedInfo instanceof \org\w3\www\_2000\_09\xmldsig\SignedInfo ) {
-			$signedInfo = new \org\w3\www\_2000\_09\xmldsig\SignedInfo ($signedInfo);
+		if (!is_SignedInfo($signedInfo)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'signedInfo', 'SignedInfo'));
 		}
 	
 		return $signedInfo;
@@ -84,7 +84,7 @@ class SignatureType {
 	}
 	
 	protected function createSignatureValue() {
-		return new \org\w3\www\_2000\_09\xmldsig\SignatureValue();
+		return NULL;
 	}
 
 	public function setSignatureValue($signatureValue) {
@@ -92,8 +92,8 @@ class SignatureType {
 	}
 
 	protected function validateSignatureValue($signatureValue) {
-		if ( ! $signatureValue instanceof \org\w3\www\_2000\_09\xmldsig\SignatureValue ) {
-			$signatureValue = new \org\w3\www\_2000\_09\xmldsig\SignatureValue ($signatureValue);
+		if (!is_SignatureValue($signatureValue)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'signatureValue', 'SignatureValue'));
 		}
 	
 		return $signatureValue;
@@ -107,7 +107,7 @@ class SignatureType {
 	}
 	
 	protected function createKeyInfo() {
-		return new \org\w3\www\_2000\_09\xmldsig\KeyInfo();
+		return NULL;
 	}
 
 	public function setKeyInfo($keyInfo) {
@@ -115,16 +115,9 @@ class SignatureType {
 	}
 
 	protected function validateKeyInfo($keyInfo) {
-		if ( $keyInfo === FALSE ) {
-			$this->_overrides['keyInfo'] = TRUE;
-			return NULL;
+		if ( ! is_KeyInfo($keyInfo) && ! is_null($keyInfo) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'keyInfo', 'KeyInfo'));
 		}
-
-		if ( ! $keyInfo instanceof \org\w3\www\_2000\_09\xmldsig\KeyInfo  && ! is_null($keyInfo) ) {
-			$keyInfo = new \org\w3\www\_2000\_09\xmldsig\KeyInfo ($keyInfo);
-		}
-
-		unset ($this->_overrides['keyInfo']);
 	
 		return $keyInfo;
 	}
@@ -145,23 +138,13 @@ class SignatureType {
 	}
 
 	protected function validateObject($object) {
-		if ( $object === FALSE ) {
-			$this->_overrides['object'] = TRUE;
-			return NULL;
-		}
-
-		if ( ! is_array ($object) && ! is_null($object) ) {
-			$object = array($object);
-		}
-
-		unset ($this->_overrides['object']);
 		$count = count($object);
 		if ($count < 0) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'object', 0));
 		}
 		if ( ! empty($object) ) {
 			foreach ($object as $entry) {
-				if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\Object )) {
+				if ( ! is_Object($entry) && ! is_null($entry) ) {
 					throw new \Exception(sprintf('Supplied %s value was not %s', 'object', 'Object'));
 				}
 			}
@@ -171,7 +154,15 @@ class SignatureType {
 	}
 
 	public function addObject($object) {
-		$this->object[] = $object;
+		$this->object[] = $this->validateObjectType($object);
+	}
+
+	protected function validateObjectType($object) {
+		if ( ! is_Object($object) && ! is_null($object) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'object', 'Object'));
+		}
+	
+		return $object;
 	}
 
 	public function getId($autoCreate = TRUE) {

@@ -49,7 +49,7 @@ class KeyValueType {
 	}
 	
 	protected function createDSAKeyValue() {
-		return new \org\w3\www\_2000\_09\xmldsig\DSAKeyValue();
+		return NULL;
 	}
 
 	public function setDSAKeyValue($dSAKeyValue) {
@@ -57,8 +57,8 @@ class KeyValueType {
 	}
 
 	protected function validateDSAKeyValue($dSAKeyValue) {
-		if ( ! $dSAKeyValue instanceof \org\w3\www\_2000\_09\xmldsig\DSAKeyValue ) {
-			$dSAKeyValue = new \org\w3\www\_2000\_09\xmldsig\DSAKeyValue ($dSAKeyValue);
+		if (!is_DSAKeyValue($dSAKeyValue)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'dSAKeyValue', 'DSAKeyValue'));
 		}
 	
 		return $dSAKeyValue;
@@ -72,7 +72,7 @@ class KeyValueType {
 	}
 	
 	protected function createRSAKeyValue() {
-		return new \org\w3\www\_2000\_09\xmldsig\RSAKeyValue();
+		return NULL;
 	}
 
 	public function setRSAKeyValue($rSAKeyValue) {
@@ -80,8 +80,8 @@ class KeyValueType {
 	}
 
 	protected function validateRSAKeyValue($rSAKeyValue) {
-		if ( ! $rSAKeyValue instanceof \org\w3\www\_2000\_09\xmldsig\RSAKeyValue ) {
-			$rSAKeyValue = new \org\w3\www\_2000\_09\xmldsig\RSAKeyValue ($rSAKeyValue);
+		if (!is_RSAKeyValue($rSAKeyValue)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'rSAKeyValue', 'RSAKeyValue'));
 		}
 	
 		return $rSAKeyValue;

@@ -63,7 +63,7 @@ class SchoolContact {
 	}
 	
 	protected function createContactInfo() {
-		return new \org\sifinfo\www\infrastructure\_2_x\ContactInfo();
+		return NULL;
 	}
 
 	public function setContactInfo($contactInfo) {
@@ -71,8 +71,8 @@ class SchoolContact {
 	}
 
 	protected function validateContactInfo($contactInfo) {
-		if ( ! $contactInfo instanceof \org\sifinfo\www\infrastructure\_2_x\ContactInfo ) {
-			$contactInfo = new \org\sifinfo\www\infrastructure\_2_x\ContactInfo ($contactInfo);
+		if (!is_ContactInfo($contactInfo)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'contactInfo', 'ContactInfo'));
 		}
 	
 		return $contactInfo;

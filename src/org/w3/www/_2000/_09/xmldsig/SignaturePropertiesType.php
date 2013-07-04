@@ -51,15 +51,12 @@ class SignaturePropertiesType {
 	}
 
 	protected function validateSignatureProperty($signatureProperty) {
-		if ( ! is_array ($signatureProperty) ) {
-			$signatureProperty = array($signatureProperty);
-		}
 		$count = count($signatureProperty);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'signatureProperty', 1));
 		}
 		foreach ($signatureProperty as $entry) {
-			if (!($entry instanceof \org\w3\www\_2000\_09\xmldsig\SignatureProperty )) {
+			if (!is_SignatureProperty($entry)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'signatureProperty', 'SignatureProperty'));
 			}
 		}
@@ -68,7 +65,15 @@ class SignaturePropertiesType {
 	}
 
 	public function addSignatureProperty($signatureProperty) {
-		$this->signatureProperty[] = $signatureProperty;
+		$this->signatureProperty[] = $this->validateSignaturePropertyType($signatureProperty);
+	}
+
+	protected function validateSignaturePropertyType($signatureProperty) {
+		if (!is_SignatureProperty($signatureProperty)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'signatureProperty', 'SignatureProperty'));
+		}
+	
+		return $signatureProperty;
 	}
 
 	public function getId($autoCreate = TRUE) {

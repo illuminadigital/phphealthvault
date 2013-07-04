@@ -55,7 +55,7 @@ class Contact {
 	}
 	
 	protected function createRelationship() {
-		return new \org\sifinfo\www\infrastructure\_2_x\Relationship();
+		return NULL;
 	}
 
 	public function setRelationship($relationship) {
@@ -63,8 +63,8 @@ class Contact {
 	}
 
 	protected function validateRelationship($relationship) {
-		if ( ! $relationship instanceof \org\sifinfo\www\infrastructure\_2_x\Relationship ) {
-			$relationship = new \org\sifinfo\www\infrastructure\_2_x\Relationship ($relationship);
+		if (!is_Relationship($relationship)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'relationship', 'Relationship'));
 		}
 	
 		return $relationship;

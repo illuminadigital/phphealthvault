@@ -9,8 +9,9 @@ namespace org\sifinfo\www\infrastructure\_2_x;
  * })
  * @XmlEntity	(xml="OtherId")
  */
-class OtherId extends \org\sifinfo\www\infrastructure\_2_x\OtherIdType {
+class OtherId {
 	/**
+	 * Lists an "other" identifier associated with the student.
 	 */
 
 	/**
@@ -20,6 +21,32 @@ class OtherId extends \org\sifinfo\www\infrastructure\_2_x\OtherIdType {
 	protected $_overrides = array();
 
 
-	public function __construct() {
+	/**
+	 * @XmlAttribute	(type="string", name="Type")
+	 */
+	protected $type;
+
+	public function __construct($type = NULL) {
+		$this->type = ($type===NULL) ? NULL : $this->validateType($type);
+	}
+
+	public function getType($autoCreate = TRUE) {
+		if ($this->type===NULL && $autoCreate && ! isset($this->_overrides['type']) ) {
+			$this->type = $this->createType();
+		}
+		return $this->type;
+	}
+	
+	protected function createType() {
+		return NULL;
+	}
+
+	public function setType($type) {
+		$this->type = $this->validateType($type);
+	}
+
+	protected function validateType($type) {
+	
+		return $type;
 	}
 } // end class OtherId

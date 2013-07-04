@@ -46,15 +46,12 @@ class SubjectAreaListType {
 	}
 
 	protected function validateSubjectArea($subjectArea) {
-		if ( ! is_array ($subjectArea) ) {
-			$subjectArea = array($subjectArea);
-		}
 		$count = count($subjectArea);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'subjectArea', 1));
 		}
 		foreach ($subjectArea as $entry) {
-			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\SubjectArea )) {
+			if (!is_SubjectArea($entry)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'subjectArea', 'SubjectArea'));
 			}
 		}
@@ -63,6 +60,14 @@ class SubjectAreaListType {
 	}
 
 	public function addSubjectArea($subjectArea) {
-		$this->subjectArea[] = $subjectArea;
+		$this->subjectArea[] = $this->validateSubjectAreaType($subjectArea);
+	}
+
+	protected function validateSubjectAreaType($subjectArea) {
+		if (!is_SubjectArea($subjectArea)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'subjectArea', 'SubjectArea'));
+		}
+	
+		return $subjectArea;
 	}
 } // end class SubjectAreaListType

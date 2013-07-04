@@ -103,7 +103,7 @@ class BaseNameType {
 	}
 	
 	protected function createLastName() {
-		return new \org\sifinfo\www\infrastructure\_2_x\LastName();
+		return NULL;
 	}
 
 	public function setLastName($lastName) {
@@ -111,8 +111,8 @@ class BaseNameType {
 	}
 
 	protected function validateLastName($lastName) {
-		if ( ! $lastName instanceof \org\sifinfo\www\infrastructure\_2_x\LastName ) {
-			$lastName = new \org\sifinfo\www\infrastructure\_2_x\LastName ($lastName);
+		if (!is_LastName($lastName)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'lastName', 'LastName'));
 		}
 	
 		return $lastName;
@@ -126,7 +126,7 @@ class BaseNameType {
 	}
 	
 	protected function createFirstName() {
-		return new \org\sifinfo\www\infrastructure\_2_x\FirstName();
+		return NULL;
 	}
 
 	public function setFirstName($firstName) {
@@ -134,8 +134,8 @@ class BaseNameType {
 	}
 
 	protected function validateFirstName($firstName) {
-		if ( ! $firstName instanceof \org\sifinfo\www\infrastructure\_2_x\FirstName ) {
-			$firstName = new \org\sifinfo\www\infrastructure\_2_x\FirstName ($firstName);
+		if (!is_FirstName($firstName)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'firstName', 'FirstName'));
 		}
 	
 		return $firstName;

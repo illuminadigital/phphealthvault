@@ -46,15 +46,12 @@ class ElectronicIdListType {
 	}
 
 	protected function validateElectronicId($electronicId) {
-		if ( ! is_array ($electronicId) ) {
-			$electronicId = array($electronicId);
-		}
 		$count = count($electronicId);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'electronicId', 1));
 		}
 		foreach ($electronicId as $entry) {
-			if (!($entry instanceof \org\sifinfo\www\infrastructure\_2_x\ElectronicId )) {
+			if (!is_ElectronicId($entry)) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'electronicId', 'ElectronicId'));
 			}
 		}
@@ -63,6 +60,14 @@ class ElectronicIdListType {
 	}
 
 	public function addElectronicId($electronicId) {
-		$this->electronicId[] = $electronicId;
+		$this->electronicId[] = $this->validateElectronicIdType($electronicId);
+	}
+
+	protected function validateElectronicIdType($electronicId) {
+		if (!is_ElectronicId($electronicId)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'electronicId', 'ElectronicId'));
+		}
+	
+		return $electronicId;
 	}
 } // end class ElectronicIdListType

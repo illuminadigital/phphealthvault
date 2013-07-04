@@ -66,7 +66,7 @@ class SignatureInfo {
 	}
 	
 	protected function createSignature() {
-		return new \org\w3\www\_2000\_09\xmldsig\Signature();
+		return NULL;
 	}
 
 	public function setSignature($signature) {
@@ -74,16 +74,9 @@ class SignatureInfo {
 	}
 
 	protected function validateSignature($signature) {
-		if ( $signature === FALSE ) {
-			$this->_overrides['signature'] = TRUE;
-			return NULL;
+		if ( ! is_Signature($signature) && ! is_null($signature) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'signature', 'Signature'));
 		}
-
-		if ( ! $signature instanceof \org\w3\www\_2000\_09\xmldsig\Signature  && ! is_null($signature) ) {
-			$signature = new \org\w3\www\_2000\_09\xmldsig\Signature ($signature);
-		}
-
-		unset ($this->_overrides['signature']);
 	
 		return $signature;
 	}

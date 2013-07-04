@@ -49,7 +49,7 @@ class RetrievalMethodType {
 	}
 	
 	protected function createTransforms() {
-		return new \org\w3\www\_2000\_09\xmldsig\Transforms();
+		return NULL;
 	}
 
 	public function setTransforms($transforms) {
@@ -57,16 +57,9 @@ class RetrievalMethodType {
 	}
 
 	protected function validateTransforms($transforms) {
-		if ( $transforms === FALSE ) {
-			$this->_overrides['transforms'] = TRUE;
-			return NULL;
+		if ( ! is_Transforms($transforms) && ! is_null($transforms) ) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'transforms', 'Transforms'));
 		}
-
-		if ( ! $transforms instanceof \org\w3\www\_2000\_09\xmldsig\Transforms  && ! is_null($transforms) ) {
-			$transforms = new \org\w3\www\_2000\_09\xmldsig\Transforms ($transforms);
-		}
-
-		unset ($this->_overrides['transforms']);
 	
 		return $transforms;
 	}

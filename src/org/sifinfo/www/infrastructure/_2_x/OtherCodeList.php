@@ -9,7 +9,7 @@ namespace org\sifinfo\www\infrastructure\_2_x;
  * })
  * @XmlEntity	(xml="OtherCodeList")
  */
-class OtherCodeList extends \org\sifinfo\www\infrastructure\_2_x\OtherCodeListType {
+class OtherCodeList {
 	/**
 	 */
 

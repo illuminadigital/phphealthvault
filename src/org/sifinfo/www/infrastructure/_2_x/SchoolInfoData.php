@@ -97,7 +97,7 @@ class SchoolInfoData {
 	}
 	
 	protected function createLocalId() {
-		return new \org\sifinfo\www\infrastructure\_2_x\LocalId();
+		return NULL;
 	}
 
 	public function setLocalId($localId) {
@@ -105,8 +105,8 @@ class SchoolInfoData {
 	}
 
 	protected function validateLocalId($localId) {
-		if ( ! $localId instanceof \org\sifinfo\www\infrastructure\_2_x\LocalId ) {
-			$localId = new \org\sifinfo\www\infrastructure\_2_x\LocalId ($localId);
+		if (!is_LocalId($localId)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'localId', 'LocalId'));
 		}
 	
 		return $localId;
@@ -160,7 +160,7 @@ class SchoolInfoData {
 	}
 	
 	protected function createSchoolName() {
-		return new \org\sifinfo\www\infrastructure\_2_x\SchoolName();
+		return NULL;
 	}
 
 	public function setSchoolName($schoolName) {
@@ -168,8 +168,8 @@ class SchoolInfoData {
 	}
 
 	protected function validateSchoolName($schoolName) {
-		if ( ! $schoolName instanceof \org\sifinfo\www\infrastructure\_2_x\SchoolName ) {
-			$schoolName = new \org\sifinfo\www\infrastructure\_2_x\SchoolName ($schoolName);
+		if (!is_SchoolName($schoolName)) {
+			throw new \Exception(sprintf('Supplied %s value was not %s', 'schoolName', 'SchoolName'));
 		}
 	
 		return $schoolName;
