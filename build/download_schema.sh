@@ -43,6 +43,13 @@ do
 	# $line =~ s#urn:com.microsoft.wc.thing.types#urn:com.microsoft.wc.types#; 
 	wget -O - "http://developer.healthvault.com/pages/types/type.aspx?id=$i" | perl -ne 'use HTML::HTML5::Entities; BEGIN {$output=0;} $line = $_; if ($line =~ s#.*<pre lang="XML">##) { $output=1; } if ( $line =~ s#</pre>.*##) { $output = 2; } if ($output) { $line = decode_entities($line); $line =~ s/(encoding=)(.?)UTF-16\2/\1\2UTF-8\2/i; print $line; } if ($output == 2) { $output = 0 };' > "thingtype-$i.xsd"
 
+	# Create a link in case anything tries to include this
+	SCHEMANAME=`perl -n -e '/<schema .*xmlns:this=".*?\.([^."]*?)"/ && { print $1 }' "thingtype-$i.xsd"`
+	if [ ! "x$SCHEMANAME" = "x" ]
+	then
+		ln -s  "thingtype-$i.xsd" "$SCHEMANAME.xsd"
+	fi
+
 	# Get a random delay between 0 and 2 seconds
 	SEED=`( echo $$ ; ps ; w ; date ) | cksum | cut -f1 -d" " `
 	SLEEPTIME=`expr $SEED % 3`
