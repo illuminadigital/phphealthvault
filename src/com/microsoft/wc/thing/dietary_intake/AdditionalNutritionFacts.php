@@ -5,7 +5,7 @@ namespace com\microsoft\wc\thing\dietary_intake;
 
 /**
  * @XmlNamespaces ({
- *	@XmlNamespace(url="urn:com.microsoft.wc.thing.dietary-intake", prefix="")
+ *	@XmlNamespace(url="urn:com.microsoft.wc.thing.dietary-intake", prefix="di")
  * })
  * @XmlEntity	(xml="additional-nutrition-facts")
  */

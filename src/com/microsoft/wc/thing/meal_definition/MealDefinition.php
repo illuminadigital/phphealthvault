@@ -14,8 +14,8 @@ class MealDefinition extends \com\microsoft\wc\thing\AnyMixed {
 	 * Information related to a meal.
 	 */
 
-	const ID = '074e122a-335a-4a47-a63d-00a8f3e79e60';
-	const NAME = 'Meal Definition';
+	const ID = '089646a6-7e25-4495-ad15-3e28d4c1a71d';
+	const NAME = 'Dietary Intake';
 
 	/**
 	 * List of manually overridden properties that should not be re-generated automatically

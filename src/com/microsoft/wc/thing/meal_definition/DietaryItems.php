@@ -21,7 +21,7 @@ class DietaryItems {
 
 
 	/**
-	 * @XmlElement	(type="\com\microsoft\wc\thing\meal_definition\DietaryIntake", collection="true", name="dietary-item")
+	 * @XmlElement	(type="\com\microsoft\wc\thing\dietary_intake\DietaryIntake", collection="true", name="dietary-item")
 	 */
 	protected $dietaryItem;
 
@@ -45,12 +45,15 @@ class DietaryItems {
 	}
 
 	protected function validateDietaryItem($dietaryItem) {
+		if ( ! is_array ($dietaryItem) ) {
+			$dietaryItem = array($dietaryItem);
+		}
 		$count = count($dietaryItem);
 		if ($count < 1) {
 			throw new \Exception(sprintf('Supplied %s array has less than the required number (%d) of entries.', 'dietaryItem', 1));
 		}
 		foreach ($dietaryItem as $entry) {
-			if (!is_DietaryIntake($entry)) {
+			if (!($entry instanceof \com\microsoft\wc\thing\dietary_intake\DietaryIntake )) {
 				throw new \Exception(sprintf('Supplied %s value was not %s', 'dietaryItem', 'DietaryIntake'));
 			}
 		}
@@ -59,14 +62,6 @@ class DietaryItems {
 	}
 
 	public function addDietaryItem($dietaryItem) {
-		$this->dietaryItem[] = $this->validateDietaryItemType($dietaryItem);
-	}
-
-	protected function validateDietaryItemType($dietaryItem) {
-		if (!is_DietaryIntake($dietaryItem)) {
-			throw new \Exception(sprintf('Supplied %s value was not %s', 'dietaryItem', 'DietaryIntake'));
-		}
-	
-		return $dietaryItem;
+		$this->dietaryItem[] = $dietaryItem;
 	}
 } // end class DietaryItems
