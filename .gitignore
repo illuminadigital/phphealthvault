@@ -5,3 +5,5 @@
 /phpunit.xml
 /vendor
 .idea
+.DS_Store
+._.DS_Store

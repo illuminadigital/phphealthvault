@@ -117,6 +117,7 @@ class Driver {
             \com\microsoft\wc\thing\personal_image\PersonalImage::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\PersonalImage',
             \com\microsoft\wc\thing\question_answer\QuestionAnswer::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\QuestionAnswer',
             \com\microsoft\wc\thing\weight\Weight::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Weight',
+            \com\microsoft\wc\thing\basic\Basic::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Basic',
         );
         
         if ( ! isset($this->proxyFactory) )
