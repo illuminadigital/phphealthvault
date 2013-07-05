@@ -67,7 +67,7 @@ class QuestionAnswerType extends VocabularyType
         return NULL;
     }
 
-    public function setAnswer($answer, $index = 0){
+    public function setAnswer($answer, $index = 0, $updateCodableValue = TRUE){
         if ($answer instanceof CodableValue) {
             $this->answers[$index] = $answer;
         } else {
@@ -96,7 +96,7 @@ class QuestionAnswerType extends VocabularyType
         return $this->answers;
     }
 
-    public function setAnswers($answers){
+    public function setAnswers($answers, $updateCodableValue = TRUE){
         $newAnswers = array();
         
         foreach ($answers as $index => $thisAnswer) {
@@ -104,7 +104,7 @@ class QuestionAnswerType extends VocabularyType
                 $newAnswers[$index] = $thisAnswer;
             } else {
                 $newAnswer = new CodableValue();
-                $newAnswer->setText((string)$thisAnswer);
+                $newAnswer->setText((string)$thisAnswer, $updateCodableValue);
                 
                 $newAnswers[$index] = $newAnswer;
             }

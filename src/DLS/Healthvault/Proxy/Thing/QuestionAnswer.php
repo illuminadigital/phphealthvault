@@ -42,8 +42,8 @@ class QuestionAnswer extends WhenThing
         return $this;
     }
     
-    public function getAnswer(){
-        return $this->questionAnswer->getAnswer();
+    public function getAnswer($index = 0, $textOnly = TRUE){
+        return $this->questionAnswer->getAnswer($index, $textOnly);
     }
     
     public function setAnswer($answer){
