@@ -25,6 +25,8 @@ class PlatformMethod
     protected static $appAuthToken = NULL;
     
     private $libraryVersion = 'PHPHV v0.01';
+
+    private $customRecord = FALSE;
     
     public function __construct(HealthvaultConfigurationInterface $configuration)
     {
@@ -85,7 +87,9 @@ class PlatformMethod
     }
 
     public function getRecord(){
-
+        if($this->customRecord){
+            return $this->customRecord;
+        }
         return $this->configuration->getRecord();
 
     }
@@ -424,5 +428,13 @@ class PlatformMethod
     	}
     	
     	return $appAuthToken;
+    }
+
+    public function setCustomRecord($record = false){
+        if($record && is_string($record)){
+            $record = new \com\microsoft\wc\types\Guid($record);
+        }
+        $this->customRecord = $record;
+
     }
 }

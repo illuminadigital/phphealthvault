@@ -44,7 +44,10 @@ class PersonalImage extends BaseThing
     }
 
     public function getImageLink(){
-        return current($this->thing->getBlobPayload()->getBlob())->getBlobRefUrl();
+        if($this->thing->getBlobPayload()->getBlob()){
+            return current($this->thing->getBlobPayload()->getBlob())->getBlobRefUrl();
+        }
+        return false;
     }
 
     public function getThing(Thing2 $hvPersonalImage = NULL)
