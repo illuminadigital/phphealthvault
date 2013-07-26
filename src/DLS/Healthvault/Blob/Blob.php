@@ -279,8 +279,7 @@ class Blob
      */
     public static function safeStrlen($data)
     {
-        $has_mbstring = extension_loaded('mbstring')
-                || @dl(PHP_SHLIB_PREFIX . 'mbstring.' . PHP_SHLIB_SUFFIX);
+        $has_mbstring = extension_loaded('mbstring');
         $has_mb_shadow = (int) ini_get('mbstring.func_overload');
 
         if ($has_mbstring && ($has_mb_shadow & 2)) {
