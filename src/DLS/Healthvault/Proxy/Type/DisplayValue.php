@@ -166,7 +166,7 @@ abstract class DisplayValue extends BaseType implements DisplayValueInterface
         } else {
             $convertedUnits = (isset($thisType['major_scale']) ? $units
                             / $thisType['major_scale'] : $units);
-            $this->majorValue = (int) $convertedUnits;
+            $this->majorValue = (int) round($convertedUnits);
             if (isset($thisType['minor_scale'])) {
                 $this->minorValue = ($convertedUnits - $this->majorValue)
                         / $thisType['minor_scale'];
@@ -191,7 +191,7 @@ abstract class DisplayValue extends BaseType implements DisplayValueInterface
                 $units = $units / $thisType['major_scale'];
             }
             
-            $this->majorValue = (int) $units;
+            $this->majorValue = (int) round($units);
             
             if (isset($thisType['minor_scale'])) {
                 $this->minorValue = ($units - $this->majorValue)
