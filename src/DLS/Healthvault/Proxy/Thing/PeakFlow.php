@@ -17,7 +17,8 @@ class PeakFlow extends ApproxWhenThing
 
     /**
      * @Assert\Type("double")
-     * 
+     * @Assert\GreaterThan(value=0)
+     *
      * Peak Expiratory Flow (l/s)
      * 
      * @var double
