@@ -2,7 +2,7 @@
 namespace DLS\Healthvault\Proxy\Thing;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Illumina\PhphealthvaultBundle\Validator\Constraints as Validate;
+use DLSUtils\Component\Validator\Constraints as DLSAssert;
 
 use DLS\Healthvault\Utilities\VocabularyInterface;
 
@@ -25,6 +25,8 @@ class Condition extends BaseThing
 
     /**
      * @Assert\Date
+     * @DLSAssert\DateRange(max="today")
+     *
      * @var date
      */
     protected $onsetDate;
