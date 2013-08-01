@@ -64,10 +64,8 @@ abstract class WeightValue extends DisplayValue {
 		
 		$units = $thingElement->getKg()->getValue();
 		
-		if ( empty($this->majorValue) ) {
-			$this->setFromNormalisedUnits($units);
-		}
-		
+        $this->setFromNormalisedUnits($units);
+
 		return $thingElement;
 	}
 	
@@ -77,12 +75,15 @@ abstract class WeightValue extends DisplayValue {
 		if ( ! $thingElement ) {
 			return $thingElement;
 		}
-		
-		$normalisedValue = $this->getNormalisedValue();
+
+		$normalisedValue = $thingElement->getDisplay()->getValue();
 		if ( isset($normalisedValue) ) {
 		    $thingElement->getKg()->setValue($normalisedValue);
 		}
-		
+
+        // This is to set the main hv value as something meaningful. Doesn't take into account the minor value but this will be changed when we start having one field for values anyway. In the mean time, our system should always rely on the normalised values to ensure we're accurate.
+        $thingElement->getDisplay()->setValue($this->majorValue);
+
 		return $thingElement;
 	}
 }

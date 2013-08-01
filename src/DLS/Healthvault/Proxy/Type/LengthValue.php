@@ -18,7 +18,7 @@ abstract class LengthValue extends DisplayValue {
 		        'major' => 'kilometre(s)',
 				'minor' => 'metre(s)',
 				'minor_scale' => 0.001,
-				'major_scale' => 0.001,
+				'major_scale' => 1/0.001,
 			),
 			'mi' => array(
 				'name' => 'miles',
@@ -26,7 +26,7 @@ abstract class LengthValue extends DisplayValue {
 		        'major' => 'mile(s)',
 				'minor' => 'yard(s)',
 				'minor_scale' => 0.0005682,
-				'major_scale' => 0.0006214,
+				'major_scale' => 1/0.000621371192,
 			),
 			'yd' => array(
 				'name' => 'yards',
@@ -70,10 +70,8 @@ abstract class LengthValue extends DisplayValue {
 		
 		$units = $thingElement->getM()->getValue();
 		
-		if ( empty($this->majorValue) ) {
-			$this->setFromNormalisedUnits($units);
-		}
-		
+        $this->setFromNormalisedUnits($units);
+
 		return $thingElement;
 	}
 	
@@ -83,12 +81,15 @@ abstract class LengthValue extends DisplayValue {
 		if ( ! $thingElement ) {
 			return $thingElement;
 		}
-		
-		$normalisedValue = $this->getNormalisedValue();
+
+		$normalisedValue = $thingElement->getDisplay()->getValue();
 		if ( isset($normalisedValue) ) {
 		    $thingElement->getM()->setValue($normalisedValue);
 		}
-		
-		return $thingElement;
+
+        // This is to set the main hv value as something meaningful. Doesn't take into account the minor value but this will be changed when we start having one field for values anyway. In the mean time, our system should always rely on the normalised values to ensure we're accurate.
+        $thingElement->getDisplay()->setValue($this->majorValue);
+
+        return $thingElement;
 	}
 }
