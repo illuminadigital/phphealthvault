@@ -55,7 +55,7 @@ class Appointment extends WhenThing
 
         $this->service = new CodableValue('appointment-care-class');
 
-        $this->specialty = new CodableValue('medical-specialties');
+        $this->specialty = new CodableValue('medical-specialties:all');
 
         $this->status = new CodableValue('appointment-status');
 
