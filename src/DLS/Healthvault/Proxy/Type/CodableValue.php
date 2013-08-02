@@ -202,10 +202,10 @@ class CodableValue extends VocabularyType
                 $thingElement->setCode($codedValues);
             }
     
-            if ( empty ($this->text) ) {
-                $vocabulary = $this->vocabularyInterface->get($type, $family);
-                $this->text = $vocabulary[$value];
-            }
+
+            $vocabulary = $this->vocabularyInterface->get($type, $family);
+            $this->text = $vocabulary[$value];
+
         }
 
         if (empty($this->text)) {
