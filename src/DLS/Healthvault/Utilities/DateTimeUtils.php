@@ -2,6 +2,7 @@
 namespace DLS\Healthvault\Utilities;
 
 use com\microsoft\wc\dates\DateTime;
+use com\microsoft\wc\dates\ApproxDate;
 use com\microsoft\wc\dates\ApproxDateTime;
 use com\microsoft\wc\dates\Date;
 
@@ -100,7 +101,7 @@ class DateTimeUtils
         return TRUE;
     }
     
-    public static function setThingApproxDate(ApproxDateTime $hvDate, $date)
+    public static function setThingApproxDate(ApproxDate $hvDate, $date)
     {
         if ( ! empty($date) && ! $date instanceof \DateTime) {
             try {
@@ -124,17 +125,15 @@ class DateTimeUtils
         */
     }
     
-    public static function getThingApproxDate(ApproxDateTime $hvDate = NULL)
+    public static function getThingApproxDate(ApproxDate $hvDate = NULL)
     {
         if ( ! $hvDate ) {
             return NULL;
         }
-    
-        $structuredDate = $hvDate->getStructured()->getDate();
-    
-        $y = $structuredDate->getY()->getValue();
-        $m = $structuredDate->getM()->getValue();
-        $d = $structuredDate->getD()->getValue();
+
+        $y = $hvDate->getY()->getValue();
+        $m = $hvDate->getM()->getValue();
+        $d = $hvDate->getD()->getValue();
     
         if ( ! empty($y) && ! empty($m) && ! empty($d)) {
             $dateObj = new \DateTime();
