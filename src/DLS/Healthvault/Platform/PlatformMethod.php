@@ -168,7 +168,7 @@ class PlatformMethod
                         }else{
 
                             //FIXME: add a handler for failed connection exception. (HealthvaultException::NO_RESPONSE)
-                            //throw \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build(0);
+                            throw new \DLS\Healthvault\Platform\Exceptions\NoResponseFromHealthvaultException();
 
                             return NULL;
                         }
@@ -186,13 +186,12 @@ class PlatformMethod
 
         }
 
-
-        //FIXME: add a handler for failed connection exception. (HealthvaultException::NO_RESPONSE)
-
         error_log('Error executing method');
         //error_log(print_r($request, TRUE));
         //error_log(print_r($response, TRUE));
         error_log(print_r($responseObject, TRUE));
+
+        throw new \DLS\Healthvault\Platform\Exceptions\NoResponseFromHealthvaultException();
 
         return NULL;
     }
