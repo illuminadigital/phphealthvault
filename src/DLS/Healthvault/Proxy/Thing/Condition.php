@@ -151,8 +151,8 @@ class Condition extends BaseThing
         $payload = $this->getThingPayload();
 
         $this->name = $payload->getName()->getText();
-        $this->onsetDate = $this->getThingApproxDate($payload->getOnsetDate());
-        $this->stopDate = $this->getThingApproxDate($payload->getStopDate());
+        $this->onsetDate = $this->getThingApproxDateTime($payload->getOnsetDate());
+        $this->stopDate = $this->getThingApproxDateTime($payload->getStopDate());
         $this->stopReason = $payload->getStopReason();
 
         $codes = $payload->getStatus()->getCode();
@@ -189,7 +189,7 @@ class Condition extends BaseThing
     {
         $hvOnsetDate = $this->getThingPayload()->getOnsetDate();
 
-        $this->setThingApproxDate($hvOnsetDate, $onsetDate);
+        $this->setThingApproxDateTime($hvOnsetDate, $onsetDate);
     }
 
     protected function setThingStopDate($stopDate)
@@ -198,7 +198,7 @@ class Condition extends BaseThing
         {
             $hvStopDate = $this->getThingPayload()->getStopDate();
 
-            $this->setThingApproxDate($hvStopDate, $stopDate);
+            $this->setThingApproxDateTime($hvStopDate, $stopDate);
         }
         else
         {
