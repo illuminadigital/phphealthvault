@@ -5,6 +5,7 @@ use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\DataXml;
 
 use com\microsoft\wc\dates\DateTime;
+use com\microsoft\wc\dates\ApproxDate;
 use com\microsoft\wc\dates\ApproxDateTime;
 use com\microsoft\wc\dates\Date;
 use com\microsoft\wc\types\CodableValue;
@@ -431,14 +432,14 @@ abstract class BaseThing
         return ( $result ) ? $this : FALSE;
     }
     
-    protected function setThingApproxDate(ApproxDateTime $hvDate, $date)
+    protected function setThingApproxDate(ApproxDate $hvDate, $date)
     {
         $result = DateTimeUtils::setThingApproxDate($hvDate, $date);
         
         return ( $result ) ? $this : FALSE;
     }
     
-    protected function getThingApproxDate(ApproxDateTime $hvDate = NULL)
+    protected function getThingApproxDate(ApproxDate $hvDate = NULL)
     {
         return DateTimeUtils::getThingApproxDate($hvDate);
     }
