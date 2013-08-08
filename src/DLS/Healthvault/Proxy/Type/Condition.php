@@ -147,9 +147,11 @@ class Condition extends VocabularyType
         $this->name->setVocabularyInterface($this->vocabularyInterface);
         $this->name->setFromThingElement($thingElement->getName(FALSE));
 
-        $this->onsetDate = DateTimeUtils::getThingApproxDate($thingElement->getOnsetDate());
+        $onsetDate = $thingElement->getOnsetDate(FALSE);
+        $this->onsetDate = ( empty ($onsetDate) )?null:DateTimeUtils::getThingApproxDate($onsetDate);
 
-        $this->resolutionDate = DateTimeUtils::getThingApproxDate($thingElement->getResolutionDate());
+        $resolutionDate = $thingElement->getResolutionDate(FALSE);
+        $this->resolutionDate = ( empty ($resolutionDate) )?null:DateTimeUtils::getThingApproxDate($resolutionDate);
 
         $this->occurrence->setVocabularyInterface($this->vocabularyInterface);
         $this->occurrence->setFromThingElement($thingElement->getOccurrence(FALSE));
@@ -171,12 +173,11 @@ class Condition extends VocabularyType
 
         $this->occurrence->setVocabularyInterface($this->vocabularyInterface);
         if ( ! $this->occurrence->isEmpty() ) {
+
             $this->occurrence->updateToThingElement($thingElement->getOccurrence());
         } else {
             $thingElement->getOccurrence(NULL);
         }
-
-        //TODO: update onsetDate and resolutionDate
 
         $this->severity->setVocabularyInterface($this->vocabularyInterface);
         if ( ! $this->severity->isEmpty() ) {
@@ -185,6 +186,17 @@ class Condition extends VocabularyType
             $thingElement->getSeverity(NULL);
         }
 
+    }
+
+    public function setVocabularyInterface($vocabularyInterface)
+    {
+        $this->name->setVocabularyInterface($vocabularyInterface);
+
+        $this->occurrence->setVocabularyInterface($vocabularyInterface);
+
+        $this->severity->setVocabularyInterface($vocabularyInterface);
+
+        $this->vocabularyInterface = $vocabularyInterface;
     }
 
     public function __toString(){

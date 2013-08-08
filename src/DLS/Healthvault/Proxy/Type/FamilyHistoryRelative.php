@@ -115,19 +115,15 @@ class FamilyHistoryRelative extends VocabularyType
             return;
         }
 
-        //Get relationship
+
         $this->relationship->setVocabularyInterface($this->vocabularyInterface);
         $this->relationship->setFromThingElement($thingElement->getRelationship(FALSE));
 
-
-        //Get relative name
         $this->relativeName->setFromThingElement($thingElement->getRelativeName(FALSE));
 
-        //Get date of birth
-        $this->dateOfBirth = DateTimeUtils::getThingApproxDate($thingElement->getDateOfBirth);
+        $this->dateOfBirth = DateTimeUtils::getThingApproxDate($thingElement->getDateOfBirth(FALSE));
 
-        //
-        $this->dateOfDeath = DateTimeUtils::getThingApproxDate($thingElement->getDateOfDeath);
+        $this->dateOfDeath = DateTimeUtils::getThingApproxDate($thingElement->getDateOfDeath(FALSE));
 
         $this->regionOfOrigin->setVocabularyInterface($this->vocabularyInterface);
 
@@ -149,24 +145,24 @@ class FamilyHistoryRelative extends VocabularyType
         if ( ! $this->relativeName->isEmpty() ) {
             $this->relativeName->updateToThingElement($thingElement->getRelativeName());
         } else {
-            $thingElement->getRelativeName(NULL);
-        }
-
-        $this->dateOfBirth->setVocabularyInterface($this->vocabularyInterface);
-
-        if ( ! $this->dateOfBirth->isEmpty() ) {
-            $this->dateOfBirth->updateToThingElement($thingElement->getDateOfBirth());
-        } else {
-            $thingElement->getDateOfBirth(NULL);
+            $thingElement->getRelativeName(FALSE);
         }
 
 
-        $this->dateOfDeath->setVocabularyInterface($this->vocabularyInterface);
+        if ( ! empty($this->dateOfBirth) ) {
 
-        if ( ! $this->dateOfDeath->isEmpty() ) {
-            $this->dateOfDeath->updateToThingElement($thingElement->getDateOfDeath());
         } else {
-            $thingElement->getDateOfDeath(NULL);
+
+            $thingElement->getDateOfBirth(FALSE);
+
+        }
+
+        if ( ! empty( $this->dateOfDeath ) ) {
+            //$this->dateOfDeath->updateToThingElement($thingElement->getDateOfDeath());
+        } else {
+
+            $thingElement->getDateOfDeath(FALSE);
+
         }
 
         $this->regionOfOrigin->setVocabularyInterface($this->vocabularyInterface);
@@ -176,6 +172,15 @@ class FamilyHistoryRelative extends VocabularyType
         } else {
             $thingElement->getRegionOfOrigin(NULL);
         }
+    }
+
+    public function setVocabularyInterface($vocabularyInterface)
+    {
+        $this->relationship->setVocabularyInterface($vocabularyInterface);
+
+        $this->regionOfOrigin->setVocabularyInterface($vocabularyInterface);
+
+        $this->vocabularyInterface = $vocabularyInterface;
     }
 
     public function __toString(){

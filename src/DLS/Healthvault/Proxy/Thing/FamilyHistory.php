@@ -7,12 +7,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 use DLS\Healthvault\Utilities\VocabularyInterface;
 
 use com\microsoft\wc\thing\family_history\FamilyHistory as hvFamilyHistory;
+use com\microsoft\wc\thing\types\Condition as hvTypeCondition;
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\DataXml;
 use com\microsoft\wc\types\CodedValue;
 use com\microsoft\wc\types\CodableValue;
 
-use DLS\Healthvault\Proxy\Type\Condition;
+use DLS\Healthvault\Proxy\Type\Condition as TypeCondition;
 use DLS\Healthvault\Proxy\Type\FamilyHistoryRelative as Relative;
 
 class FamilyHistory extends BaseThing
@@ -22,7 +23,7 @@ class FamilyHistory extends BaseThing
     /**
      * @var array
      */
-    private $condition;
+    private $condition = array();
 
     /**
      * @var \DLS\Healthvault\Proxy\Type\FamilyHistoryRelative
@@ -32,17 +33,38 @@ class FamilyHistory extends BaseThing
     public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL)
     {
 
-        $this->condition = array();
-
         $this->relative = new Relative();
+
+        $this->condition[] = new TypeCondition();
+
 
         if ($healthvaultVocabulary){
 
             $this->relative->setVocabularyInterface($healthvaultVocabulary);
 
+            foreach($this->condition as $condition){
+
+                $condition->setVocabularyInterface($healthvaultVocabulary);
+
+            }
+
         }
 
         parent::__construct($thing, $healthvaultVocabulary);
+    }
+
+    public function setHealthvaultVocabulary($healthvaultVocabulary){
+
+        $this->relative->setVocabularyInterface($healthvaultVocabulary);
+
+        foreach($this->condition as $condition){
+
+            $condition->setVocabularyInterface($healthvaultVocabulary);
+
+        }
+
+        parent::setHealthvaultVocabulary($healthvaultVocabulary);
+
     }
 
     public function getConditions(){
@@ -51,13 +73,13 @@ class FamilyHistory extends BaseThing
 
     }
 
-    public function setConditions($conditions){
+    public function setConditions($condition){
 
-        $this->conditions = $conditions;
+        $this->condition = $condition;
 
         if($this->thing)
         {
-            $this->setThingCondition($conditions);
+            $this->setThingCondition($condition);
         }
 
         return $this;
@@ -66,7 +88,25 @@ class FamilyHistory extends BaseThing
 
     public function setThingCondition($condition){
 
+        $payload = $this->getThingPayload();
+
+        $conditions = array();
+
+        foreach($this->condition as $condition){
+
+            $hvTypeCondition = new hvTypeCondition();
+
+            $condition->updateToThingElement($hvTypeCondition);
+
+            $conditions[]=$hvTypeCondition;
+
+        }
+
+        $payload->setCondition($conditions);
+
     }
+
+
 
     public function getRelative(){
 
@@ -87,8 +127,12 @@ class FamilyHistory extends BaseThing
 
     }
 
-    public function setThingRelative($relative){}
+    public function setThingRelative($relative){
 
+        $payload = $this->getThingPayload();
+
+        $this->relative->updateToThingElement($payload->getRelative());
+    }
 
     public function setThing(Thing2 $thing)
     {
@@ -102,7 +146,16 @@ class FamilyHistory extends BaseThing
 
         $payload = $this->getThingPayload();
 
-        $this->condition->setFromThingElement($payload->getCondition());
+        $this->condition=array();
+
+        foreach($payload->getCondition() as $hvCondition){
+
+            $condition = new TypeCondition();
+
+            $condition->setFromThingElement($hvCondition);
+
+            $this->condition[]=$condition;
+        }
 
         $this->relative->setFromThingElement($payload->getRelative());
 
