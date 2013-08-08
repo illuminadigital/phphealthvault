@@ -171,6 +171,24 @@ class Condition extends VocabularyType
             $thingElement->getName(NULL);
         }
 
+        if( ! empty ($this->onsetDate) ){
+
+            DateTimeUtils::setThingApproxDate($thingElement->getOnsetDate(),$this->onsetDate);
+
+        }else{
+            $thingElement->getOnsetDate(FALSE);
+        }
+
+        if( ! empty ($this->resolutionDate) ){
+
+            DateTimeUtils::setThingApproxDate($thingElement->getResolutionDate(),$this->resolutionDate);
+
+        }else{
+
+            $thingElement->getResolutionDate(FALSE);
+        }
+
+
         $this->occurrence->setVocabularyInterface($this->vocabularyInterface);
         if ( ! $this->occurrence->isEmpty() ) {
 
