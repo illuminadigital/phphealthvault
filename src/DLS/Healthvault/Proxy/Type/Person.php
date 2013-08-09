@@ -93,10 +93,6 @@ class Person extends VocabularyType
         
         $this->contact = new Contact();
 
-        $this->contact->addPhone(new Phone());
-
-        $this->contact->addEmail(new Email());
-
         parent::__construct($thingElement);
     }
 
