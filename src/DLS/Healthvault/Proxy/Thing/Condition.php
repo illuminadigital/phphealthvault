@@ -9,17 +9,16 @@ use DLS\Healthvault\Utilities\VocabularyInterface;
 use com\microsoft\wc\thing\condition\Condition as hvCondition;
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\DataXml;
-use com\microsoft\wc\types\CodedValue;
-use com\microsoft\wc\types\CodableValue;
+
+use DLS\Healthvault\Proxy\Type\CodableValue;
+
 
 class Condition extends BaseThing
 {
     protected $thingType = 'Condition';
 
     /*
-     * @Assert\NotBlank()
-     * @Validate\InHealthvaultVocabulary("condition-occurrence")
-     * @var string
+     * @var \DLS\Healthvault\Proxy\Type\CodableValue
      */
     protected $status;
 
@@ -46,6 +45,29 @@ class Condition extends BaseThing
      * @var string
      */
     protected $name;
+
+    public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL)
+    {
+        $this->status = new CodableValue('condition-occurrence');
+
+        if ($healthvaultVocabulary)
+        {
+
+            $this->status->setVocabularyInterface($healthvaultVocabulary);
+
+        }
+
+        parent::__construct($thing, $healthvaultVocabulary);
+
+    }
+
+    public function setHealthvaultVocabulary(VocabularyInterface $healthvaultVocabulary){
+
+        $this->status->setVocabularyInterface($healthvaultVocabulary);
+
+        parent::setHealthvaultVocabulary($healthvaultVocabulary);
+
+    }
 
     public function getStatus()
     {
@@ -155,10 +177,9 @@ class Condition extends BaseThing
         $this->stopDate = $this->getThingApproxDateTime($payload->getStopDate());
         $this->stopReason = $payload->getStopReason();
 
-        $codes = $payload->getStatus()->getCode();
-        $code = array_shift($codes);
+        $status = $payload->getStatus();
 
-        $this->status = $code->getValue();
+        $this->status->setFromThingElement($status);
 
         $this->notes = $payloadArea->getCommon()->getNote();
 
@@ -213,30 +234,9 @@ class Condition extends BaseThing
 
     protected function setThingStatus($status)
     {
-        $hvStatus = $this->getThingPayload()->getStatus();
-        $hvCodes = $hvStatus->getCode();
+        $payload = $this->getThingPayload();
 
-        if ( ! empty($hvCodes) )
-        {
-            $hvCode = array_shift($hvCodes);
-        }
-        else
-        {
-            $hvCode = new CodedValue();
-            $hvCode->setFamily('wc');
-            $hvCode->setType('condition-occurrence');
-            $hvStatus->addCode($hvCode);
-        }
-
-        $hvCode->setValue($status);
-
-        if ($this->healthvaultVocabulary) {
-            $vocabulary = $this->healthvaultVocabulary->get('condition-occurrence');
-
-            if ($vocabulary && array_key_exists($status, $vocabulary)) {
-                $hvStatus->setText($vocabulary[$status]);
-            }
-        }
+        $this->status->updateToThingElement($payload->getStatus());
     }
 
     protected function getNewDataXmlContent() {
