@@ -261,7 +261,7 @@ class Medication extends BaseThing
     {
         $hvDateStarted = $this->getThingPayload()->getDateStarted();
 
-        $this->setThingApproxDate($hvDateStarted, $dateStarted);
+        $this->setThingApproxDateTime($hvDateStarted, $dateStarted);
     }
 
     public function getDateDiscontinued()
@@ -288,7 +288,7 @@ class Medication extends BaseThing
 
         if($dateDiscontinued){
 
-            $this->setThingApproxDate($hvDateDiscontinued, $dateDiscontinued);
+            $this->setThingApproxDateTime($hvDateDiscontinued, $dateDiscontinued);
 
         }else{
 
