@@ -170,7 +170,7 @@ class Personal extends BaseThing
 
         $hvBirthdate = $this->getThingPayload()->geBirthdate();
 
-        $this->setThingApproxDate($hvBirthdate, $birthdate);
+        $this->setThingDateTime($hvBirthdate, $birthdate);
 
     }
 
