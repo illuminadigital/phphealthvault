@@ -113,10 +113,9 @@ class DateTimeUtils
         }
     
         if ( ! empty($date) ) {
-            $structuredDate = $hvDate->getStructured()->getDate();
-            $structuredDate->getY()->setValue((int) $date->format('Y'));
-            $structuredDate->getM()->setValue((int) $date->format('m'));
-            $structuredDate->getD()->setValue((int) $date->format('d'));
+            $hvDate->getY()->setValue((int) $date->format('Y'));
+            $hvDate->getM()->setValue((int) $date->format('m'));
+            $hvDate->getD()->setValue((int) $date->format('d'));
         }
         /*
          else if ( empty($date) ) {
