@@ -38,4 +38,122 @@ class HeartRate extends WhenThing
      */
     protected $measurementFlags;
 
+
+
+    /**
+     * @param \DLS\Healthvault\Proxy\Type\CodableValue $measurementConditions
+     * @return \DLS\Healthvault\Proxy\Thing\HeartRate
+     */
+    public function setMeasurementConditions($measurementConditions)
+    {
+        $this->measurementConditions = $measurementConditions;
+
+        return $this;
+    }
+
+    /**
+     * @param \DLS\Healthvault\Proxy\Type\CodableValue $measurementConditions
+     * @return \DLS\Healthvault\Proxy\Thing\HeartRate
+     */
+    public function setThingMeasurementConditions($measurementConditions)
+    {
+
+        return $this;
+    }
+
+    /**
+     * @return \DLS\Healthvault\Proxy\Type\CodableValue
+     */
+    public function getMeasurementConditions()
+    {
+        return $this->measurementConditions;
+    }
+
+    /**
+     * @param \DLS\Healthvault\Proxy\Type\CodableValue $measurementFlags
+     * @return \DLS\Healthvault\Proxy\Thing\HeartRate
+     */
+    public function setMeasurementFlags($measurementFlags)
+    {
+        $this->measurementFlags = $measurementFlags;
+
+        return $this;
+    }
+
+    /**
+     * @param \DLS\Healthvault\Proxy\Type\CodableValue $measurementFlags
+     * @return \DLS\Healthvault\Proxy\Thing\HeartRate
+     */
+    public function setThingMeasurementFlags($measurementFlags)
+    {
+
+        return $this;
+    }
+
+    /**
+     * @return \DLS\Healthvault\Proxy\Type\CodableValue
+     */
+    public function getMeasurementFlags()
+    {
+        return $this->measurementFlags;
+    }
+
+    /**
+     * @param \DLS\Healthvault\Proxy\Type\CodableValue $measurementMethod
+     * @return \DLS\Healthvault\Proxy\Thing\HeartRate
+     */
+    public function setMeasurementMethod($measurementMethod)
+    {
+        $this->measurementMethod = $measurementMethod;
+
+        return $this;
+    }
+
+    /**
+     * @param \DLS\Healthvault\Proxy\Type\CodableValue $measurementMethod
+     * @return \DLS\Healthvault\Proxy\Thing\HeartRate
+     */
+    public function setThingMeasurementMethod($measurementMethod)
+    {
+
+        return $this;
+    }
+
+    /**
+     * @return \DLS\Healthvault\Proxy\Type\CodableValue
+     */
+    public function getMeasurementMethod()
+    {
+        return $this->measurementMethod;
+    }
+
+    /**
+     * @param mixed $value
+     * @return \DLS\Healthvault\Proxy\Thing\HeartRate
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $value
+     * @return \DLS\Healthvault\Proxy\Thing\HeartRate
+     */
+    public function setThingValue($value)
+    {
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
 }
