@@ -3,7 +3,7 @@
 namespace DLS\Healthvault\Proxy\Thing;
 
 use com\microsoft\wc\thing\Thing2;
-use com\microsoft\wc\thing\heart_rate\HeartRate;
+use com\microsoft\wc\thing\heart_rate\HeartRate as hvHeartRate;
 
 use DLS\Healthvault\Proxy\Type\CodableValue;
 use DLS\Healthvault\Utilities\VocabularyInterface;
@@ -178,6 +178,27 @@ class HeartRate extends WhenThing
     public function getValue()
     {
         return $this->value;
+    }
+
+
+    public static function reallySupports(Thing2 $thing)
+    {
+        return ($thing->getTypeId()->getValue() == hvHeartRate::ID);
+    }
+
+    protected function getNewDataXmlContent()
+    {
+        return new hvHeartRate();
+    }
+
+    public static function getDisplayFields() {
+        return array(
+            'when' => 'Date',
+            'value' => 'Heart rate value',
+            'measurementMethod' => 'Method',
+            'measurementConditions' => 'State',
+            'measurementFlags' => 'Additional information'
+        );
     }
 
 }
