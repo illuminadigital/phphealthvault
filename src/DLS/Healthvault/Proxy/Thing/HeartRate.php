@@ -63,6 +63,9 @@ class HeartRate extends WhenThing
      */
     public function setThingMeasurementConditions($measurementConditions)
     {
+        $payload = $this->getThingPayload();
+
+        $this->measurementConditions->updateToThingElement($payload->getMeasurementConditions());
 
         return $this;
     }
@@ -99,6 +102,10 @@ class HeartRate extends WhenThing
     public function setThingMeasurementFlags($measurementFlags)
     {
 
+        $payload = $this->getThingPayload();
+
+        $this->measurementFlags->updateToThingElement($payload->getMeasurementFlags());
+
         return $this;
     }
 
@@ -133,6 +140,9 @@ class HeartRate extends WhenThing
      */
     public function setThingMeasurementMethod($measurementMethod)
     {
+        $payload = $this->getThingPayload();
+
+        $this->measurementMethod->updateToThingElement($payload->getMeasurementMethod());
 
         return $this;
     }
