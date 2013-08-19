@@ -1,10 +1,10 @@
 <?php
 namespace DLS\Healthvault\Proxy\Thing;
 
-use Symfony\Component\Validator\Constraints as Assert;
-
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\cholesterol_profile\CholesterolProfile as hvCholesterol;
+
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Cholesterol extends WhenThing
 {
@@ -44,6 +44,7 @@ class Cholesterol extends WhenThing
 
     /**
      * @param int $hdl
+     * @return \DLS\Healthvault\Proxy\Thing\Cholesterol
      */
     public function setHdl($hdl)
     {
@@ -54,12 +55,21 @@ class Cholesterol extends WhenThing
             $this->setThingHdl($hdl);
 
         }
+
         return $this;
     }
 
+    /**
+     * @param int $hdl
+     * @return \DLS\Healthvault\Proxy\Thing\Cholesterol
+     */
     public function setThingHdl($hdl)
     {
+       $payload = $this->getThingPayload();
 
+        $payload->setHdl($hdl);
+
+        return $this;
     }
 
     /**
@@ -72,10 +82,30 @@ class Cholesterol extends WhenThing
 
     /**
      * @param int $ldl
+     * @return \DLS\Healthvault\Proxy\Thing\Cholesterol
      */
     public function setLdl($ldl)
     {
         $this->ldl = $ldl;
+
+        if ($this->thing) {
+
+            $this->setThingLdl($ldl);
+
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param int $ldl
+     * @return \DLS\Healthvault\Proxy\Thing\Cholesterol
+     */
+    public function setThingLdl($ldl)
+    {
+        $payload = $this->getThingPayload();
+
+        $payload->setLdl($ldl);
 
         return $this;
     }
@@ -90,10 +120,31 @@ class Cholesterol extends WhenThing
 
     /**
      * @param int $totalCholesterol
+     * @return \DLS\Healthvault\Proxy\Thing\Cholesterol
      */
     public function setTotalCholesterol($totalCholesterol)
     {
         $this->totalCholesterol = $totalCholesterol;
+
+        if ($this->thing) {
+
+            $this->setThingTotalCholesterol($totalCholesterol);
+
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param int $totalCholesterol
+     * @return \DLS\Healthvault\Proxy\Thing\Cholesterol
+     */
+    public function setThingTotalCholesterol($totalCholesterol)
+    {
+
+        $payload = $this->getThingPayload();
+
+        $payload->setTotalCholesterol($totalCholesterol);
 
         return $this;
     }
@@ -108,10 +159,30 @@ class Cholesterol extends WhenThing
 
     /**
      * @param int $triglyceride
+     * @return \DLS\Healthvault\Proxy\Thing\Cholesterol
      */
     public function setTriglyceride($triglyceride)
     {
         $this->triglyceride = $triglyceride;
+
+        if ($this->thing) {
+
+            $this->setThingTriglyceride($triglyceride);
+
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param int $triglyceride
+     * @return \DLS\Healthvault\Proxy\Thing\Cholesterol
+     */
+    public function setThingTriglyceride($triglyceride)
+    {
+        $payload = $this->getThingPayload();
+
+        $payload->setTriglyceride($triglyceride);
 
         return $this;
     }
@@ -125,6 +196,10 @@ class Cholesterol extends WhenThing
     }
 
 
+    /**
+     * @param \com\microsoft\wc\thing\Thing2
+     * @return \DLS\Healthvault\Proxy\Thing\Cholesterol
+     */
 
     public function setThing(Thing2 $thing)
     {
@@ -137,25 +212,33 @@ class Cholesterol extends WhenThing
 
         $payload = $this->getThingPayload();
 
-//        $this->diastolic = $payload->getDiastolic()->getValue();
-//        $this->systolic = $payload->getSystolic()->getValue();
-//        $pulse = $payload->getPulse();
-//        if ($pulse && $pulse->getValue()) {
-//            $this->pulse = $pulse->getValue();
-//        }
-//        $this->irregularHeartbeat = $payload->getIrregularHeartbeat();
+        $this->ldl = $payload->getLdl();
+
+        $this->hdl = $payload->getHdl();
+
+        $this->totalCholesterol = $payload->getTotalCholesterol();
+
+        $this->triglyceride = $payload->getTriglyceride();
 
         return $this;
     }
+
+    /**
+     * @param \com\microsoft\wc\thing\Thing2
+     * @return \com\microsoft\wc\thing\Thing2
+     */
 
     public function getThing(Thing2 $thing = NULL)
     {
         $thing = parent::getThing($thing);
 
-//        $this->setThingDiastolic((int)$this->diastolic);
-//        $this->setThingSystolic((int)$this->systolic);
-//        $this->setThingPulse($this->pulse ? (int) $this->pulse : NULL);
-//        $this->setThingIrregularHeartbeat((bool) $this->irregularHeartbeat);
+        $this->setThingLdl($this->ldl);
+
+        $this->setThingHdl($this->hdl);
+
+        $this->setThingTriglyceride($this->triglyceride);
+
+        $this->setThingTotalCholesterol($this->totalCholesterol);
 
         return $thing;
     }
@@ -173,9 +256,10 @@ class Cholesterol extends WhenThing
     public static function getDisplayFields() {
         return array(
             'when' => 'Date',
-            'systolic' => 'Systolic',
-            'diastolic' => 'Diastolic',
-            'pulse' => 'Pulse',
+            'totalCholesterol' => 'Total cholesterol',
+            'ldl' => 'LDL',
+            'hdl' => 'HDL',
+            'triglyceride' => 'Triglyceride level'
         );
     }
 
