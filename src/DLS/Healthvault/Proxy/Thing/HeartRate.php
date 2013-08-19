@@ -173,17 +173,20 @@ class HeartRate extends WhenThing
     }
 
     /**
-     * @param mixed $value
+     * @param integer $value
      * @return \DLS\Healthvault\Proxy\Thing\HeartRate
      */
     public function setThingValue($value)
     {
+        $payload = $this->getThingPayload();
+
+        $payload->setValue($value);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getValue()
     {
