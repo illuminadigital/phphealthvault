@@ -193,6 +193,53 @@ class HeartRate extends WhenThing
         return $this->value;
     }
 
+    /**
+     * @param \com\microsoft\wc\thing\Thing2
+     * @return \DLS\Healthvault\Proxy\Thing\HeartRate
+     */
+
+    public function setThing(Thing2 $thing)
+    {
+        $result = parent::setThing($thing);
+
+        if ( ! $result )
+        {
+            return $result;
+        }
+
+        $payload = $this->getThingPayload();
+
+        $this->value = $payload->getValue();
+
+        $this->measurementMethod = $payload->getMeasurementMethod();
+
+        $this->measurementConditions = $payload->getMeasurementConditions();
+
+        $this->measurementFlags = $payload->getMeasurementFlags() ;
+
+        return $this;
+    }
+
+    /**
+     * @param \com\microsoft\wc\thing\Thing2
+     * @return \com\microsoft\wc\thing\Thing2
+     */
+
+    public function getThing(Thing2 $thing = NULL)
+    {
+        $thing = parent::getThing($thing);
+
+        $this->setValue($this->value);
+
+        $this->setMeasurementMethod($this->measurementMethod);
+
+        $this->setMeasurementConditions($this->measurementConditions);
+
+        $this->setMeasurementFlags($this->measurementFlags);
+
+        return $thing;
+    }
+
 
     public static function reallySupports(Thing2 $thing)
     {
