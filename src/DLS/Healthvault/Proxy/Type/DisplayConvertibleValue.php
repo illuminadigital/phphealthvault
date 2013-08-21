@@ -3,7 +3,7 @@ namespace DLS\Healthvault\Proxy\Type;
 
 use DLS\Healthvault\Proxy\Type\BaseType;
 
-abstract class DisplayConvertibleValue extends BaseType implements DLSDisplayValueInterface
+abstract class DisplayConvertibleValue extends DisplayValue implements DisplayConvertibleValueInterface
 {
 
     /**
