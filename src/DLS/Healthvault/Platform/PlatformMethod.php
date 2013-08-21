@@ -124,7 +124,11 @@ class PlatformMethod
 
     public function execute()
     {
-        $responseObject = $this->makeRequest();
+        $request = $this->getRequestXML();
+
+        $response = $this->sendRequest($request);
+
+        $responseObject = $this->unMarshallResponse($response);
 
         if ($responseObject && $responseObject->getStatus()->getCode() == 0) {
             $info = $responseObject->getAny();
@@ -147,7 +151,11 @@ class PlatformMethod
 
                     $this->getAuthToken();
 
-                    $responseObject = $this->makeRequest();
+                    $request = $this->getRequestXML();
+
+                    $response = $this->sendRequest($request);
+
+                    $responseObject = $this->unMarshallResponse($response);
 
                     if ($responseObject && $responseObject->getStatus()->getCode() == 0) {
 
@@ -163,14 +171,16 @@ class PlatformMethod
 
                         if(!is_null($responseObject)){
 
+                            $this->logRequest($request,$response,$responseObject);
+
                             throw \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build($responseObject->getStatus()->getCode());
 
                         }else{
 
-                            //FIXME: add a handler for failed connection exception. (HealthvaultException::NO_RESPONSE)
+                            $this->logRequest($request,$response,$responseObject);
+
                             throw new \DLS\Healthvault\Platform\Exceptions\NoResponseFromHealthvaultException();
 
-                            return NULL;
                         }
 
                     }
@@ -179,6 +189,8 @@ class PlatformMethod
 
                 default:
 
+                    $this->logRequest($request,$response,$responseObject);
+
                     throw \DLS\Healthvault\Platform\Exceptions\HealthvaultExceptionFactory::build($responseObject->getStatus()->getCode());
 
                     break;
@@ -186,14 +198,19 @@ class PlatformMethod
 
         }
 
-        error_log('Error executing method');
-        //error_log(print_r($request, TRUE));
-        //error_log(print_r($response, TRUE));
-        error_log(print_r($responseObject, TRUE));
+        $this->logRequest($request,$response,$responseObject);
 
         throw new \DLS\Healthvault\Platform\Exceptions\NoResponseFromHealthvaultException();
 
-        return NULL;
+    }
+
+    private function logRequest($request,$response,$responseObject){
+
+        error_log('Error executing method');
+        error_log(print_r($request, TRUE));
+        error_log(print_r($response, TRUE));
+        error_log(print_r($responseObject, TRUE));
+
     }
 
     protected function makeRequest(){
@@ -435,5 +452,28 @@ class PlatformMethod
         }
         $this->customRecord = $record;
 
+    }
+
+    /**
+     * @param $response
+     * @return mixed|null
+     */
+    protected function unMarshallResponse($response)
+    {
+        if (!empty($response)) {
+
+            $unMarshaller = $this->configuration->getMarshallingService();
+
+            $responseObject = $unMarshaller->unmarshalFromString($response);
+
+            return $responseObject;
+
+        } else {
+
+            $responseObject = NULL;
+
+            return $responseObject;
+
+        }
     }
 }
