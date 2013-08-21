@@ -5,6 +5,9 @@ use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\cholesterol_profile\CholesterolProfile as hvCholesterol;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use DLS\Healthvault\Utilities\VocabularyInterface;
+use DLS\Healthvault\Proxy\Type\ConcentrationValue;
+
 
 class Cholesterol extends WhenThing
 {
@@ -12,35 +15,38 @@ class Cholesterol extends WhenThing
 
 
     /**
-     * @Assert\Type("integer")
-     * @Assert\GreaterThan( value = 0 )
-     * @var integer
+     * @var \DLS\Healthvault\Proxy\Type\ConcentrationValue
      */
     protected $ldl;
 
     /**
-     * @Assert\Type("integer")
-     * @Assert\GreaterThan( value = 0 )
-     *
-     * @var integer
+     * @var \DLS\Healthvault\Proxy\Type\ConcentrationValue
      */
     protected $hdl;
 
     /**
-     * @Assert\Type("integer")
-     * @Assert\GreaterThan( value = 0 )
-     *
-     * @var integer
+     * @var \DLS\Healthvault\Proxy\Type\ConcentrationValue
      */
     protected $totalCholesterol;
 
     /**
-     * @Assert\Type("integer")
-     * @Assert\GreaterThan( value = 0 )
-     *
-     * @var integer
+     * @var \DLS\Healthvault\Proxy\Type\ConcentrationValue
      */
     protected $triglyceride;
+
+    public function __construct(Thing2 $thing = NULL, VocabularyInterface $healthvaultVocabulary = NULL) {
+
+        $this->ldl = new ConcentrationValue();
+
+        $this->hdl = new ConcentrationValue();
+
+        $this->totalCholesterol = new ConcentrationValue();
+
+        $this->triglyceride = new ConcentrationValue();
+
+        parent::__construct($thing, $healthvaultVocabulary);
+
+    }
 
     /**
      * @param int $hdl
@@ -65,9 +71,9 @@ class Cholesterol extends WhenThing
      */
     public function setThingHdl($hdl)
     {
-       $payload = $this->getThingPayload();
+        $payload = $this->getThingPayload();
 
-        $payload->setHdl($hdl);
+        $hdl->updateToThingElement($payload->getHdl());
 
         return $this;
     }
@@ -105,7 +111,7 @@ class Cholesterol extends WhenThing
     {
         $payload = $this->getThingPayload();
 
-        $payload->setLdl($ldl);
+        $ldl->updateToThingElement($payload->getLdl());
 
         return $this;
     }
@@ -144,7 +150,7 @@ class Cholesterol extends WhenThing
 
         $payload = $this->getThingPayload();
 
-        $payload->setTotalCholesterol($totalCholesterol);
+        $totalCholesterol->updateToThingElement($payload->getTotalCholesterol());
 
         return $this;
     }
@@ -182,7 +188,7 @@ class Cholesterol extends WhenThing
     {
         $payload = $this->getThingPayload();
 
-        $payload->setTriglyceride($triglyceride);
+        $triglyceride->updateToThingElement($payload->getTriglyceride());
 
         return $this;
     }
@@ -212,13 +218,13 @@ class Cholesterol extends WhenThing
 
         $payload = $this->getThingPayload();
 
-        $this->ldl = $payload->getLdl();
+        $this->ldl->setFromThingElement($payload->getLdl());
 
-        $this->hdl = $payload->getHdl();
+        $this->hdl->setFromThingElement($payload->getHdl());
 
-        $this->totalCholesterol = $payload->getTotalCholesterol();
+        $this->totalCholesterol->setFromThingElement($payload->getTotalCholesterol());
 
-        $this->triglyceride = $payload->getTriglyceride();
+        $this->triglyceride->setFromThingElement($payload->getTriglyceride());
 
         return $this;
     }
@@ -232,13 +238,13 @@ class Cholesterol extends WhenThing
     {
         $thing = parent::getThing($thing);
 
+        $this->setThingTotalCholesterol($this->totalCholesterol);
+
         $this->setThingLdl($this->ldl);
 
         $this->setThingHdl($this->hdl);
 
         $this->setThingTriglyceride($this->triglyceride);
-
-        $this->setThingTotalCholesterol($this->totalCholesterol);
 
         return $thing;
     }
