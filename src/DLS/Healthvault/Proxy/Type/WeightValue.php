@@ -1,7 +1,7 @@
 <?php
 namespace DLS\Healthvault\Proxy\Type;
 
-abstract class WeightValue extends DisplayValue {
+abstract class WeightValue extends DisplayConvertibleValue {
 	
 	protected static function getPossibleTypes() {
 		return array(

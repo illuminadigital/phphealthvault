@@ -1,7 +1,7 @@
 <?php
 namespace DLS\Healthvault\Proxy\Type;
 
-abstract class LengthValue extends DisplayValue {
+abstract class LengthValue extends DisplayConvertibleValue {
 	
 	protected static function getPossibleTypes() {
 		return array(
