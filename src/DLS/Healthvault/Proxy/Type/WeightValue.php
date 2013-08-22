@@ -2,7 +2,7 @@
 namespace DLS\Healthvault\Proxy\Type;
 
 abstract class WeightValue extends DisplayConvertibleValue {
-	
+
 	protected static function getPossibleTypes() {
 		return array(
             'stlb' => array(
@@ -56,6 +56,7 @@ abstract class WeightValue extends DisplayConvertibleValue {
 	}
 	
 	public function setFromThingElement($thingElement) {
+
 		$thingElement = parent::setFromThingElement($thingElement);
 		
 		if ( ! $thingElement ) {
@@ -64,7 +65,7 @@ abstract class WeightValue extends DisplayConvertibleValue {
 		
 		$units = $thingElement->getKg()->getValue();
 		
-        $this->setFromNormalisedUnits($units);
+        $this->setFromNormalisedUnits($units,'kg');
 
 		return $thingElement;
 	}
@@ -76,14 +77,13 @@ abstract class WeightValue extends DisplayConvertibleValue {
 			return $thingElement;
 		}
 
-		$normalisedValue = $thingElement->getDisplay()->getValue();
+        $display = $thingElement->getDisplay();
+
+		$normalisedValue = $this->getNormalisedValue();
+
 		if ( isset($normalisedValue) ) {
 		    $thingElement->getKg()->setValue($normalisedValue);
 		}
-
-        // This is to set the main hv value as something meaningful. Doesn't take into account the minor value but this will be changed when we start having one field for values anyway. In the mean time, our system should always rely on the normalised values to ensure we're accurate.
-        $thingElement->getDisplay()->setValue($this->majorValue);
-
-		return $thingElement;
 	}
+
 }

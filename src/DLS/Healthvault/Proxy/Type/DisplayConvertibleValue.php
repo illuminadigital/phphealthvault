@@ -5,83 +5,24 @@ use DLS\Healthvault\Proxy\Type\BaseType;
 
 abstract class DisplayConvertibleValue extends DisplayValue implements DisplayConvertibleValueInterface
 {
-
-    /**
-     * @var double
-     */
-    protected $normalisedValue;
-
-    /**
-     * 
-     * @var double
-     */
-    protected $majorValue;
-
-    /**
-     * 
-     * @var double
-     */
-    protected $minorValue;
-
-    /**
-     * 
-     * @var string
-     */
-    protected $unitsCode;
-
     public static function getTypeOptionChoices()
     {
         return array_keys(self::getSpecificTypeOptions());
     }
 
-    public function getMajorValue()
-    {
-        return $this->majorValue;
-    }
-
-    public function setMajorValue($majorValue)
-    {
-        $this->majorValue = $majorValue;
-        
-        $this->updateNormalisedValue();
-        
-        return $this;
-    }
-
-    public function getMinorValue()
-    {
-        return $this->minorValue;
-    }
-
-    public function setMinorValue($minorValue)
-    {
-        $this->minorValue = $minorValue;
-        
-        $this->updateNormalisedValue();
-        
-        return $this;
-    }
-
-    public function getUnitsCode()
-    {
-        return $this->unitsCode;
-    }
-
-    public function setUnitsCode($unitsCode)
-    {
-        $this->unitsCode = $unitsCode;
-        
-        return $this;
-    }
-
     public function getNormalisedValue()
     {
-        return $this->normalisedValue;
-    }
+        $thisType = $this->getSelectedTypeData();
 
-    public function setNormalisedValue($normalisedValue)
-    {
-        $this->normalisedValue = $normalisedValue;
+        $value = $this->value;
+
+        if(array_key_exists('major_scale',$thisType)){
+
+            $value = $this->value*$thisType['major_scale'];
+
+        }
+
+        return $value;
     }
 
     public function getSelectedTypeData($unitsCode = NULL)
@@ -105,7 +46,7 @@ abstract class DisplayConvertibleValue extends DisplayValue implements DisplayCo
 
         if (!$thisType) {
             // Assume the major value is normalised and complete
-            return $this->getMajorValue();
+            return $this->value;
         }
         // else
         if (isset($thisType['minor_scale'])) {
@@ -120,163 +61,106 @@ abstract class DisplayConvertibleValue extends DisplayValue implements DisplayCo
         return $units;
     }
 
-    public function getDisplayValue()
+    public function getDisplayValue($normalisedUnit = '')
     {
+
         $thisType = $this->getSelectedTypeData();
 
         if ( ! $thisType) {
-            return (string) $this->majorValue;
+            return (string) $this->value;
         } else {
-            return self::getValueString($this->majorValue, $this->minorValue,
-                    $thisType);
+            return $this->getValueString($normalisedUnit);
         }
     }
 
-    public static function getValueString($majorValue, $minorValue, $typeData)
+    public function getValueString($normalisedUnit)
     {
-        $majorName = $typeData['major'];
 
-        if ($majorValue != 0) {
-            $text = sprintf('%d %s', $majorValue, $majorName);
+        if($normalisedUnit ='' ){
+            return (string)$this->value;
+        }
+
+        $value = $this->value;
+
+        $integerValue = (int)$this->value;
+
+        $fractionValue = $value - $integerValue;
+
+
+        if ($value != 0) {
+
+
+            $text = sprintf('%d %s', $integerValue,  $typeData['major']);
         } else {
             $text = '';
         }
-        
-        if (0 != $minorValue) {
+
+        if (0 != $fractionValue) {
             if (isset($typeData['minor'])) {
                 $minorName = $typeData['minor'];
-                
-                $text .= sprintf(' %0.2f %s', $minorValue, $minorName);
+
+                $text .= sprintf(' %0.2f %s', $fractionValue, $minorName);
             } else {
-                $text .= sprintf(' %0.2f', $minorValue);
+                $text .= sprintf(' %0.2f', $fractionValue);
             }
         }
 
         return $text;
     }
 
-    public function setFromNormalisedUnits($units)
+    public function setFromNormalisedUnits($units,$normalisedUnits)
     {
         $thisType = $this->getSelectedTypeData();
 
-        if (!$thisType) {
-            // Assume the units value is normalised and complete
-            $this->majorValue = $units;
-            $this->minorValue = 0;
-        } else {
-            $convertedUnits = (isset($thisType['major_scale']) ? $units
-                            / $thisType['major_scale'] : $units);
+        $value = $units;
 
-            $this->majorValue = (int)floor($convertedUnits+0.0001);
-            if (isset($thisType['minor_scale']) && ($convertedUnits - $this->majorValue)>0) {
-                $this->minorValue = ($convertedUnits - $this->majorValue)
-                        / $thisType['minor_scale'];
-            } else {
-                $this->minorValue = ($convertedUnits - $this->majorValue)>0 ? $convertedUnits - $this->majorValue : 0;
-            }
+        if ( $thisType && $normalisedUnits != $this->unitsCode) {
+
+            $value = $units/$thisType['major_scale'];
+
         }
-        
-        $this->normalisedValue = $units;
+
+        $this->value = $value;
+
     }
-
-    public function setFromUnits($units)
-    {
-        $thisType = $this->getSelectedTypeData();
-
-        if (!$thisType) {
-            // Assume the units value is normalised and complete
-            $this->majorValue = $units;
-            $this->minorValue = 0;
-        } else {
-            if (isset($thisType['major_scale']) && $thisType['major_scale'] != 1) {
-                $units = $units / $thisType['major_scale'];
-            }
-            
-            $this->majorValue = (int)floor($units+0.0001);
-            
-            if (isset($thisType['minor_scale']) && ($units - $this->majorValue)>0) {
-                $this->minorValue = ($units - $this->majorValue)
-                        / $thisType['minor_scale'];
-            } else {
-                $this->minorValue = 0;
-            }
-        }
-        
-        $this->updateNormalisedValue();
-    }
-    
-    protected function updateNormalisedValue() {
-        $thisType = $this->getSelectedTypeData();
-        
-        if (!$thisType) {
-            $normalisedValue = $this->majorValue;
-        } else {
-            $minorScaleFactor = isset($thisType['minor_scale']) ? $thisType['minor_scale'] : 0;
-            $majorScaleFactor = isset($thisType['major_scale']) ? $thisType['major_scale'] : 1;
-            
-            $normalisedValue = $this->majorValue + ($this->minorValue * $minorScaleFactor);
-            $normalisedValue = $normalisedValue * $majorScaleFactor;
-        }
-        
-        $this->normalisedValue = $normalisedValue;
-        
-        return $normalisedValue;
-    } 
 
     public function setFromThingElement($thingElement)
     {
+
         $display = $thingElement->getDisplay();
 
         if (empty($display)) {
             return FALSE;
         }
 
-        $unitsCode = $display->getUnitsCode();
-        $units = $display->getUnits();
+        $this->units = $display->getUnits();
 
-        $codeValue = NULL;
-        
-        if ( ! empty($unitsCode) ) {
-            if ( $this->getSelectedTypeData($unitsCode) ) {
-                $codeValue = $unitsCode;
-            }
-        }
+        $this->unitsCode = $display->getUnitsCode();
 
-        if ( ! $codeValue && ! empty($units) ) {
-            $codeValue = $this->getCodeForTypeName($units);
-
-            // Only sometimes this is a code, not a name ....
-            if ( ! $codeValue && $this->getSelectedTypeData($units) ) {
-                $codeValue = $units;
-            }
-        }
-
-        $this->unitsCode = $codeValue;
-
-        $this->setFromUnits($display->getValue());
-
-        // We can't set the normalised value. The outer code needs to
+        $this->value = $display->getValue();
 
         return $thingElement;
     }
 
     public function updateToThingElement($thingElement)
     {
+
         $display = $thingElement->getDisplay();
 
         if (empty($display)) {
             return FALSE;
         }
-        
-        $thisType = $this->getSelectedTypeData();
-        
+
+        $display->setValue($this->value);
+
+        $display->setUnits($this->units);
+
         $display->setUnitsCode($this->unitsCode);
-        $display->setUnits($thisType['name']);
-        $display->setValue($this->getUnits());
-        $display->setText($this->getDisplayValue());
-        
+
+        $display->setText(self::getValueString($this->value, $this->unitsCode));
+
         $thingElement->setDisplay($display);
-        
+
         return $thingElement;
     }
 
@@ -314,10 +198,12 @@ abstract class DisplayConvertibleValue extends DisplayValue implements DisplayCo
     }
     
     public function __toString() {
-        return $this->getDisplayValue();
+        $type = $this->getSelectedTypeData();
+        return (string)$this->value.' '.$type['major'];
+
     }
     
     public function isEmpty() {
-        return (empty($this->minorValue) && empty($this->majorValue));
+        return (empty($this->value));
     }
 }
