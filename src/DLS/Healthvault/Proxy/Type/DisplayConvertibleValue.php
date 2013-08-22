@@ -89,8 +89,9 @@ abstract class DisplayConvertibleValue extends DisplayValue implements DisplayCo
 
         if ($value != 0) {
 
-
+die();
             $text = sprintf('%d %s', $integerValue,  $typeData['major']);
+
         } else {
             $text = '';
         }
@@ -157,7 +158,9 @@ abstract class DisplayConvertibleValue extends DisplayValue implements DisplayCo
 
         $display->setUnitsCode($this->unitsCode);
 
-        $display->setText(self::getValueString($this->value, $this->unitsCode));
+        $type = $this->getSelectedTypeData();
+
+        $display->setText($this->value.' '.$type['major']);
 
         $thingElement->setDisplay($display);
 

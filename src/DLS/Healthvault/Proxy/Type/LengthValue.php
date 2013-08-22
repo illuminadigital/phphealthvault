@@ -76,6 +76,9 @@ abstract class LengthValue extends DisplayConvertibleValue {
 	}
 	
 	public function updateToThingElement($thingElement) {
+
+        $this->units = $this->unitsCode;
+
 		$thingElement = parent::updateToThingElement($thingElement);
 		
 		if ( ! $thingElement ) {
