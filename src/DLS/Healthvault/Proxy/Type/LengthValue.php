@@ -1,7 +1,7 @@
 <?php
 namespace DLS\Healthvault\Proxy\Type;
 
-abstract class LengthValue extends DisplayValue {
+abstract class LengthValue extends DisplayConvertibleValue {
 	
 	protected static function getPossibleTypes() {
 		return array(
@@ -70,26 +70,27 @@ abstract class LengthValue extends DisplayValue {
 		
 		$units = $thingElement->getM()->getValue();
 		
-        $this->setFromNormalisedUnits($units);
+        $this->setFromNormalisedUnits($units,'m');
 
 		return $thingElement;
 	}
 	
 	public function updateToThingElement($thingElement) {
+
+        $this->units = $this->unitsCode;
+
 		$thingElement = parent::updateToThingElement($thingElement);
 		
 		if ( ! $thingElement ) {
 			return $thingElement;
 		}
 
-		$normalisedValue = $thingElement->getDisplay()->getValue();
-		if ( isset($normalisedValue) ) {
-		    $thingElement->getM()->setValue($normalisedValue);
-		}
+        $display = $thingElement->getDisplay();
 
-        // This is to set the main hv value as something meaningful. Doesn't take into account the minor value but this will be changed when we start having one field for values anyway. In the mean time, our system should always rely on the normalised values to ensure we're accurate.
-        $thingElement->getDisplay()->setValue($this->majorValue);
+        $normalisedValue = $this->getNormalisedValue();
 
-        return $thingElement;
+        if ( isset($normalisedValue) ) {
+            $thingElement->getM()->setValue($normalisedValue);
+        }
 	}
 }
