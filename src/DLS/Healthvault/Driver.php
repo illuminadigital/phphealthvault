@@ -184,6 +184,7 @@ class Driver {
             \com\microsoft\wc\thing\appointment\Appointment::ID => '\\DLS\\Healthvault\\Proxy\\Thing\Appointment',
             \com\microsoft\wc\thing\BloodPressure\BloodPressure::ID => '\\DLS\\Healthvault\\Proxy\\Thing\BloodPressure',
             \com\microsoft\wc\thing\care_plan\CarePlan::ID => '\\DLS\Healthvault\\Proxy\\Thing\\CarePlan',
+            \com\microsoft\wc\thing\cholesterol_profile\CholesterolProfile::ID => '\\DLS\Healthvault\Proxy\\Thing\\Cholesterol',
             \com\microsoft\wc\thing\condition\Condition::ID => '\\DLS\Healthvault\Proxy\\Thing\\Condition',
             \com\microsoft\wc\thing\dietary_intake_daily\DietaryIntakeDaily::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\DietaryIntakeDaily',
             \com\microsoft\wc\thing\emotion\Emotion::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Emotion',
