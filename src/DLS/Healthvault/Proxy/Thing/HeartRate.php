@@ -19,7 +19,6 @@ class HeartRate extends WhenThing
      * @Assert\GreaterThan( value = -1 )
      * @Assert\NotBlank()
      *
-     * @XmlElement	(type="\com\microsoft\wc\thing\types\NonNegativeInt", name="value")
      */
     protected $value;
 
@@ -38,7 +37,23 @@ class HeartRate extends WhenThing
      */
     protected $measurementFlags;
 
+    public function __construct(Thing2 $thing = NULL,
+                                VocabularyInterface $healthvaultVocabulary = NULL) {
 
+        $this->measurementMethod = new CodableValue('heart-rate-measurement-method');
+        $this->measurementConditions = new CodableValue('heart-rate-measurement-conditions');
+        $this->measurementFlags = new CodableValue();
+
+        if ($healthvaultVocabulary) {
+
+            $this->measurementMethod->setVocabularyInterface($healthvaultVocabulary);
+            $this->measurementConditions->setVocabularyInterface($healthvaultVocabulary);
+            $this->measurementFlags->setVocabularyInterface($healthvaultVocabulary);
+
+        }
+
+        parent::__construct($thing, $healthvaultVocabulary);
+    }
 
     /**
      * @param \DLS\Healthvault\Proxy\Type\CodableValue $measurementConditions
@@ -211,11 +226,11 @@ class HeartRate extends WhenThing
 
         $this->value = $payload->getValue();
 
-        $this->measurementMethod = $payload->getMeasurementMethod();
+        $this->measurementMethod->setFromThingElement($payload->getMeasurementMethod());
 
-        $this->measurementConditions = $payload->getMeasurementConditions();
+        $this->measurementConditions->setFromThingElement($payload->getMeasurementConditions());
 
-        $this->measurementFlags = $payload->getMeasurementFlags() ;
+        $this->measurementFlags->setFromThingElement($payload->getMeasurementFlags());
 
         return $this;
     }
