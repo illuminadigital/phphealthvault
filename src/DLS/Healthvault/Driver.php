@@ -193,6 +193,7 @@ class Driver {
             \com\microsoft\wc\thing\BloodGlucose\BloodGlucose::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Glucose',
             \com\microsoft\wc\thing\HbA1C\HbA1C::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\HbA1C',
             \com\microsoft\wc\thing\height\Height::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Height',
+            \com\microsoft\wc\thing\inhaler_use\AsthmaInhalerUse::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\AsthmaInhalerUse',
             \com\microsoft\wc\thing\life_goal\LifeGoal::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\LifeGoal',
             \com\microsoft\wc\thing\medication\Medication::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\Medication',
             \com\microsoft\wc\thing\peak_flow\PeakFlow::ID => '\\DLS\\Healthvault\\Proxy\\Thing\\PeakFlow',
