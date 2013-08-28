@@ -50,9 +50,9 @@ class AsthmaInhalerUse extends WhenThing
 
         if ($healthvaultVocabulary) {
 
-            $this->measurementMethod->setVocabularyInterface($healthvaultVocabulary);
-            $this->measurementConditions->setVocabularyInterface($healthvaultVocabulary);
-            $this->measurementFlags->setVocabularyInterface($healthvaultVocabulary);
+            $this->drug->setVocabularyInterface($healthvaultVocabulary);
+            $this->strength->setVocabularyInterface($healthvaultVocabulary);
+            $this->dosePurpose->setVocabularyInterface($healthvaultVocabulary);
 
         }
 
@@ -319,7 +319,7 @@ class AsthmaInhalerUse extends WhenThing
         return array(
             'when' => 'Date',
             'drug' => 'Drug',
-            'dose' => 'Dose',
+            'doseCount' => 'Dose',
             'strength' => 'Strength',
             'dosePurpose' => 'Dose purpose'
         );
