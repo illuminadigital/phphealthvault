@@ -69,7 +69,7 @@ class Allergy extends BaseThing
 
         $this->name = new CodableValue();
 
-        $this->reaction = new CodableValue('reaction');
+        $this->reaction = new CodableValue('reactions');
 
         $this->allergenType = new CodableValue('allergen-type');
 
@@ -94,6 +94,20 @@ class Allergy extends BaseThing
         }
 
         parent::__construct($thing, $healthvaultVocabulary);
+
+    }
+
+    /**
+     * @param \DLS\Healthvault\Utilities\VocabularyInterface $healthvaultVocabulary
+     */
+
+    public function setHealthvaultVocabulary(VocabularyInterface $healthvaultVocabulary){
+
+        $this->reaction->setVocabularyInterface($healthvaultVocabulary);
+
+        $this->allergenType->setVocabularyInterface($healthvaultVocabulary);
+
+        parent::setHealthvaultVocabulary($healthvaultVocabulary);
 
     }
 
@@ -196,9 +210,15 @@ class Allergy extends BaseThing
      */
     public function setThingFirstObserved($firstObserved)
     {
-        $hvFirstObserved = $this->getThingPayload()->getFirstObserved();
 
-        $this->setThingApproxDateTime($hvFirstObserved, $firstObserved);
+        if($firstObserved){
+
+            $hvFirstObserved = $this->getThingPayload()->getFirstObserved(TRUE);
+
+            $this->setThingApproxDateTime($hvFirstObserved, $firstObserved);
+
+        }
+
 
         return $this;
     }
