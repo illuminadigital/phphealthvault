@@ -11,7 +11,7 @@ use DLS\Healthvault\Proxy\Type\CodableValue;
 use com\microsoft\wc\thing\Thing2;
 use com\microsoft\wc\thing\allergic_episode\AllergicEpisode as hvAllergicEpisode;
 
-class AllergicEpisode extends BaseThing
+class AllergicEpisode extends WhenThing
 {
     protected $thingType = 'Allergic Episode';
 
