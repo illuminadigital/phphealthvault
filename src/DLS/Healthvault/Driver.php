@@ -181,6 +181,7 @@ class Driver {
         // The proxyies we currently know about.
         // FIXME: Get the list of proxies automatically using annotations or the like
         static $proxyData = array(
+            \com\microsoft\wc\thing\allergic_episode\AllergicEpisode::ID => '\\DLS\\Healthvault\\Proxy\\Thing\AllergicEpisode',
             \com\microsoft\wc\thing\allergy\Allergy::ID => '\\DLS\\Healthvault\\Proxy\\Thing\Allergy',
             \com\microsoft\wc\thing\appointment\Appointment::ID => '\\DLS\\Healthvault\\Proxy\\Thing\Appointment',
             \com\microsoft\wc\thing\BloodPressure\BloodPressure::ID => '\\DLS\\Healthvault\\Proxy\\Thing\BloodPressure',
