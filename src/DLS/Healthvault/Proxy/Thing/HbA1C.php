@@ -175,7 +175,7 @@ class HbA1C extends WhenThing
     public static function getDisplayFields() {
         return array(
             'when' => 'Date',
-            'value' => 'Value ',
+            'value' => 'Value',
             'HbA1CAssayMethod' => 'HbA1C Assay Method',
             'deviceId' => 'Device'
         );

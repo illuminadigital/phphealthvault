@@ -224,7 +224,7 @@ class HeartRate extends WhenThing
 
         $payload = $this->getThingPayload();
 
-        $this->value = $payload->getValue();
+        $this->value = $payload->getValue()->getValue();
 
         $this->measurementMethod->setFromThingElement($payload->getMeasurementMethod());
 
