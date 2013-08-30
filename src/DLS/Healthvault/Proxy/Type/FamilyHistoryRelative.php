@@ -150,7 +150,7 @@ class FamilyHistoryRelative extends VocabularyType
 
 
         if ( ! empty($this->dateOfBirth) ) {
-
+            DateTimeUtils::setThingApproxDate($thingElement->getDateOfBirth(),$this->dateOfBirth);
         } else {
 
             $thingElement->getDateOfBirth(FALSE);
@@ -158,7 +158,7 @@ class FamilyHistoryRelative extends VocabularyType
         }
 
         if ( ! empty( $this->dateOfDeath ) ) {
-            //$this->dateOfDeath->updateToThingElement($thingElement->getDateOfDeath());
+            DateTimeUtils::setThingApproxDate($thingElement->getDateOfDeath(),$this->dateOfDeath);
         } else {
 
             $thingElement->getDateOfDeath(FALSE);
