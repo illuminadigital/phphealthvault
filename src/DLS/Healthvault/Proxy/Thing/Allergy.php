@@ -478,7 +478,11 @@ class Allergy extends BaseThing
 
         $this->setThingTreatment($this->treatment);
 
-        $this->setThingTreatmentProvider($this->treatmentProvider);
+        if($this->treatmentProvider->getFullName()!=''){
+
+            $this->setThingTreatmentProvider($this->treatmentProvider);
+
+        }
 
         return $thing;
     }
