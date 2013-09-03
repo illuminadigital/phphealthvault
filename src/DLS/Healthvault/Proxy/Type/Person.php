@@ -259,43 +259,47 @@ class Person extends VocabularyType
 
     public function updateToThingElement($thingElement)
     {
-        $this->type->setVocabularyInterface($this->vocabularyInterface);
-        if ( ! $this->type->isEmpty() ) {
-            $this->type->updateToThingElement($thingElement->getType());
-        } else {
-            $thingElement->getType(NULL);
+
+        if( ! $this->isEmpty() ){
+            $this->type->setVocabularyInterface($this->vocabularyInterface);
+            if ( ! $this->type->isEmpty() ) {
+                $this->type->updateToThingElement($thingElement->getType());
+            } else {
+                $thingElement->getType(NULL);
+            }
+
+            $this->title->setVocabularyInterface($this->vocabularyInterface);
+            if ( ! $this->title->isEmpty() ) {
+                $this->title->updateToThingElement($thingElement->getName()->getTitle());
+            } else {
+                $thingElement->getName()->setTitle(NULL);
+            }
+
+            $this->suffix->setVocabularyInterface($this->vocabularyInterface);
+            if ( ! $this->suffix->isEmpty() ) {
+                $this->suffix->updateToThingElement($thingElement->getName()->getSuffix());
+            } else {
+                $thingElement->getName()->setSuffix(NULL);
+            }
+
+            if ($this->contact && ! $this->contact->isEmpty()) {
+                $this->contact->setVocabularyInterface($this->vocabularyInterface);
+                $this->contact->updateToThingElement($thingElement->getContact());
+            } else {
+                $thingElement->setContact(NULL);
+            }
+
+            $thingElement->getName()->setFull($this->fullName);
+            $thingElement->getName()->setFirst($this->firstName);
+            $thingElement->getName()->setMiddle($this->middleName);
+            $thingElement->getName()->setLast($this->lastName);
+
+            $thingElement->setOrganization($this->organization);
+            $thingElement->setId($this->organizationId);
+
+            $thingElement->setProfessionalTraining($this->professionalTraining);
         }
-        
-        $this->title->setVocabularyInterface($this->vocabularyInterface);
-        if ( ! $this->title->isEmpty() ) {
-            $this->title->updateToThingElement($thingElement->getName()->getTitle());
-        } else {
-            $thingElement->getName()->setTitle(NULL);
-        }        
-        
-        $this->suffix->setVocabularyInterface($this->vocabularyInterface);
-        if ( ! $this->suffix->isEmpty() ) {
-            $this->suffix->updateToThingElement($thingElement->getName()->getSuffix());
-        } else {
-            $thingElement->getName()->setSuffix(NULL);
-        }
-        
-        if ($this->contact && ! $this->contact->isEmpty()) {
-            $this->contact->setVocabularyInterface($this->vocabularyInterface);
-            $this->contact->updateToThingElement($thingElement->getContact());
-        } else {
-            $thingElement->setContact(NULL);
-        }
-        
-        $thingElement->getName()->setFull($this->fullName);
-        $thingElement->getName()->setFirst($this->firstName);
-        $thingElement->getName()->setMiddle($this->middleName);
-        $thingElement->getName()->setLast($this->lastName);
-        
-        $thingElement->setOrganization($this->organization);
-        $thingElement->setId($this->organizationId);
-        
-        $thingElement->setProfessionalTraining($this->professionalTraining);
+
     }
 
     public function __toString()
