@@ -120,7 +120,7 @@ abstract class DisplayConvertibleValue extends DisplayValue implements DisplayCo
 
         }
 
-        $this->value = $value;
+        $this->value = number_format($value,2);
 
     }
 
