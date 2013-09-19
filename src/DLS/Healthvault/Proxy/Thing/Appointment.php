@@ -59,7 +59,7 @@ class Appointment extends WhenThing
 
         $this->status = new CodableValue('appointment-status');
 
-        $this->careClass = new CodableValue('appointment-care-class');
+        $this->careClass = new CodableValue('appointment-care-class:all');
 
         //$this->duration = new DurationValue();
 
