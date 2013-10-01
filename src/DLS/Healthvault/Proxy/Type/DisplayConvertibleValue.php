@@ -16,7 +16,7 @@ abstract class DisplayConvertibleValue extends DisplayValue implements DisplayCo
 
         $value = $this->value;
 
-        if(array_key_exists('major_scale',$thisType)){
+        if(is_array($thisType) && array_key_exists('major_scale',$thisType)){
 
             $value = $this->value*$thisType['major_scale'];
 
