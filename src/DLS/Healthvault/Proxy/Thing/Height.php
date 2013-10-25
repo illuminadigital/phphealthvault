@@ -4,6 +4,7 @@ namespace DLS\Healthvault\Proxy\Thing;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use com\microsoft\wc\thing\Thing2;
+use DLS\Healthvault\Utilities\VocabularyInterface;
 use com\microsoft\wc\thing\height\Height as hvHeight;
 
 use DLS\Healthvault\Proxy\Type\ShortLengthValue;
