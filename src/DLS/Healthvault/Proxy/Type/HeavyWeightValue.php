@@ -26,4 +26,10 @@ class HeavyWeightValue extends WeightValue
     public static function getTypeOptions() {
         return self::$weightTypes;
     }
+
+    public function unsetTypeOptions(array $options){
+        foreach ($options as $type) {
+            unset (self::$weightTypes[$type]);
+        }
+    }
 }
