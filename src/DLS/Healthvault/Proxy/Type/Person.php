@@ -304,7 +304,10 @@ class Person extends VocabularyType
 
     public function __toString()
     {
-        return $this->fullName;
+        if($this->fullName){
+            return $this->fullName;
+        }
+        return '';
     }
     
     public function isEmpty() {
