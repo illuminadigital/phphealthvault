@@ -406,7 +406,7 @@ class PlatformMethod
     	
         curl_setopt($conn, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0 );
     	curl_setopt($conn, CURLOPT_POSTFIELDS, $requestXml);
-
+	curl_setopt($conn, CURLOPT_SSLVERSION, 4);
     	$response = curl_exec($conn);
     	
     	// curl_close($conn);
